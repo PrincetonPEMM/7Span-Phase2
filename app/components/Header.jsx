@@ -13,16 +13,16 @@ const Header = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center px-5 pt-6 absolute top-5 text-white w-full">
-      <div className="w-1/4 relative z-20">
+    <div className="hidden lg:flex justify-between items-center px-5  absolute top-16 text-white w-full">
+      <a href="javascript:;" className="w-[30%] relative z-20">
         <Image src={Logo} alt="Picture of the author" />
-      </div>
-      <ul className="font-body flex items-center relative z-20">
+      </a>
+      <ul className="font-menu flex items-center relative z-20">
         {menuItems.map((item, index) => (
           <Link
             href={item.link}
             key={index}
-            className="text-3xl p-3 font-semibold inline-flex"
+            className="text-2xl p-3 capitalize font-semibold inline-flex"
           >
             {item.title}
           </Link>

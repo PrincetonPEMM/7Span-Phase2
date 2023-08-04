@@ -7,22 +7,21 @@ const Hero = () => {
   return (
     <>
       <div className="grid grid-cols-3">
-        <div className="relative flex items-center justify-center uppercase text-center">
+        <div className="relative flex items-center justify-center uppercase ">
           <Image src={img1} alt="Picture of the author" />
-
-          <div className="absolute m-auto z-10 text-white space-y-4 px-10">
+          <div className="absolute m-auto z-10 text-white  px-10">
             <span className="text-2xl ">featured</span>
             <h3 className="text-5xl font-medium">Stories</h3>
-            <p className="text-base">
+            <p className="text-base mt-4">
               Stories about the Virgin Mary in Ethiopia, Eritrea, and Egypt are
               vivid, profound, and sometimes historically valuable. The staff of
               PEMM has selected three stories that best represent the genre
             </p>
           </div>
         </div>
-        <div className="relative flex items-center justify-center uppercase text-center">
+        <div className="relative flex items-center justify-center uppercase ">
           <Image src={img2} alt="Picture of the author" />
-          <div className="absolute m-auto z-10 text-white space-y-4 px-10">
+          <div className="absolute m-auto z-10 text-white  px-10">
             <span className="text-2xl ">featured</span>
             <h3 className="text-5xl font-medium">MenuScripts</h3>
             <p className="text-base">
@@ -32,9 +31,9 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <div className="relative flex items-center justify-center uppercase text-center">
+        <div className="relative flex items-center justify-center uppercase ">
           <Image src={img} alt="Picture of the author" />
-          <div className="absolute m-auto z-10 text-white space-y-4 px-10">
+          <div className="absolute m-auto z-10 text-white  px-10">
             <span className="text-2xl ">featured</span>
             <h3 className="text-5xl font-medium">Paintings</h3>
             <p className="text-base">
