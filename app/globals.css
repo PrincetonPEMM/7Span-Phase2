@@ -2,69 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Maghfirea";
-  src:
-    url("../assets/fonts/Maghfirea.ttf") format("ttf"),
-    url("../assets/fonts/Maghfirea.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Source Serif Pro";
-  src:
-    url("../assets/fonts/SourceSerifPro-Regular.ttf") format("ttf"),
-    url("../assets/fonts/SourceSerifPro-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Source Serif Pro";
-  src:
-    url("../assets/fonts/SourceSerifPro-Bold.ttf") format("ttf"),
-    url("../assets/fonts/SourceSerifPro-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Noto Serif";
-  src:
-    url("../assets/fonts/NotoSerif-Regular.ttf") format("ttf"),
-    url("../assets/fonts/NotoSerif-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Serif";
-  src: url("../assets/fonts/NotoSerif-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Source Sans 3";
-  src:
-    url("../assets/fonts/SourceSans3-Regular.ttf") format("ttf"),
-    url("../assets/fonts/SourceSans3-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("../assets/fonts/SourceSans3-Bold.woff") format("woff");
-
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -79,9 +16,12 @@
   }
 }
 
-.logo {
-  width: 26vw;
-}
 body {
-  color: #000;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
