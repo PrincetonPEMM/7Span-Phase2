@@ -85,3 +85,49 @@
 body {
   color: #000;
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.open-menu {
+  animation: slideIn 0.5s ease-in forwards;
+}
+.close-menu {
+  animation: slideOut 0.3s ease-in-out forwards;
+  animation-delay: 0.3s; /* Add a delay to start the closing animation */
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Initial state */
+.fade-out {
+  opacity: 0;
+}
+
+.slide-in {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slide-out {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
