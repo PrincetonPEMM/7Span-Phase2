@@ -22,7 +22,7 @@ module.exports = {
         ...colors,
 
         offWhite: "#E7E3DC",
-        offBlack: "221F21",
+        offBlack: "#221F21",
         primary: {
           100: "#E1F7E3",
           200: "#C4F0CE",
