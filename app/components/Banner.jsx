@@ -7,19 +7,16 @@ const Banner = ({
   description,
   data,
   setSelectedBanner,
-  setIsOpen,
-  isOpen,
+  selectedBanner,
 }) => {
-  const [isShow, setIsShow] = useState(false);
-
   return (
     <div className="relative ">
       <button
         className="w-full aspect-auto md:h-full"
         onClick={() => {
-          setSelectedBanner(data);
-          setIsOpen(!isOpen);
-          setIsShow(!isShow);
+          selectedBanner.img === data.img
+            ? setSelectedBanner({})
+            : setSelectedBanner(data);
         }}
       >
         <div className="relative flex h-full text-left z-30">
@@ -53,7 +50,7 @@ const Banner = ({
         </div>
       </button>
       {/* Show the detailed view for the clicked item */}
-      {isShow && isOpen && (
+      {selectedBanner.img === data.img && (
         <div className="md:hidden block">
           <div className="md:flex relative bg-secondary-500 text-center md:text-left">
             <div className="relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px]">
@@ -83,7 +80,9 @@ const Banner = ({
               <button
                 className="absolute top-5 right-5 left-auto bottom-auto text-black"
                 onClick={() => {
-                  setIsOpen(!isOpen);
+                  selectedBanner.img === data.img
+                    ? setSelectedBanner({})
+                    : setSelectedBanner(data);
                 }}
               >
                 <MdiClose />

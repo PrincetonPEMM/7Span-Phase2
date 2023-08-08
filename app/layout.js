@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      2
       <body>
         <main>
           <div className="relative">

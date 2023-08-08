@@ -4,19 +4,17 @@ import MdiClose from "@/assets/icons/MdiClose";
 import Banner from "./Banner";
 
 const Hero = ({ data }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState({});
 
   return (
     <>
       <div className="grid md:grid-cols-3">
         <Banner
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
           image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.story_background_image?.id}`}
           title={data?.story_title}
           description={data?.story_description}
           setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
           data={{
             title: data?.story_title,
             img: data?.story_background_image?.id,
@@ -38,12 +36,11 @@ const Hero = ({ data }) => {
           }}
         />
         <Banner
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
           image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.manuscript_background_image?.id}`}
           title={data?.manuscript_title}
           description={data?.manuscript_description}
           setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
           data={{
             title: data?.manuscript_title,
             img: data?.manuscript_background_image.id,
@@ -65,12 +62,11 @@ const Hero = ({ data }) => {
           }}
         />
         <Banner
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
           image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.painting_background_image?.id}`}
           title={data?.painting_title}
           description={data?.painting_description}
           setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
           data={{
             title: data?.painting_title,
             img: data?.painting_background_image.id,
@@ -94,10 +90,10 @@ const Hero = ({ data }) => {
       </div>
 
       {/* The below section will appear when each story event triggers */}
-      {isOpen && (
+      {Boolean(Object.keys(selectedBanner).length) && (
         <div className="md:block hidden">
           <div className="md:flex relative bg-secondary-500 text-center md:text-left">
-            <div className="relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px]">
+            <div className="relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:h-full md:mr-0 md:w-3/6 lg:max-h-[600px]">
               <img
                 src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${selectedBanner?.img}`}
                 alt="Picture of the author"
@@ -126,7 +122,9 @@ const Hero = ({ data }) => {
               <button
                 className="absolute top-5 right-5 left-auto bottom-auto text-black"
                 onClick={() => {
-                  setIsOpen(!isOpen);
+                  Boolean(Object.keys(selectedBanner).length)
+                    ? setSelectedBanner({})
+                    : setSelectedBanner(data);
                 }}
               >
                 <MdiClose />
@@ -137,13 +135,14 @@ const Hero = ({ data }) => {
             {selectedBanner?.storyPart &&
               selectedBanner?.storyPart.map((data, subIndex) => (
                 <div
-                  className="relative items-center justify-center uppercase text-center"
+                  className="relative items-center justify-center uppercase text-center md:h-full "
                   key={subIndex}
                 >
                   <img
                     src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data.img}`}
                     alt="Picture of the author"
                     sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw"
+                    style={{ width: "100%", height: "100%" }}
                   />
                   <button
                     href="#"
