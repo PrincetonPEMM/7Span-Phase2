@@ -1,6 +1,8 @@
 "use client";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/images/logo-white.png";
+import LogoBlack from "../../assets/images/logo-black.png";
 import Link from "next/link";
 import Image from "next/image";
 import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
@@ -10,10 +12,10 @@ import MdiClose from "@/assets/icons/MdiClose";
 const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
+  const pathname = usePathname();
 
   const menuItems = [
     { title: "Stories", link: "/" },
-
     {
       title: "Paintings",
       link: "/paintings",
@@ -21,18 +23,19 @@ const Header = () => {
       subItems: [
         { title: "all Paintings", link: "/paintings" },
         { title: "Menuscripts", link: "/menuscripts" },
+
         { title: "Research Tools", link: "/research" },
       ],
     },
-
     { title: "menuscripts", link: "/menuscripts" },
     {
       title: "Research Tools",
       link: "/research",
       subItems: [
-        { title: "Paintings", link: "/paintings" },
-        { title: "Menuscripts", link: "/menuscripts" },
-        { title: "Research Tools", link: "/research" },
+        // { title: "Menuscripts", link: "/menuscripts" },
+        // { title: "Research Tools", link: "/research" },
+        { title: "Arabic Stories", link: "/research/arabicStories" },
+        { title: "Arabic Menuscripts", link: "/research/menuscript" },
       ],
     },
     {
@@ -61,21 +64,41 @@ const Header = () => {
         className="block h-7 w-7 flex-none p-1 lg:hidden z-40 absolute top-5 left-5"
       >
         {menuCollapse ? (
-          <MdiMenuIcon className="text-white" />
+          <MdiMenuIcon
+            className={` ${pathname === "/" ? " text-white " : "text-black"}`}
+          />
         ) : (
-          <MdiMenuIcon />
+          <MdiMenuIcon
+            className={` ${pathname === "/" ? " text-white " : "text-black"}`}
+          />
         )}
       </button>
       <div
-        className={`z-40 justify-between  pt-20 w-72 items-center inset-y-0 px-5 fixed lg:w-full text-white bg-black transition-transform duration-700 lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto ${
+        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-transparent lg:h-auto ${
           menuCollapse
             ? "transform translate-x-0 "
             : "transform -translate-x-full lg:translate-x-0"
+        } ${
+          pathname === "/"
+            ? "z-40 justify-between pt-20 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform duration-700 lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
+            : " text-primary-500 py-5 header"
         }`}
       >
+        {/*Close header */}
+        <button
+          onClick={() => setMenuCollapse(!menuCollapse)}
+          className="absolute top-4 right-4 p-2 inline-flex lg:hidden"
+        >
+          <MdiClose />
+        </button>
+
         {/* LOGO IMAGE HERE  */}
         <a href="#" className="lg:w-[30%] mb-5 w-64 relative z-20">
-          <Image src={Logo} alt="Picture of the author" />
+          {pathname === "/" ? (
+            <Image src={Logo} alt="Picture of the author" />
+          ) : (
+            <Image src={LogoBlack} alt="Picture of the author" />
+          )}
         </a>
 
         {/* MENU LINKS  */}
@@ -105,7 +128,7 @@ const Header = () => {
                       <li key={subIndex}>
                         <a
                           href={subItem.link}
-                          className="text-base font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
+                          className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
                         >
                           {subItem.title}
                         </a>
@@ -116,7 +139,7 @@ const Header = () => {
               ) : (
                 <Link
                   href={item.link}
-                  className="text-lg xl:text-2xl p-3 capitalize font-semibold inline-flex"
+                  className="text-lg xl:text-2xl p-3 capitalize font-semibold inline-flex header-link"
                 >
                   {item.title}
                 </Link>

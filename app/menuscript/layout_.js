@@ -1,6 +1,5 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import "./globals.css";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 export const metadata = {
   title: "Pemmtastic",
@@ -13,13 +12,10 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      2
+
       <body>
         <main>
-          <div className="relative">
-            <Header className="absolute inset-x-0" />
-            {children}
-          </div>
+          <div className="relative">{children}</div>
           <Footer />
         </main>
       </body>
