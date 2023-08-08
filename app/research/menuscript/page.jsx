@@ -4,14 +4,18 @@ import React from "react";
 
 const page = async () => {
 
-  const arabic_manuscripts_data = await client.request(
-    readItems("arabic_manuscripts", {
-      fields: ["*.*.*"],
-      // fields: ["title", "date_created", { authors: ["name"] }],
-    })
-  );
+  let arabic_manuscripts_data = null
 
-  console.log(arabic_manuscripts_data);
+  try {
+    arabic_manuscripts_data = await client.request(
+      readItems("arabic_manuscripts", {
+        fields: ["*.*.*"]
+      })
+    );
+  }
+  catch (e) {
+    console.log(e);
+  }
 
   return (
     <div className="container font-body space-y-4 py-12 max-w-screen-2xl mr-auto">
