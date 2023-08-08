@@ -1,49 +1,163 @@
-import React from "react";
-import img1 from "../../assets/images/stories-bg.png";
-import img2 from "../../assets/images/menuscript-bg.png";
-import img from "../../assets/images/paintings-bg.png";
-import Image from "next/image";
-const Hero = () => {
+"use client";
+import React, { useState } from "react";
+import MdiClose from "@/assets/icons/MdiClose";
+import Banner from "./Banner";
+
+const Hero = ({ data }) => {
+  const [selectedBanner, setSelectedBanner] = useState({});
+
   return (
     <>
-      <div className="grid grid-cols-3">
-        <div className="relative flex items-center justify-center uppercase ">
-          <Image src={img1} alt="Picture of the author" />
-          <div className="absolute m-auto z-10 text-white  px-10">
-            <span className="text-2xl ">featured</span>
-            <h3 className="text-5xl font-medium">Stories</h3>
-            <p className="text-base mt-4">
-              Stories about the Virgin Mary in Ethiopia, Eritrea, and Egypt are
-              vivid, profound, and sometimes historically valuable. The staff of
-              PEMM has selected three stories that best represent the genre
-            </p>
-          </div>
-        </div>
-        <div className="relative flex items-center justify-center uppercase ">
-          <Image src={img2} alt="Picture of the author" />
-          <div className="absolute m-auto z-10 text-white  px-10">
-            <span className="text-2xl ">featured</span>
-            <h3 className="text-5xl font-medium">MenuScripts</h3>
-            <p className="text-base">
-              Stories about the Virgin Mary in Ethiopia, Eritrea, and Egypt are
-              vivid, profound, and sometimes historically valuable. The staff of
-              PEMM has selected three stories that best represent the genre
-            </p>
-          </div>
-        </div>
-        <div className="relative flex items-center justify-center uppercase ">
-          <Image src={img} alt="Picture of the author" />
-          <div className="absolute m-auto z-10 text-white  px-10">
-            <span className="text-2xl ">featured</span>
-            <h3 className="text-5xl font-medium">Paintings</h3>
-            <p className="text-base">
-              Stories about the Virgin Mary in Ethiopia, Eritrea, and Egypt are
-              vivid, profound, and sometimes historically valuable. The staff of
-              PEMM has selected three stories that best represent the genre
-            </p>
-          </div>
-        </div>
+      <div className="grid md:grid-cols-3">
+        <Banner
+          image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.story_background_image?.id}`}
+          title={data?.story_title}
+          description={data?.story_description}
+          setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
+          data={{
+            title: data?.story_title,
+            img: data?.story_background_image?.id,
+            text: data?.story_following_text,
+            storyPart: [
+              {
+                title: data?.reveal_image_story_1_title,
+                img: data?.reveal_image_story_1.id,
+              },
+              {
+                title: data?.reveal_image_story_2_title,
+                img: data?.reveal_image_story_2.id,
+              },
+              {
+                title: data?.reveal_image_story_3_title,
+                img: data?.reveal_image_story_3.id,
+              },
+            ],
+          }}
+        />
+        <Banner
+          image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.manuscript_background_image?.id}`}
+          title={data?.manuscript_title}
+          description={data?.manuscript_description}
+          setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
+          data={{
+            title: data?.manuscript_title,
+            img: data?.manuscript_background_image.id,
+            text: data?.manuscript_following_text,
+            storyPart: [
+              {
+                title: data?.reveal_image_manuscript_1_title,
+                img: data?.reveal_image_manuscript_1.id,
+              },
+              {
+                title: data?.reveal_image_manuscript_2_title,
+                img: data?.reveal_image_manuscript_2.id,
+              },
+              {
+                title: data?.reveal_image_manuscript_3_title,
+                img: data?.reveal_image_manuscript_3.id,
+              },
+            ],
+          }}
+        />
+        <Banner
+          image={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.painting_background_image?.id}`}
+          title={data?.painting_title}
+          description={data?.painting_description}
+          setSelectedBanner={setSelectedBanner}
+          selectedBanner={selectedBanner}
+          data={{
+            title: data?.painting_title,
+            img: data?.painting_background_image.id,
+            text: data?.painting_following_text,
+            storyPart: [
+              {
+                title: data?.reveal_image_painting_1_title,
+                img: data?.reveal_image_painting_1.id,
+              },
+              {
+                title: data?.reveal_image_painting_2_title,
+                img: data?.reveal_image_painting_2.id,
+              },
+              {
+                title: data?.reveal_image_painting_3_title,
+                img: data?.reveal_image_painting_3.id,
+              },
+            ],
+          }}
+        />
       </div>
+
+      {/* The below section will appear when each story event triggers */}
+      {Boolean(Object.keys(selectedBanner).length) && (
+        <div className="md:block hidden">
+          <div className="md:flex relative bg-secondary-500 text-center md:text-left">
+            <div className="relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:h-full md:mr-0 md:w-3/6 lg:max-h-[600px]">
+              <img
+                src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${selectedBanner?.img}`}
+                alt="Picture of the author"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  width: "100%",
+                  height: "100%",
+                  "@media (max-width: 1024px)": {
+                    height: "auto",
+                    aspectRaio: "1/1",
+                    maxWidth: "100%",
+                  },
+                }}
+              />
+            </div>
+            <div className="w-full col-span-2 flex text-white bg-secondary-500">
+              <div className=" z-10 space-y-4 p-10 max-w-3xl">
+                <h3 className="text-2xl lg:text-5xl font-bold font-body">
+                  Featured {selectedBanner?.title}
+                </h3>
+                <p className="text-sm md:text-base lg:text-xl">
+                  {selectedBanner?.text}
+                </p>
+              </div>
+              <button
+                className="absolute top-5 right-5 left-auto bottom-auto text-black"
+                onClick={() => {
+                  Boolean(Object.keys(selectedBanner).length)
+                    ? setSelectedBanner({})
+                    : setSelectedBanner(data);
+                }}
+              >
+                <MdiClose />
+              </button>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3">
+            {selectedBanner?.storyPart &&
+              selectedBanner?.storyPart.map((data, subIndex) => (
+                <div
+                  className="relative items-center justify-center uppercase text-center md:h-full "
+                  key={subIndex}
+                >
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data.img}`}
+                    alt="Picture of the author"
+                    sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                  <button
+                    href="#"
+                    // onClick={() => navigate(`/story/${story?.id}`)}
+                    className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0 bg-black bg-opacity-50 "
+                  >
+                    <span className="text-lg lg:text-2xl font-bold font-body">
+                      Story title bottom{data.title}
+                    </span>
+                  </button>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

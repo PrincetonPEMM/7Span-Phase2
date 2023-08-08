@@ -41,12 +41,14 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Noto Serif";
   src: url("../assets/fonts/NotoSerif-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Source Sans 3";
   src:
@@ -56,10 +58,10 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Source Sans 3";
   src: url("../assets/fonts/SourceSans3-Bold.woff") format("woff");
-
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -82,6 +84,71 @@
 .logo {
   width: 26vw;
 }
+
 body {
   color: #000;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.open-menu {
+  animation: slideIn 0.5s ease-in forwards;
+}
+
+.close-menu {
+  animation: slideOut 0.3s ease-in-out forwards;
+  animation-delay: 0.3s; /* Add a delay to start the closing animation */
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Initial state */
+.fade-out {
+  opacity: 0;
+}
+
+.slide-in {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.slide-out {
+  transform: translateY(20px);
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.header {
+  @apply lg:bg-transparent bg-white lg:static;
+  box-shadow: 0px -8px 25px 1px #f1f1f1;
+}
+.header .header-link {
+  @apply text-primary-500;
+}
+.container {
+  @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
 }
