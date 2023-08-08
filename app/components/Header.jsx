@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
 import MdiChevronDown from "../../assets/icons/MdiChevronDown";
+import MdiClose from "@/assets/icons/MdiClose";
 
 const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
@@ -66,7 +67,7 @@ const Header = () => {
         )}
       </button>
       <div
-        className={`z-40 justify-between pt-20 w-72 items-center inset-y-0 px-5 fixed lg:w-full text-white bg-black transition-transform duration-700 lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto ${
+        className={`z-40 justify-between  pt-20 w-72 items-center inset-y-0 px-5 fixed lg:w-full text-white bg-black transition-transform duration-700 lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto ${
           menuCollapse
             ? "transform translate-x-0 "
             : "transform -translate-x-full lg:translate-x-0"
