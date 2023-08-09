@@ -32,6 +32,7 @@ const Header = () => {
       subItems: [
         // { title: "Menuscripts", link: "/menuscripts" },
         // { title: "Research Tools", link: "/research" },
+        { title: "Research Posts", link: "/research/research-posts" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
         { title: "Arabic Menuscripts", link: "/research/menuscript" },
       ],
