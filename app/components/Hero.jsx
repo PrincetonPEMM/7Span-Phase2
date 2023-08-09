@@ -115,7 +115,7 @@ const Hero = ({ data }) => {
               />
             </div>
             <div className="w-full col-span-2 flex text-white bg-secondary-500">
-              <div className=" z-10 space-y-4 p-10 max-w-3xl">
+              <div className="z-10 space-y-4 p-10 max-w-3xl">
                 <h3 className="text-2xl lg:text-5xl font-bold font-body">
                   Featured {selectedBanner?.title}
                 </h3>

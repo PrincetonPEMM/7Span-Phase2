@@ -15,15 +15,13 @@ const Header = () => {
   const pathname = usePathname();
 
   const menuItems = [
-    { title: "Stories", link: "/" },
+    { title: "Stories", link: "/stories" },
     {
       title: "Paintings",
       link: "/paintings",
-
       subItems: [
         { title: "all Paintings", link: "/paintings" },
         { title: "Menuscripts", link: "/menuscripts" },
-
         { title: "Research Tools", link: "/research" },
       ],
     },
@@ -74,7 +72,7 @@ const Header = () => {
         )}
       </button>
       <div
-        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-transparent lg:h-auto ${
+        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-background-500 lg:h-auto ${
           menuCollapse
             ? "transform translate-x-0 "
             : "transform -translate-x-full lg:translate-x-0"
@@ -103,7 +101,7 @@ const Header = () => {
 
         {/* MENU LINKS  */}
 
-        <ul className="font-menu lg:flex relative z-20 mt-5 lg:mt-0">
+        <ul className="font-menu lg:flex relative bg-background-500 mt-5 lg:mt-0">
           {menuItems.map((item, index) => (
             <li key={index} className="lg:ml-3 xl:ml-6">
               {item.subItems ? (
@@ -120,7 +118,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all lg:py-2 lg:bg-white rounded-sm top-0 lg:group-hover:block lg:group-hover:transiton-all text-white mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all z-20 lg:py-2 lg:bg-background-500 rounded-md top-0 lg:group-hover:block lg:group-hover:transiton-all text-white mt-1 space-y-1 ${
                       activeSubmenu === index ? "block" : "hidden"
                     }`}
                   >
