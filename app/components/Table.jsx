@@ -5,7 +5,7 @@ const Table = ({ columns, rows }) => {
   return (
     <div className="relative w-full">
       <table className="table w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
-        <thead className="font-medium bg-primary-500 text-white sticky top-[4.5rem] rounded-t-sm ">
+        <thead className="font-medium bg-primary-500 text-white sticky top-24 rounded-t-sm ">
           <tr>
             {columns?.map((item, index) => (
               <th

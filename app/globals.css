@@ -165,6 +165,36 @@ body {
   @apply fixed inset-y-0 bottom-0 right-auto z-40 flex h-full w-[250px] transform items-start overflow-y-auto border-r border-gray-200 bg-white transition-all duration-300 lg:sticky lg:h-screen;
 }
 
+[type="checkbox"]:checked {
+  background-image: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 0;
+  box-shadow: none;
+}
+
+[type="checkbox"]:checked:focus {
+  background-image: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  font-size: 0;
+  box-shadow: none;
+}
+.iconcheck input[type="checkbox"] {
+  @apply bg-background-500 text-black;
+}
+.iconcheck input[type="checkbox"] + span {
+  @apply text-black relative capitalize;
+}
+.iconcheck input[type="checkbox"]:checked {
+  @apply bg-secondary-500 text-white outline-0 bg-none focus:ring-0 focus:border-0 focus:outline-0 focus:ring-offset-0 focus:outline-offset-0;
+}
+.iconcheck input[type="checkbox"]:checked + span {
+  @apply bg-secondary-500 text-white relative;
+}
 .checkbox {
   display: block;
   position: relative;
@@ -191,7 +221,7 @@ body {
   transform: rotate(45deg);
 }
 
-.checkbox .checkbox_input {
+.checkbox .checkbox-input {
   position: absolute;
   height: 100%;
   inset: 0;
@@ -210,15 +240,15 @@ body {
   height: 18px;
 }
 
-.checkbox:hover .checkbox_input + .checkmark {
+.checkbox:hover .checkbox-input + .checkmark {
   background-color: #ccc;
 }
 
-.checkbox .checkbox_input.checked + .checkmark {
+.checkbox .checkbox-input.checked + .checkmark {
   background-color: #000;
 }
 
-.checkbox .checkbox_input.checked + .checkmark::before {
+.checkbox .checkbox-input.checked + .checkmark::before {
   display: block;
 }
 

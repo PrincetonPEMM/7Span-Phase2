@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Checkbox = ({ labelBefore, check_class, name }) => {
+const Checkbox = ({ labelBefore, checkClass, name }) => {
   const [checked, setIsChecked] = useState(false);
 
   const onChange = () => {
@@ -14,7 +14,7 @@ const Checkbox = ({ labelBefore, check_class, name }) => {
           name={name}
           checked={checked}
           onChange={onChange}
-          className={`${check_class} ${checked ? "checked" : ""}`}
+          className={`${checkClass} ${checked ? "checked" : ""}`}
           // className={`checkbox_input ${checked ? "checked" : ""}`}
         />
         <span className="checkmark"></span>

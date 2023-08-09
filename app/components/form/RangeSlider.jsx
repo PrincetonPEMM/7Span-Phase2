@@ -42,7 +42,7 @@ const RangeSlider = ({ min, max, onChange }) => {
   }, [minVal, maxVal, onChange]);
 
   return (
-    <div className="w-full">
+    <div className="w-full block py-3 my-5">
       <input
         type="range"
         min={min}
@@ -70,10 +70,10 @@ const RangeSlider = ({ min, max, onChange }) => {
       />
 
       <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="slider__left-value">{minVal}</div>
-        <div className="slider__right-value">{maxVal}</div>
+        <div className="slider__track inline-block" />
+        <div ref={range} className="slider__range inline-block" />
+        <div className="slider__left-value inline-block">{minVal}</div>
+        <div className="slider__right-value inline-block">{maxVal}</div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 const InputText = ({ label, value, onChange, previewClass }) => {
   return (
-    <div className="w-full">
+    <div className="w-full p-3">
       {label && <label className={previewClass}>{label}</label>}
       <input
         type="text"
