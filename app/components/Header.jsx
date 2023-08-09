@@ -101,7 +101,7 @@ const Header = () => {
 
         {/* MENU LINKS  */}
 
-        <ul className="font-menu lg:flex relative bg-background-500 mt-5 lg:mt-0">
+        <ul className="font-menu lg:flex relative  mt-5 lg:mt-0">
           {menuItems.map((item, index) => (
             <li key={index} className="lg:ml-3 xl:ml-6">
               {item.subItems ? (
