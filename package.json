@@ -4,12 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
+    "build": "env-cmd -f .env next build",
+    "build:example": "env-cmd -f .env.example next build",
+    "build:stage": "env-cmd -f .env.stage next build",
+    "build:prod": "env-cmd -f .env.prod next build",
     "lint": "next lint"
   },
   "dependencies": {
+    "@directus/sdk": "^11.0.1",
     "autoprefixer": "10.4.14",
+    "env-cmd": "^10.1.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "next": "13.4.12",
