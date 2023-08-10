@@ -3,9 +3,9 @@ import React from "react";
 
 const Table = ({ columns, rows }) => {
   return (
-    <div className="relative w-full">
-      <table className="table w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
-        <thead className="font-medium bg-primary-500 text-white sticky top-24 rounded-t-sm ">
+    <div className="relative ">
+      <table className="table overflow-x-auto w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
+        <thead className="font-medium bg-primary-500 text-white  rounded-t-sm ">
           <tr>
             {columns?.map((item, index) => (
               <th

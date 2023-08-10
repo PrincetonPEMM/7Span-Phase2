@@ -144,7 +144,6 @@ body {
 
 .header {
   @apply lg:bg-transparent bg-white lg:static;
-  box-shadow: 0px -8px 25px 1px #f1f1f1;
 }
 .header .header-link {
   @apply text-primary-500;
@@ -162,7 +161,7 @@ body {
 }
 
 .shell__sidebar {
-  @apply fixed inset-y-0 bottom-0 right-auto z-40 flex h-full w-[250px] transform items-start overflow-y-auto border-r border-gray-200 bg-white transition-all duration-300 lg:sticky lg:h-screen;
+  @apply inset-y-0 bottom-0 bg-primary-500 right-auto z-20  h-full w-[250px] transform items-start overflow-y-auto border-r border-gray-200 transition-all duration-300 lg:sticky lg:h-screen;
 }
 
 [type="checkbox"]:checked {
@@ -354,4 +353,11 @@ body {
   appearance: none;
   pointer-events: all;
   position: relative;
+}
+
+.sidebar-close {
+  transform: translateX(90%);
+}
+.sidebar-open {
+  transform: translateX(200%);
 }

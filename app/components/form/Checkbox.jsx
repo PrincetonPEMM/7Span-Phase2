@@ -8,7 +8,7 @@ const Checkbox = ({ labelBefore, checkClass, name }) => {
   };
   return (
     <>
-      <label className="checkbox flex items-center space-x-1" for={name}>
+      <label className="checkbox flex items-center space-x-1" htmlFor={name}>
         <input
           type="checkbox"
           name={name}
@@ -18,7 +18,9 @@ const Checkbox = ({ labelBefore, checkClass, name }) => {
           // className={`checkbox_input ${checked ? "checked" : ""}`}
         />
         <span className="checkmark"></span>
-        {labelBefore && <span className="ml-1 text-base">{labelBefore}</span>}
+        {labelBefore && (
+          <span className="ml-1 text-sm md:text-base">{labelBefore}</span>
+        )}
       </label>
     </>
   );

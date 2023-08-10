@@ -13,7 +13,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             : setSelectedBanner(data);
         }}
       >
-        <div className="relative flex h-full text-left z-30">
+        <div className="relative flex lg:h-full text-left z-30">
           {
             <img
               src={data.img}

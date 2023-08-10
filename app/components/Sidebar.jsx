@@ -5,7 +5,7 @@ import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
 import MdiLocateIcon from "@/assets/icons/MdiMenuIcon copy";
 
-const Sidebar = () => {
+const Sidebar = ({ onClick }) => {
   const filterItem = [
     {
       title: "Filtered Search",
@@ -67,61 +67,61 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="font-menu bg-primary-500 w-full h-full rounded-md text-white p-4 ">
-      <button>
-        <MdiMenuOpen className="text-white-500" />
-      </button>
-      <div>
-        {filterItem?.map((item, index) => (
-          <div key={index}>
-            <lable className="text-white text-lg block mb-3">
-              {item.title}
+    <>
+      <div className="font-menu bg-primary-500 w-full h-full rounded-md text-white">
+        <button onClick={onClick}>
+          <MdiMenuOpen className="text-white-500" />
+        </button>
+        <div>
+          <div>
+            {filterItem?.map((item, index) => (
+              <div key={index}>
+                <lable className="text-white text-base md:text-lg block mb-3">
+                  {item.title}
+                </lable>
+                {item.checkItem?.map((item, index) => (
+                  <Checkbox
+                    labelBefore={item.labelBefore}
+                    key={index}
+                    name={item.name}
+                    checkClass={"checkbox-input"}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="block">
+            <RangeSlider onChange={() => {}} min={0} max={1000} />
+          </div>
+          <div className="block mt-10  ">
+            <lable className="text-white text-base md:text-lg block mb-3">
+              Story's Place of Origin
             </lable>
-            {item.checkItem?.map((item, index) => (
-              <Checkbox
-                labelBefore={item.labelBefore}
+
+            {checkItem?.map((item, index) => (
+              <InputIcon
+                label="input"
                 key={index}
                 name={item.name}
-                checkClass={"checkbox-input"}
+                icon={item.icon}
               />
             ))}
           </div>
-        ))}
+          <div className="block">
+            <RangeSlider onChange={() => {}} min={0} max={1000} />
+          </div>
+          <div className="block mt-10  ">
+            <lable className="text-white text-base md:text-lg block mb-3">
+              Languages of Story
+            </lable>
+
+            {storyLang?.map((item, index) => (
+              <InputIcon label="input" key={index} name={item.name} />
+            ))}
+          </div>
+        </div>
       </div>
-
-      <div className="block">
-        <RangeSlider onChange={() => {}} min={0} max={1000} />
-      </div>
-
-      <div className="block mt-10  ">
-        <lable className="text-white text-lg block mb-3">
-          Story's Place of Origin
-        </lable>
-
-        {checkItem?.map((item, index) => (
-          <InputIcon
-            label="input"
-            key={index}
-            name={item.name}
-            icon={item.icon}
-          />
-        ))}
-      </div>
-
-      <div className="block">
-        <RangeSlider onChange={() => {}} min={0} max={1000} />
-      </div>
-
-      <div className="block mt-10  ">
-        <lable className="text-white text-lg block mb-3">
-          Languages of Story
-        </lable>
-
-        {storyLang?.map((item, index) => (
-          <InputIcon label="input" key={index} name={item.name} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
