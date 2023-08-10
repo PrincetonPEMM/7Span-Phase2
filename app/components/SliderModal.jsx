@@ -1,33 +1,40 @@
-import React from "react";
+'use client'
+import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Modal from "./Modal";
 import Image from "next/image";
 
-const SliderModal = ({ sliderImg, isOpen = false, modalClose = false }) => {
+const SliderModal = ({ sliderImg, isOpen = false, modalClose = false, openImage = "" }) => {
   return (
-    <Modal
-      isOpen={isOpen}
-      modalClose={modalClose}
-      previewClass="pc-w-full pc-max-w-xs sm:pc-max-w-md xl:pc-max-w-xl"
-    >
-      {/* Here in this code it works like its open popup with slider i want to do that when i click on slide image it open modal of its image */}
-
-      <Carousel className="pc-pt-3">
+    <>
+      <Carousel className="pt-3">
         {sliderImg?.length &&
           sliderImg.map((item, index) => (
             <div
               key={index}
-              className="pc-h-full pc-max-h-[320px] pc-w-full pc-max-w-xs sm:pc-max-h-[400px] sm:pc-max-w-md xl:pc-max-h-[500px] xl:pc-max-w-xl"
+              className="h-full max-h-[320px] w-full max-w-xs sm:max-h-[400px] sm:max-w-md xl:max-h-[500px] xl:max-w-xl"
             >
               <Image
                 src={item.url}
                 alt="Pemm"
-                className="pc-h-full pc-w-full pc-object-contain pc-object-center"
+                className="h-full w-full object-contain object-center"
               />
             </div>
           ))}
       </Carousel>
-    </Modal>
+
+      <Modal
+        isOpen={isOpen}
+        modalClose={modalClose}
+        previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl"
+      >
+        <Image
+          src={openImage}
+          alt="Pemm"
+          className="h-full w-full object-contain object-center"
+        />
+      </Modal>
+    </>
   );
 };
 

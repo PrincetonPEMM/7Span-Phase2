@@ -18,36 +18,36 @@ const Modal = ({
         <Dialog as="div" className="relative z-50">
           <Transition.Child
             as={Fragment}
-            enter="pc-ease-out pc-duration-300"
-            enterFrom="pc-opacity-0"
-            enterTo="pc-opacity-100"
-            leave="pc-ease-in pc-duration-200"
-            leaveFrom="pc-opacity-100"
-            leaveTo="pc-opacity-0"
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <div className="pc-fixed pc-inset-0 pc-z-50 pc-bg-black pc-bg-opacity-25" />
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="pc-fixed pc-inset-0 pc-z-50 pc-overflow-y-auto">
+          <div className="fixed inset-0 z-50 overflow-y-auto">
             <div
-              className={`pc-mx-auto pc-flex pc-min-h-full pc-w-full pc-items-center pc-justify-center pc-p-4 pc-text-center ${pModalClass}`}
+              className={`mx-auto flex min-h-full w-full items-center justify-center p-4 text-center ${pModalClass}`}
             >
               <Transition.Child
                 as={Fragment}
-                enter="pc-ease-out pc-duration-300"
-                enterFrom="pc-opacity-0 pc-scale-95"
-                enterTo="pc-opacity-100 pc-scale-100"
-                leave="pc-ease-in pc-duration-200"
-                leaveFrom="pc-opacity-100 pc-scale-100"
-                leaveTo="pc-opacity-0 pc-scale-95"
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`pc-relative pc-w-full pc-transform pc-overflow-hidden  pc-rounded-2xl pc-bg-white pc-p-7 pc-text-left pc-align-middle pc-shadow-xl pc-transition-all ${previewClass}`}
+                  className={`relative w-full transform overflow-hidden  rounded-2xl bg-white p-7 text-left align-middle shadow-xl transition-all ${previewClass}`}
                 >
                   {label && (
                     <Dialog.Title
                       as="h3"
-                      className="pc-mb-1 pc-text-center pc-text-lg pc-font-medium pc-leading-6 pc-text-slate-900"
+                      className="mb-1 text-center text-lg font-medium leading-6 text-slate-900"
                     >
                       {label}
                     </Dialog.Title>
@@ -55,7 +55,7 @@ const Modal = ({
                   {closeModal && (
                     <button
                       iconBefore
-                      className=" pc-absolute pc-right-3 pc-top-3 pc-rounded-full pc-p-2 pc-font-bold pc-text-primary-500"
+                      className=" absolute right-3 top-3 rounded-full p-2 font-bold text-primary-500"
                       onClick={modalClose}
                     >
                       Modal close

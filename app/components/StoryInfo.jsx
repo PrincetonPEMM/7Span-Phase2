@@ -6,6 +6,7 @@ import logo from "../../assets/images/image.png";
 import SliderModal from "./SliderModal";
 const StoryInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openImage, setOpenImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModal = () => {
     setIsModalOpen(!setIsOpen);
@@ -33,7 +34,7 @@ const StoryInfo = () => {
       <div className="grid grid-cols-3 gap-5 ">
         {/* Image portion  */}
         <div>
-          <div className="pc-grid pc-grid-cols-2 pc-gap-1 pc-py-4 md:pc-grid-cols-4 md:pc-gap-3">
+          <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3">
             {sliderImg?.length &&
               sliderImg.map((item, index) => {
                 if (index <= 3) {
@@ -42,17 +43,18 @@ const StoryInfo = () => {
                       key={index}
                       onClick={() => {
                         setIsOpen(true);
+                        setOpenImage(item.url);
                       }}
-                      className="pc-relative"
+                      className="relative"
                     >
                       <Image
                         src={item.url}
-                        className="pc-rounded-md"
+                        className="rounded-md"
                         alt="PEMM"
                       />
                       {index === 3 && (
-                        <div className="pc-absolute pc-inset-0 pc-flex pc-h-full pc-w-full pc-items-center pc-justify-center pc-rounded-md pc-bg-gray-700/50">
-                          <p className="pc-flex pc-items-center pc-gap-1 pc-text-xl pc-text-white md:pc-text-2xl ">
+                        <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded-md bg-gray-700/50">
+                          <p className="flex items-center gap-1 text-xl text-white md:text-2xl ">
                             <span>{sliderImg.length - 3}</span>
                           </p>
                         </div>
@@ -65,7 +67,11 @@ const StoryInfo = () => {
           <SliderModal
             sliderImg={sliderImg}
             isOpen={isOpen}
-            modalClose={() => setIsOpen(false)}
+            openImage={openImage}
+            modalClose={() => {
+              setIsOpen(false)
+              setOpenImage("");
+            }}
           />
         </div>
 
