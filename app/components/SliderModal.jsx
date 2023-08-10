@@ -1,10 +1,15 @@
-'use client'
+"use client";
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Modal from "./Modal";
 import Image from "next/image";
 
-const SliderModal = ({ sliderImg, isOpen = false, modalClose = false, openImage = "" }) => {
+const SliderModal = ({
+  sliderImg,
+  isOpen = false,
+  modalClose = false,
+  openImage = "",
+}) => {
   return (
     <>
       <Carousel className="pt-3">
@@ -14,11 +19,13 @@ const SliderModal = ({ sliderImg, isOpen = false, modalClose = false, openImage 
               key={index}
               className="h-full max-h-[320px] w-full max-w-xs sm:max-h-[400px] sm:max-w-md xl:max-h-[500px] xl:max-w-xl"
             >
-              <Image
-                src={item.url}
-                alt="Pemm"
-                className="h-full w-full object-contain object-center"
-              />
+              {item.url && (
+                <Image
+                  src={item.url}
+                  alt="Pemm"
+                  className="h-full w-full object-contain object-center"
+                />
+              )}
             </div>
           ))}
       </Carousel>
@@ -28,11 +35,13 @@ const SliderModal = ({ sliderImg, isOpen = false, modalClose = false, openImage 
         modalClose={modalClose}
         previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl"
       >
-        <Image
-          src={openImage}
-          alt="Pemm"
-          className="h-full w-full object-contain object-center"
-        />
+        {openImage && (
+          <Image
+            src={openImage}
+            alt="Pemm"
+            className="h-full w-full object-contain object-center"
+          />
+        )}
       </Modal>
     </>
   );

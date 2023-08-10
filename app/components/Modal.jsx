@@ -52,15 +52,14 @@ const Modal = ({
                       {label}
                     </Dialog.Title>
                   )}
-                  {closeModal && (
-                    <button
-                      iconBefore
-                      className=" absolute right-3 top-3 rounded-full p-2 font-bold text-primary-500"
-                      onClick={modalClose}
-                    >
-                      Modal close
-                    </button>
-                  )}
+
+                  <button
+                    className=" absolute btn-close right-3 top-3 bg-black rounded-full p-2 font-bold text-primary-500"
+                    onClick={modalClose}
+                  >
+                    X{closeModal}
+                  </button>
+
                   {children}
                 </Dialog.Panel>
               </Transition.Child>
