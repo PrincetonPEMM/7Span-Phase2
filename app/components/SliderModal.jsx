@@ -10,6 +10,8 @@ const SliderModal = ({ sliderImg, isOpen = false, modalClose = false }) => {
       modalClose={modalClose}
       previewClass="pc-w-full pc-max-w-xs sm:pc-max-w-md xl:pc-max-w-xl"
     >
+      {/* Here in this code it works like its open popup with slider i want to do that when i click on slide image it open modal of its image */}
+
       <Carousel className="pc-pt-3">
         {sliderImg?.length &&
           sliderImg.map((item, index) => (
