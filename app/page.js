@@ -1,17 +1,11 @@
-import { client } from "@/utils/directUs";
-import Hero from "./components/Hero";
-import { readItems } from "@directus/sdk";
+import Banner from "./components/Banner";
 
-export default async function Home() {
-  const result = await client.request(
-    readItems("home", {
-      fields: ["*.*.*"],
-      // fields: ["title", "date_created", { authors: ["name"] }],
-    })
-  );
+import "./globals.css";
+
+export default function Home() {
   return (
     <main>
-      <Hero data={result} />
+      <Banner />
     </main>
   );
 }
