@@ -279,7 +279,7 @@ body {
 }
 
 .slider__range {
-  background-color: #fff;
+  background-color: #e5a942;
   z-index: 2;
 }
 
@@ -328,10 +328,10 @@ body {
 
 /* For Chrome browsers */
 .thumb::-webkit-slider-thumb {
-  background-color: #ffffff;
+  background-color: #e5a942 !important;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ced4da;
+  /* box-shadow: 0 0 1px 1px #ced4da; */
   cursor: pointer;
   appearance: none;
   height: 18px;

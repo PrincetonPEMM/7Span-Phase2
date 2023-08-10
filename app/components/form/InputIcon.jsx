@@ -1,28 +1,40 @@
 import React from "react";
+import MdiLocateIcon from "@/assets/icons/MdiMenuIcon copy";
 
-const InputIcon = ({
-  label,
-  previewClass,
-  checked,
-  onChange,
-  icon,
-  name,
-  checkClass,
-}) => {
+const InputIcon = (props) => {
+  const { item, itemList, setItemList } = props;
+
+  const clickHandler = () => {
+    const updatedPlace = itemList.checkItem.map((temp) => {
+      if (temp.label === item?.label) {
+        return { ...temp, isChecked: !item.isChecked };
+      }
+      return temp;
+    });
+    setItemList({ ...itemList, checkItem: updatedPlace });
+  };
+
   return (
-    <div className="inline-flex m-1 items-center py-1 px-2 relative space-x-1 iconcheck">
-      {icon && (
-        <span className={`w-4 h-4 relative z-10 ${previewClass}`}>{icon}</span>
+    <div
+      className="inline-flex m-1 items-center cursor-pointer py-1 px-2 relative space-x-1 iconcheck"
+      onClick={clickHandler}
+    >
+      {item?.icon && (
+        <span className={`w-4 h-4 relative z-10 `}>
+          {item?.icon && <MdiLocateIcon />}
+        </span>
       )}
       <input
         type="checkbox"
-        name={name}
-        checked={checked}
-        onChange={onChange}
-        className={`absolute appearance-none  cursor-pointer rounded-full inset-0 bg-transparent border-0 h-full w-full ${checkClass}`}
+        name={item?.id}
+        checked={item?.isChecked}
+        className={`absolute appearance-none  cursor-pointer rounded-full inset-0  border-0 h-full w-full  
+        `}
       />
 
-      {label && <span className=" text-sm capitalize">{label}</span>}
+      {item?.label && (
+        <span className=" text-sm capitalize ">{item?.label}</span>
+      )}
     </div>
   );
 };

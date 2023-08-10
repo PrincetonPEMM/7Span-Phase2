@@ -3,122 +3,114 @@ import React from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
-import MdiLocateIcon from "@/assets/icons/MdiMenuIcon copy";
 
-const Sidebar = () => {
-  const filterItem = [
-    {
-      title: "Filtered Search",
-      checkItem: [
-        {
-          name: "1",
-          labelBefore: "Paintings",
-        },
-        {
-          name: "2",
-          labelBefore: "Paintings",
-        },
-        {
-          name: "3",
-          labelBefore: "Paintings",
-        },
-        {
-          name: "4",
-          labelBefore: "Paintings",
-        },
-      ],
-    },
-  ];
-  const checkItem = [
-    {
-      name: "1",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "2",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "3",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "4",
-      icon: <MdiLocateIcon />,
-    },
-  ];
-  const storyLang = [
-    {
-      name: "1",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "2",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "3",
-      icon: <MdiLocateIcon />,
-    },
-    {
-      name: "4",
-      icon: <MdiLocateIcon />,
-    },
-  ];
-
+const Sidebar = ({
+  filterItem,
+  setFilterItem,
+  placeItem,
+  setPlaceItem,
+  langItem,
+  setLangItem,
+  storyMin,
+  setStoryMin,
+  storyMax,
+  setStoryMax,
+  manuscriptsMin,
+  setManuscriptsMin,
+  manuscriptsMax,
+  setManuscriptsMax,
+  paintingMin,
+  setPaintingMin,
+  paintingMax,
+  setPaintingMax,
+}) => {
   return (
-    <div className="font-menu bg-primary-500 w-full h-full rounded-md text-white p-4 ">
+    <div className="font-menu bg-primary-500 w-full rounded-md text-white p-4 ">
       <button>
         <MdiMenuOpen className="text-white-500" />
       </button>
       <div>
-        {filterItem?.map((item, index) => (
-          <div key={index}>
-            <lable className="text-white text-lg block mb-3">
-              {item.title}
-            </lable>
-            {item.checkItem?.map((item, index) => (
-              <Checkbox
-                labelBefore={item.labelBefore}
-                key={index}
-                name={item.name}
-                checkClass={"checkbox-input"}
-              />
-            ))}
-          </div>
-        ))}
+        <div>
+          <lable className="text-white text-lg block mb-3">
+            {filterItem.title}
+          </lable>
+          {Object.values(filterItem.checkItem)?.map((item, index) => (
+            <Checkbox
+              item={item}
+              key={index}
+              setFilterItem={setFilterItem}
+              filterItem={filterItem}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="block">
-        <RangeSlider onChange={() => {}} min={0} max={1000} />
+        <lable className="text-white text-lg block mb-3">
+          Story's Century of Origin
+        </lable>
+        <RangeSlider
+          onChange={() => {}}
+          minVal={storyMin}
+          setMinVal={setStoryMin}
+          maxVal={storyMax}
+          setMaxVal={setStoryMax}
+        />
       </div>
 
       <div className="block mt-10  ">
         <lable className="text-white text-lg block mb-3">
-          Story's Place of Origin
+          {placeItem?.title}
         </lable>
 
-        {checkItem?.map((item, index) => (
+        {placeItem?.checkItem.map((item, index) => (
           <InputIcon
-            label="input"
             key={index}
-            name={item.name}
-            icon={item.icon}
+            item={item}
+            itemList={placeItem}
+            setItemList={setPlaceItem}
           />
         ))}
       </div>
 
       <div className="block">
-        <RangeSlider onChange={() => {}} min={0} max={1000} />
+        <lable className="text-white text-lg block mb-3">
+          Manuscripts with Story
+        </lable>
+        <RangeSlider
+          onChange={() => {}}
+          minVal={manuscriptsMin}
+          setMinVal={setManuscriptsMin}
+          maxVal={manuscriptsMax}
+          setMaxVal={setManuscriptsMax}
+        />
+      </div>
+      <div className="block">
+        <lable className="text-white text-lg block mb-3">
+          Paintings of Story
+        </lable>
+        <RangeSlider
+          onChange={() => {}}
+          minVal={paintingMin}
+          setMinVal={setPaintingMin}
+          maxVal={paintingMax}
+          setMaxVal={setPaintingMax}
+        />
       </div>
 
-      <div className="block mt-10  ">
+      <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
-          Languages of Story
+          {langItem.title}
         </lable>
 
-        {storyLang?.map((item, index) => (
-          <InputIcon label="input" key={index} name={item.name} />
+        {langItem?.checkItem.map((item, index) => (
+          <InputIcon
+            label="input"
+            key={index}
+            item={item}
+            itemList={langItem}
+            setItemList={setLangItem}
+          />
         ))}
       </div>
     </div>

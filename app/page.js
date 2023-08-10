@@ -9,6 +9,7 @@ export default async function Home() {
       // fields: ["title", "date_created", { authors: ["name"] }],
     })
   );
+
   return (
     <main>
       <Hero data={result} />

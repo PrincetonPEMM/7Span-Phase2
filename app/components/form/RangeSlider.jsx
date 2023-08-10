@@ -2,9 +2,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
-const RangeSlider = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
+  const min = 0;
+  const max = 100;
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
@@ -53,7 +53,7 @@ const RangeSlider = ({ min, max, onChange }) => {
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left bg-background-500"
+        className="thumb thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input
