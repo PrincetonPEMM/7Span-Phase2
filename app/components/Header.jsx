@@ -36,6 +36,7 @@ const Header = () => {
         // { title: "Research Tools", link: "/research" },
         { title: "Arabic Stories", link: "/research/arabicStories" },
         { title: "Arabic Menuscripts", link: "/research/menuscript" },
+        { title: "Macomber Handlist", link: "/research/macomber" },
       ],
     },
     {
