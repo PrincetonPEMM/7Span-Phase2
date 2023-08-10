@@ -6,12 +6,21 @@ import SubBanner from "./SubBanner";
 
 const Hero = ({ data }) => {
   const [selectedBanner, setSelectedBanner] = useState({});
+  const [height100, setHeight100] = useState("height100");
+
+  function toggleContent(data) {
+    if (!Boolean(Object.keys(selectedBanner).length)) setHeight100("height0");
+    setSelectedBanner(data);
+    if (!Boolean(Object.keys(selectedBanner).length)) setHeight100("height100");
+    if (!Boolean(Object.keys(selectedBanner).length))
+      setTimeout(() => setHeight100(""), 500);
+  }
 
   return (
     <>
       <div className="grid md:grid-cols-3">
         <Banner
-          setSelectedBanner={setSelectedBanner}
+          setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={{
             title: data?.story_title,
@@ -38,7 +47,7 @@ const Hero = ({ data }) => {
           }}
         />
         <Banner
-          setSelectedBanner={setSelectedBanner}
+          setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={{
             title: data?.manuscript_title,
@@ -65,7 +74,7 @@ const Hero = ({ data }) => {
           }}
         />
         <Banner
-          setSelectedBanner={setSelectedBanner}
+          setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={{
             title: data?.painting_title,
@@ -94,20 +103,29 @@ const Hero = ({ data }) => {
       </div>
 
       {/* The below section will appear when each story event triggers */}
-      {Boolean(Object.keys(selectedBanner).length) && (
-        <div className="md:block hidden">
-          <BannerDetail
-            img={selectedBanner?.img}
-            title={selectedBanner?.title}
-            text={selectedBanner?.text}
-            data={data}
-            divClass="md:h-full"
-            setSelectedBanner={setSelectedBanner}
-            clsBtnCondition={Boolean(Object.keys(selectedBanner).length)}
-          />
-          <SubBanner stories={selectedBanner?.storyPart} divClass="md:h-full" />
-        </div>
-      )}
+      <div
+        className={`md:block hidden transition ${
+          !Boolean(Object.keys(selectedBanner).length) ? "height0" : height100
+        } `}
+      >
+        {Boolean(Object.keys(selectedBanner).length) && (
+          <>
+            <BannerDetail
+              img={selectedBanner?.img}
+              title={selectedBanner?.title}
+              text={selectedBanner?.text}
+              data={data}
+              divClass="md:h-full"
+              setSelectedBanner={setSelectedBanner}
+              clsBtnCondition={Boolean(Object.keys(selectedBanner).length)}
+            />
+            <SubBanner
+              stories={selectedBanner?.storyPart}
+              divClass="md:h-full"
+            />
+          </>
+        )}
+      </div>
     </>
   );
 };
