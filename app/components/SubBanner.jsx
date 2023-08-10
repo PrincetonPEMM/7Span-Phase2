@@ -5,7 +5,7 @@ const SubBanner = ({ stories, divClass }) => {
   const route = useRouter();
 
   return (
-    <div className="grid md:grid-cols-3">
+    <div className="grid sm:grid-cols-3">
       {stories &&
         stories.map((data, subIndex) => (
           <div
