@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-const Table = ({ columns, rows }) => {
+const Table = ({ tableHeader, tableData }) => {
   return (
     <div className="relative w-full">
       <table className="table w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
         <thead className="font-medium bg-primary-500 text-white sticky top-24 rounded-t-sm ">
           <tr>
-            {columns?.map((item, index) => (
+            {tableHeader?.map((item, index) => (
               <th
                 className="min-w-[160px] px-6 py-3 text-left text-sm font-medium capitalize tracking-wider"
                 key={index}
@@ -18,8 +18,8 @@ const Table = ({ columns, rows }) => {
           </tr>
         </thead>
         <tbody className="min-h-[300px] divide-y divide-gray-100 bg-background-500 text-sm font-light text-primary-500">
-          {rows?.length
-            ? rows?.map((event, index) => (
+          {tableData?.length
+            ? tableData?.map((event, index) => (
                 <>
                   <tr>
                     <td
@@ -33,16 +33,12 @@ const Table = ({ columns, rows }) => {
                     </td>
                   </tr>
                   <tr key={index} className="text-offBlack font-medium">
-                    {event.columns.map((item, itemIndex) => {
-                      return (
-                        <td
-                          className="max-w-xs whitespace-normal break-words px-6 py-4"
-                          key={index + itemIndex}
-                        >
-                          {item.text}
-                        </td>
-                      );
-                    })}
+                    <td
+                      className="max-w-xs whitespace-normal break-words px-6 py-4"
+                      key={index + itemIndex}
+                    >
+                      {item.text}
+                    </td>
                   </tr>
                 </>
               ))

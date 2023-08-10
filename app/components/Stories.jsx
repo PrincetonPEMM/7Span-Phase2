@@ -368,7 +368,8 @@ const Stories = async () => {
     const data = await response.json();
     setTotalPage(Math.ceil(data.total / perPage));
 
-    console.log(data);
+    setTableData(data.data);
+    console.log(data.data);
   }, [
     initialfilterItem,
     initialPlaceItem,
@@ -424,16 +425,19 @@ const Stories = async () => {
           </div>
           <button
             class="bg-primary-500 text-white p-4 text-sm rounded-md uppercase"
-            onClick={() => setToggleBtn(!toggleBtn)}
+            onClick={() => {
+              setToggleBtn(!toggleBtn);
+              {
+                toggleBtn
+                  ? setTableHeader(tableDetailView)
+                  : setTableHeader(tableTitleView);
+              }
+            }}
           >
             {toggleBtn ? "Detail view" : "Title View"}
-            {toggleBtn
-              ? setTableHeader(tableDetailView)
-              : setTableHeader(tableTitleView)}
-            setTableHeader
           </button>
         </div>
-        <Table columns={customData.columns} rows={customData.rows} />
+        <Table tableHeader={tableHeader} tableData={tableData} />
         <Pagination
           meta={{
             total: totalPage,
