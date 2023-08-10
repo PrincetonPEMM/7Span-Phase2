@@ -8,10 +8,9 @@ const page = async () => {
 
   try {
     arabic_manuscripts_data = await client.request(
-      readItems("arabic_manuscripts", {
-        fields: ["*.*.*"]
-      })
+      readItems("arabic_manuscripts")
     );
+    console.log(arabic_manuscripts_data);
   }
   catch (e) {
     console.log(e);
@@ -24,6 +23,7 @@ const page = async () => {
           <h3 className="text-3xl lg:text-5xl text-primary-500 font-bold ">
           {arabic_manuscripts_data?.title }
           </h3>
+          <p class="py-6">{ arabic_manuscripts_data?.intro }</p>
           <div dangerouslySetInnerHTML={{ __html: arabic_manuscripts_data?.description }} />
         </div>
       }
