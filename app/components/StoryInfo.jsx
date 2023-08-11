@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import logo from "../../assets/images/image.png";
@@ -9,7 +8,6 @@ import logo3 from "../../assets/images/menuscript-bg.png";
 import SliderModal from "./SliderModal";
 import Tabs from "./tabs";
 const StoryInfo = () => {
-  
   const sliderImg = [
     {
       url: logo,
@@ -180,13 +178,9 @@ const StoryInfo = () => {
           {/* Left sided Image portion  */}
           <div>
             {/* slider */}
-            <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3">
-              
-            </div>
+            <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3"></div>
 
-            <SliderModal
-              sliderImg={sliderImg}
-            />
+            <SliderModal sliderImg={sliderImg} />
 
             {/* slider content */}
 
