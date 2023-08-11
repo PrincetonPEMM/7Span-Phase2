@@ -113,7 +113,7 @@ const Stories = () => {
   };
 
   return (
-    <div className="shell px-5 ">
+    <div className="shell px-5">
       <div className="shell__sidebar w-full relative">
         <Sidebar
           filterItem={filterItem}
@@ -137,7 +137,7 @@ const Stories = () => {
         />
       </div>
       <div>
-        <div className="flex justify-between items-center top-0 p-3 sticky bg-background-500 z-20">
+        <div className="flex justify-between items-center space-x-3 top-0 p-3 sticky bg-background-500 z-20">
           <div className="relative w-full max-w-4xl">
             <span className="bg-background-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
@@ -148,7 +148,7 @@ const Stories = () => {
             />
           </div>
           <button
-            class="bg-primary-500 text-white p-4 text-sm rounded-md uppercase"
+            class="bg-primary-500 text-white p-4 flex-none text-sm rounded-md uppercase"
             onClick={() => {
               setToggleBtn(!toggleBtn);
               {
