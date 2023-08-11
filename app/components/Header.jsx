@@ -87,7 +87,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-background-500 lg:h-auto ${
+        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 overflow-y-auto lg:flex lg:bg-background-500 lg:h-auto ${
           menuCollapse
             ? " right-0 transition-all"
             : " lg:translate-x-0 -right-[-200%] lg:w-auto transition-all lg:right-0"

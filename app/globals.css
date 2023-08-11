@@ -361,3 +361,16 @@ body {
 .sidebar-open {
   transform: translateX(200%);
 }
+.transition {
+  /* transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
+  overflow: hidden;
+}
+.height0 {
+  height: 0px;
+  transition: 0;
+  transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.height100 {
+  height: 1000px;
+  transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}

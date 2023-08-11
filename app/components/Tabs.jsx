@@ -15,10 +15,8 @@ const Tabs = ({ tabs, children, tabIndex = 0, onClick }) => {
                 key={"tab" + index}
                 className={({ selected }) =>
                   classNames(
-                    "min-w-[150px]  flex-none rounded-t-md border-l border-r border-t p-2  outline-0 ",
-                    selected
-                      ? "bg-primary-500 text-white"
-                      : "bg-background-500 text-primary-500"
+                    "min-w-[150px] flex-none bg-background-500 border-b p-2 outline-0 ",
+                    selected ? "border-b-primary-500" : "border-b-transparent"
                   )
                 }
                 onClick={() => onClick(tab.label)}
