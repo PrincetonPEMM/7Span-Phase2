@@ -4,7 +4,7 @@ import SubBanner from "./SubBanner";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
   return (
-    <div className="relative flex flex-col ">
+    <div className="relative flex flex-col">
       <button
         className="w-full aspect-auto md:h-full lg:h-full"
         onClick={() => {
@@ -13,22 +13,11 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             : setSelectedBanner(data);
         }}
       >
-        <div className="relative flex lg:h-full text-left z-30">
-          {
-            <img
-              src={data.img}
-              alt="Picture of the author"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-                width: "100%",
-                height: "100%",
-              }}
-              property="true"
-            />
-          }
-
-          <div className="absolute m-auto top-1/3 z-10 text-white px-10">
+        <div
+          className="relative flex justify-center items-center bg-cover bg-top h-screen text-left z-30"
+          style={{ backgroundImage: `url(${data.img})` }}
+        >
+          <div className="m-auto z-10 text-white px-10">
             <span className="text-sm lg:text-xl font-bold uppercase mr-1">
               {data.title.split(" ")[0]}
             </span>
@@ -55,7 +44,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             setSelectedBanner={setSelectedBanner}
             clsBtnCondition={selectedBanner.img === data.img}
           />
-          <SubBanner stories={data?.storyPart} divClass="" />
+          <SubBanner stories={data?.storyPart} />
         </div>
       )}
     </div>
