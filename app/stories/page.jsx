@@ -119,7 +119,7 @@ const page = () => {
           <MdiMenuOpen className="text-white-500 " />
         </button>
 
-        <div className="grid grid-cols-3 items-center justify-between top-0 p-3 ">
+        <div className="grid grid-cols-3 items-center justify-between top-0 p-2">
           <div className="relative w-full max-w-sm md:max-w-4xl col-span-2">
             <span className="px-1 absolute -top-2 left-4 text-sm text-primary-500 bg-background-500">
               Filter
