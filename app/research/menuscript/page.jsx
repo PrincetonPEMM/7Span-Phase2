@@ -10,7 +10,6 @@ const page = async () => {
     arabic_manuscripts_data = await client.request(
       readItems("arabic_manuscripts")
     );
-    console.log(arabic_manuscripts_data);
   }
   catch (e) {
     console.log(e);
