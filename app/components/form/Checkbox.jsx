@@ -11,12 +11,14 @@ const Checkbox = (props) => {
     console.log("Hello");
     const updatedFilter = Object.values(filterItem.checkItem).map((item) => {
       if (item.label === label) {
-        return { ...item, isChecked: !isChecked };
+        return { ...item, isChecked: !item.isChecked };
       }
       return item;
     });
+    console.log(updatedFilter, "UpdateFilter");
     setFilterItem({ ...filterItem, checkItem: updatedFilter });
   };
+
   return (
     <>
       <label className="checkbox flex items-center space-x-1" for={id}>

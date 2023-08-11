@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Table = ({ tableHeader, tableData }) => {
+const Table = ({ tableHeader, tableData, toggleBtn }) => {
   return (
     <div className="relative w-full">
       <table className="table w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
@@ -26,20 +26,31 @@ const Table = ({ tableHeader, tableData }) => {
                       className="w-full px-6 py-4 font-bold underline"
                       colSpan="6"
                     >
-                      <Link href="#">
-                        The composition of the Miracles of Mary book by Bishop
-                        Hildephonsus of Toledo
-                      </Link>
+                      <Link href="#">{event.canonical_story_title}</Link>
                     </td>
                   </tr>
-                  <tr key={index} className="text-offBlack font-medium">
-                    <td
-                      className="max-w-xs whitespace-normal break-words px-6 py-4"
-                      key={index + itemIndex}
-                    >
-                      {item.text}
-                    </td>
-                  </tr>
+                  {!toggleBtn && (
+                    <tr key={index} className="text-offBlack font-medium">
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.canonical_story_id}
+                      </td>
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.earliest_attestation}
+                      </td>
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.total_records}
+                      </td>
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.total_story_id_paintings}
+                      </td>
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.type_of_story}
+                      </td>
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                        {event.canonical_story_subject}
+                      </td>
+                    </tr>
+                  )}
                 </>
               ))
             : null}

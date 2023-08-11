@@ -24,7 +24,8 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [minVal, getPercent]);
+  }, []);
+  // }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
@@ -34,12 +35,13 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [maxVal, getPercent]);
+  }, []);
+  // }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+  // useEffect(() => {
+  //   onChange({ min: minVal, max: maxVal });
+  // }, [minVal, maxVal, onChange]);
 
   return (
     <div className="w-full block py-3 my-5">
