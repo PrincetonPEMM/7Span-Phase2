@@ -88,14 +88,14 @@ const Header = () => {
       </div>
 
       <div
-        className={`z-40 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 overflow-y-auto lg:flex lg:bg-background-500 lg:h-auto ${
+        className={`z-40 justify-between w-72 pt-10 items-center duration-700 ease-in-out inset-y-0 px-5 fixed lg:w-full transition-transform lg:flex lg:h-auto ${
           menuCollapse
-            ? " right-0 transition-all"
-            : " lg:translate-x-0 -right-[-200%] lg:w-auto transition-all lg:right-0"
+            ? "right-0 translate-x-0 transform "
+            : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
         } ${
           pathname === "/"
-            ? "z-40 justify-between pt-20 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform duration-700 lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
-            : " text-primary-500 py-5 header"
+            ? "z-40 justify-between pt-20 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform  lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
+            : "lg:relative text-primary-500 py-5 header bg-white lg:bg-background-500 "
         }`}
       >
         {/*Close header */}

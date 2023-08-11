@@ -21,7 +21,7 @@ const Checkbox = (props) => {
 
   return (
     <>
-      <label className="checkbox flex items-center space-x-1" for={id}>
+      <label className="checkbox flex items-center space-x-1" htmlFor={id}>
         <input
           type="checkbox"
           name={id}
