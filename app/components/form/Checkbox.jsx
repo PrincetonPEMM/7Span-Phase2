@@ -15,7 +15,6 @@ const Checkbox = (props) => {
       }
       return item;
     });
-    console.log(updatedFilter, "UpdateFilter");
     setFilterItem({ ...filterItem, checkItem: updatedFilter });
   };
 

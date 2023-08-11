@@ -82,18 +82,17 @@ const Stories = () => {
       )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
         "languages",
         langItem
-      )}filters[search]=${search}&filters[withEnglishTranslation]=${getFilterFalsyValue(
+      )}filters[withEnglishTranslation]=${getFilterFalsyValue(
         filterItem,
         "withEnglishTranslation"
-      )}
+      )}filters[search]=${search}
       `;
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
       );
 
       const data = await response.json();
-      setTotalPage(Math.ceil(data.total / perPage));
-
+      setTotalPage(data.total);
       setTableData(data.data);
     }
     fetchData();
@@ -110,7 +109,6 @@ const Stories = () => {
     paintingMin,
     paintingMax,
   ]);
-  console.log("filterItem", filterItem);
 
   const handlePagination = (e) => {
     setPage(e.selected + 1);
