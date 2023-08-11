@@ -142,9 +142,6 @@ body {
     opacity 0.3s ease;
 }
 
-.header {
-  @apply lg:bg-transparent bg-white lg:static;
-}
 .header .header-link {
   @apply text-primary-500;
 }
