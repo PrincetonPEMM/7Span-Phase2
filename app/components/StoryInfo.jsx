@@ -168,7 +168,7 @@ const StoryInfo = () => {
   ];
   return (
     <div className="px-8">
-      <h3 className="font-menu text-5xl max-w-7xl leading-tight">
+      <h3 className="font-menu text-3xl  lg:text-5xl max-w-7xl leading-tight">
         The composition of the Miracles of Mary book by Bishop Hildephonsus of
         Toledo
       </h3>
