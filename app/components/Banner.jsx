@@ -4,16 +4,16 @@ import SubBanner from "./SubBanner";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
   return (
-    <div className="relative ">
+    <div className="relative flex flex-col ">
       <button
-        className="w-full aspect-auto md:h-full h-full"
+        className="w-full aspect-auto md:h-full lg:h-full"
         onClick={() => {
           selectedBanner.img === data.img
             ? setSelectedBanner({})
             : setSelectedBanner(data);
         }}
       >
-        <div className="relative flex h-full text-left z-30">
+        <div className="relative flex lg:h-full text-left z-30">
           {
             <img
               src={data.img}
