@@ -2,7 +2,6 @@ import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";
 import { render } from "react-dom";
-import convert from "html-to-jsx";
 
 const page = async () => {
 

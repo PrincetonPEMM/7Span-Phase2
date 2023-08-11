@@ -6,9 +6,7 @@ const page = async () => {
   let bibliography_data = null
   try {
     bibliography_data = await client.request(
-      readItems("bibliography", {
-        fields: ["*.*.*"]
-      })
+      readItems("bibliography")
     );
   }
   catch (e) {
@@ -22,6 +20,7 @@ const page = async () => {
         <h3 className="text-3xl lg:text-5xl text-primary-500 font-bold ">
           {bibliography_data?.title ?? ""}
         </h3>
+        <p class="py-6">{ bibliography_data?.intro }</p>
         <div dangerouslySetInnerHTML={{ __html: bibliography_data?.description }} />
       </div>
       }
