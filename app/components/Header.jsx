@@ -94,7 +94,7 @@ const Header = () => {
             : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
         } ${
           pathname === "/"
-            ? "z-40 justify-between pt-20 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform  lg:top-10 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
+            ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform  lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
             : "lg:relative text-primary-500 py-5 header bg-white lg:bg-background-500 "
         }`}
       >
