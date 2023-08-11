@@ -16,11 +16,13 @@ const InputIcon = (props) => {
 
   return (
     <div
-      className="inline-flex m-1 items-center cursor-pointer py-1 px-2 relative space-x-1 iconcheck"
+      className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 relative iconcheck  ${
+        item.icon ? " space-x-1" : ""
+      }`}
       onClick={clickHandler}
     >
       {item?.icon && (
-        <span className={`w-4 h-4 relative z-10 `}>
+        <span className={`w-3 h-3 relative z-10 `}>
           {item?.icon && <MdiLocateIcon />}
         </span>
       )}

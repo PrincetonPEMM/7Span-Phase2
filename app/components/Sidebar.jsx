@@ -23,13 +23,14 @@ const Sidebar = ({
   setPaintingMin,
   paintingMax,
   setPaintingMax,
+  onClick,
 }) => {
   return (
-    <div className="font-menu bg-primary-500 w-full rounded-md text-white p-4 ">
-      <button>
-        <MdiMenuOpen className="text-white-500" />
+    <div className="font-menu bg-primary-500 w-full rounded-md text-white  ">
+      <button onClick={onClick} className="">
+        <MdiMenuOpen className="text-white-500 h-6 w-6" />
       </button>
-      <div>
+      <div className="block mt-3">
         <div>
           <lable className="text-white text-lg block mb-3">
             {filterItem.title}
@@ -45,7 +46,7 @@ const Sidebar = ({
         </div>
       </div>
 
-      <div className="block">
+      <div className="block mt-7">
         <lable className="text-white text-lg block mb-3">
           Story's Century of Origin
         </lable>
@@ -58,22 +59,23 @@ const Sidebar = ({
         />
       </div>
 
-      <div className="block mt-10  ">
-        <lable className="text-white text-lg block mb-3">
-          {placeItem?.title}
+      <div className="block mt-10">
+        <lable className="text-white text-lg block">
+          {placeItem?.title} hello
         </lable>
-
-        {placeItem?.checkItem.map((item, index) => (
-          <InputIcon
-            key={index}
-            item={item}
-            itemList={placeItem}
-            setItemList={setPlaceItem}
-          />
-        ))}
+        <div className="mt-5">
+          {placeItem?.checkItem.map((item, index) => (
+            <InputIcon
+              key={index}
+              item={item}
+              itemList={placeItem}
+              setItemList={setPlaceItem}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="block">
+      <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
           Manuscripts with Story
         </lable>
@@ -85,7 +87,7 @@ const Sidebar = ({
           setMaxVal={setManuscriptsMax}
         />
       </div>
-      <div className="block">
+      <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
           Paintings of Story
         </lable>

@@ -7,7 +7,7 @@ export const Pagination = ({ meta, onPageChange, ...rest }) => {
     <div className="">
       {pageCount > 1 ? (
         <ReactPaginate
-          className="absolute inset-x-0 bottom-0 flex max-w-full justify-center bg-background-500 py-2 lg:ml-auto lg:max-w-[83%] lg:py-6 "
+          className="static flex max-w-full justify-center bg-background-500 py-2 lg:ml-auto lg:max-w-[83%] lg:py-6 "
           breakLabel="..."
           pageClassName="flex h-10 min-w-[50px] items-center justify-center border border-primary-500 p-2 text-base text-primary-400"
           nextLabel={<NextPage meta={meta} />}

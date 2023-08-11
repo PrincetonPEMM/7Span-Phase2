@@ -21,7 +21,7 @@ const Checkbox = (props) => {
 
   return (
     <>
-      <label className="checkbox flex items-center space-x-1" htmlFor={id}>
+      <label className="checkbox flex items-center" htmlFor={id}>
         <input
           type="checkbox"
           name={id}
@@ -30,7 +30,7 @@ const Checkbox = (props) => {
           className={`checkbox-input ${isChecked ? "checked" : ""}`}
         />
         <span className="checkmark"></span>
-        {label && <span className="ml-1 text-base">{label}</span>}
+        {label && <span className="ml-4 text-sm">{label}</span>}
       </label>
     </>
   );

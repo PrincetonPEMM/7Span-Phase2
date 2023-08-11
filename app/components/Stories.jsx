@@ -4,6 +4,7 @@ import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import { Pagination } from "./Pagination";
+import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialLangItem,
   initialPlaceItem,
@@ -30,11 +31,14 @@ const Stories = () => {
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(tableTitleView);
-
+  const [isOpen, setIsOpen] = useState(true);
+  const [textValue, setTextValue] = useState("");
   const getFilterFalsyValue = (itemList, key) => {
     return `filters[${key}]=${itemList.checkItem[key]?.isChecked}&`;
   };
-
+  const handleTextChange = (event) => {
+    setTextValue(event.target.value);
+  };
   const makeParamsArray = (key, arr) => {
     return arr.checkItem
       .filter((ar) => ar.isChecked)
@@ -113,8 +117,14 @@ const Stories = () => {
   };
 
   return (
-    <div className="shell px-5">
-      <div className="shell__sidebar w-full relative">
+    <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
+      <div
+        className={`font-menu bg-primary-500 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+          isOpen
+            ? "left-0 z-20 md:block md:static lg:h-full transition-all"
+            : "hidden -left-full transition-all"
+        } `}
+      >
         <Sidebar
           filterItem={filterItem}
           setFilterItem={setFilterItem}
@@ -134,21 +144,37 @@ const Stories = () => {
           setPaintingMin={setPaintingMin}
           paintingMax={paintingMax}
           setPaintingMax={setPaintingMax}
+          onClick={() => setIsOpen(!isOpen)}
         />
       </div>
-      <div>
-        <div className="flex justify-between items-center space-x-3 top-0 p-3 sticky bg-background-500 z-20">
-          <div className="relative w-full max-w-4xl">
+
+      <div className="w-full overflow-auto">
+        {!isOpen && (
+          <button onClick={() => setIsOpen(true)} className="p-2">
+            <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
+          </button>
+        )}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="block md:hidden h-6 w-6 text-primary-500"
+        >
+          <MdiMenuOpen className="text-white-500" />
+        </button>
+        <div className="grid grid-cols-3 items-center justify-between top-0 p-2">
+          <div className="relative w-full max-w-sm md:max-w-4xl col-span-2">
             <span className="bg-background-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
             </span>
             <InputText
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                handleTextChange(e); // Call the first function
+                setSearch(e.target.value); // Call the second function
+              }}
             />
           </div>
           <button
-            class="bg-primary-500 text-white p-4 flex-none text-sm rounded-md uppercase"
+            class="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
             onClick={() => {
               setToggleBtn(!toggleBtn);
               {
@@ -161,11 +187,13 @@ const Stories = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <Table
-          tableHeader={tableHeader}
-          tableData={tableData}
-          toggleBtn={toggleBtn}
-        />
+        <div className=" w-full">
+          <Table
+            tableHeader={tableHeader}
+            tableData={tableData}
+            toggleBtn={toggleBtn}
+          />
+        </div>
         <Pagination
           meta={{
             total: totalPage,
