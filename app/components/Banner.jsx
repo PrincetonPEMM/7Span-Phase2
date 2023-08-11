@@ -51,7 +51,6 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             title={data?.title}
             text={data?.text}
             data={data}
-            divClass=""
             setSelectedBanner={setSelectedBanner}
             clsBtnCondition={selectedBanner.img === data.img}
           />

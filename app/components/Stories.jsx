@@ -172,7 +172,7 @@ const Stories = () => {
             />
           </div>
           <button
-            class="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
+            className="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
             onClick={() => {
               setToggleBtn(!toggleBtn);
               {

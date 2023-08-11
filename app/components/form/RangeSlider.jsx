@@ -81,10 +81,4 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
   );
 };
 
-RangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
-
 export default RangeSlider;

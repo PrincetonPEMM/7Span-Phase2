@@ -19,9 +19,9 @@ const Table = ({ tableHeader, tableData, toggleBtn }) => {
         </thead>
         <tbody className="min-h-[300px] divide-y divide-gray-100 bg-background-500 text-sm font-light text-primary-500">
           {tableData?.length
-            ? tableData?.map((event, index) => (
+            ? tableData?.map((event, index, trIndex) => (
                 <>
-                  <tr>
+                  <tr key={trIndex}>
                     <td
                       className="w-full px-6 py-4 font-bold underline"
                       colSpan="6"
