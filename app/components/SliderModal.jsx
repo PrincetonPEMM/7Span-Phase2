@@ -3,40 +3,41 @@ import { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Modal from "./Modal";
 import Image from "next/image";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+
 
 const SliderModal = ({
   sliderImg,
-  isOpen = false,
-  modalClose = false,
-  openImage = "",
 }) => {
+  const images = sliderImg.map((item, index) => ({
+    original: item.url.src,
+    thumbnail: item.url.src,
+  }))
+
+  const [openImage, setOpenImage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  function imageClick(e) {
+    setOpenImage(e.target.src)
+    setIsOpen(true)
+  }
   return (
     <>
-      <Carousel className="pt-3">
-        {sliderImg?.length &&
-          sliderImg.map((item, index) => (
-            <div
-              key={index}
-              className="h-full max-h-[320px] w-full max-w-xs sm:max-h-[400px] sm:max-w-md xl:max-h-[500px] xl:max-w-xl"
-            >
-              {item.url && (
-                <Image
-                  src={item.url}
-                  alt="Pemm"
-                  className="h-full w-full object-contain object-center"
-                />
-              )}
-            </div>
-          ))}
-      </Carousel>
+      <hr />
+      <ImageGallery items={images} infinite={true} autoPlay={true} onClick={imageClick} />
 
       <Modal
         isOpen={isOpen}
-        modalClose={modalClose}
+        modalClose={() => {
+          setIsOpen(false);
+          setOpenImage("");
+        }}
         previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl"
       >
+        <hr />
         {openImage && (
-          <Image
+          <img
             src={openImage}
             alt="Pemm"
             className="h-full w-full object-contain object-center"
