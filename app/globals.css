@@ -371,3 +371,37 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+/* slider  css */
+
+.image-gallery-thumbnail-inner {
+  @apply aspect-video w-full h-full;
+}
+
+.image-gallery-thumbnail-image {
+  @apply object-cover object-center h-full w-full;
+}
+.image-gallery-slide {
+  @apply aspect-square;
+}
+.image-gallery-thumbnail {
+  border: 0;
+}
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus {
+  @apply outline-0 mx-1 border-transparent;
+}
+
+.image-gallery .image-gallery-thumbnail.active,
+.image-gallery .image-gallery-thumbnail:focus {
+  @apply border-0;
+}
+.image-gallery .image-gallery-thumbnail:hover {
+  @apply border-transparent;
+}
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  @apply h-full w-full object-center object-cover max-h-max;
+}
+.image-gallery-thumbnail + .image-gallery-thumbnail {
+  @apply outline-0 border-0 ml-5;
+}
