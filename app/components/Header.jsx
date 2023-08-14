@@ -33,7 +33,10 @@ const Header = () => {
         // { title: "Menuscripts", link: "/menuscripts" },
         // { title: "Research Tools", link: "/research" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
-        { title: "Interchangeable Spellings of Ethiopic Terms", link: "/research/spellings" },
+        {
+          title: "Interchangeable Spellings of Ethiopic Terms",
+          link: "/research/spellings",
+        },
         { title: "Arabic Menuscripts", link: "/research/menuscript" },
         { title: "List of Repositories", link: "/research/repositories" },
         { title: "Macomber Handlist", link: "/research/macomber" },
@@ -136,7 +139,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all min-w-min z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
                       activeSubmenu === index ? "block z-50" : "hidden"
                     }`}
                     // lg:group-hover:block lg:group-hover:transiton-all
