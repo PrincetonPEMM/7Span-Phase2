@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import logo from "../../assets/images/image.png";
 import SliderModal from "./SliderModal";
-import Tabs from "./tabs";
+import Tabs from "./Tabs";
+
 const StoryInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openImage, setOpenImage] = useState("");
