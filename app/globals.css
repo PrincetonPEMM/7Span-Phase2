@@ -142,13 +142,232 @@ body {
     opacity 0.3s ease;
 }
 
-.header {
-  @apply lg:bg-transparent bg-white lg:static;
-  box-shadow: 0px -8px 25px 1px #f1f1f1;
-}
 .header .header-link {
   @apply text-primary-500;
 }
 .container {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100%;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.shell__sidebar {
+  @apply inset-y-0 bottom-0 bg-primary-500 right-auto z-20  h-full w-[250px] transform items-start overflow-y-auto border-r border-gray-200 transition-all duration-300 lg:sticky lg:h-screen;
+}
+
+[type="checkbox"]:checked {
+  background-image: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 0;
+  box-shadow: none;
+}
+
+[type="checkbox"]:checked:focus {
+  background-image: none;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  font-size: 0;
+  box-shadow: none;
+}
+.iconcheck input[type="checkbox"] {
+  @apply bg-background-500 text-black;
+}
+.iconcheck input[type="checkbox"] + span {
+  @apply text-black relative capitalize;
+}
+.iconcheck input[type="checkbox"]:checked {
+  @apply bg-secondary-500 text-white outline-0 bg-none focus:ring-0 focus:border-0 focus:outline-0 focus:ring-offset-0 focus:outline-offset-0;
+}
+.iconcheck input[type="checkbox"]:checked + span {
+  @apply bg-secondary-500 text-white relative;
+}
+.checkbox {
+  display: block;
+  position: relative;
+  margin-bottom: 2px;
+  padding-left: 2px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox .checkmark::before {
+  content: "";
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  display: none;
+  position: absolute;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox .checkbox-input {
+  position: absolute;
+  height: 100%;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  background-color: #ccc;
+  display: inline-block;
+  top: 2px;
+  position: relative;
+  left: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.checkbox:hover .checkbox-input + .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox .checkbox-input.checked + .checkmark {
+  background-color: #000;
+}
+
+.checkbox .checkbox-input.checked + .checkmark::before {
+  display: block;
+}
+
+/* slider css  */
+
+.slider {
+  position: relative;
+  width: 200px;
+}
+
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+  position: absolute;
+}
+
+.slider__track,
+.slider__range {
+  border-radius: 3px;
+  height: 5px;
+}
+
+.slider__track {
+  background-color: #ced4da;
+  width: 100%;
+  z-index: 1;
+}
+
+.slider__range {
+  background-color: #fff;
+  z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+  color: #dee2e6;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.slider__left-value {
+  left: 6px;
+}
+
+.slider__right-value {
+  right: -4px;
+}
+
+/* Removing the default appearance */
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  height: 20px;
+  appearance: none;
+  background-color: #cccc;
+}
+
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 200px;
+  outline: none;
+  color: #ccc !important;
+}
+
+.thumb--left {
+  z-index: 3;
+}
+
+.thumb--right {
+  z-index: 4;
+  color: #ccc !important;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  appearance: none;
+  pointer-events: all;
+  position: relative;
+}
+
+.sidebar-close {
+  transform: translateX(90%);
+}
+.sidebar-open {
+  transform: translateX(200%);
+}
+.transition {
+  /* transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
+  overflow: hidden;
+}
+.height0 {
+  height: 0px;
+  transition: 0;
+  transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.height100 {
+  height: 1000px;
+  transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
