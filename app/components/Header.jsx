@@ -134,7 +134,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all z-50 lg:py-2 lg:bg-background-500 rounded-md top-0  text-white mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
                       activeSubmenu === index ? "block z-50" : "hidden"
                     }`}
                     // lg:group-hover:block lg:group-hover:transiton-all
