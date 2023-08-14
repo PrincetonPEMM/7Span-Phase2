@@ -20,7 +20,7 @@ const Table = ({ tableHeader, tableData, toggleBtn }) => {
         <tbody className="min-h-[300px] divide-y divide-gray-100 bg-background-500 text-sm font-light text-primary-500">
           {tableData?.length
             ? tableData?.map((event, index) => (
-                <>
+                <React.Fragment key={index}>
                   <tr>
                     <td
                       className="w-full px-6 py-4 font-bold underline"
@@ -51,7 +51,7 @@ const Table = ({ tableHeader, tableData, toggleBtn }) => {
                       </td>
                     </tr>
                   )}
-                </>
+                </React.Fragment>
               ))
             : null}
         </tbody>
