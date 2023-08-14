@@ -60,10 +60,13 @@ const Header = () => {
   return (
     <>
       <div
-        className={`p-2  lg:p-0 ${
+        className={`p-4 lg:p-0 ${
           pathname === "/" ? " bg-transparent text-black" : "bg-background-500"
         }`}
       >
+        <div className="w-60 sm:w-full sm:max-w-md block lg:hidden">
+          <Image src={LogoBlack} alt="Picture of the author" />
+        </div>
         <button
           onClick={menuIconClick}
           className="block h-7 w-7 flex-none p-1 lg:hidden z-40 absolute top-5 right-5"
@@ -71,20 +74,17 @@ const Header = () => {
           {menuCollapse ? (
             <MdiMenuIcon
               className={` ${
-                pathname === "/" ? " text-primary-500 " : "text-black"
+                pathname === "/" ? " text-primary-500" : "text-black"
               }`}
             />
           ) : (
             <MdiMenuIcon
               className={` ${
-                pathname === "/" ? " text-primary-500 " : "text-black"
+                pathname === "/" ? " text-primary-500" : "text-black"
               }`}
             />
           )}
         </button>
-        <div className="w-64 sm:w-full sm:max-w-md block lg:hidden">
-          <Image src={LogoBlack} alt="Picture of the author" />
-        </div>
       </div>
 
       <div
@@ -134,7 +134,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all min-w-min z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
                       activeSubmenu === index ? "block z-50" : "hidden"
                     }`}
                     // lg:group-hover:block lg:group-hover:transiton-all
