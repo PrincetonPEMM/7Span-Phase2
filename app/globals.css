@@ -152,3 +152,16 @@ body {
 .container {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
 }
+
+.space-y-p p + p {
+  margin-top:10px;
+}
+
+.space-y-p h3{
+  @apply font-bold text-xl my-2;
+}
+
+.space-y-p a{
+  @apply underline ;
+}
+
