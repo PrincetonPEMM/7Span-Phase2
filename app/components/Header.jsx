@@ -107,13 +107,13 @@ const Header = () => {
         </button>
 
         {/* LOGO IMAGE HERE  */}
-        <a href="#" className="sm:w-[30%] mb-5 w-64 relative z-20">
+        <Link href="/" className="sm:w-[30%] mb-5 w-64 relative z-20">
           {pathname === "/" ? (
             <Image src={Logo} alt="Picture of the author" />
           ) : (
             <Image src={LogoBlack} alt="Picture of the author" />
           )}
-        </a>
+        </Link>
 
         {/* MENU LINKS  */}
 
@@ -141,12 +141,12 @@ const Header = () => {
                   >
                     {item.subItems.map((subItem, subIndex) => (
                       <li key={subIndex}>
-                        <a
+                        <Link
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
                         >
                           {subItem.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
