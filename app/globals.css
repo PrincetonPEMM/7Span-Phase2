@@ -371,3 +371,15 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+
+.space-y-p p + p {
+  margin-top: 10px;
+}
+
+.space-y-p h3 {
+  @apply font-bold text-xl my-2;
+}
+
+.space-y-p a {
+  @apply underline;
+}
