@@ -6,7 +6,8 @@ import logo from "../../assets/images/image.png";
 import logo2 from "../../assets/images/logo-white.png";
 import logo3 from "../../assets/images/menuscript-bg.png";
 import SliderModal from "./SliderModal";
-import Tabs from "./tabs";
+import Tabs from "./Tabs";
+
 const StoryInfo = () => {
   const sliderImg = [
     {

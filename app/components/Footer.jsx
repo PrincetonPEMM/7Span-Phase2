@@ -34,9 +34,9 @@ const Footer = () => {
   return (
     <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
       <div className="max-w-[400px] text-left md:p-5 col-span-2 text-sm lg:text-lg">
-        <a href="#" className="w-[30%]  relative z-20">
+        <Link href="/" className="w-[30%]  relative z-20">
           <Image src={Logo} alt="Picture of the author" className="my-3" />
-        </a>
+        </Link>
         <p className="">
           PEMM is a comprehensive resource for the 1,000+ miracle stories
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
