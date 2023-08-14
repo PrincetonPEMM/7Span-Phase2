@@ -16,16 +16,18 @@ const page = async () => {
   }
 
   return (
-    <div className="container font-body space-y-4 py-12 bg-background-500">
-      {arabic_stories_data && 
-        <div>
-          <h3 className="text-3xl lg:text-5xl text-primary-500 font-bold ">
-            {arabic_stories_data?.title ?? ""}
-          </h3>
-          <p class="py-6">{ arabic_stories_data?.intro }</p>
-          <div dangerouslySetInnerHTML={{ __html: arabic_stories_data?.description }} />
-        </div>
-      }
+    <div className="bg-background-500">
+      <div className="container font-body space-y-4 py-12">
+        {arabic_stories_data && 
+          <div>
+            <h3 className="text-3xl lg:text-5xl text-primary-500 font-bold ">
+              {arabic_stories_data?.title ?? ""}
+            </h3>
+            <p class="py-6">{ arabic_stories_data?.intro }</p>
+            <div dangerouslySetInnerHTML={{ __html: arabic_stories_data?.description }} />
+          </div>
+        }
+      </div>
     </div>
   );
 };
