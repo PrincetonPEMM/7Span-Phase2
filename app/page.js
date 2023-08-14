@@ -5,9 +5,7 @@ import { readItems } from "@directus/sdk";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const result = await client.request(
-    readItems("home", { fields: ["*.*.*"], cache: "no-store" })
-  );
+  const result = await client.request(readItems("home", { fields: ["*.*.*"] }));
   console.log(result);
   return (
     <main>
