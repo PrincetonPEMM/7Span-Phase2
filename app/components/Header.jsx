@@ -35,7 +35,8 @@ const Header = () => {
         // { title: "Menuscripts", link: "/menuscripts" },
         // { title: "Research Tools", link: "/research" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
-        { title: "Arabic Menuscripts", link: "/research/menuscript" },
+        { title: "Arabic Stories", link: "/research/arabic-stories" },
+        { title: "Interchangeable Spellings of Ethiopic Terms", link: "/research/spellings" },
       ],
     },
     {
