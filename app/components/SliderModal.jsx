@@ -20,7 +20,6 @@ const SliderModal = ({ sliderImg }) => {
   }
   return (
     <>
-      <hr />
       <ImageGallery
         items={images}
         infinite={true}
@@ -34,14 +33,13 @@ const SliderModal = ({ sliderImg }) => {
           setIsOpen(false);
           setOpenImage("");
         }}
-        previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl"
+        previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl  h-3/4"
       >
-        <hr />
         {openImage && (
           <img
             src={openImage}
             alt="Pemm"
-            className="h-full w-full object-contain object-center"
+            className="h-full w-full object-cover object-cente"
           />
         )}
       </Modal>

@@ -1,7 +1,7 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
+import MdiCloseCircle from "@assets/icons/MdiCloseCircle";
 const Modal = ({
   isOpen,
   modalClose,
@@ -30,7 +30,7 @@ const Modal = ({
 
           <div className="fixed inset-0 z-50 overflow-y-auto">
             <div
-              className={`mx-auto flex min-h-full w-full items-center justify-center p-4 text-center ${pModalClass}`}
+              className={`mx-auto flex min-h-full w-full items-center justify-center p-4 text-center h-3/4 ${pModalClass}`}
             >
               <Transition.Child
                 as={Fragment}
@@ -42,7 +42,7 @@ const Modal = ({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`relative w-full transform overflow-hidden  rounded-2xl bg-white p-7 text-left align-middle shadow-xl transition-all ${previewClass}`}
+                  className={`relative w-full transform overflow-hidden  rounded-md bg-white p-7 text-left align-middle shadow-xl transition-all ${previewClass}`}
                 >
                   {label && (
                     <Dialog.Title
@@ -54,10 +54,10 @@ const Modal = ({
                   )}
 
                   <button
-                    className=" absolute btn-close right-3 top-3 bg-black rounded-full p-2 font-bold text-primary-500"
+                    className="absolute  right-3 top-3 h-7 w-7 rounded-full font-bold"
                     onClick={modalClose}
                   >
-                    X{closeModal}
+                    x{MdiCloseCircle}
                   </button>
 
                   {children}

@@ -173,7 +173,7 @@ const StoryInfo = () => {
         Toledo
       </h3>
 
-      <div className="">
+      <div className="pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-5 ">
           {/* Left sided Image portion  */}
           <div>
