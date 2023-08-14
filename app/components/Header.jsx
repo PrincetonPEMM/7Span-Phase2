@@ -21,11 +21,11 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Menuscripts", link: "/menuscripts" },
+        { title: "Manuscripts", link: "/menuscripts" },
         { title: "Research Tools", link: "/research" },
       ],
     },
-    { title: "menuscripts", link: "/menuscripts" },
+    { title: "Manuscripts", link: "/menuscripts" },
     {
       title: "Research Tools",
       link: "/research",
@@ -70,7 +70,9 @@ const Header = () => {
         }`}
       >
         <div className="w-60 sm:w-full sm:max-w-md block lg:hidden">
-          <Image src={LogoBlack} alt="Picture of the author" />
+          <Link href="/">
+            <Image src={LogoBlack} alt="Picture of the author" />
+          </Link>
         </div>
         <button
           onClick={menuIconClick}
@@ -149,6 +151,7 @@ const Header = () => {
                         <Link
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
+                          onClick={() => setActiveSubmenu(null)}
                         >
                           {subItem.title}
                         </Link>
