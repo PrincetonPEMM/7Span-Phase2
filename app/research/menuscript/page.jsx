@@ -5,15 +5,13 @@ import { readItems } from "@directus/sdk";
 import React from "react";
 
 const page = async () => {
-
-  let arabic_manuscripts_data = null
+  let arabic_manuscripts_data = null;
 
   try {
     arabic_manuscripts_data = await client.request(
       readItems("arabic_manuscripts")
     );
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e);
   }
 
