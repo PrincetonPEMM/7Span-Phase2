@@ -11,9 +11,9 @@ const BannerDetail = ({
   setSelectedBanner,
 }) => {
   return (
-    <div className="md:flex relative pt-5 bg-secondary-500 text-center md:text-left lg:pt-0">
+    <div className="md:flex relative pt-8 bg-secondary-500 text-center md:text-left md:pt-0">
       <div
-        className={`relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px] ${divClass}`}
+        className={`relative aspect-square lg:aspect-auto max-w-xs h-auto flex items-center justify-start my-auto lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px] ${divClass}`}
       >
         <img
           src={img}
@@ -23,7 +23,7 @@ const BannerDetail = ({
             objectPosition: "center top",
             width: "100%",
             height: "100%",
-            "@media (max-width: 1024px)": {
+            "@media (max-width: 768px)": {
               height: "auto",
               aspectRaio: "1/1",
               maxWidth: "100%",
