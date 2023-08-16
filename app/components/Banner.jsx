@@ -6,7 +6,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
   return (
     <div className="relative flex flex-col">
       <button
-        className="w-full aspect-auto md:h-full lg:h-full"
+        className="w-full aspect-auto  banner-image"
         onClick={() => {
           selectedBanner.img === data.img
             ? setSelectedBanner({})
@@ -17,7 +17,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
           className="relative flex justify-center items-center bg-cover bg-top h-screen text-left z-30"
           style={{ backgroundImage: `url(${data.img})` }}
         >
-          <div className="m-auto z-10 text-white px-10">
+          <div className="m-auto z-10 text-white px-10 pt-10">
             <span className="text-sm lg:text-xl font-bold uppercase mr-1">
               {data.title.split(" ")[0]}
             </span>

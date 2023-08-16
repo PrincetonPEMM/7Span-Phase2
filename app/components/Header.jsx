@@ -64,13 +64,17 @@ const Header = () => {
     <>
       <div
         className={`p-4 lg:p-0 ${
-          pathname === "/" ? " bg-transparent text-black" : "bg-background-500"
+          pathname === "/"
+            ? " bg-transparent text-black absolute top-0 inset-x-0 z-40"
+            : "bg-background-500"
         }`}
       >
         <div className="w-60 sm:w-full sm:max-w-md block lg:hidden">
-          <Link href="/">
+          {pathname === "/" ? (
+            <Image src={Logo} alt="Picture of the author" />
+          ) : (
             <Image src={LogoBlack} alt="Picture of the author" />
-          </Link>
+          )}
         </div>
         <button
           onClick={menuIconClick}
@@ -78,15 +82,11 @@ const Header = () => {
         >
           {menuCollapse ? (
             <MdiMenuIcon
-              className={` ${
-                pathname === "/" ? " text-primary-500" : "text-black"
-              }`}
+              className={` ${pathname === "/" ? " text-white" : "text-black"}`}
             />
           ) : (
             <MdiMenuIcon
-              className={` ${
-                pathname === "/" ? " text-primary-500" : "text-black"
-              }`}
+              className={` ${pathname === "/" ? " text-white" : "text-black"}`}
             />
           )}
         </button>

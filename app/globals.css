@@ -453,3 +453,23 @@ body {
 .space-y-p a {
   @apply underline text-xs md:text-base inline;
 }
+.Subbanner_img {
+  @apply aspect-square w-full h-auto;
+}
+@screen md {
+  .Subbanner_img {
+    @apply aspect-square w-full;
+    height: 400px;
+  }
+}
+
+@screen lg {
+  .Subbanner_img {
+    @apply h-auto aspect-square w-full;
+    height: auto;
+  }
+  .banner-image {
+    @apply aspect-square w-full;
+    height: 600px;
+  }
+}
