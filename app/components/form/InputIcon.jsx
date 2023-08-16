@@ -16,7 +16,7 @@ const InputIcon = (props) => {
 
   return (
     <div
-      className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 relative iconcheck  ${
+      className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 relative iconcheck ${
         item.icon ? " space-x-1" : ""
       }`}
       onClick={clickHandler}
