@@ -37,7 +37,7 @@ export default function page() {
         {
             title: "Project Unlocks Understanding of Miracle of Mary Texts",
             date: "02 September 2021",
-            description: "“Whatever is human belongs tdsadasd dsa dsa dao all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
+            description: "“Whatever is human fds fdsfsdfdsfdsf sfdsf dsfds fdsfdsfds fdsf dsf dsfds fdsfds fdsfdsf dsfsfsf sdfsfsd fdsfdsfs dfs belongs tdsadasd dsa dsa dao all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
             link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
             link_text: "PEMM IN THE NEWS",
             author: "Nathan Green, in University World News",

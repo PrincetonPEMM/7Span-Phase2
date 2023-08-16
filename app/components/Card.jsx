@@ -11,8 +11,8 @@ export default function Card({count, total_col, total, title, date, description,
             <h2 className="lg:text-2xl font-bold">{title}</h2>
             <span className="my-2">{date}</span>
             <h3 className="font-semibold">{author}</h3>
-            <p>{description}</p>
-            <buttion>read more</buttion>
+            <p className="py-2">{description}</p>
+            <buttion className="border p-1 rounded">read more</buttion>
         </div>
     )
 }
