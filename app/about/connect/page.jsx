@@ -97,7 +97,7 @@ export default function page() {
             <h1 className="text-5xl font-header">News & Updates</h1>
             <Masonry>
                 {cards.map((card, index) => (
-                    <Card key={index} count={index} total={cards.length} total_col={3} {...card} />
+                    <Card key={index} {...card} />
                 ))}
             </Masonry>
         </div>
