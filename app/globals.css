@@ -371,3 +371,57 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+/* slider  css */
+
+.image-gallery-thumbnail-inner {
+  @apply aspect-video w-full h-full;
+}
+
+.image-gallery-thumbnail-image {
+  @apply object-cover object-center h-full w-full;
+}
+.image-gallery-slide {
+  @apply aspect-square;
+}
+.image-gallery-thumbnail {
+  @apply border-2  py-5;
+}
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus {
+  @apply outline-0 mx-1 border-white;
+}
+
+.image-gallery .image-gallery-thumbnail.active,
+.image-gallery .image-gallery-thumbnail:focus {
+  @apply border-white;
+}
+.image-gallery .image-gallery-thumbnail:hover {
+  @apply border-black;
+}
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  @apply h-full w-full object-center object-cover max-h-max;
+}
+.image-gallery-thumbnail + .image-gallery-thumbnail {
+  @apply outline-0 border-2 border-black shadow-sm ml-5;
+}
+.image-gallery .image-gallery-left-nav .image-gallery-svg,
+.image-gallery .image-gallery-right-nav .image-gallery-svg {
+  @apply h-10 w-10;
+}
+.image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal
+  .image-gallery-thumbnails {
+  @apply py-5;
+}
+.image-gallery-icon.image-gallery-fullscreen-button,
+.image-gallery-icon.image-gallery-play-button {
+  @apply hidden;
+}
+.space-y-p p + p {
+  margin-top: 10px;
+}
+.space-y-p h3 {
+  @apply font-bold text-xl my-2;
+}
+.space-y-p a {
+  @apply underline;
+}

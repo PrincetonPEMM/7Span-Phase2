@@ -5,7 +5,7 @@ import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-const Manuscript = () => {
+const ManuScripts = () => {
   const [textValue, setTextValue] = useState("");
   const [isOpen, setIsOpen] = useState(true);
   const customData = {
@@ -136,4 +136,4 @@ const Manuscript = () => {
   );
 };
 
-export default ManuScript;
+export default ManuScripts;
