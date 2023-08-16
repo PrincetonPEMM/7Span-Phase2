@@ -1,15 +1,16 @@
 import MdiArrowUp from "@/assets/icons/MdiArrowUp";
 import ReactPaginate from "react-paginate";
 
-export const Pagination = ({ meta, onPageChange, ...rest }) => {
+export const Pagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
     <div className="">
+      {isOpen}
       {pageCount > 1 ? (
         <ReactPaginate
-          className="static flex divide-x-2 divide-gray-300 max-w-full  justify-center bg-background-500 py-2 lg:ml-auto lg:max-w-[83%] lg:py-6 "
+          className="static flex divide-x-2 divide-primary-500 max-w-full justify-center bg-background-500 py-2 lg:ml-auto  lg:py-6 "
           breakLabel="..."
-          pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y border-y-primary-500 text-base text-primary-400"
+          pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y-2 border-y-primary-500 text-base text-primary-500"
           nextLabel={<NextPage meta={meta} />}
           pageCount={Math.ceil(meta.total / meta.per_page)}
           previousLabel={<PrevPage meta={meta} />}

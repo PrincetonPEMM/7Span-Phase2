@@ -3,26 +3,25 @@ import React from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
+import {
+  rangeSliderMaxForManuscripts,
+  rangeSliderMaxForPaintings,
+  rangeSliderMaxForStories,
+  rangeSliderMinForManuscripts,
+  rangeSliderMinForPaintings,
+  rangeSliderMinForStories,
+} from "@/utils/constant";
 
 const Sidebar = ({
+  onChangeStory,
+  onChangeManuscript,
+  onChangePainting,
   filterItem,
   setFilterItem,
   placeItem,
   setPlaceItem,
   langItem,
   setLangItem,
-  storyMin,
-  setStoryMin,
-  storyMax,
-  setStoryMax,
-  manuscriptsMin,
-  setManuscriptsMin,
-  manuscriptsMax,
-  setManuscriptsMax,
-  paintingMin,
-  setPaintingMin,
-  paintingMax,
-  setPaintingMax,
   onClick,
 }) => {
   return (
@@ -36,12 +35,7 @@ const Sidebar = ({
             {filterItem.title}
           </lable>
           {Object.values(filterItem.checkItem)?.map((item, index) => (
-            <Checkbox
-              item={item}
-              key={index}
-              setFilterItem={setFilterItem}
-              filterItem={filterItem}
-            />
+            <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
           ))}
         </div>
       </div>
@@ -51,11 +45,9 @@ const Sidebar = ({
           Story's Century of Origin
         </lable>
         <RangeSlider
-          onChange={() => {}}
-          minVal={storyMin}
-          setMinVal={setStoryMin}
-          maxVal={storyMax}
-          setMaxVal={setStoryMax}
+          min={rangeSliderMinForStories}
+          max={rangeSliderMaxForStories}
+          onChange={onChangeStory}
         />
       </div>
 
@@ -80,11 +72,9 @@ const Sidebar = ({
           Manuscripts with Story
         </lable>
         <RangeSlider
-          onChange={() => {}}
-          minVal={manuscriptsMin}
-          setMinVal={setManuscriptsMin}
-          maxVal={manuscriptsMax}
-          setMaxVal={setManuscriptsMax}
+          min={rangeSliderMinForManuscripts}
+          max={rangeSliderMaxForManuscripts}
+          onChange={onChangeManuscript}
         />
       </div>
       <div className="block mt-10">
@@ -92,11 +82,9 @@ const Sidebar = ({
           Paintings of Story
         </lable>
         <RangeSlider
-          onChange={() => {}}
-          minVal={paintingMin}
-          setMinVal={setPaintingMin}
-          maxVal={paintingMax}
-          setMaxVal={setPaintingMax}
+          min={rangeSliderMinForPaintings}
+          max={rangeSliderMaxForPaintings}
+          onChange={onChangePainting}
         />
       </div>
 

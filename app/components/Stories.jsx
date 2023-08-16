@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
@@ -13,8 +13,10 @@ import {
   initialfilterItem,
   pagePerLimit,
 } from "@/utils/constant";
+import useDebounce from "@/utils/useDebounce";
 
 const Stories = () => {
+  const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItem);
@@ -32,13 +34,12 @@ const Stories = () => {
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(tableTitleView);
   const [isOpen, setIsOpen] = useState(true);
-  const [textValue, setTextValue] = useState("");
+
   const getFilterFalsyValue = (itemList, key) => {
-    return `filters[${key}]=${itemList.checkItem[key]?.isChecked}&`;
+    // console.log(itemList, "itemList");
+    return `filters[${key}]=${itemList.checkItem[key]?.isChecked || false}&`;
   };
-  const handleTextChange = (event) => {
-    setTextValue(event.target.value);
-  };
+
   const makeParamsArray = (key, arr) => {
     return arr.checkItem
       .filter((ar) => ar.isChecked)
@@ -46,69 +47,59 @@ const Stories = () => {
       .join("");
   };
 
-  // homilyStories
-  useEffect(() => {
-    async function fetchData() {
-      const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
-        filterItem,
-        "withPaintings"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "ethiopianStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "miracleOfMaryStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "lifeOfMaryStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "homilyStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "homilyStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "homilyStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "homilyStories"
-      )}${getFilterFalsyValue(
-        filterItem,
-        "homilyStories"
-      )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
-        "origin",
-        placeItem
-      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
-        "languages",
-        langItem
-      )}filters[withEnglishTranslation]=${getFilterFalsyValue(
-        filterItem,
-        "withEnglishTranslation"
-      )}filters[search]=${search}
-      `;
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
-      );
+  async function fetchData() {
+    console.log(
+      "Hello Maulik",
+      storyMin,
+      storyMax,
+      manuscriptsMin,
+      manuscriptsMax,
+      paintingMin,
+      paintingMax
+    );
+    const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
+      filterItem,
+      "withPaintings"
+    )}${getFilterFalsyValue(
+      filterItem,
+      "ethiopianStories"
+    )}${getFilterFalsyValue(
+      filterItem,
+      "miracleOfMaryStories"
+    )}${getFilterFalsyValue(
+      filterItem,
+      "lifeOfMaryStories"
+    )}${getFilterFalsyValue(filterItem, "homilyStories")}${getFilterFalsyValue(
+      filterItem,
+      "earliestStories"
+    )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(
+      filterItem,
+      "popularStories"
+    )}${getFilterFalsyValue(
+      filterItem,
+      "uniqueStories"
+    )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+      "origin",
+      placeItem
+    )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+      "languages",
+      langItem
+    )}${getFilterFalsyValue(
+      filterItem,
+      "withEnglishTranslation"
+    )}filters[search]=${search}
+    `;
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
+    );
 
-      const data = await response.json();
-      setTotalPage(data.total);
-      setTableData(data.data);
-    }
+    const data = await response.json();
+    setTotalPage(data.total);
+    setTableData(data.data);
+  }
+  useEffect(() => {
     fetchData();
-  }, [
-    filterItem,
-    placeItem,
-    langItem,
-    search,
-    page,
-    storyMin,
-    storyMax,
-    manuscriptsMin,
-    manuscriptsMax,
-    paintingMin,
-    paintingMax,
-  ]);
+  }, [filterItem, placeItem, langItem, page]);
 
   const handlePagination = (e) => {
     setPage(e.selected + 1);
@@ -121,6 +112,8 @@ const Stories = () => {
     }
   };
   window.addEventListener("resize", checkWidth);
+  const debouncedFetchData = debounce(fetchData, 300);
+
   return (
     <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
       <div
@@ -131,24 +124,42 @@ const Stories = () => {
         } `}
       >
         <Sidebar
+          onChangeStory={useCallback(
+            (e) => {
+              const { min, max } = e;
+              setStoryMin(min);
+              setStoryMax(max);
+              debouncedFetchData(min);
+              debouncedFetchData(max);
+            },
+            [storyMin, storyMax]
+          )}
+          onChangeManuscript={useCallback(
+            (e) => {
+              const { min, max } = e;
+              setManuscriptsMin(min);
+              setManuscriptsMax(max);
+              debouncedFetchData(min);
+              debouncedFetchData(max);
+            },
+            [manuscriptsMin, manuscriptsMax]
+          )}
+          onChangePainting={useCallback(
+            (e) => {
+              const { min, max } = e;
+              setPaintingMin(min);
+              setPaintingMax(max);
+              debouncedFetchData(min);
+              debouncedFetchData(max);
+            },
+            [paintingMin, paintingMax]
+          )}
           filterItem={filterItem}
           setFilterItem={setFilterItem}
           placeItem={placeItem}
           setPlaceItem={setPlaceItem}
           langItem={langItem}
           setLangItem={setLangItem}
-          storyMin={storyMin}
-          setStoryMin={setStoryMin}
-          storyMax={storyMax}
-          setStoryMax={setStoryMax}
-          manuscriptsMin={manuscriptsMin}
-          setManuscriptsMin={setManuscriptsMin}
-          manuscriptsMax={manuscriptsMax}
-          setManuscriptsMax={setManuscriptsMax}
-          paintingMin={paintingMin}
-          setPaintingMin={setPaintingMin}
-          paintingMax={paintingMax}
-          setPaintingMax={setPaintingMax}
           onClick={() => setIsOpen(!isOpen)}
         />
       </div>
@@ -173,13 +184,14 @@ const Stories = () => {
             <InputText
               value={search}
               onChange={(e) => {
-                handleTextChange(e); // Call the first function
-                setSearch(e.target.value); // Call the second function
+                const query = e.target.value;
+                setSearch(query);
+                debouncedFetchData(query);
               }}
             />
           </div>
           <button
-            class="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
+            className="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
             onClick={() => {
               setToggleBtn(!toggleBtn);
               {
@@ -206,7 +218,10 @@ const Stories = () => {
             current_page: page,
             last_page: 50,
           }}
-          onPageChange={handlePagination}
+          isOpen={isOpen}
+          onPageChange={(e) => {
+            setPage(e.selected + 1);
+          }}
         />
       </div>
     </div>

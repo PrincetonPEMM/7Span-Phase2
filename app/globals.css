@@ -368,3 +368,18 @@ body {
 .pagination-button a {
   @apply h-full w-full flex items-center justify-center p-3;
 }
+.space-y-p {
+  @apply overflow-auto lg:overflow-hidden;
+}
+.space-y-p p + p {
+  margin-top: 10px;
+}
+.space-y-p h3 {
+  @apply font-bold text-xl my-2;
+}
+.space-y-p {
+  @apply lg:overflow-hidden overflow-auto;
+}
+.space-y-p a {
+  @apply underline text-xs md:text-base inline;
+}

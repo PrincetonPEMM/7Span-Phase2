@@ -1,4 +1,10 @@
 export const pagePerLimit = 10;
+export const rangeSliderMinForStories = 1300;
+export const rangeSliderMaxForStories = 2000;
+export const rangeSliderMinForManuscripts = 0;
+export const rangeSliderMaxForManuscripts = 350;
+export const rangeSliderMinForPaintings = 0;
+export const rangeSliderMaxForPaintings = 40;
 export const tableDetailView = [{ name: "Title of Story" }];
 export const tableTitleView = [
   { name: "Story ID" },
@@ -13,51 +19,61 @@ export const initialfilterItem = {
   checkItem: {
     withPaintings: {
       id: "1",
+      key: "withPaintings",
       label: "With Paintings",
       isChecked: false,
     },
     mostIllustrated: {
       id: "2",
+      key: "mostIllustrated",
       label: "Most Illustrated",
       isChecked: false,
     },
     withEnglishTranslation: {
       id: "3",
+      key: "withEnglishTranslation",
       label: "With English translation",
       isChecked: false,
     },
     ethiopianStories: {
       id: "4",
+      key: "ethiopianStories",
       label: "Ethiopian Stories",
       isChecked: false,
     },
     miracleOfMaryStories: {
       id: "5",
+      key: "miracleOfMaryStories",
       label: "Miracle of Mary Stories ",
       isChecked: false,
     },
     lifeOfMaryStories: {
       id: "6",
+      key: "lifeOfMaryStories",
       label: "Life of Mary Stories ",
       isChecked: false,
     },
     earliestStories: {
       id: "7",
+      key: "earliestStories",
       label: "Earliest Stories",
       isChecked: false,
     },
     recentStories: {
       id: "8",
+      key: "recentStories",
       label: "Recent Stories",
       isChecked: false,
     },
     popularStories: {
       id: "9",
+      key: "popularStories",
       label: "Popular Stories",
       isChecked: false,
     },
     rareStories: {
       id: "10",
+      key: "rareStories",
       label: "Rare Stories",
       isChecked: false,
     },
