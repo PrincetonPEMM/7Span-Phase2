@@ -104,14 +104,18 @@ const Stories = () => {
   const handlePagination = (e) => {
     setPage(e.selected + 1);
   };
-  const checkWidth = () => {
-    if (window.innerWidth < 1024) {
-      setIsOpen(false);
-    } else {
-      setIsOpen(true);
-    }
-  };
-  window.addEventListener("resize", checkWidth);
+
+  if (typeof window !== "undefined") {
+    const checkWidth = () => {
+      if (window?.innerWidth < 1024) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
+    };
+    window?.addEventListener("resize", checkWidth);
+  }
+
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (

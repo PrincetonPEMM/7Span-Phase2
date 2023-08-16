@@ -149,6 +149,18 @@ body {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
 }
 
+.space-y-p p + p {
+  margin-top: 10px;
+}
+
+.space-y-p h3 {
+  @apply font-bold text-xl my-2;
+}
+
+.space-y-p a {
+  @apply underline;
+}
+
 .shell {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -370,6 +382,45 @@ body {
 }
 .space-y-p {
   @apply overflow-auto lg:overflow-hidden;
+}
+.image-gallery-thumbnail-image {
+  @apply object-cover object-center h-full w-full;
+}
+.image-gallery-slide {
+  @apply aspect-square;
+}
+.image-gallery-thumbnail {
+  @apply border-2  py-5;
+}
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus {
+  @apply outline-0 mx-1 border-white;
+}
+
+.image-gallery .image-gallery-thumbnail.active,
+.image-gallery .image-gallery-thumbnail:focus {
+  @apply border-white;
+}
+.image-gallery .image-gallery-thumbnail:hover {
+  @apply border-black;
+}
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  @apply h-full w-full object-center object-cover max-h-max;
+}
+.image-gallery-thumbnail + .image-gallery-thumbnail {
+  @apply outline-0 border-2 border-black shadow-sm ml-5;
+}
+.image-gallery .image-gallery-left-nav .image-gallery-svg,
+.image-gallery .image-gallery-right-nav .image-gallery-svg {
+  @apply h-10 w-10;
+}
+.image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal
+  .image-gallery-thumbnails {
+  @apply py-5;
+}
+.image-gallery-icon.image-gallery-fullscreen-button,
+.image-gallery-icon.image-gallery-play-button {
+  @apply hidden;
 }
 .space-y-p p + p {
   margin-top: 10px;

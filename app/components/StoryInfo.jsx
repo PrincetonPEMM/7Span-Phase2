@@ -168,14 +168,14 @@ const StoryInfo = () => {
     },
   ];
   return (
-    <div className="px-8">
-      <h3 className="font-menu text-3xl  lg:text-5xl max-w-7xl leading-tight">
+    <div className="px-4 py-5 md:px-8">
+      <h3 className="font-menu text-xl  md:text-5xl max-w-7xl leading-tight">
         The composition of the Miracles of Mary book by Bishop Hildephonsus of
         Toledo
       </h3>
 
-      <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-5 ">
+      <div className="pt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
           {/* Left sided Image portion  */}
           <div>
             {/* slider */}
@@ -187,7 +187,7 @@ const StoryInfo = () => {
 
             <div className="space-y-4 mb-10">
               {sliderData.map((list, index) => (
-                <ol key={index} className="list-inside pl-4">
+                <ol key={index} className="list-inside md:pl-4 p-0">
                   <li>
                     <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                       {list.title}
@@ -233,7 +233,7 @@ const StoryInfo = () => {
             {/* English translation */}
             <div className="space-y-4">
               {lang.map((list, index) => (
-                <ol key={index} className="list-inside pl-4">
+                <ol key={index} className="list-inside md:pl-4 p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase  mb-3">
                       {list.title}
@@ -260,7 +260,7 @@ const StoryInfo = () => {
 
         <div className="space-y-4 mb-10">
           {storyDetail.map((list, index) => (
-            <ol key={index} className="list-inside pl-4 ">
+            <ol key={index} className="list-inside md:pl-4 p-0 ">
               <li>
                 <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                   {list.title}
@@ -282,18 +282,86 @@ const StoryInfo = () => {
       </div>
 
       {/* This below content is for responsive  */}
+      <div className="md:hidden block">
+        <Tabs
+          tabs={discoverPage}
+          onClick={(e) => {
+            console.log("onClick prop:", e);
+          }}
+        >
+          {/* Overview */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4 mb-10">
+              {sliderData.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                      {list.title}
+                    </h3>
+                    <ul>
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-normal"
+                        >
+                          {item.text}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
 
-      <Tabs
-        tabs={discoverPage}
-        onClick={(e) => {
-          console.log("onClick prop:", e);
-        }}
-      >
-        {/* Overview */}
-        <Tab.Panel className="p-4 lg:p-6">
-          <div className="space-y-4 mb-10">
-            {sliderData.map((list, index) => (
-              <ol key={index} className="list-inside pl-4">
+          {/* Upcoming Events */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4 pb-10">
+              {data.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0 ">
+                  <li>
+                    <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-relaxed"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {lang.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3 className="text-lg font-bold uppercase  mb-3">
+                      {list.title}
+                    </h3>
+                    <p className="text-base leading-loose mb-3">{list.text}</p>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <li key={subIndex}>
+                          <p className="text-base text-justify indent-2 leading-relaxed">
+                            {item.content}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
+
+          {/* Resources */}
+          <Tab.Panel className="p-4 md:p-6">
+            {storyDetail.map((list, index) => (
+              <ol key={index} className="list-inside md:pl-4 p-0 ">
                 <li>
                   <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                     {list.title}
@@ -311,76 +379,76 @@ const StoryInfo = () => {
                 </li>
               </ol>
             ))}
-          </div>
-        </Tab.Panel>
+          </Tab.Panel>
 
-        {/* Upcoming Events */}
-        <Tab.Panel className="p-4 lg:p-6">
-          <div className="space-y-4 mb-10">
-            {data.map((list, index) => (
-              <ol key={index} className="list-inside pl-4">
+          {/* Upcoming Events */}
+          <Tab.Panel className="p-4 lg:p-6">
+            <div className="space-y-4 mb-10">
+              {data.map((list, index) => (
+                <ol key={index} className="list-inside pl-4">
+                  <li>
+                    <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-relaxed"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {lang.map((list, index) => (
+                <ol key={index} className="list-inside pl-4">
+                  <li>
+                    <h3 className="text-lg font-bold uppercase mb-3">
+                      {list.title}
+                    </h3>
+                    <p className="text-base leading-loose mb-3">{list.text}</p>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <li key={subIndex}>
+                          <p className="text-base text-justify indent-2 leading-relaxed">
+                            {item.content}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
+
+          {/* Resources */}
+          <Tab.Panel className="p-4 lg:p-6">
+            {storyDetail.map((list, index) => (
+              <ol key={index} className="list-inside pl-4 ">
                 <li>
-                  <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
-                  <ul className="space-y-2">
+                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                    {list.title}
+                  </h3>
+                  <ul>
                     {list.items.map((item, subIndex) => (
                       <p
                         key={subIndex}
-                        className="text-base indent-2 leading-relaxed"
+                        className="text-base indent-2 leading-normal"
                       >
-                        {item}
+                        {item.text}
                       </p>
                     ))}
                   </ul>
                 </li>
               </ol>
             ))}
-          </div>
-          <div className="space-y-4">
-            {lang.map((list, index) => (
-              <ol key={index} className="list-inside pl-4">
-                <li>
-                  <h3 className="text-lg font-bold uppercase mb-3">
-                    {list.title}
-                  </h3>
-                  <p className="text-base leading-loose mb-3">{list.text}</p>
-                  <ul className="space-y-2">
-                    {list.items.map((item, subIndex) => (
-                      <li key={subIndex}>
-                        <p className="text-base text-justify indent-2 leading-relaxed">
-                          {item.content}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              </ol>
-            ))}
-          </div>
-        </Tab.Panel>
-
-        {/* Resources */}
-        <Tab.Panel className="p-4 lg:p-6">
-          {storyDetail.map((list, index) => (
-            <ol key={index} className="list-inside pl-4 ">
-              <li>
-                <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                  {list.title}
-                </h3>
-                <ul>
-                  {list.items.map((item, subIndex) => (
-                    <p
-                      key={subIndex}
-                      className="text-base indent-2 leading-normal"
-                    >
-                      {item.text}
-                    </p>
-                  ))}
-                </ul>
-              </li>
-            </ol>
-          ))}
-        </Tab.Panel>
-      </Tabs>
+          </Tab.Panel>
+        </Tabs>
+      </div>
     </div>
   );
 };
