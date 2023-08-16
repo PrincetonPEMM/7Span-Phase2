@@ -1,33 +1,50 @@
 "use client";
 import React, { useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import logo from "../../assets/images/image.png";
+import logo2 from "../../assets/images/logo-white.png";
+import logo3 from "../../assets/images/menuscript-bg.png";
 import SliderModal from "./SliderModal";
-import Tabs from "./tabs";
+import Tabs from "./Tabs";
+
 const StoryInfo = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [openImage, setOpenImage] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleModal = () => {
-    setIsModalOpen(!setIsOpen);
-  };
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    fetchPosts({
-      page: 1,
-    });
-  };
   const sliderImg = [
     {
       url: logo,
     },
     {
-      url: logo,
+      url: logo2,
+    },
+    {
+      url: logo3,
     },
     {
       url: logo,
+    },
+    {
+      url: logo2,
+    },
+    {
+      url: logo3,
+    },
+    {
+      url: logo,
+    },
+    {
+      url: logo2,
+    },
+    {
+      url: logo3,
+    },
+    {
+      url: logo,
+    },
+    {
+      url: logo2,
+    },
+    {
+      url: logo3,
     },
   ];
   const data = [
@@ -151,63 +168,26 @@ const StoryInfo = () => {
     },
   ];
   return (
-    <div className="px-8">
-      <h3 className="font-menu text-5xl max-w-7xl leading-tight">
+    <div className="px-4 py-5 md:px-8">
+      <h3 className="font-menu text-xl  md:text-5xl max-w-7xl leading-tight">
         The composition of the Miracles of Mary book by Bishop Hildephonsus of
         Toledo
       </h3>
 
-      <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-5 ">
+      <div className="pt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
           {/* Left sided Image portion  */}
           <div>
             {/* slider */}
-            <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3">
-              {sliderImg?.length &&
-                sliderImg.map((item, index) => {
-                  if (index <= 3) {
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          setIsOpen(true);
-                          setOpenImage(item.url);
-                        }}
-                        className="relative"
-                      >
-                        <Image
-                          src={item.url}
-                          className="rounded-md"
-                          alt="PEMM"
-                        />
-                        {index === 3 && (
-                          <div className="absolute inset-0 flex h-full w-full items-center justify-center rounded-md bg-gray-700/50">
-                            <p className="flex items-center gap-1 text-xl text-white md:text-2xl ">
-                              <span>{sliderImg.length - 3}</span>
-                            </p>
-                          </div>
-                        )}
-                      </button>
-                    );
-                  }
-                })}
-            </div>
+            <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3"></div>
 
-            <SliderModal
-              sliderImg={sliderImg}
-              isOpen={isOpen}
-              openImage={openImage}
-              modalClose={() => {
-                setIsOpen(false);
-                setOpenImage("");
-              }}
-            />
+            <SliderModal sliderImg={sliderImg} />
 
             {/* slider content */}
 
             <div className="space-y-4 mb-10">
               {sliderData.map((list, index) => (
-                <ol key={index} className="list-inside pl-4">
+                <ol key={index} className="list-inside md:pl-4 p-0">
                   <li>
                     <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                       {list.title}
@@ -253,7 +233,7 @@ const StoryInfo = () => {
             {/* English translation */}
             <div className="space-y-4">
               {lang.map((list, index) => (
-                <ol key={index} className="list-inside pl-4">
+                <ol key={index} className="list-inside md:pl-4 p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase  mb-3">
                       {list.title}
@@ -280,7 +260,7 @@ const StoryInfo = () => {
 
         <div className="space-y-4 mb-10">
           {storyDetail.map((list, index) => (
-            <ol key={index} className="list-inside pl-4 ">
+            <ol key={index} className="list-inside md:pl-4 p-0 ">
               <li>
                 <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                   {list.title}
@@ -302,18 +282,86 @@ const StoryInfo = () => {
       </div>
 
       {/* This below content is for responsive  */}
+      <div className="md:hidden block">
+        <Tabs
+          tabs={discoverPage}
+          onClick={(e) => {
+            console.log("onClick prop:", e);
+          }}
+        >
+          {/* Overview */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4 mb-10">
+              {sliderData.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                      {list.title}
+                    </h3>
+                    <ul>
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-normal"
+                        >
+                          {item.text}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
 
-      <Tabs
-        tabs={discoverPage}
-        onClick={(e) => {
-          console.log("onClick prop:", e);
-        }}
-      >
-        {/* Overview */}
-        <Tab.Panel className="p-4 lg:p-6">
-          <div className="space-y-4 mb-10">
-            {sliderData.map((list, index) => (
-              <ol key={index} className="list-inside pl-4">
+          {/* Upcoming Events */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4 pb-10">
+              {data.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0 ">
+                  <li>
+                    <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-relaxed"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {lang.map((list, index) => (
+                <ol key={index} className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3 className="text-lg font-bold uppercase  mb-3">
+                      {list.title}
+                    </h3>
+                    <p className="text-base leading-loose mb-3">{list.text}</p>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <li key={subIndex}>
+                          <p className="text-base text-justify indent-2 leading-relaxed">
+                            {item.content}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
+
+          {/* Resources */}
+          <Tab.Panel className="p-4 md:p-6">
+            {storyDetail.map((list, index) => (
+              <ol key={index} className="list-inside md:pl-4 p-0 ">
                 <li>
                   <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                     {list.title}
@@ -331,76 +379,76 @@ const StoryInfo = () => {
                 </li>
               </ol>
             ))}
-          </div>
-        </Tab.Panel>
+          </Tab.Panel>
 
-        {/* Upcoming Events */}
-        <Tab.Panel className="p-4 lg:p-6">
-          <div className="space-y-4 mb-10">
-            {data.map((list, index) => (
+          {/* Upcoming Events */}
+          <Tab.Panel className="p-4 lg:p-6">
+            <div className="space-y-4 mb-10">
+              {data.map((list, index) => (
+                <ol key={index} className="list-inside pl-4">
+                  <li>
+                    <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <p
+                          key={subIndex}
+                          className="text-base indent-2 leading-relaxed"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {lang.map((list, index) => (
+                <ol key={index} className="list-inside pl-4">
+                  <li>
+                    <h3 className="text-lg font-bold uppercase mb-3">
+                      {list.title}
+                    </h3>
+                    <p className="text-base leading-loose mb-3">{list.text}</p>
+                    <ul className="space-y-2">
+                      {list.items.map((item, subIndex) => (
+                        <li key={subIndex}>
+                          <p className="text-base text-justify indent-2 leading-relaxed">
+                            {item.content}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ol>
+              ))}
+            </div>
+          </Tab.Panel>
+
+          {/* Resources */}
+          <Tab.Panel className="p-4 lg:p-6">
+            {storyDetail.map((list, index) => (
               <ol key={index} className="list-inside pl-4 ">
                 <li>
-                  <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
-                  <ul className="space-y-2">
+                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                    {list.title}
+                  </h3>
+                  <ul>
                     {list.items.map((item, subIndex) => (
                       <p
                         key={subIndex}
-                        className="text-base indent-2 leading-relaxed"
+                        className="text-base indent-2 leading-normal"
                       >
-                        {item}
+                        {item.text}
                       </p>
                     ))}
                   </ul>
                 </li>
               </ol>
             ))}
-          </div>
-          <div className="space-y-4">
-            {lang.map((list, index) => (
-              <ol key={index} className="list-inside pl-4">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    {list.title}
-                  </h3>
-                  <p className="text-base leading-loose mb-3">{list.text}</p>
-                  <ul className="space-y-2">
-                    {list.items.map((item, subIndex) => (
-                      <li key={subIndex}>
-                        <p className="text-base text-justify indent-2 leading-relaxed">
-                          {item.content}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              </ol>
-            ))}
-          </div>
-        </Tab.Panel>
-
-        {/* Resources */}
-        <Tab.Panel className="p-4 lg:p-6">
-          {storyDetail.map((list, index) => (
-            <ol key={index} className="list-inside pl-4 ">
-              <li>
-                <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                  {list.title}
-                </h3>
-                <ul>
-                  {list.items.map((item, subIndex) => (
-                    <p
-                      key={subIndex}
-                      className="text-base indent-2 leading-normal"
-                    >
-                      {item.text}
-                    </p>
-                  ))}
-                </ul>
-              </li>
-            </ol>
-          ))}
-        </Tab.Panel>
-      </Tabs>
+          </Tab.Panel>
+        </Tabs>
+      </div>
     </div>
   );
 };

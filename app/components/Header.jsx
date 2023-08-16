@@ -21,11 +21,11 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Menuscripts", link: "/menuscripts" },
+        { title: "Manuscripts", link: "/menuscripts" },
         { title: "Research Tools", link: "/research" },
       ],
     },
-    { title: "menuscripts", link: "/menuscripts" },
+    { title: "Manuscripts", link: "/menuscripts" },
     {
       title: "Research Tools",
       link: "/research",
@@ -33,7 +33,12 @@ const Header = () => {
         // { title: "Menuscripts", link: "/menuscripts" },
         // { title: "Research Tools", link: "/research" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
+        {
+          title: "Interchangeable Spellings of Ethiopic Terms",
+          link: "/research/spellings",
+        },
         { title: "Arabic Menuscripts", link: "/research/menuscript" },
+        { title: "List of Repositories", link: "/research/repositories" },
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
       ],
@@ -58,10 +63,15 @@ const Header = () => {
   return (
     <>
       <div
-        className={`p-2  lg:p-0 ${
+        className={`p-4 lg:p-0 ${
           pathname === "/" ? " bg-transparent text-black" : "bg-background-500"
         }`}
       >
+        <div className="w-60 sm:w-full sm:max-w-md block lg:hidden">
+          <Link href="/">
+            <Image src={LogoBlack} alt="Picture of the author" />
+          </Link>
+        </div>
         <button
           onClick={menuIconClick}
           className="block h-7 w-7 flex-none p-1 lg:hidden z-40 absolute top-5 right-5"
@@ -69,24 +79,21 @@ const Header = () => {
           {menuCollapse ? (
             <MdiMenuIcon
               className={` ${
-                pathname === "/" ? " text-primary-500 " : "text-black"
+                pathname === "/" ? " text-primary-500" : "text-black"
               }`}
             />
           ) : (
             <MdiMenuIcon
               className={` ${
-                pathname === "/" ? " text-primary-500 " : "text-black"
+                pathname === "/" ? " text-primary-500" : "text-black"
               }`}
             />
           )}
         </button>
-        <div className="w-64 sm:w-full sm:max-w-md block lg:hidden">
-          <Image src={LogoBlack} alt="Picture of the author" />
-        </div>
       </div>
 
       <div
-        className={`z-40 justify-between w-72 pt-10 items-center duration-700 ease-in-out inset-y-0 px-5 fixed lg:w-full transition-transform lg:flex lg:h-auto ${
+        className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-background-500 lg:h-auto ${
           menuCollapse
             ? "right-0 translate-x-0 transform "
             : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
@@ -132,7 +139,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
                       activeSubmenu === index ? "block z-50" : "hidden"
                     }`}
                     // lg:group-hover:block lg:group-hover:transiton-all
@@ -142,6 +149,7 @@ const Header = () => {
                         <Link
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
+                          onClick={() => setActiveSubmenu(null)}
                         >
                           {subItem.title}
                         </Link>
