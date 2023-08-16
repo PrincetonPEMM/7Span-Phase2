@@ -380,6 +380,22 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+
+.masonry .even .card-background {
+  @apply bg-primary-500;
+}
+
+.masonry .even .card-button {
+  @apply bg-secondary-500;
+}
+
+.masonry .odd .card-background {
+  @apply bg-secondary-500;
+}
+
+.masonry .odd .card-button {
+  @apply bg-primary-500;
+}
 .pagination-button a {
   @apply h-full w-full flex items-center justify-center p-3;
 }
