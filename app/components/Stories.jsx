@@ -164,7 +164,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full overflow-auto">
+      <div className="w-full ">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -204,25 +204,25 @@ const Stories = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div className=" w-full">
+        <div className="w-full">
           <Table
             tableHeader={tableHeader}
             tableData={tableData}
             toggleBtn={toggleBtn}
           />
+          <Pagination
+            meta={{
+              total: totalPage,
+              per_page: perPage,
+              current_page: page,
+              last_page: 50,
+            }}
+            isOpen={isOpen}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
         </div>
-        <Pagination
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-          }}
-          isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
-          }}
-        />
       </div>
     </div>
   );

@@ -3,8 +3,8 @@ import React from "react";
 
 const Table = ({ tableHeader, tableData, toggleBtn }) => {
   return (
-    <div className="relative ">
-      <table className="table overflow-x-auto w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
+    <div className="relative overflow-auto">
+      <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
         <thead className="font-medium bg-primary-500 text-white rounded-t-sm">
           <tr>
             {tableHeader?.map((item, index) => (
