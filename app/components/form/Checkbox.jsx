@@ -1,26 +1,36 @@
 import React, { useState } from "react";
 
-const Checkbox = ({ labelBefore, checkClass, name }) => {
-  const [checked, setIsChecked] = useState(false);
+const Checkbox = (props) => {
+  const {
+    item: { id, key, label, isChecked },
+    setFilterItem,
+  } = props;
 
-  const onChange = () => {
-    setIsChecked((prevChecked) => !prevChecked);
+  const changeHandler = () => {
+    setFilterItem((prevState) => ({
+      ...prevState,
+      checkItem: {
+        ...prevState.checkItem,
+        [key]: {
+          ...prevState.checkItem[key],
+          isChecked: !isChecked,
+        },
+      },
+    }));
   };
+
   return (
     <>
-      <label className="checkbox flex items-center space-x-1" htmlFor={name}>
+      <label className="checkbox flex items-center" htmlFor={id}>
         <input
           type="checkbox"
-          name={name}
-          checked={checked}
-          onChange={onChange}
-          className={`${checkClass} ${checked ? "checked" : ""}`}
-          // className={`checkbox_input ${checked ? "checked" : ""}`}
+          name={id}
+          checked={isChecked}
+          onChange={changeHandler}
+          className={`checkbox-input ${isChecked ? "checked" : ""}`}
         />
         <span className="checkmark"></span>
-        {labelBefore && (
-          <span className="ml-1 text-sm md:text-base">{labelBefore}</span>
-        )}
+        {label && <span className="ml-4 text-sm">{label}</span>}
       </label>
     </>
   );

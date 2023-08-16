@@ -5,11 +5,7 @@ import { readItems } from "@directus/sdk";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const result = await client.request(
-    readItems("home", {
-      fields: ["*.*.*"],
-    })
-  );
+  const result = await client.request(readItems("home", { fields: ["*.*.*"] }));
   return (
     <main>
       <Hero data={result} />
