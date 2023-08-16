@@ -317,7 +317,7 @@ const StoryInfo = () => {
         <Tab.Panel className="p-4 lg:p-6">
           <div className="space-y-4 mb-10">
             {data.map((list, index) => (
-              <ol key={index} className="list-inside pl-4 ">
+              <ol key={index} className="list-inside pl-4">
                 <li>
                   <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
                   <ul className="space-y-2">
@@ -338,7 +338,7 @@ const StoryInfo = () => {
             {lang.map((list, index) => (
               <ol key={index} className="list-inside pl-4">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     {list.title}
                   </h3>
                   <p className="text-base leading-loose mb-3">{list.text}</p>

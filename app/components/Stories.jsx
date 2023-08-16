@@ -113,7 +113,14 @@ const Stories = () => {
   const handlePagination = (e) => {
     setPage(e.selected + 1);
   };
-
+  const checkWidth = () => {
+    if (window.innerWidth < 1024) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  };
+  window.addEventListener("resize", checkWidth);
   return (
     <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
       <div

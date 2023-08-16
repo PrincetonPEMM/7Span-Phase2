@@ -339,17 +339,10 @@ body {
 
 /* For Firefox browsers */
 .thumb::-moz-range-thumb {
-  background-color: #ffffff;
-  border: none;
+  @apply bg-white border-0 cursor-pointer h-4 w-4 mt-1 appearance-none relative;
   border-radius: 50%;
   box-shadow: 0 0 1px 1px #ced4da;
-  cursor: pointer;
-  height: 18px;
-  width: 18px;
-  margin-top: 4px;
-  appearance: none;
   pointer-events: all;
-  position: relative;
 }
 
 .sidebar-close {
@@ -361,6 +354,7 @@ body {
 .transition {
   /* transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
   overflow: hidden;
+  @apply overflow-hidden;
 }
 .height0 {
   height: 0px;
@@ -370,4 +364,7 @@ body {
 .height100 {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.pagination-button a {
+  @apply h-full w-full flex items-center justify-center p-3;
 }

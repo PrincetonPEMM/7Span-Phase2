@@ -7,9 +7,9 @@ export const Pagination = ({ meta, onPageChange, ...rest }) => {
     <div className="">
       {pageCount > 1 ? (
         <ReactPaginate
-          className="static flex max-w-full justify-center bg-background-500 py-2 lg:ml-auto lg:max-w-[83%] lg:py-6 "
+          className="static flex divide-x-2 divide-gray-300 max-w-full  justify-center bg-background-500 py-2 lg:ml-auto lg:max-w-[83%] lg:py-6 "
           breakLabel="..."
-          pageClassName="flex h-10 min-w-[50px] items-center justify-center border border-primary-500 p-2 text-base text-primary-400"
+          pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y border-y-primary-500 text-base text-primary-400"
           nextLabel={<NextPage meta={meta} />}
           pageCount={Math.ceil(meta.total / meta.per_page)}
           previousLabel={<PrevPage meta={meta} />}
@@ -26,7 +26,7 @@ export const Pagination = ({ meta, onPageChange, ...rest }) => {
 export const PaginationLoader = () => {
   return (
     <>
-      <div className="relative">
+      <div className="relative h-10">
         <div className="mb-4 flex h-1.5 overflow-hidden text-xs">
           <div
             style={{ width: "100%" }}
@@ -42,7 +42,7 @@ const NextPage = ({ meta }) => {
   return (
     <>
       <span
-        className={`flex h-10 min-w-[50px] items-center justify-center p-2 text-base   ${
+        className={`flex h-10 min-w-[50px] items-center justify-center p-2 text-base ${
           meta.current_page === meta.last_page
             ? " text-slate-300"
             : "text-primary-400"
