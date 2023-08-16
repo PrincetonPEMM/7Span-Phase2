@@ -149,6 +149,9 @@ body {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
 }
 
+.space-y-p {
+  @apply lg:overflow-hidden overflow-auto;
+}
 .space-y-p p + p {
   margin-top: 10px;
 }
@@ -158,7 +161,7 @@ body {
 }
 
 .space-y-p a {
-  @apply underline;
+  @apply underline text-xs md:text-base inline;
 }
 
 .shell {
