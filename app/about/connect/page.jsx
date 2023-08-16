@@ -1,4 +1,5 @@
 import Card from "@/app/components/Card"
+import Masonry from "@/app/components/Masonry"
 
 export default function page() {
     const cards = [
@@ -94,11 +95,11 @@ export default function page() {
     return (
         <div className="container font-body space-y-4 py-12">
             <h1 className="text-5xl font-header">News & Updates</h1>
-            <div className="columns-1 md:columns-2 lg:columns-3">
+            <Masonry>
                 {cards.map((card, index) => (
                     <Card key={index} count={index} total={cards.length} total_col={3} {...card} />
                 ))}
-            </div>
+            </Masonry>
         </div>
     )
 }
