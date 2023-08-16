@@ -101,8 +101,6 @@ const Stories = () => {
     fetchData();
   }, [filterItem, placeItem, langItem, page]);
 
-  const debouncedFetchData = debounce(fetchData, 300);
-
   if (typeof window !== "undefined") {
     const checkWidth = () => {
       if (window?.innerWidth < 1024) {
