@@ -104,6 +104,7 @@ const Hero = ({ data }) => {
 
       {/* The below section will appear when each story event triggers */}
       <div
+        id={data.id}
         className={`md:block hidden transition ${
           !Boolean(Object.keys(selectedBanner).length) ? "height0" : height100
         } `}
