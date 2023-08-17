@@ -15,7 +15,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
         }}
       >
         <div
-          className="relative flex justify-start items-end bg-cover bg-top h-full text-left z-30"
+          className="relative flex justify-start items-end bg-cover  bg-top h-full text-left z-30"
           style={{ backgroundImage: `url(${data.img})` }}
         >
           <div className="z-10 text-white px-5 lg:px-10 pb-9 lg:pb-14 2xl:pb-30 ">
