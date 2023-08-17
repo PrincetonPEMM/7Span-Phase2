@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 export default function Masonry(props) {
 
     // noOfColumns state with default value of 3
-    const [noOfColumns, setNoOfColumns] = useState(typeof window == "undefien"? (window.innerWidth >= 1024)?3:(window.innerWidth >= 768?2:1):3);
+    const [noOfColumns, setNoOfColumns] = useState(3);
     // change no of coloum on window resize
     useEffect(() => {
         window.addEventListener("resize", function () {
             setNoOfColumns((window.innerWidth >= 1024)?3:(window.innerWidth >= 768?2:1))
         });
-        
+        setNoOfColumns((window.innerWidth >= 1024)?3:(window.innerWidth >= 768?2:1))
     }, []);
 
     return (
