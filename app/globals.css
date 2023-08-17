@@ -453,3 +453,33 @@ body {
 .space-y-p a {
   @apply underline text-xs md:text-base inline;
 }
+.Subbanner_img {
+  @apply aspect-square w-full h-auto;
+}
+.banner-image {
+  height: 600px;
+}
+.banner-content {
+  @apply transition-all opacity-0 duration-150;
+}
+.banner-image:hover .banner-content {
+  @apply opacity-100 transition-all duration-150;
+}
+
+@screen lg {
+  .Subbanner_img {
+    @apply h-auto aspect-square w-full;
+    height: auto;
+  }
+  .banner-image {
+    @apply aspect-square w-full;
+    height: 750px;
+  }
+}
+
+@screen 2xl {
+  .banner-image {
+    @apply aspect-square w-full;
+    height: 900px;
+  }
+}
