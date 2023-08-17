@@ -386,7 +386,6 @@ body {
   @apply aspect-video w-full h-full;
 }
 
-
 .masonry .even .card-background {
   @apply bg-primary-500;
 }
@@ -463,7 +462,7 @@ body {
   @apply aspect-square w-full h-auto;
 }
 .banner-image {
-  height: 600px;
+  height: 800px;
 }
 .banner-content {
   @apply transition-all opacity-0 duration-150;
@@ -491,13 +490,6 @@ body {
     @apply h-auto aspect-square w-full;
     height: auto;
   }
-  .banner-image {
-    @apply aspect-square w-full;
-    height: 750px;
-  }
-}
-
-@screen 2xl {
   .banner-image {
     @apply aspect-square w-full;
     height: 900px;
