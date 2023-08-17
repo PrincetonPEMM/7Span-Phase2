@@ -14,9 +14,11 @@ const InputIcon = (props) => {
     setItemList({ ...itemList, checkItem: updatedPlace });
   };
 
+  console.log("Hello");
+
   return (
     <div
-      className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 relative iconcheck  ${
+      className={`inline-flex m-1 items-center cursor-pointer py-1 px-3 relative iconcheck  ${
         item.icon ? " space-x-1" : ""
       }`}
       onClick={clickHandler}
@@ -30,15 +32,15 @@ const InputIcon = (props) => {
         type="checkbox"
         name={item?.id}
         checked={item?.isChecked}
-        className={`absolute appearance-none  cursor-pointer rounded-full inset-0  border-0 h-full w-full  
+        className={`absolute appearance-none  cursor-pointer rounded-full inset-0  border-0 h-full w-full
         `}
       />
 
       {item?.label && (
-        <span className=" text-sm capitalize ">{item?.label}</span>
+        <span className=" text-xs capitalize ">{item?.label}</span>
       )}
     </div>
   );
 };
 
-export default InputIcon;
+export default React.memo(InputIcon);

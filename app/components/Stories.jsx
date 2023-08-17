@@ -8,10 +8,11 @@ import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialLangItem,
   initialPlaceItem,
-  tableDetailView,
-  tableTitleView,
+  storiesTableDetailView,
+  storiesTableTitleView,
   initialfilterItem,
   pagePerLimit,
+  STORIES,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 
@@ -32,7 +33,7 @@ const Stories = () => {
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
-  const [tableHeader, setTableHeader] = useState(tableTitleView);
+  const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
@@ -124,6 +125,7 @@ const Stories = () => {
         } `}
       >
         <Sidebar
+          isPageName={STORIES}
           onChangeStory={useCallback(
             (e) => {
               const { min, max } = e;
@@ -154,6 +156,7 @@ const Stories = () => {
             },
             [paintingMin, paintingMax]
           )}
+          onChangeUnique={() => {}}
           filterItem={filterItem}
           setFilterItem={setFilterItem}
           placeItem={placeItem}
@@ -196,8 +199,8 @@ const Stories = () => {
               setToggleBtn(!toggleBtn);
               {
                 !toggleBtn
-                  ? setTableHeader(tableDetailView)
-                  : setTableHeader(tableTitleView);
+                  ? setTableHeader(storiesTableDetailView)
+                  : setTableHeader(storiesTableTitleView);
               }
             }}
           >
@@ -206,6 +209,7 @@ const Stories = () => {
         </div>
         <div className=" w-full">
           <Table
+            isPageName={STORIES}
             tableHeader={tableHeader}
             tableData={tableData}
             toggleBtn={toggleBtn}
