@@ -4,6 +4,8 @@ import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
+  console.log(data.title);
+
   return (
     <div className="relative flex flex-col ">
       <button
@@ -26,7 +28,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
               className="text-2xl lg:text-5xl leading-tight font-header uppercase"
               // onClick={() => toggleContent(index)}
             >
-              {data.title.split("")[1]}
+              {data.title.split(" ")[1]}
             </h3>
             <div className="banner-content">
               <p className="text-xs lg:text-base mt-1">{data.description}</p>
