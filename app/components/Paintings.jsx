@@ -4,7 +4,7 @@ import Card from "@/app/components/Card";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import MdiMagnify from "@assets/icons/MdiMagnify";
-import PSelect, { POption } from "./form/PSelect";
+import Select, { POption } from "./form/Select";
 import Masonry from "@/app/components/Masonry";
 import PaintingCard from "./PaintingCard";
 const Paintings = () => {
@@ -28,24 +28,24 @@ const Paintings = () => {
       id: "hello",
     },
   ];
-   const categoriess = [
-     {
-       name: "29/03/1996",
-       id: "hello",
-     },
-     {
-       name: "29/03/1976",
-       id: "hello",
-     },
-     {
-       name: "29/03/1966",
-       id: "hello",
-     },
-     {
-       name: "29/03/1956",
-       id: "hello",
-     },
-   ];
+  const categoriess = [
+    {
+      name: "29/03/1996",
+      id: "hello",
+    },
+    {
+      name: "29/03/1976",
+      id: "hello",
+    },
+    {
+      name: "29/03/1966",
+      id: "hello",
+    },
+    {
+      name: "29/03/1956",
+      id: "hello",
+    },
+  ];
 
   const cards = [
     {
@@ -233,32 +233,33 @@ const Paintings = () => {
 
   return (
     <div className="container">
-      <div class="w-full relative">
-        <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
-        <InputText value="" iconBefore />
-      </div>
       <div className="flex items-start space-x-4 mb-5">
-        <PSelect
+        <div class="relative w-full">
+          <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
+          <InputText value="" iconBefore />
+        </div>
+      </div>
+      <div className="flex items-start space-x-4 mb-5 max-w-xl ml-auto">
+        <Select
           selected={selectedOpt}
           onChange={(selected) => setSelectedOpt(selected)}
-          className="pc-mb-3"
+          className="w-72"
         >
           {categories?.map((opt, index) => (
             <POption key={index} id={opt.id} name={opt.name} />
           ))}
-        </PSelect>
-        <PSelect
+        </Select>
+        <Select
           selected={selectedOpt}
           onChange={(selected) => setSelectedOpt(selected)}
-          className="pc-mb-3"
+          className="w-72"
         >
           {categoriess?.map((opt, index) => (
             <POption key={index} id={opt.id} name={opt.name} />
           ))}
-        </PSelect>
+        </Select>
       </div>
-
-      <div className="">
+      <div className="pb-10">
         <Masonry>
           {Paintcards.map((card, index) => (
             <PaintingCard key={index} {...card} />
