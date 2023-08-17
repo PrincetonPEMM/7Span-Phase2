@@ -4,18 +4,30 @@ import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
 import {
-  rangeSliderMaxForManuscripts,
-  rangeSliderMaxForPaintings,
-  rangeSliderMaxForStories,
-  rangeSliderMinForManuscripts,
-  rangeSliderMinForPaintings,
-  rangeSliderMinForStories,
+  MANUSCRIPTS,
+  STORIES,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
+  rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMinForManuscriptsStoriesPage,
+  rangeSliderMinForPaintingsStoriesPage,
+  rangeSliderMinForStoriesStoriesPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 
 const Sidebar = ({
+  isPageName,
   onChangeStory,
   onChangeManuscript,
   onChangePainting,
+  onChangeUnique,
   filterItem,
   setFilterItem,
   placeItem,
@@ -39,55 +51,105 @@ const Sidebar = ({
           ))}
         </div>
       </div>
-
       <div className="block mt-7">
         <lable className="text-white text-lg block mb-3">
-          Story's Century of Origin
+          {isPageName === STORIES && "Story's Century of Origin"}
+          {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </lable>
         <RangeSlider
-          min={rangeSliderMinForStories}
-          max={rangeSliderMaxForStories}
+          min={
+            isPageName === STORIES
+              ? rangeSliderMinForStoriesStoriesPage
+              : rangeSliderMinDateOfCreationManuscriptsPage
+          }
+          max={
+            isPageName === STORIES
+              ? rangeSliderMaxForStoriesStoriesPage
+              : rangeSliderMaxDateOfCreationManuscriptsPage
+          }
           onChange={onChangeStory}
         />
       </div>
-
-      <div className="block mt-10">
-        <lable className="text-white text-lg block">
-          {placeItem?.title} hello
-        </lable>
-        <div className="mt-5">
-          {placeItem?.checkItem.map((item, index) => (
-            <InputIcon
-              key={index}
-              item={item}
-              itemList={placeItem}
-              setItemList={setPlaceItem}
-            />
-          ))}
+      {isPageName === STORIES && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <div className="mt-5">
+            {placeItem?.checkItem.map((item, index) => (
+              <InputIcon
+                key={index}
+                item={item}
+                itemList={placeItem}
+                setItemList={setPlaceItem}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-
+      )}
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
-          Manuscripts with Story
+          {isPageName === STORIES && " Manuscripts with Story"}
+          {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
         </lable>
         <RangeSlider
-          min={rangeSliderMinForManuscripts}
-          max={rangeSliderMaxForManuscripts}
+          min={
+            isPageName === STORIES
+              ? rangeSliderMinForManuscriptsStoriesPage
+              : rangeSliderMinNoOfStoriesManuscriptsPage
+          }
+          max={
+            isPageName === STORIES
+              ? rangeSliderMaxForManuscriptsStoriesPage
+              : rangeSliderMaxNoOfStoriesManuscriptsPage
+          }
           onChange={onChangeManuscript}
         />
       </div>
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
-          Paintings of Story
+          {isPageName === STORIES && " Paintings of Story"}
+          {isPageName === MANUSCRIPTS && "Manuscript's Number of Paintings"}
         </lable>
         <RangeSlider
-          min={rangeSliderMinForPaintings}
-          max={rangeSliderMaxForPaintings}
+          min={
+            isPageName === STORIES
+              ? rangeSliderMinForPaintingsStoriesPage
+              : rangeSliderMinNoOfPaintingsManuscriptsPage
+          }
+          max={
+            isPageName === STORIES
+              ? rangeSliderMaxForPaintingsStoriesPage
+              : rangeSliderMaxNoOfPaintingsManuscriptsPage
+          }
           onChange={onChangePainting}
         />
       </div>
-
+      {isPageName === MANUSCRIPTS && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            Manuscript's Number of Unique Paintings
+          </lable>
+          <RangeSlider
+            min={rangeSliderMinUniqueStoriesManuscriptsPage}
+            max={rangeSliderMaxUniqueStoriesManuscriptsPage}
+            onChange={onChangeUnique}
+          />
+        </div>
+      )}
+      {isPageName === MANUSCRIPTS && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <div className="mt-5">
+            {placeItem?.checkItem.map((item, index) => (
+              <InputIcon
+                key={index}
+                item={item}
+                itemList={placeItem}
+                setItemList={setPlaceItem}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
           {langItem.title}
