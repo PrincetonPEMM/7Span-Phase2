@@ -15,7 +15,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
         }}
       >
         <div
-          className="relative flex justify-start items-end bg-cover  bg-top h-full text-left z-30"
+          className="relative flex justify-start items-end bg-cover bg-top h-full text-left z-30"
           style={{ backgroundImage: `url(${data.img})` }}
         >
           <div className="z-10 text-white px-5 lg:px-10 pb-9 lg:pb-14 2xl:pb-30 ">
@@ -26,7 +26,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
               className="text-2xl lg:text-5xl leading-tight font-header uppercase"
               // onClick={() => toggleContent(index)}
             >
-              {data.title.split("")[1]}
+              {data.title.split(" ")[1]}
             </h3>
             <div className="banner-content">
               <p className="text-xs lg:text-base mt-1">{data.description}</p>
