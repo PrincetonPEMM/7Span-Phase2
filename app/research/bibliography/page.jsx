@@ -5,16 +5,13 @@ import { readItems } from "@directus/sdk";
 import React from "react";
 
 const page = async () => {
-  let bibliography_data = null
+  let bibliography_data = null;
   try {
-    bibliography_data = await client.request(
-      readItems("bibliography")
-    );
-  }
-  catch (e) {
+    bibliography_data = await client.request(readItems("bibliography"));
+  } catch (e) {
     console.log(e);
   }
-  
+
   return (
     <div className="bg-background-500">
       <div className="container font-body space-y-4 py-12">
