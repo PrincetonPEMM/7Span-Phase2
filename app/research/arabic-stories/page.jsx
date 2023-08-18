@@ -1,19 +1,17 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";
 
 const page = async () => {
-  let arabic_stories_data = null
+  let arabic_stories_data = null;
   try {
-    arabic_stories_data = await client.request(
-      readItems("arabic_stories")
-    );
-  }
-  catch (e) {
+    arabic_stories_data = await client.request(readItems("arabic_stories"));
+  } catch (e) {
     console.log(e);
   }
+  console.log("Maulik Savaliya");
 
   return (
     <div className="container-fluid">
