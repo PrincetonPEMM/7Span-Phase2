@@ -18,7 +18,4 @@ export const client = createDirectus(process.env.NEXT_PUBLIC_DIRECTUS_URL).with(
 // const result = await directus.transport.get("items/home");
 // const result = await directus.collections.readOne("home");
 
-// console.log("Hello", directus);
 // const result = await directus.items("home");
-
-// console.log("Hello ", result, await result.transport.axios.get());
