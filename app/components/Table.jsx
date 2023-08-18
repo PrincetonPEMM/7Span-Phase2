@@ -1,7 +1,8 @@
+import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 import Link from "next/link";
 import React from "react";
 
-const Table = ({ tableHeader, tableData, toggleBtn }) => {
+const Table = ({ isPageName, tableHeader, tableData, toggleBtn }) => {
   return (
     <div className="relative overflow-auto">
       <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
@@ -21,14 +22,26 @@ const Table = ({ tableHeader, tableData, toggleBtn }) => {
           {tableData?.length
             ? tableData?.map((event, index) => (
                 <React.Fragment key={index}>
-                  <tr>
-                    <td
-                      className="w-full px-6 py-4 font-bold underline"
-                      colSpan="6"
-                    >
-                      <Link href="#">{event.canonical_story_title}</Link>
-                    </td>
-                  </tr>
+                  {(event?.canonical_story_title ||
+                    event?.manuscript_full_name ||
+                    event?.manuscript_full_name) && (
+                    <tr>
+                      <td
+                        className="w-full px-6 py-4 font-bold underline"
+                        colSpan="6"
+                      >
+                        <Link href="#">
+                          {isPageName === STORIES &&
+                            event.canonical_story_title}
+                          {isPageName === MANUSCRIPTS &&
+                            event.manuscript_full_name}
+                          {isPageName === MANUSCRIPT_DETAIL &&
+                            event.manuscript_detail_full_name}
+                        </Link>
+                      </td>
+                    </tr>
+                  )}
+
                   {!toggleBtn && (
                     <tr key={index} className="text-offBlack font-medium">
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">

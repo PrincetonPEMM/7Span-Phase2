@@ -90,4 +90,4 @@ RangeSlider.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default RangeSlider;
+export default React.memo(RangeSlider);

@@ -21,23 +21,23 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Manuscripts", link: "/menuscripts" },
+        { title: "Manuscripts", link: "/manuscripts" },
         { title: "Research Tools", link: "/research" },
       ],
     },
-    { title: "Manuscripts", link: "/menuscripts" },
+    { title: "Manuscripts", link: "/manuscripts" },
     {
       title: "Research Tools",
       link: "/research",
       subItems: [
-        // { title: "Menuscripts", link: "/menuscripts" },
+        // { title: "Manuscripts", link: "/manuscripts" },
         // { title: "Research Tools", link: "/research" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
         {
           title: "Interchangeable Spellings of Ethiopic Terms",
           link: "/research/spellings",
         },
-        { title: "Arabic Menuscripts", link: "/research/menuscript" },
+        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
         { title: "List of Repositories", link: "/research/repositories" },
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },

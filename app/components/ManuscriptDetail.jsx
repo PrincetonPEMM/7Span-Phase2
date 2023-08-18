@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 
 const ManuscriptDetail = ({ menudetail }) => {
   const tableData = [
@@ -33,17 +34,23 @@ const ManuscriptDetail = ({ menudetail }) => {
   ];
   return (
     <div className="container-fliud">
-      <h2 className="font-menu text-5xl font-medium">
-        British Library "Orient" Collection, Manuscript No . 520
-      </h2>
-      <div className="space-y-p">
-        {menudetail.map((data, index) => (
-          <p key={index}>{data.text}</p>
-        ))}
-      </div>
-      <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
+      <div className="pb-12">
+        <h2 className="font-menu text-5xl font-medium">
+          British Library "Orient" Collection, Manuscript No . 520
+        </h2>
+        <div className="space-y-p">
+          {menudetail.map((data, index) => (
+            <p key={index}>{data.text}</p>
+          ))}
+        </div>
+        <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
 
-      <Table tableData={tableData} tableHeader={tableHeader} />
+        <Table
+          isPageName={MANUSCRIPT_DETAIL}
+          tableData={tableData}
+          tableHeader={tableHeader}
+        />
+      </div>
     </div>
   );
 };
