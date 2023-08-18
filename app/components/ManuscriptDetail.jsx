@@ -43,13 +43,15 @@ const ManuscriptDetail = ({ menudetail }) => {
             <p key={index}>{data.text}</p>
           ))}
         </div>
-        <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
+        <div className="pt-5">
+          <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
 
-        <Table
-          isPageName={MANUSCRIPT_DETAIL}
-          tableData={tableData}
-          tableHeader={tableHeader}
-        />
+          <Table
+            isPageName={MANUSCRIPT_DETAIL}
+            tableData={tableData}
+            tableHeader={tableHeader}
+          />
+        </div>
       </div>
     </div>
   );
