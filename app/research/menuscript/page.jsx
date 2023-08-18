@@ -16,6 +16,7 @@ const page = async () => {
   }
 
   return (
+    <div className="container-fluid">
       <div className="container-fluid font-body space-y-4 py-12 max-w-screen-2xl mr-auto bg-background-500">
         {arabic_manuscripts_data && 
           <div>
@@ -23,10 +24,11 @@ const page = async () => {
             {arabic_manuscripts_data?.title }
             </h3>
             <p class="py-6">{ arabic_manuscripts_data?.intro }</p>
-            <div dangerouslySetInnerHTML={{ __html: arabic_manuscripts_data?.description }} />
+            <div dangerouslySetInnerHTML={{ __html: arabic_manuscripts_data?.description }} className="space-y-p" />
           </div>
         }
       </div>
+    </div>
   );
 };
 
