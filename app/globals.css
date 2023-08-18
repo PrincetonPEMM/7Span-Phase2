@@ -380,6 +380,11 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+/* slider  css */
+
+.image-gallery-thumbnail-inner {
+  @apply aspect-video w-full h-full;
+}
 
 .masonry .even .card-background {
   @apply bg-primary-500;
@@ -457,7 +462,7 @@ body {
   @apply aspect-square w-full h-auto;
 }
 .banner-image {
-  height: 600px;
+  height: 800px;
 }
 .banner-content {
   @apply transition-all opacity-0 duration-150;
@@ -468,18 +473,26 @@ body {
 .container-fliud {
   @apply px-5;
 }
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @screen lg {
   .Subbanner_img {
     @apply h-auto aspect-square w-full;
     height: auto;
   }
-  .banner-image {
-    @apply aspect-square w-full;
-    height: 750px;
-  }
-}
-
-@screen 2xl {
   .banner-image {
     @apply aspect-square w-full;
     height: 900px;

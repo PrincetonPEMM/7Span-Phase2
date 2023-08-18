@@ -4,6 +4,8 @@ import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
+  console.log(data.title);
+
   return (
     <div className="relative flex flex-col ">
       <button
@@ -15,10 +17,10 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
         }}
       >
         <div
-          className="relative flex justify-start items-end bg-cover bg-top h-full text-left z-30"
+          className="relative flex justify-start items-center bg-cover bg-top h-full text-left z-30"
           style={{ backgroundImage: `url(${data.img})` }}
         >
-          <div className="z-10 text-white px-5 lg:px-10 pb-9 lg:pb-14 2xl:pb-30 ">
+          <div className="z-10 text-white px-5 lg:px-10 pt-96 lg:pt-80 2xl:pt-72 ">
             <span className="text-sm lg:text-xl font-bold uppercase mr-1">
               {data.title.split(" ")[0]}
             </span>
