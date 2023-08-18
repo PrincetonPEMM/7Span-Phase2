@@ -500,6 +500,9 @@ body {
 .twitter-icon {
   color: #00b5d9;
 }
+.table {
+  min-height: 200px;
+}
 
 @keyframes pulse {
   0%,
