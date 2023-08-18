@@ -16,7 +16,6 @@ const page = async () => {
   }
   
   return (
-    <div className="">
       <div className="font-body space-y-4 py-12 bg-background-500 px-5">
         {bibliography_data &&
         <div>
@@ -28,7 +27,6 @@ const page = async () => {
         </div>
         }
       </div>
-    </div>
   );
 };
 
