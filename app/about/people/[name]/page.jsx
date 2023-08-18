@@ -1,17 +1,21 @@
+import MdiTwitterBox from "@/assets/icons/MdiTwitterBox";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import Link from "next/link";
 import React from "react";
 
 export const dynamic = "force-dynamic";
 
-const PeopleDetailPage = async () => {
-  const slug = "evgeniia-lambrinaki";
+const PeopleDetailPage = async ({ name }) => {
+  const slug = name; // || "evgeniia-lambrinaki";
   const results = await client.request(
     readItems("about_people_detail", {
       fields: ["*.*.*"],
       filter: { slug: slug },
     })
   );
+
+  console.log(results, "Results");
 
   return (
     <div className="container mx-auto">
@@ -56,7 +60,6 @@ const PeopleDetailPage = async () => {
             className="space-y-5 font-semibold text-offWhite-500 text-center md:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
-          <div className="my-3">tt</div>
 
           {results[0]?.favorite_painting_image && (
             <div className="block md:hidden">
@@ -71,6 +74,15 @@ const PeopleDetailPage = async () => {
                 />
               </div>
             </div>
+          )}
+
+          {results[0]?.twitter_link && (
+            <Link
+              href={results[0]?.twitter_link}
+              className="my-3 cursor-pointer"
+            >
+              <MdiTwitterBox className="twitter-icon" />
+            </Link>
           )}
         </div>
       </div>

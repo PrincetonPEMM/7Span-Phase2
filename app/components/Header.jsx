@@ -47,6 +47,7 @@ const Header = () => {
       title: "About",
       link: "/about",
       subItems: [
+        // { title: "People Detail", link: "/about/people-detail/[slug]" },
         // { title: "Connect", link: "/about/connect" },
       ],
     },
