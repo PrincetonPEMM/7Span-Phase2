@@ -14,8 +14,6 @@ const InputIcon = (props) => {
     setItemList({ ...itemList, checkItem: updatedPlace });
   };
 
-  console.log("Hello");
-
   return (
     <div
       className={`inline-flex m-1 items-center cursor-pointer py-1 px-3 relative iconcheck  ${
