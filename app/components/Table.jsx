@@ -19,7 +19,7 @@ const Table = ({ isPageName, tableHeader, tableData, toggleBtn }) => {
           </tr>
         </thead>
         <tbody className="min-h-[300px] divide-y divide-gray-100 bg-background-500 text-sm font-light text-primary-500">
-          {!tableData?.length ? (
+          {tableData?.length ? (
             tableData?.map((event, index) => (
               <React.Fragment key={index}>
                 <tr>
