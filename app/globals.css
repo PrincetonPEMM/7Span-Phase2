@@ -89,6 +89,26 @@ body {
   color: #000;
 }
 
+.space-y-p {
+  @apply lg:overflow-hidden overflow-auto;
+}
+.space-y-p p + p {
+  margin-top: 10px;
+}
+
+.space-y-p h3 {
+  @apply font-bold text-xl my-2;
+}
+
+.space-y-p a {
+  @apply underline text-xs md:text-base inline;
+}
+
+.space-y-p h1 {
+  @apply text-4xl lg:text-5xl font-bold;
+  
+}
+
 @keyframes slideIn {
   from {
     transform: translateX(-100%);
@@ -379,6 +399,10 @@ body {
 .height100 {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.container-fluid{
+  @apply px-14;
 }
 /* slider  css */
 

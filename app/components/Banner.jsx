@@ -4,7 +4,6 @@ import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
-  console.log(data.title);
 
   return (
     <div className="relative flex flex-col ">
