@@ -47,9 +47,7 @@ const Header = () => {
       title: "About",
       link: "/about",
       subItems: [
-        { title: "Paintings", link: "/paintings" },
-        { title: "Menuscripts", link: "/menuscripts" },
-        { title: "Research Tools", link: "/research" },
+        { title: "People", link: "/about/people" },
       ],
     },
   ];
