@@ -1,7 +1,8 @@
+import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
 import React from "react";
 
-const Table = ({ tableHeader, tableData, toggleBtn }) => {
+const Table = ({ isPageName, tableHeader, tableData, toggleBtn }) => {
   return (
     <div className="relative overflow-auto">
       <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
@@ -26,29 +27,56 @@ const Table = ({ tableHeader, tableData, toggleBtn }) => {
                       className="w-full px-6 py-4 font-bold underline"
                       colSpan="6"
                     >
-                      <Link href="#">{event.canonical_story_title}</Link>
+                      <Link href="#">
+                        {isPageName === STORIES && event.canonical_story_title}
+                        {isPageName === MANUSCRIPTS &&
+                          event.manuscript_full_name}
+                      </Link>
                     </td>
                   </tr>
                   {!toggleBtn && (
                     <tr key={index} className="text-offBlack font-medium">
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.canonical_story_id}
+                        {isPageName === STORIES && event.canonical_story_id}
+                        {isPageName === MANUSCRIPTS &&
+                          `${event.manuscript_date_range_start}-${event.manuscript_date_range_end}`}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.earliest_attestation}
+                        {isPageName === STORIES && event.earliest_attestation}
+                        {isPageName === MANUSCRIPTS && event.total_stories}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.total_records}
+                        {isPageName === STORIES && event.total_records}
+                        {isPageName === MANUSCRIPTS &&
+                          event.total_unique_stories}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.total_story_id_paintings}
+                        {isPageName === STORIES &&
+                          event.total_story_id_paintings}
+                        {isPageName === MANUSCRIPTS && event.ms_location_note}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.type_of_story}
+                        {isPageName === STORIES && event.type_of_story}
+                        {isPageName === MANUSCRIPTS &&
+                          event.total_manuscript_paintings}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4">
-                        {event.canonical_story_subject}
+                        {isPageName === STORIES &&
+                          event.canonical_story_subject}
+                        {isPageName === MANUSCRIPTS && event.language}
                       </td>
+                      {isPageName === MANUSCRIPTS && (
+                        <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                          {event.link_to_digital_copy}
+                        </td>
+                      )}
+                      {isPageName === MANUSCRIPTS && (
+                        <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                          {event.scans_of_manuscript_in_color === "Yes"
+                            ? "Color"
+                            : "Black & White"}
+                        </td>
+                      )}
                     </tr>
                   )}
                 </React.Fragment>

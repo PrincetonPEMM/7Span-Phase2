@@ -318,7 +318,7 @@ const StoryInfo = () => {
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 pb-10">
               {data.map((list, index) => (
-                <ol key={index} className="list-inside md:pl-4 p-0 ">
+                <ol key={index} className="list-inside md:pl-4 p-0">
                   <li>
                     <h3 className="text-lg mb-3 text-justify">{list.title}</h3>
                     <ul className="space-y-2">
