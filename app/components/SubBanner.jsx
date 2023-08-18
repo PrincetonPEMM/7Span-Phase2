@@ -13,7 +13,7 @@ const SubBanner = ({ stories, divClass }) => {
             key={subIndex}
             onClick={() => route.push(data?.redirectLink)}
           >
-            <div className="h-screen">
+            <div className="Subbanner_img">
               <img
                 src={data?.img}
                 alt="Picture of the author"
@@ -22,7 +22,7 @@ const SubBanner = ({ stories, divClass }) => {
               />
             </div>
 
-            <button className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0 bg-black bg-opacity-50 ">
+            <button className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0">
               <span className="text-lg lg:text-2xl font-bold font-body">
                 {data?.title}
               </span>
