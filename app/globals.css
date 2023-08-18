@@ -380,6 +380,10 @@ body {
   height: 1000px;
   transition: height 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
+
+.container-fluid{
+  @apply px-14;
+}
 /* slider  css */
 
 .image-gallery-thumbnail-inner {
