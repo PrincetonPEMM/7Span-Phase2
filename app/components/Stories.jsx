@@ -37,7 +37,6 @@ const Stories = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
-    // console.log(itemList, "itemList");
     return `filters[${key}]=${itemList.checkItem[key]?.isChecked || false}&`;
   };
 
@@ -49,15 +48,6 @@ const Stories = () => {
   };
 
   async function fetchData() {
-    console.log(
-      "Hello Maulik",
-      storyMin,
-      storyMax,
-      manuscriptsMin,
-      manuscriptsMax,
-      paintingMin,
-      paintingMax
-    );
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
