@@ -13,7 +13,6 @@ const PeopleDetailPage = async () => {
     })
   );
 
-  console.log(results, "Result");
   return (
     <div className="container mx-auto">
       <div className="grid md:grid-cols-3 grid-cols-1 items-start gap-5 py-10">
@@ -22,25 +21,27 @@ const PeopleDetailPage = async () => {
             <img
               src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.profile_image.id}`}
               alt={`${results[0].first_name} ${results[0].last_name}`}
-              className="object-cover object-center w-full h-full lg:w-80 lg:h-80 sm:w-auto sm:h-auto xl:w-auto xl:h-auto mx-auto rounded-full overflow-hidden"
+              className="object-cover object-center  lg:w-80 lg:h-80 h-28 w-28 xl:w-auto xl:h-auto mx-auto rounded-full overflow-hidden"
             />
           </div>
-          {Object.keys(results[0]?.profile_image) && (
-            <div className="py-12">
-              <h1 className="text-center text-2xl font-body text-primary-500 ">
+          {results[0]?.favorite_painting_image && (
+            <div className="md:py-8 lg:py-12 md:block hidden">
+              <h1 className="text-center text-2xl lg:text-3xl font-body font-bold text-primary-500 block mb-4">
                 {`${results[0].first_name}'s Favorite Painting`}
               </h1>
-              <img
-                src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.profile_image.id}`}
-                alt=""
-                className="object-cover object-center w-full h-full lg:w-40 lg:h-40 sm:w-auto sm:h-auto xl:w-auto xl:h-auto mx-auto  overflow-hidden"
-              />
+              <div className="max-w-xs mx-auto aspect-[9/11]">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.favorite_painting_image.id}`}
+                  alt=""
+                  className="object-cover object-center mx-auto h-full overflow-hidden w-60"
+                />
+              </div>
             </div>
           )}
         </div>
         <div className="col-span-2 font-body">
           <div className="mb-3 lg:mb-3 text-center md:text-left ">
-            <h2 className="text-4xl font-bold text-primary-500 ">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 ">
               {`${results[0].first_name} ${results[0].last_name}`}
             </h2>
             <p className="text-2xl text-black font-bold">
@@ -48,13 +49,29 @@ const PeopleDetailPage = async () => {
               <span className="block">Principal Investigator</span>
             </p>
             <p className="text-primary-500 font-extrabold text-lg">
-              {results[0].website} hello
+              {results[0].website}
             </p>
           </div>
           <div
             className="space-y-5 font-semibold text-offWhite-500 text-center md:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
+          <div className="my-3">tt</div>
+
+          {results[0]?.favorite_painting_image && (
+            <div className="block md:hidden">
+              <h1 className="text-center text-2xl font-body font-bold text-primary-500 block mb-4">
+                {`${results[0].first_name}'s Favorite Painting`}
+              </h1>
+              <div className="max-w-xs mx-auto aspect-[9/11]">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.favorite_painting_image.id}`}
+                  alt=""
+                  className="object-cover object-center mx-auto h-full overflow-hidden w-60"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

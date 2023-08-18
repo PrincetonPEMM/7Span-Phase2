@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/images/logo-white.png";
 import LogoBlack from "../../assets/images/logo-black.png";
@@ -149,7 +149,11 @@ const Header = () => {
                         <Link
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
-                          onClick={() => setActiveSubmenu(null)}
+                          onClick={() => {
+                            redirect(subItem.link);
+
+                            setActiveSubmenu(null);
+                          }}
                         >
                           {subItem.title}
                         </Link>
