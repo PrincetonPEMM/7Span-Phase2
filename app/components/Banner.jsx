@@ -18,7 +18,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
           className="relative flex justify-start items-center bg-cover bg-top h-full text-left z-30"
           style={{ backgroundImage: `url(${data.img})` }}
         >
-          <div className="z-10 text-white px-5 lg:px-10 pt-96 lg:pt-80 2xl:pt-72 ">
+          <div className="z-10 text-white px-5 absolute bottom-6">
             <span className="text-sm lg:text-xl font-bold uppercase mr-1">
               {data.title.split(" ")[0]}
             </span>

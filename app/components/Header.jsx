@@ -46,7 +46,6 @@ const Header = () => {
       title: "About",
       link: "/about",
       subItems: [
-        { title: "Connect", link: "/about/connect" },
         {
           title: "Our Mission",
           link: "/about/mission",
@@ -174,7 +173,7 @@ const Header = () => {
                     />
                   </button>
                   <ul
-                    className={`lg:absolute lg:top-10 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
+                    className={`lg:absolute lg:top-11 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
                       activeSubmenu === index ? "block z-50" : "hidden"
                     }`}
                     // lg:group-hover:block lg:group-hover:transiton-all

@@ -20,7 +20,7 @@ const Footer = () => {
     { title: "Find Stories", link: "/stories" },
     { title: "Find Paintings", link: "/paintings" },
     { title: "Find Manuscripts", link: "/manuscripts" },
-    { title: "Featured Archives", link: "/research-tools/maps" },
+    { title: "Find Archives", link: "/research-tools/maps" },
     { title: "Featured Stories", link: "/stories" },
     { title: "Featured Paintings", link: "/paintings" },
     { title: "Featured Manuscripts", link: "/manuscripts" },
