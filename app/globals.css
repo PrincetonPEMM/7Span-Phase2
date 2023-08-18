@@ -152,3 +152,18 @@ body {
 .container {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
 }
+.masonry .even .card-background {
+  @apply bg-primary-500;
+}
+
+.masonry .even .card-button {
+  @apply bg-secondary-500;
+}
+
+.masonry .odd .card-background {
+  @apply bg-secondary-500;
+}
+
+.masonry .odd .card-button {
+  @apply bg-primary-500;
+}
