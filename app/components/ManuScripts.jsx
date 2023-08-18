@@ -41,7 +41,6 @@ const ManuScripts = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
-    // console.log(itemList, "itemList");
     return `filters[${key}]=${itemList.checkItem[key]?.isChecked || false}&`;
   };
 

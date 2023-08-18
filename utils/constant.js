@@ -11,7 +11,7 @@ export const rangeSliderMaxForPaintingsStoriesPage = 40;
 export const rangeSliderMinDateOfCreationManuscriptsPage = 1100;
 export const rangeSliderMaxDateOfCreationManuscriptsPage = 2020;
 export const rangeSliderMinNoOfStoriesManuscriptsPage = 0;
-export const rangeSliderMaxNoOfStoriesManuscriptsPage = 100;
+export const rangeSliderMaxNoOfStoriesManuscriptsPage = 400;
 export const rangeSliderMinNoOfPaintingsManuscriptsPage = 0;
 export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 100;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
@@ -45,9 +45,9 @@ export const initialfilterItem = {
       label: "With Paintings",
       isChecked: false,
     },
-    mostIllustrated: {
+    homilyStories: {
       id: "2",
-      key: "mostIllustrated",
+      key: "homilyStories",
       label: "Most Illustrated",
       isChecked: false,
     },
@@ -93,9 +93,9 @@ export const initialfilterItem = {
       label: "Popular Stories",
       isChecked: false,
     },
-    rareStories: {
+    uniqueStories: {
       id: "10",
-      key: "rareStories",
+      key: "uniqueStories",
       label: "Rare Stories",
       isChecked: false,
     },
@@ -218,15 +218,15 @@ export const initialfilterItemManuScript = {
       label: "With Paintings",
       isChecked: false,
     },
-    WithOnlineDigitalCopy: {
+    withOnlineDigitalCopy: {
       id: "2",
-      key: "WithOnlineDigitalCopy",
+      key: "withOnlineDigitalCopy",
       label: "With online digital copy",
       isChecked: false,
     },
-    withcolorDigitalCopy: {
+    withColorDigitalCopy: {
       id: "3",
-      key: "withcolorDigitalCopy",
+      key: "withColorDigitalCopy",
       label: "With color digital copy",
       isChecked: false,
     },
@@ -236,27 +236,27 @@ export const initialfilterItemManuScript = {
       label: "With unique stories",
       isChecked: false,
     },
-    oldestManuscripts: {
+    oldestManuscript: {
       id: "5",
-      key: "oldestManuscripts",
+      key: "oldestManuscript",
       label: "Oldest manuscripts",
       isChecked: false,
     },
-    recentManuscripts: {
+    recentManuscript: {
       id: "6",
-      key: "recentManuscripts",
+      key: "recentManuscript",
       label: "Recent manuscripts",
       isChecked: false,
     },
-    arabicManuscripts: {
+    arabicManuscript: {
       id: "7",
-      key: "arabicManuscripts",
+      key: "arabicManuscript",
       label: "Arabic manuscripts",
       isChecked: false,
     },
-    arabicGaazManuscripts: {
+    arabicAndGaazManuscript: {
       id: "8",
-      key: "arabicGaazManuscripts",
+      key: "arabicAndGaazManuscript",
       label: "Arabic & Gaaz manuscripts",
       isChecked: false,
     },

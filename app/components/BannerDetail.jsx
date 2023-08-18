@@ -37,7 +37,7 @@ const BannerDetail = ({
 
       <div className="w-full col-span-2 flex text-white bg-secondary-500">
         <div className=" z-10 space-y-2 p-10 max-w-6xl mx-auto">
-          <h3 className="text-2xl lg:text-5xl  font-header">{title}</h3>
+          <h3 className="text-2xl lg:text-5xl font-header">{title}</h3>
           <p className="text-sm md:text-base lg:text-2xl font-body">{text}</p>
         </div>
         <button

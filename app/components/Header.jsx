@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/images/logo-white.png";
 import LogoBlack from "../../assets/images/logo-black.png";
@@ -21,8 +21,8 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Manuscripts", link: "/manuscripts" },
-        { title: "Research Tools", link: "/research" },
+        { title: "Paintings by Story", link: "/paintings/story" },
+        { title: "Paintings by Manuscript", link: "/paintings/manuscript" },
       ],
     },
     { title: "Manuscripts", link: "/manuscripts" },
@@ -31,23 +31,58 @@ const Header = () => {
       link: "/research",
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        // { title: "Research Tools", link: "/research" },
-        { title: "Arabic Stories", link: "/research/arabic-stories" },
-        {
-          title: "Interchangeable Spellings of Ethiopic Terms",
-          link: "/research/spellings",
-        },
-        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Research Posts", link: "/research/research-posts" },
         { title: "List of Repositories", link: "/research/repositories" },
+        { title: "Maps", link: "/research/maps" },
+        { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
+        { title: "Incipit Tool", link: "/research/incipit-tool" },
+        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
     {
       title: "About",
       link: "/about",
       subItems: [
-        // { title: "Connect", link: "/about/connect" },
+        { title: "Connect", link: "/about/connect" },
+        {
+          title: "Our Mission",
+          link: "/about/mission",
+        },
+        {
+          title: "Our History",
+          link: "/about/mission",
+        },
+        {
+          title: "Our Team",
+          link: "/about/people",
+        },
+        {
+          title: "Our Partners",
+          link: "/about/people",
+        },
+        {
+          title: "Our Funders",
+          link: "/about/people",
+        },
+        {
+          title: "News & Updates",
+          link: "/about/connect",
+        },
+        {
+          title: "Events & Workshops",
+          link: "/about/connect",
+        },
+        {
+          title: "Using the Site",
+          link: "/about/connect",
+        },
+        {
+          title: "Contact Us",
+          link: "/about/connect",
+        },
       ],
     },
   ];
@@ -149,7 +184,11 @@ const Header = () => {
                         <Link
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
-                          onClick={() => setActiveSubmenu(null)}
+                          onClick={() => {
+                            redirect(subItem.link);
+
+                            setActiveSubmenu(null);
+                          }}
                         >
                           {subItem.title}
                         </Link>

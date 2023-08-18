@@ -85,25 +85,25 @@ const Sidebar = ({
           </div>
         </div>
       )}
-      <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
-          {isPageName === STORIES && " Manuscripts with Story"}
-          {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
-        </lable>
-        <RangeSlider
-          min={
-            isPageName === STORIES
-              ? rangeSliderMinForManuscriptsStoriesPage
-              : rangeSliderMinNoOfStoriesManuscriptsPage
-          }
-          max={
-            isPageName === STORIES
-              ? rangeSliderMaxForManuscriptsStoriesPage
-              : rangeSliderMaxNoOfStoriesManuscriptsPage
-          }
-          onChange={onChangeManuscript}
-        />
-      </div>
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            {isPageName === STORIES && " Manuscripts with Story"}
+            {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
+          </lable>
+          <RangeSlider
+            min={
+              isPageName === STORIES
+                ? rangeSliderMinForManuscriptsStoriesPage
+                : rangeSliderMinNoOfStoriesManuscriptsPage
+            }
+            max={
+              isPageName === STORIES
+                ? rangeSliderMaxForManuscriptsStoriesPage
+                : rangeSliderMaxNoOfStoriesManuscriptsPage
+            }
+            onChange={onChangeManuscript}
+          />
+        </div>
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
           {isPageName === STORIES && " Paintings of Story"}
