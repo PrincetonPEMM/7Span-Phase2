@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
-import { Pagination } from "./Pagination";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialPlaceItemManuScript,
@@ -51,7 +50,7 @@ const ManuScripts = () => {
       .join("");
   };
 
-  async function fetchData() {
+  async function fetchData(searchKey = "") {
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -82,7 +81,7 @@ const ManuScripts = () => {
     )}&${makeParamsArray(
       "knownOriginRegion",
       originRegion
-    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${search}
+    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
     `;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
@@ -93,7 +92,7 @@ const ManuScripts = () => {
     setTableData(data.data);
   }
   useEffect(() => {
-    fetchData();
+    fetchData(search);
   }, [filterItem, placeItem, originRegion, page]);
 
   if (typeof window !== "undefined") {
@@ -125,8 +124,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setDateCreationMin(min);
               setDateCreationMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [dateCreationMin, dateCreationMax]
           )}
@@ -135,8 +133,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfStoriesMin(min);
               setNoOfStoriesMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfStoriesMin, noOfStoriesMax]
           )}
@@ -145,8 +142,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfPaintingMin(min);
               setNoOfPaintingMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfPaintingMin, noOfPaintingMax]
           )}
@@ -155,8 +151,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfUniqueMin(min);
               setNoOfUniqueMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfUniqueMin, noOfUniqueMax]
           )}
@@ -192,7 +187,12 @@ const ManuScripts = () => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                debouncedFetchData(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
           </div>
@@ -210,15 +210,13 @@ const ManuScripts = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div className=" w-full">
-          <Table
-            isPageName={MANUSCRIPTS}
-            tableHeader={tableHeader}
-            tableData={tableData}
-            toggleBtn={toggleBtn}
-          />
-        </div>
-        <Pagination
+
+        <Table
+          search={search}
+          isPageName={MANUSCRIPTS}
+          tableHeader={tableHeader}
+          tableData={tableData}
+          toggleBtn={toggleBtn}
           meta={{
             total: totalPage,
             per_page: perPage,
