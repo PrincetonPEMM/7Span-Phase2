@@ -484,9 +484,7 @@ body {
 .Subbanner_img {
   @apply aspect-square w-full h-auto;
 }
-.banner-image {
-  height: 900px;
-}
+
 .banner-content {
   @apply transition-all opacity-0 duration-150;
 }
@@ -514,24 +512,23 @@ body {
   }
 }
 
-@screen lg {
-  .Subbanner_img {
-    @apply h-auto aspect-square w-full;
-    height: auto;
-  }
-  .banner-image {
-    @apply aspect-square w-full;
-    height: 900px;
+.hero-img {
+  padding-top: 154.778%;
+  position: relative;
+}
+
+.hero-img img {
+  height: 100% !important;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 899px) {
+  .hero-img {
+    padding-top: 179.778%;
   }
 }
 
-@media only screen and (max-width: 991px) {
-  .banner-image {
-    height: 800px;
-  }
-}
-@media only screen and (max-width: 400px) {
-  .banner-image {
-    height: 500px;
+@media only screen and (max-width: 898px) and (min-width: 768px) {
+  .hero-img {
+    padding-top: 220.778%;
   }
 }
