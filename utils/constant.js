@@ -1,4 +1,44 @@
 export const pagePerLimit = 10;
+export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 641;
+export const TRANSLATION_STATUS_OPTIONS = [
+  "Published translation",
+  "Complete Translation",
+  "Complete Unpublished Translation",
+];
+export const ID_LIST = [
+  "13",
+  "187",
+  "161",
+  "162",
+  "163",
+  "19",
+  "27",
+  "33",
+  "54",
+  "153",
+  "154",
+  "16",
+  "46",
+  "43",
+  "48",
+  "59",
+  "57",
+  "61",
+  "68",
+  "82",
+  "83",
+  "99",
+  "103",
+  "112",
+  "158",
+  "140",
+  "142",
+  "7",
+  "125",
+  "152",
+  "148",
+  "236",
+];
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
 export const rangeSliderMinForStoriesStoriesPage = 1300;
