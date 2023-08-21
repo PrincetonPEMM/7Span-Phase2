@@ -401,7 +401,7 @@ body {
 }
 
 .container-fluid {
-  @apply px-14;
+  @apply px-7 md:px-11 lg:px-12;
 }
 /* slider  css */
 
@@ -479,13 +479,13 @@ body {
   @apply lg:overflow-hidden overflow-auto;
 }
 .space-y-p a {
-  @apply underline text-xs md:text-base inline;
+  @apply underline text-sm md:text-base inline;
 }
 .Subbanner_img {
   @apply aspect-square w-full h-auto;
 }
 .banner-image {
-  height: 800px;
+  height: 900px;
 }
 .banner-content {
   @apply transition-all opacity-0 duration-150;
@@ -522,5 +522,16 @@ body {
   .banner-image {
     @apply aspect-square w-full;
     height: 900px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .banner-image {
+    height: 800px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .banner-image {
+    height: 500px;
   }
 }
