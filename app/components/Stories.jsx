@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
-import { Pagination } from "./Pagination";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialLangItem,
@@ -47,7 +46,7 @@ const Stories = () => {
       .join("");
   };
 
-  async function fetchData() {
+  async function fetchData(searchKey = "") {
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -78,7 +77,7 @@ const Stories = () => {
     )}${getFilterFalsyValue(
       filterItem,
       "withEnglishTranslation"
-    )}filters[search]=${search}
+    )}filters[search]=${searchKey}
     `;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
@@ -89,7 +88,7 @@ const Stories = () => {
     setTableData(data.data);
   }
   useEffect(() => {
-    fetchData();
+    fetchData(search);
   }, [filterItem, placeItem, langItem, page]);
 
   if (typeof window !== "undefined") {
@@ -121,8 +120,7 @@ const Stories = () => {
               const { min, max } = e;
               setStoryMin(min);
               setStoryMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [storyMin, storyMax]
           )}
@@ -131,8 +129,7 @@ const Stories = () => {
               const { min, max } = e;
               setManuscriptsMin(min);
               setManuscriptsMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [manuscriptsMin, manuscriptsMax]
           )}
@@ -141,8 +138,7 @@ const Stories = () => {
               const { min, max } = e;
               setPaintingMin(min);
               setPaintingMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [paintingMin, paintingMax]
           )}
@@ -157,7 +153,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full ">
+      <div className="w-full  overflow-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -179,7 +175,12 @@ const Stories = () => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                debouncedFetchData(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
           </div>
@@ -197,26 +198,24 @@ const Stories = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div className="w-full">
-          <Table
-            isPageName={STORIES}
-            tableHeader={tableHeader}
-            tableData={tableData}
-            toggleBtn={toggleBtn}
-          />
-          <Pagination
-            meta={{
-              total: totalPage,
-              per_page: perPage,
-              current_page: page,
-              last_page: 50,
-            }}
-            isOpen={isOpen}
-            onPageChange={(e) => {
-              setPage(e.selected + 1);
-            }}
-          />
-        </div>
+
+        <Table
+          search={search}
+          isPageName={STORIES}
+          tableHeader={tableHeader}
+          tableData={tableData}
+          toggleBtn={toggleBtn}
+          meta={{
+            total: totalPage,
+            per_page: perPage,
+            current_page: page,
+            last_page: 50,
+          }}
+          isOpen={isOpen}
+          onPageChange={(e) => {
+            setPage(e.selected + 1);
+          }}
+        />
       </div>
     </div>
   );
