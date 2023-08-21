@@ -4,7 +4,6 @@ import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
-
   return (
     <div className="relative flex flex-col ">
       <button
@@ -45,7 +44,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
       </button>
       {/* Show the detailed view for the clicked item */}
       {selectedBanner.img === data.img && (
-        <div className="md:hidden block">
+        <div className="md:hidden block" id="mobileScroll">
           <BannerDetail
             img={data?.img}
             title={data?.title}

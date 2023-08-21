@@ -21,8 +21,8 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Manuscripts", link: "/manuscripts" },
-        { title: "Research Tools", link: "/research" },
+        { title: "Paintings by Story", link: "/paintings/story" },
+        { title: "Paintings by Manuscript", link: "/paintings/manuscript" },
       ],
     },
     { title: "Manuscripts", link: "/manuscripts" },
@@ -31,24 +31,58 @@ const Header = () => {
       link: "/research",
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        // { title: "Research Tools", link: "/research" },
-        { title: "Arabic Stories", link: "/research/arabic-stories" },
-        {
-          title: "Interchangeable Spellings of Ethiopic Terms",
-          link: "/research/spellings",
-        },
-        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Research Posts", link: "/research/research-posts" },
         { title: "List of Repositories", link: "/research/repositories" },
+        { title: "Maps", link: "/research/maps" },
+        { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
+        { title: "Incipit Tool", link: "/research/incipit-tool" },
+        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
     {
       title: "About",
       link: "/about",
       subItems: [
-        // { title: "People Detail", link: "/about/people-detail/[slug]" },
-        // { title: "Connect", link: "/about/connect" },
+        { title: "Connect", link: "/about/connect" },
+        {
+          title: "Our Mission",
+          link: "/about/mission",
+        },
+        {
+          title: "Our History",
+          link: "/about/mission",
+        },
+        {
+          title: "Our Team",
+          link: "/about/people",
+        },
+        {
+          title: "Our Partners",
+          link: "/about/people",
+        },
+        {
+          title: "Our Funders",
+          link: "/about/people",
+        },
+        {
+          title: "News & Updates",
+          link: "/about/connect",
+        },
+        {
+          title: "Events & Workshops",
+          link: "/about/connect",
+        },
+        {
+          title: "Using the Site",
+          link: "/about/connect",
+        },
+        {
+          title: "Contact Us",
+          link: "/about/connect",
+        },
       ],
     },
   ];
