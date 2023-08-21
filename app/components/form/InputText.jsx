@@ -8,7 +8,7 @@ const InputText = ({ label, value, onChange, previewClass }) => {
         type="text"
         value={value}
         onChange={onChange}
-        className="border border-primary-500 bg-transparent rounded-md w-full p-3 text-lg ring-0 focus:ring-0 outline-0 focus:ring-primary-700"
+        className="border-2 border-primary-500 bg-transparent rounded-md w-full p-3 text-lg ring-0 focus:ring-0 outline-0 focus:ring-primary-700"
       />
     </div>
   );

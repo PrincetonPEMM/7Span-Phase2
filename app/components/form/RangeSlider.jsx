@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 const RangeSlider = ({ min, max, onChange }) => {
+  const lowest = min;
+  const largest = max;
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -38,7 +40,10 @@ const RangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
+    const total = largest - lowest;
+    const min = Math.round(((minVal - lowest) / total) * 100);
+    const max = Math.round(((maxVal - lowest) / total) * 100);
+    onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 
   return (
@@ -85,4 +90,4 @@ RangeSlider.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default RangeSlider;
+export default React.memo(RangeSlider);
