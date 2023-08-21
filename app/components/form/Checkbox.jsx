@@ -2,20 +2,21 @@ import React, { useState } from "react";
 
 const Checkbox = (props) => {
   const {
-    item: { id, label, isChecked },
+    item: { id, key, label, isChecked },
     setFilterItem,
-    filterItem,
   } = props;
 
   const changeHandler = () => {
-    console.log("Hello");
-    const updatedFilter = Object.values(filterItem.checkItem).map((item) => {
-      if (item.label === label) {
-        return { ...item, isChecked: !item.isChecked };
-      }
-      return item;
-    });
-    setFilterItem({ ...filterItem, checkItem: updatedFilter });
+    setFilterItem((prevState) => ({
+      ...prevState,
+      checkItem: {
+        ...prevState.checkItem,
+        [key]: {
+          ...prevState.checkItem[key],
+          isChecked: !isChecked,
+        },
+      },
+    }));
   };
 
   return (

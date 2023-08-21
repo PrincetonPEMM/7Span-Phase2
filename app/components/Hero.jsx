@@ -9,11 +9,28 @@ const Hero = ({ data }) => {
   const [height100, setHeight100] = useState("height100");
 
   function toggleContent(data) {
-    if (!Boolean(Object.keys(selectedBanner).length)) setHeight100("height0");
+    if (!Boolean(Object.keys(selectedBanner).length)) {
+      setHeight100("height0");
+    }
     setSelectedBanner(data);
-    if (!Boolean(Object.keys(selectedBanner).length)) setHeight100("height100");
+
+    if (!Boolean(Object.keys(selectedBanner).length)) {
+      setHeight100("height100");
+    }
     if (!Boolean(Object.keys(selectedBanner).length))
       setTimeout(() => setHeight100(""), 500);
+
+    if (Object.keys(data).length) {
+      setTimeout(() => {
+        const targetDiv = document.getElementById("mobileScroll");
+        const targetDiv1 = document.getElementById("desktopScroll");
+
+        if (targetDiv || targetDiv1) {
+          targetDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+          targetDiv1.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 300);
+    }
   }
 
   return (
@@ -104,6 +121,7 @@ const Hero = ({ data }) => {
 
       {/* The below section will appear when each story event triggers */}
       <div
+        id="desktopScroll"
         className={`md:block hidden transition ${
           !Boolean(Object.keys(selectedBanner).length) ? "height0" : height100
         } `}

@@ -2,9 +2,11 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
-const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
-  const min = 0;
-  const max = 100;
+const RangeSlider = ({ min, max, onChange }) => {
+  const lowest = min;
+  const largest = max;
+  const [minVal, setMinVal] = useState(min);
+  const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
@@ -24,8 +26,7 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, []);
-  // }, [minVal, getPercent]);
+  }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
@@ -35,13 +36,15 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, []);
-  // }, [maxVal, getPercent]);
+  }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
-  // useEffect(() => {
-  //   onChange({ min: minVal, max: maxVal });
-  // }, [minVal, maxVal, onChange]);
+  useEffect(() => {
+    const total = largest - lowest;
+    const min = Math.round(((minVal - lowest) / total) * 100);
+    const max = Math.round(((maxVal - lowest) / total) * 100);
+    onChange({ min, max });
+  }, [minVal, maxVal, onChange]);
 
   return (
     <div className="w-full block py-3 my-5">
@@ -55,7 +58,7 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left"
+        className="thumb thumb--left bg-background-500"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input
@@ -81,4 +84,10 @@ const RangeSlider = ({ onChange, minVal, setMinVal, maxVal, setMaxVal }) => {
   );
 };
 
-export default RangeSlider;
+RangeSlider.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default React.memo(RangeSlider);

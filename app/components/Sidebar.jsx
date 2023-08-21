@@ -3,26 +3,37 @@ import React from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
+import {
+  MANUSCRIPTS,
+  STORIES,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
+  rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMinForManuscriptsStoriesPage,
+  rangeSliderMinForPaintingsStoriesPage,
+  rangeSliderMinForStoriesStoriesPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
+} from "@/utils/constant";
 
 const Sidebar = ({
+  isPageName,
+  onChangeStory,
+  onChangeManuscript,
+  onChangePainting,
+  onChangeUnique,
   filterItem,
   setFilterItem,
   placeItem,
   setPlaceItem,
   langItem,
   setLangItem,
-  storyMin,
-  setStoryMin,
-  storyMax,
-  setStoryMax,
-  manuscriptsMin,
-  setManuscriptsMin,
-  manuscriptsMax,
-  setManuscriptsMax,
-  paintingMin,
-  setPaintingMin,
-  paintingMax,
-  setPaintingMax,
   onClick,
 }) => {
   return (
@@ -36,70 +47,109 @@ const Sidebar = ({
             {filterItem.title}
           </lable>
           {Object.values(filterItem.checkItem)?.map((item, index) => (
-            <Checkbox
-              item={item}
-              key={index}
-              setFilterItem={setFilterItem}
-              filterItem={filterItem}
-            />
+            <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
           ))}
         </div>
       </div>
-
       <div className="block mt-7">
         <lable className="text-white text-lg block mb-3">
-          Story's Century of Origin
+          {isPageName === STORIES && "Story's Century of Origin"}
+          {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </lable>
         <RangeSlider
-          onChange={() => {}}
-          minVal={storyMin}
-          setMinVal={setStoryMin}
-          maxVal={storyMax}
-          setMaxVal={setStoryMax}
+          min={
+            isPageName === STORIES
+              ? rangeSliderMinForStoriesStoriesPage
+              : rangeSliderMinDateOfCreationManuscriptsPage
+          }
+          max={
+            isPageName === STORIES
+              ? rangeSliderMaxForStoriesStoriesPage
+              : rangeSliderMaxDateOfCreationManuscriptsPage
+          }
+          onChange={onChangeStory}
         />
       </div>
-
-      <div className="block mt-10">
-        <lable className="text-white text-lg block">
-          {placeItem?.title} hello
-        </lable>
-        <div className="mt-5">
-          {placeItem?.checkItem.map((item, index) => (
-            <InputIcon
-              key={index}
-              item={item}
-              itemList={placeItem}
-              setItemList={setPlaceItem}
-            />
-          ))}
+      {isPageName === STORIES && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <div className="mt-5">
+            {placeItem?.checkItem.map((item, index) => (
+              <InputIcon
+                key={index}
+                item={item}
+                itemList={placeItem}
+                setItemList={setPlaceItem}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-
+      )}
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            {isPageName === STORIES && " Manuscripts with Story"}
+            {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
+          </lable>
+          <RangeSlider
+            min={
+              isPageName === STORIES
+                ? rangeSliderMinForManuscriptsStoriesPage
+                : rangeSliderMinNoOfStoriesManuscriptsPage
+            }
+            max={
+              isPageName === STORIES
+                ? rangeSliderMaxForManuscriptsStoriesPage
+                : rangeSliderMaxNoOfStoriesManuscriptsPage
+            }
+            onChange={onChangeManuscript}
+          />
+        </div>
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
-          Manuscripts with Story
+          {isPageName === STORIES && " Paintings of Story"}
+          {isPageName === MANUSCRIPTS && "Manuscript's Number of Paintings"}
         </lable>
         <RangeSlider
-          onChange={() => {}}
-          minVal={manuscriptsMin}
-          setMinVal={setManuscriptsMin}
-          maxVal={manuscriptsMax}
-          setMaxVal={setManuscriptsMax}
+          min={
+            isPageName === STORIES
+              ? rangeSliderMinForPaintingsStoriesPage
+              : rangeSliderMinNoOfPaintingsManuscriptsPage
+          }
+          max={
+            isPageName === STORIES
+              ? rangeSliderMaxForPaintingsStoriesPage
+              : rangeSliderMaxNoOfPaintingsManuscriptsPage
+          }
+          onChange={onChangePainting}
         />
       </div>
-      <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
-          Paintings of Story
-        </lable>
-        <RangeSlider
-          onChange={() => {}}
-          minVal={paintingMin}
-          setMinVal={setPaintingMin}
-          maxVal={paintingMax}
-          setMaxVal={setPaintingMax}
-        />
-      </div>
-
+      {isPageName === MANUSCRIPTS && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            Manuscript's Number of Unique Paintings
+          </lable>
+          <RangeSlider
+            min={rangeSliderMinUniqueStoriesManuscriptsPage}
+            max={rangeSliderMaxUniqueStoriesManuscriptsPage}
+            onChange={onChangeUnique}
+          />
+        </div>
+      )}
+      {isPageName === MANUSCRIPTS && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <div className="mt-5">
+            {placeItem?.checkItem.map((item, index) => (
+              <InputIcon
+                key={index}
+                item={item}
+                itemList={placeItem}
+                setItemList={setPlaceItem}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       <div className="block mt-10">
         <lable className="text-white text-lg block mb-3">
           {langItem.title}
