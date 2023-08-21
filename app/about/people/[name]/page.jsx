@@ -6,16 +6,15 @@ import React from "react";
 
 export const dynamic = "force-dynamic";
 
-const PeopleDetailPage = async ({ name }) => {
-  const slug = name; // || "evgeniia-lambrinaki";
+const PeopleDetailPage = async ({ params }) => {
+  const { name } = params;
+
   const results = await client.request(
     readItems("about_people_detail", {
       fields: ["*.*.*"],
-      filter: { slug: slug },
+      filter: { slug: name },
     })
   );
-
-  console.log(results, "Results");
 
   return (
     <div className="container mx-auto">
