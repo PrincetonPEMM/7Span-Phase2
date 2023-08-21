@@ -521,6 +521,13 @@ body {
   height: 100% !important;
 }
 
+.back-btn:hover span {
+  @apply text-primary-500;
+}
+.back-btn:hover svg {
+  @apply -translate-x-1 transition-transform text-primary-500;
+}
+
 @media only screen and (max-width: 991px) and (min-width: 899px) {
   .hero-img {
     padding-top: 179.778%;
@@ -532,4 +539,3 @@ body {
     padding-top: 220.778%;
   }
 }
-
