@@ -1,6 +1,43 @@
+import StartWith from "@/app/components/StartWith";
 import Funders from "@/assets/images/funders.png"
+import { client } from "@/utils/directUs";
+import { readItems } from "@directus/sdk";
 import Image from "next/image";
-export default function page() {
+import Link from "next/link";
+
+export const dynamic = "force-dynamic";
+const img_path = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/`
+
+export default async function page() {
+    const about_people = await client.request(readItems("about_people", { fields: ["*.*.*"] }));
+    const about_people_detail = await client.request(readItems("about_people_detail"));
+    const team_with_image = []
+    const team_without_image = []
+    for(let i = 0; i < about_people_detail.length; i++) {
+        if(about_people_detail[i].profile_image) {
+            team_with_image.push(
+                <Link href={`/about/people/${about_people_detail[i].slug}`}>
+                    <div className="text-center w-72 p-1">
+                        <img className="rounded-full w-72 h-72 object-cover py-3 px-3 mx-auto" src={`${img_path}${about_people_detail[i].profile_image}`} />
+                        <h3 className="font-bold text-center w-full line-clamp-1 text-xl tracking-tight">{`${about_people_detail[i].first_name ?? ''} ${about_people_detail[i].last_name ?? ''}`}</h3>
+                        <p className="text-center line-clamp-3">{about_people_detail[i].designation ?? ''}</p>
+                        {/* <span>{t.date}</span> */}
+                    </div>
+                </Link>
+            )
+        }
+        else {
+            team_without_image.push(
+                <Link href={`/about/people/${about_people_detail[i].slug}`}>
+                    <div className="text-center w-72 py-4">
+                        <h3 className="font-bold text-center w-full text-xl tracking-tight">{`${about_people_detail[i].first_name ?? ''} ${about_people_detail[i].last_name ?? ''}`}</h3>
+                        <p className="text-center">{about_people_detail[i].designation ?? ''}</p>
+                        {/* <span className="italic text-sm">{t.date}</span> */}
+                    </div>
+                </Link>
+            )
+        }
+    }
     const team = [
         {
             img: Funders,
@@ -122,143 +159,72 @@ export default function page() {
     ]
     return (
         <div className="container-fluid font-body space-y-4 py-12">
-            <div className="people flex justify-center flex-col items-center">
-                <h2 className="text-5xl font-header text-center">Our People</h2>
-                <p className="text-center w-3/4">
-                    The Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary digital humanities project (PEMM) is a comprehensive resource for the 1,000+ miracle stories about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and preserved in Gəˁəz between 1300 and the present.
-                </p>
+            <div id={`${about_people.our_people_title.split(" ").join("_")}`} className="people flex justify-center flex-col items-center">
+                <h2 className="text-5xl font-header text-center">{about_people.our_people_title}</h2>
+                <p className="text-center w-3/4">{about_people.our_people_description}</p>
             </div>
 
-            <div className="team">
+            <div id="Our_Team" className="team">
                 <h2 className="text-5xl font-header text-center">Our Team</h2>
                 <div className="flex flex-wrap gap-10 justify-center  break-words">
-                    {
-                        team.map(t => (
-                            <>
-                                {t.img && 
-                                    <div className="text-center w-72 py-5">
-                                        <Image className="rounded-full w-72 py-3 mx-auto" src={t.img} />
-                                        <h3 className="font-bold text-center w-full text-xl tracking-tight">{t.name}</h3>
-                                        <p className="text-center">{t.designation}</p>
-                                        <span>{t.date}</span>
-                                    </div>
-                                }
-                            </>
-                        ))
-                    }
+                    {team_with_image}
                 </div>
                 <div className="flex flex-wrap gap-5 lg:gap-8 justify-center p-2 break-words">
-                    {
-                        team.map(t => (
-                            <>
-                                {!t.img && 
-                                    <div className="text-center w-72 py-4">
-                                        <h3 className="font-bold text-center w-full text-xl tracking-tight">{t.name}</h3>
-                                        <p className="text-center">{t.designation}</p>
-                                        <span className="italic text-sm">{t.date}</span>
-                                    </div>
-                                }
-                            </>
-                        ))
-                    }
+                    {team_without_image}
                 </div>
             </div>
             
-            <div className="other-team-member">
-                <h3 className="text-4xl text-center font-extrabold tracking-tight">Other Team Members</h3>
-                <p className="text-center">Michael Franz (Princeton Financial Support Services 2016-present)</p>
-                <p className="text-center">Amanda (Princeton Financial Support Services 2023-present)</p>
-                <p className="text-center">Caitlin Charos Rollins (Grant Writing 2020)</p>
-                <p className="text-center">Alba Spahiu (Assistant Web Programmer, 2021)</p>
-            </div>
-            
-            <div className="incipit-typing">
-                <h3 className="text-2xl text-center font-extrabold">Story and Manuscript Incipit Typing 2020</h3>
-                <p className="text-center">Tariku Abas Sherif, Beimnet Beyene Kassaye, Annabel S. Lemma, Tsega-ab Hailemichael, Chiara Lombardi, Ellen Perleberg</p>
-            </div>
-            
-            <div className="incipit-typing">
-                <h3 className="text-2xl text-center font-extrabold">European language translation and summary 2019</h3>
-                <p className="text-center">Mika J. Hyman, Grace Matthews, Allie V. Mangel; Ellen Li, Elliot Galvis, Lauren D. Johnson, Sana Khan, Jason O. Seavey, Leia R. Walker, Nati Arbelaez Solano, Daniel Somwaru</p>
+            <div id={`${about_people.other_team_members_title.split(" ").join("_")}`} className="other-team-member">
+                <h3 className="text-4xl text-center font-extrabold tracking-tight leading-none">{about_people.other_team_members_title}</h3>
+                <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.other_team_members_description }} />
             </div>
 
-            <div className="md:w-4/5 mx-auto space-y-16">
-                <h2 className="text-5xl font-header text-center">Our Partners</h2>
-                <div className="collaborators ">
-                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">Project Collaborators</h3>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
-                    <p className="py-1"><strong>Dr. Solomon Gebreyes,</strong> Professor for Ethiopian Studies at the Asien-Afrika-Institut; director of the Hiob Ludolf Centre at Universität Hamburg; and head of Beta masahaft: Die Schriftkultur deschristlichen Äthiopien und Eritreas: Eine multimediale Forschungsumgebung (2016-2040).</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest, cataloger, and scholar, serving at Virgin Mary Ethiopian Orthodox Church in Los Angeles, and on the Ethiopic Manuscript Imaging Project</p>
+            <div id={`${about_people.our_partners_title.split(" ").join("_")}`} className="md:w-4/5 mx-auto space-y-16">
+                <h2 className="text-5xl font-header text-center">{about_people.our_partners_title}</h2>
+                <div id={`${about_people.project_collaborators_title.split(" ").join("_")}`} className="collaborators">
+                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">{about_people.project_collaborators_title}</h3>
+                    <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.project_collaborators_description }} />
                 </div>
 
-                <div className="board-members ">
-                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">Board Members</h3>
-                    <p className="py-1"><strong>Elias Wondimu,</strong> CEO and President of TSEHAI Corp., a global knowledge company</p>
-                    <p className="py-1"><strong>Prof. Alessandro Bausi,</strong> Professor for Ethiopian Studies at the Asien-Afrika-Institut; director of the Hiob Ludolf Centre at Universität Hamburg; and head of Beta masahaft: Die Schriftkultur deschristlichen Äthiopien und Eritreas: Eine multimediale Forschungsumgebung (2016-2040).</p>
-                    <p className="py-1"><strong>Archpriest Mussie Berhe,</strong> priest and scholar, serving at St. Michael Ethiopian Orthodox Church of Los Angeles</p>
-                    <p className="py-1"><strong>chpriest Woldesemait Teklehaymanot,</strong> monk and scholar, serving at St. Michael Ethiopian Orthodox Church in Los Angeles</p>
-                    <p className="py-1"><strong>Rev. Melaku Terefe,</strong> priest and scholar, Virgin Mary Ethiopian Orthodox Church in Los Angeles</p>
-                    <p className="py-1"><strong>Dr. Solomon Gebreyes,</strong> Research Fellow at the Hiob Ludolf Centre for Ethiopian Studies at the University of Hamburg, Germany</p>
+                <div id={`${about_people.board_members_title.split(" ").join("_")}`} className="board-members ">
+                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">{about_people.board_members_title}</h3>
+                    <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.board_members_description }} />
                 </div>
 
-                <div className="project-advisers ">
-                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">Project Advisers</h3>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
-                    <p className="py-1"><strong>Prof. Samantha Kelly</strong> Professor of History at Rutgers University, scholar of medieval Europe and Ethiopia</p>
+                <div id={`${about_people.project_advisers_title.split(" ").join("_")}`} className="project-advisers ">
+                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">{about_people.project_advisers_title}</h3>
+                    <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.project_advisers_description }} />
                 </div>
 
-                <div className="institutional-collaborators ">
-                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">Institutional Collaborators</h3>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
-                    <p className="py-1">Hill Museum & Manuscript Library. Lead by Father Columba Stewart, it hosts the Ethiopian Manuscript Microfilm Library (EMML), with more than 8000 manuscripts microfilmed in Ethiopian churches and monasteries during the 1970s and 1980s.Getat chew Haile and William F. Macomber were the lead catalogers of this collection for many decades. HMML also includes digital copies of UNESCO and Ernst Hammerschmidt Tanasee projects. With special thanks to Julie Dietman, assistant for Development and Library Services at HMML, and John Meyerhofer, Systems Librarian.</p>
+                <div id={`${about_people.institutional_collaborators_title.split(" ").join("_")}`} className="institutional-collaborators ">
+                    <h3 className="text-4xl font-header text-center mb-3 md:mb-5">{about_people.institutional_collaborators_title}</h3>
+                    <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.institutional_collaborators_description }} />
                     
                 </div>
                 
 
-                <div className="funders ">
-                    <h2 className="text-5xl font-header text-center">Our Funders</h2>
+                <div id={`${about_people.our_funders_title.split(" ").join("_")}`} className="funders ">
+                    <h2 className="text-5xl font-header text-center">{about_people.our_funders_title}</h2>
                     <div >
-                        <Image className="rounded-full w-52 py-3 mx-auto" src={Funders} />
+                        <img className="w-48 py-3 mx-auto" width={720} height={720} src={`${img_path}${about_people.main_image.id}`} />
+                        <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.main_image_description }} />
                     </div>
-                    <p className="text-center">NEH Scholarly Editions and Scholarly Translations Grant (2021-2024)</p>
-                    <p className="text-center">NEH Digital Humanities Advancement Grant (2021-2024)</p>
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-5">
-                        <div className="flex flex-col w-52">
-                            <Image className="rounded-full w-52 py-3" src={Funders} />
-                            <p className="text-center">Princeton CDH Research Partnership & Data Curation Grants (2017-2020)</p>
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-3">
+                        <div className="flex flex-col w-64">
+                            <img className="w-48 h-48 object-contain" src={`${img_path}${about_people.sub_image_1.id}`} />
+                            <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.sub_image_1_description }} />
                         </div>
-                        <div className="flex flex-col w-52">
-                            <Image className="rounded-full w-52 py-3" src={Funders} />
-                            <p className="text-center">Princeton Humanities Council David A. Gardner ’69 Magic Project (2019-2021)</p>
+                        <div className="flex flex-col w-64">
+                            <img className="w-48 h-48 object-contain" src={`${img_path}${about_people.sub_image_2.id}`} />
+                            <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.sub_image_2_description }} />
                         </div>
-                        <div className="flex flex-col w-52">
-                            <Image className="rounded-full w-52 py-3" src={Funders} />
-                            <p className="text-center">Princeton International Affairs & Operations, International Fund (2019-2021)</p>
+                        <div className="flex flex-col w-64">
+                            <img className="w-48 h-48 object-contain" src={`${img_path}${about_people.sub_image_3.id}`} />
+                            <div className="space-y-p" dangerouslySetInnerHTML={{ __html: about_people.sub_image_3_description }} />
                         </div>
 
                     </div>
-                    <p className="text-center">Other funders were the Princeton Department of African American Studies, directed by the Eddie S. Glaude, as well as the Program in Gender and Sexuality Studies (directed by Wallace Best), the Program in African Studies (directed by Emmanuel Kreike and now Chika Okeke-Agulu), the Center for the Study of Religion (directed by Jonathan Gold), and the Department of Comparative Literature (directed by Thomas Hare).</p>
+                    <div className="py-3 space-y-p" dangerouslySetInnerHTML={{ __html: about_people.our_funders_description }} />
                 </div>
             </div>
         </div>
