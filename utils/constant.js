@@ -256,7 +256,7 @@ export const initialfilterItemManuScript = {
     arabicAndGaazManuscript: {
       id: "8",
       key: "arabicAndGaazManuscript",
-      label: "Arabic & Gaaz manuscripts",
+      label: "Arabic & Gǝˁǝz manuscripts",
       isChecked: false,
     },
   },
