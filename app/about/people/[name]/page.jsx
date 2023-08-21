@@ -1,3 +1,4 @@
+import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
 import MdiTwitterBox from "@/assets/icons/MdiTwitterBox";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
@@ -18,18 +19,23 @@ const PeopleDetailPage = async ({ params }) => {
 
   return (
     <div className="container mx-auto">
-      <div className="grid md:grid-cols-3 grid-cols-1 items-start gap-5 py-10">
-        <div className="w-full  lg:pb-10 lg:pt-5 block">
-          <div className="space-y-10">
+      <Link href="/about/people" className="inline-flex items-center back-btn">
+        <MdiKeyboardBackspace />
+        <span className="ml-2">Back</span>
+      </Link>
+      <div className="lg:flex items-start font-body py-10">
+        <div className="w-full lg:pb-10">
+          <div className="w-60 h-60 sm:h-80 sm:w-80 aspect-squre rounded-full mx-auto">
             <img
               src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.profile_image.id}`}
               alt={`${results[0].first_name} ${results[0].last_name}`}
-              className="object-cover object-center  lg:w-80 lg:h-80 h-28 w-28 xl:w-auto xl:h-auto mx-auto rounded-full overflow-hidden"
+              className="object-cover object-center rounded-full h-full w-full "
             />
           </div>
+
           {results[0]?.favorite_painting_image && (
             <div className="md:py-8 lg:py-12 md:block hidden">
-              <h1 className="text-center text-2xl lg:text-3xl font-body font-bold text-primary-500 block mb-4">
+              <h1 className="text-center text-2xl lg:text-3xl font-bold text-primary-500 block mb-4">
                 {`${results[0].first_name}'s Favorite Painting`}
               </h1>
               <div className="max-w-xs mx-auto aspect-[9/11]">
@@ -42,8 +48,8 @@ const PeopleDetailPage = async ({ params }) => {
             </div>
           )}
         </div>
-        <div className="col-span-2 font-body">
-          <div className="mb-3 lg:mb-3 text-center md:text-left ">
+        <div className="mt-5 lg:mt-0">
+          <div className="mb-3 lg:mb-3 text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-500 ">
               {`${results[0].first_name} ${results[0].last_name}`}
             </h2>
@@ -56,7 +62,7 @@ const PeopleDetailPage = async ({ params }) => {
             </p>
           </div>
           <div
-            className="space-y-5 font-semibold text-offWhite-500 text-center md:text-left"
+            className="space-y-5 font-semibold text-offWhite-500 text-center lg:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 
