@@ -9,11 +9,21 @@ import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
 import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 
-const Header = ({about_people}) => {
+const Header = ({ about_people }) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
-  console.log("/about/people#" + about_people.project_collaborators_title.split(" ").map(word => word.toLowerCase()).join("-"))
+
+  useEffect(() => {
+    setActiveSubmenu(null);
+  }, [pathname]);
+  console.log(
+    "/about/people#" +
+      about_people.project_collaborators_title
+        .split(" ")
+        .map((word) => word.toLowerCase())
+        .join("-")
+  );
   const menuItems = [
     { title: "Stories", link: "/stories" },
     {
@@ -38,7 +48,7 @@ const Header = ({about_people}) => {
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
         { title: "Incipit Tool", link: "/research/incipit-tool" },
-        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Arabic Manuscripts", link: "/research/manuscript" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
@@ -60,11 +70,21 @@ const Header = ({about_people}) => {
         },
         {
           title: "Our Partners",
-          link: "/about/people#" + about_people.our_partners_title.split(" ").map(word => word.toLowerCase()).join("-"),
+          link:
+            "/about/people#" +
+            about_people.our_partners_title
+              .split(" ")
+              .map((word) => word.toLowerCase())
+              .join("-"),
         },
         {
           title: "Our Funders",
-          link: "/about/people#" + about_people.our_funders_title.split(" ").map(word => word.toLowerCase()).join("-"),
+          link:
+            "/about/people#" +
+            about_people.our_funders_title
+              .split(" ")
+              .map((word) => word.toLowerCase())
+              .join("-"),
         },
         {
           title: "News & Updates",
@@ -156,7 +176,7 @@ const Header = ({about_people}) => {
 
         {/* MENU LINKS  */}
 
-        <ul className="font-menu lg:flex relative mt-5 lg:mt-0">
+        <ul className="font-body lg:flex relative mt-5 lg:mt-0">
           {menuItems.map((item, index) => (
             <li key={index} className="lg:ml-3 xl:ml-6">
               {item.subItems ? (
@@ -184,9 +204,8 @@ const Header = ({about_people}) => {
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
                           onClick={() => {
-                            redirect(subItem.link);
-
                             setActiveSubmenu(null);
+                            // redirect(subItem.link);
                           }}
                         >
                           {subItem.title}

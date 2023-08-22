@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Tab } from "@headlessui/react";
 import logo from "../../assets/images/image.png";
 import logo2 from "../../assets/images/logo-white.png";
-import logo3 from "../../assets/images/menuscript-bg.png";
+import logo3 from "../../assets/images/manuscript-bg.png";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
 
