@@ -46,12 +46,16 @@ const Footer = () => {
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-
-        <p className="py-5 text-sm">
-          Princeton Department of Comparative Literature 133 East Pyne,
-          Princeton, NJ 08540 Princeton Department of African American Studies
-          123 West Pyne, Princeton, NJ 08540
-        </p>
+        <div className="py-5 text-sm space-y-2">
+          <p>
+            Princeton Department of Comparative Literature 133 East Pyne,
+            Princeton, NJ 08540
+          </p>
+          <p>
+            Princeton Department of African American Studies Morrison Hall,
+            Princeton, NJ 08540
+          </p>
+        </div>
         <Link href="mailto: pemm@princeton.edu" className="py-3 text-sm">
           pemm@princeton.edu
         </Link>

@@ -56,7 +56,7 @@ export default async function page() {
         id={`${about_people.our_people_title.split(" ").join("_")}`}
         className="people flex justify-center flex-col items-center"
       >
-        <h2 className="text-3xl lg:text-5xl  font-header text-center">
+        <h2 className="text-3xl lg:text-5xl font-header text-center">
           {about_people.our_people_title}
         </h2>
         <p className="text-center md:w-3/4">

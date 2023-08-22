@@ -38,7 +38,7 @@ const Header = () => {
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
         { title: "Incipit Tool", link: "/research/incipit-tool" },
-        { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+        { title: "Arabic Manuscripts", link: "/research/manuscript" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
@@ -156,7 +156,7 @@ const Header = () => {
 
         {/* MENU LINKS  */}
 
-        <ul className="font-menu lg:flex relative mt-5 lg:mt-0">
+        <ul className="font-body lg:flex relative mt-5 lg:mt-0">
           {menuItems.map((item, index) => (
             <li key={index} className="lg:ml-3 xl:ml-6">
               {item.subItems ? (
