@@ -1,5 +1,3 @@
-// import StartWith from "@/app/components/StartWith";
-// import Funders from "@/assets/images/funders.png";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Image from "next/image";
@@ -30,7 +28,6 @@ export default async function page() {
             <p className="text-center line-clamp-3 text-base lg:text-lg">
               {about_people_detail[i].designation ?? ""}
             </p>
-            {/* <span>{t.date}</span> */}
           </div>
         </Link>
       );
@@ -44,7 +41,6 @@ export default async function page() {
             <p className="text-center text-base">
               {about_people_detail[i].designation ?? ""}
             </p>
-            {/* <span className="italic text-sm">{t.date}</span> */}
           </div>
         </Link>
       );

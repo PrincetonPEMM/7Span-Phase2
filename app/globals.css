@@ -275,9 +275,11 @@ body {
 }
 
 .checkbox .checkbox-input.checked + .checkmark {
-  background-color: #000;
+  @apply bg-secondary-500;
 }
-
+.checkbox .checkbox-input.checked + span + span {
+  @apply text-secondary-500;
+}
 .checkbox .checkbox-input.checked + .checkmark::before {
   display: block;
 }

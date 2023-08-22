@@ -37,7 +37,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             {data.title.split(" ")[1]}
           </h3>
           <div className="banner-content">
-            <p className="text-xs mt-1 xl:text-base">{data.description}</p>
+            <p className="text-xs mt-1 xl:text-sm">{data.description}</p>
             <div
               className="mt-2 text-xs xl:mt-5"
               dangerouslySetInnerHTML={{ __html: data.credit }}

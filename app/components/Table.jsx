@@ -37,7 +37,7 @@ const Table = ({
                 <React.Fragment key={index}>
                   <tr>
                     <td
-                      className="w-full px-6 py-4 font-bold underline"
+                      className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all"
                       colSpan="6"
                     >
                       <Link href="#">
