@@ -36,6 +36,15 @@ export const manuscriptsTableTitleView = [
   { name: "Link to Manuscript Online" },
   { name: "Manuscript's Digital Quality" },
 ];
+export const manuscriptsDetailTableTitle = [
+  { name: "ID" },
+  { name: "Story TItle" },
+  { name: "ID Certa inty" },
+  { name: "Location in MS" },
+  { name: "Number in MS" },
+  { name: "Inipit" },
+  { name: "Painitngs" },
+];
 export const initialfilterItem = {
   title: "Filtered Search",
   checkItem: {
