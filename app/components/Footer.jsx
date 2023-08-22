@@ -12,7 +12,6 @@ const Footer = () => {
     { title: "Our Funders", link: "/about/people" },
     { title: "News & Updates", link: "/about/news" },
     { title: "Events & Workshops", link: "/about/events" },
-
     { title: "Using the Site", link: "/about/using-site" },
     { title: "Contact Us", link: "/about/using-site" },
   ];
@@ -47,12 +46,16 @@ const Footer = () => {
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-
-        <p className="py-5 text-sm">
-          Princeton Department of Comparative Literature 133 East Pyne,
-          Princeton, NJ 08540 Princeton Department of African American Studies
-          123 West Pyne, Princeton, NJ 08540
-        </p>
+        <div className="py-5 text-sm space-y-2">
+          <p>
+            Princeton Department of Comparative Literature 133 East Pyne,
+            Princeton, NJ 08540
+          </p>
+          <p>
+            Princeton Department of African American Studies Morrison Hall,
+            Princeton, NJ 08540
+          </p>
+        </div>
         <Link href="mailto: pemm@princeton.edu" className="py-3 text-sm">
           pemm@princeton.edu
         </Link>
@@ -97,9 +100,6 @@ const Footer = () => {
               {[1, 4, 6].includes(index) && <div className="mt-5" />}
             </>
           ))}
-          <Link href="/" className="mt-8 text-base font-bold">
-            PEMM Github Repository terms of Use & Copyright Accessibility
-          </Link>
         </ul>
       </div>
     </div>
