@@ -7,8 +7,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 const SliderModal = ({ sliderImg }) => {
   const images = sliderImg.map((item, index) => ({
-    original: item.url.src,
-    thumbnail: item.url.src,
+    original: item,
+    thumbnail: item,
   }));
 
   const [openImage, setOpenImage] = useState("");

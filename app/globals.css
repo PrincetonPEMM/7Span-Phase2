@@ -452,7 +452,7 @@ body {
   @apply border-black;
 }
 .image-gallery-content .image-gallery-slide .image-gallery-image {
-  @apply h-full w-full object-center object-cover max-h-max;
+  @apply h-full w-full object-center object-contain max-h-max;
 }
 .image-gallery-thumbnail + .image-gallery-thumbnail {
   @apply outline-0 border-2 border-black shadow-sm ml-5;
