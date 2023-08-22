@@ -9,11 +9,11 @@ import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
 import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 
-const Header = () => {
+const Header = ({about_people}) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
-
+  console.log("/about/people#" + about_people.project_collaborators_title.split(" ").map(word => word.toLowerCase()).join("-"))
   const menuItems = [
     { title: "Stories", link: "/stories" },
     {
@@ -56,15 +56,15 @@ const Header = () => {
         },
         {
           title: "Our Team",
-          link: "/about/people#Our_Team",
+          link: "/about/people#our-team",
         },
         {
           title: "Our Partners",
-          link: "/about/people#Our_Partners",
+          link: "/about/people#" + about_people.our_partners_title.split(" ").map(word => word.toLowerCase()).join("-"),
         },
         {
           title: "Our Funders",
-          link: "/about/people#Our_Funders",
+          link: "/about/people#" + about_people.our_funders_title.split(" ").map(word => word.toLowerCase()).join("-"),
         },
         {
           title: "News & Updates",
