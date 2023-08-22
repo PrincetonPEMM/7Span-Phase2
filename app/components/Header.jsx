@@ -56,15 +56,15 @@ const Header = () => {
         },
         {
           title: "Our Team",
-          link: "/about/people",
+          link: "/about/people#Our_Team",
         },
         {
           title: "Our Partners",
-          link: "/about/people",
+          link: "/about/people#Our_Partners",
         },
         {
           title: "Our Funders",
-          link: "/about/people",
+          link: "/about/people#Our_Funders",
         },
         {
           title: "News & Updates",

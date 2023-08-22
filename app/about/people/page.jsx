@@ -1,5 +1,3 @@
-// import StartWith from "@/app/components/StartWith";
-// import Funders from "@/assets/images/funders.png";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Image from "next/image";
@@ -19,9 +17,9 @@ export default async function page() {
     if (about_people_detail[i].profile_image) {
       team_with_image.push(
         <Link href={`/about/people/${about_people_detail[i].slug}`}>
-          <div className="text-center w-72 p-1">
+          <div className="text-center w-60 p-1">
             <img
-              className="rounded-full w-72 h-72 object-cover py-3 px-3 mx-auto"
+              className="rounded-full w-60 h-60 object-cover py-3 px-3 mx-auto"
               src={`${img_path}${about_people_detail[i].profile_image}`}
             />
             <h3 className="font-bold text-center w-full line-clamp-1 text-xl tracking-tight">{`${
@@ -30,21 +28,19 @@ export default async function page() {
             <p className="text-center line-clamp-3">
               {about_people_detail[i].designation ?? ""}
             </p>
-            {/* <span>{t.date}</span> */}
           </div>
         </Link>
       );
     } else {
       team_without_image.push(
         <Link href={`/about/people/${about_people_detail[i].slug}`}>
-          <div className="text-center w-72 py-4">
+          <div className="text-center w-60 py-4">
             <h3 className="font-bold text-center w-full text-xl tracking-tight">{`${
               about_people_detail[i].first_name ?? ""
             } ${about_people_detail[i].last_name ?? ""}`}</h3>
             <p className="text-center">
               {about_people_detail[i].designation ?? ""}
             </p>
-            {/* <span className="italic text-sm">{t.date}</span> */}
           </div>
         </Link>
       );
