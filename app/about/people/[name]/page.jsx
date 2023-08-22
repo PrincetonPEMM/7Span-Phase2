@@ -23,15 +23,17 @@ const PeopleDetailPage = async ({ params }) => {
         <MdiKeyboardBackspace />
         <span className="ml-2">Back</span>
       </Link>
-      <div className="lg:flex items-start font-body py-10 lg:space-x-10">
-        <div className="w-full lg:pb-10">
+      <div className="lg:flex items-start font-body py-10">
+        { (results[0]?.profile_image || results[0]?.favorite_painting_image) &&
+          <div className="w-full lg:pb-10">
+          {results[0]?.profile_image&&
           <div className="w-60 h-60 sm:h-80 sm:w-80 aspect-squre rounded-full mx-auto">
             <img
               src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.profile_image.id}`}
               alt={`${results[0].first_name} ${results[0].last_name}`}
               className="object-cover object-center rounded-full h-full w-full "
             />
-          </div>
+          </div>}
 
           {results[0]?.favorite_painting_image && (
             <div className="md:py-8 lg:py-12 md:block hidden">
@@ -48,6 +50,7 @@ const PeopleDetailPage = async ({ params }) => {
             </div>
           )}
         </div>
+        }
         <div className="mt-5 lg:mt-0">
           <div className="mb-3 lg:mb-3 text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-500 ">
