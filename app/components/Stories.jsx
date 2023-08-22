@@ -110,7 +110,7 @@ const Stories = () => {
   return (
     <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
       <div
-        className={`font-menu bg-primary-500 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-300 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
           isOpen
             ? "left-0 z-20 md:block md:static lg:h-full transition-all"
             : "hidden -left-full transition-all"
@@ -156,7 +156,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full  overflow-auto">
+      <div className="w-full  overflow-x-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />

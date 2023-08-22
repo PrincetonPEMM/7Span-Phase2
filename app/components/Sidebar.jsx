@@ -38,7 +38,7 @@ const Sidebar = ({
   onClick,
 }) => {
   return (
-    <div className="font-menu bg-primary-500 w-full rounded-md text-white  ">
+    <div className="font-menu bg-primary-500 w-full rounded-md text-white">
       <button onClick={onClick} className="">
         <MdiMenuOpen className="text-white-500 h-6 w-6" />
       </button>
