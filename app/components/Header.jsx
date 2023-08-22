@@ -13,6 +13,10 @@ const Header = ({about_people}) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
+
+  useEffect(() => {
+    setActiveSubmenu(null)
+  },[pathname])
   console.log("/about/people#" + about_people.project_collaborators_title.split(" ").map(word => word.toLowerCase()).join("-"))
   const menuItems = [
     { title: "Stories", link: "/stories" },
@@ -185,7 +189,7 @@ const Header = ({about_people}) => {
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
                           onClick={() => {
                             setActiveSubmenu(null);
-                            redirect(subItem.link);
+                            // redirect(subItem.link);
                           }}
                         >
                           {subItem.title}
