@@ -23,7 +23,7 @@ const PeopleDetailPage = async ({ params }) => {
         <MdiKeyboardBackspace />
         <span className="ml-2">Back</span>
       </Link>
-      <div className="lg:flex items-start font-body py-10">
+      <div className="lg:flex items-start font-body py-10 lg:space-x-10">
         <div className="w-full lg:pb-10">
           <div className="w-60 h-60 sm:h-80 sm:w-80 aspect-squre rounded-full mx-auto">
             <img
