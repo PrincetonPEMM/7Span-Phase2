@@ -3,34 +3,51 @@ import React, { useState } from "react";
 const Radio = (props) => {
   const {
     item: { id, key, label, isChecked },
+    name,
     setFilterItem,
   } = props;
 
-  const changeHandler = () => {
-    setFilterItem((prevState) => ({
-      ...prevState,
-      checkItem: {
-        ...prevState.checkItem,
-        [key]: {
-          ...prevState.checkItem[key],
-          isChecked: !isChecked,
+  const changeHandler = (e) => {
+    setFilterItem((prevState) => {
+      const data = Object.values(prevState.checkItem).map((item) => {
+        if ((item?.name === name) & (item.key !== key)) {
+          return { [item.key]: { ...item, isChecked: false } };
+        }
+        if (item?.name === name) {
+          return { [item.key]: { ...item, isChecked: true } };
+        }
+        return { [item.key]: item };
+      });
+
+      const resultObject = {};
+      data.forEach((item) => {
+        const key = Object.keys(item)[0];
+
+        resultObject[key] = item[key];
+      });
+
+      return {
+        ...prevState,
+        checkItem: {
+          ...resultObject,
         },
-      },
-    }));
+      };
+    });
   };
 
   return (
     <>
-      <label className="radiobox flex items-center" htmlFor={id}>
+      <label className="checkbox flex items-center" htmlFor={id}>
         <input
           type="radio"
-          name={id}
+          id={id}
+          name={name}
           checked={isChecked}
           onChange={changeHandler}
           defaultChecked
-          className={`radiobox-input ${isChecked ? "checked" : ""}`}
+          className={`checkbox-input ${isChecked ? "checked" : ""}`}
         />
-        <span className="radiomark"></span>
+        <span className="checkmark"></span>
         {label && <span className="ml-4 text-sm">{label}</span>}
       </label>
     </>

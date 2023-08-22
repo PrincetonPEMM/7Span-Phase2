@@ -47,15 +47,23 @@ const Sidebar = ({
           <lable className="text-white text-lg block mb-3">
             {filterItem.title}
           </lable>
-          {Object.values(filterItem.checkItem)?.map((item, index) => (
-            <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
-            // <Radio item={item} key={index} setFilterItem={setFilterItem} />
-          ))}
+          {Object.values(filterItem.checkItem)?.map((item, index) =>
+            item.isCheckbox ? (
+              <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
+            ) : (
+              <Radio
+                item={item}
+                key={index}
+                setFilterItem={setFilterItem}
+                name={item.name}
+              />
+            )
+          )}
         </div>
       </div>
       <div className="block mt-7">
         <lable className="text-white text-lg block mb-3">
-          {isPageName === STORIES && "Story's Century of Origin"}
+          {isPageName === STORIES && "Story's Date of Origin"}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </lable>
         <RangeSlider

@@ -59,7 +59,10 @@ const Stories = () => {
     )}${getFilterFalsyValue(
       filterItem,
       "lifeOfMaryStories"
-    )}${getFilterFalsyValue(filterItem, "homilyStories")}${getFilterFalsyValue(
+    )}${getFilterFalsyValue(
+      filterItem,
+      "mostIllustrated"
+    )}${getFilterFalsyValue(
       filterItem,
       "earliestStories"
     )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(

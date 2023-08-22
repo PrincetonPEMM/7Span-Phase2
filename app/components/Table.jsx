@@ -40,7 +40,12 @@ const Table = ({
                       className="w-full px-6 py-4 font-bold underline"
                       colSpan="6"
                     >
-                      <Link href="#">
+                      <Link
+                        href={
+                          (isPageName === STORIES || true) &&
+                          `stories/${event.id}`
+                        }
+                      >
                         {isPageName === STORIES && event.canonical_story_title}
                         {isPageName === MANUSCRIPTS &&
                           event.manuscript_full_name}
