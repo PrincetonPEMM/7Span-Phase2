@@ -103,13 +103,13 @@ const Header = () => {
             : "bg-background-500"
         }`}
       >
-        <div className="w-60 sm:w-full sm:max-w-md block lg:hidden">
+        <Link href="/" className="w-60 sm:w-full sm:max-w-md block lg:hidden">
           {pathname === "/" ? (
             <Image src={Logo} alt="Picture of the author" />
           ) : (
             <Image src={LogoBlack} alt="Picture of the author" />
           )}
-        </div>
+        </Link>
         <button
           onClick={menuIconClick}
           className="block h-7 w-7 flex-none p-1 lg:hidden z-40 absolute top-5 right-5"

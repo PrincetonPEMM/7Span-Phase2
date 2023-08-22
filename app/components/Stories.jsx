@@ -153,7 +153,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full  overflow-auto">
+      <div className="w-full  overflow-x-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
