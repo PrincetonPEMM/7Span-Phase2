@@ -184,9 +184,8 @@ const Header = () => {
                           href={subItem.link}
                           className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-8 lg:p-2"
                           onClick={() => {
-                            redirect(subItem.link);
-
                             setActiveSubmenu(null);
+                            redirect(subItem.link);
                           }}
                         >
                           {subItem.title}
