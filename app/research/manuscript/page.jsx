@@ -5,11 +5,11 @@ import { readItems } from "@directus/sdk";
 import React from "react";
 
 const page = async () => {
-  let macomber_handlist_data = null;
+  let arabic_manuscripts_data = null;
 
   try {
-    macomber_handlist_data = await client.request(
-      readItems("macomber_handlist")
+    arabic_manuscripts_data = await client.request(
+      readItems("arabic_manuscripts")
     );
   } catch (e) {
     console.log(e);
@@ -17,16 +17,16 @@ const page = async () => {
 
   return (
     <div className="container-fluid">
-      <div className="font-body space-y-4 py-12 mr-auto bg-background-500">
-        {macomber_handlist_data && (
+      <div className="font-body space-y-4 py-12 max-w-screen-2xl mr-auto bg-background-500">
+        {arabic_manuscripts_data && (
           <div>
             <h3 className="text-3xl text-primary-500 font-bold  lg:text-5xl">
-              {macomber_handlist_data?.title}
+              {arabic_manuscripts_data?.title}
             </h3>
-            <p class="py-6">{macomber_handlist_data?.intro}</p>
+            <p class="py-6">{arabic_manuscripts_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
-                __html: macomber_handlist_data?.description,
+                __html: arabic_manuscripts_data?.description,
               }}
               className="space-y-p"
             />

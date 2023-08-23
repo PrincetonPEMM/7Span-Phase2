@@ -12,6 +12,12 @@ import {
   initialfilterItem,
   pagePerLimit,
   STORIES,
+  rangeSliderMinForStoriesStoriesPage,
+  rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMinForManuscriptsStoriesPage,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMinForPaintingsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 
@@ -22,12 +28,20 @@ const Stories = () => {
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
   const [langItem, setLangItem] = useState(initialLangItem);
-  const [storyMin, setStoryMin] = useState(0);
-  const [storyMax, setStoryMax] = useState(100);
-  const [manuscriptsMin, setManuscriptsMin] = useState(0);
-  const [manuscriptsMax, setManuscriptsMax] = useState(100);
-  const [paintingMin, setPaintingMin] = useState(0);
-  const [paintingMax, setPaintingMax] = useState(100);
+  const [storyMin, setStoryMin] = useState(rangeSliderMinForStoriesStoriesPage);
+  const [storyMax, setStoryMax] = useState(rangeSliderMaxForStoriesStoriesPage);
+  const [manuscriptsMin, setManuscriptsMin] = useState(
+    rangeSliderMinForManuscriptsStoriesPage
+  );
+  const [manuscriptsMax, setManuscriptsMax] = useState(
+    rangeSliderMaxForManuscriptsStoriesPage
+  );
+  const [paintingMin, setPaintingMin] = useState(
+    rangeSliderMinForPaintingsStoriesPage
+  );
+  const [paintingMax, setPaintingMax] = useState(
+    rangeSliderMaxForPaintingsStoriesPage
+  );
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -59,7 +73,10 @@ const Stories = () => {
     )}${getFilterFalsyValue(
       filterItem,
       "lifeOfMaryStories"
-    )}${getFilterFalsyValue(filterItem, "homilyStories")}${getFilterFalsyValue(
+    )}${getFilterFalsyValue(
+      filterItem,
+      "mostIllustrated"
+    )}${getFilterFalsyValue(
       filterItem,
       "earliestStories"
     )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(
@@ -105,9 +122,9 @@ const Stories = () => {
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
+    <div className={`flex px-1 md:px-5 pb-10  ${isOpen ? "shell" : "flex"}`}>
       <div
-        className={`font-menu bg-primary-500 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-500 h-full fixed inset-y-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white p-2 ${
           isOpen
             ? "left-0 z-20 md:block md:static lg:h-full transition-all"
             : "hidden -left-full transition-all"
@@ -153,7 +170,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full  overflow-auto">
+      <div className="w-full  overflow-x-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
