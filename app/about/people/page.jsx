@@ -160,7 +160,7 @@ export default async function page() {
           </div>
 
           <div
-            id={`${about_people.our_funders_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+            id={`${about_people.our_funders_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
             className="funders "
           >
             <h2 className="text-3xl lg:text-5xl font-header text-center">
