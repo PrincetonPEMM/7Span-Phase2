@@ -182,7 +182,7 @@ const Header = ({ about_people }) => {
               {item.subItems ? (
                 <div className="group capitalize relative">
                   <button
-                    className="text-lg xl:text-2xl p-3 font-semibold flex items-center"
+                    className="text-lg xl:text-2xl p-3 font-semibold hover:text-secondary-500 flex items-center"
                     onClick={() => toggleSubmenu(index)}
                   >
                     <span>{item.title}</span>
@@ -217,7 +217,7 @@ const Header = ({ about_people }) => {
               ) : (
                 <Link
                   href={item.link}
-                  className="text-lg xl:text-2xl p-3 capitalize font-semibold inline-flex header-link"
+                  className="text-lg xl:text-2xl p-3 capitalize font-semibold hover:text-secondary-400 transition-all inline-flex header-link"
                 >
                   {item.title}
                 </Link>
