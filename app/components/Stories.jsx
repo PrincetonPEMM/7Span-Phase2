@@ -12,6 +12,12 @@ import {
   initialfilterItem,
   pagePerLimit,
   STORIES,
+  rangeSliderMinForStoriesStoriesPage,
+  rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMinForManuscriptsStoriesPage,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMinForPaintingsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 
@@ -22,12 +28,20 @@ const Stories = () => {
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
   const [langItem, setLangItem] = useState(initialLangItem);
-  const [storyMin, setStoryMin] = useState(0);
-  const [storyMax, setStoryMax] = useState(100);
-  const [manuscriptsMin, setManuscriptsMin] = useState(0);
-  const [manuscriptsMax, setManuscriptsMax] = useState(100);
-  const [paintingMin, setPaintingMin] = useState(0);
-  const [paintingMax, setPaintingMax] = useState(100);
+  const [storyMin, setStoryMin] = useState(rangeSliderMinForStoriesStoriesPage);
+  const [storyMax, setStoryMax] = useState(rangeSliderMaxForStoriesStoriesPage);
+  const [manuscriptsMin, setManuscriptsMin] = useState(
+    rangeSliderMinForManuscriptsStoriesPage
+  );
+  const [manuscriptsMax, setManuscriptsMax] = useState(
+    rangeSliderMaxForManuscriptsStoriesPage
+  );
+  const [paintingMin, setPaintingMin] = useState(
+    rangeSliderMinForPaintingsStoriesPage
+  );
+  const [paintingMax, setPaintingMax] = useState(
+    rangeSliderMaxForPaintingsStoriesPage
+  );
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();

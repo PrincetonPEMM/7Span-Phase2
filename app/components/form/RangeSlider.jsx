@@ -40,9 +40,12 @@ const RangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    const total = largest - lowest;
-    const min = Math.round(((minVal - lowest) / total) * 100);
-    const max = Math.round(((maxVal - lowest) / total) * 100);
+    // For convert into 0 to 100 range.
+    // const total = largest - lowest;
+    // const min = Math.round(((minVal - lowest) / total) * 100);
+    // const max = Math.round(((maxVal - lowest) / total) * 100);
+    const min = Math.round(minVal);
+    const max = Math.round(maxVal);
     onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 
