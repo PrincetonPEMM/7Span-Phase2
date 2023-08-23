@@ -1,10 +1,10 @@
-import NotFound from "@/app/NotFound";
+import ComingSoon from "@/app/components/ComingSoon";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <NotFound />
+      <ComingSoon />
     </div>
   );
 };
