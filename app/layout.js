@@ -16,6 +16,10 @@ export default async function RootLayout({ children }) {
     readItems("about_people")
   );
 
+  const about_mission_data = await client.request(
+    readItems("about_mission")
+  );
+
   return (
     <html lang="en">
       <head>
@@ -24,7 +28,7 @@ export default async function RootLayout({ children }) {
       <body>
         <main>
           <div className="relative">
-            <Header about_people={about_people} className="absolute inset-x-0" />
+            <Header about_people={about_people} about_mission={about_mission_data} className="absolute inset-x-0" />
             <div className="bg-background-500">{children}</div>
           </div>
           <Footer />
