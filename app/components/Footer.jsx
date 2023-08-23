@@ -46,7 +46,7 @@ const Footer = () => {
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-        <div className="py-5 text-sm space-y-2">
+        <div className="py-5 text-sm space-y-2 pr-10">
           <p>
             Princeton Department of Comparative Literature 133 East Pyne,
             Princeton, NJ 08540
