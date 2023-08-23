@@ -10,7 +10,7 @@ import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from 'react-outside-click-handler';
 
-const Header = ({ about_people }) => {
+const Header = ({ about_people, about_mission }) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
@@ -18,13 +18,7 @@ const Header = ({ about_people }) => {
   useEffect(() => {
     setActiveSubmenu(null);
   }, [pathname]);
-  console.log(
-    "/about/people#" +
-    about_people.project_collaborators_title
-      .split(" ")
-      .map((word) => word.toLowerCase())
-      .join("-")
-  );
+  
   const menuItems = [
     { title: "Stories", link: "/stories" },
     {
@@ -59,11 +53,11 @@ const Header = ({ about_people }) => {
       subItems: [
         {
           title: "Our Mission",
-          link: "/about/mission",
+          link: "/about/mission#" + about_mission.mission_title.split(" ").map(word => word.toLowerCase()).join("-"),
         },
         {
           title: "Our History",
-          link: "/about/mission",
+          link: "/about/mission#" + about_mission.history_title.split(" ").map(word => word.toLowerCase()).join("-"),
         },
         {
           title: "Our Team",
