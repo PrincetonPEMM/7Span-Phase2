@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import StoryInfo from "../components/StoryInfo";
-import NotFound from "../not-found";
+import ComingSoon from "../components/ComingSoon";
 
 const Page = () => {
   return (
     <div>
       {/* <StoryInfo /> */}
 
-      <NotFound />
+      <ComingSoon />
     </div>
   );
 };
