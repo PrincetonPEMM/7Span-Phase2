@@ -50,7 +50,7 @@ export default async function page() {
     <div className="container-fluid">
       <div className="space-y-4 py-12">
         <div
-          id={`${about_people.our_people_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+          id={`${about_people.our_people_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
           className="people flex justify-center flex-col items-center"
         >
           <h2 className="text-3xl lg:text-5xl font-header text-center">
@@ -61,7 +61,7 @@ export default async function page() {
           </p>
         </div>
 
-        <div id="Our_Team" className="team">
+        <div id="our_team" className="team">
           <h2 className="text-3xl lg:text-5xl font-header text-center">
             Our Team
           </h2>
@@ -74,7 +74,7 @@ export default async function page() {
         </div>
 
         <div
-          id={`${about_people.other_team_members_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+          id={`${about_people.other_team_members_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
           className="other-team-member font-body"
         >
           <h3 className="text-2xl lg:text-4xl text-center font-extrabold tracking-tight leading-none">
@@ -89,7 +89,7 @@ export default async function page() {
         </div>
 
         <div
-          id={`${about_people.our_partners_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+          id={`${about_people.our_partners_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
           className="md:w-4/5 mx-auto space-y-10 lg:space-y-16"
         >
           <h2 className="text-3xl lg:text-5xl font-header text-center">
@@ -98,7 +98,7 @@ export default async function page() {
           <div
             id={`${about_people.project_collaborators_title
               .split(" ").map(word => word.toLowerCase())
-              .join("_")}`}
+              .join("-")}`}
             className="collaborators"
           >
             <h3 className="text-3xl lg:text-5xl font-header text-center mb-3 md:mb-5">
@@ -113,7 +113,7 @@ export default async function page() {
           </div>
 
           <div
-            id={`${about_people.board_members_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+            id={`${about_people.board_members_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
             className="board-members "
           >
             <h3 className="text-2xl lg:text-4xl font-header text-center mb-3 md:mb-5">
@@ -128,7 +128,7 @@ export default async function page() {
           </div>
 
           <div
-            id={`${about_people.project_advisers_title.split(" ").map(word => word.toLowerCase()).join("_")}`}
+            id={`${about_people.project_advisers_title.split(" ").map(word => word.toLowerCase()).join("-")}`}
             className="project-advisers "
           >
             <h3 className="text-2xl lg:text-4xl font-header text-center mb-3 md:mb-5">
@@ -145,7 +145,7 @@ export default async function page() {
           <div
             id={`${about_people.institutional_collaborators_title
               .split(" ").map(word => word.toLowerCase())
-              .join("_")}`}
+              .join("-")}`}
             className="institutional-collaborators "
           >
             <h3 className="text-2xl lg:text-4xl font-header text-center mb-3 md:mb-5">
