@@ -1,8 +1,8 @@
-export const pagePerLimit = 10;
+export const pagePerLimit = 20;
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
 export const rangeSliderMinForStoriesStoriesPage = 1350;
-export const rangeSliderMaxForStoriesStoriesPage = 2000;
+export const rangeSliderMaxForStoriesStoriesPage = 2020;
 export const rangeSliderMinForManuscriptsStoriesPage = 0;
 export const rangeSliderMaxForManuscriptsStoriesPage = 700;
 export const rangeSliderMinForPaintingsStoriesPage = 0;
