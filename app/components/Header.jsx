@@ -196,7 +196,7 @@ const Header = ({ about_people, about_mission }) => {
                   {item.subItems ? (
                     <div className="group capitalize relative">
                       <button
-                        className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 font-semibold flex items-center"
+                        className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 font-semibold flex items-center lg:hover:text-secondary-500"
                         onClick={() => toggleSubmenu(index)}
                       >
                         <span>{item.title}</span>
@@ -207,7 +207,7 @@ const Header = ({ about_people, about_mission }) => {
                         />
                       </button>
                       <ul
-                        className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black mt-1 space-y-1 ${
+                        className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black  lg:hover:bg-secondary-500mt-1 space-y-1 ${
                           activeSubmenu === index ? "block z-50 " : "hidden"
                         }`}
                         // lg:group-hover:block lg:group-hover:transiton-all
@@ -216,7 +216,7 @@ const Header = ({ about_people, about_mission }) => {
                           <li key={subIndex}>
                             <Link
                               href={subItem.link}
-                              className="text-base header-link font-normal transition-all flex py-1 lg:text-black lg:hover:bg-secondary-500 pl-4 lg:px-2"
+                              className="header-link transition-all flex py-1 lg:text-primary-500 lg:hover:bg-secondary-500 text-lg xl:text-base p-1 lg:px-3 lg:py-0"
                               onClick={() => {
                                 setActiveSubmenu(null);
                                 // redirect(subItem.link);
@@ -231,7 +231,7 @@ const Header = ({ about_people, about_mission }) => {
                   ) : (
                     <Link
                       href={item.link}
-                      className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 capitalize font-semibold inline-flex header-link"
+                      className="header-link transition-all flex py-1 font-semibold lg:text-white lg:hover:text-secondary-500 text-lg xl:text-xl p-1 lg:px-3 lg:py-0"
                     >
                       {item.title}
                     </Link>
