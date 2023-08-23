@@ -1,4 +1,4 @@
-export const pagePerLimit = 10;
+export const pagePerLimit = 20;
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
 export const MANUSCRIPT_DETAIL = "Manuscript-Detail";
@@ -37,13 +37,13 @@ export const manuscriptsTableTitleView = [
   { name: "Manuscript's Digital Quality" },
 ];
 export const manuscriptsDetailTableTitle = [
-  { name: "ID" },
-  { name: "Story TItle" },
-  { name: "ID Certa inty" },
+  { name: "Story ID" },
+  { name: "Story Title" },
   { name: "Location in MS" },
   { name: "Number in MS" },
-  { name: "Inipit" },
-  { name: "Painitngs" },
+  { name: "Story Recension" },
+  { name: "Incipit" },
+  { name: "Other Aspects" },
 ];
 export const initialfilterItem = {
   title: "Filtered Search",

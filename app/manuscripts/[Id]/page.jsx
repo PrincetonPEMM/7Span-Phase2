@@ -1,20 +1,31 @@
-import React from "react";
-import Table from "../components/Table";
+"use client";
+import React, { useState } from "react";
 import {
   MANUSCRIPT_DETAIL,
   manuscriptsDetailTableTitle,
+  pagePerLimit,
 } from "@/utils/constant";
+import Table from "@/app/components/Table";
 
 export const dynamic = "force-dynamic";
 
 const page = async ({ params }) => {
-  // const { Id } = params;
-  const Id = 1;
+  const { Id } = params;
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(pagePerLimit);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/${Id}`
   );
 
   const data = await response.json();
+
+  const tableRes = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/stories/${Id}?page=${page}&perPage=${perPage}`
+  );
+
+  const tableData = await tableRes.json();
+
+  console.log(tableData, "tableDatatableData");
 
   const generateFirstParagraph = () => {
     const array = [];
@@ -230,12 +241,6 @@ const page = async ({ params }) => {
     return array;
   };
 
-  const tableData = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/stories/${data.id}`
-  );
-
-  console.log(tableData, "tableDatatableData");
-
   return (
     <div>
       <div className="container-fliud">
@@ -254,9 +259,21 @@ const page = async ({ params }) => {
           <div className="pt-5">
             <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
             <Table
+              search=""
               isPageName={MANUSCRIPT_DETAIL}
-              tableData={tableData}
+              tableData={tableData.data}
               tableHeader={manuscriptsDetailTableTitle}
+              toggleBtn={false}
+              meta={{
+                total: tableData.total,
+                per_page: perPage,
+                current_page: page,
+                last_page: 50,
+              }}
+              isOpen={true}
+              onPageChange={(e) => {
+                setPage(e.selected + 1);
+              }}
             />
           </div>
         </div>
