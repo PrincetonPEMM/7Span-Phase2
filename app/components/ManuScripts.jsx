@@ -14,7 +14,7 @@ import {
   initialOriginRegionManuScript,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-
+import OutsideClickHandler from "react-outside-click-handler";
 const ManuScripts = () => {
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
