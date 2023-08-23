@@ -27,7 +27,7 @@ const Table = ({
               <tr>
                 {tableHeader?.map((item, index) => (
                   <th
-                    className="min-w-[160px] px-6 py-3 text-left text-sm font-medium capitalize tracking-wider"
+                    className="min-w-[160px] px-6 py-3 text-left text-sm font-medium tracking-wider"
                     key={index}
                   >
                     {item.name}

@@ -1,4 +1,4 @@
-import NotFound from "@/app/not-found";
+import NotFound from "@/app/NotFound";
 import React from "react";
 
 const page = () => {

@@ -136,7 +136,7 @@ const Sidebar = ({
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
           <lable className="text-white text-lg block mb-3">
-            Manuscript's Number of Unique Paintings
+            Manuscript's Number of Unique Stories
           </lable>
           <RangeSlider
             min={rangeSliderMinUniqueStoriesManuscriptsPage}
