@@ -1,8 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 
-const RangeSlider = ({ min, max, onChange }) => {
+const RangeSlider = ({ isPageName, min, max, onChange }) => {
   const lowest = min;
   const largest = max;
   const [minVal, setMinVal] = useState(min);
@@ -41,11 +42,16 @@ const RangeSlider = ({ min, max, onChange }) => {
   // Get min and max values when their state changes
   useEffect(() => {
     // For convert into 0 to 100 range.
-    // const total = largest - lowest;
-    // const min = Math.round(((minVal - lowest) / total) * 100);
-    // const max = Math.round(((maxVal - lowest) / total) * 100);
-    const min = Math.round(minVal);
-    const max = Math.round(maxVal);
+    let min, max;
+    if (isPageName === MANUSCRIPTS) {
+      const total = largest - lowest;
+      min = Math.round(((minVal - lowest) / total) * 100);
+      max = Math.round(((maxVal - lowest) / total) * 100);
+    }
+    if (isPageName === STORIES) {
+      min = Math.round(minVal);
+      max = Math.round(maxVal);
+    }
     onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 
