@@ -17,7 +17,7 @@ const Table = ({
     <div
       className={`w-full  ${tableData?.length ? "h-screen" : "`h-auto block"} `}
     >
-      <div className="relative overflow-auto ">
+      <div className="relative overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
           <thead className="font-medium bg-primary-500 text-white rounded-t-sm">
             <tr>
@@ -37,10 +37,15 @@ const Table = ({
                 <React.Fragment key={index}>
                   <tr>
                     <td
-                      className="w-full px-6 py-4 font-bold underline"
+                      className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all"
                       colSpan="6"
                     >
-                      <Link href="#">
+                      <Link
+                        href={
+                          (isPageName === STORIES || true) &&
+                          `stories/${event.id}`
+                        }
+                      >
                         {isPageName === STORIES && event.canonical_story_title}
                         {isPageName === MANUSCRIPTS &&
                           event.manuscript_full_name}
