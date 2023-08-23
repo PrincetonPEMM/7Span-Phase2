@@ -61,7 +61,7 @@ export default async function page() {
           </p>
         </div>
 
-        <div id="our_team" className="team">
+        <div id="our-team" className="team">
           <h2 className="text-3xl lg:text-5xl font-header text-center">
             Our Team
           </h2>
