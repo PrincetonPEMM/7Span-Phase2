@@ -39,7 +39,10 @@ const Sidebar = ({
 }) => {
   return (
     <div className="font-menu bg-primary-500 w-full rounded-md text-white">
-      <button onClick={onClick} className="">
+      <button
+        onClick={onClick}
+        className="sticky top-0 block py-2 bg-primary-500 z-20 w-full"
+      >
         <MdiMenuOpen className="text-white-500 h-6 w-6" />
       </button>
       <div className="block mt-3">

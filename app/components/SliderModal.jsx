@@ -40,7 +40,7 @@ const SliderModal = ({ sliderImg }) => {
         {openImage && (
           <img
             src={openImage}
-            alt="Pemm"
+            alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
             className="h-full w-full object-contain object-center"
           />
         )}

@@ -140,9 +140,15 @@ const Header = ({ about_people, about_mission }) => {
       >
         <Link href="/" className="w-60 sm:w-full sm:max-w-md block lg:hidden">
           {pathname === "/" ? (
-            <Image src={Logo} alt="Picture of the author" />
+            <Image
+              src={Logo}
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+            />
           ) : (
-            <Image src={LogoBlack} alt="Picture of the author" />
+            <Image
+              src={LogoBlack}
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+            />
           )}
         </Link>
         <button
@@ -188,9 +194,15 @@ const Header = ({ about_people, about_mission }) => {
           {/* LOGO IMAGE HERE  */}
           <Link href="/" className="sm:w-[30%] w-64 relative z-20">
             {pathname === "/" ? (
-              <Image src={Logo} alt="Picture of the author" />
+              <Image
+                src={Logo}
+                alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              />
             ) : (
-              <Image src={LogoBlack} alt="Picture of the author" />
+              <Image
+                src={LogoBlack}
+                alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              />
             )}
           </Link>
 

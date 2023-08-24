@@ -39,7 +39,12 @@ const Footer = () => {
     <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
       <div className="max-w-[400px] text-left md:p-5 col-span-2 text-sm lg:text-lg">
         <Link href="/" className="w-[30%] relative">
-          <Image src={Logo} alt="Picture of the author" className="mb-3" />
+          <Image
+            src={Logo}
+            alt="Picture of the author"
+            className="mb-3"
+            alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+          />
         </Link>
         <p className="">
           PEMM is a comprehensive resource for the 1,000+ miracle stories
