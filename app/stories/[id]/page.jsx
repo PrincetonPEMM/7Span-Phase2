@@ -7,6 +7,7 @@ import {
   ID_LIST,
   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE,
 } from "@/utils/constant";
+import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
@@ -93,320 +94,321 @@ const Page = async ({ params }) => {
   ];
 
   return (
-    <div className="px-4 py-5 md:px-8">
-      <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
-        {data.original_macomber_title}
-      </h3>
+    <ComingSoon />
+    // <div className="px-4 py-5 md:px-8">
+    //   <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
+    //     {data.original_macomber_title}
+    //   </h3>
 
-      <div className="pt-10 font-body">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
-          {/* Left sided Image portion  */}
-          <div>
-            {/* slider */}
-            <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3"></div>
+    //   <div className="pt-10 font-body">
+    //     <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
+    //       {/* Left sided Image portion  */}
+    //       <div>
+    //         {/* slider */}
+    //         <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3"></div>
 
-            {Boolean(data?.paintingLinks) && (
-              <SliderModal sliderImg={data.paintingLinks} />
-            )}
+    //         {Boolean(data?.paintingLinks) && (
+    //           <SliderModal sliderImg={data.paintingLinks} />
+    //         )}
 
-            {/* slider content */}
+    //         {/* slider content */}
 
-            <div className="space-y-4 mb-10 md:block hidden">
-              <ol className="list-inside space-y-3 md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                    CONTENT INFORMATION
-                  </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Story Type:</b> {data.type_of_story}
-                    </p>
-                  </ul>
-                </li>
-                <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                    TECHNICAL INFORMATION
-                  </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>{" "}
-                      {data.manuscript_date_range_start} -{" "}
-                      {data.manuscript_date_range_end}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>{" "}
-                      {data.names_of_mss_with_earliest_attestation}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>{" "}
-                      {data.total_records}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Total Incipits in the ITool:</b>{" "}
-                      {data.total_incipits_typed}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
-                      {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
-                      {data.csm_number}; Poncelet ID {data.poncelet_number};
-                    </p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </div>
+    //         <div className="space-y-4 mb-10 md:block hidden">
+    //           <ol className="list-inside space-y-3 md:pl-4 p-0">
+    //             <li>
+    //               <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+    //                 CONTENT INFORMATION
+    //               </h3>
+    //               <ul>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Story Type:</b> {data.type_of_story}
+    //                 </p>
+    //               </ul>
+    //             </li>
+    //             <li>
+    //               <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+    //                 TECHNICAL INFORMATION
+    //               </h3>
+    //               <ul>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Earliest Attested Instance of the Story:</b>{" "}
+    //                   {data.manuscript_date_range_start} -{" "}
+    //                   {data.manuscript_date_range_end}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Earliest Manuscripts in which Story Appears:</b>{" "}
+    //                   {data.names_of_mss_with_earliest_attestation}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Total Manuscripts in which Story Appears:</b>{" "}
+    //                   {data.total_records}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Total Incipits in the ITool:</b>{" "}
+    //                   {data.total_incipits_typed}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
+    //                   Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
+    //                   {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
+    //                   {data.csm_number}; Poncelet ID {data.poncelet_number};
+    //                 </p>
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </div>
 
-          {/* Right side content portion */}
-          <div className="col-span-2 md:block hidden ">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
-                <li>
-                  <ul className="space-y-2">
-                    {FirstLine(data?.earliest_attestation)}
-                    {SeconsdLine(data?.total_records)}
-                    {ThirdLine(
-                      data.total_records,
-                      data.total_story_id_paintings,
-                      data.canonical_story_id,
-                      data.total_manuscripts_with_story_id_illustrated
-                    )}
-                    {ForthLine(data.type_of_story)}
-                    {FifthLine(data.origin)}
-                    {SixthLine(data.languageAvailableIn)}
-                  </ul>
-                </li>
-              </ol>
-            </div>
+    //       {/* Right side content portion */}
+    //       <div className="col-span-2 md:block hidden ">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside pl-4 ">
+    //             <li>
+    //               <ul className="space-y-2">
+    //                 {FirstLine(data?.earliest_attestation)}
+    //                 {SeconsdLine(data?.total_records)}
+    //                 {ThirdLine(
+    //                   data.total_records,
+    //                   data.total_story_id_paintings,
+    //                   data.canonical_story_id,
+    //                   data.total_manuscripts_with_story_id_illustrated
+    //                 )}
+    //                 {ForthLine(data.type_of_story)}
+    //                 {FifthLine(data.origin)}
+    //                 {SixthLine(data.languageAvailableIn)}
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
 
-            {/* English translation */}
-            <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    TRANSLATION
-                  </h3>
-                  <p className="text-base leading-loose mb-3">
-                    Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name}, f.{" "}
-                    {data.translation_source_manuscript_folio}
-                    {data.translation_as_of_date}.
-                  </p>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.english_translation,
-                    }}
-                  ></p>
-                </li>
-                <li>
-                  <h3 className="text-lg font-bold uppercase  my-3">
-                    TO CITE THIS TRANSLATION
-                  </h3>
-                  <p className="text-base leading-loose mb-3">
-                    {data.translation_author}. &quot;ID{" "}
-                    {data.canonical_story_id}: {data.original_macomber_title}
-                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.{" "}
-                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data.translation_as_of_date}
-                  </p>
-                </li>
-              </ol>
-            </div>
-          </div>
-          <div className="col-span-2 md:block hidden  ">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    {data.languageAvailableIn.length > 0 &&
-                      "OTHER TRANSLATIONS & EDITIONS OF THIS STORY"}
-                  </h3>
-                  <ul className="space-y-2">
-                    <p
-                      className="text-base indent-2 leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: await generateTranslations(),
-                      }}
-                    ></p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </div>
-          <div className="col-span-2 md:block hidden">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    MANUSCRIPTS
-                  </h3>
-                  <ul className="space-y-2">
-                    <p className="text-base indent-2 leading-relaxed">
-                      PEMM Manuscripts in which story appears (with page or
-                      folio start):
-                    </p>
-                    <p
-                      className="text-base indent-2 leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: await generateManuscript(),
-                      }}
-                    ></p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
+    //         {/* English translation */}
+    //         <div className="space-y-4">
+    //           <ol className="list-inside md:pl-4 p-0">
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  mb-3">
+    //                 TRANSLATION
+    //               </h3>
+    //               <p className="text-base leading-loose mb-3">
+    //                 Translated by {data.translation_author} from{" "}
+    //                 {data.manuscript_name}, f.{" "}
+    //                 {data.translation_source_manuscript_folio}
+    //                 {data.translation_as_of_date}.
+    //               </p>
+    //               <p
+    //                 className="text-base leading-loose mb-3"
+    //                 dangerouslySetInnerHTML={{
+    //                   __html: data.english_translation,
+    //                 }}
+    //               ></p>
+    //             </li>
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  my-3">
+    //                 TO CITE THIS TRANSLATION
+    //               </h3>
+    //               <p className="text-base leading-loose mb-3">
+    //                 {data.translation_author}. &quot;ID{" "}
+    //                 {data.canonical_story_id}: {data.original_macomber_title}
+    //                 .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
+    //                 edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
+    //                 and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
+    //                 and Egyptian Miracles of Mary project.{" "}
+    //                 {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
+    //                 modified: {data.translation_as_of_date}
+    //               </p>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </div>
+    //       <div className="col-span-2 md:block hidden  ">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside pl-4 ">
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  mb-3">
+    //                 {data.languageAvailableIn.length > 0 &&
+    //                   "OTHER TRANSLATIONS & EDITIONS OF THIS STORY"}
+    //               </h3>
+    //               <ul className="space-y-2">
+    //                 <p
+    //                   className="text-base indent-2 leading-relaxed"
+    //                   dangerouslySetInnerHTML={{
+    //                     __html: await generateTranslations(),
+    //                   }}
+    //                 ></p>
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </div>
+    //       <div className="col-span-2 md:block hidden">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside pl-4 ">
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  mb-3">
+    //                 MANUSCRIPTS
+    //               </h3>
+    //               <ul className="space-y-2">
+    //                 <p className="text-base indent-2 leading-relaxed">
+    //                   PEMM Manuscripts in which story appears (with page or
+    //                   folio start):
+    //                 </p>
+    //                 <p
+    //                   className="text-base indent-2 leading-relaxed"
+    //                   dangerouslySetInnerHTML={{
+    //                     __html: await generateManuscript(),
+    //                   }}
+    //                 ></p>
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
 
-      {/* This below content is for mobile responsive  */}
-      <div className="md:hidden block font-body">
-        <Tabs
-          tabs={discoverPage}
-          onClick={(e) => {
-            console.log("onClick prop:", e);
-          }}
-        >
-          {/* About */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
-                <li>
-                  <ul className="space-y-2">
-                    {FirstLine(data?.earliest_attestation)}
-                    {SeconsdLine(data?.total_records)}
-                    {ThirdLine(
-                      data.total_records,
-                      data.total_story_id_paintings,
-                      data.canonical_story_id,
-                      data.total_manuscripts_with_story_id_illustrated
-                    )}
-                    {ForthLine(data.type_of_story)}
-                    {FifthLine(data.origin)}
-                    {SixthLine(data.languageAvailableIn)}
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
+    //   {/* This below content is for mobile responsive  */}
+    //   <div className="md:hidden block font-body">
+    //     <Tabs
+    //       tabs={discoverPage}
+    //       onClick={(e) => {
+    //         console.log("onClick prop:", e);
+    //       }}
+    //     >
+    //       {/* About */}
+    //       <Tab.Panel className="p-4 md:p-6">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside pl-4 ">
+    //             <li>
+    //               <ul className="space-y-2">
+    //                 {FirstLine(data?.earliest_attestation)}
+    //                 {SeconsdLine(data?.total_records)}
+    //                 {ThirdLine(
+    //                   data.total_records,
+    //                   data.total_story_id_paintings,
+    //                   data.canonical_story_id,
+    //                   data.total_manuscripts_with_story_id_illustrated
+    //                 )}
+    //                 {ForthLine(data.type_of_story)}
+    //                 {FifthLine(data.origin)}
+    //                 {SixthLine(data.languageAvailableIn)}
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </Tab.Panel>
 
-          {/* Information */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                    CONTENT INFORMATION
-                  </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Story Type:</b> {data.type_of_story}
-                    </p>
-                  </ul>
-                </li>
-                <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
-                    TECHNICAL INFORMATION
-                  </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>{" "}
-                      {data.manuscript_date_range_start} -{" "}
-                      {data.manuscript_date_range_end}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>{" "}
-                      {data.names_of_mss_with_earliest_attestation}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>{" "}
-                      {data.total_records}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>Total Incipits in the ITool:</b>{" "}
-                      {data.total_incipits_typed}
-                    </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
-                      {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
-                      {data.csm_number}; Poncelet ID {data.poncelet_number};
-                    </p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
+    //       {/* Information */}
+    //       <Tab.Panel className="p-4 md:p-6">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside md:pl-4 p-0">
+    //             <li>
+    //               <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+    //                 CONTENT INFORMATION
+    //               </h3>
+    //               <ul>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Story Type:</b> {data.type_of_story}
+    //                 </p>
+    //               </ul>
+    //             </li>
+    //             <li>
+    //               <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+    //                 TECHNICAL INFORMATION
+    //               </h3>
+    //               <ul>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Earliest Attested Instance of the Story:</b>{" "}
+    //                   {data.manuscript_date_range_start} -{" "}
+    //                   {data.manuscript_date_range_end}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Earliest Manuscripts in which Story Appears:</b>{" "}
+    //                   {data.names_of_mss_with_earliest_attestation}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Total Manuscripts in which Story Appears:</b>{" "}
+    //                   {data.total_records}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>Total Incipits in the ITool:</b>{" "}
+    //                   {data.total_incipits_typed}
+    //                 </p>
+    //                 <p className="text-base indent-2 leading-normal">
+    //                   <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
+    //                   Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
+    //                   {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
+    //                   {data.csm_number}; Poncelet ID {data.poncelet_number};
+    //                 </p>
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </Tab.Panel>
 
-          {/* TRANSLATION */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    TRANSLATION
-                  </h3>
-                  <p className="text-base leading-loose mb-3">
-                    Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name}, f.{" "}
-                    {data.translation_source_manuscript_folio}
-                    {data.translation_as_of_date}.
-                  </p>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.english_translation,
-                    }}
-                  ></p>
-                  <h3 className="text-lg font-bold uppercase  my-3">
-                    TO CITE THIS TRANSLATION
-                  </h3>
-                  <p className="text-base leading-loose mb-3">
-                    {data.translation_author}. &quot;ID{" "}
-                    {data.canonical_story_id}: {data.original_macomber_title}
-                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.{" "}
-                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data.translation_as_of_date}
-                  </p>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
+    //       {/* TRANSLATION */}
+    //       <Tab.Panel className="p-4 md:p-6">
+    //         <div className="space-y-4">
+    //           <ol className="list-inside md:pl-4 p-0">
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  mb-3">
+    //                 TRANSLATION
+    //               </h3>
+    //               <p className="text-base leading-loose mb-3">
+    //                 Translated by {data.translation_author} from{" "}
+    //                 {data.manuscript_name}, f.{" "}
+    //                 {data.translation_source_manuscript_folio}
+    //                 {data.translation_as_of_date}.
+    //               </p>
+    //               <p
+    //                 className="text-base leading-loose mb-3"
+    //                 dangerouslySetInnerHTML={{
+    //                   __html: data.english_translation,
+    //                 }}
+    //               ></p>
+    //               <h3 className="text-lg font-bold uppercase  my-3">
+    //                 TO CITE THIS TRANSLATION
+    //               </h3>
+    //               <p className="text-base leading-loose mb-3">
+    //                 {data.translation_author}. &quot;ID{" "}
+    //                 {data.canonical_story_id}: {data.original_macomber_title}
+    //                 .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
+    //                 edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
+    //                 and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
+    //                 and Egyptian Miracles of Mary project.{" "}
+    //                 {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
+    //                 modified: {data.translation_as_of_date}
+    //               </p>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </Tab.Panel>
 
-          {/* Manuscripts */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    MANUSCRIPTS
-                  </h3>
-                  <ul className="space-y-2">
-                    <p className="text-base indent-2 leading-relaxed">
-                      PEMM Manuscripts in which story appears (with page or
-                      folio start):
-                    </p>
-                    <p
-                      className="text-base indent-2 leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: await generateManuscript(),
-                      }}
-                    ></p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
-        </Tabs>
-      </div>
-    </div>
+    //       {/* Manuscripts */}
+    //       <Tab.Panel className="p-4 md:p-6">
+    //         <div className="space-y-4 mb-10">
+    //           <ol className="list-inside pl-4 ">
+    //             <li>
+    //               <h3 className="text-lg font-bold uppercase  mb-3">
+    //                 MANUSCRIPTS
+    //               </h3>
+    //               <ul className="space-y-2">
+    //                 <p className="text-base indent-2 leading-relaxed">
+    //                   PEMM Manuscripts in which story appears (with page or
+    //                   folio start):
+    //                 </p>
+    //                 <p
+    //                   className="text-base indent-2 leading-relaxed"
+    //                   dangerouslySetInnerHTML={{
+    //                     __html: await generateManuscript(),
+    //                   }}
+    //                 ></p>
+    //               </ul>
+    //             </li>
+    //           </ol>
+    //         </div>
+    //       </Tab.Panel>
+    //     </Tabs>
+    //   </div>
+    // </div>
   );
 };
 
