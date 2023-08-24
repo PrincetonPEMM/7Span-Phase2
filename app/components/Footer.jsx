@@ -41,7 +41,6 @@ const Footer = () => {
         <Link href="/" className="w-[30%] relative">
           <Image
             src={Logo}
-            alt="Picture of the author"
             className="mb-3"
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
           />
