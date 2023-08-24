@@ -614,7 +614,7 @@ body {
   @apply -translate-x-1 transition-transform text-primary-500;
 }
 
-@media only screen and (max-width: 991px) and (min-width: 899px) {
+/* @media only screen and (max-width: 991px) and (min-width: 899px) {
   .hero-img {
     padding-top: 179.778%;
   }
@@ -624,4 +624,4 @@ body {
   .hero-img {
     padding-top: 220.778%;
   }
-}
+} */
