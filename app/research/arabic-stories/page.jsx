@@ -13,7 +13,7 @@ const page = async () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="font-body space-y-4 py-8 md:py-12 bg-background-500">
         {arabic_stories_data && (
           <div>

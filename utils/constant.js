@@ -169,24 +169,25 @@ export const initialPlaceItem = {
     {
       id: "2",
       icon: false,
-      label: "Egypt",
-      name: "egypt",
-      isChecked: false,
-    },
-    {
-      id: "3",
-      icon: false,
       label: "Ethiopia",
       name: "ethiopia",
       isChecked: false,
     },
     {
-      id: "4",
-      icon: true,
-      label: "Europe",
-      name: "europe",
+      id: "3",
+      icon: false,
+      label: "Egypt",
+      name: "egypt",
       isChecked: false,
     },
+    {
+      id: "4",
+      icon: false,
+      label: "Europe",
+      name: "Europe",
+      isChecked: false,
+    },
+
     {
       id: "5",
       icon: false,
