@@ -195,12 +195,30 @@ body {
 }
 
 .shell__sidebar {
-  @apply inset-y-0 bottom-0  right-auto z-20  h-full w-[250px] transform items-start border-r border-gray-200 transition-all duration-300 xl:sticky xl:h-screen;
+  @apply inset-y-0 bottom-0  right-auto z-20  w-[250px] transform items-start border-r border-gray-200 transition-all duration-300 xl:sticky h-screen;
 }
-/* .group:hover .submenu {
-  @apply lg:block;
-} */
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #d0cdc9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cecccb;
+}
+
+/* checkbox css */
 [type="checkbox"]:checked {
   background-image: none;
   background-color: transparent;
