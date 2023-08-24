@@ -110,16 +110,19 @@ const Stories = () => {
     fetchData(search);
   }, [filterItem, placeItem, langItem, page]);
 
-  if (typeof window !== "undefined") {
-    const checkWidth = () => {
-      if (window?.innerWidth < 1024) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
-    };
-    window?.addEventListener("resize", checkWidth);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkWidth = () => {
+        if (window?.innerWidth < 1024) {
+          setIsOpen(false);
+        } else {
+          setIsOpen(true);
+        }
+      };
+      checkWidth();
+      window?.addEventListener("resize", checkWidth);
+    }
+  }, []);
 
   const debouncedFetchData = debounce(fetchData, 300);
 
