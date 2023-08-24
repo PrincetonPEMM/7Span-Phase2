@@ -7,8 +7,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 const SliderModal = ({ sliderImg }) => {
   const images = sliderImg.map((item, index) => ({
-    original: item.url.src,
-    thumbnail: item.url.src,
+    original: item,
+    thumbnail: item,
   }));
 
   const [openImage, setOpenImage] = useState("");
@@ -40,7 +40,7 @@ const SliderModal = ({ sliderImg }) => {
         {openImage && (
           <img
             src={openImage}
-            alt="Pemm"
+            alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
             className="h-full w-full object-contain object-center"
           />
         )}
