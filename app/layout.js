@@ -12,10 +12,6 @@ export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }) {
 
-  const about_people = await client.request(
-    readItems("about_people")
-  );
-
   const about_mission_data = await client.request(
     readItems("about_mission")
   );
@@ -28,7 +24,7 @@ export default async function RootLayout({ children }) {
       <body>
         <main>
           <div className="relative">
-            <Header about_people={about_people} about_mission={about_mission_data} className="absolute inset-x-0" />
+            <Header about_mission={about_mission_data} className="absolute inset-x-0" />
             <div className="bg-background-500">{children}</div>
           </div>
           <Footer />

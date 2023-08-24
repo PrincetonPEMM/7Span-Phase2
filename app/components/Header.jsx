@@ -76,20 +76,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Partners",
           link:
-            "/about/people#" +
-            about_people.our_partners_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-partners",
         },
         {
           title: "Our Funders",
           link:
-            "/about/people#" +
-            about_people.our_funders_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-funders",
         },
         {
           title: "News & Updates",
