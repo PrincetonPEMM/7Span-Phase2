@@ -194,6 +194,9 @@ body {
 .shell__sidebar {
   @apply inset-y-0 bottom-0  right-auto z-20  h-full w-[250px] transform items-start border-r border-gray-200 transition-all duration-300 xl:sticky xl:h-screen;
 }
+/* .group:hover .submenu {
+  @apply lg:block;
+} */
 
 [type="checkbox"]:checked {
   background-image: none;
@@ -544,6 +547,10 @@ body {
 .banner-content {
   @apply transition-all opacity-0 duration-150;
 }
+.banner-image:hover .banner-content {
+  @apply opacity-100 transition-all duration-150;
+}
+
 .banner-image:hover .banner-content {
   @apply opacity-100 transition-all duration-150;
 }

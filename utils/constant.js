@@ -1,4 +1,4 @@
-export const pagePerLimit = 10;
+export const pagePerLimit = 20;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 641;
 export const TRANSLATION_STATUS_OPTIONS = [
   "Published translation",
@@ -42,7 +42,7 @@ export const ID_LIST = [
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
 export const rangeSliderMinForStoriesStoriesPage = 1350;
-export const rangeSliderMaxForStoriesStoriesPage = 2000;
+export const rangeSliderMaxForStoriesStoriesPage = 2020;
 export const rangeSliderMinForManuscriptsStoriesPage = 0;
 export const rangeSliderMaxForManuscriptsStoriesPage = 700;
 export const rangeSliderMinForPaintingsStoriesPage = 0;
@@ -66,11 +66,11 @@ export const storiesTableTitleView = [
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
 export const manuscriptsTableTitleView = [
-  { name: "Data Manuscript Created" },
+  { name: "Date Manuscript Created" },
   { name: "Manuscript's Number of Stories" },
-  { name: "Unique Stories" },
+  { name: "Manuscript's Number of Unique Stories" },
   { name: "Manuscript's Place of Origin" },
-  { name: "Manuscript's Number of Paintins" },
+  { name: "Manuscript's Number of Paintings" },
   { name: "Manuscript's Language" },
   { name: "Link to Manuscript Online" },
   { name: "Manuscript's Digital Quality" },
@@ -323,33 +323,96 @@ export const initialPlaceItemManuScript = {
     {
       id: "1",
       icon: false,
-      label: "Africa: Egypt Ethiopia",
+      label: "Africa",
       name: "africa",
       isChecked: false,
     },
     {
       id: "2",
       icon: false,
-      label: "Middle East: Israel",
-      name: "middle_east",
+      label: "Egypt",
+      name: "Egypt",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Europe: France Italy Germany United Kingdom",
-      name: "europe",
+      label: "Ethiopia",
+      name: "Ethiopia",
       isChecked: false,
     },
     {
       id: "4",
       icon: false,
-      label: "North America: United States Canadaa",
-      name: "north_america",
+      label: "Middle East",
+      name: "middle_east",
       isChecked: false,
     },
     {
       id: "5",
+      icon: false,
+      label: "Israel",
+      name: "Israel",
+      isChecked: false,
+    },
+    {
+      id: "6",
+      icon: false,
+      label: "Europe",
+      name: "Europe",
+      isChecked: false,
+    },
+    {
+      id: "7",
+      icon: false,
+      label: "France",
+      name: "France",
+      isChecked: false,
+    },
+    {
+      id: "8",
+      icon: false,
+      label: "Italy",
+      name: "Italy",
+      isChecked: false,
+    },
+    {
+      id: "9",
+      icon: false,
+      label: "Germany",
+      name: "Germany",
+      isChecked: false,
+    },
+    {
+      id: "10",
+      icon: false,
+      label: "UK",
+      name: "UK",
+      isChecked: false,
+    },
+    {
+      id: "11",
+      icon: false,
+      label: "North America",
+      name: "north_america",
+      isChecked: false,
+    },
+    {
+      id: "12",
+      icon: false,
+      label: "US",
+      name: "US",
+      isChecked: false,
+    },
+    {
+      id: "13",
+      icon: false,
+      label: "Canada",
+      name: "Canada",
+      isChecked: false,
+    },
+    {
+      id: "14",
       icon: false,
       label: "Other",
       name: "other",
@@ -358,7 +421,7 @@ export const initialPlaceItemManuScript = {
   ],
 };
 export const initialOriginRegionManuScript = {
-  title: "Manuscript's Known Region of Origin",
+  title: "Manuscript's Known Region of origin",
   checkItem: [
     {
       id: "1",
@@ -384,7 +447,7 @@ export const initialOriginRegionManuScript = {
     {
       id: "4",
       icon: false,
-      label: "Eritrea Ethiopia",
+      label: "Eritrea and Ethiopia",
       name: "eritrea",
       isChecked: false,
     },
