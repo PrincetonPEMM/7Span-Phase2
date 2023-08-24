@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
 import { Tab } from "@headlessui/react";
-import logo from "../../../assets/images/image.png";
-import logo2 from "../../../assets/images/logo-white.png";
-import logo3 from "../../../assets/images/menuscript-bg.png";
 import Tabs from "@/app/components/Tabs";
 import SliderModal from "@/app/components/SliderModal";
 import {
@@ -21,8 +18,6 @@ const Page = async ({ params }) => {
   );
 
   const data = await response.json();
-
-  console.log(data, "data");
 
   const generateTranslations = async () => {
     // TRANSLATION_STATUS_OPTIONS
@@ -82,45 +77,6 @@ const Page = async ({ params }) => {
     return finalString;
   };
 
-  const sliderImg = [
-    {
-      url: logo,
-    },
-    {
-      url: logo2,
-    },
-    {
-      url: logo3,
-    },
-    {
-      url: logo,
-    },
-    {
-      url: logo2,
-    },
-    {
-      url: logo3,
-    },
-    {
-      url: logo,
-    },
-    {
-      url: logo2,
-    },
-    {
-      url: logo3,
-    },
-    {
-      url: logo,
-    },
-    {
-      url: logo2,
-    },
-    {
-      url: logo3,
-    },
-  ];
-
   const discoverPage = [
     {
       label: "About",
@@ -138,7 +94,7 @@ const Page = async ({ params }) => {
 
   return (
     <div className="px-4 py-5 md:px-8">
-      <h3 className="font-menu text-xl  md:text-5xl max-w-7xl leading-tight">
+      <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
         {data.original_macomber_title}
       </h3>
 
@@ -156,7 +112,7 @@ const Page = async ({ params }) => {
             {/* slider content */}
 
             <div className="space-y-4 mb-10 md:block hidden">
-              <ol className="list-inside md:pl-4 p-0">
+              <ol className="list-inside space-y-3 md:pl-4 p-0">
                 <li>
                   <h3 className="text-lg mb-3 font-bold uppercase text-justify">
                     CONTENT INFORMATION
@@ -244,7 +200,7 @@ const Page = async ({ params }) => {
                   ></p>
                 </li>
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase  my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
@@ -406,7 +362,7 @@ const Page = async ({ params }) => {
                       __html: data.english_translation,
                     }}
                   ></p>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase  my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
@@ -419,13 +375,6 @@ const Page = async ({ params }) => {
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
                     modified: {data.translation_as_of_date}
                   </p>
-                  {/* <ul className="space-y-2">
-                    <li>
-                      <p className="text-base text-justify indent-2 leading-relaxed">
-                        {item.content}
-                      </p>
-                    </li>
-                  </ul> */}
                 </li>
               </ol>
             </div>
@@ -544,7 +493,7 @@ function ThirdLine(
             total_manuscripts_with_story_id_illustrated != 0 ? (
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
-                are most <u>frequently illustrated</u>, with a total of
+                are most <u>frequently illustrated</u>, with a total of&nbsp;
                 {total_story_id_paintings} paintings.
               </>
             ) : (

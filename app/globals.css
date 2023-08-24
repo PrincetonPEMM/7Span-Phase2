@@ -521,10 +521,10 @@ body {
   .image-gallery-thumbnails {
   @apply py-5;
 }
-.image-gallery-icon.image-gallery-fullscreen-button,
+/* .image-gallery-icon.image-gallery-fullscreen-button,
 .image-gallery-icon.image-gallery-play-button {
   @apply hidden;
-}
+} */
 .space-y-p p + p {
   margin-top: 10px;
 }

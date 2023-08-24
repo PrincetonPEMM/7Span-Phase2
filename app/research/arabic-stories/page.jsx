@@ -11,7 +11,6 @@ const page = async () => {
   } catch (e) {
     console.log(e);
   }
-  console.log("Maulik Savaliya");
 
   return (
     <div className="container-fluid">

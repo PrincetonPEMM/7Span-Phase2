@@ -90,6 +90,7 @@ const Stories = () => {
     setTotalPage(data.total);
     setTableData(data.data);
   }
+
   useEffect(() => {
     fetchData(search);
   }, [filterItem, placeItem, langItem, page]);
