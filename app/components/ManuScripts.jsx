@@ -15,6 +15,7 @@ import {
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import OutsideClickHandler from "react-outside-click-handler";
+import { Pagination } from "./Pagination";
 const ManuScripts = () => {
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
@@ -210,24 +211,50 @@ const ManuScripts = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-
-        <Table
-          search={search}
-          isPageName={MANUSCRIPTS}
-          tableHeader={tableHeader}
-          tableData={tableData}
-          toggleBtn={toggleBtn}
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-          }}
-          isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
-          }}
-        />
+        <div
+          className={`w-full h-screen table-wrap ${
+            tableData?.length ? "h-screen" : "h-auto block"
+          } `}
+        >
+          <Table
+            search={search}
+            isPageName={MANUSCRIPTS}
+            tableHeader={tableHeader}
+            tableData={tableData}
+            toggleBtn={toggleBtn}
+            meta={{
+              total: totalPage,
+              per_page: perPage,
+              current_page: page,
+              last_page: 50,
+            }}
+            isOpen={isOpen}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
+          {Boolean(!tableData?.length) && (
+            <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+              {Boolean(search.length) ? (
+                <h1>Records Not Found</h1>
+              ) : (
+                <h1>Loading...</h1>
+              )}
+            </div>
+          )}
+          <Pagination
+            meta={{
+              total: totalPage,
+              per_page: perPage,
+              current_page: page,
+              last_page: 50,
+            }}
+            isOpen={isOpen}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
