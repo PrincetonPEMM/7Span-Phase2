@@ -4,11 +4,11 @@ import ReactPaginate from "react-paginate";
 export const Pagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
-    <div className="sticky bottom-0">
+    <div className="sticky bottom-4">
       {isOpen}
       {pageCount > 1 ? (
         <ReactPaginate
-          className="static flex divide-x-2 divide-primary-500 max-w-full justify-center bg-background-500 py-2 lg:ml-auto  "
+          className="static flex divide-x-2 divide-primary-500 max-w-full justify-center bg-background-500 py-2 lg:ml-auto"
           breakLabel="..."
           pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y-2 border-y-primary-500 text-base text-primary-500"
           nextLabel={<NextPage meta={meta} />}

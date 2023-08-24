@@ -131,7 +131,7 @@ const Stories = () => {
       <div
         className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white p-4 ${
           isOpen
-            ? "left-0 z-20 md:block md:sticky lg:h-[80vh] transition-all"
+            ? "left-0 z-20 md:block md:sticky lg:h-[90vh] transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
@@ -175,7 +175,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full  overflow-x-auto">
+      <div className="w-full overflow-x-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
