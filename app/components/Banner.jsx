@@ -45,11 +45,16 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
 
             <a
               href={data.id}
-              className={`text-background-500 text-3xl delay-75${
-                selectedBanner ? "rotate-90 " : "rotate-0"
-              }`}
+              className="text-background-500 text-sm delay-75 flex items-center"
             >
-              <MdiChevronDown />
+              <span>Learn More</span>
+              <span
+                className={` transition-all ${
+                  setSelectedBanner ? "rotate-0 " : "rotate-180"
+                }`}
+              >
+                <MdiChevronDown />
+              </span>
             </a>
           </div>
         </div>
