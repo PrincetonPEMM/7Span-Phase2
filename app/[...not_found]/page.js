@@ -1,5 +1,6 @@
 import React from "react";
 
+export const dynamic = "force-dynamic";
 const NotFound = () => {
   return (
     <div className="flex items-center justify-center  p-10 md:p-24">

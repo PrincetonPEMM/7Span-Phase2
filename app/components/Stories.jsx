@@ -20,6 +20,7 @@ import {
   rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
+import { Pagination } from "./Pagination";
 
 const Stories = () => {
   const { debounce } = useDebounce();
@@ -104,6 +105,7 @@ const Stories = () => {
     setTotalPage(data.total);
     setTableData(data.data);
   }
+
   useEffect(() => {
     fetchData(search);
   }, [filterItem, placeItem, langItem, page]);
@@ -124,9 +126,9 @@ const Stories = () => {
   return (
     <div className={`flex px-1 md:px-5 pb-10  ${isOpen ? "shell" : "flex"}`}>
       <div
-        className={`font-menu bg-primary-500 h-full fixed inset-y-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white p-2 ${
           isOpen
-            ? "left-0 z-20 md:block md:static lg:h-full transition-all"
+            ? "left-0 z-20 md:block md:sticky lg:h-[80vh] transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
@@ -215,24 +217,50 @@ const Stories = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-
-        <Table
-          search={search}
-          isPageName={STORIES}
-          tableHeader={tableHeader}
-          tableData={tableData}
-          toggleBtn={toggleBtn}
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-          }}
-          isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
-          }}
-        />
+        <div
+          className={`w-full table-wrap  ${
+            tableData?.length ? "h-screen" : "h-auto block"
+          } `}
+        >
+          <Table
+            // search={search}
+            isPageName={STORIES}
+            tableHeader={tableHeader}
+            tableData={tableData}
+            toggleBtn={toggleBtn}
+            // meta={{
+            //   total: totalPage,
+            //   per_page: perPage,
+            //   current_page: page,
+            //   last_page: 50,
+            // }}
+            // isOpen={isOpen}
+            // onPageChange={(e) => {
+            //   setPage(e.selected + 1);
+            // }}
+          />
+          {Boolean(!tableData?.length) && (
+            <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+              {Boolean(search.length) ? (
+                <h1>Records Not Found</h1>
+              ) : (
+                <h1>Loading...</h1>
+              )}
+            </div>
+          )}
+          <Pagination
+            meta={{
+              total: totalPage,
+              per_page: perPage,
+              current_page: page,
+              last_page: 50,
+            }}
+            isOpen={isOpen}
+            onPageChange={(e) => {
+              setPage(e.selected + 1);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

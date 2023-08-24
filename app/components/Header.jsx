@@ -10,7 +10,7 @@ import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const Header = ({ about_people, about_mission }) => {
+const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
@@ -18,6 +18,16 @@ const Header = ({ about_people, about_mission }) => {
   useEffect(() => {
     setActiveSubmenu(null);
   }, [pathname]);
+
+  useEffect(() => {
+    if (menuCollapse) {
+      document.body.classList.add("sidebar_open");
+      document.body.classList.remove("sidebar_close");
+    } else {
+      document.body.classList.add("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+    }
+  }, [menuCollapse]);
 
   const menuItems = [
     { title: "Stories", link: "/stories" },
@@ -54,20 +64,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Mission",
           link:
-            "/about/mission#" +
-            about_mission.mission_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-mission",
         },
         {
           title: "Our History",
           link:
-            "/about/mission#" +
-            about_mission.history_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-history",
         },
         {
           title: "Our Team",
@@ -76,20 +78,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Partners",
           link:
-            "/about/people#" +
-            about_people.our_partners_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-partners",
         },
         {
           title: "Our Funders",
           link:
-            "/about/people#" +
-            about_people.our_funders_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-funders",
         },
         {
           title: "News & Updates",
@@ -130,9 +124,15 @@ const Header = ({ about_people, about_mission }) => {
       >
         <Link href="/" className="w-60 sm:w-full sm:max-w-md block lg:hidden">
           {pathname === "/" ? (
-            <Image src={Logo} alt="Picture of the author" />
+            <Image
+              src={Logo}
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+            />
           ) : (
-            <Image src={LogoBlack} alt="Picture of the author" />
+            <Image
+              src={LogoBlack}
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+            />
           )}
         </Link>
         <button
@@ -178,9 +178,15 @@ const Header = ({ about_people, about_mission }) => {
           {/* LOGO IMAGE HERE  */}
           <Link href="/" className="sm:w-[30%] w-64 relative z-20">
             {pathname === "/" ? (
-              <Image src={Logo} alt="Picture of the author" />
+              <Image
+                src={Logo}
+                alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              />
             ) : (
-              <Image src={LogoBlack} alt="Picture of the author" />
+              <Image
+                src={LogoBlack}
+                alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              />
             )}
           </Link>
 

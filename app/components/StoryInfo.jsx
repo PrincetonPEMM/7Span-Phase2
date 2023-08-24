@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 import { Tab } from "@headlessui/react";
 import logo from "../../assets/images/image.png";
 import logo2 from "../../assets/images/logo-white.png";
