@@ -10,7 +10,7 @@ import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const Header = ({ about_people, about_mission }) => {
+const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
