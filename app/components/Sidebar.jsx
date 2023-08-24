@@ -67,6 +67,7 @@ const Sidebar = ({
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForStoriesStoriesPage
@@ -101,6 +102,7 @@ const Sidebar = ({
           {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForManuscriptsStoriesPage
@@ -120,6 +122,7 @@ const Sidebar = ({
           {isPageName === MANUSCRIPTS && "Manuscript's Number of Paintings"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForPaintingsStoriesPage
@@ -136,9 +139,10 @@ const Sidebar = ({
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
           <lable className="text-white text-lg block mb-3">
-            Manuscript's Number of Unique Paintings
+            Manuscript's Number of Unique Stories
           </lable>
           <RangeSlider
+            isPageName={isPageName}
             min={rangeSliderMinUniqueStoriesManuscriptsPage}
             max={rangeSliderMaxUniqueStoriesManuscriptsPage}
             onChange={onChangeUnique}

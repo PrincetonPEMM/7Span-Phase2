@@ -192,8 +192,11 @@ body {
 }
 
 .shell__sidebar {
-  @apply inset-y-0 bottom-0 bg-primary-500 right-auto z-20  h-full w-[250px] transform items-start border-r border-gray-200 transition-all duration-300 xl:sticky xl:h-screen;
+  @apply inset-y-0 bottom-0  right-auto z-20  h-full w-[250px] transform items-start border-r border-gray-200 transition-all duration-300 xl:sticky xl:h-screen;
 }
+/* .group:hover .submenu {
+  @apply lg:block;
+} */
 
 [type="checkbox"]:checked {
   background-image: none;
@@ -246,6 +249,7 @@ body {
   height: 11px;
   display: none;
   position: absolute;
+  border-radius: 2px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -544,6 +548,10 @@ body {
 .banner-content {
   @apply transition-all opacity-0 duration-150;
 }
+.banner-image:hover .banner-content {
+  @apply opacity-100 transition-all duration-150;
+}
+
 .banner-image:hover .banner-content {
   @apply opacity-100 transition-all duration-150;
 }

@@ -1,7 +1,8 @@
-import ComingSoon from "@/app/components/ComingSoon";
-import React from "react";
+"use client";
 
-const page = () => {
+import ComingSoon from "@/app/components/ComingSoon";
+
+const Page = () => {
   return (
     <div>
       <ComingSoon />
@@ -9,4 +10,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

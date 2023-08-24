@@ -14,7 +14,7 @@ import {
   initialOriginRegionManuScript,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-
+import OutsideClickHandler from "react-outside-click-handler";
 const ManuScripts = () => {
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
@@ -111,9 +111,9 @@ const ManuScripts = () => {
   return (
     <div className={`flex px-1 md:px-5 pb-10 ${isOpen ? "shell" : "flex"}`}>
       <div
-        className={`font-menu bg-primary-300 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-500 h-full fixed inset-y-0 p-3 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
           isOpen
-            ? "left-0 z-20 md:block md:static lg:h-full transition-all"
+            ? "left-0 z-20 md:block md:sticky top-0 lg:h-full transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
