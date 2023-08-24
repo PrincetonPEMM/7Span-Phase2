@@ -10,7 +10,7 @@ import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from "react-outside-click-handler";
 
-const Header = ({ about_people, about_mission }) => {
+const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
@@ -64,20 +64,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Mission",
           link:
-            "/about/mission#" +
-            about_mission.mission_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-mission",
         },
         {
           title: "Our History",
           link:
-            "/about/mission#" +
-            about_mission.history_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-history",
         },
         {
           title: "Our Team",
@@ -86,20 +78,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Partners",
           link:
-            "/about/people#" +
-            about_people.our_partners_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-partners",
         },
         {
           title: "Our Funders",
           link:
-            "/about/people#" +
-            about_people.our_funders_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-funders",
         },
         {
           title: "News & Updates",
