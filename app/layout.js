@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body>
         <main>
           <div className="relative">
-            <Header about_mission={about_mission_data} className="absolute inset-x-0" />
+            <Header className="absolute inset-x-0" />
             <div className="bg-background-500">{children}</div>
           </div>
           <Footer />
