@@ -54,20 +54,12 @@ const Header = ({ about_people, about_mission }) => {
         {
           title: "Our Mission",
           link:
-            "/about/mission#" +
-            about_mission.mission_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-mission",
         },
         {
           title: "Our History",
           link:
-            "/about/mission#" +
-            about_mission.history_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/mission#our-history",
         },
         {
           title: "Our Team",
