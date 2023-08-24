@@ -164,9 +164,9 @@ body {
 .header .header-link {
   @apply text-primary-500;
 }
-.container {
+/* .container {
   @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
-}
+} */
 
 .space-y-p {
   @apply lg:overflow-hidden overflow-auto;
@@ -291,6 +291,7 @@ body {
   top: 2px;
   position: relative;
   left: 0;
+  border-radius: 2px;
   width: 18px;
   height: 18px;
 }
@@ -613,7 +614,7 @@ body {
   @apply -translate-x-1 transition-transform text-primary-500;
 }
 
-@media only screen and (max-width: 991px) and (min-width: 899px) {
+/* @media only screen and (max-width: 991px) and (min-width: 899px) {
   .hero-img {
     padding-top: 179.778%;
   }
@@ -623,4 +624,4 @@ body {
   .hero-img {
     padding-top: 220.778%;
   }
-}
+} */

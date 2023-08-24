@@ -6,7 +6,7 @@ export default async function page() {
   const about_mission_data = await client.request(readItems("about_mission"));
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="space-y-4 py-12">
         <div
           id={`${about_mission_data.mission_title
