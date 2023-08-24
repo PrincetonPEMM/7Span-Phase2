@@ -28,7 +28,7 @@ const InputIcon = (props) => {
           } `}
         >
           <MdiLocateIcon
-            className={` ${item?.isChecked ? "text-white" : "text-black"} `}
+            className={` ${item?.isChecked ? "text-white " : "text-black"} `}
           />
         </span>
       )}
