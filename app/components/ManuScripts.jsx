@@ -117,7 +117,7 @@ const ManuScripts = () => {
       <div
         className={`font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
           isOpen
-            ? "left-0 z-20 md:block md:sticky top-0 lg:h-[70vh] transition-all"
+            ? "left-0 z-20 md:block md:sticky top-0 lg:h-[90vh] transition-all"
             : "hidden -left-full transition-all"
         } `}
       >

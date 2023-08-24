@@ -15,7 +15,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
             : setSelectedBanner(data);
         }}
       >
-        <div className="relative hero-img">
+        <div className="relative hero-img overflow-hidden">
           <Image
             src={data.img}
             width="400"
