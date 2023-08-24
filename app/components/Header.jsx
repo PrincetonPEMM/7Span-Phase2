@@ -17,13 +17,6 @@ const Header = ({ about_people }) => {
   useEffect(() => {
     setActiveSubmenu(null);
   }, [pathname]);
-  console.log(
-    "/about/people#" +
-      about_people.project_collaborators_title
-        .split(" ")
-        .map((word) => word.toLowerCase())
-        .join("-")
-  );
   const menuItems = [
     { title: "Stories", link: "/stories" },
     {
@@ -71,20 +64,12 @@ const Header = ({ about_people }) => {
         {
           title: "Our Partners",
           link:
-            "/about/people#" +
-            about_people.our_partners_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-partners",
         },
         {
           title: "Our Funders",
           link:
-            "/about/people#" +
-            about_people.our_funders_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-"),
+            "/about/people#our-funders",
         },
         {
           title: "News & Updates",
