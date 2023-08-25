@@ -20,13 +20,13 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative overflow-auto table-wrap">
+      <div className="relative overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
           <thead className="font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className="min-w-[160px] px-6 py-3 text-left text-sm font-medium tracking-wider"
+                  className="min-w-[160px] px-3 py-3 text-left text-sm font-medium tracking-wider"
                   key={index}
                 >
                   {item.name}

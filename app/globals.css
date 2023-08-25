@@ -164,9 +164,13 @@ body {
 .header .header-link {
   @apply text-primary-500;
 }
-/* .container {
-  @apply lg:max-w-[1440px] w-full mx-auto px-4 lg:px-5;
-} */
+.container {
+  @apply mx-auto px-4;
+}
+
+.painting-img-wrap img {
+  @apply h-full w-full absolute inset-0;
+}
 
 .space-y-p {
   @apply lg:overflow-hidden overflow-auto;
@@ -188,11 +192,11 @@ body {
   grid-template-columns: auto 1fr;
   height: 100%;
   gap: 10px;
-  align-items: stretch;
+  align-items: self-start;
 }
-.table-wrap {
+/* .table-wrap {
   height: calc(100vh - 25vh);
-}
+} */
 
 .shell__sidebar {
   @apply inset-y-0 bottom-0 right-auto z-20  w-[250px] transform items-start border-r border-gray-200 transition-all duration-300  rounded-md h-screen xl:sticky;
@@ -282,6 +286,7 @@ body {
   position: absolute;
   height: 100%;
   inset: 0;
+  z-index: 20;
   width: 100%;
   opacity: 0;
   cursor: pointer;

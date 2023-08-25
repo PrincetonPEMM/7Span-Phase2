@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 export const Pagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
-    <div className="sticky bottom-4">
+    <>
       {isOpen}
       {pageCount > 1 ? (
         <ReactPaginate
@@ -20,7 +20,7 @@ export const Pagination = ({ meta, isOpen, onPageChange, ...rest }) => {
           {...rest}
         />
       ) : null}
-    </div>
+    </>
   );
 };
 
