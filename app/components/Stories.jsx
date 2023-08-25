@@ -129,7 +129,7 @@ const Stories = () => {
   return (
     <div className={`flex px-1 md:px-5 pb-10  ${isOpen ? "shell" : "flex "}`}>
       <div
-        className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-4 ${
+        className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
           isOpen
             ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
             : "hidden -left-full transition-all"
