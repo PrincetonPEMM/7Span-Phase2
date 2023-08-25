@@ -1,6 +1,6 @@
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Pagination } from "./Pagination";
 
 const Table = ({
@@ -13,6 +13,14 @@ const Table = ({
   // isOpen,
   // onPageChange,
 }) => {
+  const [expandedRows, setExpandedRows] = useState([]);
+  const toggleExpand = (rowIndex) => {
+    if (expandedRows.includes(rowIndex)) {
+      setExpandedRows(expandedRows.filter((row) => row !== rowIndex));
+    } else {
+      setExpandedRows([...expandedRows, rowIndex]);
+    }
+  };
   return (
     <>
       {/* <div
@@ -82,13 +90,45 @@ const Table = ({
                           event.total_manuscript_paintings}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                        {/* This */}
                         {isPageName === STORIES &&
-                          event.canonical_story_subject}
+                        expandedRows.includes(index) ? (
+                          <div>
+                            {event.canonical_story_subject}
+                            <button
+                              onClick={() => toggleExpand(index)}
+                              className="text-primary-500 "
+                            >
+                              See Less
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            {event.canonical_story_subject.length > 40
+                              ? event.canonical_story_subject.slice(0, 40) +
+                                "..."
+                              : event.canonical_story_subject}
+                            {event.canonical_story_subject.length > 40 && (
+                              <button
+                                onClick={() => toggleExpand(index)}
+                                className="text-primary-500 "
+                              >
+                                See More
+                              </button>
+                            )}
+                          </div>
+                        )}
                         {isPageName === MANUSCRIPTS && event.language}
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                          {event.link_to_digital_copy}
+                          <a
+                            href={event.link_to_digital_copy}
+                            target="_blank"
+                            className="text-blue-600 underline"
+                          >
+                            Digital Copy
+                          </a>
                         </td>
                       )}
                       {isPageName === MANUSCRIPTS && (

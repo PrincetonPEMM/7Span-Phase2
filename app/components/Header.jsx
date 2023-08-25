@@ -227,6 +227,7 @@ const Header = () => {
                               onClick={() => {
                                 setActiveSubmenu(null);
                                 // redirect(subItem.link);
+                                setMenuCollapse(false);
                               }}
                             >
                               {subItem.title}
@@ -237,6 +238,7 @@ const Header = () => {
                     </div>
                   ) : (
                     <Link
+                      onClick={() => setMenuCollapse(false)}
                       href={item.link}
                       className="header-link transition-all flex py-1 font-semibold lg:text-white lg:hover:text-secondary-500 text-lg xl:text-xl p-1 lg:px-3 lg:py-0"
                     >

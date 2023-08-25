@@ -62,7 +62,13 @@ const PeopleDetailPage = async ({ params }) => {
               <span className="block">Principal Investigator</span>
             </p>
             <p className="text-primary-500 font-extrabold text-lg">
-              {results[0].website}
+              <a
+                href={results[0].website}
+                target="_blank"
+                className="cursor-pointer"
+              >
+                {results[0].website}
+              </a>
             </p>
           </div>
           <div
