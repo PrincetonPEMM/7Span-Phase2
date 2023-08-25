@@ -106,11 +106,15 @@ const Header = () => {
   };
 
   const toggleSubmenu = (index) => {
-    if (window.innerWidth < 1024) {
-      setActiveSubmenu(activeSubmenu === index ? null : index);
-    }
+    setActiveSubmenu(activeSubmenu === index ? null : index);
   };
-  window.addEventListener("resize", toggleSubmenu);
+
+  // const toggleSubmenu = (index) => {
+  //   if (window.innerWidth < 1024) {
+  //     setActiveSubmenu(activeSubmenu === index ? null : index);
+  //   }
+  // };
+  // window.addEventListener("resize", toggleSubmenu);
 
   return (
     <>

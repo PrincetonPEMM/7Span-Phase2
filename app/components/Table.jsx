@@ -92,32 +92,32 @@ const Table = ({
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
                         {/* This */}
                         {isPageName === STORIES &&
-                        expandedRows.includes(index) ? (
-                          <div>
-                            {event.canonical_story_subject}
-                            <button
-                              onClick={() => toggleExpand(index)}
-                              className="text-primary-500 "
-                            >
-                              See Less
-                            </button>
-                          </div>
-                        ) : (
-                          <div>
-                            {event.canonical_story_subject.length > 40
-                              ? event.canonical_story_subject.slice(0, 40) +
-                                "..."
-                              : event.canonical_story_subject}
-                            {event.canonical_story_subject.length > 40 && (
+                          (expandedRows.includes(index) ? (
+                            <div>
+                              {event.canonical_story_subject}
                               <button
                                 onClick={() => toggleExpand(index)}
                                 className="text-primary-500 "
                               >
-                                See More
+                                See Less
                               </button>
-                            )}
-                          </div>
-                        )}
+                            </div>
+                          ) : (
+                            <div>
+                              {event.canonical_story_subject.length > 40
+                                ? event.canonical_story_subject.slice(0, 40) +
+                                  "..."
+                                : event.canonical_story_subject}
+                              {event.canonical_story_subject.length > 40 && (
+                                <button
+                                  onClick={() => toggleExpand(index)}
+                                  className="text-primary-500 "
+                                >
+                                  See More
+                                </button>
+                              )}
+                            </div>
+                          ))}
                         {isPageName === MANUSCRIPTS && event.language}
                       </td>
                       {isPageName === MANUSCRIPTS && (
