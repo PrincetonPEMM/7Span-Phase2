@@ -109,8 +109,6 @@ const Header = () => {
     setActiveSubmenu(activeSubmenu === index ? null : index);
   };
 
-  console.log("PEMM-PEMM-PEMMPEMM-PEMM-PEMM-PEMM-PEMM-PEMM-PEMM-PEMM");
-
   return (
     <>
       <div

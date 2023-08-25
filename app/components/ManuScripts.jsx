@@ -116,11 +116,15 @@ const ManuScripts = () => {
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className={`flex px-1 md:px-5 pb-10 ${isOpen ? "shell" : "flex"}`}>
+    <div
+      className={`flex px-1 md:px-5 pb-10 ${
+        isOpen ? "shell" : "flex items-start"
+      }`}
+    >
       <div
         className={`font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
           isOpen
-            ? "left-0 z-20 md:block md:sticky top-0 lg:h-[90vh] transition-all"
+            ? "left-0 z-20 md:block md:static md:h-auto transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
@@ -217,11 +221,11 @@ const ManuScripts = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div
-          className={`w-full h-screen table-wrap ${
+        {/* <div
+          className={`w-full h-screen ${
             tableData?.length ? "h-screen" : "h-auto block"
           } `}
-        >
+        > */}
           <Table
             search={search}
             isPageName={MANUSCRIPTS}
@@ -256,7 +260,7 @@ const ManuScripts = () => {
               setPage(e.selected + 1);
             }}
           />
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

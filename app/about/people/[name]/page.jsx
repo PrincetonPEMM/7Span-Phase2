@@ -25,13 +25,13 @@ const PeopleDetailPage = async ({ params }) => {
       </Link>
       <div className="items-start font-body py-10 lg:flex lg:space-x-10">
         {(results[0]?.profile_image || results[0]?.favorite_painting_image) && (
-          <div className="w-full lg:pb-10">
+          <div className="w-full lg:pb-10 max-w-xs mx-auto">
             {results[0]?.profile_image && (
               <div className="w-60 h-60 aspect-squre rounded-full mx-auto sm:h-80 sm:w-80">
                 <img
                   src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.profile_image.id}`}
                   alt={`${results[0].first_name} ${results[0].last_name}`}
-                  className="object-cover object-center rounded-full"
+                  className="object-cover object-center rounded-full w-60 h-60 sm:h-80 sm:w-80"
                 />
               </div>
             )}
@@ -41,7 +41,7 @@ const PeopleDetailPage = async ({ params }) => {
                 <h1 className="text-center text-2xl font-bold text-primary-500 block mb-4 lg:text-3xl">
                   {`${results[0].first_name}'s Favorite Painting`}
                 </h1>
-                <div className="max-w-xs mx-auto aspect-[9/11]">
+                <div className="mx-auto w-56 h-auto">
                   <img
                     src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${results[0]?.favorite_painting_image.id}`}
                     alt=""
@@ -62,7 +62,13 @@ const PeopleDetailPage = async ({ params }) => {
               <span className="block">Principal Investigator</span>
             </p>
             <p className="text-primary-500 font-extrabold text-lg">
-              {results[0].website}
+              <a
+                href={results[0].website}
+                target="_blank"
+                className="cursor-pointer"
+              >
+                {results[0].website}
+              </a>
             </p>
           </div>
           <div

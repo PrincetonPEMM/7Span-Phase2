@@ -1,6 +1,6 @@
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Pagination } from "./Pagination";
 
 const Table = ({
@@ -13,6 +13,14 @@ const Table = ({
   // isOpen,
   // onPageChange,
 }) => {
+  const [expandedRows, setExpandedRows] = useState([]);
+  const toggleExpand = (rowIndex) => {
+    if (expandedRows.includes(rowIndex)) {
+      setExpandedRows(expandedRows.filter((row) => row !== rowIndex));
+    } else {
+      setExpandedRows([...expandedRows, rowIndex]);
+    }
+  };
   return (
     <>
       {/* <div
@@ -20,13 +28,13 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative overflow-auto table-wrap">
+      <div className="relative overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
           <thead className="font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className="min-w-[160px] px-6 py-3 text-left text-sm font-medium tracking-wider"
+                  className="min-w-[160px] px-3 py-3 text-left text-sm font-medium tracking-wider"
                   key={index}
                 >
                   {item.name}
@@ -82,8 +90,34 @@ const Table = ({
                           event.total_manuscript_paintings}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                        {/* This */}
                         {isPageName === STORIES &&
-                          event.canonical_story_subject}
+                        expandedRows.includes(index) ? (
+                          <div>
+                            {event.canonical_story_subject}
+                            <button
+                              onClick={() => toggleExpand(index)}
+                              className="text-primary-500 "
+                            >
+                              See Less
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            {event.canonical_story_subject.length > 40
+                              ? event.canonical_story_subject.slice(0, 40) +
+                                "..."
+                              : event.canonical_story_subject}
+                            {event.canonical_story_subject.length > 40 && (
+                              <button
+                                onClick={() => toggleExpand(index)}
+                                className="text-primary-500 "
+                              >
+                                See More
+                              </button>
+                            )}
+                          </div>
+                        )}
                         {isPageName === MANUSCRIPTS && event.language}
                       </td>
                       {isPageName === MANUSCRIPTS && (
