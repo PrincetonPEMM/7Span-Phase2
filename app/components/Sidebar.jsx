@@ -38,7 +38,7 @@ const Sidebar = ({
   onClick,
 }) => {
   return (
-    <div className="font-menu bg-primary-500 w-full rounded-md text-white">
+    <div className=" w-full rounded-md text-white">
       <button
         onClick={onClick}
         className="sticky top-0 block py-2 bg-primary-500 z-20 w-full"
