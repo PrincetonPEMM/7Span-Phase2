@@ -88,7 +88,13 @@ const Table = ({
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                          {event.link_to_digital_copy}
+                          <a
+                            href={event.link_to_digital_copy}
+                            target="_blank"
+                            className="text-blue-600 underline"
+                          >
+                            Digital Copy
+                          </a>
                         </td>
                       )}
                       {isPageName === MANUSCRIPTS && (

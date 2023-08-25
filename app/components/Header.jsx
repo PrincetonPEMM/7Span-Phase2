@@ -63,13 +63,11 @@ const Header = () => {
       subItems: [
         {
           title: "Our Mission",
-          link:
-            "/about/mission#our-mission",
+          link: "/about/mission#our-mission",
         },
         {
           title: "Our History",
-          link:
-            "/about/mission#our-history",
+          link: "/about/mission#our-history",
         },
         {
           title: "Our Team",
@@ -77,13 +75,11 @@ const Header = () => {
         },
         {
           title: "Our Partners",
-          link:
-            "/about/people#our-partners",
+          link: "/about/people#our-partners",
         },
         {
           title: "Our Funders",
-          link:
-            "/about/people#our-funders",
+          link: "/about/people#our-funders",
         },
         {
           title: "News & Updates",
@@ -112,6 +108,8 @@ const Header = () => {
   const toggleSubmenu = (index) => {
     setActiveSubmenu(activeSubmenu === index ? null : index);
   };
+
+  console.log("PEMM-PEMM-PEMMPEMM-PEMM-PEMM-PEMM-PEMM-PEMM-PEMM-PEMM");
 
   return (
     <>
@@ -226,6 +224,7 @@ const Header = () => {
                               onClick={() => {
                                 setActiveSubmenu(null);
                                 // redirect(subItem.link);
+                                setMenuCollapse(false);
                               }}
                             >
                               {subItem.title}
@@ -236,6 +235,7 @@ const Header = () => {
                     </div>
                   ) : (
                     <Link
+                      onClick={() => setMenuCollapse(false)}
                       href={item.link}
                       className="header-link transition-all flex py-1 font-semibold lg:text-white lg:hover:text-secondary-500 text-lg xl:text-xl p-1 lg:px-3 lg:py-0"
                     >
