@@ -43,6 +43,7 @@ const Stories = () => {
   const [paintingMax, setPaintingMax] = useState(
     rangeSliderMaxForPaintingsStoriesPage
   );
+  const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -62,6 +63,7 @@ const Stories = () => {
   };
 
   async function fetchData(searchKey = "") {
+    setIsLoadint(true);
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -104,6 +106,7 @@ const Stories = () => {
     const data = await response.json();
     setTotalPage(data.total);
     setTableData(data.data);
+    setIsLoadint(false);
   }
 
   useEffect(() => {
@@ -244,11 +247,7 @@ const Stories = () => {
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-            {Boolean(search.length) ? (
-              <h1>Records Not Found</h1>
-            ) : (
-              <h1>Loading...</h1>
-            )}
+            {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
           </div>
         )}
         <Pagination

@@ -18,6 +18,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { Pagination } from "./Pagination";
 const ManuScripts = () => {
   const { debounce } = useDebounce();
+  const [isLoading, setIsLoadint] = useState(true);
   const [search, setSearch] = useState("");
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItemManuScript);
@@ -52,6 +53,7 @@ const ManuScripts = () => {
   };
 
   async function fetchData(searchKey = "") {
+    setIsLoadint(false);
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -91,6 +93,7 @@ const ManuScripts = () => {
     const data = await response.json();
     setTotalPage(data.total);
     setTableData(data.data);
+    setIsLoadint(true);
   }
   useEffect(() => {
     fetchData(search);
@@ -242,11 +245,7 @@ const ManuScripts = () => {
           />
           {Boolean(!tableData?.length) && (
             <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-              {Boolean(search.length) ? (
-                <h1>Records Not Found</h1>
-              ) : (
-                <h1>Loading...</h1>
-              )}
+              {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
             </div>
           )}
           <Pagination
