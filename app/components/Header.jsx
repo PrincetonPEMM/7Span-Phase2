@@ -109,6 +109,13 @@ const Header = () => {
     setActiveSubmenu(activeSubmenu === index ? null : index);
   };
 
+  // const toggleSubmenu = (index) => {
+  //   if (window.innerWidth < 1024) {
+  //     setActiveSubmenu(activeSubmenu === index ? null : index);
+  //   }
+  // };
+  // window.addEventListener("resize", toggleSubmenu);
+
   return (
     <>
       <div
@@ -210,7 +217,9 @@ const Header = () => {
                       </button>
                       <ul
                         className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black  lg:hover:bg-secondary-500mt-1 space-y-1 ${
-                          activeSubmenu === index ? "block z-50 " : "hidden"
+                          activeSubmenu === index
+                            ? "group:hover:block block z-50 "
+                            : "hidden"
                         }`}
                         // lg:group-hover:block lg:group-hover:transiton-all
                       >

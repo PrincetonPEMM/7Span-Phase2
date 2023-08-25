@@ -16,19 +16,19 @@ const InputIcon = (props) => {
 
   return (
     <div
-      className={`inline-flex m-1 items-center cursor-pointer py-1 px-3 relative iconcheck   ${
-        item?.isChecked && "isChecked"
-      }`}
+      className={`inline-flex m-1 items-start cursor-pointer py-1 px-2 h-6 relative iconcheck ${
+        item.icon ? "space-x-1" : ""
+      } ${item?.isChecked && "isChecked"}`}
       onClick={clickHandler}
     >
       {item?.icon && (
         <span
-          className={`w-3 h-3 mr-1 relative z-10 ${
+          className={`w-4 h-4 relative z-10 ${
             item?.isChecked ? "text-white" : ""
           } `}
         >
           <MdiLocateIcon
-            className={` ${item?.isChecked ? "text-white " : "text-black"}`}
+            className={` ${item?.isChecked ? "text-white" : "text-black"}`}
           />
         </span>
       )}
