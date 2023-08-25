@@ -14,7 +14,7 @@ const page = async () => {
 
   return (
     <div className="container">
-      <div className="font-body space-y-4 py-8 bg-background-500  md:py-12">
+      <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
         {bibliography_data && (
           <div>
             <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
