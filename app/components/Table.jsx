@@ -48,7 +48,7 @@ const Table = ({
                 <React.Fragment key={index}>
                   <tr>
                     <td
-                      className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
+                      className="w-full px-6 py-4 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
                       colSpan="6"
                     >
                       <Link
@@ -125,7 +125,7 @@ const Table = ({
                           <a
                             href={event.link_to_digital_copy}
                             target="_blank"
-                            className="text-blue-600 underline"
+                            className="text-primary-600 underline"
                           >
                             Digital Copy
                           </a>
