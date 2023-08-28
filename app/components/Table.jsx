@@ -69,7 +69,7 @@ const Table = ({
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className="min-w-[160px] px-3 py-3 text-left text-sm font-medium tracking-wider"
+                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
                   key={index}
                 >
                   {item.name}
@@ -160,7 +160,7 @@ const Table = ({
                               {event.canonical_story_subject}
                               <button
                                 onClick={() => toggleExpand(index)}
-                                className="text-primary-500 "
+                                className="text-primary-500 ml-1"
                               >
                                 See Less
                               </button>
