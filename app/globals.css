@@ -249,7 +249,7 @@ body {
   box-shadow: none;
 }
 .iconcheck input[type="checkbox"] {
-  @apply bg-background-500 text-black;
+  @apply bg-offWhite-500 text-black;
 }
 .iconcheck input[type="checkbox"] + span {
   @apply text-black relative capitalize;

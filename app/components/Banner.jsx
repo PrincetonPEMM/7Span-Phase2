@@ -45,7 +45,7 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
 
             <a
               href={data.id}
-              className="text-background-500 text-sm delay-75 flex items-center"
+              className="text-offWhite-500 text-sm delay-75 flex items-center"
             >
               <span>Learn More</span>
               <span
