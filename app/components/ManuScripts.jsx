@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
-import { Pagination } from "./Pagination";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialPlaceItemManuScript,
@@ -15,9 +14,11 @@ import {
   initialOriginRegionManuScript,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-
+import OutsideClickHandler from "react-outside-click-handler";
+import { Pagination } from "./Pagination";
 const ManuScripts = () => {
   const { debounce } = useDebounce();
+  const [isLoading, setIsLoadint] = useState(true);
   const [search, setSearch] = useState("");
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItemManuScript);
@@ -51,7 +52,8 @@ const ManuScripts = () => {
       .join("");
   };
 
-  async function fetchData() {
+  async function fetchData(searchKey = "") {
+    setIsLoadint(false);
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -82,7 +84,7 @@ const ManuScripts = () => {
     )}&${makeParamsArray(
       "knownOriginRegion",
       originRegion
-    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${search}
+    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
     `;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
@@ -91,30 +93,38 @@ const ManuScripts = () => {
     const data = await response.json();
     setTotalPage(data.total);
     setTableData(data.data);
+    setIsLoadint(true);
   }
   useEffect(() => {
-    fetchData();
+    fetchData(search);
   }, [filterItem, placeItem, originRegion, page]);
 
-  if (typeof window !== "undefined") {
-    const checkWidth = () => {
-      if (window?.innerWidth < 1024) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
-    };
-    window?.addEventListener("resize", checkWidth);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkWidth = () => {
+        if (window?.innerWidth < 1024) {
+          setIsOpen(false);
+        } else {
+          setIsOpen(true);
+        }
+      };
+      checkWidth();
+      window?.addEventListener("resize", checkWidth);
+    }
+  }, []);
 
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className={`flex px-1 md:px-5 pb-10 ${isOpen ? "shell" : "flex"}`}>
+    <div
+      className={`flex px-1 md:px-5 pb-10 ${
+        isOpen ? "shell" : "flex items-start"
+      }`}
+    >
       <div
-        className={`font-menu bg-primary-500 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
           isOpen
-            ? "left-0 z-20 md:block md:static lg:h-full transition-all"
+            ? "left-0 z-20 md:block md:static md:h-auto transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
@@ -125,8 +135,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setDateCreationMin(min);
               setDateCreationMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [dateCreationMin, dateCreationMax]
           )}
@@ -135,8 +144,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfStoriesMin(min);
               setNoOfStoriesMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfStoriesMin, noOfStoriesMax]
           )}
@@ -145,8 +153,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfPaintingMin(min);
               setNoOfPaintingMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfPaintingMin, noOfPaintingMax]
           )}
@@ -155,8 +162,7 @@ const ManuScripts = () => {
               const { min, max } = e;
               setNoOfUniqueMin(min);
               setNoOfUniqueMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [noOfUniqueMin, noOfUniqueMax]
           )}
@@ -192,7 +198,12 @@ const ManuScripts = () => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                debouncedFetchData(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
           </div>
@@ -210,14 +221,33 @@ const ManuScripts = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div className=" w-full">
-          <Table
-            isPageName={MANUSCRIPTS}
-            tableHeader={tableHeader}
-            tableData={tableData}
-            toggleBtn={toggleBtn}
-          />
-        </div>
+        {/* <div
+          className={`w-full h-screen ${
+            tableData?.length ? "h-screen" : "h-auto block"
+          } `}
+        > */}
+        <Table
+          search={search}
+          isPageName={MANUSCRIPTS}
+          tableHeader={tableHeader}
+          tableData={tableData}
+          toggleBtn={toggleBtn}
+          meta={{
+            total: totalPage,
+            per_page: perPage,
+            current_page: page,
+            last_page: 50,
+          }}
+          isOpen={isOpen}
+          onPageChange={(e) => {
+            setPage(e.selected + 1);
+          }}
+        />
+        {Boolean(!tableData?.length) && (
+          <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+            {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
+          </div>
+        )}
         <Pagination
           meta={{
             total: totalPage,
@@ -230,6 +260,7 @@ const ManuScripts = () => {
             setPage(e.selected + 1);
           }}
         />
+        {/* </div> */}
       </div>
     </div>
   );

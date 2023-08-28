@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
-import { Pagination } from "./Pagination";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import {
   initialLangItem,
@@ -13,8 +12,15 @@ import {
   initialfilterItem,
   pagePerLimit,
   STORIES,
+  rangeSliderMinForStoriesStoriesPage,
+  rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMinForManuscriptsStoriesPage,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMinForPaintingsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
+import { Pagination } from "./Pagination";
 
 const Stories = () => {
   const { debounce } = useDebounce();
@@ -23,12 +29,21 @@ const Stories = () => {
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
   const [langItem, setLangItem] = useState(initialLangItem);
-  const [storyMin, setStoryMin] = useState(0);
-  const [storyMax, setStoryMax] = useState(100);
-  const [manuscriptsMin, setManuscriptsMin] = useState(0);
-  const [manuscriptsMax, setManuscriptsMax] = useState(100);
-  const [paintingMin, setPaintingMin] = useState(0);
-  const [paintingMax, setPaintingMax] = useState(100);
+  const [storyMin, setStoryMin] = useState(rangeSliderMinForStoriesStoriesPage);
+  const [storyMax, setStoryMax] = useState(rangeSliderMaxForStoriesStoriesPage);
+  const [manuscriptsMin, setManuscriptsMin] = useState(
+    rangeSliderMinForManuscriptsStoriesPage
+  );
+  const [manuscriptsMax, setManuscriptsMax] = useState(
+    rangeSliderMaxForManuscriptsStoriesPage
+  );
+  const [paintingMin, setPaintingMin] = useState(
+    rangeSliderMinForPaintingsStoriesPage
+  );
+  const [paintingMax, setPaintingMax] = useState(
+    rangeSliderMaxForPaintingsStoriesPage
+  );
+  const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -47,7 +62,8 @@ const Stories = () => {
       .join("");
   };
 
-  async function fetchData() {
+  async function fetchData(searchKey = "") {
+    setIsLoadint(true);
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -60,7 +76,10 @@ const Stories = () => {
     )}${getFilterFalsyValue(
       filterItem,
       "lifeOfMaryStories"
-    )}${getFilterFalsyValue(filterItem, "homilyStories")}${getFilterFalsyValue(
+    )}${getFilterFalsyValue(
+      filterItem,
+      "mostIllustrated"
+    )}${getFilterFalsyValue(
       filterItem,
       "earliestStories"
     )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(
@@ -78,7 +97,7 @@ const Stories = () => {
     )}${getFilterFalsyValue(
       filterItem,
       "withEnglishTranslation"
-    )}filters[search]=${search}
+    )}filters[search]=${searchKey}
     `;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
@@ -87,30 +106,35 @@ const Stories = () => {
     const data = await response.json();
     setTotalPage(data.total);
     setTableData(data.data);
+    setIsLoadint(false);
   }
+
   useEffect(() => {
-    fetchData();
+    fetchData(search);
   }, [filterItem, placeItem, langItem, page]);
 
-  if (typeof window !== "undefined") {
-    const checkWidth = () => {
-      if (window?.innerWidth < 1024) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
-    };
-    window?.addEventListener("resize", checkWidth);
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkWidth = () => {
+        if (window?.innerWidth < 1024) {
+          setIsOpen(false);
+        } else {
+          setIsOpen(true);
+        }
+      };
+      checkWidth();
+      window?.addEventListener("resize", checkWidth);
+    }
+  }, []);
 
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className={`flex px-1 md:px-5  ${isOpen ? "shell" : "flex"}`}>
+    <div className={`flex px-1 md:px-5 pb-10  ${isOpen ? "shell" : "flex "}`}>
       <div
-        className={`font-menu bg-primary-500 h-full absolute shell__sidebar rounded-sm w-64 text-white p-2 ${
+        className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-4 ${
           isOpen
-            ? "left-0 z-20 md:block md:static lg:h-full transition-all"
+            ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
             : "hidden -left-full transition-all"
         } `}
       >
@@ -121,8 +145,7 @@ const Stories = () => {
               const { min, max } = e;
               setStoryMin(min);
               setStoryMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [storyMin, storyMax]
           )}
@@ -131,8 +154,7 @@ const Stories = () => {
               const { min, max } = e;
               setManuscriptsMin(min);
               setManuscriptsMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [manuscriptsMin, manuscriptsMax]
           )}
@@ -141,8 +163,7 @@ const Stories = () => {
               const { min, max } = e;
               setPaintingMin(min);
               setPaintingMax(max);
-              debouncedFetchData(min);
-              debouncedFetchData(max);
+              debouncedFetchData();
             },
             [paintingMin, paintingMax]
           )}
@@ -157,7 +178,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full ">
+      <div className="w-full overflow-x-auto">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -179,7 +200,12 @@ const Stories = () => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                debouncedFetchData(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
           </div>
@@ -197,28 +223,48 @@ const Stories = () => {
             {toggleBtn ? "Detail view" : "Title View"}
           </button>
         </div>
-        <div className="w-full">
-          <Table
-            isPageName={STORIES}
-            tableHeader={tableHeader}
-            tableData={tableData}
-            toggleBtn={toggleBtn}
-          />
-          <Pagination
-            meta={{
-              total: totalPage,
-              per_page: perPage,
-              current_page: page,
-              last_page: 50,
-            }}
-            isOpen={isOpen}
-            onPageChange={(e) => {
-              setPage(e.selected + 1);
-            }}
-          />
-        </div>
+        {/* <div
+          className={`w-full table-wrap  ${
+            tableData?.length ? "h-screen" : "h-auto block"
+          } `}
+        > */}
+        <Table
+          // search={search}
+          isPageName={STORIES}
+          tableHeader={tableHeader}
+          tableData={tableData}
+          toggleBtn={toggleBtn}
+          // meta={{
+          //   total: totalPage,
+          //   per_page: perPage,
+          //   current_page: page,
+          //   last_page: 50,
+          // }}
+          // isOpen={isOpen}
+          // onPageChange={(e) => {
+          //   setPage(e.selected + 1);
+          // }}
+        />
+        {Boolean(!tableData?.length) && (
+          <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+            {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
+          </div>
+        )}
+        <Pagination
+          meta={{
+            total: totalPage,
+            per_page: perPage,
+            current_page: page,
+            last_page: 50,
+          }}
+          isOpen={isOpen}
+          onPageChange={(e) => {
+            setPage(e.selected + 1);
+          }}
+        />
       </div>
     </div>
+    // </div>
   );
 };
 

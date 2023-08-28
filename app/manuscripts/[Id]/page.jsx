@@ -6,13 +6,16 @@ import {
   pagePerLimit,
 } from "@/utils/constant";
 import Table from "@/app/components/Table";
+import { Pagination } from "@/app/components/Pagination";
 
 export const dynamic = "force-dynamic";
 
 const page = async ({ params }) => {
   const { Id } = params;
   const [page, setPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(true);
   const [perPage, setPerPage] = useState(pagePerLimit);
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/${Id}`
   );
@@ -259,18 +262,30 @@ const page = async ({ params }) => {
           <div className="pt-5">
             <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
             <Table
-              search=""
+              // search=""
               isPageName={MANUSCRIPT_DETAIL}
               tableData={tableData.data}
               tableHeader={manuscriptsDetailTableTitle}
               toggleBtn={false}
+              // meta={{
+              //   total: tableData.total,
+              //   per_page: perPage,
+              //   current_page: page,
+              //   last_page: 50,
+              // }}
+              // isOpen={true}
+              // onPageChange={(e) => {
+              //   setPage(e.selected + 1);
+              // }}
+            />
+            <Pagination
               meta={{
                 total: tableData.total,
                 per_page: perPage,
                 current_page: page,
                 last_page: 50,
               }}
-              isOpen={true}
+              isOpen={isOpen}
               onPageChange={(e) => {
                 setPage(e.selected + 1);
               }}
