@@ -53,7 +53,7 @@ const ManuScripts = () => {
   };
 
   async function fetchData(searchKey = "") {
-    setIsLoadint(false);
+    setIsLoadint(true);
     const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
       filterItem,
       "withPaintings"
@@ -93,7 +93,7 @@ const ManuScripts = () => {
     const data = await response.json();
     setTotalPage(data.total);
     setTableData(data.data);
-    setIsLoadint(true);
+    setIsLoadint(false);
   }
   useEffect(() => {
     fetchData(search);
@@ -245,7 +245,7 @@ const ManuScripts = () => {
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-            {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
+            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}
         <Pagination
