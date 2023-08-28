@@ -645,7 +645,7 @@ body {
 
   .submenu {
     /* display: block; */
-    top: 1.7rem !important;
+    top: 100% !important;
     padding-top: 8px;
   }
   .group:hover .submenu {
