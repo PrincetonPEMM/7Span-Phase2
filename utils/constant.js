@@ -41,6 +41,7 @@ export const ID_LIST = [
 ];
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
+export const MANUSCRIPT_DETAIL = "Manuscript-Detail";
 export const rangeSliderMinForStoriesStoriesPage = 1350;
 export const rangeSliderMaxForStoriesStoriesPage = 2020;
 export const rangeSliderMinForManuscriptsStoriesPage = 0;
@@ -74,6 +75,15 @@ export const manuscriptsTableTitleView = [
   { name: "Manuscript's Language" },
   { name: "Link to Manuscript Online" },
   { name: "Manuscript's Digital Quality" },
+];
+export const manuscriptsDetailTableTitle = [
+  { name: "Story ID" },
+  { name: "Story Title" },
+  { name: "Location in MS" },
+  { name: "Number in MS" },
+  { name: "Story Recension" },
+  { name: "Incipit" },
+  { name: "Other Aspects" },
 ];
 export const initialfilterItem = {
   title: "Filtered Search",
