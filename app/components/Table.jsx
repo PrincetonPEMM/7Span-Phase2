@@ -107,7 +107,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
+          <tbody className="min-h-[300px] table-body align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
@@ -115,8 +115,8 @@ const Table = ({
                     (isPageName === STORIES || isPageName === MANUSCRIPTS) && (
                       <tr>
                         <td
-                          className="w-full px-6 py-4 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
-                          colSpan="6"
+                          className="w-full px-3 py-3 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
+                          colSpan="10"
                         >
                           <Link
                             href={
@@ -134,9 +134,14 @@ const Table = ({
                       </tr>
                     )}
 
-                  {!toggleBtn && (
-                    <tr key={index} className="text-offBlack font-medium">
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                  {
+                    <tr
+                      key={index}
+                      className={`text-offBlack-500 font-medium ${
+                        toggleBtn ? "hidden" : ""
+                      }`}
+                    >
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.canonical_story_id}
                         {isPageName === MANUSCRIPTS &&
                           `${event.manuscript_date_range_start}-${event.manuscript_date_range_end}`}
@@ -149,20 +154,20 @@ const Table = ({
                           </a>
                         )}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.earliest_attestation}
                         {isPageName === MANUSCRIPTS && event.total_stories}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           event.canonical_story_title}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.total_records}
                         {isPageName === MANUSCRIPTS &&
                           event.total_unique_stories}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           LocationInMs(event)}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
                           event.total_story_id_paintings}
                         {isPageName === MANUSCRIPTS &&
@@ -177,7 +182,8 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL &&
                           (Boolean(event.manuscript) ? event.manuscript : "-")}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
+                        {/* This */}
                         {isPageName === STORIES &&
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS && event.language}
@@ -219,7 +225,7 @@ const Table = ({
                         </td>
                       )}
                     </tr>
-                  )}
+                  }
                 </React.Fragment>
               ))}
           </tbody>
