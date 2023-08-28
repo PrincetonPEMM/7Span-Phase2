@@ -122,7 +122,7 @@ const Header = () => {
         className={`p-4 lg:p-0 ${
           pathname === "/"
             ? " bg-transparent text-black absolute top-0 inset-x-0 z-40"
-            : "bg-background-500"
+            : "bg-offWhite-500"
         }`}
       >
         <Link href="/" className="w-60 sm:w-full sm:max-w-md block lg:hidden">
@@ -160,14 +160,14 @@ const Header = () => {
         }}
       >
         <div
-          className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-background-500 lg:h-auto ${
+          className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-offWhite-500 lg:h-auto ${
             menuCollapse
               ? "right-0 translate-x-0 transform "
               : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
           } ${
             pathname === "/"
               ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform  lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
-              : "lg:relative text-primary-500 py-5 header bg-white lg:bg-background-500 "
+              : "lg:relative text-primary-500 py-5 header bg-white lg:bg-offWhite-500 "
           }`}
         >
           {/*Close header */}

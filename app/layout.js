@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <main>
           <div className="relative">
             <Header className="absolute inset-x-0" />
-            <div className="bg-background-500">{children}</div>
+            <div className="bg-offWhite-500">{children}</div>
           </div>
           <Footer />
         </main>

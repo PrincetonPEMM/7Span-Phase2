@@ -22,9 +22,6 @@ module.exports = {
       colors: {
         ...colors,
 
-        offWhite: "#E7E3DC",
-        offBlack: "#221F21",
-
         //green shade
         primary: {
           100: "#E1F7E3",
@@ -51,7 +48,7 @@ module.exports = {
           900: "#6D3B0C",
         },
 
-        background: {
+        offWhite: {
           100: "#FDFDFB",
           200: "#FCFBF7",
           300: "#F7F5F0",
@@ -73,7 +70,7 @@ module.exports = {
           800: "#7E0B2E",
           900: "#68062D",
         },
-        offWhite: {
+        offBlack: {
           100: "#F3EFF0",
           200: "#E8E0E3",
           300: "#BCB2B7",

@@ -77,7 +77,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] align-baseline divide-y divide-gray-100 bg-background-500 text-sm font-light text-primary-500">
+          <tbody className="min-h-[300px] align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
@@ -86,7 +86,7 @@ const Table = ({
                       event?.manuscript_full_name) && (
                       <tr>
                         <td
-                          className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
+                          className="w-full px-3 py-3 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
                           colSpan="6"
                         >
                           <Link
@@ -106,35 +106,35 @@ const Table = ({
                     )}
 
                   {!toggleBtn && (
-                    <tr key={index} className="text-offBlack font-medium">
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                    <tr key={index} className="text-offBlack-500 font-medium">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.canonical_story_id}
                         {isPageName === MANUSCRIPTS &&
                           `${event.manuscript_date_range_start}-${event.manuscript_date_range_end}`}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           event.canonical_story_id}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.earliest_attestation}
                         {isPageName === MANUSCRIPTS && event.total_stories}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           event.canonical_story_title}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.total_records}
                         {isPageName === MANUSCRIPTS &&
                           event.total_unique_stories}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           LocationInMs(event)}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
                           event.total_story_id_paintings}
                         {isPageName === MANUSCRIPTS && event.ms_location_note}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           event.miracle_number}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4   text-sm lg:text-base">
                         {isPageName === STORIES &&
                           event.total_story_id_paintings}
                         {isPageName === MANUSCRIPTS && event.ms_location_note}
@@ -143,7 +143,7 @@ const Table = ({
                           ? event.manuscript
                           : "-"}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4">
                         {isPageName === STORIES && event.type_of_story}
                         {isPageName === MANUSCRIPTS &&
                           event.total_manuscript_paintings}
@@ -152,7 +152,7 @@ const Table = ({
                           ? event.incipit
                           : "-"}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {/* This */}
                         {isPageName === STORIES &&
                           (expandedRows.includes(index) ? (
@@ -197,7 +197,7 @@ const Table = ({
                           })()}
                       </td>
                       {isPageName === MANUSCRIPTS && (
-                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                        <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                           <a
                             href={event.link_to_digital_copy}
                             target="_blank"
@@ -208,7 +208,7 @@ const Table = ({
                         </td>
                       )}
                       {isPageName === MANUSCRIPTS && (
-                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                        <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                           {event.scans_of_manuscript_in_color === "Yes"
                             ? "Color"
                             : "Black & White"}

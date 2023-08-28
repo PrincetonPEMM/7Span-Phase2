@@ -25,7 +25,7 @@ const Tabs = ({ tabs, children, tabIndex = 0, onClick }) => {
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className=" bg-background-500">{children}</Tab.Panels>
+          <Tab.Panels className=" bg-offWhite-500">{children}</Tab.Panels>
         </Tab.Group>
       </div>
     </>
