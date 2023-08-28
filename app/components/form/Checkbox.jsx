@@ -26,8 +26,11 @@ const Checkbox = (props) => {
           type="checkbox"
           name={id}
           checked={isChecked}
+          defaultChecked={isChecked}
           onChange={changeHandler}
-          className={`checkbox-input ${isChecked ? "checked" : ""}`}
+          className={`checkbox-input  focus:ring-0 ${
+            isChecked ? "checked" : ""
+          }`}
         />
         <span className="checkmark"></span>
         {label && <span className="ml-4 text-sm">{label}</span>}
