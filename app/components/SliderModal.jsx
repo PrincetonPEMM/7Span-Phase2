@@ -18,7 +18,7 @@ const SliderModal = ({ sliderImg }) => {
     setOpenImage(e.target.src);
     setIsOpen(true);
   }
-  return (
+  return images.length ? (
     <>
       <hr />
       <ImageGallery
@@ -27,7 +27,6 @@ const SliderModal = ({ sliderImg }) => {
         autoPlay={true}
         onClick={imageClick}
       />
-
       <Modal
         isOpen={isOpen}
         modalClose={() => {
@@ -37,16 +36,14 @@ const SliderModal = ({ sliderImg }) => {
         previewClass="w-full max-w-xs sm:max-w-md xl:max-w-xl"
       >
         <hr />
-        {openImage && (
-          <img
-            src={openImage}
-            alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
-            className="h-full w-full object-contain object-center"
-          />
-        )}
+        <img
+          src={openImage}
+          alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+          className="h-full w-full object-contain object-center"
+        />
       </Modal>
     </>
-  );
+  ) : null;
 };
 
 export default SliderModal;

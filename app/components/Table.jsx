@@ -56,8 +56,6 @@ const Table = ({
     }`;
   };
 
-  console.log(tableData, "tableDatatableDatatableData");
-
   const collapseText = (index, text) => {
     if (!Number(text?.length)) {
       return "-";
@@ -117,7 +115,7 @@ const Table = ({
                     (isPageName === STORIES || isPageName === MANUSCRIPTS) && (
                       <tr>
                         <td
-                          className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
+                          className="w-full px-6 py-4 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
                           colSpan="6"
                         >
                           <Link
@@ -234,7 +232,7 @@ const Table = ({
             )}
           </div>
         )}
-        <Pagination meta={meta} isOpen={isOpen} onPageChange={onPageChange} />
+        <TablePagination meta={meta} isOpen={isOpen} onPageChange={onPageChange} />
       </div> */}
     </>
   );
