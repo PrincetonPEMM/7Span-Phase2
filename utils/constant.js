@@ -182,7 +182,7 @@ export const initialPlaceItem = {
     },
     {
       id: "4",
-      icon: false,
+      icon: true,
       label: "Europe",
       name: "Europe",
       isChecked: false,
