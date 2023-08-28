@@ -182,7 +182,9 @@ const Table = ({
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS && event.language}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          (Boolean(event.incipit) ? event.incipit : "-")}
+                          (Boolean(event.incipit)
+                            ? collapseText(index, event.incipit)
+                            : "-")}
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <>

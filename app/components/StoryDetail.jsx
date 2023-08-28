@@ -197,8 +197,6 @@ export default function StoryDetail({ data, Id }) {
                 </li>
               </ol>
             </div>
-          </div>
-          <div className="col-span-2 md:block hidden  ">
             <div className="space-y-4 mb-10">
               <ol className="list-inside pl-4 ">
                 <li>
@@ -217,8 +215,6 @@ export default function StoryDetail({ data, Id }) {
                 </li>
               </ol>
             </div>
-          </div>
-          <div className="col-span-2 md:block hidden">
             <div className="space-y-4 mb-10">
               <ol className="list-inside pl-4 ">
                 <li>

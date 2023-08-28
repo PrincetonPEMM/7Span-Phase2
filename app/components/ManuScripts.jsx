@@ -118,7 +118,7 @@ const ManuScripts = () => {
 
   return (
     <div
-      className={`flex px-1 md:px-5 pb-10 ${
+      className={`flex px-1 md:px-5 pb-10 manuscript-page ${
         isOpen ? "shell" : "flex items-start"
       }`}
     >

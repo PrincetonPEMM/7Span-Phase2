@@ -685,3 +685,9 @@ body {
   background-color: #3c6f57;
   color: #e7e3dc;
 }
+.pagination .disabled a {
+  pointer-events: none;
+  color: #9b9b9b  ;
+  border: 1px solid #9b9b9b;
+  background-color: #dbdbdb;
+}
