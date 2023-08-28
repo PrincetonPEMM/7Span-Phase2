@@ -56,8 +56,6 @@ const Table = ({
     }`;
   };
 
-  console.log(tableData, "tableDatatableDatatableData");
-
   const collapseText = (index, text) => {
     if (!Number(text?.length)) {
       return "-";
@@ -190,7 +188,9 @@ const Table = ({
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS && event.language}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          (Boolean(event.incipit) ? event.incipit : "-")}
+                          (Boolean(event.incipit)
+                            ? collapseText(index, event.incipit)
+                            : "-")}
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <>
@@ -240,7 +240,7 @@ const Table = ({
             )}
           </div>
         )}
-        <Pagination meta={meta} isOpen={isOpen} onPageChange={onPageChange} />
+        <TablePagination meta={meta} isOpen={isOpen} onPageChange={onPageChange} />
       </div> */}
     </>
   );

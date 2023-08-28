@@ -1,38 +1,40 @@
 "use client";
 
-import { MANUSCRIPT_DETAIL, manuscriptsDetailTableTitle, pagePerLimit } from "@/utils/constant";
+import {
+  MANUSCRIPT_DETAIL,
+  manuscriptsDetailTableTitle,
+  pagePerLimit,
+} from "@/utils/constant";
 import { useEffect, useRef, useState } from "react";
 import Table from "./Table";
-import { Pagination } from "./Pagination";
+import { TablePagination } from "./Pagination";
 
 export default function Manuscript({ Id, data, table }) {
-
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [tableData, setTableData] = useState(table);
   const didMount = useRef(false);
 
-
-
-  useEffect((prevPage) => {
-    if (didMount.current) {
-      fetch(
-        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/stories/${Id}?page=${page}&perPage=${perPage}`
-      )
-        .then(res => res.json())
-        .then((data) => {
-          const table = document.querySelector("#emip-table")
-          const top = table.getBoundingClientRect().y
-          window.scrollTo(0, top + window.scrollY)
-          setTableData(data)
-        })
-    }
-    else {
-      didMount.current = true
-    }
-  }, [page])
-
+  useEffect(
+    (prevPage) => {
+      if (didMount.current) {
+        fetch(
+          `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/stories/${Id}?page=${page}&perPage=${perPage}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const table = document.querySelector("#emip-table");
+            const top = table.getBoundingClientRect().y;
+            window.scrollTo(0, top + window.scrollY);
+            setTableData(data);
+          });
+      } else {
+        didMount.current = true;
+      }
+    },
+    [page]
+  );
 
   const generateFirstParagraph = () => {
     const array = [];
@@ -71,7 +73,7 @@ export default function Manuscript({ Id, data, table }) {
       if (data.link_to_digital_copy != null) {
         text += `To view the manuscript online, go <a class="text-primary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>`;
       } else {
-        text += link_to_digital_copy_note_external;
+        text += data.link_to_digital_copy_note_external;
       }
       array.push({ text });
     } else {
@@ -97,7 +99,7 @@ export default function Manuscript({ Id, data, table }) {
       } else if (data.total_stories < 199) {
         text = `This manuscript has a high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       } else {
-        text = `This manuscript has a very high number of Marian miracle stories: <b>${total_stories}</b>.`;
+        text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
       array.push({ text });
     }
@@ -110,14 +112,14 @@ export default function Manuscript({ Id, data, table }) {
       if (data.tm_story_paintings == "No") {
         text = "This manuscript has no paintings of Marian miracle stories.";
       } else if (data.tm_story_paintings == "Yes") {
-        if (total_manuscript_paintings <= 6) {
-          if (total_manuscript_paintings > 0) {
+        if (data.total_manuscript_paintings <= 6) {
+          if (data.total_manuscript_paintings > 0) {
             text = `This manuscript has a few paintings of Marian miracle stories: <b>${data.total_manuscript_paintings}</b>.`;
           }
         } else if (data.total_manuscript_paintings < 15) {
           text = `This manuscript has some paintings of Marian miracle stories: <b>${data.total_manuscript_paintings}</b>.`;
         } else if (data.total_manuscript_paintings < 200) {
-          text = `This manuscript has a lot of paintings of Marian miracle stories: <b>${total_manuscript_paintings}</b>.`;
+          text = `This manuscript has a lot of paintings of Marian miracle stories: <b>${data.total_manuscript_paintings}</b>.`;
         }
       } else if (data.tm_story_paintings == "RelatedImages") {
         text = `This manuscript has no paintings of Marian miracle stories, but it does have <b>${data.total_manuscript_paintings}</b> paintings of Mary and events in her life.`;
@@ -263,41 +265,43 @@ export default function Manuscript({ Id, data, table }) {
               ></p>
             ))}
           </div>
-          {
-            tableData &&
+          {tableData && (
             <div id="emip-table" className="pt-5">
-              <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
+              <h3 className="font-menu text-5xl font-medium">
+                EMIP (EMIP) 981a
+              </h3>
               <Table
                 // search=""
                 isPageName={MANUSCRIPT_DETAIL}
                 tableData={tableData.data}
                 tableHeader={manuscriptsDetailTableTitle}
                 toggleBtn={false}
-              // meta={{
-              //   total: tableData.total,
-              //   per_page: perPage,
-              //   current_page: page,
-              //   last_page: 50,
-              // }}
-              // isOpen={true}
-              // onPageChange={(e) => {
-              //   setPage(e.selected + 1);
-              // }}
+                // meta={{
+                //   total: tableData.total,
+                //   per_page: perPage,
+                //   current_page: page,
+                //   last_page: 50,
+                // }}
+                // isOpen={true}
+                // onPageChange={(e) => {
+                //   setPage(e.selected + 1);
+                // }}
               />
-              <Pagination
+              <TablePagination
                 meta={{
                   total: tableData.total,
                   per_page: perPage,
                   current_page: page,
                   last_page: 50,
+                  page: page,
                 }}
                 isOpen={isOpen}
-                onPageChange={(e) => {
-                  setPage(e.selected + 1);
+                onPageChange={(num) => {
+                  setPage(num);
                 }}
               />
             </div>
-          }
+          )}
         </div>
       </div>
     </div>
