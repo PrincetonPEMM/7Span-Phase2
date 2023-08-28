@@ -10,7 +10,7 @@ import { Pagination } from "@/app/components/Pagination";
 
 export const dynamic = "force-dynamic";
 
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
   const { Id } = params;
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
@@ -27,8 +27,6 @@ const page = async ({ params }) => {
   );
 
   const tableData = await tableRes.json();
-
-  console.log(tableData, "tableDatatableData");
 
   const generateFirstParagraph = () => {
     const array = [];
@@ -65,7 +63,7 @@ const page = async ({ params }) => {
     if (data.collections_sheet_relevant == "True") {
       let text = `This manuscript is held in the repository of ${data.institution_name} in their ${data.collection_name} in ${data.institution_city_state}, ${data.institution_country}`;
       if (data.link_to_digital_copy != null) {
-        text += `To view the manuscript online, go <a href={data.link_to_digital_copy}><b>here</b></a>`;
+        text += `To view the manuscript online, go <a href=${data.link_to_digital_copy}  target="_blank"><b>here</b></a>`;
       } else {
         text += link_to_digital_copy_note_external;
       }
@@ -133,7 +131,7 @@ const page = async ({ params }) => {
           if (data.scans_of_manuscript_in_color == "Yes") {
             if (data.link_to_digital_copy != null) {
               text = `Fortunately, these paintings are digitized and available online in color. To view the manuscript online, go to the
-                          <b><a href={data.link_to_digital_copy}> digital copy</a></b>.`;
+                          <b><a href=${data.link_to_digital_copy}  target="_blank"> digital copy</a></b>.`;
             } else {
               text =
                 "These paintings have been digitized in color but are not available online. Please encourage the repository to put this manuscript online.";
@@ -141,7 +139,7 @@ const page = async ({ params }) => {
           } else {
             if (data.link_to_digital_copy != null) {
               text = `These paintings are digitized and available online but only in black and white. To view the manuscript online, go to the
-                          <b><a href={data.link_to_digital_copy}> digital copy</a></b>.`;
+                          <b><a href=${data.link_to_digital_copy}  target="_blank"> digital copy</a></b>.`;
             }
           }
         }
@@ -297,4 +295,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
