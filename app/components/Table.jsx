@@ -56,6 +56,38 @@ const Table = ({
     }`;
   };
 
+  console.log(tableData, "tableDatatableDatatableData");
+
+  const collapseText = (index, text) => {
+    if (!Number(text?.length)) {
+      return "-";
+    }
+
+    return expandedRows.includes(index) ? (
+      <div>
+        {text}
+        <button
+          onClick={() => toggleExpand(index)}
+          className="text-primary-500 "
+        >
+          &nbsp; See Less
+        </button>
+      </div>
+    ) : (
+      <div>
+        {Number(text?.length) > 40 ? text.slice(0, 40) + "..." : text}
+        {Number(text?.length) > 40 && (
+          <button
+            onClick={() => toggleExpand(index)}
+            className="text-primary-500 "
+          >
+            See More
+          </button>
+        )}
+      </div>
+    );
+  };
+
   return (
     <>
       {/* <div
@@ -82,8 +114,7 @@ const Table = ({
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
                   {isPageName !== MANUSCRIPT_DETAIL &&
-                    (event?.canonical_story_title ||
-                      event?.manuscript_full_name) && (
+                    (isPageName === STORIES || isPageName === MANUSCRIPTS) && (
                       <tr>
                         <td
                           className="w-full px-6 py-4 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
@@ -111,8 +142,14 @@ const Table = ({
                         {isPageName === STORIES && event.canonical_story_id}
                         {isPageName === MANUSCRIPTS &&
                           `${event.manuscript_date_range_start}-${event.manuscript_date_range_end}`}
-                        {isPageName === MANUSCRIPT_DETAIL &&
-                          event.canonical_story_id}
+                        {isPageName === MANUSCRIPT_DETAIL && (
+                          <a
+                            href={`/stories/${event.canonical_story_id}`}
+                            className="underline text-primary-500"
+                          >
+                            {event.canonical_story_id}
+                          </a>
+                        )}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.earliest_attestation}
@@ -130,62 +167,46 @@ const Table = ({
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
                           event.total_story_id_paintings}
-                        {isPageName === MANUSCRIPTS && event.ms_location_note}
+                        {isPageName === MANUSCRIPTS &&
+                          collapseText(index, event.ms_location_note)}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           event.miracle_number}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
-                        {isPageName === STORIES &&
-                          event.total_story_id_paintings}
-                        {isPageName === MANUSCRIPTS && event.ms_location_note}
-                        {isPageName === MANUSCRIPT_DETAIL &&
-                        Boolean(event.manuscript)
-                          ? event.manuscript
-                          : "-"}
-                      </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
                         {isPageName === STORIES && event.type_of_story}
                         {isPageName === MANUSCRIPTS &&
                           event.total_manuscript_paintings}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                        Boolean(event.incipit)
-                          ? event.incipit
-                          : "-"}
+                          (Boolean(event.manuscript) ? event.manuscript : "-")}
                       </td>
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                        {/* This */}
+                      <td className="max-w-xs whitespace-normal break-words px-6 py-4">
                         {isPageName === STORIES &&
-                          (expandedRows.includes(index) ? (
-                            <div>
-                              {event.canonical_story_subject}
-                              <button
-                                onClick={() => toggleExpand(index)}
-                                className="text-primary-500 "
-                              >
-                                See Less
-                              </button>
-                            </div>
-                          ) : (
-                            <div>
-                              {Number(event?.canonical_story_subject?.length) >
-                              40
-                                ? event.canonical_story_subject.slice(0, 40) +
-                                  "..."
-                                : event.canonical_story_subject}
-                              {Number(event?.canonical_story_subject?.length) >
-                                40 && (
-                                <button
-                                  onClick={() => toggleExpand(index)}
-                                  className="text-primary-500 "
-                                >
-                                  See More
-                                </button>
-                              )}
-                            </div>
-                          ))}
+                          collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS && event.language}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          (() => {
+                          (Boolean(event.incipit) ? event.incipit : "-")}
+                      </td>
+                      {isPageName === MANUSCRIPTS && (
+                        <>
+                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                            <a
+                              href={event.link_to_digital_copy}
+                              target="_blank"
+                              className="text-primary-500 underline"
+                            >
+                              Digital Copy
+                            </a>
+                          </td>
+                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                            {event.scans_of_manuscript_in_color === "Yes"
+                              ? "Color"
+                              : "Black & White"}
+                          </td>
+                        </>
+                      )}
+                      {isPageName === MANUSCRIPT_DETAIL && (
+                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          {(() => {
                             if (event.total_records === 1) return "☆";
                             if (event.stanza === "Yes") return "♫";
                             if (
@@ -195,23 +216,6 @@ const Table = ({
                               return "(?)";
                             return "-";
                           })()}
-                      </td>
-                      {isPageName === MANUSCRIPTS && (
-                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                          <a
-                            href={event.link_to_digital_copy}
-                            target="_blank"
-                            className="text-primary-500 underline"
-                          >
-                            Digital Copy
-                          </a>
-                        </td>
-                      )}
-                      {isPageName === MANUSCRIPTS && (
-                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                          {event.scans_of_manuscript_in_color === "Yes"
-                            ? "Color"
-                            : "Black & White"}
                         </td>
                       )}
                     </tr>
