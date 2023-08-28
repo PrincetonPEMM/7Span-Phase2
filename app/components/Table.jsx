@@ -1,3 +1,4 @@
+"use client";
 import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
@@ -166,11 +167,13 @@ const Table = ({
                             </div>
                           ) : (
                             <div>
-                              {event.canonical_story_subject.length > 40
+                              {Number(event?.canonical_story_subject?.length) >
+                              40
                                 ? event.canonical_story_subject.slice(0, 40) +
                                   "..."
                                 : event.canonical_story_subject}
-                              {event.canonical_story_subject.length > 40 && (
+                              {Number(event?.canonical_story_subject?.length) >
+                                40 && (
                                 <button
                                   onClick={() => toggleExpand(index)}
                                   className="text-primary-500 "
