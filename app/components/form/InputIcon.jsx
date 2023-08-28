@@ -17,7 +17,7 @@ const InputIcon = (props) => {
   return (
     <div
       className={`inline-flex m-1 items-start cursor-pointer py-1 px-2 h-6 relative iconcheck ${
-        item.icon ? "space-x-1" : ""
+        item.icon ? "space-x-1 lg:space-x-0" : ""
       } ${item?.isChecked && "isChecked"}`}
       onClick={clickHandler}
     >
@@ -43,7 +43,7 @@ const InputIcon = (props) => {
       />
 
       {item?.label && (
-        <span className="text-sm capitalize ">{item?.label}</span>
+        <span className="text-sm capitalize leading-none ">{item?.label}</span>
       )}
     </div>
   );
