@@ -50,17 +50,17 @@ const Hero = ({ data }) => {
               {
                 title: data?.reveal_image_story_1_title,
                 redirectLink: data?.reveal_image_story_1_redirection_link,
-                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_1.id}`,
+                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_1?.id}`,
               },
               {
                 title: data?.reveal_image_story_2_title,
                 redirectLink: data?.reveal_image_story_2_redirection_link,
-                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_2.id}`,
+                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_2?.id}`,
               },
               {
                 title: data?.reveal_image_story_3_title,
                 redirectLink: data?.reveal_image_story_3_redirection_link,
-                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_3.id}`,
+                img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_story_3?.id}`,
               },
             ],
           }}

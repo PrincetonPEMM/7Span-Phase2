@@ -72,7 +72,7 @@ const PeopleDetailPage = async ({ params }) => {
             </p>
           </div>
           <div
-            className="space-y-5 font-semibold text-offWhite-500 text-center lg:text-left"
+            className="space-y-5 font-semibold text-offBlack-500 text-center lg:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 

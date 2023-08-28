@@ -249,7 +249,7 @@ body {
   box-shadow: none;
 }
 .iconcheck input[type="checkbox"] {
-  @apply bg-background-500 text-black;
+  @apply bg-offWhite-500 text-black;
 }
 .iconcheck input[type="checkbox"] + span {
   @apply text-black relative capitalize;
@@ -640,3 +640,16 @@ body {
     padding-top: 220.778%;
   }
 } */
+
+@media only screen and (min-width: 1024px){
+
+  .submenu {
+    /* display: block; */
+    top: 100% !important;
+    padding-top: 8px;
+  }
+  .group:hover .submenu {
+    display: block;
+  }
+  
+}

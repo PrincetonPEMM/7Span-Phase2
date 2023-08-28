@@ -67,7 +67,7 @@ const RangeSlider = ({ isPageName, min, max, onChange }) => {
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left bg-background-500"
+        className="thumb thumb--left bg-offWhite-500"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input

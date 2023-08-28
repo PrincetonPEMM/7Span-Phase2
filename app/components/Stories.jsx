@@ -192,7 +192,7 @@ const Stories = () => {
         </button>
         <div className="grid grid-cols-3 items-center justify-between top-0 py-2">
           <div className="relative w-full max-w-sm md:max-w-4xl col-span-2">
-            <span className="bg-background-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
+            <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
             </span>
             <InputText
@@ -247,7 +247,7 @@ const Stories = () => {
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-            {!isLoading ? <h1>Records Not Found</h1> : <h1>Loading...</h1>}
+            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}
         <Pagination
