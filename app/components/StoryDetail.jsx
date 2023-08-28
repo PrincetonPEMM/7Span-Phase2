@@ -84,7 +84,7 @@ export default function StoryDetail({ data, Id }) {
                     {/* Left sided Image portion  */}
                     <div>
                         {/* slider */}
-                        <div className="grid grid-cols-2 gap-1 py-4 md:grid-cols-4 md:gap-3"></div>
+                     
 
                         {Boolean(data?.paintingLinks) && (
                             <SliderModal sliderImg={data.paintingLinks} />

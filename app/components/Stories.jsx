@@ -130,7 +130,11 @@ const Stories = () => {
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className={`flex px-1 md:px-5 pb-10  ${isOpen ? "shell" : "flex "}`}>
+    <div
+      className={`story-page flex px-1 md:px-5 pb-10  ${
+        isOpen ? "shell" : "flex "
+      }`}
+    >
       <div
         className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
           isOpen
