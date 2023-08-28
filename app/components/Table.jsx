@@ -136,8 +136,13 @@ const Table = ({
                       </tr>
                     )}
 
-                  {!toggleBtn && (
-                    <tr key={index} className="text-offBlack-500 font-medium">
+                  {
+                    <tr
+                      key={index}
+                      className={`text-offBlack-500 font-medium ${
+                        toggleBtn ? "hidden" : ""
+                      }`}
+                    >
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES && event.canonical_story_id}
                         {isPageName === MANUSCRIPTS &&
@@ -220,7 +225,7 @@ const Table = ({
                         </td>
                       )}
                     </tr>
-                  )}
+                  }
                 </React.Fragment>
               ))}
           </tbody>
