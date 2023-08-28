@@ -585,6 +585,9 @@ body {
 .banner-image:hover .banner-content {
   @apply opacity-100 transition-all duration-150;
 }
+.container-fliud {
+  @apply px-5;
+}
 .banner-image:hover img {
   transform: scale(1.1);
   transition: 2s;
