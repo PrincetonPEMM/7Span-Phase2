@@ -606,6 +606,24 @@ body {
 .table {
   min-height: 200px;
 }
+.story-page .table-body tr:nth-child(4n + 1),
+.story-page .table-body tr:nth-child(4n + 2) {
+  @apply bg-offWhite-400;
+}
+.story-page .table-body tr:nth-child(4n),
+.story-page .table-body tr:nth-child(4n + 3) {
+  @apply bg-offWhite-500;
+}
+
+.manuscript-page .table-body tr:nth-child(4n + 1),
+.manuscript-page .table-body tr:nth-child(4n + 2) {
+  @apply bg-offWhite-400;
+}
+
+.manuscript-page .table-body tr:nth-child(4n),
+.manuscript-page .table-body tr:nth-child(4n + 3) {
+  @apply bg-offWhite-500;
+}
 
 @keyframes pulse {
   0%,
@@ -645,8 +663,7 @@ body {
   }
 } */
 
-@media only screen and (min-width: 1024px){
-
+@media only screen and (min-width: 1024px) {
   .submenu {
     /* display: block; */
     top: 100% !important;
@@ -655,5 +672,4 @@ body {
   .group:hover .submenu {
     display: block;
   }
-  
 }

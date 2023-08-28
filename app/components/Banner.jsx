@@ -38,14 +38,9 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
           </h3>
           <div className="banner-content">
             <p className="text-xs mt-1 xl:text-sm">{data.description}</p>
-            <div
-              className="mt-2 text-xs xl:mt-5"
-              dangerouslySetInnerHTML={{ __html: data.credit }}
-            ></div>
-
             <a
               href={data.id}
-              className="text-offWhite-500 text-sm delay-75 flex items-center"
+              className="text-offWhite-500 text-sm delay-75 flex items-center hover:text-secondary-500"
             >
               <span>Learn More</span>
               <span
@@ -56,6 +51,10 @@ const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
                 <MdiChevronDown />
               </span>
             </a>
+            <div
+              className="mt-2 text-xs xl:mt-5"
+              dangerouslySetInnerHTML={{ __html: data.credit }}
+            ></div>
           </div>
         </div>
       </button>

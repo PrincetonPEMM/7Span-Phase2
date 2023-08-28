@@ -109,7 +109,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
+          <tbody className="min-h-[300px] table-body align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
@@ -117,8 +117,8 @@ const Table = ({
                     (isPageName === STORIES || isPageName === MANUSCRIPTS) && (
                       <tr>
                         <td
-                          className="w-full px-3 py-3 font-bold underline hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
-                          colSpan="6"
+                          className="w-full px-3 py-3 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
+                          colSpan="10"
                         >
                           <Link
                             href={
