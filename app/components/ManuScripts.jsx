@@ -17,6 +17,7 @@ import useDebounce from "@/utils/useDebounce";
 import OutsideClickHandler from "react-outside-click-handler";
 import { TablePagination } from "./Pagination";
 const ManuScripts = () => {
+  const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
   const [search, setSearch] = useState("");
@@ -53,48 +54,56 @@ const ManuScripts = () => {
   };
 
   async function fetchData(searchKey = "") {
-    setIsLoadint(true);
-    const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
-      filterItem,
-      "withPaintings"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withOnlineDigitalCopy"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withColorDigitalCopy"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withUniqueStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "oldestManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "recentManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "arabicManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "arabicAndGaazManuscript"
-    )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
-      "lastKnownLocation",
-      placeItem
-    )}&${makeParamsArray(
-      "knownOriginRegion",
-      originRegion
-    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
+    try {
+      setIsLoadint(true);
+      const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withOnlineDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withColorDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withUniqueStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "oldestManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicAndGaazManuscript"
+      )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
+        "lastKnownLocation",
+        placeItem
+      )}&${makeParamsArray(
+        "knownOriginRegion",
+        originRegion
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
     `;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
-    );
 
-    const data = await response.json();
-    setTotalPage(data.total);
-    setTableData(data.data);
-    window.scrollTo(0, 0);
-    setIsLoadint(false);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
+      );
+
+      const data = await response.json();
+      setTotalPage(data.total);
+      setTableData(data.data);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setIsLoadint(false);
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
   useEffect(() => {
     fetchData(search);
@@ -243,6 +252,8 @@ const ManuScripts = () => {
           // onPageChange={(num) => {
           //   setPage(num);
           // }}
+          expandedRows={expandedRows}
+          setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
@@ -260,6 +271,7 @@ const ManuScripts = () => {
           isOpen={isOpen}
           onPageChange={(num) => {
             setPage(num);
+            setExpandedRows([]);
           }}
         />
         {/* </div> */}

@@ -436,7 +436,7 @@ function SeconsdLine(total_records) {
           </u>
           : appearing in&nbsp;
           {total_records < 10
-            ? `only ${data.total_records} of the PEMM manuscripts.`
+            ? `only ${total_records} of the PEMM manuscripts.`
             : `appearing in ${(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *

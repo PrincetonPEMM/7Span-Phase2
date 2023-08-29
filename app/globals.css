@@ -722,3 +722,17 @@ body {
   border: 1px solid #9b9b9b;
   background-color: #dbdbdb;
 }
+
+.sidebar_open {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar_open::before {
+  @apply absolute inset-0 bg-offBlack-400 z-50 w-full h-full;
+  content: "";
+  filter: grayscale(4.5);
+
+  background-color: rgb(0 0 0 / 52%);
+  content: "";
+}

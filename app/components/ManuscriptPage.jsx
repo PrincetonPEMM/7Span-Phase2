@@ -10,6 +10,7 @@ import Table from "./Table";
 import { TablePagination } from "./Pagination";
 
 export default function Manuscript({ Id, data, table }) {
+  const [expandedRows, setExpandedRows] = useState([]);
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   const [perPage, setPerPage] = useState(pagePerLimit);
@@ -26,9 +27,13 @@ export default function Manuscript({ Id, data, table }) {
           .then((data) => {
             const table = document.querySelector("#emip-table");
             const top = table.getBoundingClientRect().y;
-            window.scrollTo(0, top + window.scrollY);
+            window.scrollTo({
+              top: top + window.scrollY,
+              behavior: "smooth",
+            });
             setTableData(data);
-          });
+          })
+          .catch((error) => console.error("Error", error));
       } else {
         didMount.current = true;
       }
@@ -286,6 +291,8 @@ export default function Manuscript({ Id, data, table }) {
                 // onPageChange={(e) => {
                 //   setPage(e.selected + 1);
                 // }}
+                expandedRows={expandedRows}
+                setExpandedRows={setExpandedRows}
               />
               <TablePagination
                 meta={{
@@ -298,6 +305,7 @@ export default function Manuscript({ Id, data, table }) {
                 isOpen={isOpen}
                 onPageChange={(num) => {
                   setPage(num);
+                  setExpandedRows([]);
                 }}
               />
             </div>
