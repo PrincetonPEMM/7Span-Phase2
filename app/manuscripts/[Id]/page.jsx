@@ -5,17 +5,28 @@ export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
   const { Id } = params;
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/${Id}`
-  );
-  const data = await response.json();
+  let data = null;
+  let tableData = null;
 
-  const tableRes = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_DIRECTUS_URL
-    }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
-  );
-  const tableData = await tableRes.json();
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/${Id}`
+    );
+    data = await response.json();
+  } catch (error) {
+    console.log("Error", error);
+  }
+
+  try {
+    const tableRes = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
+    );
+    tableData = await tableRes.json();
+  } catch (error) {
+    console.log("Error", error);
+  }
 
   return (
     <>
