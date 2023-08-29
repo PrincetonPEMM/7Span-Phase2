@@ -1,6 +1,6 @@
 import React from "react";
 
-const NotFound = () => {
+const ComingSoon = () => {
   return (
     <div className="flex items-center justify-center  p-10 md:p-24">
       <h3 className="text-primary-500 text-6xl  font-header tracking-wide">
@@ -10,4 +10,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default ComingSoon;

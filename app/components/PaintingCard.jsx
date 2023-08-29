@@ -3,7 +3,7 @@ import Image from "next/image";
 const PaintingCard = ({ title, id, description, cardImg }) => {
   return (
     <div
-      className={`rounded-lg text-background-500 font-body relative overflow-hidden inline-block  card-background w-full`}
+      className={`rounded-lg text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
     >
       <div className=" bg-offWhite-500">
         <img src={cardImg} alt="PEMM" className="w-full object-cover " />

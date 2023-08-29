@@ -15,7 +15,7 @@ const Tabs = ({ tabs, children, tabIndex = 0, onClick }) => {
                 key={"tab" + index}
                 className={({ selected }) =>
                   classNames(
-                    "min-w-[150px] flex-none border-b text-primary-500 border-transparent rounded-t-md ml-1 p-2 outline-0",
+                    "min-w-[100px] flex-none border-b text-primary-500 border-transparent rounded-t-md ml-1 p-2 outline-0",
                     selected ? " border-b-primary-500" : "border-b-transparent"
                   )
                 }
@@ -25,7 +25,7 @@ const Tabs = ({ tabs, children, tabIndex = 0, onClick }) => {
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className=" bg-background-500">{children}</Tab.Panels>
+          <Tab.Panels className=" bg-offWhite-500">{children}</Tab.Panels>
         </Tab.Group>
       </div>
     </>

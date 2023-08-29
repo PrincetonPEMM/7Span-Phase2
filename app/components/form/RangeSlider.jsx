@@ -1,8 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 
-const RangeSlider = ({ min, max, onChange }) => {
+const RangeSlider = ({ isPageName, min, max, onChange }) => {
   const lowest = min;
   const largest = max;
   const [minVal, setMinVal] = useState(min);
@@ -40,9 +41,17 @@ const RangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    const total = largest - lowest;
-    const min = Math.round(((minVal - lowest) / total) * 100);
-    const max = Math.round(((maxVal - lowest) / total) * 100);
+    // For convert into 0 to 100 range.
+    let min, max;
+    if (isPageName === MANUSCRIPTS) {
+      const total = largest - lowest;
+      min = Math.round(((minVal - lowest) / total) * 100);
+      max = Math.round(((maxVal - lowest) / total) * 100);
+    }
+    if (isPageName === STORIES) {
+      min = Math.round(minVal);
+      max = Math.round(maxVal);
+    }
     onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 
@@ -58,7 +67,7 @@ const RangeSlider = ({ min, max, onChange }) => {
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left bg-background-500"
+        className="thumb thumb--left bg-offWhite-500"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
       <input

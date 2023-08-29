@@ -21,6 +21,7 @@ import {
   rangeSliderMinUniqueStoriesManuscriptsPage,
   rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
+import Radio from "./form/Radio";
 
 const Sidebar = ({
   isPageName,
@@ -37,8 +38,11 @@ const Sidebar = ({
   onClick,
 }) => {
   return (
-    <div className="font-menu bg-primary-500 w-full rounded-md text-white  ">
-      <button onClick={onClick} className="">
+    <div className=" w-full rounded-md text-white">
+      <button
+        onClick={onClick}
+        className="sticky top-0 block py-2 bg-primary-500 z-20 w-full"
+      >
         <MdiMenuOpen className="text-white-500 h-6 w-6" />
       </button>
       <div className="block mt-3">
@@ -46,17 +50,27 @@ const Sidebar = ({
           <lable className="text-white text-lg block mb-3">
             {filterItem.title}
           </lable>
-          {Object.values(filterItem.checkItem)?.map((item, index) => (
-            <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
-          ))}
+          {Object.values(filterItem.checkItem)?.map((item, index) =>
+            item.isCheckbox ? (
+              <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
+            ) : (
+              <Radio
+                item={item}
+                key={index}
+                setFilterItem={setFilterItem}
+                name={item.name}
+              />
+            )
+          )}
         </div>
       </div>
       <div className="block mt-7">
         <lable className="text-white text-lg block mb-3">
-          {isPageName === STORIES && "Story's Century of Origin"}
+          {isPageName === STORIES && "Story's Date of Origin"}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForStoriesStoriesPage
@@ -73,7 +87,7 @@ const Sidebar = ({
       {isPageName === STORIES && (
         <div className="block mt-10">
           <lable className="text-white text-lg block">{placeItem?.title}</lable>
-          <div className="mt-5">
+          <div className="mt-5 flex items-start flex-wrap">
             {placeItem?.checkItem.map((item, index) => (
               <InputIcon
                 key={index}
@@ -91,6 +105,7 @@ const Sidebar = ({
           {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForManuscriptsStoriesPage
@@ -110,6 +125,7 @@ const Sidebar = ({
           {isPageName === MANUSCRIPTS && "Manuscript's Number of Paintings"}
         </lable>
         <RangeSlider
+          isPageName={isPageName}
           min={
             isPageName === STORIES
               ? rangeSliderMinForPaintingsStoriesPage
@@ -126,9 +142,10 @@ const Sidebar = ({
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
           <lable className="text-white text-lg block mb-3">
-            Manuscript's Number of Unique Paintings
+            Manuscript's Number of Unique Stories
           </lable>
           <RangeSlider
+            isPageName={isPageName}
             min={rangeSliderMinUniqueStoriesManuscriptsPage}
             max={rangeSliderMaxUniqueStoriesManuscriptsPage}
             onChange={onChangeUnique}
