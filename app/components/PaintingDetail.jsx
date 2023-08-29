@@ -1,9 +1,12 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import logo from "@assets/images/painting-detail.jpg";
 import MdiOpenInNew from "@/assets/icons/MdiOpenInNew";
 import Link from "next/link";
+import Modal from "./Modal";
 const PaintingDetail = () => {
+  const [isOpen, setisOpen] = useState(false);
   return (
     <div className="container-fluid py-10">
       {/* <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
@@ -12,9 +15,20 @@ const PaintingDetail = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-10 xl:gap-20">
         <div>
           <Image
+            onClick={() => setisOpen(true)}
             src={logo}
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
           />
+          <Modal
+            isOpen={isOpen}
+            modalClose={() => setisOpen(false)}
+            pModalclassName="pc-max-w-md"
+          >
+            <Image
+              src={logo}
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
+            />
+          </Modal>
         </div>
         <div className="col-span-2 text-offBlack-400 max-w-2xl">
           <h3 className="font-body font-extrabold text-2xl md:text-3xl">

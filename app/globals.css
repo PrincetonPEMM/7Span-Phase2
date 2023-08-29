@@ -110,7 +110,7 @@ body {
 }
 
 .space-y-p a {
-  @apply underline text-xs md:text-base inline;
+  @apply underline text-xs md:text-base inline text-primary-500;
 }
 
 .space-y-p h1 {
