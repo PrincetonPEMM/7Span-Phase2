@@ -9,21 +9,21 @@ const PaintingDetail = () => {
       {/* <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
         title
       </h3> */}
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-10 xl:gap-20">
         <div>
           <Image
             src={logo}
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
           />
         </div>
-        <div className="col-span-2 text-offBlack-400">
-          <h3 className="font-body font-extrabold text-3xl">
+        <div className="col-span-2 text-offBlack-400 max-w-2xl">
+          <h3 className="font-body font-extrabold text-2xl md:text-3xl">
             Story ID 4: The Ring in the fish
           </h3>
           <h5 className="font-bold text-lg text-offBlack-500">
             PEMM Captions:
           </h5>
-          <ol className="list-decimal list-inside text-offBlack-500">
+          <ol className="list-decimal list-inside text-offBlack-500 text-base md:text-lg">
             <li>The client throws the ring into th river</li>
             <li>
               Samuel of Kalman there was a secretly devout monk who fasted
@@ -34,7 +34,7 @@ const PaintingDetail = () => {
             </li>
             <li>The client throws the ring into th river</li>
           </ol>
-          <div className="space-y-1 text-xl">
+          <div className="space-y-1 text-base md:text-xl">
             <p>
               <strong> Painting Caption</strong> none
             </p>
@@ -58,7 +58,7 @@ const PaintingDetail = () => {
               </strong>
             </p>
           </div>
-          <div className="space-x-5 pt-10 text-offWhite-500 font-semibold font-body">
+          <div className="md:space-x-5 pt-10 text-offWhite-500 font-semibold font-body flex items-start">
             <Link
               className="bg-secondary-500 rounded-md inline-flex items-center px-3 py-1"
               href="/manuscripts"
@@ -72,6 +72,20 @@ const PaintingDetail = () => {
               <MdiOpenInNew className="h-6 w-6" />
               <span>View Story</span>
             </Link>
+
+            {/* Next and previous buttons  */}
+            <button
+              className="bg-secondary-500 rounded-md px-3 py-1"
+              href="/manuscripts"
+            >
+              Previous Painting
+            </button>
+            <button
+              className="bg-secondary-500 rounded-md px-3 py-1"
+              href="/manuscripts"
+            >
+              Next Painting
+            </button>
           </div>
         </div>
       </div>
