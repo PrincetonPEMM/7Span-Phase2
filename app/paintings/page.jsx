@@ -1,10 +1,12 @@
 import React from "react";
 import Paintings from "../components/Paintings";
+import ComingSoon from "../components/ComingSoon";
 
 const page = () => {
   return (
     <div>
-      <Paintings />
+      <ComingSoon />
+      {/* <Paintings /> */}
     </div>
   );
 };
