@@ -35,7 +35,7 @@ const ManuscriptDetail = ({ menudetail }) => {
   return (
     <div className="container-fliud">
       <div className="pb-12">
-        <h2 className="font-menu text-5xl font-medium">
+        <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
           British Library "Orient" Collection, Manuscript No . 520
         </h2>
         <div className="space-y-p">
@@ -44,7 +44,9 @@ const ManuscriptDetail = ({ menudetail }) => {
           ))}
         </div>
         <div className="pt-5">
-          <h3 className="font-menu text-5xl font-medium">EMIP (EMIP) 981a</h3>
+          <h3 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
+            EMIP (EMIP) 981a
+          </h3>
 
           <Table
             isPageName={MANUSCRIPT_DETAIL}
