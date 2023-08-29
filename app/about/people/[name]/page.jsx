@@ -25,7 +25,7 @@ const PeopleDetailPage = async ({ params }) => {
       </Link>
       <div className="items-start font-body py-10 lg:flex lg:space-x-10">
         {(results[0]?.profile_image || results[0]?.favorite_painting_image) && (
-          <div className="w-full lg:pb-10 max-w-xs mx-auto">
+          <div className="w-full lg:pb-10 max-w-sm mx-auto">
             {results[0]?.profile_image && (
               <div className="w-60 h-60 aspect-squre rounded-full mx-auto sm:h-80 sm:w-80">
                 <img
@@ -38,7 +38,7 @@ const PeopleDetailPage = async ({ params }) => {
 
             {results[0]?.favorite_painting_image && (
               <div className=" hidden md:py-8 md:block lg:py-12">
-                <h1 className="text-center text-2xl font-bold text-primary-500 block mb-4 lg:text-3xl">
+                <h1 className="text-center text-2xl font-extrabold text-primary-500 block mb-4 lg:text-3xl tracking-tighter">
                   {`${results[0].first_name}'s Favorite Painting`}
                 </h1>
                 <div className="mx-auto w-56 h-auto">
@@ -48,6 +48,9 @@ const PeopleDetailPage = async ({ params }) => {
                     className="object-cover object-center mx-auto h-full overflow-hidden w-60"
                   />
                 </div>
+                <p className="mx-auto block text-offBlack-500 font-bold text-lg text-center mt-2">
+                  {results[0]?.favorite_painting_description}
+                </p>
               </div>
             )}
           </div>

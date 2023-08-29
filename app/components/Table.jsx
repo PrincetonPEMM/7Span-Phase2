@@ -14,8 +14,10 @@ const Table = ({
   // meta,
   // isOpen,
   // onPageChange,
+  expandedRows,
+  setExpandedRows,
 }) => {
-  const [expandedRows, setExpandedRows] = useState([]);
+  // const [expandedRows, setExpandedRows] = useState([]);
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
       setExpandedRows(expandedRows.filter((row) => row !== rowIndex));
@@ -86,6 +88,12 @@ const Table = ({
     );
   };
 
+  const buildShowingText = (text, newText = "-") => {
+    return text === undefined || text === null || text.length === 0
+      ? newText
+      : text;
+  };
+
   return (
     <>
       {/* <div
@@ -126,9 +134,9 @@ const Table = ({
                             }
                           >
                             {isPageName === STORIES &&
-                              event.canonical_story_title}
+                              buildShowingText(event.canonical_story_title)}
                             {isPageName === MANUSCRIPTS &&
-                              event.manuscript_full_name}
+                              buildShowingText(event.manuscript_full_name)}
                           </Link>
                         </td>
                       </tr>
@@ -142,45 +150,57 @@ const Table = ({
                       }`}
                     >
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                        {isPageName === STORIES && event.canonical_story_id}
+                        {isPageName === STORIES &&
+                          buildShowingText(event.canonical_story_id)}
                         {isPageName === MANUSCRIPTS &&
-                          `${event.manuscript_date_range_start}-${event.manuscript_date_range_end}`}
+                          `${
+                            event.manuscript_date_range_start &&
+                            event.manuscript_date_range_end
+                              ? event.manuscript_date_range_start +
+                                "-" +
+                                event.manuscript_date_range_end
+                              : "-"
+                          }`}
                         {isPageName === MANUSCRIPT_DETAIL && (
-                          <a
+                          <Link
                             href={`/stories/${event.canonical_story_id}`}
                             className="underline text-primary-500"
                           >
-                            {event.canonical_story_id}
-                          </a>
+                            {buildShowingText(event.canonical_story_id)}
+                          </Link>
                         )}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                        {isPageName === STORIES && event.earliest_attestation}
-                        {isPageName === MANUSCRIPTS && event.total_stories}
+                        {isPageName === STORIES &&
+                          buildShowingText(event.earliest_attestation)}
+                        {isPageName === MANUSCRIPTS &&
+                          buildShowingText(event.total_stories)}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          event.canonical_story_title}
+                          buildShowingText(event.canonical_story_title)}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                        {isPageName === STORIES && event.total_records}
+                        {isPageName === STORIES &&
+                          buildShowingText(event.total_records)}
                         {isPageName === MANUSCRIPTS &&
-                          event.total_unique_stories}
+                          buildShowingText(event.total_unique_stories)}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           LocationInMs(event)}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
-                          event.total_story_id_paintings}
+                          buildShowingText(event.total_story_id_paintings)}
                         {isPageName === MANUSCRIPTS &&
                           collapseText(index, event.ms_location_note)}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          event.miracle_number}
+                          buildShowingText(event.miracle_number)}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
-                        {isPageName === STORIES && event.type_of_story}
+                        {isPageName === STORIES &&
+                          buildShowingText(event.type_of_story)}
                         {isPageName === MANUSCRIPTS &&
-                          event.total_manuscript_paintings}
+                          buildShowingText(event.total_manuscript_paintings)}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          (Boolean(event.manuscript) ? event.manuscript : "-")}
+                          buildShowingText(event.manuscript)}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {/* This */}
@@ -195,13 +215,17 @@ const Table = ({
                       {isPageName === MANUSCRIPTS && (
                         <>
                           <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                            <a
-                              href={event.link_to_digital_copy}
-                              target="_blank"
-                              className="text-primary-500 underline"
-                            >
-                              Digital Copy
-                            </a>
+                            {event.link_to_digital_copy ? (
+                              <a
+                                href={event.link_to_digital_copy}
+                                target="_blank"
+                                className="text-primary-500 underline"
+                              >
+                                Digital Copy
+                              </a>
+                            ) : (
+                              "-"
+                            )}
                           </td>
                           <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
                             {event.scans_of_manuscript_in_color === "Yes"

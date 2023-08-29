@@ -25,6 +25,7 @@ import { TablePagination } from "./Pagination";
 const Stories = () => {
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
+  const [expandedRows, setExpandedRows] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
@@ -63,51 +64,61 @@ const Stories = () => {
   };
 
   async function fetchData(searchKey = "") {
-    setIsLoadint(true);
-    const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
-      filterItem,
-      "withPaintings"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "ethiopianStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "miracleOfMaryStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "lifeOfMaryStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "mostIllustrated"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "earliestStories"
-    )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(
-      filterItem,
-      "popularStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "uniqueStories"
-    )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
-      "origin",
-      placeItem
-    )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
-      "languages",
-      langItem
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withEnglishTranslation"
-    )}filters[search]=${searchKey}
+    try {
+      setIsLoadint(true);
+      const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "ethiopianStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "miracleOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "lifeOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "mostIllustrated"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "earliestStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "popularStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "uniqueStories"
+      )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "origin",
+        placeItem
+      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+        "languages",
+        langItem
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withEnglishTranslation"
+      )}filters[search]=${searchKey}
     `;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
-    );
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
+      );
 
-    const data = await response.json();
-    setTotalPage(data.total);
-    setTableData(data.data);
-    window.scrollTo(0, 0);
-    setIsLoadint(false);
+      const data = await response.json();
+      setTotalPage(data.total);
+      setTableData(data.data);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setIsLoadint(false);
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
 
   useEffect(() => {
@@ -249,6 +260,8 @@ const Stories = () => {
           // onPageChange={(e) => {
           //   setPage(e.selected + 1);
           // }}
+          expandedRows={expandedRows}
+          setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
@@ -266,6 +279,7 @@ const Stories = () => {
           isOpen={isOpen}
           onPageChange={(num) => {
             setPage(num);
+            setExpandedRows([]);
           }}
         />
       </div>
