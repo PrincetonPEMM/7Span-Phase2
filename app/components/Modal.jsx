@@ -54,7 +54,7 @@ const Modal = ({
                   )}
 
                   <button
-                    className=" absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-background-500"
+                    className=" absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-offWhite-500"
                     onClick={modalClose}
                   >
                     X{closeModal}

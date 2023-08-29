@@ -186,8 +186,7 @@ export default function StoryDetail({ data, Id }) {
                   <p className="text-base leading-loose mb-3">
                     {data.translation_author}. &quot;ID{" "}
                     {data.canonical_story_id}: {data.original_macomber_title}
-                    .&quot;{" "}
-                    <i>TÃ¤Ë€ammÉ™rÃ¤ Maryam (Miracle of Mary) Stories</i>,
+                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
                     and Egyptian Miracles of Mary project.{" "}
@@ -345,8 +344,7 @@ export default function StoryDetail({ data, Id }) {
                   <p className="text-base leading-loose mb-3">
                     {data.translation_author}. &quot;ID{" "}
                     {data.canonical_story_id}: {data.original_macomber_title}
-                    .&quot;{" "}
-                    <i>TÃ¤Ë€ammÉ™rÃ¤ Maryam (Miracle of Mary) Stories</i>,
+                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
                     and Egyptian Miracles of Mary project.{" "}
@@ -468,17 +466,16 @@ function ThirdLine(
             total_manuscripts_with_story_id_illustrated == null ||
             total_manuscripts_with_story_id_illustrated != 0 ? (
               <>
-                This story is among the thirty-two TÃ¤Ë€ammÉ™rÃ¤ Maryam stories
-                that are most <u>frequently illustrated</u>, with a total
-                of&nbsp;
+                This story is among the thirty-two Täˀammərä Maryam stories that
+                are most <u>frequently illustrated</u>, with a total of&nbsp;
                 {total_story_id_paintings} paintings.
               </>
             ) : (
               <>
-                This story is among the thirty-two TÃ¤Ë€ammÉ™rÃ¤ Maryam stories
-                that are most <u>frequently illustrated</u>: it is illustrated
-                in ${total_manuscripts_with_story_id_illustrated} PEMM
-                manuscripts, with a total of
+                This story is among the thirty-two Täˀammərä Maryam stories that
+                are most <u>frequently illustrated</u>: it is illustrated in $
+                {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
+                with a total of
                 {total_story_id_paintings} paintings.
               </>
             )
