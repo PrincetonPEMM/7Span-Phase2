@@ -31,6 +31,15 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Source Serif Pro";
+  src:
+    url("../assets/fonts/SourceSerifPro-Black.woff2") format("woff2"),
+    url("../assets/fonts/SourceSerifPro-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "Noto Serif";
@@ -709,7 +718,7 @@ body {
 }
 .pagination .disabled a {
   pointer-events: none;
-  color: #9b9b9b  ;
+  color: #9b9b9b;
   border: 1px solid #9b9b9b;
   background-color: #dbdbdb;
 }
