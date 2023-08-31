@@ -1,7 +1,9 @@
 import React from "react";
 import Paintings from "../components/Paintings";
 
-const page = () => {
+export const dynamic = "force-dynamic";
+
+const Page = () => {
   return (
     <div>
       <Paintings />
@@ -9,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

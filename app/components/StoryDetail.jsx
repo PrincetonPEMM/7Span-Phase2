@@ -74,6 +74,8 @@ export default function StoryDetail({ data, Id }) {
     },
   ];
 
+  console.log(data, "datadatadata");
+
   return (
     <div className="px-4 py-5 md:px-8">
       <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">

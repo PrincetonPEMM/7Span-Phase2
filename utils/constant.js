@@ -1,4 +1,5 @@
 export const pagePerLimit = 20;
+export const pagePerLimitForPainting = 21;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 641;
 export const TRANSLATION_STATUS_OPTIONS = [
   "Published translation",

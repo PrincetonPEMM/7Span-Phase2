@@ -163,7 +163,7 @@ const Table = ({
                           }`}
                         {isPageName === MANUSCRIPT_DETAIL && (
                           <Link
-                            href={`/stories/${event.canonical_story_id}`}
+                            href={`/stories/${event.id}`}
                             className="underline text-primary-500"
                           >
                             {buildShowingText(event.canonical_story_id)}
