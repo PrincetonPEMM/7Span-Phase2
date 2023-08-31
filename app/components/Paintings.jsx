@@ -404,7 +404,7 @@ const Paintings = () => {
           <InputText value="" iconBefore />
         </div>
       </div>
-      <div className="flex items-start space-x-4 mb-5 max-w-xl lg:mx-auto">
+      <div className="flex items-start flex-wrap mb-5 max-w-5xl lg:mx-auto">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -433,6 +433,9 @@ const Paintings = () => {
           options={archiveOfPaintingOption}
           isMultiple={false}
         />
+        <button className="bg-primary-500 text-white py-2 pl-3 pr-10 text-center rounded-md m-3">
+          Reset
+        </button>
       </div>
       <div className="pb-10">
         {data.length && (
