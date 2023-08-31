@@ -1,51 +1,181 @@
 "use client";
-import React from "react";
-import Card from "@/app/components/Card";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import MdiMagnify from "@assets/icons/MdiMagnify";
-import Select, { POption } from "./form/Select";
 import Masonry from "@/app/components/Masonry";
 import PaintingCard from "./PaintingCard";
-const Paintings = () => {
-  const [selectedOpt, setSelectedOpt] = useState();
+import Dropdown from "./Dropdown";
+import { pagePerLimitForPainting } from "@/utils/constant";
 
-  const categories = [
-    {
-      name: "29/03/1996",
-      id: "hello",
-    },
-    {
-      name: "29/03/1976",
-      id: "hello",
-    },
-    {
-      name: "29/03/1966",
-      id: "hello",
-    },
-    {
-      name: "29/03/1956",
-      id: "hello",
-    },
-  ];
-  const categoriess = [
-    {
-      name: "29/03/1996",
-      id: "hello",
-    },
-    {
-      name: "29/03/1976",
-      id: "hello",
-    },
-    {
-      name: "29/03/1966",
-      id: "hello",
-    },
-    {
-      name: "29/03/1956",
-      id: "hello",
-    },
-  ];
+const dateOfPaintinsOption = [
+  { id: 1, label: "1200s", value: "1200" },
+  { id: 2, label: "1300s", value: "1300" },
+  { id: 3, label: "1400s", value: "1400" },
+  { id: 4, label: "1500s", value: "1500" },
+  { id: 5, label: "1600s", value: "1600" },
+  { id: 6, label: "1700s", value: "1700" },
+  { id: 7, label: "1800s", value: "1800" },
+  { id: 8, label: "1900s", value: "1900" },
+  { id: 9, label: "2000s", value: "2000" },
+];
+
+const paintingsInColorOnlyOption = [
+  {
+    id: 1,
+    label: "Default is paintings in color",
+    value: "default",
+  },
+  { id: 2, label: "Include Black & White", value: "black_and_white" },
+  {
+    id: 3,
+    label: "Include Image Not Available",
+    value: "no_image",
+  },
+];
+
+const storyTypeOption = [
+  { id: 1, label: "Miracle of Mary", value: "miracle_of_mary" },
+  { id: 2, label: "Life of Mary", value: "life_of_mary" },
+];
+
+const archiveOfPaintingOption = [
+  { id: 1, label: "Armagh Robinson Library", value: "Armagh Robinson Library" },
+  {
+    id: 2,
+    label: "Art Institute of Chicago",
+    value: "Art Institute of Chicago",
+  },
+  { id: 3, label: "Berlin Staatsbibliothek", value: "Berlin Staatsbibliothek" },
+  {
+    id: 4,
+    label: "Beta Lahem church, Gayant, Ethiopia",
+    value: "Beta Lahem church, Gayant, Ethiopia",
+  },
+  {
+    id: 5,
+    label: "Biblioteca Apostolica vaticana",
+    value: "Biblioteca Apostolica vaticana",
+  },
+  { id: 6, label: "Biblioteca Giovardiana", value: "Biblioteca Giovardiana" },
+  {
+    id: 7,
+    label: "Bibliotheque nationale de France",
+    value: "Bibliotheque nationale de France",
+  },
+  {
+    id: 8,
+    label: "Bodleian Library, University of Oxford",
+    value: "Bodleian Library, University of Oxford",
+  },
+  { id: 9, label: "British Library", value: "British Library" },
+  { id: 10, label: "Brown University", value: "Brown University" },
+  { id: 11, label: "Chester Beatty Library", value: "Chester Beatty Library" },
+  {
+    id: 12,
+    label: "Dabra Koreb & Qaraneto Madhane Alam Monastery",
+    value: "Dabra Koreb & Qaraneto Madhane Alam Monastery",
+  },
+  { id: 13, label: "Dabra Warq Monastery", value: "Dabra Warq Monastery" },
+  { id: 14, label: "Ethio-SPaRe Project", value: "Ethio-SPaRe Project" },
+  {
+    id: 15,
+    label: "Ethiopian Manuscript Digital Archive",
+    value: "Ethiopian Manuscript Digital Archive",
+  },
+  {
+    id: 16,
+    label: "Ethiopian Manuscript Digital Library",
+    value: "Ethiopian Manuscript Digital Library",
+  },
+  {
+    id: 17,
+    label: "Ethiopian Manuscript Imaging Project",
+    value: "Ethiopian Manuscript Imaging Project",
+  },
+  {
+    id: 18,
+    label: "Ethiopian Manuscript Microfilm Library",
+    value: "Ethiopian Manuscript Microfilm Library",
+  },
+  { id: 19, label: "Gunda Dunde Monastery", value: "Gunda Dunde Monastery" },
+  {
+    id: 20,
+    label: "Institute of Ethiopian Studies",
+    value: "Institute of Ethiopian Studies",
+  },
+  {
+    id: 21,
+    label: "Jerusalem EOTC Patriarchate",
+    value: "Jerusalem EOTC Patriarchate",
+  },
+  {
+    id: 22,
+    label: "Leiden University Library",
+    value: "Leiden University Library",
+  },
+  { id: 23, label: "Library of Congress", value: "Library of Congress" },
+  {
+    id: 24,
+    label: "Marawe Krestos & Dabra Abbay Monasteries",
+    value: "Marawe Krestos & Dabra Abbay Monasteries",
+  },
+  { id: 25, label: "Museum of the Bible", value: "Museum of the Bible" },
+  {
+    id: 26,
+    label: "Princeton University Library",
+    value: "Princeton University Library",
+  },
+  {
+    id: 27,
+    label: "Robert (Bob) McCarthy Private Collection",
+    value: "Robert (Bob) McCarthy Private Collection",
+  },
+  {
+    id: 28,
+    label: "Romanat Qeddus Mikael Dabre Mehret",
+    value: "Romanat Qeddus Mikael Dabre Mehret",
+  },
+  {
+    id: 29,
+    label: "Royal Library, Windsor Castle",
+    value: "Royal Library, Windsor Castle",
+  },
+  {
+    id: 30,
+    label: "Schoyen Collection-London-Oslo",
+    value: "Schoyen Collection-London-Oslo",
+  },
+  { id: 31, label: "UNESCO", value: "UNESCO" },
+  {
+    id: 32,
+    label: "Verzeichnis der orientalischen Handschriften in Deutschland",
+    value: "Verzeichnis der orientalischen Handschriften in Deutschland",
+  },
+  {
+    id: 33,
+    label: "Yale University Library",
+    value: "Yale University Library",
+  },
+];
+
+const Paintings = () => {
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(pagePerLimitForPainting);
+  const [searchKey, setSearchKey] = useState("");
+  const [totalPage, setTotalPage] = useState();
+  const [data, setData] = useState([]);
+  const [dateOfPaintins, setDateOfPaintins] = useState([
+    dateOfPaintinsOption[0],
+    dateOfPaintinsOption[5],
+  ]);
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
+    paintingsInColorOnlyOption[0]
+  );
+  const [storyType, setStoryType] = useState(storyTypeOption[1]);
+  const [archiveOfPainting, setArchiveOfPainting] = useState(
+    archiveOfPaintingOption[0]
+  );
 
   const cards = [
     {
@@ -231,6 +361,41 @@ const Paintings = () => {
     },
   ];
 
+  const makeParamsArray = (key, arr) => {
+    return arr.map((itm) => `filters[${key}][]=${itm.value}&`).join("");
+  };
+
+  const fetchData = async () => {
+    try {
+      const params = `page=${page}&perPage=${perPage}&${makeParamsArray(
+        "dateOfPainting",
+        dateOfPaintins
+      )}${makeParamsArray("paintingInColor", [
+        paintingsInColorOnly,
+      ])}${makeParamsArray("typeOfStory", [
+        storyType,
+      ])}filters[search]=${searchKey}`;
+      // ${makeParamsArray(
+      //   "institution",
+      //   [archiveOfPainting]
+      // )}
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
+      );
+      const resData = await response.json();
+      console.log(resData, "resDataresDataresData");
+      setTotalPage(resData.total);
+      setData(resData.data);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
+
   return (
     <div className="container">
       <div className="flex items-start space-x-4 mb-5">
@@ -239,32 +404,66 @@ const Paintings = () => {
           <InputText value="" iconBefore />
         </div>
       </div>
-      <div className="flex items-start space-x-4 mb-5 max-w-xl ml-auto">
-        <Select
-          selected={selectedOpt}
-          onChange={(selected) => setSelectedOpt(selected)}
-          className="w-72"
-        >
-          {categories?.map((opt, index) => (
-            <POption key={index} id={opt.id} name={opt.name} />
-          ))}
-        </Select>
-        <Select
-          selected={selectedOpt}
-          onChange={(selected) => setSelectedOpt(selected)}
-          className="w-72"
-        >
-          {categoriess?.map((opt, index) => (
-            <POption key={index} id={opt.id} name={opt.name} />
-          ))}
-        </Select>
+      <div className="flex items-start flex-wrap mb-5 max-w-5xl lg:mx-auto">
+        <Dropdown
+          title="Date of Paintings"
+          selected={dateOfPaintins}
+          setSelected={setDateOfPaintins}
+          options={dateOfPaintinsOption}
+          isMultiple={true}
+        />
+        <Dropdown
+          title="Paintings in color only"
+          selected={paintingsInColorOnly}
+          setSelected={setPaintingsInColorOnly}
+          options={paintingsInColorOnlyOption}
+          isMultiple={false}
+        />
+        <Dropdown
+          title="Story Type"
+          selected={storyType}
+          setSelected={setStoryType}
+          options={storyTypeOption}
+          isMultiple={false}
+        />
+        <Dropdown
+          title="Repository of Painting"
+          selected={archiveOfPainting}
+          setSelected={setArchiveOfPainting}
+          options={archiveOfPaintingOption}
+          isMultiple={false}
+        />
+        <button className="bg-primary-500 text-white py-2 pl-3 pr-10 text-center rounded-md m-3">
+          Reset
+        </button>
       </div>
       <div className="pb-10">
-        <Masonry>
-          {Paintcards.map((card, index) => (
-            <PaintingCard key={index} {...card} />
-          ))}
-        </Masonry>
+        {data.length && (
+          <Masonry>
+            {/* {Paintcards.map((card, index) => (
+            <div
+              key={index}
+              className={`rounded-lg text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
+            >
+              <div className=" bg-offWhite-500">
+                <img
+                  src={card.cardImg}
+                  alt="PEMM"
+                  className="w-full object-cover "
+                />
+              </div>
+              <div className="bg-black p-5">
+                <p className="text-xs">{card.id}</p>
+                <h2 className="lg:text-2xl font-bold mt-3">{card.title}</h2>
+                <p className="pt-2">{card.description}</p>
+              </div>
+            </div>
+          ))} */}
+            {data.map((card, index) => (
+              <PaintingCard key={index} card={card} />
+            ))}
+          </Masonry>
+        )}
       </div>
     </div>
   );
