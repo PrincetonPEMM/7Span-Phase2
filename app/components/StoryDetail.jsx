@@ -7,6 +7,7 @@ import {
   ID_LIST,
   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE,
 } from "@/utils/constant";
+import Link from "next/link";
 
 export default function StoryDetail({ data, Id }) {
   const generateTranslations = () => {
@@ -14,12 +15,12 @@ export default function StoryDetail({ data, Id }) {
     let finalString = "";
     for (let translation of data.translations) {
       let string = "<h2>";
-      string += `<b> ${translation.language_translated_to} </b>`;
+      string += `<b> ${translation.language_translated_to}: </b>`;
       string += `${translation.translation_author} ${
         translation.translation_as_of_date
       }. ${
         translation.published_translation_book_title
-          ? translation.published_translation_book_title
+          ? `<i> ${translation.published_translation_book_title}</i>`
           : ""
       }`;
 
@@ -35,7 +36,7 @@ export default function StoryDetail({ data, Id }) {
         translation.manuscript_name &&
         translation.translation_source_manuscript_folio
       ) {
-        string += `From ${translation.manuscript_name}, ${translation.translation_source_manuscript_folio}`;
+        string += `From ${translation.manuscript_name}, ${translation.translation_source_manuscript_folio}.`;
       }
 
       string += "</h2>";
@@ -77,7 +78,7 @@ export default function StoryDetail({ data, Id }) {
   return (
     <div className="px-4 py-5 md:px-8">
       <h3 className="font-menu  text-2xl lg:text-5xl max-w-7xl leading-tight">
-        {data.original_macomber_title}
+        {data.canonical_story_title}
       </h3>
 
       <div className="pt-10 font-body">
@@ -98,7 +99,7 @@ export default function StoryDetail({ data, Id }) {
                     CONTENT INFORMATION
                   </h3>
                   <ul>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Story Type:</b> {data.type_of_story}
                     </p>
                   </ul>
@@ -108,28 +109,38 @@ export default function StoryDetail({ data, Id }) {
                     TECHNICAL INFORMATION
                   </h3>
                   <ul>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Earliest Attested Instance of the Story:</b>{" "}
                       {data.manuscript_date_range_start} -{" "}
                       {data.manuscript_date_range_end}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Earliest Manuscripts in which Story Appears:</b>{" "}
                       {data.names_of_mss_with_earliest_attestation}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Total Manuscripts in which Story Appears:</b>{" "}
                       {data.total_records}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Total Incipits in the ITool:</b>{" "}
                       {data.total_incipits_typed}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
-                      <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maá¹£Äá¸¥Çft
-                      ID {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas
-                      ID {data.csm_number}; Poncelet ID {data.poncelet_number};
+                    <p className="text-base leading-normal">
+                      <b>ID Numbers:</b> PEMM ID {data.canonical_story_id}
+                      {data.canonical_story_id
+                        ? "; Macomber ID " + data.canonical_story_id
+                        : ""}
+                      {data.hamburg_id
+                        ? "; Beta maṣāḥǝft  ID " + data.hamburg_id
+                        : ""}
+                      {data.clavis_id ? "; Clavis ID " + data.clavis_id : ""}
+                      {data.csm_number
+                        ? "; Cantigas ID " + data.csm_number
+                        : ""}
+                      {data.poncelet_number
+                        ? "; Poncelet ID " + data.poncelet_number
+                        : ""}
                     </p>
                   </ul>
                 </li>
@@ -154,6 +165,7 @@ export default function StoryDetail({ data, Id }) {
                     {ForthLine(data.type_of_story)}
                     {FifthLine(data.origin)}
                     {SixthLine(data.languageAvailableIn)}
+                    {SeventhLine()}
                   </ul>
                 </li>
               </ol>
@@ -168,8 +180,9 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <p className="text-base leading-loose mb-3">
                     Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name}, f.{" "}
+                    {data.manuscript_name},{" "}
                     {data.translation_source_manuscript_folio}
+                    {", in "}
                     {data.translation_as_of_date}.
                   </p>
                   <p
@@ -185,7 +198,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <p className="text-base leading-loose mb-3">
                     {data.translation_author}. &quot;ID{" "}
-                    {data.canonical_story_id}: {data.original_macomber_title}
+                    {data.canonical_story_id}: {data.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
@@ -264,6 +277,7 @@ export default function StoryDetail({ data, Id }) {
                     {ForthLine(data.type_of_story)}
                     {FifthLine(data.origin)}
                     {SixthLine(data.languageAvailableIn)}
+                    {SeventhLine()}
                   </ul>
                 </li>
               </ol>
@@ -308,9 +322,9 @@ export default function StoryDetail({ data, Id }) {
                     </p>
                     <p className="text-base indent-2 leading-normal">
                       <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maá¹£Äá¸¥Çft
-                      ID {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas
-                      ID {data.csm_number}; Poncelet ID {data.poncelet_number};
+                      Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
+                      {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
+                      {data.csm_number}; Poncelet ID {data.poncelet_number};
                     </p>
                   </ul>
                 </li>
@@ -343,7 +357,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <p className="text-base leading-loose mb-3">
                     {data.translation_author}. &quot;ID{" "}
-                    {data.canonical_story_id}: {data.original_macomber_title}
+                    {data.canonical_story_id}: {data.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
@@ -437,7 +451,7 @@ function SeconsdLine(total_records) {
           : appearing in&nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
-            : `appearing in ${(
+            : `${(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
                 100
@@ -468,7 +482,7 @@ function ThirdLine(
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
                 are most <b>frequently illustrated</b>, with a total of&nbsp;
-                {total_story_id_paintings} paintings.
+                <b>{total_story_id_paintings}</b> paintings.
               </>
             ) : (
               <>
@@ -476,21 +490,21 @@ function ThirdLine(
                 are most <b>frequently illustrated</b>: it is illustrated in $
                 {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
                 with a total of
-                {total_story_id_paintings} paintings.
+                <b>{total_story_id_paintings}</b> paintings.
               </>
             )
           ) : total_manuscripts_with_story_id_illustrated == null ||
             total_manuscripts_with_story_id_illustrated != 0 ? (
             <>
               This story is <b>sometimes illustrated</b>, with a total of
-              {total_story_id_paintings} painting(s).
+              <b>{total_story_id_paintings}</b> painting(s).
             </>
           ) : (
             <>
               This story is <b>sometimes illustrated</b>: it is illustrated in
               {total_manuscripts_with_story_id_illustrated} PEMM manuscript(s),
               with a total of
-              {total_story_id_paintings} painting(s).
+              <b>{total_story_id_paintings}</b> painting(s).
             </>
           )}
         </p>
@@ -527,6 +541,18 @@ function SixthLine(languageAvailableIn) {
     <p className="text-base leading-relaxed">
       This story is available in the following <b>languages</b>:{" "}
       {languageAvailableIn.join(", ")}.
+    </p>
+  );
+}
+function SeventhLine() {
+  return (
+    <p className="text-sm leading-relaxed py-2">
+      A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
+      has catalogued. For more information, see{" "}
+      <Link href="/about/using-the-site" className="underline">
+        Using the Site
+      </Link>
+      .
     </p>
   );
 }
