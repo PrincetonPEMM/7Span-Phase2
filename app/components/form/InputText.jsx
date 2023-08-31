@@ -16,7 +16,7 @@ const InputText = ({
         type="text"
         value={value}
         onChange={onChange}
-        className="border-2 border-primary-500 bg-transparent rounded-md w-full p-3 text-lg ring-0 focus:ring-0 focus:border-primary-400 focus:ring-primary-400 outline-0 "
+        className="border-2 border-primary-500 bg-transparent rounded-md w-full p-3 pl-10 text-lg ring-0 focus:ring-0 focus:border-primary-400 focus:ring-primary-400 outline-0 "
       />
       {iconBefore && children}
       <span>{label}</span>
