@@ -80,7 +80,7 @@ export default function StoryDetail({ data, Id }) {
         {data.original_macomber_title}
       </h3>
 
-      <div className="pt-10 font-body">
+      <div className="pt-10 font-menu">
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
           {/* Left sided Image portion  */}
           <div>
@@ -92,44 +92,44 @@ export default function StoryDetail({ data, Id }) {
             {/* slider content */}
 
             <div className="space-y-4 mb-10 md:block hidden">
-              <ol className="list-inside space-y-3 md:pl-4 p-0">
+              <ol className="list-inside space-y-5">
                 <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                  <h3 className="text-lg font-bold uppercase text-justify">
                     CONTENT INFORMATION
                   </h3>
                   <ul>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-sm leading-normal">
                       <b>Story Type:</b> {data.type_of_story}
                     </p>
                   </ul>
                 </li>
                 <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                  <h3 className="text-lg mb-1 font-bold uppercase text-justify">
                     TECHNICAL INFORMATION
                   </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
+                  <ul className="text-sm">
+                    <p className="leading-normal">
                       <b>Earliest Attested Instance of the Story:</b>{" "}
                       {data.manuscript_date_range_start} -{" "}
                       {data.manuscript_date_range_end}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="leading-normal">
                       <b>Earliest Manuscripts in which Story Appears:</b>{" "}
                       {data.names_of_mss_with_earliest_attestation}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="leading-normal">
                       <b>Total Manuscripts in which Story Appears:</b>{" "}
                       {data.total_records}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="leading-normal">
                       <b>Total Incipits in the ITool:</b>{" "}
                       {data.total_incipits_typed}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maá¹£Äá¸¥Çft
-                      ID {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas
-                      ID {data.csm_number}; Poncelet ID {data.poncelet_number};
+                      Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
+                      {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
+                      {data.csm_number}; Poncelet ID {data.poncelet_number};
                     </p>
                   </ul>
                 </li>
@@ -163,12 +163,12 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 p-0">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase italic mb-3 ">
                     TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3">
-                    Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name}, f.{" "}
+                  <p className="text-base leading-loose mb-3  italic">
+                    Translated by {data.translation_author} from
+                    {data.manuscript_name}, f,
                     {data.translation_source_manuscript_folio}
                     {data.translation_as_of_date}.
                   </p>
@@ -199,7 +199,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside pl-4 ">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase italic  mb-3 ">
                     {data.languageAvailableIn.length > 0 &&
                       "OTHER TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
@@ -217,7 +217,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside pl-4 ">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase italic  mb-3 ">
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
@@ -240,7 +240,7 @@ export default function StoryDetail({ data, Id }) {
       </div>
 
       {/* This below content is for mobile responsive  */}
-      <div className="md:hidden block font-body">
+      <div className="md:hidden block font-menu">
         <Tabs
           tabs={discoverPage}
           onClick={(e) => {
@@ -275,42 +275,42 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 p-0">
                 <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                  <h3 className="text-lg font-bold uppercase text-justify">
                     CONTENT INFORMATION
                   </h3>
                   <ul>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="text-base leading-normal">
                       <b>Story Type:</b> {data.type_of_story}
                     </p>
                   </ul>
                 </li>
                 <li>
-                  <h3 className="text-lg mb-3 font-bold uppercase text-justify">
+                  <h3 className="text-lg mb-1 font-bold uppercase text-justify">
                     TECHNICAL INFORMATION
                   </h3>
-                  <ul>
-                    <p className="text-base indent-2 leading-normal">
+                  <ul className="text-sm">
+                    <p className="indent-2 leading-normal">
                       <b>Earliest Attested Instance of the Story:</b>{" "}
                       {data.manuscript_date_range_start} -{" "}
                       {data.manuscript_date_range_end}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="indent-2 leading-normal">
                       <b>Earliest Manuscripts in which Story Appears:</b>{" "}
                       {data.names_of_mss_with_earliest_attestation}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="indent-2 leading-normal">
                       <b>Total Manuscripts in which Story Appears:</b>{" "}
                       {data.total_records}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="indent-2 leading-normal">
                       <b>Total Incipits in the ITool:</b>{" "}
                       {data.total_incipits_typed}
                     </p>
-                    <p className="text-base indent-2 leading-normal">
+                    <p className="indent-2 leading-normal">
                       <b>ID Numbers:</b> PEMM ID {data.canonical_story_id};
-                      Macomber ID {data.canonical_story_id}; Beta maá¹£Äá¸¥Çft
-                      ID {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas
-                      ID {data.csm_number}; Poncelet ID {data.poncelet_number};
+                      Macomber ID {data.canonical_story_id}; Beta maṣāḥǝft ID{" "}
+                      {data.hamburg_id}; Clavis ID {data.clavis_id}; Cantigas ID{" "}
+                      {data.csm_number}; Poncelet ID {data.poncelet_number};
                     </p>
                   </ul>
                 </li>
@@ -323,10 +323,10 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 p-0">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase italic  mb-3 ">
                     TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3">
+                  <p className="text-base leading-loose mb-3 italic">
                     Translated by {data.translation_author} from{" "}
                     {data.manuscript_name}, f.{" "}
                     {data.translation_source_manuscript_folio}
@@ -361,7 +361,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside pl-4 ">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase italic  mb-3 ">
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
@@ -390,7 +390,7 @@ function FirstLine(earliest_attestation) {
   return (
     <>
       {earliest_attestation && (
-        <p className="text-base leading-relaxed">
+        <p className="text-base indent-2 leading-relaxed">
           This story is&nbsp;
           <b>
             {earliest_attestation >= 1300 && earliest_attestation < 1500
@@ -415,7 +415,7 @@ function SeconsdLine(total_records) {
   return (
     <>
       {total_records && (
-        <p className="text-base leading-relaxed">
+        <p className="text-base indent-2 leading-relaxed">
           This story is&nbsp;
           <b>
             {total_records < 10
@@ -434,7 +434,7 @@ function SeconsdLine(total_records) {
               ? "popular"
               : "somewhat popular"}
           </b>
-          : appearing in&nbsp;
+          : appearing in &nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
             : `appearing in ${(
@@ -457,7 +457,7 @@ function ThirdLine(
   return (
     <>
       {total_records && (
-        <p className="text-base leading-relaxed">
+        <p className="text-base indent-2 leading-relaxed">
           {total_story_id_paintings === 0 ? (
             <>
               This story is <b>not illustrated</b> in PEMM manuscripts.
@@ -468,7 +468,7 @@ function ThirdLine(
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
                 are most <b>frequently illustrated</b>, with a total of&nbsp;
-                {total_story_id_paintings} paintings.
+                <b>{total_story_id_paintings}</b> paintings.
               </>
             ) : (
               <>
@@ -500,7 +500,7 @@ function ThirdLine(
 }
 function ForthLine(type_of_story) {
   return (
-    <p className="text-base leading-relaxed">
+    <p className="text-base indent-2 leading-relaxed">
       {type_of_story == "Life of Mary" ? (
         <>
           This story is a <b>life miracle</b>: it takes place during Our Lady
@@ -517,14 +517,14 @@ function ForthLine(type_of_story) {
 }
 function FifthLine(origin) {
   return (
-    <p className="text-base leading-relaxed">
+    <p className="text-base indent-2 leading-relaxed">
       This story was originally <b>composed</b> in {origin}.
     </p>
   );
 }
 function SixthLine(languageAvailableIn) {
   return (
-    <p className="text-base leading-relaxed">
+    <p className="text-base indent-2 leading-relaxed">
       This story is available in the following <b>languages</b>:{" "}
       {languageAvailableIn.join(", ")}.
     </p>
