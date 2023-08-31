@@ -1,7 +1,7 @@
 import React from "react";
-import PaintingStoryCard from "../components/PaintingStoryCard";
+import PaintingStoryCard from "../../components/PaintingStoryCard";
 import Masonry from "@/app/components/Masonry";
-import ComingSoon from "../components/ComingSoon";
+import ComingSoon from "../../components/ComingSoon";
 const page = () => {
   const data = [
     {
