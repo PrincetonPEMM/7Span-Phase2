@@ -197,9 +197,9 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
+              <ol className="list-inside pl-4">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     {data.languageAvailableIn.length > 0 &&
                       "OTHER TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
@@ -403,8 +403,9 @@ function FirstLine(earliest_attestation) {
               ? "very recent"
               : ""}
           </b>
-          : the earliest PEMM manuscript<sup>1</sup> in which this story appears
-          is from around {earliest_attestation}.
+          : the earliest
+          <sup>1</sup> in which this story appears is from around{" "}
+          {earliest_attestation}.
         </p>
       )}
     </>
