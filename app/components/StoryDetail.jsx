@@ -78,7 +78,7 @@ export default function StoryDetail({ data, Id }) {
 
   return (
     <div className="px-4 py-5 md:px-8">
-      <h3 className="text-xl font-body font-bold md:text-5xl max-w-7xl leading-tight">
+      <h3 className="font-menu  text-2xl lg:text-5xl max-w-7xl leading-tight">
         {data.original_macomber_title}
       </h3>
 
@@ -207,7 +207,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="space-y-2">
                     <p
-                      className="text-base indent-2 leading-relaxed"
+                      className="text-base leading-relaxed"
                       dangerouslySetInnerHTML={{
                         __html: generateTranslations(),
                       }}
@@ -223,12 +223,12 @@ export default function StoryDetail({ data, Id }) {
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
-                    <p className="text-base indent-2 leading-relaxed">
+                    <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which story appears (with page or
                       folio start):
                     </p>
                     <p
-                      className="text-base indent-2 leading-relaxed"
+                      className="text-base leading-relaxed"
                       dangerouslySetInnerHTML={{
                         __html: generateManuscript(),
                       }}
@@ -367,12 +367,12 @@ export default function StoryDetail({ data, Id }) {
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
-                    <p className="text-base indent-2 leading-relaxed">
+                    <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which story appears (with page or
                       folio start):
                     </p>
                     <p
-                      className="text-base indent-2 leading-relaxed"
+                      className="text-base leading-relaxed"
                       dangerouslySetInnerHTML={{
                         __html: generateManuscript(),
                       }}
@@ -392,9 +392,9 @@ function FirstLine(earliest_attestation) {
   return (
     <>
       {earliest_attestation && (
-        <p className="text-base indent-2 leading-relaxed">
+        <p className="text-base leading-relaxed">
           This story is&nbsp;
-          <u>
+          <b>
             {earliest_attestation >= 1300 && earliest_attestation < 1500
               ? "very old"
               : earliest_attestation >= 1500 && earliest_attestation < 1800
@@ -404,7 +404,7 @@ function FirstLine(earliest_attestation) {
               : earliest_attestation >= 1950
               ? "very recent"
               : ""}
-          </u>
+          </b>
           : the earliest PEMM manuscript<sup>1</sup> in which this story appears
           is from around {earliest_attestation}.
         </p>
@@ -417,9 +417,9 @@ function SeconsdLine(total_records) {
   return (
     <>
       {total_records && (
-        <p className="text-base indent-2 leading-relaxed">
+        <p className="text-base leading-relaxed">
           This story is&nbsp;
-          <u>
+          <b>
             {total_records < 10
               ? total_records >= 6
                 ? "somewhat rare"
@@ -435,10 +435,10 @@ function SeconsdLine(total_records) {
               : total_records >= 50
               ? "popular"
               : "somewhat popular"}
-          </u>
+          </b>
           : appearing in&nbsp;
           {total_records < 10
-            ? `only ${data.total_records} of the PEMM manuscripts.`
+            ? `only ${total_records} of the PEMM manuscripts.`
             : `appearing in ${(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
@@ -459,23 +459,23 @@ function ThirdLine(
   return (
     <>
       {total_records && (
-        <p className="text-base indent-2 leading-relaxed">
+        <p className="text-base leading-relaxed">
           {total_story_id_paintings === 0 ? (
             <>
-              This story is <u>not illustrated</u> in PEMM manuscripts.
+              This story is <b>not illustrated</b> in PEMM manuscripts.
             </>
           ) : ID_LIST.includes(canonical_story_id) ? (
             total_manuscripts_with_story_id_illustrated == null ||
             total_manuscripts_with_story_id_illustrated != 0 ? (
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
-                are most <u>frequently illustrated</u>, with a total of&nbsp;
+                are most <b>frequently illustrated</b>, with a total of&nbsp;
                 {total_story_id_paintings} paintings.
               </>
             ) : (
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
-                are most <u>frequently illustrated</u>: it is illustrated in $
+                are most <b>frequently illustrated</b>: it is illustrated in $
                 {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
                 with a total of
                 {total_story_id_paintings} paintings.
@@ -484,12 +484,12 @@ function ThirdLine(
           ) : total_manuscripts_with_story_id_illustrated == null ||
             total_manuscripts_with_story_id_illustrated != 0 ? (
             <>
-              This story is <u>sometimes illustrated</u>, with a total of
+              This story is <b>sometimes illustrated</b>, with a total of
               {total_story_id_paintings} painting(s).
             </>
           ) : (
             <>
-              This story is <u>sometimes illustrated</u>: it is illustrated in
+              This story is <b>sometimes illustrated</b>: it is illustrated in
               {total_manuscripts_with_story_id_illustrated} PEMM manuscript(s),
               with a total of
               {total_story_id_paintings} painting(s).
@@ -502,15 +502,15 @@ function ThirdLine(
 }
 function ForthLine(type_of_story) {
   return (
-    <p className="text-base indent-2 leading-relaxed">
+    <p className="text-base leading-relaxed">
       {type_of_story == "Life of Mary" ? (
         <>
-          This story is a <u>life miracle</u>: it takes place during Our Lady
+          This story is a <b>life miracle</b>: it takes place during Our Lady
           Mary&apos;s lifetime, not after it.
         </>
       ) : (
         <>
-          This story is a <u>post-life miracle</u>: it does not take place
+          This story is a <b>post-life miracle</b>: it does not take place
           during Our Lady Mary&apos;s lifetime, but after it.
         </>
       )}
@@ -519,15 +519,15 @@ function ForthLine(type_of_story) {
 }
 function FifthLine(origin) {
   return (
-    <p className="text-base indent-2 leading-relaxed">
-      This story was originally <u>composed</u> in {origin}.
+    <p className="text-base leading-relaxed">
+      This story was originally <b>composed</b> in {origin}.
     </p>
   );
 }
 function SixthLine(languageAvailableIn) {
   return (
-    <p className="text-base indent-2 leading-relaxed">
-      This story is available in the following <u>languages</u>:{" "}
+    <p className="text-base leading-relaxed">
+      This story is available in the following <b>languages</b>:{" "}
       {languageAvailableIn.join(", ")}.
     </p>
   );

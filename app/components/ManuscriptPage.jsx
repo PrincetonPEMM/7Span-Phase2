@@ -259,7 +259,7 @@ export default function Manuscript({ Id, data, table }) {
     <div>
       <div className="container-fliud">
         <div className="pb-12">
-          <h2 className="font-menu text-5xl font-medium">
+          <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
             {data.manuscript_full_name}
           </h2>
           <div className="space-y-p">
@@ -272,7 +272,7 @@ export default function Manuscript({ Id, data, table }) {
           </div>
           {tableData && (
             <div id="emip-table" className="pt-5">
-              <h3 className="font-menu text-5xl font-medium">
+              <h3 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
                 EMIP (EMIP) 981a
               </h3>
               <Table

@@ -346,7 +346,7 @@ export const initialPlaceItemManuScript = {
   checkItem: [
     {
       id: "1",
-      icon: false,
+      icon: true,
       label: "Africa",
       name: "africa",
       isChecked: false,
@@ -367,7 +367,7 @@ export const initialPlaceItemManuScript = {
     },
     {
       id: "4",
-      icon: false,
+      icon: true,
       label: "Middle East",
       name: "middle_east",
       isChecked: false,
@@ -381,7 +381,7 @@ export const initialPlaceItemManuScript = {
     },
     {
       id: "11",
-      icon: false,
+      icon: true,
       label: "North America",
       name: "north_america",
       isChecked: false,
@@ -402,7 +402,7 @@ export const initialPlaceItemManuScript = {
     },
     {
       id: "6",
-      icon: false,
+      icon: true,
       label: "Europe",
       name: "Europe",
       isChecked: false,
