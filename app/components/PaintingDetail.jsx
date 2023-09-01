@@ -73,7 +73,7 @@ const PaintingDetail = () => {
             </li>
             <li>The client throws the ring into th river</li>
           </ol>
-          <div className="space-y-1 text-base lg:text-xl">
+          <div className="space-y-1 text-base lg:text-xl mt-3">
             <p>
               <strong> Painting Caption</strong> none
             </p>
@@ -82,10 +82,10 @@ const PaintingDetail = () => {
               Euchristic bread; bruch; water; hat; Euchrist; Euchristic bread;
               bruch;
             </p>
-            <p className="font-body font-medium">
+            <p className="font-medium">
               <strong>Agent Keywords:</strong> none
             </p>
-            <p className="font-body font-bold">
+            <p className="font-body font-bold mt-3">
               <strong>Manuscript</strong> BOr(BL) 648 , f. 18v Date:1721-1730
             </p>
             <p className="font-body font-bold">
@@ -93,20 +93,21 @@ const PaintingDetail = () => {
             </p>
             <p className="font-body font-bold">
               <strong>
-                Number of PEMM Manuscript with paintings of this story: 1
+                Number of PEMM Manuscript with paintings of this story:
               </strong>
+              1
             </p>
           </div>
           <div className="space-x-5 pt-5 sm:pt-10 text-offWhite-500 font-semibold font-body flex flex-wrap items-start text-sm md:text-base">
             <Link
-              className="bg-secondary-500 rounded-md inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
               href="/manuscripts"
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
               <span>View Manuscript</span>
             </Link>
             <Link
-              className="bg-secondary-500 rounded-md inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
               href="/manuscripts"
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
