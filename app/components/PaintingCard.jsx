@@ -4,9 +4,9 @@ import { defaultImageforPainting } from "@/utils/constant";
 const PaintingCard = (props) => {
   return (
     <div
-      className={`rounded-lg text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
+      className={`text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
     >
-      <div className=" bg-offWhite-500">
+      <div className="aspect-square bg-offWhite-500">
         <img
           src={
             props.card.image_link
@@ -14,10 +14,10 @@ const PaintingCard = (props) => {
               : defaultImageforPainting
           }
           alt={props.card.pemm_short_title}
-          className="w-full object-cover "
+          className="w-full h-full object-cover "
         />
       </div>
-      <div className="bg-black p-5">
+      <div className="bg-black p-5 rounded-b-lg">
         <p className="text-xs">{`${
           props.card.manuscript_date_range_start &&
           props.card.manuscript_date_range_start
