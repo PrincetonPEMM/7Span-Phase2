@@ -84,7 +84,7 @@ const Paintings = ({
     <div className="container">
       <div className="flex items-start space-x-4 mb-1">
         <div class="relative w-full max-w-4xl mx-auto">
-          <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
+          <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
           <InputText
             value={search}
             iconBefore
@@ -100,8 +100,9 @@ const Paintings = ({
               }
             }}
           />
+
           <MdiWindowClose
-            className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700"
+            className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
             onClick={() => {
               setSearch("");
               debouncedFetchData("");
@@ -109,7 +110,7 @@ const Paintings = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:flex items-start justify-center flex-wrap mb-1 font-body lg:mx-auto max-w-4xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -141,7 +142,7 @@ const Paintings = ({
       </div>
       <div className="block text-center mx-3 mb-4 font-body">
         <button
-          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg"
+          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg text-xs md:text-base"
           onClick={() => {
             setDateOfPaintins([]);
             setPaintingsInColorOnly(paintingInColor[0]);

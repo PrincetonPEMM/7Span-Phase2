@@ -736,3 +736,9 @@ body {
   background-color: rgb(0 0 0 / 52%);
   content: "";
 }
+
+.image-gallery-icon:hover,
+.image-gallery-icon:focus,
+.image-gallery-icon:focus-visible {
+  @apply !text-primary-500;
+}
