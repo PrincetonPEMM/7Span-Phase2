@@ -1,270 +1,183 @@
 "use client";
-import React from "react";
-import Card from "@/app/components/Card";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import MdiMagnify from "@assets/icons/MdiMagnify";
-import Select, { POption } from "./form/Select";
 import Masonry from "@/app/components/Masonry";
 import PaintingCard from "./PaintingCard";
-const Paintings = () => {
-  const [selectedOpt, setSelectedOpt] = useState();
+import Dropdown from "./Dropdown";
+import { pagePerLimitForPainting } from "@/utils/constant";
+import { TablePagination } from "./Pagination";
+import useDebounce from "@/utils/useDebounce";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 
-  const categories = [
-    {
-      name: "29/03/1996",
-      id: "hello",
-    },
-    {
-      name: "29/03/1976",
-      id: "hello",
-    },
-    {
-      name: "29/03/1966",
-      id: "hello",
-    },
-    {
-      name: "29/03/1956",
-      id: "hello",
-    },
-  ];
-  const categoriess = [
-    {
-      name: "29/03/1996",
-      id: "hello",
-    },
-    {
-      name: "29/03/1976",
-      id: "hello",
-    },
-    {
-      name: "29/03/1966",
-      id: "hello",
-    },
-    {
-      name: "29/03/1956",
-      id: "hello",
-    },
-  ];
+const Paintings = ({
+  dateOfPainting,
+  paintingInColor,
+  typeOfStory,
+  institution,
+}) => {
+  const [page, setPage] = useState(1);
+  const { debounce } = useDebounce();
+  const [perPage, setPerPage] = useState(pagePerLimitForPainting);
+  const [search, setSearch] = useState("");
+  const [totalPage, setTotalPage] = useState();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [dateOfPaintins, setDateOfPaintins] = useState([]);
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
+    paintingInColor[0]
+  );
+  const [storyType, setStoryType] = useState();
+  const [archiveOfPainting, setArchiveOfPainting] = useState();
 
-  const cards = [
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is hudsadsads dsad sadsa dsadman belongs to all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human b dsad sad sa dsad sadasddsadelongs to all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is humd dsa dsadsa dsa das dsadan belongs to all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs to all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human fds fdsfsdfdsfdsf sfdsf dsfds fdsfdsfds fdsf dsf dsfds fdsfds fdsfdsf dsfsfsf sdfsfsd fdsfdsfs dfs belongs tdsadasd dsa dsa dao all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belong dsa dsa dasd sad as to all human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs to al dsa dsa da da dsa dasd sa dadadl human beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs tdsad sad sa dsa d sad sad sa dsa d ad sad sadsa dsa d sad ao all  dsad sa das dsa dsa dsa dsadsa das das dsa d sad asd sadahuman beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs to all humd sa dsa dsa d sad sad sa dsa dsa d sad sadaan beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs tdsad sad sa dsa d sad sad sa dsa d ad sad sadsa dsa d sad ao all  dsad sa das dsa dsa dsa dsadsa das das dsa d sad asd sadahuman beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-    {
-      title: "Project Unlocks Understanding of Miracle of Mary Texts",
-      date: "02 September 2021",
-      description:
-        "“Whatever is human belongs to all humd sa dsa dsa d sad sad sa dsa dsa d sad sadaan beings” said Mehari Worku, deacon in the Ethiopian Orthodox Tewahedo Church, when asked whether he had concerns about this work being organised and housed by an American university",
-      link: "https://www.universityworldnews.com/post.php?story=2021090210485829",
-      link_text: "PEMM IN THE NEWS",
-      author: "Nathan Green, in University World News",
-    },
-  ];
+  const makeParamsArray = (key, arr) => {
+    if (arr.length)
+      if (key === "dateOfPainting")
+        return arr.map((itm) => `filters[${key}][]=${itm.key}&`).join("");
+      else return arr.map((itm) => `filters[${key}]=${itm.key}&`).join("");
+    return "";
+  };
 
-  const Paintcards = [
-    {
-      id: "B-Dublin (CBL) 914",
-      title: "Cannibal of Qemer",
-      description:
-        " The staff of PEMM has selected three manuscirpts that best represent the genre. One is the very earliest known Miracle of Mary manuscript (from the 1300s), one is a Second Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fiiif-cloud.princeton.edu%2Fiiif%2F2%2F1b%252F90%252F5a%252F1b905a32206f4f6b85d32319f99338ce%252Fintermediate_file%2Ffull%2F400%2C%2F0%2Fdefault.jpg%3Ft%3D1651501156780&w=640&q=75",
-    },
-    {
-      id: "PEM (Princeton) 65",
-      title: "Life of Marry",
-      description:
-        "Miracle of Mary manuscripts from Ethiopia are among the most spectacular of Ethiopia's parchment manuscripts.",
+  const fetchData = async (searchKey = "") => {
+    setLoading(true);
+    try {
+      const params = `page=${page}&perPage=${perPage}&${makeParamsArray(
+        "dateOfPainting",
+        dateOfPaintins
+      )}${makeParamsArray("paintingInColor", [
+        paintingsInColorOnly,
+      ])}${makeParamsArray(
+        "typeOfStory",
+        Boolean(storyType) ? [storyType] : []
+      )}${makeParamsArray(
+        "institution",
+        Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}filters[search]=${searchKey}`;
 
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fia903203.us.archive.org%2FBookReader%2FBookReaderImages.php%3Fzip%3D%2F4%2Fitems%2Fgri_33125008690600%2Fgri_33125008690600_jp2.zip%26file%3Dgri_33125008690600_jp2%2Fgri_33125008690600_0396.jp2%26id%3Dgri_33125008690600%26scale%3D4%26rotate%3D0&w=640&q=75",
-    },
-    {
-      id: "B-Dublin (CBL) 914",
-      title: "Cannibal of Qemer",
-      description:
-        "Miracle of Mary manuscripts from Ethiopia are among the most spectacular of Ethiopia's parchment manuscripts.",
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fiiif-cloud.princeton.edu%2Fiiif%2F2%2F1b%252F90%252F5a%252F1b905a32206f4f6b85d32319f99338ce%252Fintermediate_file%2Ffull%2F400%2C%2F0%2Fdefault.jpg%3Ft%3D1651501156780&w=640&q=75",
-    },
-    {
-      id: "PEM (Princeton) 65",
-      description:
-        "The staff of PEMM has selected three manuscirpts (from the 1300s), one is a Second Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
+      );
+      const resData = await response.json();
+      setTotalPage(resData.total);
+      setData(resData.data);
+      setLoading(false);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log("Error", error);
+      setLoading(false);
+    }
+  };
 
-      title: "Life of Marry",
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fia903203.us.archive.org%2FBookReader%2FBookReaderImages.php%3Fzip%3D%2F4%2Fitems%2Fgri_33125008690600%2Fgri_33125008690600_jp2.zip%26file%3Dgri_33125008690600_jp2%2Fgri_33125008690600_0396.jp2%26id%3Dgri_33125008690600%26scale%3D4%26rotate%3D0&w=640&q=75",
-    },
-    {
-      id: "B-Dublin (CBL) 914",
-      description:
-        "Miracle of Mary manuscripts from Ethiopia are among the most spectacular of Ethiopia's parchment manuscripts. The staff of PEMM has selected three manuscirpts that best represent the genre. One is the very earliest known Miracle of Mary manuscript (from the 1300s), one is a Second Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
+  useEffect(() => {
+    fetchData(search);
+  }, [
+    dateOfPaintins,
+    paintingsInColorOnly,
+    storyType,
+    archiveOfPainting,
+    page,
+  ]);
 
-      title: "Cannibal of Qemer",
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fiiif-cloud.princeton.edu%2Fiiif%2F2%2F1b%252F90%252F5a%252F1b905a32206f4f6b85d32319f99338ce%252Fintermediate_file%2Ffull%2F400%2C%2F0%2Fdefault.jpg%3Ft%3D1651501156780&w=640&q=75",
-    },
-    {
-      id: "PEM (Princeton) 65",
-      title: "Life of Marry",
-      description:
-        "The staff of PEMM has selected three manuscirpts that best represent the genre. Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
-
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fia903203.us.archive.org%2FBookReader%2FBookReaderImages.php%3Fzip%3D%2F4%2Fitems%2Fgri_33125008690600%2Fgri_33125008690600_jp2.zip%26file%3Dgri_33125008690600_jp2%2Fgri_33125008690600_0396.jp2%26id%3Dgri_33125008690600%26scale%3D4%26rotate%3D0&w=640&q=75",
-    },
-    {
-      id: "B-Dublin (CBL) 914",
-      title: "Cannibal of Qemer",
-      description:
-        "The staff of PEMM has selected three manuscirpts that best represent the genre. ",
-
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fiiif-cloud.princeton.edu%2Fiiif%2F2%2F1b%252F90%252F5a%252F1b905a32206f4f6b85d32319f99338ce%252Fintermediate_file%2Ffull%2F400%2C%2F0%2Fdefault.jpg%3Ft%3D1651501156780&w=640&q=75",
-    },
-    {
-      id: "PEM (Princeton) 65",
-      title: "Life of Marry",
-      description:
-        "Miracle of Mary manuscripts from Ethiopia are among the most spectacular of Ethiopia's parchment manuscripts. The staff of PEMM has selected three manuscirpts that best represent the genre. One is the very earliest known Miracle of Mary manuscript (from the 1300s), one is a Second Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
-
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fia903203.us.archive.org%2FBookReader%2FBookReaderImages.php%3Fzip%3D%2F4%2Fitems%2Fgri_33125008690600%2Fgri_33125008690600_jp2.zip%26file%3Dgri_33125008690600_jp2%2Fgri_33125008690600_0396.jp2%26id%3Dgri_33125008690600%26scale%3D4%26rotate%3D0&w=640&q=75",
-    },
-    {
-      id: "PEM (Princeton) 65",
-      title: "Life of Marry",
-      description:
-        "Miracle of Mary manuscripts from Ethiopia are among the most spectacular of Ethiopia's parchment manuscripts. The staff of PEMM has selected three manuscirpts that best represent the genre. One is the very earliest known Miracle of Mary manuscript (from the 1300s), one is a Second Gondarine style manuscript (at Princeton), and one illustrates many stories never illustrated before (at the British Library).",
-
-      cardImg:
-        "https://www.ethiopicmary.com/_next/image?url=https%3A%2F%2Fia903203.us.archive.org%2FBookReader%2FBookReaderImages.php%3Fzip%3D%2F4%2Fitems%2Fgri_33125008690600%2Fgri_33125008690600_jp2.zip%26file%3Dgri_33125008690600_jp2%2Fgri_33125008690600_0396.jp2%26id%3Dgri_33125008690600%26scale%3D4%26rotate%3D0&w=640&q=75",
-    },
-  ];
+  const debouncedFetchData = debounce(fetchData, 300);
 
   return (
     <div className="container">
-      <div className="flex items-start space-x-4 mb-5">
-        <div class="relative w-full">
+      <div className="flex items-start space-x-4 mb-1">
+        <div class="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
-          <InputText value="" iconBefore />
+          <InputText
+            value={search}
+            iconBefore
+            placeholderText="Search"
+            onChange={(e) => {
+              const query = e.target.value;
+              setSearch(query);
+              if (query.length > 3) {
+                debouncedFetchData(query);
+              }
+              if (query.length === 0) {
+                debouncedFetchData(query);
+              }
+            }}
+          />
+          <MdiWindowClose className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700" />
         </div>
       </div>
-      <div className="flex items-start space-x-4 mb-5 max-w-xl ml-auto">
-        <Select
-          selected={selectedOpt}
-          onChange={(selected) => setSelectedOpt(selected)}
-          className="w-72"
-        >
-          {categories?.map((opt, index) => (
-            <POption key={index} id={opt.id} name={opt.name} />
-          ))}
-        </Select>
-        <Select
-          selected={selectedOpt}
-          onChange={(selected) => setSelectedOpt(selected)}
-          className="w-72"
-        >
-          {categoriess?.map((opt, index) => (
-            <POption key={index} id={opt.id} name={opt.name} />
-          ))}
-        </Select>
+      <div className="grid grid-cols-2 lg:flex items-start justify-center flex-wrap mb-1 font-body lg:mx-auto max-w-4xl">
+        <Dropdown
+          title="Date of Paintings"
+          selected={dateOfPaintins}
+          setSelected={setDateOfPaintins}
+          options={dateOfPainting}
+          isMultiple={true}
+        />
+        <Dropdown
+          title="Paintings in color only"
+          selected={paintingsInColorOnly}
+          setSelected={setPaintingsInColorOnly}
+          options={paintingInColor}
+          isMultiple={false}
+        />
+        <Dropdown
+          title="Story Type"
+          selected={storyType}
+          setSelected={setStoryType}
+          options={typeOfStory}
+          isMultiple={false}
+        />
+        <Dropdown
+          title="Repository of Painting"
+          selected={archiveOfPainting}
+          setSelected={setArchiveOfPainting}
+          options={institution}
+          isMultiple={false}
+        />
       </div>
+      <div className="block text-center mx-3 mb-4 font-body">
+        <button
+          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg"
+          onClick={() => {
+            setDateOfPaintins([]);
+            setPaintingsInColorOnly(paintingInColor[0]);
+            setStoryType();
+            setArchiveOfPainting();
+          }}
+        >
+          Reset
+        </button>
+      </div>
+
       <div className="pb-10">
-        <Masonry>
-          {Paintcards.map((card, index) => (
-            <PaintingCard key={index} {...card} />
-          ))}
-        </Masonry>
+        {data.length ? (
+          <Masonry>
+            {data.map((card, index) => (
+              <PaintingCard key={index} card={card} />
+            ))}
+          </Masonry>
+        ) : (
+          Boolean(!data?.length) && (
+            <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+              {loading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+            </div>
+          )
+        )}
+        <TablePagination
+          meta={{
+            total: totalPage,
+            per_page: perPage,
+            current_page: page,
+            last_page: 50,
+            page: page,
+          }}
+          isOpen={true}
+          onPageChange={(num) => {
+            setPage(num);
+          }}
+        />
       </div>
     </div>
   );
