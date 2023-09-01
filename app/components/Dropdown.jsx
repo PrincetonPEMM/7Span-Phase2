@@ -12,8 +12,14 @@ const Dropdown = ({
   return (
     <Listbox value={selected} onChange={setSelected} multiple={isMultiple}>
       <div className="relative m-1">
-        <Listbox.Button className="relative w-full rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
-          <span className="block truncate">{title}</span>
+        <Listbox.Button className="relative w-full lg:min-w-[200px] rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
+          <span className="block truncate">
+            {title === "Date of Paintings"
+              ? title
+              : selected?.value
+              ? selected?.value
+              : title}
+          </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <MdiChevronDown
               className="h-5 w-5 text-offWhite-400"
