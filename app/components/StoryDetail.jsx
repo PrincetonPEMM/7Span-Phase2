@@ -449,7 +449,7 @@ function SeconsdLine(total_records) {
               ? "popular"
               : "somewhat popular"}
           </b>
-          : appearing in &nbsp;
+          : appearing in&nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
             : `${Math.round(
