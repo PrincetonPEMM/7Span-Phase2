@@ -27,7 +27,7 @@ const Dropdown = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-1 max-h-60 w-full z-30 overflow-auto  rounded-md bg-primary-500 text-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Listbox.Options className="absolute mt-1 max-h-60  z-30 overflow-auto  rounded-md bg-primary-500 text-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {options.map((item, personIdx) => (
               <Listbox.Option
                 key={personIdx}
@@ -45,7 +45,7 @@ const Dropdown = ({
                         selected ? "font-medium" : "font-normal"
                       }`}
                     >
-                      {item.label}
+                      {item.value}
                     </span>
                     {selected ? (
                       <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
