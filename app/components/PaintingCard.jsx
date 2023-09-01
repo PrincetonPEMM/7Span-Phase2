@@ -4,7 +4,7 @@ import { defaultImageforPainting } from "@/utils/constant";
 const PaintingCard = (props) => {
   return (
     <div
-      className={`text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
+      className={`text-offWhite-500 font-body relative overflow-hidden inline-block w-full`}
     >
       <div className="aspect-square bg-offWhite-500">
         <img
@@ -33,7 +33,7 @@ const PaintingCard = (props) => {
         <h2 className="lg:text-2xl font-bold mt-3">
           {props.card.pemm_short_title
             ? props.card.pemm_short_title
-            : "Title not Found"}
+            : "PEMM title not found"}
         </h2>
         <p className="pt-2">
           {props.card.episodes ? props.card.episodes : "-"}

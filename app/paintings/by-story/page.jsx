@@ -59,7 +59,7 @@ const page = () => {
             key={index}
             title={item.title}
             text={item.text}
-            content={item.content}
+            content={item.content} btnText={item.btnText}
           />
         ))}
       </Masonry> */}
