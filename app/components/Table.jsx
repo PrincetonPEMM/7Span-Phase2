@@ -129,7 +129,7 @@ const Table = ({
                           <Link
                             href={
                               isPageName === STORIES
-                                ? `stories/${event.id}`
+                                ? `stories/${event.canonical_story_id}`
                                 : ` manuscripts/${event.id}`
                             }
                           >

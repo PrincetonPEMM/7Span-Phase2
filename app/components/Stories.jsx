@@ -111,10 +111,6 @@ const Stories = () => {
       const data = await response.json();
       setTotalPage(data.total);
       setTableData(data.data);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
       setIsLoadint(false);
     } catch (error) {
       console.log("Error", error);
@@ -279,6 +275,10 @@ const Stories = () => {
           isOpen={isOpen}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
             setExpandedRows([]);
           }}
         />
