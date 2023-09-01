@@ -504,13 +504,13 @@ body {
   @apply aspect-video w-full h-full;
 }
 
-.masonry .even .card-background {
+/* .masonry .even .card-background {
   @apply bg-primary-500;
 }
 
 .masonry .even .card-button {
   @apply bg-secondary-500;
-}
+} */
 
 .masonry .odd .card-background {
   @apply bg-secondary-500;

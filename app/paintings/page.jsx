@@ -9,8 +9,6 @@ const Page = async () => {
   );
   const filters = await res.json();
 
-  console.log(filters, "Filters");
-
   return (
     <div>
       <Paintings {...filters} />
