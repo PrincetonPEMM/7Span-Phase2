@@ -11,7 +11,7 @@ export default function Card({
 }) {
   return (
     <div
-      className={`rounded-lg text-white px-5 md:px-8 py-10 relative inline-block my-3 card-background`}
+      className={`rounded-lg text-white px-5 md:px-8 py-10 relative inline-block my-3`}
     >
       <buttion
         className={`absolute top-3 right-3 text-xs px-2 py-1 card-button rounded-md`}
