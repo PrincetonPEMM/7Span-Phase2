@@ -33,7 +33,7 @@ const PaintingCard = (props) => {
         <h2 className="lg:text-2xl font-bold mt-3">
           {props.card.pemm_short_title
             ? props.card.pemm_short_title
-            : "Title not Found"}
+            : "PEMM title not found"}
         </h2>
         <p className="pt-2">
           {props.card.episodes ? props.card.episodes : "-"}

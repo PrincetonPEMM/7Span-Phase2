@@ -16,7 +16,7 @@ export default function StoryDetail({ data, Id }) {
     for (let translation of data.translations) {
       let string = "<h2>";
       string += `<b> ${translation.language_translated_to}: </b>`;
-      string += `${translation.translation_author} ${
+      string += `${translation.translation_author}. ${
         translation.translation_as_of_date
       }. ${
         translation.published_translation_book_title
@@ -453,11 +453,11 @@ function SeconsdLine(total_records) {
           : appearing in &nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
-            : `${(
+            : `${Math.round(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
-                100
-              ).toFixed(5)} % of PEMM manuscripts with five stories or more.`}
+                  100
+              )}% of PEMM manuscripts with five stories or more.`}
         </p>
       )}
     </>
@@ -498,7 +498,7 @@ function ThirdLine(
           ) : total_manuscripts_with_story_id_illustrated == null ||
             total_manuscripts_with_story_id_illustrated != 0 ? (
             <>
-              This story is <b>sometimes illustrated</b>, with a total of
+              This story is <b>sometimes illustrated</b>, with a total of&nbsp;
               <b>{total_story_id_paintings}</b> painting(s).
             </>
           ) : (
@@ -548,10 +548,10 @@ function SixthLine(languageAvailableIn) {
 }
 function SeventhLine() {
   return (
-    <p className="text-sm leading-relaxed py-2">
-      A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
-      has catalogued. For more information, see{" "}
-      <Link href="/about/using-the-site" className="underline">
+    <p className="text-sm indent-2 leading-relaxed py-2">
+      <sup>1. </sup>A "PEMM manuscript" is defined as any Gəˁəz Marian
+      manuscript that PEMM has catalogued. For more information, see{" "}
+      <Link href="/about/using-the-site" className="text-primary-600">
         Using the Site
       </Link>
       .

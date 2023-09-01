@@ -16,6 +16,7 @@ import {
 import useDebounce from "@/utils/useDebounce";
 import OutsideClickHandler from "react-outside-click-handler";
 import { TablePagination } from "./Pagination";
+
 const ManuScripts = () => {
   const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
@@ -96,10 +97,6 @@ const ManuScripts = () => {
       const data = await response.json();
       setTotalPage(data.total);
       setTableData(data.data);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
       setIsLoadint(false);
     } catch (error) {
       console.log("Error", error);
@@ -271,6 +268,10 @@ const ManuScripts = () => {
           isOpen={isOpen}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
             setExpandedRows([]);
           }}
         />
