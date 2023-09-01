@@ -146,7 +146,7 @@ const Paintings = ({
       </div>
       <div className="block text-center mx-3 mb-4 font-body">
         <button
-          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg"
+          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg text-xs md:text-base"
           onClick={() => {
             setDateOfPaintins([]);
             setPaintingsInColorOnly(paintingInColor[0]);

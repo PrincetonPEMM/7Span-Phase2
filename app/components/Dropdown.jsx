@@ -12,7 +12,7 @@ const Dropdown = ({
   return (
     <Listbox value={selected} onChange={setSelected} multiple={isMultiple}>
       <div className="relative m-1">
-        <Listbox.Button className="relative w-full md:min-w-[200px] rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
+        <Listbox.Button className="relative w-full lg:min-w-[200px] rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
           <span className="block truncate">
             {title === "Date of Paintings"
               ? title
