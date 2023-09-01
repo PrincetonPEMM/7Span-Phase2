@@ -452,11 +452,11 @@ function SeconsdLine(total_records) {
           : appearing in &nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
-            : `${(
+            : `${Math.random(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
-                100
-              ).toFixed(5)} % of PEMM manuscripts with five stories or more.`}
+                  100
+              )} % of PEMM manuscripts with five stories or more.`}
         </p>
       )}
     </>

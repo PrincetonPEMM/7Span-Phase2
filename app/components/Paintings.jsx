@@ -62,10 +62,6 @@ const Paintings = ({
       setTotalPage(resData.total);
       setData(resData.data);
       setLoading(false);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     } catch (error) {
       console.log("Error", error);
       setLoading(false);
@@ -104,7 +100,13 @@ const Paintings = ({
               }
             }}
           />
-          <MdiWindowClose className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700" />
+          <MdiWindowClose
+            className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700"
+            onClick={() => {
+              setSearch("");
+              debouncedFetchData("");
+            }}
+          />
         </div>
       </div>
       <div className="grid grid-cols-2 lg:flex items-start justify-center flex-wrap mb-1 font-body lg:mx-auto max-w-4xl">
@@ -176,6 +178,10 @@ const Paintings = ({
           isOpen={true}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
         />
       </div>

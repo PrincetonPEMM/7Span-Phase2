@@ -1,9 +1,11 @@
 import React from "react";
 import { defaultImageforPainting } from "@/utils/constant";
+import Link from "next/link";
 
 const PaintingCard = (props) => {
   return (
-    <div
+    <Link
+      href={`/paintings/${props.card.web_page_address}_${props.card.painting_unique_id}`}
       className={`text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
     >
       <div className="aspect-square bg-offWhite-500">
@@ -33,13 +35,13 @@ const PaintingCard = (props) => {
         <h2 className="lg:text-2xl font-bold mt-3">
           {props.card.pemm_short_title
             ? props.card.pemm_short_title
-            : "Title not Found"}
+            : "PEMM title not found"}
         </h2>
         <p className="pt-2">
           {props.card.episodes ? props.card.episodes : "-"}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
