@@ -9,6 +9,7 @@ import Dropdown from "./Dropdown";
 import { pagePerLimitForPainting } from "@/utils/constant";
 import { TablePagination } from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 
 const Paintings = ({
   dateOfPainting,
@@ -85,12 +86,13 @@ const Paintings = ({
 
   return (
     <div className="container">
-      <div className="flex items-start space-x-4 mb-5">
-        <div class="relative w-full">
+      <div className="flex items-start space-x-4 mb-1">
+        <div class="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
           <InputText
             value={search}
             iconBefore
+            placeholderText="Search"
             onChange={(e) => {
               const query = e.target.value;
               setSearch(query);
@@ -102,9 +104,10 @@ const Paintings = ({
               }
             }}
           />
+          <MdiWindowClose className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700" />
         </div>
       </div>
-      <div className="flex items-start flex-wrap mb-5 max-w-5xl lg:mx-auto">
+      <div className="grid grid-cols-2 lg:flex items-start justify-center flex-wrap mb-1 font-body lg:mx-auto max-w-4xl">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -133,8 +136,10 @@ const Paintings = ({
           options={institution}
           isMultiple={false}
         />
+      </div>
+      <div className="block text-center mx-3 mb-4 font-body">
         <button
-          className="bg-primary-500 text-white py-2 pl-3 pr-10 text-center rounded-md m-3"
+          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg"
           onClick={() => {
             setDateOfPaintins([]);
             setPaintingsInColorOnly(paintingInColor[0]);
@@ -145,6 +150,7 @@ const Paintings = ({
           Reset
         </button>
       </div>
+
       <div className="pb-10">
         {data.length ? (
           <Masonry>
