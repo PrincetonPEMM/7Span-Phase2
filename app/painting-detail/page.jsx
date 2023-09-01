@@ -5,8 +5,8 @@ import ComingSoon from "../components/ComingSoon";
 const page = () => {
   return (
     <div>
-      <ComingSoon />
-      {/* <PaintingDetail /> */}
+      {/* <ComingSoon /> */}
+      <PaintingDetail />
     </div>
   );
 };
