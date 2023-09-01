@@ -10,7 +10,7 @@ const PaintingStoryCard = ({ title, text, content }) => {
         <Image
           src={PaintingDetail}
           alt="PEMM"
-          className="w-full object-cover"
+          className="w-full object-cover h-full"
         />
       </div>
       <div className="bg-black p-5">

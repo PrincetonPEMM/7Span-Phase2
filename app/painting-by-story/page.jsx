@@ -53,7 +53,7 @@ const page = () => {
   ];
   return (
     <div className="py-10 container">
-      {/* <Masonry>
+      <Masonry>
         {data.map((item, index) => (
           <PaintingStoryCard
             key={index}
@@ -62,8 +62,8 @@ const page = () => {
             content={item.content}
           />
         ))}
-      </Masonry> */}
-      <ComingSoon />
+      </Masonry>
+      {/* <ComingSoon /> */}
     </div>
   );
 };
