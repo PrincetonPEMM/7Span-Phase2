@@ -62,10 +62,6 @@ const Paintings = ({
       setTotalPage(resData.total);
       setData(resData.data);
       setLoading(false);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     } catch (error) {
       console.log("Error", error);
       setLoading(false);
@@ -183,6 +179,10 @@ const Paintings = ({
           isOpen={true}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
         />
       </div>
