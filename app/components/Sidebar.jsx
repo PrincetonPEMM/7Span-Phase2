@@ -155,7 +155,7 @@ const Sidebar = ({
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
           <lable className="text-white text-lg block">{placeItem?.title}</lable>
-          <div className="mt-5">
+          <div className="mt-5 flex items-start flex-wrap">
             {placeItem?.checkItem.map((item, index) => (
               <InputIcon
                 key={index}

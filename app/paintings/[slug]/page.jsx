@@ -1,13 +1,16 @@
-import StoryDetail from "@/app/components/StoryDetail.jsx";
+import React from "react";
+import PaintingDetail from "../../components/PaintingDetail";
 
 export const dynamic = "force-dynamic";
+
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { slug } = params;
+
   let data = null;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/${slug}`
     );
 
     data = await response.json();
@@ -16,8 +19,8 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div className="px-4 py-5 md:px-8">
-      <StoryDetail data={data} Id={Id} />
+    <div>
+      <PaintingDetail data={data[0]} />
     </div>
   );
 };

@@ -15,8 +15,10 @@ import {
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import OutsideClickHandler from "react-outside-click-handler";
-import { Pagination } from "./Pagination";
+import { TablePagination } from "./Pagination";
+
 const ManuScripts = () => {
+  const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
   const [search, setSearch] = useState("");
@@ -53,47 +55,52 @@ const ManuScripts = () => {
   };
 
   async function fetchData(searchKey = "") {
-    setIsLoadint(true);
-    const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
-      filterItem,
-      "withPaintings"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withOnlineDigitalCopy"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withColorDigitalCopy"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withUniqueStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "oldestManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "recentManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "arabicManuscript"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "arabicAndGaazManuscript"
-    )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
-      "lastKnownLocation",
-      placeItem
-    )}&${makeParamsArray(
-      "knownOriginRegion",
-      originRegion
-    )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
+    try {
+      setIsLoadint(true);
+      const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withOnlineDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withColorDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withUniqueStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "oldestManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicAndGaazManuscript"
+      )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
+        "lastKnownLocation",
+        placeItem
+      )}&${makeParamsArray(
+        "knownOriginRegion",
+        originRegion
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
     `;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
-    );
 
-    const data = await response.json();
-    setTotalPage(data.total);
-    setTableData(data.data);
-    setIsLoadint(false);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts?${params}`
+      );
+
+      const data = await response.json();
+      setTotalPage(data.total);
+      setTableData(data.data);
+      setIsLoadint(false);
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
   useEffect(() => {
     fetchData(search);
@@ -117,7 +124,7 @@ const ManuScripts = () => {
 
   return (
     <div
-      className={`flex px-1 md:px-5 pb-10 ${
+      className={`flex px-1 md:px-5 pb-10 manuscript-page ${
         isOpen ? "shell" : "flex items-start"
       }`}
     >
@@ -176,7 +183,7 @@ const ManuScripts = () => {
         />
       </div>
 
-      <div className="w-full overflow-auto">
+      <div className="w-full">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -232,32 +239,40 @@ const ManuScripts = () => {
           tableHeader={tableHeader}
           tableData={tableData}
           toggleBtn={toggleBtn}
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-          }}
-          isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
-          }}
+          // meta={{
+          //   total: totalPage,
+          //   per_page: perPage,
+          //   current_page: page,
+          //   last_page: 50,
+          // }}
+          // isOpen={isOpen}
+          // onPageChange={(num) => {
+          //   setPage(num);
+          // }}
+          expandedRows={expandedRows}
+          setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
             {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}
-        <Pagination
+        <TablePagination
           meta={{
             total: totalPage,
             per_page: perPage,
             current_page: page,
             last_page: 50,
+            page: page,
           }}
           isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
+          onPageChange={(num) => {
+            setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setExpandedRows([]);
           }}
         />
         {/* </div> */}

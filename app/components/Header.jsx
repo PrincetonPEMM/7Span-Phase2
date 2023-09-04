@@ -205,7 +205,7 @@ const Header = () => {
                   {item.subItems ? (
                     <div className="group capitalize relative">
                       <button
-                        className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 font-semibold flex items-center lg:hover:text-secondary-500"
+                        className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 font-semibold flex items-center lg:hover:text-secondary-50 lg:pointer-events-none"
                         onClick={() => toggleSubmenu(index)}
                       >
                         <span>{item.title}</span>

@@ -15,7 +15,7 @@ const Modal = ({
   return (
     <>
       <Transition appear show={isOpen} as={Fragment} onClose={close}>
-        <Dialog as="div" className="relative z-50">
+        <Dialog as="div" className="relative z-50 ">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -30,7 +30,7 @@ const Modal = ({
 
           <div className="fixed inset-0 z-50 overflow-y-auto">
             <div
-              className={`mx-auto flex min-h-full w-full items-center justify-center p-4 text-center ${pModalClass}`}
+              className={`mx-auto flex min-h-full w-full items-center max-w-3xl justify-center p-4 text-center ${pModalClass}`}
             >
               <Transition.Child
                 as={Fragment}
@@ -54,7 +54,7 @@ const Modal = ({
                   )}
 
                   <button
-                    className=" absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-background-500"
+                    className=" absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-offWhite-500"
                     onClick={modalClose}
                   >
                     X{closeModal}

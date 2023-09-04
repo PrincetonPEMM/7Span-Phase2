@@ -9,17 +9,12 @@ const SliderModal = ({ sliderImg }) => {
     thumbnail: item,
   }));
 
-
-  return (
+  return images.length ? (
     <>
       <hr />
-      <ImageGallery
-        items={images}
-        infinite={true}
-        autoPlay={true}
-      />
+      <ImageGallery items={images} infinite={true} autoPlay={true} />
     </>
-  );
+  ) : null;
 };
 
 export default SliderModal;

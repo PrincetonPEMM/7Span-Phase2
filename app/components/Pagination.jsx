@@ -1,23 +1,32 @@
 import MdiArrowUp from "@/assets/icons/MdiArrowUp";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
+import Pagination from "react-js-pagination";
 
-export const Pagination = ({ meta, isOpen, onPageChange, ...rest }) => {
+export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
     <>
-      {isOpen}
       {pageCount > 1 ? (
-        <ReactPaginate
-          className="static flex divide-x-2 divide-primary-500 max-w-full justify-center bg-offWhite-500 py-2 lg:ml-auto"
-          breakLabel="..."
-          pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y-2 border-y-primary-500 text-base text-primary-500"
-          nextLabel={<NextPage meta={meta} />}
-          pageCount={Math.ceil(meta.total / meta.per_page)}
-          previousLabel={<PrevPage meta={meta} />}
-          renderOnZeroPageCount={null}
-          onPageChange={onPageChange}
-          activeClassName="!bg-primary-500 !text-white"
-          {...rest}
+        // <ReactPaginate
+        //   className="static flex divide-x-2 divide-primary-500 max-w-full justify-center bg-offWhite-500 py-2 lg:ml-auto"
+        //   breakLabel="..."
+        //   pageClassName="pagination-button flex h-10 min-w-[40px] items-center justify-center border-y-2 border-y-primary-500 text-base text-primary-500"
+        //   nextLabel={<NextPage meta={meta} />}
+        //   pageCount={Math.ceil(meta.total / meta.per_page)}
+        //   previousLabel={<PrevPage meta={meta} />}
+        //   renderOnZeroPageCount={null}
+        //   onPageChange={(e) => onPageChange(e.selected + 1)}
+        //   activeClassName="!bg-primary-500 !text-white"
+        //   {...rest}
+        // />
+        <Pagination
+          activePage={meta.page}
+          itemsCountPerPage={meta.per_page}
+          totalItemsCount={meta.total}
+          pageRangeDisplayed={3}
+          onChange={(e) => {
+            onPageChange(e);
+          }}
         />
       ) : null}
     </>

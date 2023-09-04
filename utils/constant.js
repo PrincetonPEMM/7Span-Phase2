@@ -1,5 +1,8 @@
 export const pagePerLimit = 20;
+export const pagePerLimitForPainting = 21;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 641;
+export const defaultImageforPainting =
+  "https://ethiopic-manuscripts.s3.amazonaws.com/default_image.jpeg";
 export const TRANSLATION_STATUS_OPTIONS = [
   "Published translation",
   "Complete Translation",
@@ -194,7 +197,7 @@ export const initialPlaceItem = {
       id: "4",
       icon: true,
       label: "Europe",
-      name: "Europe",
+      name: "europe",
       isChecked: false,
     },
 
@@ -345,7 +348,7 @@ export const initialPlaceItemManuScript = {
   checkItem: [
     {
       id: "1",
-      icon: false,
+      icon: true,
       label: "Africa",
       name: "africa",
       isChecked: false,
@@ -354,19 +357,19 @@ export const initialPlaceItemManuScript = {
       id: "2",
       icon: false,
       label: "Egypt",
-      name: "Egypt",
+      name: "egypt",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
       label: "Ethiopia",
-      name: "Ethiopia",
+      name: "ethiopia",
       isChecked: false,
     },
     {
       id: "4",
-      icon: false,
+      icon: true,
       label: "Middle East",
       name: "middle_east",
       isChecked: false,
@@ -375,12 +378,12 @@ export const initialPlaceItemManuScript = {
       id: "5",
       icon: false,
       label: "Israel",
-      name: "Israel",
+      name: "israel",
       isChecked: false,
     },
     {
       id: "11",
-      icon: false,
+      icon: true,
       label: "North America",
       name: "north_america",
       isChecked: false,
@@ -389,49 +392,49 @@ export const initialPlaceItemManuScript = {
       id: "12",
       icon: false,
       label: "US",
-      name: "US",
+      name: "united states",
       isChecked: false,
     },
     {
       id: "13",
       icon: false,
       label: "Canada",
-      name: "Canada",
+      name: "canada",
       isChecked: false,
     },
     {
       id: "6",
-      icon: false,
+      icon: true,
       label: "Europe",
-      name: "Europe",
+      name: "europe",
       isChecked: false,
     },
     {
       id: "7",
       icon: false,
       label: "France",
-      name: "France",
+      name: "france",
       isChecked: false,
     },
     {
       id: "8",
       icon: false,
       label: "Italy",
-      name: "Italy",
+      name: "italy",
       isChecked: false,
     },
     {
       id: "10",
       icon: false,
       label: "UK",
-      name: "UK",
+      name: "united kingdom",
       isChecked: false,
     },
     {
       id: "9",
       icon: false,
       label: "Germany",
-      name: "Germany",
+      name: "germany",
       isChecked: false,
     },
 
@@ -465,14 +468,14 @@ export const initialOriginRegionManuScript = {
       id: "2",
       icon: false,
       label: "West Ethiopia",
-      name: "westEthopia",
+      name: "west",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
       label: "South Ethiopia",
-      name: "southEthopia",
+      name: "south",
       isChecked: false,
     },
 

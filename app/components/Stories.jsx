@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
@@ -20,11 +20,12 @@ import {
   rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import { Pagination } from "./Pagination";
+import { TablePagination } from "./Pagination";
 
 const Stories = () => {
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
+  const [expandedRows, setExpandedRows] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
@@ -63,50 +64,57 @@ const Stories = () => {
   };
 
   async function fetchData(searchKey = "") {
-    setIsLoadint(true);
-    const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
-      filterItem,
-      "withPaintings"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "ethiopianStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "miracleOfMaryStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "lifeOfMaryStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "mostIllustrated"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "earliestStories"
-    )}${getFilterFalsyValue(filterItem, "recentStories")}${getFilterFalsyValue(
-      filterItem,
-      "popularStories"
-    )}${getFilterFalsyValue(
-      filterItem,
-      "uniqueStories"
-    )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
-      "origin",
-      placeItem
-    )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
-      "languages",
-      langItem
-    )}${getFilterFalsyValue(
-      filterItem,
-      "withEnglishTranslation"
-    )}filters[search]=${searchKey}
+    try {
+      setIsLoadint(true);
+      const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "ethiopianStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "miracleOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "lifeOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "mostIllustrated"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "earliestStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "popularStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "uniqueStories"
+      )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "origin",
+        placeItem
+      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+        "languages",
+        langItem
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withEnglishTranslation"
+      )}filters[search]=${searchKey}
     `;
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
-    );
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
+      );
 
-    const data = await response.json();
-    setTotalPage(data.total);
-    setTableData(data.data);
-    setIsLoadint(false);
+      const data = await response.json();
+      setTotalPage(data.total);
+      setTableData(data.data);
+      setIsLoadint(false);
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
 
   useEffect(() => {
@@ -182,7 +190,7 @@ const Stories = () => {
         />
       </div>
 
-      <div className="w-full overflow-x-auto">
+      <div className="w-full">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="p-2">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -248,22 +256,30 @@ const Stories = () => {
           // onPageChange={(e) => {
           //   setPage(e.selected + 1);
           // }}
+          expandedRows={expandedRows}
+          setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
             {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}
-        <Pagination
+        <TablePagination
           meta={{
             total: totalPage,
             per_page: perPage,
             current_page: page,
             last_page: 50,
+            page: page,
           }}
           isOpen={isOpen}
-          onPageChange={(e) => {
-            setPage(e.selected + 1);
+          onPageChange={(num) => {
+            setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setExpandedRows([]);
           }}
         />
       </div>
