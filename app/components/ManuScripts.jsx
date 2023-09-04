@@ -12,6 +12,14 @@ import {
   initialfilterItemManuScript,
   MANUSCRIPTS,
   initialOriginRegionManuScript,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import { TablePagination } from "./Pagination";
@@ -27,14 +35,30 @@ const ManuScripts = () => {
   const [originRegion, setOriginRegion] = useState(
     initialOriginRegionManuScript
   );
-  const [dateCreationMin, setDateCreationMin] = useState(0);
-  const [dateCreationMax, setDateCreationMax] = useState(100);
-  const [noOfStoriesMin, setNoOfStoriesMin] = useState(0);
-  const [noOfStoriesMax, setNoOfStoriesMax] = useState(100);
-  const [noOfPaintingMin, setNoOfPaintingMin] = useState(0);
-  const [noOfPaintingMax, setNoOfPaintingMax] = useState(100);
-  const [noOfUniqueMin, setNoOfUniqueMin] = useState(0);
-  const [noOfUniqueMax, setNoOfUniqueMax] = useState(100);
+  const [dateCreationMin, setDateCreationMin] = useState(
+    rangeSliderMinDateOfCreationManuscriptsPage
+  );
+  const [dateCreationMax, setDateCreationMax] = useState(
+    rangeSliderMaxDateOfCreationManuscriptsPage
+  );
+  const [noOfStoriesMin, setNoOfStoriesMin] = useState(
+    rangeSliderMinNoOfStoriesManuscriptsPage
+  );
+  const [noOfStoriesMax, setNoOfStoriesMax] = useState(
+    rangeSliderMaxNoOfStoriesManuscriptsPage
+  );
+  const [noOfPaintingMin, setNoOfPaintingMin] = useState(
+    rangeSliderMinNoOfPaintingsManuscriptsPage
+  );
+  const [noOfPaintingMax, setNoOfPaintingMax] = useState(
+    rangeSliderMaxNoOfPaintingsManuscriptsPage
+  );
+  const [noOfUniqueMin, setNoOfUniqueMin] = useState(
+    rangeSliderMinUniqueStoriesManuscriptsPage
+  );
+  const [noOfUniqueMax, setNoOfUniqueMax] = useState(
+    rangeSliderMaxUniqueStoriesManuscriptsPage
+  );
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
