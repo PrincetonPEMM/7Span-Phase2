@@ -556,6 +556,7 @@ body {
 
 .Subbanner_img img {
   @apply object-cover object-center;
+  background: #433b3b;
 }
 
 .banner-content {
