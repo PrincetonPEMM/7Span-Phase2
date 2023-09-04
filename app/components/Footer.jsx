@@ -37,7 +37,7 @@ const Footer = () => {
   ];
   return (
     <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
-      <div className="max-w-[400px] text-left md:p-5 col-span-2 text-sm lg:text-lg">
+      <div className="max-w-[400px] text-left md:py-5 col-span-2 text-sm lg:text-lg">
         <Link href="/" className="w-[30%] relative">
           <Image
             src={Logo}
@@ -45,12 +45,12 @@ const Footer = () => {
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
           />
         </Link>
-        <p className="">
+        <p className="pt-4 md:pt-0">
           PEMM is a comprehensive resource for the 1,000+ miracle stories
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-        <div className="py-5 text-sm space-y-2 pr-10">
+        <div className="md:py-5 text-sm space-y-2 pr-10">
           <p>
             Princeton Department of Comparative Literature 133 East Pyne,
             Princeton, NJ 08540
@@ -63,11 +63,11 @@ const Footer = () => {
         <Link href="mailto: pemm@princeton.edu" className="py-3 text-sm">
           pemm@princeton.edu
         </Link>
-        <p className="pt-10 text-sm">
+        <p className="pt-4 md:pt-10 text-sm">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
-      <div className="py-5">
+      <div className="md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">About</h2>
         <ul className="font-menu text-xl flex flex-col  relative z-20">
           {aboutItems.map((item, index) => (
@@ -80,7 +80,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left py-5">
+      <div className="text-left md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Explore</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {exploreItems.map((item, index) => (
@@ -93,7 +93,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left py-5">
+      <div className="text-left md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Research Tools</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {researchToolItems.map((item, index) => (

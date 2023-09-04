@@ -110,7 +110,7 @@ const Paintings = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
