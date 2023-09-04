@@ -208,7 +208,7 @@ const ManuScripts = () => {
 
       <div className="w-full">
         {!isOpen && (
-          <button onClick={() => setIsOpen(true)} className="p-2">
+          <button onClick={() => setIsOpen(true)} className="">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
           </button>
         )}
