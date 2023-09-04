@@ -1,6 +1,7 @@
 import React from "react";
 import PaintingDetail from "@assets/images/painting-detail.jpg";
 import Image from "next/image";
+
 const PaintingStoryCard = ({ title, text, content, btnText }) => {
   return (
     <div
