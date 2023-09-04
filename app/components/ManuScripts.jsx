@@ -14,7 +14,6 @@ import {
   initialOriginRegionManuScript,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import OutsideClickHandler from "react-outside-click-handler";
 import { TablePagination } from "./Pagination";
 
 const ManuScripts = () => {
