@@ -585,10 +585,14 @@ body {
 }
 
 .banner-content {
-  @apply transition-all opacity-0 duration-150;
+  opacity: 0;
+  transition-duration: 0.8s;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .banner-image:hover .banner-content {
-  @apply opacity-100 transition-all duration-150;
+  transition-duration: 0.8s;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  opacity: 1;
 }
 .container-fliud {
   @apply px-5;
@@ -601,11 +605,6 @@ body {
   transform: scale(1);
   transition: 2s;
 }
-
-.banner-image:hover .banner-content {
-  @apply opacity-100 transition-all duration-150;
-}
-
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
