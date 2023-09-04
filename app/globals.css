@@ -478,21 +478,20 @@ body {
   @apply aspect-video w-full h-full;
 }
 
-/* .masonry .even .card-background {
-  @apply bg-primary-500;
+.masonry .even .card-background {
+  @apply bg-primary-500 rounded-b-lg;
 }
 
 .masonry .even .card-button {
-  @apply bg-secondary-500;
-} */
-
-/* .masonry .odd .card-background {
-  @apply bg-secondary-500;
+  @apply bg-secondary-500 rounded-b-lg;
+}
+.masonry .odd .card-background {
+  @apply bg-secondary-500 rounded-b-lg;
 }
 
 .masonry .odd .card-button {
-  @apply bg-primary-500;
-} */
+  @apply bg-primary-500 rounded-b-lg;
+}
 .pagination-button a {
   @apply h-full w-full flex items-center justify-center p-3;
 }
