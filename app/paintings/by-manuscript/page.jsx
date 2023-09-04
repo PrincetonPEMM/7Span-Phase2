@@ -1,10 +1,10 @@
 import React from "react";
-import PaintingByStoryIndex from "@/app/components/PaintingByStoryIndex";
+import PaintingbyMSIndex from "@/app/components/PaintingbyMSIndex";
 
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-  return <PaintingByStoryIndex />;
+  return <PaintingbyMSIndex />;
 };
 
 export default Page;
