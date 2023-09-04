@@ -156,9 +156,12 @@ const Table = ({
                           `${
                             event.manuscript_date_range_start &&
                             event.manuscript_date_range_end
-                              ? event.manuscript_date_range_start +
-                                "-" +
+                              ? event.manuscript_date_range_start ===
                                 event.manuscript_date_range_end
+                                ? event.manuscript_date_range_end
+                                : event.manuscript_date_range_start +
+                                  "-" +
+                                  event.manuscript_date_range_end
                               : "-"
                           }`}
                         {isPageName === MANUSCRIPT_DETAIL && (
