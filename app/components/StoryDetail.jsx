@@ -417,8 +417,8 @@ function FirstLine(earliest_attestation) {
               ? "very recent"
               : ""}
           </b>
-          : the earliest manuscript1 in which this story appears is from around{" "}
-          {earliest_attestation}.
+          : the earliest manuscript<sup>1</sup> in which this story appears is
+          from around {earliest_attestation}.
         </p>
       )}
     </>
@@ -482,12 +482,13 @@ function ThirdLine(
               <>
                 This story is among the thirty-two Täˀammərä Maryam stories that
                 are most <b>frequently illustrated</b>, with a total of&nbsp;
-                <b>{total_story_id_paintings}</b> paintings. To see its
+                <b>{total_story_id_paintings}</b> paintings.
+                {/* To see its
                 paintings, go to its PEMM&nbsp;
                 <Link href="/paintings/by-story" className="text-primary-500">
                   Paintings by Story
                 </Link>
-                &nbsp; page.
+                &nbsp; page. */}
               </>
             ) : (
               <>
@@ -495,12 +496,13 @@ function ThirdLine(
                 are most <b>frequently illustrated</b>: it is illustrated in $
                 {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
                 with a total of
-                <b>{total_story_id_paintings}</b> paintings. To see its
+                <b>{total_story_id_paintings}</b> paintings.
+                {/* To see its
                 paintings, go to its PEMM&nbsp;
                 <Link href="/paintings/by-story" className="text-primary-500">
                   Paintings by Story
                 </Link>
-                &nbsp; page.
+                &nbsp; page. */}
               </>
             )
           ) : total_manuscripts_with_story_id_illustrated == null ||
