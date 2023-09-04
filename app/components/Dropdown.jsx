@@ -11,8 +11,8 @@ const Dropdown = ({
 }) => {
   return (
     <Listbox value={selected} onChange={setSelected} multiple={isMultiple}>
-      <div className="relative m-1">
-        <Listbox.Button className="relative w-full lg:min-w-[200px] rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
+      <div className="relative">
+        <Listbox.Button className="relative w-full rounded-md cursor-default text-xs sm:text-sm md:text-base bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300">
           <span className="block truncate">
             {title === "Date of Paintings"
               ? title
@@ -38,7 +38,7 @@ const Dropdown = ({
               <Listbox.Option
                 key={personIdx}
                 className={({ active }) =>
-                  `relative cursor-default select-none transition-all py-2 pl-8 pr-4 ${
+                  `relative cursor-default select-none transition-all py-2 pl-6 lg:pl-8 pr-2 lg:pr-4 ${
                     active ? "bg-offWhite-400 text-black" : "text-offwhite-500"
                   }`
                 }
@@ -54,7 +54,7 @@ const Dropdown = ({
                       {item.value}
                     </span>
                     {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-offWhite-600">
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-1 lg:pl-3 text-offWhite-600">
                         <CheckIcon className="h-4 w-4" aria-hidden="true" />
                       </span>
                     ) : null}

@@ -1,6 +1,7 @@
 import React from "react";
 import PaintingStoryCard from "./PaintingStoryCard";
 import Masonry from "@/app/components/Masonry";
+
 const PaintingByStoryDetail = () => {
   const data = [
     {

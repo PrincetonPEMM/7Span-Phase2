@@ -62,10 +62,6 @@ const Paintings = ({
       setTotalPage(resData.total);
       setData(resData.data);
       setLoading(false);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     } catch (error) {
       console.log("Error", error);
       setLoading(false);
@@ -114,7 +110,7 @@ const Paintings = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -183,6 +179,10 @@ const Paintings = ({
           isOpen={true}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
         />
       </div>

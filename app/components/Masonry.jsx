@@ -23,14 +23,14 @@ export default function Masonry(props) {
   }, []);
 
   return (
-    <div className="masonry columns-1 md:columns-2 lg:columns-3">
+    <div className="masonry columns-1 md:columns-2 lg:columns-3 ">
       {props.children.map((child, index) => {
         const total_row = Math.ceil(props.children.length / noOfColumns);
         const row = index % total_row;
         const col = Math.floor(index / total_row);
         const class_name = (col + row) % 2 ? "even" : "odd";
         return (
-          <div key={index} className={`masonry-column mb-3 ${class_name}`}>
+          <div key={index} className={`masonry-column mb-3  ${class_name}`}>
             {child}
           </div>
         );
