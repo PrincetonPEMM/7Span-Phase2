@@ -135,7 +135,13 @@ const Stories = () => {
     }
   }, []);
 
-  const debouncedFetchData = debounce(fetchData, 300);
+  const debouncedFetchData = debounce((e) => {
+    fetchData(e);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, 300);
 
   return (
     <div
