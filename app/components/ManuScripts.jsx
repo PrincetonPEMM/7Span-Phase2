@@ -153,7 +153,7 @@ const ManuScripts = () => {
 
   return (
     <div
-      className={`flex px-1 md:px-5 pb-10 manuscript-page ${
+      className={`flex px-4 md:px-5 pb-10 manuscript-page ${
         isOpen ? "shell" : "flex items-start"
       }`}
     >
@@ -209,10 +209,11 @@ const ManuScripts = () => {
           langItem={originRegion}
           setLangItem={setOriginRegion}
           onClick={() => setIsOpen(!isOpen)}
+          onReset="reset"
         />
       </div>
 
-      <div className="w-full">
+      <div className="w-full grid ">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
@@ -224,8 +225,8 @@ const ManuScripts = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="grid grid-cols-3 items-center justify-between top-0 p-2">
-          <div className="relative w-full max-w-sm md:max-w-4xl col-span-2">
+        <div className="mt-4 sm:mt-0 sm:grid sm:grid-cols-5  items-center justify-between pb-2">
+          <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 md:col-span-3">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
             </span>
@@ -243,19 +244,24 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <button
-            className="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
-            onClick={() => {
-              setToggleBtn(!toggleBtn);
-              {
-                !toggleBtn
-                  ? setTableHeader(manuscriptsTableDetailView)
-                  : setTableHeader(manuscriptsTableTitleView);
-              }
-            }}
-          >
-            {toggleBtn ? "Detail view" : "Title View"}
-          </button>
+          <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
+            <p className="text-offBlack-400 font-medium">
+              Results: {`(${totalPage} records)`}
+            </p>
+            <button
+              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-4 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md hover:text-primary-500 uppercase hover:bg-transparent hover:border-primary-500 border-2 border-primary-500 transition-colors hover:transition-colors"
+              onClick={() => {
+                setToggleBtn(!toggleBtn);
+                {
+                  !toggleBtn
+                    ? setTableHeader(manuscriptsTableDetailView)
+                    : setTableHeader(manuscriptsTableTitleView);
+                }
+              }}
+            >
+              {toggleBtn ? "Detail view" : "Title View"}
+            </button>
+          </div>
         </div>
         {/* <div
           className={`w-full h-screen ${

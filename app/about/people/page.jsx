@@ -18,16 +18,18 @@ export default async function page() {
       team_with_image.push(
         <Link
           href={`/about/people/${about_people_detail[i].slug}`}
-          className="text-center font-body w-72 p-1 mx-auto sm:w-1/2 lg:1/3 xl:w-1/4"
+          className="text-center font-body w-72 p-3 m-1 mx-auto sm:w-1/2 lg:1/3 xl:w-1/4 people-card"
         >
           <img
             className="rounded-full w-52 h-52 object-cover py-3 px-3 mx-auto 2xl:w-72 2xl:h-72"
             src={`${img_path}${about_people_detail[i].profile_image}`}
           />
-          <h3 className="font-bold text-center tracking-tight capitalize w-full line-clamp-1 text-xl lg:text-2xl xl:text-3xl">{`${
-            about_people_detail[i].first_name ?? ""
-          } ${about_people_detail[i].last_name ?? ""}`}</h3>
-          <p className="text-center line-clamp-3 text-base lg:text-lg">
+          <h3 className="font-bold text-center tracking-tight capitalize w-full line-clamp-1 text-xl lg:text-2xl xl:text-3xl">
+            {`${about_people_detail[i].first_name ?? ""} ${
+              about_people_detail[i].last_name ?? ""
+            }`}
+          </h3>
+          <p className="text-center line-clamp-3 text-base lg:text-lg min-h-[54px]">
             {about_people_detail[i].designation ?? ""}
           </p>
         </Link>
