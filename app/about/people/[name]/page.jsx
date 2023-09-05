@@ -23,9 +23,9 @@ const PeopleDetailPage = async ({ params }) => {
         <MdiKeyboardBackspace />
         <span className="ml-2">Back</span>
       </Link>
-      <div className="items-start font-body py-10 lg:flex lg:space-x-10">
+      <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
         {(results[0]?.profile_image || results[0]?.favorite_painting_image) && (
-          <div className="w-full lg:pb-10 max-w-sm mx-auto">
+          <div className="w-full lg:pb-10 max-w-sm mx-auto ">
             {results[0]?.profile_image && (
               <div className="w-60 h-60 aspect-squre rounded-full mx-auto sm:h-80 sm:w-80">
                 <img
@@ -55,14 +55,14 @@ const PeopleDetailPage = async ({ params }) => {
             )}
           </div>
         )}
-        <div className="mt-5 lg:mt-0">
+        <div className="mt-5 lg:mt-0 lg:col-span-2">
           <div className="mb-3 text-center lg:mb-3 lg:text-left">
-            <h2 className="text-3xl font-bold text-primary-500 md:text-4xl">
+            <h2 className="text-2xl lg:text-3xl font-bold text-primary-500 md:text-4xl">
               {`${results[0].first_name ? results[0].first_name : ""} ${
                 results[0].last_name ? results[0].last_name : ""
               }`}
             </h2>
-            <p className="text-2xl text-black font-bold">
+            <p className="text-lg md:text-2xl text-black font-bold">
               {results[0].designation ? results[0].designation : ""}
               {/* Project Director &
               <span className="block">Principal Investigator</span> */}

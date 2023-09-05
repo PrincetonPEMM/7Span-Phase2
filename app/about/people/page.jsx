@@ -87,11 +87,11 @@ export default async function page() {
             .join("-")}`}
           className="other-team-member font-body"
         >
-          <h3 className="text-2xl text-center font-extrabold tracking-tight leading-none lg:text-4xl">
+          <h3 className="text-3xl font-header text-center lg:text-5xl">
             {about_people.other_team_members_title}
           </h3>
           <div
-            className="space-y-p text-center font-body text-base md:text-left"
+            className="space-y-p text-center font-body text-base md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.other_team_members_description,
             }}
@@ -105,9 +105,6 @@ export default async function page() {
             .join("-")}`}
           className="md:w-4/5 mx-auto space-y-10 lg:space-y-16"
         >
-          <h2 className="text-3xl font-header text-center lg:text-5xl">
-            {about_people.our_partners_title}
-          </h2>
           <div
             id={`${about_people.project_collaborators_title
               .split(" ")
@@ -115,8 +112,11 @@ export default async function page() {
               .join("-")}`}
             className="collaborators"
           >
-            <h3 className="text-3xl font-header text-center mb-3 md:mb-5 lg:text-5xl">
-              {about_people.project_collaborators_title}
+            <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl">
+              {about_people.our_partners_title}
+            </h2>
+            <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+              {about_people.project_collaborators_title} hi
             </h3>
             <div
               className="space-y-p text-center font-body md:text-left"
@@ -125,7 +125,6 @@ export default async function page() {
               }}
             />
           </div>
-
           <div
             id={`${about_people.board_members_title
               .split(" ")
@@ -143,7 +142,6 @@ export default async function page() {
               }}
             />
           </div>
-
           <div
             id={`${about_people.project_advisers_title
               .split(" ")
@@ -161,7 +159,6 @@ export default async function page() {
               }}
             />
           </div>
-
           <div
             id={`${about_people.institutional_collaborators_title
               .split(" ")
@@ -179,7 +176,6 @@ export default async function page() {
               }}
             />
           </div>
-
           <div
             id={`${about_people.our_funders_title
               .split(" ")
