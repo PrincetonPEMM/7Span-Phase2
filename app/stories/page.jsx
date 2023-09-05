@@ -4,11 +4,7 @@ import Stories from "../components/Stories";
 export const dynamic = "force-dynamic";
 
 const StoryPage = async () => {
-  return (
-    <div>
-      <Stories />
-    </div>
-  );
+  return <Stories />;
 };
 
 export default StoryPage;
