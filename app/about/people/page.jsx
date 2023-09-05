@@ -116,7 +116,7 @@ export default async function page() {
               {about_people.our_partners_title}
             </h2>
             <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
-              {about_people.project_collaborators_title} hi
+              {about_people.project_collaborators_title}
             </h3>
             <div
               className="space-y-p text-center font-body md:text-left"
