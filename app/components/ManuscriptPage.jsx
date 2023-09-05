@@ -207,7 +207,7 @@ export default function Manuscript({ Id, data, table }) {
       folio_start = `The Marian miracle stories begin on folio <b>${data.folio_start_of_the_tm_part}</b> of the whole manuscript.`;
     }
     array.push({ text: `${s1} ${s2} ${folio_start}` });
-
+    s1 = "";
     s2 = "";
     s2 = "";
 

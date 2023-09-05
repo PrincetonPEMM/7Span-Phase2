@@ -246,7 +246,7 @@ const ManuScripts = () => {
           </div>
           <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
             <p className="text-offBlack-400 font-medium">
-              Results: {`(${totalPage} records)`}
+              Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
             <button
               className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md hover:text-primary-500 uppercase hover:bg-transparent hover:border-primary-500 border-2 border-primary-500 transition-colors hover:transition-colors"
