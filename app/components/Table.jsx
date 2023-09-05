@@ -130,7 +130,7 @@ const Table = ({
                             href={
                               isPageName === STORIES
                                 ? `stories/${event.canonical_story_id}`
-                                : ` manuscripts/${event.id}`
+                                : ` manuscripts/${event.web_page_address}`
                             }
                           >
                             {isPageName === STORIES &&

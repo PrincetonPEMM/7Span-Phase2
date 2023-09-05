@@ -710,3 +710,7 @@ body {
 .image-gallery-icon:focus-visible {
   @apply !text-primary-500;
 }
+
+.a-tag-whithout-underline-and-green a {
+  @apply text-primary-500;
+}
