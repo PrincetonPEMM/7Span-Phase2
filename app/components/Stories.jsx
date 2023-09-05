@@ -208,7 +208,7 @@ const Stories = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 sm:mt-0 sm:grid sm:grid-cols-5  items-center justify-between pb-2">
+        <div className="mt-4 sm:mt-0 sm:grid sm:grid-cols-5 items-center justify-between pb-2">
           <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 md:col-span-3">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
@@ -271,7 +271,7 @@ const Stories = () => {
           setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
+          <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">
             {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}

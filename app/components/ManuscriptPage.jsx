@@ -277,7 +277,7 @@ export default function Manuscript({ Id, data, table }) {
           {tableData && (
             <div id="emip-table" className="pt-5">
               <h3 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
-                EMIP (EMIP) 981a
+                {data.manuscript}
               </h3>
               <Table
                 // search=""
