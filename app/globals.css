@@ -208,7 +208,7 @@ body {
 } */
 
 .shell__sidebar {
-  @apply inset-y-0 bottom-0 right-auto z-20  w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  rounded-md h-screen xl:sticky;
+  @apply inset-y-0 bottom-0 right-auto z-20  w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
 }
 
 ::-webkit-scrollbar {
@@ -350,7 +350,9 @@ body {
 .radiobox .radiobox-input.checked + .radiomark::before {
   display: block;
 }
-
+.people-card {
+  @apply hover:shadow-lg transition-shadow hover:transition-shadow hover:duration-200;
+}
 /* slider css  */
 
 .slider {
@@ -494,6 +496,12 @@ body {
 }
 .pagination-button a {
   @apply h-full w-full flex items-center justify-center p-3;
+}
+.pagination li:first-child {
+  @apply hidden sm:inline-block;
+}
+.pagination li:last-child {
+  @apply hidden sm:inline-block;
 }
 .space-y-p {
   @apply overflow-auto lg:overflow-hidden;
@@ -694,7 +702,7 @@ body {
 }
 
 .sidebar_open {
-  @apply relative hidden;
+  @apply relative overflow-hidden;
 }
 
 .sidebar_open::before {
@@ -709,4 +717,8 @@ body {
 .image-gallery-icon:focus,
 .image-gallery-icon:focus-visible {
   @apply !text-primary-500;
+}
+
+.a-tag-whithout-underline-and-green a {
+  @apply text-primary-500;
 }
