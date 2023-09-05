@@ -694,7 +694,7 @@ body {
 }
 
 .sidebar_open {
-  @apply relative hidden;
+  @apply relative overflow-hidden;
 }
 
 .sidebar_open::before {

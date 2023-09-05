@@ -58,24 +58,29 @@ const PeopleDetailPage = async ({ params }) => {
         <div className="mt-5 lg:mt-0">
           <div className="mb-3 text-center lg:mb-3 lg:text-left">
             <h2 className="text-3xl font-bold text-primary-500 md:text-4xl">
-              {`${results[0].first_name} ${results[0].last_name}`}
+              {`${results[0].first_name ? results[0].first_name : ""} ${
+                results[0].last_name ? results[0].last_name : ""
+              }`}
             </h2>
             <p className="text-2xl text-black font-bold">
-              Project Director &
-              <span className="block">Principal Investigator</span>
+              {results[0].designation ? results[0].designation : ""}
+              {/* Project Director &
+              <span className="block">Principal Investigator</span> */}
             </p>
-            <p className="text-primary-500 font-extrabold text-lg">
-              <a
-                href={results[0].website}
-                target="_blank"
-                className="cursor-pointer"
-              >
-                {results[0].website}
-              </a>
-            </p>
+            {results[0].website && (
+              <p className="text-primary-500 font-extrabold text-lg">
+                <a
+                  href={results[0].website}
+                  target="_blank"
+                  className="cursor-pointer"
+                >
+                  {results[0].website}
+                </a>
+              </p>
+            )}
           </div>
           <div
-            className="space-y-5 font-semibold text-offBlack-500 text-center lg:text-left"
+            className="space-y-5 font-semibold text-offBlack-500 lg:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 
