@@ -4,11 +4,14 @@ import { useRouter } from "next/navigation";
 
 const SubBanner = ({ stories, divClass }) => {
   const route = useRouter();
-
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [displayText, setDisplayText] = useState(false);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
+    setTimeout(() => {
+      setDisplayText(true);
+    }, 1000);
   };
   return (
     <div className="grid sm:grid-cols-3">
@@ -30,7 +33,7 @@ const SubBanner = ({ stories, divClass }) => {
                 onLoad={handleImageLoad}
               />
             </div>
-            {imageLoaded && (
+            {imageLoaded && displayText && (
               <button className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0">
                 <span className="text-lg lg:text-2xl font-bold font-body">
                   {data?.title}
