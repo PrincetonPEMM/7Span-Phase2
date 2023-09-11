@@ -22,6 +22,7 @@ import {
   rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import Radio from "./form/Radio";
+import MdiReload from "@/assets/icons/MdiReload";
 
 const Sidebar = ({
   isPageName,
@@ -36,15 +37,25 @@ const Sidebar = ({
   langItem,
   setLangItem,
   onClick,
+  onReset,
 }) => {
   return (
     <div className=" w-full rounded-md text-white">
-      <button
-        onClick={onClick}
-        className="sticky top-0 block py-2 bg-primary-500 z-20 w-full"
-      >
-        <MdiMenuOpen className="text-white-500 h-6 w-6" />
-      </button>
+      <div className="flex items-center justify-between sticky z-10 top-0 bg-primary-500">
+        <button
+          onClick={onClick}
+          className="sticky top-0 block py-2 bg-primary-500 z-20 "
+        >
+          <MdiMenuOpen className="text-white-500 h-6 w-6" />
+        </button>
+        {/* <button
+          onClick={onReset}
+          className="sticky top-0 py-2 text-offWhite-500 inline-flex items-center z-20 text-sm"
+        >
+          Clear All <MdiReload className="text-white-500 h-5 w-5 ml-2" />
+        </button> */}
+      </div>
+
       <div className="block mt-3">
         <div>
           <lable className="text-white text-lg block mb-3">

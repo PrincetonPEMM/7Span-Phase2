@@ -16,7 +16,7 @@ const InputIcon = (props) => {
 
   return (
     <div
-      className={`inline-flex m-1 items-start cursor-pointer py-1 px-2 h-6 relative iconcheck ${
+      className={`inline-flex m-1 items-start cursor-pointer py-1 px-2 h-6 relative iconcheck  ${
         item.icon ? "space-x-1 lg:space-x-0" : ""
       } ${item?.isChecked && "isChecked"}`}
       onClick={clickHandler}
@@ -36,7 +36,7 @@ const InputIcon = (props) => {
         type="checkbox"
         name={item?.id}
         checked={item?.isChecked}
-        className={`absolute appearance-none  cursor-pointer rounded-full inset-0 border-0 h-full w-full ${
+        className={`absolute appearance-none  cursor-pointer rounded-full inset-0 border-0 h-full w-full focus-visible:bg-none focus-visible:outline-0 focus-visible:bg-transparent focus-visible:border-0 ${
           item.icon ? " ml-0" : ""
         }
         focus:ring-0`}

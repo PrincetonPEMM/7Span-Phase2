@@ -43,15 +43,15 @@ const RangeSlider = ({ isPageName, min, max, onChange }) => {
   useEffect(() => {
     // For convert into 0 to 100 range.
     let min, max;
-    if (isPageName === MANUSCRIPTS) {
-      const total = largest - lowest;
-      min = Math.round(((minVal - lowest) / total) * 100);
-      max = Math.round(((maxVal - lowest) / total) * 100);
-    }
-    if (isPageName === STORIES) {
-      min = Math.round(minVal);
-      max = Math.round(maxVal);
-    }
+    // if (isPageName === MANUSCRIPTS) {
+    //   const total = largest - lowest;
+    //   min = Math.round(((minVal - lowest) / total) * 100);
+    //   max = Math.round(((maxVal - lowest) / total) * 100);
+    // }
+    // if (isPageName === STORIES) {
+    min = Math.round(minVal);
+    max = Math.round(maxVal);
+    // }
     onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 

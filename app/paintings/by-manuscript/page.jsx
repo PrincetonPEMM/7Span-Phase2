@@ -1,11 +1,11 @@
 import React from "react";
-import PaintingByStoryIndex from "@/app/components/PaintingByStoryIndex";
+import PaintingbyMSIndex from "@/app/components/PaintingbyMSIndex";
 import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-  return <ComingSoon />; //<PaintingByStoryIndex />;
+  return <ComingSoon />; //<PaintingbyMSIndex />;
 };
 
 export default Page;
