@@ -1,6 +1,5 @@
 import React from "react";
 import PaintingDetail from "../../components/PaintingDetail";
-import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
@@ -21,8 +20,7 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      {/* <PaintingDetail data={data[0]} /> */}
-      <ComingSoon />
+      <PaintingDetail data={data[0]} />
     </div>
   );
 };

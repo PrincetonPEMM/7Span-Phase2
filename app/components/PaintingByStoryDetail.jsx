@@ -57,13 +57,7 @@ const PaintingByStoryDetail = () => {
     <div className="py-10 container">
       <Masonry>
         {data.map((item, index) => (
-          <PaintingStoryCard
-            key={index}
-            title={item.title}
-            text={item.text}
-            btnText={item.btnText}
-            content={item.content}
-          />
+          <PaintingStoryCard key={index} item={item} />
         ))}
       </Masonry>
     </div>
