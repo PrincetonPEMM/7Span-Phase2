@@ -59,6 +59,7 @@ const ManuScripts = () => {
   const [noOfUniqueMax, setNoOfUniqueMax] = useState(
     rangeSliderMaxUniqueStoriesManuscriptsPage
   );
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -151,6 +152,22 @@ const ManuScripts = () => {
     });
   }, 300);
 
+  const resetFilter = () => {
+    setDateCreationMin(rangeSliderMinDateOfCreationManuscriptsPage);
+    setDateCreationMax(rangeSliderMaxDateOfCreationManuscriptsPage);
+    setNoOfStoriesMin(rangeSliderMinNoOfStoriesManuscriptsPage);
+    setNoOfStoriesMax(rangeSliderMaxNoOfStoriesManuscriptsPage);
+    setNoOfPaintingMin(rangeSliderMinNoOfPaintingsManuscriptsPage);
+    setNoOfPaintingMax(rangeSliderMaxNoOfPaintingsManuscriptsPage);
+    setNoOfUniqueMin(rangeSliderMinUniqueStoriesManuscriptsPage);
+    setNoOfUniqueMax(rangeSliderMaxUniqueStoriesManuscriptsPage);
+    setExpandedRows([]);
+    // setPage(1)
+    setFilterItem(initialfilterItemManuScript);
+    setPlaceItem(initialPlaceItemManuScript);
+    setOriginRegion(initialOriginRegionManuScript);
+  };
+
   return (
     <div
       className={`flex px-4 md:px-5 pb-10 manuscript-page ${
@@ -209,7 +226,7 @@ const ManuScripts = () => {
           langItem={originRegion}
           setLangItem={setOriginRegion}
           onClick={() => setIsOpen(!isOpen)}
-          onReset="reset"
+          resetFilter={resetFilter}
         />
       </div>
 
