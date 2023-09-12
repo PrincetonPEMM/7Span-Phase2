@@ -1,3 +1,4 @@
+"use client";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Masonry from "react-masonry-css";
