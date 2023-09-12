@@ -76,7 +76,7 @@ export default function Manuscript({ Id, data, table }) {
     if (data.collections_sheet_relevant == "True") {
       let text = `This manuscript is held in the repository of ${data.institution_name} in their ${data.collection_name} in ${data.institution_city_state}, ${data.institution_country}. `;
       if (data.link_to_digital_copy != null) {
-        text += `To view the manuscript online, go <a class="text-primary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>`;
+        // text += `To view the manuscript online, go <a class="text-primary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>.`;
       } else {
         // text += data.link_to_digital_copy_note_external;
       }
@@ -215,9 +215,9 @@ export default function Manuscript({ Id, data, table }) {
       s1 = `The stories in this manuscript were cataloged by <b>${data.pemm_cataloger_name}</b> and <b>${data.print_cataloger_name}</b>.`;
     } else {
       if (data.pemm_cataloger_name != null) {
-        s1 = `The stories in this manuscript were cataloged by <b>${data.pemm_cataloger_name}</b>`;
+        s1 = `The stories in this manuscript were cataloged by <b>${data.pemm_cataloger_name}</b>.`;
       } else if (data.print_cataloger_name != null) {
-        s1 = `The stories in this manuscript were cataloged by <b>${data.print_cataloger_name}</b>`;
+        s1 = `The stories in this manuscript were cataloged by <b>${data.print_cataloger_name}</b>.`;
       }
     }
     if (data.pemm_volunteer_name != null) {
@@ -226,34 +226,34 @@ export default function Manuscript({ Id, data, table }) {
     array.push({ text: `${s1} ${s2}` });
 
     if (data.manuscript !== null) {
-      p1 = `The PEMM abbreviation for this manuscript is <b>${data.manuscript}</b>`;
+      p1 = `The PEMM abbreviation for this manuscript is <b>${data.manuscript}</b>.`;
       array.push({ text: p1 });
     }
 
     if (data.hamburg_ms_id !== null) {
-      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${data.hamburg_ms_id}</b>`;
+      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${data.hamburg_ms_id}</b>.`;
       array.push({ text: p2 });
     }
     array.push({ text: p3 });
     if (data.Collection_shelfmark) {
-      p4 = `<b>Institutional Shelfmark:</b> ${data.Collection_shelfmark}`;
+      p4 = `<b>Institutional Shelfmark:</b> ${data.Collection_shelfmark}.`;
       array.push({ text: p4 });
     }
 
     if (data.source) {
-      p5 = `Regarding this manuscript's repository: ${data.source}`;
+      p5 = `Regarding this manuscript's repository: ${data.source}.`;
       array.push({ text: p5 });
     }
     // array.push({ text: `${p1} ${p2} ${p3} ${p4} ${p5}` });
 
     if (data.manuscript.catalog != null) {
       array.push({
-        text: `This manuscript has a print catalog: <b>${data.manuscript.catalog}</b>`,
+        text: `This manuscript has a print catalog: <b>${data.manuscript.catalog}</b>.`,
       });
     }
 
     array.push({
-      text: `For more information about understanding this table, see <a href="/about/using-the-site" target="_blank" className="text-primary-500">Using This Site.</a>`,
+      text: `For more information about understanding this table, see <b><a href="/about/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
     });
 
     return array;
