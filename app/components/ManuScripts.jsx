@@ -59,6 +59,7 @@ const ManuScripts = () => {
   const [noOfUniqueMax, setNoOfUniqueMax] = useState(
     rangeSliderMaxUniqueStoriesManuscriptsPage
   );
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -127,7 +128,12 @@ const ManuScripts = () => {
   }
   useEffect(() => {
     fetchData(search);
-  }, [filterItem, placeItem, originRegion, page]);
+    setPage(1);
+  }, [filterItem, placeItem, originRegion]);
+
+  useEffect(() => {
+    fetchData(search);
+  }, [page]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -145,11 +151,32 @@ const ManuScripts = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
+    setPage(1);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, 300);
+
+  const resetFilter = () => {
+    setDateCreationMin(rangeSliderMinDateOfCreationManuscriptsPage);
+    setDateCreationMax(rangeSliderMaxDateOfCreationManuscriptsPage);
+    setNoOfStoriesMin(rangeSliderMinNoOfStoriesManuscriptsPage);
+    setNoOfStoriesMax(rangeSliderMaxNoOfStoriesManuscriptsPage);
+    setNoOfPaintingMin(rangeSliderMinNoOfPaintingsManuscriptsPage);
+    setNoOfPaintingMax(rangeSliderMaxNoOfPaintingsManuscriptsPage);
+    setNoOfUniqueMin(rangeSliderMinUniqueStoriesManuscriptsPage);
+    setNoOfUniqueMax(rangeSliderMaxUniqueStoriesManuscriptsPage);
+    setExpandedRows([]);
+    setPage(1);
+    setFilterItem(initialfilterItemManuScript);
+    setPlaceItem(initialPlaceItemManuScript);
+    setOriginRegion(initialOriginRegionManuScript);
+    setSearch("");
+    // setToggleBtn(false);
+    // setTableHeader()
+    fetchData("");
+  };
 
   return (
     <div
@@ -209,7 +236,7 @@ const ManuScripts = () => {
           langItem={originRegion}
           setLangItem={setOriginRegion}
           onClick={() => setIsOpen(!isOpen)}
-          onReset="reset"
+          resetFilter={resetFilter}
         />
       </div>
 
@@ -244,7 +271,10 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
+          <div
+            className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3 
+text-sm 2xl:text-base"
+          >
             <p className="text-offBlack-400 font-medium">
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>

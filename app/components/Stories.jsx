@@ -119,7 +119,12 @@ const Stories = () => {
 
   useEffect(() => {
     fetchData(search);
-  }, [filterItem, placeItem, langItem, page]);
+  }, [page]);
+
+  useEffect(() => {
+    fetchData(search);
+    setPage(1);
+  }, [filterItem, placeItem, langItem]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -137,15 +142,34 @@ const Stories = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
+    setPage(1);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, 300);
 
+  const resetFilter = () => {
+    setFilterItem(initialfilterItem);
+    setPlaceItem(initialPlaceItem);
+    setLangItem(initialLangItem);
+    setStoryMin(rangeSliderMinForStoriesStoriesPage);
+    setStoryMax(rangeSliderMaxForStoriesStoriesPage);
+    setManuscriptsMin(rangeSliderMinForManuscriptsStoriesPage);
+    setManuscriptsMax(rangeSliderMaxForManuscriptsStoriesPage);
+    setPaintingMin(rangeSliderMinForPaintingsStoriesPage);
+    setPaintingMax(rangeSliderMaxForPaintingsStoriesPage);
+    setExpandedRows([]);
+    setPage(1);
+    setSearch("");
+    // setToggleBtn(false);
+    // setTableHeader()
+    fetchData("");
+  };
+
   return (
     <div
-      className={`story-page flex px-4 md:px-5 pb-10  ${
+      className={`story-page flex px-4 md:px-5 pb-10 ${
         isOpen ? "shell" : "flex "
       }`}
     >
@@ -193,6 +217,7 @@ const Stories = () => {
           langItem={langItem}
           setLangItem={setLangItem}
           onClick={() => setIsOpen(!isOpen)}
+          resetFilter={resetFilter}
         />
       </div>
 

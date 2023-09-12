@@ -23,7 +23,7 @@ const page = async () => {
             <h3 className="text-3xl text-primary-500 font-bold  lg:text-5xl">
               {arabic_manuscripts_data?.title}
             </h3>
-            <p class="py-6">{arabic_manuscripts_data?.intro}</p>
+            <p className="py-6">{arabic_manuscripts_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: arabic_manuscripts_data?.description,

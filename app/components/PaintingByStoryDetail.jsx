@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import PaintingStoryCard from "./PaintingStoryCard";
-import Masonry from "@/app/components/Masonry";
+import { breakpointColumnsForMasonry } from "@/utils/constant";
+import Masonry from "react-masonry-css";
 
 const PaintingByStoryDetail = () => {
   const data = [
@@ -55,15 +57,13 @@ const PaintingByStoryDetail = () => {
   ];
   return (
     <div className="py-10 container">
-      <Masonry>
+      <Masonry
+        breakpointCols={breakpointColumnsForMasonry}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {data.map((item, index) => (
-          <PaintingStoryCard
-            key={index}
-            title={item.title}
-            text={item.text}
-            btnText={item.btnText}
-            content={item.content}
-          />
+          <PaintingStoryCard key={index} item={item} />
         ))}
       </Masonry>
     </div>

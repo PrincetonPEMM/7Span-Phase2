@@ -12,8 +12,8 @@ const Page = async () => {
 
   return (
     <div>
-      <ComingSoon />
       {/* <Paintings {...filters} /> */}
+      <ComingSoon/>
     </div>
   );
 };

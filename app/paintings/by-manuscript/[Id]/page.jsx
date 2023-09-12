@@ -2,7 +2,9 @@ import React from "react";
 import PaintingByStoryDetail from "@/app/components/PaintingByStoryDetail";
 import ComingSoon from "@/app/components/ComingSoon";
 
-const page = () => {
+export const dynamic = "force-dynamic";
+
+const Page = async () => {
   return (
     <div>
       {/* <PaintingByStoryDetail /> */}
@@ -11,4 +13,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
