@@ -1,6 +1,9 @@
+"use client";
+import React from "react";
 import Card from "@/app/components/Card";
-import Masonry from "@/app/components/Masonry";
-
+import Masonry from "react-masonry-css";
+import { breakpointColumnsForMasonry } from "@/utils/constant";
+import ComingSoon from "@/app/components/ComingSoon";
 export default function page() {
   const cards = [
     {
@@ -104,13 +107,20 @@ export default function page() {
     },
   ];
   return (
-    <div className="container font-body space-y-4 py-12">
-      <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
-      <Masonry>
-        {cards.map((card, index) => (
-          <Card key={index} {...card} />
-        ))}
-      </Masonry>
-    </div>
+    // <div className="container font-body space-y-4 py-12">
+    //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
+    //   <Masonry
+    //     breakpointCols={breakpointColumnsForMasonry}
+    //     className="my-masonry-grid "
+    //     columnClassName="my-masonry-grid_column mesonry "
+    //   >
+    //     {cards.map((card, index) => (
+    //       <div className={`${index % 2 ? "even" : "odd"}`}>
+    //         <Card key={index} {...card} />
+    //       </div>
+    //     ))}
+    //   </Masonry>
+    // </div>
+    <ComingSoon />
   );
 }

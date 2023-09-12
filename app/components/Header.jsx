@@ -83,7 +83,7 @@ const Header = () => {
         },
         {
           title: "News & Updates",
-          link: "/about/news&update",
+          link: "/about/news-and-update",
         },
         {
           title: "Events & Workshops",

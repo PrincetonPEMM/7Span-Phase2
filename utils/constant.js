@@ -509,3 +509,9 @@ export const initialOriginRegionManuScript = {
     },
   ],
 };
+
+export const breakpointColumnsForMasonry = {
+  default: 3,
+  1100: 2,
+  700: 1,
+};

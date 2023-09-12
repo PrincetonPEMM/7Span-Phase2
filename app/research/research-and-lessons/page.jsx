@@ -1,8 +1,10 @@
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
-import Masonry from "@/app/components/Masonry";
+import Masonry from "react-masonry-css";
 import React from "react";
 import Card from "@/app/components/Card";
+import { breakpointColumnsForMasonry } from "@/utils/constant";
+import ComingSoon from "@/app/components/ComingSoon";
 const page = async () => {
   let research_posts_data = null;
 
@@ -118,25 +120,32 @@ const page = async () => {
   }
 
   return (
-    <div className="container font-body space-y-4 py-12">
-      {research_posts_data && (
-        <div>
-          <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
-            {research_posts_data?.title ?? ""}
-          </h3>
-          {/* <div
-            dangerouslySetInnerHTML={{
-              __html: research_posts_data?.description,
-            }}
-          /> */}
-          <Masonry>
-            {cards.map((card, index) => (
-              <Card key={index} {...card} />
-            ))}
-          </Masonry>
-        </div>
-      )}
-    </div>
+    // <div className="container font-body space-y-4 py-12">
+    //   {research_posts_data && (
+    //     <div>
+    //       <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
+    //         {research_posts_data?.title ?? ""}
+    //       </h3>
+    //       {/* <div
+    //         dangerouslySetInnerHTML={{
+    //           __html: research_posts_data?.description,
+    //         }}
+    //       /> */}
+    //       <Masonry
+    //         breakpointCols={breakpointColumnsForMasonry}
+    //         className="my-masonry-grid "
+    //         columnClassName="my-masonry-grid_column mesonry "
+    //       >
+    //         {cards.map((card, index) => (
+    //           <div className={`${index % 2 ? "even" : "odd"}`}>
+    //             <Card key={index} {...card} />
+    //           </div>
+    //         ))}
+    //       </Masonry>
+    //     </div>
+    //   )}
+    // </div>
+    <ComingSoon />
   );
 };
 

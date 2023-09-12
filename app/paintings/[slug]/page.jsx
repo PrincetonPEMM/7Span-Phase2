@@ -22,7 +22,7 @@ const Page = async ({ params }) => {
   return (
     <div>
       {/* <PaintingDetail data={data[0]} /> */}
-      <ComingSoon />
+      <ComingSoon/>
     </div>
   );
 };

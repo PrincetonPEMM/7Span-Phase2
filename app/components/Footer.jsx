@@ -10,7 +10,7 @@ const Footer = () => {
     { title: "Our Team", link: "/about/people" },
     { title: "Our Partners", link: "/about/people" },
     { title: "Our Funders", link: "/about/people" },
-    { title: "News & Updates", link: "/about/news" },
+    { title: "News & Updates", link: "/about/news-and-update" },
     { title: "Events & Workshops", link: "/about/events" },
     { title: "Using the Site", link: "/about/using-site" },
     { title: "Contact Us", link: "/about/using-site" },

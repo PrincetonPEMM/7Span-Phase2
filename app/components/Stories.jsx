@@ -143,6 +143,20 @@ const Stories = () => {
     });
   }, 300);
 
+  const resetFilter = () => {
+    setFilterItem(initialfilterItem);
+    setPlaceItem(initialPlaceItem);
+    setLangItem(initialLangItem);
+    setStoryMin(rangeSliderMinForStoriesStoriesPage);
+    setStoryMax(rangeSliderMaxForStoriesStoriesPage);
+    setManuscriptsMin(rangeSliderMinForManuscriptsStoriesPage);
+    setManuscriptsMax(rangeSliderMaxForManuscriptsStoriesPage);
+    setPaintingMin(rangeSliderMinForPaintingsStoriesPage);
+    setPaintingMax(rangeSliderMaxForPaintingsStoriesPage);
+    setExpandedRows([]);
+    // setPage(1);
+  };
+
   return (
     <div
       className={`story-page flex px-4 md:px-5 pb-10 ${
@@ -193,6 +207,7 @@ const Stories = () => {
           langItem={langItem}
           setLangItem={setLangItem}
           onClick={() => setIsOpen(!isOpen)}
+          resetFilter={resetFilter}
         />
       </div>
 
