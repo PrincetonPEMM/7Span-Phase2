@@ -1,9 +1,12 @@
 "use client";
-import Masonry from "@/app/components/Masonry";
 import PaintingStoryCard from "@/app/components/PaintingStoryCard";
-import { pagePerLimitForPainting } from "@/utils/constant";
+import {
+  breakpointColumnsForMasonry,
+  pagePerLimitForPainting,
+} from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import { TablePagination } from "./Pagination";
+import Masonry from "react-masonry-css";
 
 const PaintingByStoryIndex = ({ list }) => {
   const [isLoading, setIsLoadint] = useState(true);
@@ -31,7 +34,11 @@ const PaintingByStoryIndex = ({ list }) => {
 
   return (
     <div className="py-10 container">
-      <Masonry>
+      <Masonry
+        breakpointCols={breakpointColumnsForMasonry}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {data.map((item, index) => (
           <PaintingStoryCard key={index} item={item} />
         ))}

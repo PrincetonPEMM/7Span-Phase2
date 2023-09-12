@@ -1,7 +1,7 @@
 import React from "react";
 import PaintingDetail from "@assets/images/painting-detail.jpg";
-import Image from "next/image";
 import Link from "next/link";
+import { defaultImageforPainting } from "@/utils/constant";
 
 const PaintingStoryCard = ({ item }) => {
   return (
@@ -9,8 +9,10 @@ const PaintingStoryCard = ({ item }) => {
       className={`rounded-lg text-offWhite-500 font-body relative overflow-hidden inline-block w-full`}
     >
       <div className=" bg-offWhite-500">
-        <Image
-          src={PaintingDetail} //item.image_link
+        <img
+          src={
+            Boolean(item.image_link) ? item.image_link : defaultImageforPainting
+          }
           alt="PEMM"
           className="w-full h-full object-cover"
         />
@@ -43,9 +45,9 @@ const PaintingStoryCard = ({ item }) => {
           >
             View&nbsp;
             {item.total_story_id_paintings > 1
-              ? `all ${item.total_story_id_paintings} images`
-              : `${item.total_story_id_paintings} image`}{" "}
-            for this story
+              ? `all ${item.total_story_id_paintings} images for `
+              : ``}
+            this story
           </Link>
         )}
       </div>

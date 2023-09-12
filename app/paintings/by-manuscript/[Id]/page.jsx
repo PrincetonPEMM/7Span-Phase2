@@ -2,13 +2,16 @@ import React from "react";
 import PaintingByStoryDetail from "@/app/components/PaintingByStoryDetail";
 import ComingSoon from "@/app/components/ComingSoon";
 
-const page = () => {
+export const dynamic = "force-dynamic";
+
+const Page = async () => {
   return (
     <div>
+      Hello
       {/* <PaintingByStoryDetail /> */}
-      <ComingSoon />
+      {/* <ComingSoon /> */}
     </div>
   );
 };
 
-export default page;
+export default Page;

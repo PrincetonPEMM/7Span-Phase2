@@ -9,6 +9,8 @@ import { defaultImageforPainting } from "@/utils/constant";
 const PaintingDetail = ({ data }) => {
   const [image, setImage] = useState([]);
 
+  console.log(data, "data -- data");
+
   useEffect(() => {
     setImage([
       {
@@ -17,8 +19,6 @@ const PaintingDetail = ({ data }) => {
       },
     ]);
   }, [data]);
-
-  console.log(data, "Hello");
 
   return (
     <div className="container-fluid py-4 lg:py-10">
@@ -122,7 +122,7 @@ const PaintingDetail = ({ data }) => {
           <div className="space-x-5 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex flex-wrap items-start text-sm md:text-base">
             <Link
               className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
-              href={`/manuscripts/${data.manuscript_id}`}
+              href={`/manuscripts/${data.web_page_address}`}
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
               <span>View Manuscript</span>
