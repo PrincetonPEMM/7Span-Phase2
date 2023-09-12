@@ -27,7 +27,7 @@ const Footer = () => {
   const researchToolItems = [
     { title: "Maps", link: "/research/maps" },
     { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
-    { title: "Research Posts", link: "/research/research-posts" },
+    { title: "Research & Lessons", link: "/research/research-posts" },
     { title: "List of Repositories", link: "/research/repositories" },
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -60,7 +60,10 @@ const Footer = () => {
             Princeton, NJ 08540
           </p>
         </div>
-        <Link href="mailto: pemm@princeton.edu" className="py-3 text-sm">
+        <Link
+          href="mailto: pemm@princeton.edu"
+          className="py-3 text-sm hover:text-secondary-500"
+        >
           pemm@princeton.edu
         </Link>
         <p className="pt-4 md:pt-10 text-sm">
@@ -72,7 +75,11 @@ const Footer = () => {
         <ul className="font-menu text-xl flex flex-col  relative z-20">
           {aboutItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[1, 4, 6, 8].includes(index) && <div className="mt-5" />}
@@ -85,7 +92,11 @@ const Footer = () => {
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {exploreItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[3, 6].includes(index) && <div className="mt-5" />}
@@ -98,7 +109,11 @@ const Footer = () => {
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {researchToolItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[1, 4, 6].includes(index) && <div className="mt-5" />}

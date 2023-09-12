@@ -46,7 +46,7 @@ const Header = () => {
       link: "/research",
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        { title: "Research Posts", link: "/research/research-posts" },
+        { title: "Research & Lessons", link: "/research/research-and-lessons" },
         { title: "List of Repositories", link: "/research/repositories" },
         { title: "Maps", link: "/research/maps" },
         { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -83,7 +83,7 @@ const Header = () => {
         },
         {
           title: "News & Updates",
-          link: "/about/connect",
+          link: "/about/news&update",
         },
         {
           title: "Events & Workshops",

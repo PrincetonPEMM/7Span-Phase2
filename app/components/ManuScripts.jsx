@@ -244,7 +244,10 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
+          <div
+            className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3 
+text-sm 2xl:text-base"
+          >
             <p className="text-offBlack-400 font-medium">
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
