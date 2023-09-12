@@ -119,7 +119,12 @@ const Stories = () => {
 
   useEffect(() => {
     fetchData(search);
-  }, [filterItem, placeItem, langItem, page]);
+  }, [page]);
+
+  useEffect(() => {
+    fetchData(search);
+    setPage(1);
+  }, [filterItem, placeItem, langItem]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -137,6 +142,7 @@ const Stories = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
+    setPage(1);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -154,7 +160,11 @@ const Stories = () => {
     setPaintingMin(rangeSliderMinForPaintingsStoriesPage);
     setPaintingMax(rangeSliderMaxForPaintingsStoriesPage);
     setExpandedRows([]);
-    // setPage(1);
+    setPage(1);
+    setSearch("");
+    // setToggleBtn(false);
+    // setTableHeader()
+    fetchData("");
   };
 
   return (

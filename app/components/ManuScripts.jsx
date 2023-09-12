@@ -128,7 +128,12 @@ const ManuScripts = () => {
   }
   useEffect(() => {
     fetchData(search);
-  }, [filterItem, placeItem, originRegion, page]);
+    setPage(1);
+  }, [filterItem, placeItem, originRegion]);
+
+  useEffect(() => {
+    fetchData(search);
+  }, [page]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -146,6 +151,7 @@ const ManuScripts = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
+    setPage(1);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -162,10 +168,14 @@ const ManuScripts = () => {
     setNoOfUniqueMin(rangeSliderMinUniqueStoriesManuscriptsPage);
     setNoOfUniqueMax(rangeSliderMaxUniqueStoriesManuscriptsPage);
     setExpandedRows([]);
-    // setPage(1)
+    setPage(1);
     setFilterItem(initialfilterItemManuScript);
     setPlaceItem(initialPlaceItemManuScript);
     setOriginRegion(initialOriginRegionManuScript);
+    setSearch("");
+    // setToggleBtn(false);
+    // setTableHeader()
+    fetchData("");
   };
 
   return (
