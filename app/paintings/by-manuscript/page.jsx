@@ -5,7 +5,9 @@ import ComingSoon from "@/app/components/ComingSoon";
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
-  return <ComingSoon />; //<PaintingbyMSIndex />;
+  return <ComingSoon />;
+
+  // <PaintingbyMSIndex />
 };
 
 export default Page;

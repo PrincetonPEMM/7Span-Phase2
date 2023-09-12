@@ -74,13 +74,7 @@ const PaintingbyMSIndex = async () => {
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard
-            key={index}
-            title={item.title}
-            text={item.text}
-            content={item.content}
-            btnText={item.btnText}
-          />
+          <PaintingStoryCard key={index} item={item} />
         ))}
       </Masonry>
       {Boolean(!data?.length) && (

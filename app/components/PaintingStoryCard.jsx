@@ -6,7 +6,7 @@ import { defaultImageforPainting } from "@/utils/constant";
 const PaintingStoryCard = ({ item }) => {
   return (
     <div
-      className={`rounded-lg text-offWhite-500 font-body relative overflow-hidden inline-block w-full`}
+      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-4 inline-block relative overflow-hidden w-[96%]`}
     >
       <div className=" bg-offWhite-500">
         <img
@@ -23,7 +23,7 @@ const PaintingStoryCard = ({ item }) => {
             ? item.pemm_short_title
             : "PEMM title not found"}
         </h2>
-        <p className="text-xs">
+        <p className="text-xs break-words">
           {item?.manuscript_date_range_start && item?.manuscript_date_range_end
             ? item.manuscript_date_range_start ===
               item.manuscript_date_range_end
@@ -37,15 +37,19 @@ const PaintingStoryCard = ({ item }) => {
           {item?.painting_scan ? ", s." + item.painting_scan : " "}
         </p>
 
-        {item?.total_story_id_paintings && (
+        {item?.painting_count && (
           <Link
-            href={`/paintings/by-story/${item.web_page_address}`}
+            href={` ${
+              item.painting_count > 1
+                ? "/paintings/by-story/" + item.canonical_story_id
+                : "/stories/" + item.canonical_story_id
+            }`}
             className="border border-offWhite-500 my-4 inline-block py-2 px-3 text-xs md:text-sm hover:transition-all rounded-md hover:border-black 
         transition-all hover hover:bg-secondary-500 hover:text-offBlack-500"
           >
             View&nbsp;
-            {item.total_story_id_paintings > 1
-              ? `all ${item.total_story_id_paintings} images for `
+            {item.painting_count > 1
+              ? `all ${item.painting_count} images for `
               : ``}
             this story
           </Link>

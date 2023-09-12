@@ -711,22 +711,17 @@ body {
 
 /* Masonry */
 .my-masonry-grid {
-  display: flex;
-  margin-left: -30px;
-  width: auto;
+  @apply flex w-auto;
 }
 
 .my-masonry-grid_column .even {
-  @apply bg-secondary-500  rounded-lg mb-4 mx-2;
-  /* background-clip: padding-box; */
+  @apply bg-secondary-500 rounded-lg mb-4 mx-2;
 }
 .my-masonry-grid_column .odd {
-  @apply bg-primary-500   rounded-lg mb-4 mx-2;
-  /* background-clip: padding-box; */
+  @apply bg-primary-500 rounded-lg mb-4 mx-2;
 }
-
 .masonry-item {
-  margin-bottom: 30px;
+  @apply mb-7;
 }
 .my-masonry-grid_column .odd .card-background > .card-button {
   @apply bg-secondary-500;
@@ -735,13 +730,3 @@ body {
 .my-masonry-grid_column .even .card-background > .card-button {
   @apply bg-primary-500;
 }
-
-/*  Masonry */
-
-/* .masonry .even .card-background {
-  @apply bg-primary-500 rounded-b-lg;
-} */
-
-/* .masonry .odd .card-background {
-  @apply bg-secondary-500 rounded-b-lg;
-} */

@@ -1,8 +1,10 @@
-import AboutConnect from "@/app/components/AboutConnect";
-
-export const dynamic = "force-dynamic";
-
-export default async function Page() {
+"use client";
+import React from "react";
+import Card from "@/app/components/Card";
+import Masonry from "react-masonry-css";
+import { breakpointColumnsForMasonry } from "@/utils/constant";
+import ComingSoon from "@/app/components/ComingSoon";
+export default function page() {
   const cards = [
     {
       title: "Project Unlocks Understanding of Miracle of Mary Texts",
@@ -105,9 +107,20 @@ export default async function Page() {
     },
   ];
   return (
-    <div className="container font-body space-y-4 py-12">
-      <h1 className="text-5xl font-header">News & Updates</h1>
-      <AboutConnect cards={cards} />
-    </div>
+    // <div className="container font-body space-y-4 py-12">
+    //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
+    //   <Masonry
+    //     breakpointCols={breakpointColumnsForMasonry}
+    //     className="my-masonry-grid "
+    //     columnClassName="my-masonry-grid_column mesonry "
+    //   >
+    //     {cards.map((card, index) => (
+    //       <div className={`${index % 2 ? "even" : "odd"}`}>
+    //         <Card key={index} {...card} />
+    //       </div>
+    //     ))}
+    //   </Masonry>
+    // </div>
+    <ComingSoon />
   );
 }

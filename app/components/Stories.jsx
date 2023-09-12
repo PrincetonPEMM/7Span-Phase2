@@ -169,7 +169,7 @@ const Stories = () => {
 
   return (
     <div
-      className={`story-page flex px-4 md:px-5 pb-10  ${
+      className={`story-page flex px-4 md:px-5 pb-10 ${
         isOpen ? "shell" : "flex "
       }`}
     >

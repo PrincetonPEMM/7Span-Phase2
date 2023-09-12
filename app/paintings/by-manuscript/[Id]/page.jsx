@@ -7,9 +7,8 @@ export const dynamic = "force-dynamic";
 const Page = async () => {
   return (
     <div>
-      Hello
       {/* <PaintingByStoryDetail /> */}
-      {/* <ComingSoon /> */}
+      <ComingSoon />
     </div>
   );
 };
