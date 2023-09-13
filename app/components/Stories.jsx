@@ -50,6 +50,7 @@ const Stories = () => {
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
+
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
