@@ -36,8 +36,8 @@ const Footer = () => {
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
-    <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
-      <div className="max-w-[400px] text-left md:py-5 col-span-2 text-sm lg:text-lg">
+    <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8  lg:px-16 lg:grid-cols-5">
+      <div className="max-w-[400px] text-left md:py-5 md:pr-5 lg:col-span-2 text-sm lg:text-lg">
         <Link href="/" className="w-[30%] relative">
           <Image
             src={Logo}

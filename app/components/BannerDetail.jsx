@@ -11,7 +11,7 @@ const BannerDetail = ({
   setSelectedBanner,
 }) => {
   return (
-    <div className="relative pt-8 bg-secondary-500 text-center md:text-center md:pt-0 block">
+    <div className="relative pt-5 bg-secondary-500 text-center md:text-center md:pt-0 block">
       {/*     
       <div
         className={`relative aspect-square lg:aspect-auto max-w-xs h-auto flex items-center justify-start my-auto lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px] ${divClass}`}
@@ -48,7 +48,7 @@ const BannerDetail = ({
             clsBtnCondition ? setSelectedBanner({}) : setSelectedBanner(data);
           }}
         >
-          <MdiClose className="md:text-black text-white" />
+          <MdiClose className=" text-white" />
         </button>
       </div>
     </div>
