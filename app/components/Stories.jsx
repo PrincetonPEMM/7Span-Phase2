@@ -50,6 +50,7 @@ const Stories = () => {
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
+
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
@@ -253,7 +254,7 @@ const Stories = () => {
             />
           </div>
           <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
-            <p className="text-offBlack-400 font-medium pl-2">
+            <p className="text-offBlack-400 font-medium pl-2 text-sm lg:text-base">
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
             <button
