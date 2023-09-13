@@ -84,7 +84,7 @@ const Paintings = ({
   const debouncedFetchData = debounce(fetchData, 300);
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="flex items-start space-x-4 mb-1">
         <div className="relative w-full max-w-4xl mx-auto">
           <InputText
