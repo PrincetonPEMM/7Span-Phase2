@@ -12,9 +12,16 @@ import {
   initialfilterItemManuScript,
   MANUSCRIPTS,
   initialOriginRegionManuScript,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import OutsideClickHandler from "react-outside-click-handler";
 import { TablePagination } from "./Pagination";
 
 const ManuScripts = () => {
@@ -28,14 +35,31 @@ const ManuScripts = () => {
   const [originRegion, setOriginRegion] = useState(
     initialOriginRegionManuScript
   );
-  const [dateCreationMin, setDateCreationMin] = useState(0);
-  const [dateCreationMax, setDateCreationMax] = useState(100);
-  const [noOfStoriesMin, setNoOfStoriesMin] = useState(0);
-  const [noOfStoriesMax, setNoOfStoriesMax] = useState(100);
-  const [noOfPaintingMin, setNoOfPaintingMin] = useState(0);
-  const [noOfPaintingMax, setNoOfPaintingMax] = useState(100);
-  const [noOfUniqueMin, setNoOfUniqueMin] = useState(0);
-  const [noOfUniqueMax, setNoOfUniqueMax] = useState(100);
+  const [dateCreationMin, setDateCreationMin] = useState(
+    rangeSliderMinDateOfCreationManuscriptsPage
+  );
+  const [dateCreationMax, setDateCreationMax] = useState(
+    rangeSliderMaxDateOfCreationManuscriptsPage
+  );
+  const [noOfStoriesMin, setNoOfStoriesMin] = useState(
+    rangeSliderMinNoOfStoriesManuscriptsPage
+  );
+  const [noOfStoriesMax, setNoOfStoriesMax] = useState(
+    rangeSliderMaxNoOfStoriesManuscriptsPage
+  );
+  const [noOfPaintingMin, setNoOfPaintingMin] = useState(
+    rangeSliderMinNoOfPaintingsManuscriptsPage
+  );
+  const [noOfPaintingMax, setNoOfPaintingMax] = useState(
+    rangeSliderMaxNoOfPaintingsManuscriptsPage
+  );
+  const [noOfUniqueMin, setNoOfUniqueMin] = useState(
+    rangeSliderMinUniqueStoriesManuscriptsPage
+  );
+  const [noOfUniqueMax, setNoOfUniqueMax] = useState(
+    rangeSliderMaxUniqueStoriesManuscriptsPage
+  );
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
@@ -104,7 +128,12 @@ const ManuScripts = () => {
   }
   useEffect(() => {
     fetchData(search);
-  }, [filterItem, placeItem, originRegion, page]);
+    setPage(1);
+  }, [filterItem, placeItem, originRegion]);
+
+  useEffect(() => {
+    fetchData(search);
+  }, [page]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -120,11 +149,38 @@ const ManuScripts = () => {
     }
   }, []);
 
-  const debouncedFetchData = debounce(fetchData, 300);
+  const debouncedFetchData = debounce((e) => {
+    fetchData(e);
+    setPage(1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, 300);
+
+  const resetFilter = () => {
+    setDateCreationMin(rangeSliderMinDateOfCreationManuscriptsPage);
+    setDateCreationMax(rangeSliderMaxDateOfCreationManuscriptsPage);
+    setNoOfStoriesMin(rangeSliderMinNoOfStoriesManuscriptsPage);
+    setNoOfStoriesMax(rangeSliderMaxNoOfStoriesManuscriptsPage);
+    setNoOfPaintingMin(rangeSliderMinNoOfPaintingsManuscriptsPage);
+    setNoOfPaintingMax(rangeSliderMaxNoOfPaintingsManuscriptsPage);
+    setNoOfUniqueMin(rangeSliderMinUniqueStoriesManuscriptsPage);
+    setNoOfUniqueMax(rangeSliderMaxUniqueStoriesManuscriptsPage);
+    setExpandedRows([]);
+    setPage(1);
+    setFilterItem(initialfilterItemManuScript);
+    setPlaceItem(initialPlaceItemManuScript);
+    setOriginRegion(initialOriginRegionManuScript);
+    setSearch("");
+    // setToggleBtn(false);
+    // setTableHeader()
+    fetchData("");
+  };
 
   return (
     <div
-      className={`flex px-1 md:px-5 pb-10 manuscript-page ${
+      className={`flex px-4 md:px-5 pb-10 manuscript-page ${
         isOpen ? "shell" : "flex items-start"
       }`}
     >
@@ -180,12 +236,13 @@ const ManuScripts = () => {
           langItem={originRegion}
           setLangItem={setOriginRegion}
           onClick={() => setIsOpen(!isOpen)}
+          resetFilter={resetFilter}
         />
       </div>
 
-      <div className="w-full">
+      <div className="w-full grid ">
         {!isOpen && (
-          <button onClick={() => setIsOpen(true)} className="p-2">
+          <button onClick={() => setIsOpen(true)} className="">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
           </button>
         )}
@@ -195,8 +252,8 @@ const ManuScripts = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="grid grid-cols-3 items-center justify-between top-0 p-2">
-          <div className="relative w-full max-w-sm md:max-w-4xl col-span-2">
+        <div className="mt-4 sm:mt-0 sm:grid sm:grid-cols-5  items-center justify-between pb-2">
+          <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 md:col-span-3">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Filter
             </span>
@@ -214,19 +271,27 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <button
-            className="bg-primary-500 text-white max-w-fit ml-auto w-auto px-2 py-4 md:py-4 md:px-4 text-xs md:text-sm rounded-md uppercase"
-            onClick={() => {
-              setToggleBtn(!toggleBtn);
-              {
-                !toggleBtn
-                  ? setTableHeader(manuscriptsTableDetailView)
-                  : setTableHeader(manuscriptsTableTitleView);
-              }
-            }}
+          <div
+            className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3 
+text-sm 2xl:text-base"
           >
-            {toggleBtn ? "Detail view" : "Title View"}
-          </button>
+            <p className="text-offBlack-400 font-medium">
+              Results: {`(${totalPage ? totalPage : 0} records)`}
+            </p>
+            <button
+              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md hover:text-primary-500 uppercase hover:bg-transparent hover:border-primary-500 border-2 border-primary-500 transition-colors hover:transition-colors"
+              onClick={() => {
+                setToggleBtn(!toggleBtn);
+                {
+                  !toggleBtn
+                    ? setTableHeader(manuscriptsTableDetailView)
+                    : setTableHeader(manuscriptsTableTitleView);
+                }
+              }}
+            >
+              {toggleBtn ? "Detail view" : "Title View"}
+            </button>
+          </div>
         </div>
         {/* <div
           className={`w-full h-screen ${

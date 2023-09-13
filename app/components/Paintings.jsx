@@ -3,13 +3,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import MdiMagnify from "@assets/icons/MdiMagnify";
-import Masonry from "@/app/components/Masonry";
 import PaintingCard from "./PaintingCard";
 import Dropdown from "./Dropdown";
-import { pagePerLimitForPainting } from "@/utils/constant";
+import {
+  breakpointColumnsForMasonry,
+  pagePerLimitForPainting,
+} from "@/utils/constant";
 import { TablePagination } from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
+import Masonry from "react-masonry-css";
 
 const Paintings = ({
   dateOfPainting,
@@ -62,10 +65,6 @@ const Paintings = ({
       setTotalPage(resData.total);
       setData(resData.data);
       setLoading(false);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     } catch (error) {
       console.log("Error", error);
       setLoading(false);
@@ -87,8 +86,8 @@ const Paintings = ({
   return (
     <div className="container">
       <div className="flex items-start space-x-4 mb-1">
-        <div class="relative w-full max-w-4xl mx-auto">
-          <MdiMagnify className="h-6 w-6 absolute inset-y-0 left-5 my-auto text-primary-700" />
+        <div className="relative w-full max-w-4xl mx-auto">
+          <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
           <InputText
             value={search}
             iconBefore
@@ -104,10 +103,17 @@ const Paintings = ({
               }
             }}
           />
-          <MdiWindowClose className="h-4 w-4 absolute inset-y-0 right-5 my-auto text-primary-700" />
+
+          <MdiWindowClose
+            className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+            onClick={() => {
+              setSearch("");
+              debouncedFetchData("");
+            }}
+          />
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:flex items-start justify-center flex-wrap mb-1 font-body lg:mx-auto max-w-4xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -139,7 +145,7 @@ const Paintings = ({
       </div>
       <div className="block text-center mx-3 mb-4 font-body">
         <button
-          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg"
+          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg text-xs md:text-base"
           onClick={() => {
             setDateOfPaintins([]);
             setPaintingsInColorOnly(paintingInColor[0]);
@@ -153,7 +159,11 @@ const Paintings = ({
 
       <div className="pb-10">
         {data.length ? (
-          <Masonry>
+          <Masonry
+            breakpointCols={breakpointColumnsForMasonry}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
             {data.map((card, index) => (
               <PaintingCard key={index} card={card} />
             ))}
@@ -176,6 +186,10 @@ const Paintings = ({
           isOpen={true}
           onPageChange={(num) => {
             setPage(num);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }}
         />
       </div>

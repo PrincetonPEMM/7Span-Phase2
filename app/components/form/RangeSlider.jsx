@@ -1,24 +1,34 @@
 "use client";
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
-import { MANUSCRIPTS, STORIES } from "@/utils/constant";
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
-const RangeSlider = ({ isPageName, min, max, onChange }) => {
-  const lowest = min;
-  const largest = max;
+const RangeSlider = ({  min, max, onChange, ref1 }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
 
-  // Convert to percentage
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
   );
 
-  // Set width of the range to decrease from the left side
+  useImperativeHandle(ref1, () => ({
+    reset() {
+      setMinVal(min);
+      setMaxVal(max);
+      maxValRef.current = max;
+      minValRef.current = min;
+      return null;
+    },
+  }));
+
   useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxValRef.current);
@@ -29,7 +39,6 @@ const RangeSlider = ({ isPageName, min, max, onChange }) => {
     }
   }, [minVal, getPercent]);
 
-  // Set width of the range to decrease from the right side
   useEffect(() => {
     const minPercent = getPercent(minValRef.current);
     const maxPercent = getPercent(maxVal);
@@ -39,19 +48,17 @@ const RangeSlider = ({ isPageName, min, max, onChange }) => {
     }
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
   useEffect(() => {
-    // For convert into 0 to 100 range.
     let min, max;
-    if (isPageName === MANUSCRIPTS) {
-      const total = largest - lowest;
-      min = Math.round(((minVal - lowest) / total) * 100);
-      max = Math.round(((maxVal - lowest) / total) * 100);
-    }
-    if (isPageName === STORIES) {
-      min = Math.round(minVal);
-      max = Math.round(maxVal);
-    }
+    // For convert into 0 to 100 range.
+    // if (isPageName === MANUSCRIPTS) {
+    //   const total = largest - lowest;
+    //   min = Math.round(((minVal - lowest) / total) * 100);
+    //   max = Math.round(((maxVal - lowest) / total) * 100);
+    // }
+    min = Math.round(minVal);
+    max = Math.round(maxVal);
+
     onChange({ min, max });
   }, [minVal, maxVal, onChange]);
 
@@ -91,12 +98,6 @@ const RangeSlider = ({ isPageName, min, max, onChange }) => {
       </div>
     </div>
   );
-};
-
-RangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default React.memo(RangeSlider);

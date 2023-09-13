@@ -10,7 +10,7 @@ const Footer = () => {
     { title: "Our Team", link: "/about/people" },
     { title: "Our Partners", link: "/about/people" },
     { title: "Our Funders", link: "/about/people" },
-    { title: "News & Updates", link: "/about/news" },
+    { title: "News & Updates", link: "/about/news-and-update" },
     { title: "Events & Workshops", link: "/about/events" },
     { title: "Using the Site", link: "/about/using-site" },
     { title: "Contact Us", link: "/about/using-site" },
@@ -27,7 +27,7 @@ const Footer = () => {
   const researchToolItems = [
     { title: "Maps", link: "/research/maps" },
     { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
-    { title: "Research Posts", link: "/research/research-posts" },
+    { title: "Research & Lessons", link: "/research/research-posts" },
     { title: "List of Repositories", link: "/research/repositories" },
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -36,8 +36,8 @@ const Footer = () => {
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
-    <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
-      <div className="max-w-[400px] text-left md:p-5 col-span-2 text-sm lg:text-lg">
+    <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8  lg:px-16 lg:grid-cols-5">
+      <div className="max-w-[400px] text-left md:py-5 md:pr-5 lg:col-span-2 text-sm lg:text-lg">
         <Link href="/" className="w-[30%] relative">
           <Image
             src={Logo}
@@ -45,12 +45,12 @@ const Footer = () => {
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
           />
         </Link>
-        <p className="">
+        <p className="pt-4 md:pt-0">
           PEMM is a comprehensive resource for the 1,000+ miracle stories
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-        <div className="py-5 text-sm space-y-2 pr-10">
+        <div className="md:py-5 text-sm space-y-2 pr-10">
           <p>
             Princeton Department of Comparative Literature 133 East Pyne,
             Princeton, NJ 08540
@@ -60,19 +60,26 @@ const Footer = () => {
             Princeton, NJ 08540
           </p>
         </div>
-        <Link href="mailto: pemm@princeton.edu" className="py-3 text-sm">
+        <Link
+          href="mailto: pemm@princeton.edu"
+          className="py-3 text-sm hover:text-secondary-500"
+        >
           pemm@princeton.edu
         </Link>
-        <p className="pt-10 text-sm">
+        <p className="pt-1 text-sm  lg:pt-4 md:pt-10">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
-      <div className="py-5">
+      <div className="md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">About</h2>
         <ul className="font-menu text-xl flex flex-col  relative z-20">
           {aboutItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[1, 4, 6, 8].includes(index) && <div className="mt-5" />}
@@ -80,12 +87,16 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left py-5">
+      <div className="text-left md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Explore</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {exploreItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[3, 6].includes(index) && <div className="mt-5" />}
@@ -93,12 +104,16 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left py-5">
+      <div className="text-left md:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Research Tools</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {researchToolItems.map((item, index) => (
             <>
-              <Link href={item.link} key={index} className="text-base">
+              <Link
+                href={item.link}
+                key={index}
+                className="text-base hover:text-secondary-500"
+              >
                 {item.title}
               </Link>
               {[1, 4, 6].includes(index) && <div className="mt-5" />}

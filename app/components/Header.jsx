@@ -36,8 +36,8 @@ const Header = () => {
       link: "/paintings",
       subItems: [
         { title: "all Paintings", link: "/paintings" },
-        { title: "Paintings by Story", link: "/paintings/story" },
-        { title: "Paintings by Manuscript", link: "/paintings/manuscript" },
+        { title: "Paintings by Story", link: "/paintings/by-story" },
+        { title: "Paintings by Manuscript", link: "/paintings/by-manuscript" },
       ],
     },
     { title: "Manuscripts", link: "/manuscripts" },
@@ -46,7 +46,7 @@ const Header = () => {
       link: "/research",
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        { title: "Research Posts", link: "/research/research-posts" },
+        { title: "Research & Lessons", link: "/research/research-and-lessons" },
         { title: "List of Repositories", link: "/research/repositories" },
         { title: "Maps", link: "/research/maps" },
         { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -83,7 +83,7 @@ const Header = () => {
         },
         {
           title: "News & Updates",
-          link: "/about/connect",
+          link: "/about/news-and-update",
         },
         {
           title: "Events & Workshops",

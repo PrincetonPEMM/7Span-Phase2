@@ -1,10 +1,12 @@
 import React from "react";
 import { defaultImageforPainting } from "@/utils/constant";
+import Link from "next/link";
 
 const PaintingCard = (props) => {
   return (
-    <div
-      className={`text-offWhite-500 font-body relative overflow-hidden inline-block  card-background w-full`}
+    <Link
+      href={`/paintings/${props.card.web_page_address}_${props.card.painting_unique_id}`}
+      className={`text-offWhite-500 font-body relative mx-4 mb-4 overflow-hidden inline-block  card-background w-[96%]`}
     >
       <div className="aspect-square bg-offWhite-500">
         <img
@@ -39,7 +41,7 @@ const PaintingCard = (props) => {
           {props.card.episodes ? props.card.episodes : "-"}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -36,7 +36,7 @@ export default function StoryDetail({ data, Id }) {
         translation.manuscript_name &&
         translation.translation_source_manuscript_folio
       ) {
-        string += `From ${translation.manuscript_name}, ${translation.translation_source_manuscript_folio}.`;
+        string += ` From ${translation.manuscript_name}, ${translation.translation_source_manuscript_folio}.`;
       }
 
       string += "</h2>";
@@ -417,9 +417,8 @@ function FirstLine(earliest_attestation) {
               ? "very recent"
               : ""}
           </b>
-          : the earliest
-          <sup>1</sup> in which this story appears is from around{" "}
-          {earliest_attestation}.
+          : the earliest manuscript<sup>1</sup> in which this story appears is
+          from around {earliest_attestation}.
         </p>
       )}
     </>
@@ -449,7 +448,7 @@ function SeconsdLine(total_records) {
               ? "popular"
               : "somewhat popular"}
           </b>
-          : appearing in &nbsp;
+          : appearing in&nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
             : `${Math.round(
@@ -484,6 +483,12 @@ function ThirdLine(
                 This story is among the thirty-two Täˀammərä Maryam stories that
                 are most <b>frequently illustrated</b>, with a total of&nbsp;
                 <b>{total_story_id_paintings}</b> paintings.
+                {/* To see its
+                paintings, go to its PEMM&nbsp;
+                <Link href="/paintings/by-story" className="text-primary-500">
+                  Paintings by Story
+                </Link>
+                &nbsp; page. */}
               </>
             ) : (
               <>
@@ -492,6 +497,12 @@ function ThirdLine(
                 {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
                 with a total of
                 <b>{total_story_id_paintings}</b> paintings.
+                {/* To see its
+                paintings, go to its PEMM&nbsp;
+                <Link href="/paintings/by-story" className="text-primary-500">
+                  Paintings by Story
+                </Link>
+                &nbsp; page. */}
               </>
             )
           ) : total_manuscripts_with_story_id_illustrated == null ||
@@ -548,8 +559,8 @@ function SixthLine(languageAvailableIn) {
 function SeventhLine() {
   return (
     <p className="text-sm indent-2 leading-relaxed py-2">
-      <sup>1. </sup>A "PEMM manuscript" is defined as any Gəˁəz Marian
-      manuscript that PEMM has catalogued. For more information, see{" "}
+      1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
+      has catalogued. For more information, see{" "}
       <Link href="/about/using-the-site" className="text-primary-600">
         Using the Site
       </Link>

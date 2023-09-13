@@ -1,25 +1,28 @@
 import React from "react";
-import PaintingByStoryIndex from "@/app/components/PaintingByStoryIndex";
-import { pagePerLimitForPainting } from "@/utils/constant";
+import PaintingDetail from "../../components/PaintingDetail";
 import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
-const Page = async () => {
+const Page = async ({ params }) => {
+  const { slug } = params;
+
   let data = null;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story?page=1&perPage=${pagePerLimitForPainting}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/${slug}`
     );
+
     data = await response.json();
   } catch (error) {
     console.log("Error", error);
   }
+
   return (
     <div>
-      {/* <PaintingByStoryIndex list={data} /> */}
-      <ComingSoon />
+      {/* <PaintingDetail data={data[0]} /> */}
+      <ComingSoon/>
     </div>
   );
 };

@@ -1,71 +1,73 @@
+"use client";
 import React from "react";
-import PaintingStoryCard from "../components/PaintingStoryCard";
-import Masonry from "@/app/components/Masonry";
-import ComingSoon from "../components/ComingSoon";
-const page = () => {
+import PaintingStoryCard from "./PaintingStoryCard";
+import { breakpointColumnsForMasonry } from "@/utils/constant";
+import Masonry from "react-masonry-css";
+
+const PaintingByStoryDetail = () => {
   const data = [
     {
-      title: "hello",
+      title: "Title not Found",
       content: "St Mary and Jesus Christ, surrounded by angels (full)",
-      text: "text herr",
+      text: "text here",
+      btnText: "View all Images ",
     },
     {
-      title: "hello",
+      title: "Title not Found",
       content:
         "St Mary giving the dog water to drink from her shoe (left), 2. The group of virgins gathered around the well while one of them chases away the thirsty dog (right) ",
-      text: "text herr",
+      text: "text here",
     },
     {
-      title: "hello",
+      title: "Title not Found",
       content: "Joachim and Hanna hold the child Mary (bottom)",
-      text: "text herr",
+      text: "text here",
     },
 
     {
-      title: "hello",
+      title: "Title not Found",
       content: "COntent here",
-      text: "text herr",
+      text: "text here",
+      btnText: "View all Images ",
     },
     {
-      title: "hello",
+      title: "Title not Found",
       content:
         "The group of virgins gathered around the well while one of them chases away the thirsty dog (right), 2. St Mary giving the dog water to drink from her shoe (left)",
-      text: "text herr",
+      text: "text here",
     },
     {
-      title: "hello",
+      title: "Title not Found",
       content: "Joachim and Hanna hold the child Mary (bottom)",
-      text: "text herr",
+      text: "text here",
     },
 
     {
-      title: "hello",
+      title: "Title not Found",
       content:
         "St Mary giving the dog water to drink from her shoe (left), 2.St Mary giving the dog water to drink from her shoe (left), 2. The group of virgins gathered around the well while one of them chases away the thirsty dog (right) The group of virgins gathered around the well while one of them chases away the thirsty dog (right)",
-      text: "text herr",
+      text: "text here",
     },
     {
-      title: "hello",
+      title: "Title not Found",
       content:
         "The group of virgins gathered around the well while one of them chases away the thirsty dog (right), 2. St Mary giving the dog water to drink from her shoe (left)",
-      text: "text herr",
+      text: "text here",
     },
   ];
   return (
     <div className="py-10 container">
-      {/* <Masonry>
+      <Masonry
+        breakpointCols={breakpointColumnsForMasonry}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {data.map((item, index) => (
-          <PaintingStoryCard
-            key={index}
-            title={item.title}
-            text={item.text}
-            content={item.content}
-          />
+          <PaintingStoryCard key={index} item={item} />
         ))}
-      </Masonry> */}
-      <ComingSoon />
+      </Masonry>
     </div>
   );
 };
 
-export default page;
+export default PaintingByStoryDetail;
