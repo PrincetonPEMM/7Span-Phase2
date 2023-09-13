@@ -77,7 +77,7 @@ export default function StoryDetail({ data, Id }) {
 
   return (
     <div className="px-4 py-5 md:px-8">
-      <h3 className="font-menu  text-2xl lg:text-5xl max-w-7xl leading-tight">
+      <h3 className="font-menu  text-2xl lg:text-5xl leading-tight">
         {data.canonical_story_title}
       </h3>
 
