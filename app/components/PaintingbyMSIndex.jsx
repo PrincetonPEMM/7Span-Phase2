@@ -8,44 +8,7 @@ import React, { useEffect, useState } from "react";
 import { TablePagination } from "./Pagination";
 import Masonry from "react-masonry-css";
 
-const data1 = [
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-  {
-    title: "British Library 520",
-    text: "1700s",
-  },
-];
-
-const PaintingbyMSIndex = async () => {
+const PaintingbyMSIndex = ({ list }) => {
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
@@ -53,17 +16,20 @@ const PaintingbyMSIndex = async () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // fetch(
-    //   `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/stories/${Id}?page=${page}&perPage=${perPage}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setData(data.data);
-    //     setTotalPage(data.total);
-    //   })
-    //   .catch((error) => console.error("Error", error));
-    setData(data1);
-    setTotalPage(50);
+    setData(list?.data);
+    setTotalPage(list?.total);
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${page}&perPage=${perPage}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+        setTotalPage(data.total);
+      })
+      .catch((error) => console.error("Error", error));
   }, [page]);
 
   return (

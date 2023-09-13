@@ -18,8 +18,8 @@ const Page = async () => {
   }
   return (
     <div>
-      {/* <PaintingByStoryIndex list={data} /> */}
-      <ComingSoon />
+      <PaintingByStoryIndex list={data} />
+      {/* <ComingSoon /> */}
     </div>
   );
 };
