@@ -26,16 +26,21 @@ const PaintingbyMSIndex = ({ list }) => {
     setTotalPage(list?.total);
   }, []);
 
-  const fetchData = async (searchKey = "") => {
+  const fetchData = (searchKey = "") => {
+    setIsLoadint(true);
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${page}&perPage=${perPage}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
     )
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
         setTotalPage(data.total);
+        setIsLoadint(false);
       })
-      .catch((error) => console.error("Error", error));
+      .catch((error) => {
+        console.error("Error", error);
+        setIsLoadint(false);
+      });
   };
 
   useEffect(() => {
@@ -89,7 +94,35 @@ const PaintingbyMSIndex = ({ list }) => {
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard key={index} item={item} />
+          <PaintingStoryCard
+            key={index}
+            image={item.image_link}
+            title={item?.manuscript_full_name}
+            content={`${
+              item?.manuscript_date_range_start &&
+              item?.manuscript_date_range_end
+                ? item.manuscript_date_range_start ===
+                  item.manuscript_date_range_end
+                  ? item.manuscript_date_range_start
+                  : item.manuscript_date_range_start +
+                    "-" +
+                    item.manuscript_date_range_end
+                : "-"
+            }`}
+            desc={`
+            ${
+              item.total_manuscript_paintings > 1
+                ? `${item.total_manuscript_paintings} paintings `
+                : `${item.total_manuscript_paintings} painting `
+            }
+            in ${
+              item.scans_of_manuscript_in_color === "Yes"
+                ? "color"
+                : "black & white"
+            }`}
+            btnText={"View all images for this manuscript"}
+            btnLink={`/paintings/by-manuscripty/${item.web_page_address}`}
+          />
         ))}
       </Masonry>
       {Boolean(!data?.length) && (
