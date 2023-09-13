@@ -25,7 +25,7 @@ const InputText = ({
         onChange={onChange}
         placeholder={placeholderText}
         className={`border-2 border-primary-500 bg-transparent rounded-md w-full  text-sm md:text-lg ring-0 focus:ring-0 focus:border-primary-400 focus:ring-primary-400 outline-0 ${
-          magnify ? "pl-7 md:pl-12 p-2" : " md:pl-5"
+          magnify ? "pl-7 md:pl-12 p-2" : "pl-5"
         }`}
       />
       {iconBefore && children}
