@@ -62,6 +62,7 @@ const PaintingbyMSIndex = ({ list }) => {
         <div className="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
           <InputText
+            magnify={true}
             value={search}
             iconBefore
             placeholderText="Search"

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
 
 const PaintingStoryCard = ({
-  item,
   image,
   title,
   content,
