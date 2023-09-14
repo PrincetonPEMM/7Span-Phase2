@@ -33,6 +33,8 @@ const Hero = ({ data }) => {
     }
   }
 
+  console.log("Env Mode :)", process.env.NEXT_PUBLIC_MODE);
+
   return (
     <>
       <div className="grid md:grid-cols-3">
