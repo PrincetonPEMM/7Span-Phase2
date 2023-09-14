@@ -41,7 +41,6 @@ const InputIcon = (props) => {
         }
         focus:ring-0`}
       />
-
       {item?.label && (
         <span className="text-sm capitalize leading-none ">{item?.label}</span>
       )}

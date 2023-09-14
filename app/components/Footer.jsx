@@ -36,9 +36,9 @@ const Footer = () => {
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
-    <div className="w-auto p-5 grid bg-primary-500 text-white gap-5 sm:grid-cols-2 md:px-8 md:grid-cols-3 lg:px-16 lg:grid-cols-5">
-      <div className="max-w-[400px] text-left md:py-5 col-span-2 text-sm lg:text-lg">
-        <Link href="/" className="w-[30%] relative">
+    <div className="w-auto px-5 py-8 grid bg-primary-500 text-white grid-cols-1 gap-4 sm:grid-cols-3 md:px-8 lg:px-16 lg:gap-5 lg:grid-cols-5">
+      <div className=" text-left lg:py-5 md:pr-5 text-sm sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
+        <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
           <Image
             src={Logo}
             className="mb-3"
@@ -50,7 +50,7 @@ const Footer = () => {
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
-        <div className="md:py-5 text-sm space-y-2 pr-10">
+        <div className="py-5 text-sm space-y-2 md:pr-10">
           <p>
             Princeton Department of Comparative Literature 133 East Pyne,
             Princeton, NJ 08540
@@ -66,11 +66,12 @@ const Footer = () => {
         >
           pemm@princeton.edu
         </Link>
-        <p className="pt-4 md:pt-10 text-sm">
+        <p className="pt-1 text-sm lg:pt-4 md:pt-5">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
-      <div className="md:py-5">
+
+      <div className="lg:py-5">
         <h2 className="text-lg lg:text-xl font-bold">About</h2>
         <ul className="font-menu text-xl flex flex-col  relative z-20">
           {aboutItems.map((item, index) => (
@@ -87,7 +88,8 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left md:py-5">
+
+      <div className="text-left lg:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Explore</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {exploreItems.map((item, index) => (
@@ -104,7 +106,8 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="text-left md:py-5">
+
+      <div className="text-left lg:py-5">
         <h2 className="text-lg lg:text-xl font-bold">Research Tools</h2>
         <ul className="font-menu text-xl flex flex-col relative z-20">
           {researchToolItems.map((item, index) => (

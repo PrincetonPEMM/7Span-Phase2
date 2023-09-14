@@ -56,7 +56,7 @@ const PaintingByStoryDetail = () => {
     },
   ];
   return (
-    <div className="py-10 container">
+    <div className="py-10 container-fluid">
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
