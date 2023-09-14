@@ -719,14 +719,19 @@ body {
 
 /* Masonry */
 .my-masonry-grid {
-  @apply flex w-auto;
+  @apply flex w-auto justify-between;
+}
+.my-masonry-grid .my-masonry-grid_column:first-child {
+  /* @apply sm:!w-[48%] md:!w-[31%]; */
+
+  @apply md:mr-2;
 }
 
 .my-masonry-grid_column .even {
-  @apply bg-secondary-500 rounded-lg mb-4 mx-2;
+  @apply bg-secondary-500 rounded-lg mb-4;
 }
 .my-masonry-grid_column .odd {
-  @apply bg-primary-500 rounded-lg mb-4 mx-2;
+  @apply bg-primary-500 rounded-lg mb-4;
 }
 .masonry-item {
   @apply mb-7;
