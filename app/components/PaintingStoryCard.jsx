@@ -13,7 +13,7 @@ const PaintingStoryCard = ({
 }) => {
   return (
     <div
-      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full sm:mx-4 sm:w-[96%] `}
+      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full `}
     >
       <div className=" bg-offWhite-500">
         <img
