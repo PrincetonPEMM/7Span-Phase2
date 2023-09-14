@@ -10,7 +10,7 @@ frontend:
         - if [ "${AWS_BRANCH}" = "dev" ]; then echo "===>dev branch"; npm run build:stage; fi
         - if [ "${AWS_BRANCH}" = "main" ]; then echo "===>main branch"; npm run build; fi
   artifacts:
-    baseDirectory: /dist
+    baseDirectory: /next
     files:
       - "**/*"
   cache:
