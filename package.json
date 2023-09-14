@@ -6,8 +6,8 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "build:stage": "env-cmd -f .env.stage next build",
-    "build:prod": "env-cmd -f .env.prod next build",
+    "build:stage": "env-cmd -f .env.staging next build",
+    "build:dev": "env-cmd -f .env.development next build",
     "lint": "next lint"
   },
   "dependencies": {
