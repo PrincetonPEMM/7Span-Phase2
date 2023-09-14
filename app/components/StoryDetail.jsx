@@ -149,9 +149,9 @@ export default function StoryDetail({ data, Id }) {
           </div>
 
           {/* Right side content portion */}
-          <div className="col-span-2 md:block hidden ">
+          <div className="col-span-2 md:block hidden">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
+              <ol className="list-inside md:pl-4 ">
                 <li>
                   <ul className="space-y-2">
                     {FirstLine(data?.earliest_attestation)}
@@ -210,7 +210,7 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4">
+              <ol className="list-inside md:pl-4">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3 ">
                     {data.languageAvailableIn.length > 0 &&
@@ -228,9 +228,9 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
+              <ol className="list-inside md:pl-4">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3 ">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
@@ -263,7 +263,7 @@ export default function StoryDetail({ data, Id }) {
           {/* About */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
+              <ol className="list-inside md:pl-4">
                 <li>
                   <ul className="space-y-2">
                     {FirstLine(data?.earliest_attestation)}
@@ -337,7 +337,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 p-0">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3 ">
+                  <h3 className="text-lg font-bold uppercase  mb-3">
                     TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3 italic">
@@ -352,7 +352,7 @@ export default function StoryDetail({ data, Id }) {
                       __html: data.english_translation,
                     }}
                   ></p>
-                  <h3 className="text-lg font-bold uppercase  my-3">
+                  <h3 className="text-lg font-bold uppercase my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
@@ -373,9 +373,9 @@ export default function StoryDetail({ data, Id }) {
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside pl-4 ">
+              <ol className="list-inside md:pl-4 ">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3 ">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-2">
