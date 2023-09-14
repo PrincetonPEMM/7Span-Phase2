@@ -104,7 +104,7 @@ const PaintingByStoryIndex = ({ list }) => {
               item?.manuscript_date_range_end
                 ? item.manuscript_date_range_start ===
                   item.manuscript_date_range_end
-                  ? item.manuscript_date_range_start
+                  ? item.manuscript_date_range_start + "s"
                   : item.manuscript_date_range_start +
                     "-" +
                     item.manuscript_date_range_end

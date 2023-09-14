@@ -12,7 +12,6 @@ const InputText = ({
   iconAfter,
   children,
 }) => {
-  console.log(magnify ? "md:pl-10 lg:pl-20 p-2" : " md:pl-5");
   return (
     <div className="w-full">
       {label && <label className={previewClass}>{label}</label>}
