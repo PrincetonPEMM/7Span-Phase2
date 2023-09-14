@@ -505,7 +505,10 @@ body {
 .image-gallery-thumbnail:focus {
   @apply outline-0 mx-1 border-white;
 }
-
+.image-gallery-slide-wrapper .image-gallery-fullscreen-button,
+.image-gallery-slide-wrapper .image-gallery-play-button {
+  @apply md:h-10 md:w-10 flex items-center justify-center px-0;
+}
 .image-gallery .image-gallery-thumbnail.active,
 .image-gallery .image-gallery-thumbnail:focus {
   @apply border-white;
@@ -519,14 +522,30 @@ body {
 .image-gallery-thumbnail + .image-gallery-thumbnail {
   @apply outline-0 border-2 border-black shadow-sm ml-5;
 }
+.image-gallery .image-gallery-left-nav,
+.image-gallery .image-gallery-right-nav {
+  @apply px-0;
+}
 .image-gallery .image-gallery-left-nav .image-gallery-svg,
 .image-gallery .image-gallery-right-nav .image-gallery-svg {
-  @apply h-10 w-10;
+  @apply h-8 w-4 md:w-8 md:h-8 lg:w-10 lg:h-10 px-0;
 }
+
+/* .image-gallery .image-gallery-fullscreen-button .image-gallery-svg,
+.image-gallery
+  .image-gallery-play-button
+  .image-gallery-svg
+  .image-gallery
+  .image-gallery-left-nav,
+.image-gallery .image-gallery-right-nav {
+  @apply h-6 w-6 px-0;
+} */
+
 .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal
   .image-gallery-thumbnails {
   @apply py-5;
 }
+
 /* .image-gallery-icon.image-gallery-fullscreen-button,
 .image-gallery-icon.image-gallery-play-button {
   @apply hidden;
@@ -639,17 +658,6 @@ body {
   }
 } */
 
-@media only screen and (min-width: 1024px) {
-  .submenu {
-    /* display: block; */
-    top: 100% !important;
-    padding-top: 8px;
-  }
-  .group:hover .submenu {
-    display: block;
-  }
-}
-
 /* npm react-js-pagination package */
 .pagination {
   display: flex;
@@ -711,14 +719,25 @@ body {
 
 /* Masonry */
 .my-masonry-grid {
-  @apply flex w-auto;
+  @apply flex w-auto justify-between;
+}
+.my-masonry-grid .my-masonry-grid_column:first-child {
+  /* @apply sm:!w-[48%] md:!w-[31%]; */
+
+  @apply sm:mr-3;
+}
+
+.my-masonry-grid .my-masonry-grid_column:nth-child(2) {
+  /* @apply sm:!w-[48%] md:!w-[31%]; */
+
+  @apply lg:mr-3;
 }
 
 .my-masonry-grid_column .even {
-  @apply bg-secondary-500 rounded-lg mb-4 mx-2;
+  @apply bg-secondary-500 rounded-lg mb-4;
 }
 .my-masonry-grid_column .odd {
-  @apply bg-primary-500 rounded-lg mb-4 mx-2;
+  @apply bg-primary-500 rounded-lg mb-4;
 }
 .masonry-item {
   @apply mb-7;
@@ -729,4 +748,21 @@ body {
 
 .my-masonry-grid_column .even .card-background > .card-button {
   @apply bg-primary-500;
+}
+
+@media only screen and (min-width: 1024px) {
+  .submenu {
+    /* display: block; */
+    top: 100% !important;
+    padding-top: 8px;
+  }
+  .group:hover .submenu {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-img {
+    padding-top: 174.778%;
+  }
 }
