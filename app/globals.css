@@ -724,7 +724,7 @@ body {
 .my-masonry-grid .my-masonry-grid_column:first-child {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
-  @apply sm:mr-2 lg:mr-3;
+  @apply sm:mr-3;
 }
 
 .my-masonry-grid .my-masonry-grid_column:nth-child(2) {
