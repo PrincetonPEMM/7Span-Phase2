@@ -8,6 +8,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx,css}",
     "./app/globals.css",
+    "./node_modules/flowbite-react/**/*.js",
   ],
   theme: {
     extend: {
@@ -21,8 +22,7 @@ module.exports = {
       colors: {
         ...colors,
 
-        offWhite: "#E7E3DC",
-        offBlack: "#221F21",
+        //green shade
         primary: {
           100: "#E1F7E3",
           200: "#C4F0CE",
@@ -34,6 +34,8 @@ module.exports = {
           800: "#134038",
           900: "#0B3532",
         },
+
+        // yellow shade
         secondary: {
           100: "#FDF5D9",
           200: "#FCEAB4",
@@ -45,7 +47,8 @@ module.exports = {
           800: "#844F15",
           900: "#6D3B0C",
         },
-        background: {
+
+        offWhite: {
           100: "#FDFDFB",
           200: "#FCFBF7",
           300: "#F7F5F0",
@@ -67,11 +70,11 @@ module.exports = {
           800: "#7E0B2E",
           900: "#68062D",
         },
-        offWhite: {
+        offBlack: {
           100: "#F3EFF0",
           200: "#E8E0E3",
           300: "#BCB2B7",
-          400: "#7A7276",
+          400: "#2c2728",
           500: "#221F21",
           600: "#1D161B",
           700: "#180F17",
@@ -95,5 +98,5 @@ module.exports = {
     },
   },
   css: ["index.css", "./app/globals.css"],
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };
