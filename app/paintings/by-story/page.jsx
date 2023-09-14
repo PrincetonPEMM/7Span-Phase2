@@ -1,7 +1,6 @@
 import React from "react";
 import PaintingByStoryIndex from "@/app/components/PaintingByStoryIndex";
 import { pagePerLimitForPainting } from "@/utils/constant";
-import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
@@ -18,8 +17,7 @@ const Page = async () => {
   }
   return (
     <div>
-      {/* <PaintingByStoryIndex list={data} /> */}
-      <ComingSoon />
+      <PaintingByStoryIndex list={data} />
     </div>
   );
 };

@@ -9,8 +9,6 @@ import { defaultImageforPainting } from "@/utils/constant";
 const PaintingDetail = ({ data }) => {
   const [image, setImage] = useState([]);
 
-  console.log(data, "data -- data");
-
   useEffect(() => {
     setImage([
       {
