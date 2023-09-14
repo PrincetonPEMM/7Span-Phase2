@@ -1,7 +1,6 @@
 import React from "react";
 import PaintingbyMSIndex from "@/app/components/PaintingbyMSIndex";
 import { pagePerLimitForPainting } from "@/utils/constant";
-import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +15,7 @@ const Page = async () => {
   } catch (error) {
     console.log("Error", error);
   }
-  return <ComingSoon />; //<PaintingbyMSIndex list={data} />;
+  return <PaintingbyMSIndex list={data} />;
 };
 
 export default Page;
