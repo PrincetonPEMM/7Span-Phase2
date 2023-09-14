@@ -10,6 +10,7 @@ const PaintingStoryCard = ({
   desc,
   btnText,
   btnLink,
+  className = "",
 }) => {
   return (
     <div
@@ -26,8 +27,8 @@ const PaintingStoryCard = ({
         <h2 className="lg:text-2xl font-bold mt-3">
           {title ? title : "PEMM title not found"}
         </h2>
-        <p className="text-xs break-words">{content}</p>
-        {desc && <p className="text-xs break-words">{desc}</p>}
+        <p className={`text-xs break-words ${className}`}>{content}</p>
+        {desc && <p className={`text-xs break-words ${className}`}>{desc}</p>}
 
         {btnText && btnLink && (
           <Link
