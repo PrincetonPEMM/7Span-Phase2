@@ -528,7 +528,7 @@ body {
 }
 .image-gallery .image-gallery-left-nav .image-gallery-svg,
 .image-gallery .image-gallery-right-nav .image-gallery-svg {
-  @apply h-8 w-4 md:w-8 lg:w-10 px-0;
+  @apply h-8 w-4 md:w-8 md:h-8 lg:w-10 lg:h-10 px-0;
 }
 
 /* .image-gallery .image-gallery-fullscreen-button .image-gallery-svg,
@@ -724,7 +724,13 @@ body {
 .my-masonry-grid .my-masonry-grid_column:first-child {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
-  @apply md:mr-2;
+  @apply sm:mr-2 lg:mr-3;
+}
+
+.my-masonry-grid .my-masonry-grid_column:nth-child(2) {
+  /* @apply sm:!w-[48%] md:!w-[31%]; */
+
+  @apply lg:mr-3;
 }
 
 .my-masonry-grid_column .even {
