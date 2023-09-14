@@ -3,55 +3,39 @@ import PaintingDetail from "@assets/images/painting-detail.jpg";
 import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
 
-const PaintingStoryCard = ({ item }) => {
+const PaintingStoryCard = ({
+  image,
+  title,
+  content,
+  desc,
+  btnText,
+  btnLink,
+}) => {
   return (
     <div
-      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-4 inline-block relative overflow-hidden w-[96%]`}
+      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full sm:mx-4 sm:w-[96%] `}
     >
       <div className=" bg-offWhite-500">
         <img
-          src={
-            Boolean(item.image_link) ? item.image_link : defaultImageforPainting
-          }
+          src={Boolean(image) ? image : defaultImageforPainting}
           alt="PEMM"
           className="w-full h-full object-cover"
         />
       </div>
       <div className="bg-black p-5">
         <h2 className="lg:text-2xl font-bold mt-3">
-          {item?.pemm_short_title
-            ? item.pemm_short_title
-            : "PEMM title not found"}
+          {title ? title : "PEMM title not found"}
         </h2>
-        <p className="text-xs break-words">
-          {item?.manuscript_date_range_start && item?.manuscript_date_range_end
-            ? item.manuscript_date_range_start ===
-              item.manuscript_date_range_end
-              ? item.manuscript_date_range_start
-              : item.manuscript_date_range_start +
-                "-" +
-                item.manuscript_date_range_end
-            : "-"}
-          {item?.manuscript ? ", " + item.manuscript : " "}
-          {item?.painting_folio ? ", f." + item.painting_folio : " "}
-          {item?.painting_scan ? ", s." + item.painting_scan : " "}
-        </p>
+        <p className="text-xs break-words">{content}</p>
+        {desc && <p className="text-xs break-words">{desc}</p>}
 
-        {item?.painting_count && (
+        {btnText && btnLink && (
           <Link
-            href={` ${
-              item.painting_count > 1
-                ? "/paintings/by-story/" + item.canonical_story_id
-                : "/stories/" + item.canonical_story_id
-            }`}
+            href={btnLink}
             className="border border-offWhite-500 my-4 inline-block py-2 px-3 text-xs md:text-sm hover:transition-all rounded-md hover:border-black 
         transition-all hover hover:bg-secondary-500 hover:text-offBlack-500"
           >
-            View&nbsp;
-            {item.painting_count > 1
-              ? `all ${item.painting_count} images for `
-              : ``}
-            this story
+            {btnText}
           </Link>
         )}
       </div>
