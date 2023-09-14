@@ -12,8 +12,8 @@ const Page = async () => {
 
   return (
     <div>
-      {/* <Paintings {...filters} /> */}
-      <ComingSoon/>
+      <Paintings {...filters} />
+      {/* <ComingSoon/> */}
     </div>
   );
 };
