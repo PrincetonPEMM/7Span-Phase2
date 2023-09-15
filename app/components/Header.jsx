@@ -23,9 +23,13 @@ const Header = () => {
     if (menuCollapse) {
       document.body.classList.add("sidebar_open");
       document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("filter_close");
     } else {
       document.body.classList.add("sidebar_close");
       document.body.classList.remove("sidebar_open");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("filter_close");
     }
   }, [menuCollapse]);
 
