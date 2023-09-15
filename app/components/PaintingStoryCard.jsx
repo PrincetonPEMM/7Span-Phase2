@@ -14,7 +14,7 @@ const PaintingStoryCard = ({
 }) => {
   return (
     <div
-      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full `}
+      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
     >
       <div className=" bg-offWhite-500">
         <img
@@ -24,7 +24,7 @@ const PaintingStoryCard = ({
         />
       </div>
       <div className="bg-black p-5">
-        <h2 className="lg:text-2xl font-bold mt-3">
+        <h2 className="font-bold mt-3 lg:text-2xl ">
           {title ? title : "PEMM title not found"}
         </h2>
         <p className={`text-xs break-words ${className}`}>{content}</p>
@@ -33,8 +33,8 @@ const PaintingStoryCard = ({
         {btnText && btnLink && (
           <Link
             href={btnLink}
-            className="border border-offWhite-500 my-4 inline-block py-2 px-3 text-xs md:text-sm hover:transition-all rounded-md hover:border-black 
-        transition-all hover hover:bg-secondary-500 hover:text-offBlack-500"
+            className="border border-offWhite-500 my-4 inline-block py-2 px-3 text-xs hover:transition-all rounded-md hover:border-black 
+        transition-all hover hover:bg-secondary-500 hover:text-offBlack-500 md:text-sm"
           >
             {btnText}
           </Link>

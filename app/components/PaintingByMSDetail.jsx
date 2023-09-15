@@ -114,7 +114,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
   return (
     <div className="py-10 container-fluid">
       {header && (
-        <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
+        <h2 className="font-body font-bold text-2xl lg:text-3xl xl:text-5xl">
           {header?.manuscript_full_name}&nbsp;(
           {`${
             header?.manuscript_date_range_start &&
@@ -132,7 +132,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
       )}
       <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
-          <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
+          <MdiMagnify className="h-4 w-4 absolute inset-y-0 left-3 my-auto text-primary-700 md:h-6 md:w-6 md:left-5" />
           <InputText
             magnify={true}
             value={search}
@@ -152,7 +152,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
 
           {search && (
             <MdiWindowClose
-              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+              className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
               onClick={() => {
                 setSearch("");
                 debouncedFetchData("");
@@ -168,7 +168,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
       >
         {data.map((item, index) => (
           <PaintingStoryCard
-            key={index}
+            key={item.image_link + index}
             image={item.image_link}
             title={item.pemm_short_title}
             content={item.episodes}
@@ -181,7 +181,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
       </Masonry>
 
       {Boolean(!data?.length) && (
-        <div className="flex items-center py-36 justify-center  w-full text-2xl text-primary-500 font-bold">
+        <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
           {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
         </div>
       )}

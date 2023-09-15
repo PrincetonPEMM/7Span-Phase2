@@ -125,7 +125,7 @@ const Header = () => {
             : "bg-offWhite-500"
         }`}
       >
-        <Link href="/" className="w-60 sm:w-full sm:max-w-md block lg:hidden">
+        <Link href="/" className="w-60 block sm:w-full sm:max-w-md lg:hidden">
           {pathname === "/" ? (
             <Image
               src={Logo}
@@ -140,7 +140,7 @@ const Header = () => {
         </Link>
         <button
           onClick={menuIconClick}
-          className="block h-7 w-7 flex-none p-1 lg:hidden z-40 absolute top-5 right-5"
+          className="block h-7 w-7 flex-none p-1 z-40 absolute top-5 right-5 lg:hidden"
         >
           {menuCollapse ? (
             <MdiMenuIcon
@@ -160,13 +160,13 @@ const Header = () => {
         }}
       >
         <div
-          className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed lg:w-full transition-transform duration-700 lg:flex lg:bg-offWhite-500 lg:h-auto ${
+          className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed transition-transform duration-700 lg:w-full lg:flex lg:bg-offWhite-500 lg:h-auto ${
             menuCollapse
               ? "right-0 translate-x-0 transform "
               : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
           } ${
             pathname === "/"
-              ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform  lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
+              ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
               : "lg:relative text-primary-500 py-5 header bg-white lg:bg-offWhite-500 "
           }`}
         >
@@ -199,13 +199,13 @@ const Header = () => {
               setActiveSubmenu(null);
             }}
           >
-            <ul className="font-body lg:flex relative mt-5 lg:mt-0">
+            <ul className="font-body relative mt-5 lg:mt-0 lg:flex">
               {menuItems.map((item, index) => (
                 <li key={index} className="lg:ml-3 xl:ml-6">
                   {item.subItems ? (
                     <div className="group capitalize relative">
                       <button
-                        className="text-lg xl:text-xl p-1 lg:px-3 lg:py-0 font-semibold flex items-center lg:hover:text-secondary-50 lg:pointer-events-none"
+                        className="text-lg p-1 font-semibold flex items-center lg:px-3 lg:py-0 lg:hover:text-secondary-50 lg:pointer-events-none  xl:text-xl"
                         onClick={() => toggleSubmenu(index)}
                       >
                         <span>{item.title}</span>
@@ -227,7 +227,7 @@ const Header = () => {
                           <li key={subIndex}>
                             <Link
                               href={subItem.link}
-                              className="header-link transition-all flex py-1 lg:text-primary-500 lg:hover:bg-secondary-500 text-lg xl:text-base p-1 lg:px-3 lg:py-0"
+                              className="header-link transition-all flex py-1 text-lg p-1 lg:text-primary-500 lg:hover:bg-secondary-500 xl:text-base lg:px-3 lg:py-0"
                               onClick={() => {
                                 setActiveSubmenu(null);
                                 // redirect(subItem.link);
@@ -244,7 +244,7 @@ const Header = () => {
                     <Link
                       onClick={() => setMenuCollapse(false)}
                       href={item.link}
-                      className="header-link transition-all flex py-1 font-semibold lg:text-white lg:hover:text-secondary-500 text-lg xl:text-xl p-1 lg:px-3 lg:py-0"
+                      className="header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:text-white lg:hover:text-secondary-500 "
                     >
                       {item.title}
                     </Link>
