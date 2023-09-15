@@ -122,7 +122,7 @@ const PaintingbyMSIndex = ({ list }) => {
                 : "black & white"
             }`}
             btnText={"View all images for this manuscript"}
-            btnLink={`/paintings/by-manuscripty/${item.web_page_address}`}
+            btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
           />
         ))}
       </Masonry>
