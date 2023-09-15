@@ -95,7 +95,7 @@ const PaintingByStoryIndex = ({ list }) => {
       >
         {data.map((item, index) => (
           <PaintingStoryCard
-            key={index}
+            key={item.image_link + index}
             item={item}
             image={item.image_link}
             title={item?.pemm_short_title}

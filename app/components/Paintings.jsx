@@ -167,7 +167,7 @@ const Paintings = ({
             columnClassName="my-masonry-grid_column"
           >
             {data.map((card, index) => (
-              <PaintingCard key={index} card={card} />
+              <PaintingCard key={card.image_link + index} card={card} />
             ))}
           </Masonry>
         ) : (
