@@ -5,11 +5,14 @@ import { defaultImageforPainting } from "@/utils/constant";
 
 const PaintingStoryCard = ({
   image,
+  isTitle = true,
   title,
   content,
   desc,
   btnText,
   btnLink,
+  lastLine,
+  className = "",
 }) => {
   return (
     <div
@@ -23,12 +26,14 @@ const PaintingStoryCard = ({
         />
       </div>
       <div className="bg-black p-5">
-        <h2 className="lg:text-2xl font-bold mt-3">
-          {title ? title : "PEMM title not found"}
-        </h2>
-        <p className="text-xs break-words">{content}</p>
-        {desc && <p className="text-xs break-words">{desc}</p>}
-
+        {isTitle && (
+          <h2 className="lg:text-2xl font-bold mt-3">
+            {title ? title : "PEMM title not found"}
+          </h2>
+        )}
+        <p className={`text-xs break-words ${className}`}>{content}</p>
+        {desc && <p className={`text-xs break-words ${className}`}>{desc}</p>}
+        {lastLine && <p className={`text-xs break-words `}>{lastLine}</p>}
         {btnText && btnLink && (
           <Link
             href={btnLink}
