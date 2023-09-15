@@ -4,6 +4,7 @@ import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
+import OutsideClickHandler from "react-outside-click-handler";
 import {
   initialPlaceItemManuScript,
   manuscriptsTableDetailView,
@@ -77,6 +78,21 @@ const ManuScripts = () => {
       .map((itm) => `filters[${key}][]=${itm.name}&`)
       .join("");
   };
+
+  useEffect(() => {
+    console.log(window);
+    if (isOpen && window.innerWidth < 768) {
+      document.body.classList.add("filter_open");
+      document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+      document.body.classList.remove("filter_close");
+    } else {
+      document.body.classList.add("filter_close");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+    }
+  }, [isOpen, window]);
 
   async function fetchData(searchKey = "") {
     try {
@@ -184,61 +200,70 @@ const ManuScripts = () => {
         isOpen ? "shell" : "flex items-start"
       }`}
     >
-      <div
-        className={`manuscript-page font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
-          isOpen
-            ? "left-0 z-20 md:block md:static md:h-auto transition-all"
-            : "hidden -left-full transition-all"
-        } `}
+      <OutsideClickHandler
+        onOutsideClick={() => {
+          if (window.innerWidth < 768) {
+            setIsOpen(false);
+          }
+        }}
       >
-        <Sidebar
-          isPageName={MANUSCRIPTS}
-          onChangeStory={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setDateCreationMin(min);
-              setDateCreationMax(max);
-              debouncedFetchData();
-            },
-            [dateCreationMin, dateCreationMax]
-          )}
-          onChangeManuscript={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setNoOfStoriesMin(min);
-              setNoOfStoriesMax(max);
-              debouncedFetchData();
-            },
-            [noOfStoriesMin, noOfStoriesMax]
-          )}
-          onChangePainting={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setNoOfPaintingMin(min);
-              setNoOfPaintingMax(max);
-              debouncedFetchData();
-            },
-            [noOfPaintingMin, noOfPaintingMax]
-          )}
-          onChangeUnique={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setNoOfUniqueMin(min);
-              setNoOfUniqueMax(max);
-              debouncedFetchData();
-            },
-            [noOfUniqueMin, noOfUniqueMax]
-          )}
-          filterItem={filterItem}
-          setFilterItem={setFilterItem}
-          placeItem={placeItem}
-          setPlaceItem={setPlaceItem}
-          langItem={originRegion}
-          setLangItem={setOriginRegion}
-          onClick={() => setIsOpen(!isOpen)}
-          resetFilter={resetFilter}
-        />
-      </div>
+        {" "}
+        <div
+          className={`manuscript-page font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
+            isOpen
+              ? "left-0 md:block md:static md:h-auto transition-all "
+              : "hidden -left-full transition-all z-10"
+          } `}
+        >
+          <Sidebar
+            isPageName={MANUSCRIPTS}
+            onChangeStory={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setDateCreationMin(min);
+                setDateCreationMax(max);
+                debouncedFetchData();
+              },
+              [dateCreationMin, dateCreationMax]
+            )}
+            onChangeManuscript={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setNoOfStoriesMin(min);
+                setNoOfStoriesMax(max);
+                debouncedFetchData();
+              },
+              [noOfStoriesMin, noOfStoriesMax]
+            )}
+            onChangePainting={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setNoOfPaintingMin(min);
+                setNoOfPaintingMax(max);
+                debouncedFetchData();
+              },
+              [noOfPaintingMin, noOfPaintingMax]
+            )}
+            onChangeUnique={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setNoOfUniqueMin(min);
+                setNoOfUniqueMax(max);
+                debouncedFetchData();
+              },
+              [noOfUniqueMin, noOfUniqueMax]
+            )}
+            filterItem={filterItem}
+            setFilterItem={setFilterItem}
+            placeItem={placeItem}
+            setPlaceItem={setPlaceItem}
+            langItem={originRegion}
+            setLangItem={setOriginRegion}
+            onClick={() => setIsOpen(!isOpen)}
+            resetFilter={resetFilter}
+          />
+        </div>
+      </OutsideClickHandler>
 
       <div className="w-full grid ">
         {!isOpen && (
@@ -279,7 +304,7 @@ text-sm 2xl:text-base"
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
             <button
-              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md hover:text-primary-500 uppercase hover:bg-transparent hover:border-primary-500 border-2 border-primary-500 transition-colors hover:transition-colors"
+              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {

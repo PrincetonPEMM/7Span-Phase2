@@ -27,7 +27,7 @@ const Footer = () => {
   const researchToolItems = [
     { title: "Maps", link: "/research/maps" },
     { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
-    { title: "Research & Lessons", link: "/research/research-posts" },
+    { title: "Research & Lessons", link: "/research/research-and-lessons" },
     { title: "List of Repositories", link: "/research/repositories" },
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -36,7 +36,7 @@ const Footer = () => {
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
-    <div className="w-auto px-5 py-8 grid bg-primary-500 text-white grid-cols-1 gap-4 sm:grid-cols-3 md:px-8 lg:px-16 lg:gap-5 lg:grid-cols-5">
+    <div className="w-auto px-5 py-8 grid bg-primary-500 text-white grid-cols-1 gap-5 sm:grid-cols-3 md:px-8 lg:px-16 lg:gap-5 lg:grid-cols-5">
       <div className=" text-left lg:py-5 md:pr-5 text-sm sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
         <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
           <Image
@@ -62,18 +62,18 @@ const Footer = () => {
         </div>
         <Link
           href="mailto: pemm@princeton.edu"
-          className="py-3 text-sm hover:text-secondary-500"
+          className="text-sm hover:text-secondary-500 "
         >
           pemm@princeton.edu
         </Link>
-        <p className="pt-1 text-sm lg:pt-4 md:pt-5">
+        <p className="pt-2 text-sm md:pt-5 lg:pt-4">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
 
       <div className="lg:py-5">
-        <h2 className="text-lg lg:text-xl font-bold">About</h2>
-        <ul className="font-menu text-xl flex flex-col  relative z-20">
+        <h2 className="text-lg font-bold lg:text-xl">About</h2>
+        <ul className="font-menu text-xl flex flex-col">
           {aboutItems.map((item, index) => (
             <>
               <Link
@@ -90,14 +90,14 @@ const Footer = () => {
       </div>
 
       <div className="text-left lg:py-5">
-        <h2 className="text-lg lg:text-xl font-bold">Explore</h2>
-        <ul className="font-menu text-xl flex flex-col relative z-20">
+        <h2 className="text-lg font-bold lg:text-xl">Explore</h2>
+        <ul className="font-menu text-xl flex flex-col">
           {exploreItems.map((item, index) => (
             <>
               <Link
                 href={item.link}
                 key={index}
-                className="text-base hover:text-secondary-500"
+                className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
               >
                 {item.title}
               </Link>
@@ -108,8 +108,8 @@ const Footer = () => {
       </div>
 
       <div className="text-left lg:py-5">
-        <h2 className="text-lg lg:text-xl font-bold">Research Tools</h2>
-        <ul className="font-menu text-xl flex flex-col relative z-20">
+        <h2 className="text-lg font-bold lg:text-xl">Research Tools</h2>
+        <ul className="font-menu text-xl flex flex-col">
           {researchToolItems.map((item, index) => (
             <>
               <Link

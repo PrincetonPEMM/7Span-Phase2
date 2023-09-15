@@ -60,11 +60,11 @@ const PaintingbyMSIndex = ({ list }) => {
     <div className="py-10 container-fluid">
       <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
-          <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
           <InputText
             magnify={true}
             value={search}
             iconBefore
+            iconAfter
             placeholderText="Search"
             onChange={(e) => {
               const query = e.target.value;
@@ -77,7 +77,6 @@ const PaintingbyMSIndex = ({ list }) => {
               }
             }}
           />
-
           {search && (
             <MdiWindowClose
               className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
@@ -96,7 +95,7 @@ const PaintingbyMSIndex = ({ list }) => {
       >
         {data.map((item, index) => (
           <PaintingStoryCard
-            key={index}
+            key={item.image_link + index}
             image={item.image_link}
             title={item?.manuscript_full_name}
             content={`${
@@ -122,7 +121,7 @@ const PaintingbyMSIndex = ({ list }) => {
                 : "black & white"
             }`}
             btnText={"View all images for this manuscript"}
-            btnLink={`/paintings/by-manuscripty/${item.web_page_address}`}
+            btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
           />
         ))}
       </Masonry>
