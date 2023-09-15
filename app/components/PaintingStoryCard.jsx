@@ -31,9 +31,9 @@ const PaintingStoryCard = ({
             {title ? title : "PEMM title not found"}
           </h2>
         )}
-        <p className={`text-xs break-words ${className}`}>{content}</p>
-        {desc && <p className={`text-xs break-words ${className}`}>{desc}</p>}
-        {lastLine && <p className={`text-xs break-words `}>{lastLine}</p>}
+        <p className={`text-sm break-words ${className}`}>{content}</p>
+        {desc && <p className={`text-sm break-words ${className}`}>{desc}</p>}
+        {lastLine && <p className={`text-sm break-words `}>{lastLine}</p>}
         {btnText && btnLink && (
           <Link
             href={btnLink}
