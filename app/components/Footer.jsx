@@ -66,7 +66,7 @@ const Footer = () => {
         >
           pemm@princeton.edu
         </Link>
-        <p className="pt-1 text-sm lg:pt-4 md:pt-5">
+        <p className="pt-3 text-sm md:pt-5">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
