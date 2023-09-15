@@ -4,6 +4,7 @@ import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
+import OutsideClickHandler from "react-outside-click-handler";
 import {
   initialLangItem,
   initialPlaceItem,
@@ -63,6 +64,19 @@ const Stories = () => {
       .map((itm) => `filters[${key}][]=${itm.name}&`)
       .join("");
   };
+  useEffect(() => {
+    if (isOpen && window.innerWidth < 768) {
+      document.body.classList.add("filter_open");
+      document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+      document.body.classList.remove("filter_close");
+    } else {
+      document.body.classList.add("filter_close");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+    }
+  }, [isOpen, window]);
 
   async function fetchData(searchKey = "") {
     try {
@@ -174,53 +188,61 @@ const Stories = () => {
         isOpen ? "shell" : "flex "
       }`}
     >
-      <div
-        className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
-          isOpen
-            ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
-            : "hidden -left-full transition-all"
-        } `}
+      <OutsideClickHandler
+        onOutsideClick={() => {
+          if (window.innerWidth < 768) {
+            setIsOpen(false);
+          }
+        }}
       >
-        <Sidebar
-          isPageName={STORIES}
-          onChangeStory={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setStoryMin(min);
-              setStoryMax(max);
-              debouncedFetchData();
-            },
-            [storyMin, storyMax]
-          )}
-          onChangeManuscript={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setManuscriptsMin(min);
-              setManuscriptsMax(max);
-              debouncedFetchData();
-            },
-            [manuscriptsMin, manuscriptsMax]
-          )}
-          onChangePainting={useCallback(
-            (e) => {
-              const { min, max } = e;
-              setPaintingMin(min);
-              setPaintingMax(max);
-              debouncedFetchData();
-            },
-            [paintingMin, paintingMax]
-          )}
-          onChangeUnique={() => {}}
-          filterItem={filterItem}
-          setFilterItem={setFilterItem}
-          placeItem={placeItem}
-          setPlaceItem={setPlaceItem}
-          langItem={langItem}
-          setLangItem={setLangItem}
-          onClick={() => setIsOpen(!isOpen)}
-          resetFilter={resetFilter}
-        />
-      </div>
+        <div
+          className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
+            isOpen
+              ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
+              : "hidden -left-full transition-all"
+          } `}
+        >
+          <Sidebar
+            isPageName={STORIES}
+            onChangeStory={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setStoryMin(min);
+                setStoryMax(max);
+                debouncedFetchData();
+              },
+              [storyMin, storyMax]
+            )}
+            onChangeManuscript={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setManuscriptsMin(min);
+                setManuscriptsMax(max);
+                debouncedFetchData();
+              },
+              [manuscriptsMin, manuscriptsMax]
+            )}
+            onChangePainting={useCallback(
+              (e) => {
+                const { min, max } = e;
+                setPaintingMin(min);
+                setPaintingMax(max);
+                debouncedFetchData();
+              },
+              [paintingMin, paintingMax]
+            )}
+            onChangeUnique={() => {}}
+            filterItem={filterItem}
+            setFilterItem={setFilterItem}
+            placeItem={placeItem}
+            setPlaceItem={setPlaceItem}
+            langItem={langItem}
+            setLangItem={setLangItem}
+            onClick={() => setIsOpen(!isOpen)}
+            resetFilter={resetFilter}
+          />
+        </div>
+      </OutsideClickHandler>
 
       <div className="w-full grid">
         {!isOpen && (
@@ -258,7 +280,7 @@ const Stories = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
             <button
-              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md hover:text-primary-500 uppercase hover:bg-transparent hover:border-primary-500 border-2 border-primary-500 transition-colors hover:transition-colors"
+              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {

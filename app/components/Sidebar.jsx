@@ -80,10 +80,10 @@ const Sidebar = ({
 
   return (
     <div className=" w-full rounded-md text-white">
-      <div className="flex items-center justify-between sticky z-10 top-0 bg-primary-500">
+      <div className="flex items-center justify-between sticky z-20 top-0 bg-primary-500">
         <button
           onClick={onClick}
-          className="sticky top-0 block py-2 bg-primary-500 z-20 "
+          className="sticky top-0 block py-2 bg-primary-500 z-20"
         >
           <MdiMenuOpen className="text-white-500 h-6 w-6" />
         </button>
