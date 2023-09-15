@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PaintingDetail from "@assets/images/painting-detail.jpg";
 import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
@@ -15,6 +15,12 @@ const PaintingStoryCard = ({
   className = "",
 }) => {
   const [isImgload, setIsImgLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsImgLoad(true);
+    }, [5000]);
+  }, []);
 
   return (
     <div
