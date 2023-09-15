@@ -73,13 +73,12 @@ const Paintings = ({
 
   useEffect(() => {
     fetchData(search);
-  }, [
-    dateOfPaintins,
-    paintingsInColorOnly,
-    storyType,
-    archiveOfPainting,
-    page,
-  ]);
+    setPage(1);
+  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
+
+  useEffect(() => {
+    fetchData(search);
+  }, [page]);
 
   const debouncedFetchData = debounce(fetchData, 300);
 
@@ -153,6 +152,8 @@ const Paintings = ({
             setPaintingsInColorOnly(paintingInColor[0]);
             setStoryType();
             setArchiveOfPainting();
+            setPage(1);
+            setSearch("");
           }}
         >
           Reset

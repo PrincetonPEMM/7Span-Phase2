@@ -16,7 +16,7 @@ const PaintingCard = (props) => {
               ? props.card.image_link
               : defaultImageforPainting
           }
-                    alt={props.card.pemm_short_title}
+          alt={props.card.pemm_short_title}
           className="w-full h-full object-cover "
           onLoad={() => {
             setIsImgLoad(true);
