@@ -27,7 +27,7 @@ const Footer = () => {
   const researchToolItems = [
     { title: "Maps", link: "/research/maps" },
     { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
-    { title: "Research & Lessons", link: "/research/research-posts" },
+    { title: "Research & Lessons", link: "/research/research-and-lessons" },
     { title: "List of Repositories", link: "/research/repositories" },
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
@@ -62,7 +62,7 @@ const Footer = () => {
         </div>
         <Link
           href="mailto: pemm@princeton.edu"
-          className="py-3 text-sm hover:text-secondary-500"
+          className="text-sm hover:text-secondary-500 "
         >
           pemm@princeton.edu
         </Link>
