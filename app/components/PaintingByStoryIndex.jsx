@@ -64,6 +64,7 @@ const PaintingByStoryIndex = ({ list }) => {
             magnify={true}
             value={search}
             iconBefore
+            iconAfter
             placeholderText="Search"
             onChange={(e) => {
               const query = e.target.value;
