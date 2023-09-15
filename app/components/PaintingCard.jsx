@@ -4,6 +4,13 @@ import Link from "next/link";
 
 const PaintingCard = (props) => {
   const [isImgload, setIsImgLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsImgLoad(true);
+    }, [5000]);
+  }, []);
+
   return (
     <Link
       href={`/paintings/${props.card.web_page_address}_${props.card.painting_unique_id}`}
