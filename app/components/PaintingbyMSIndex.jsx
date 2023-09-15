@@ -95,7 +95,7 @@ const PaintingbyMSIndex = ({ list }) => {
       >
         {data.map((item, index) => (
           <PaintingStoryCard
-            key={index}
+            key={item.image_link + index}
             image={item.image_link}
             title={item?.manuscript_full_name}
             content={`${
