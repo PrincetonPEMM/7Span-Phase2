@@ -706,6 +706,23 @@ body {
   background-color: rgb(0 0 0 / 52%);
   content: "";
 }
+.filter_open {
+  @apply relative overflow-hidden;
+}
+
+.filter_open .shell__sidebar {
+  @apply z-50;
+}
+.filter_open::before {
+  position: absolute;
+  inset: 0px;
+  z-index: 50;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(4.5);
+  background-color: rgba(0, 0, 0, 0.746);
+  content: "";
+}
 
 .image-gallery-icon:hover,
 .image-gallery-icon:focus,

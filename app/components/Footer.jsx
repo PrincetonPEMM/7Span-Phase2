@@ -73,7 +73,7 @@ const Footer = () => {
 
       <div className="lg:py-5">
         <h2 className="text-lg font-bold lg:text-xl">About</h2>
-        <ul className="font-menu text-xl flex flex-col relative z-20">
+        <ul className="font-menu text-xl flex flex-col">
           {aboutItems.map((item, index) => (
             <>
               <Link
@@ -91,7 +91,7 @@ const Footer = () => {
 
       <div className="text-left lg:py-5">
         <h2 className="text-lg font-bold lg:text-xl">Explore</h2>
-        <ul className="font-menu text-xl flex flex-col relative z-20">
+        <ul className="font-menu text-xl flex flex-col">
           {exploreItems.map((item, index) => (
             <>
               <Link
@@ -109,7 +109,7 @@ const Footer = () => {
 
       <div className="text-left lg:py-5">
         <h2 className="text-lg font-bold lg:text-xl">Research Tools</h2>
-        <ul className="font-menu text-xl flex flex-col relative z-20">
+        <ul className="font-menu text-xl flex flex-col">
           {researchToolItems.map((item, index) => (
             <>
               <Link
