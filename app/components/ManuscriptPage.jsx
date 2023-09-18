@@ -260,62 +260,55 @@ export default function Manuscript({ Id, data, table }) {
   };
 
   return (
-    <div>
-      <div className="container-fliud">
-        <div className="pb-12">
-          <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
-            {data.manuscript_full_name}
-          </h2>
-          <div className="space-y-2  a-tag-whithout-underline-and-green">
-            {generateFirstParagraph().map((data, index) => (
-              <p
-                key={index}
-                dangerouslySetInnerHTML={{ __html: data.text }}
-              ></p>
-            ))}
-          </div>
-          {tableData && (
-            <div id="emip-table" className="pt-5">
-              <h3 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
-                {data.manuscript}
-              </h3>
-              <Table
-                // search=""
-                isPageName={MANUSCRIPT_DETAIL}
-                tableData={tableData.data}
-                tableHeader={manuscriptsDetailTableTitle}
-                toggleBtn={false}
-                // meta={{
-                //   total: tableData.total,
-                //   per_page: perPage,
-                //   current_page: page,
-                //   last_page: 50,
-                // }}
-                // isOpen={true}
-                // onPageChange={(e) => {
-                //   setPage(e.selected + 1);
-                // }}
-                expandedRows={expandedRows}
-                setExpandedRows={setExpandedRows}
-              />
-              <TablePagination
-                meta={{
-                  total: tableData.total,
-                  per_page: perPage,
-                  current_page: page,
-                  last_page: 50,
-                  page: page,
-                }}
-                isOpen={isOpen}
-                onPageChange={(num) => {
-                  setPage(num);
-                  setExpandedRows([]);
-                }}
-              />
-            </div>
-          )}
-        </div>
+    <div className="container-fluid py-4 lg:py-7 space-y-4">
+      <h2 className="font-menu text-2xl text-primary-500 lg:text-3xl xl:text-5xl font-medium">
+        {data.manuscript_full_name}
+      </h2>
+      <div className="space-y-2 a-tag-whithout-underline-and-green">
+        {generateFirstParagraph().map((data, index) => (
+          <p key={index} dangerouslySetInnerHTML={{ __html: data.text }}></p>
+        ))}
       </div>
+      {tableData && (
+        <div id="emip-table">
+          <h3 className="font-menu text-2xl lg:text-3xl xl:text-5xl font-medium">
+            {data.manuscript}
+          </h3>
+          <Table
+            // search=""
+            isPageName={MANUSCRIPT_DETAIL}
+            tableData={tableData.data}
+            tableHeader={manuscriptsDetailTableTitle}
+            toggleBtn={false}
+            // meta={{
+            //   total: tableData.total,
+            //   per_page: perPage,
+            //   current_page: page,
+            //   last_page: 50,
+            // }}
+            // isOpen={true}
+            // onPageChange={(e) => {
+            //   setPage(e.selected + 1);
+            // }}
+            expandedRows={expandedRows}
+            setExpandedRows={setExpandedRows}
+          />
+          <TablePagination
+            meta={{
+              total: tableData.total,
+              per_page: perPage,
+              current_page: page,
+              last_page: 50,
+              page: page,
+            }}
+            isOpen={isOpen}
+            onPageChange={(num) => {
+              setPage(num);
+              setExpandedRows([]);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

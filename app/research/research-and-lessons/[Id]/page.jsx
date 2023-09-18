@@ -21,7 +21,7 @@ const page = async () => {
             <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
               List of Research and manuscript lessons
             </h3>
-            <p class="py-6">{bibliography_data?.intro}</p>
+            <p classname="py-4">{bibliography_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: bibliography_data?.description,
