@@ -121,9 +121,9 @@ const page = async () => {
   }
 
   return (
-    // <div className="container font-body space-y-4 py-12">
+    // <div className="container font-body  py-4 lg:py-7">
     //   {research_posts_data && (
-    //     <div>
+    //     <div className="space-y-4">
     //       <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
     //         {research_posts_data?.title ?? ""}
     //       </h3>

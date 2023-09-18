@@ -56,7 +56,7 @@ const PaintingByStoryIndex = ({ list }) => {
   }, 300);
 
   return (
-    <div className="py-10 container-fluid">
+    <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
@@ -111,8 +111,8 @@ const PaintingByStoryIndex = ({ list }) => {
                     item.manuscript_date_range_end
                 : "-"
             }${item?.manuscript ? ", " + item.manuscript : ""}${
-              item?.painting_folio ? ", f." + item.painting_folio : ""
-            }${item?.painting_scan ? ", s." + item.painting_scan : ""}`}
+              item?.painting_folio ? ", f. " + item.painting_folio : ""
+            }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
             btnText={`View 
             ${
               item.painting_count > 1
