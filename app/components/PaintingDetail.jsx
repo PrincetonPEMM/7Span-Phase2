@@ -51,13 +51,13 @@ const PaintingDetail = ({ data }) => {
           />
         </div>
 
-        <div className="col-span-2 text-offBlack-400 max-w-2xl">
-          <h3 className="font-body font-extrabold text-2xl lg:text-3xl">
+        <div className=" col-span-2 text-offBlack-400 max-w-2xl">
+          <h3 className="text-primary-500 font-menu text-2xl lg:text-4xl font-medium">
             {data.pemm_short_title
               ? data.pemm_short_title
               : "PEMM title not found"}
           </h3>
-          <div className="space-y-1 text-base lg:text-xl mt-3">
+          <div className="space-y-1 font-body text-base lg:text-xl mt-3">
             <p>
               <strong> Painting's Number of Episodes: </strong>&nbsp;
               {data?.number_of_episodes ? data?.number_of_episodes : "none"}
