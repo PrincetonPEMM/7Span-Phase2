@@ -90,6 +90,7 @@ const Paintings = ({
             value={search}
             magnify={true}
             iconBefore
+            iconAfter
             placeholderText="Search"
             onChange={(e) => {
               const query = e.target.value;
