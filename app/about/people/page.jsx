@@ -51,200 +51,198 @@ export default async function page() {
     }
   }
   return (
-    <div className="container-fluid">
-      <div className="space-y-4 py-12">
+    <div className="container-fluid py-4 lg:py-7">
+      <div
+        id={`${about_people.our_people_title
+          .split(" ")
+          .map((word) => word.toLowerCase())
+          .join("-")}`}
+        className="people flex justify-center flex-col items-center"
+      >
+        <h2 className="text-3xl  font-header text-center lg:text-5xl">
+          {about_people.our_people_title}
+        </h2>
+        <p className="text-center font-menu md:w-2/3">
+          {about_people.our_people_description}
+        </p>
+      </div>
+
+      <div id="our-team" className="team">
+        <h2 className="text-3xl lg:text-5xl font-header text-center">
+          Our Team
+        </h2>
+        <div className="break-words mt-5 flex flex-wrap items-start justify-center">
+          {team_with_image}
+        </div>
+        <div className="p-2 break-words flex items-start flex-wrap justify-center">
+          {team_without_image}
+        </div>
+      </div>
+
+      <div
+        id={`${about_people.other_team_members_title
+          .split(" ")
+          .map((word) => word.toLowerCase())
+          .join("-")}`}
+        className="other-team-member font-body md:w-4/5 mx-auto space-y-10 lg:space-y-16"
+      >
+        <h3 className="text-3xl font-header text-center lg:text-5xl">
+          {about_people.other_team_members_title}
+        </h3>
         <div
-          id={`${about_people.our_people_title
+          className="space-y-p text-center font-body text-base md:text-center"
+          dangerouslySetInnerHTML={{
+            __html: about_people.other_team_members_description,
+          }}
+        />
+      </div>
+
+      <div
+        id={`${about_people.our_partners_title
+          .split(" ")
+          .map((word) => word.toLowerCase())
+          .join("-")}`}
+        className="md:w-4/5 mx-auto space-y-10 lg:space-y-16"
+      >
+        <div
+          id={`${about_people.project_collaborators_title
             .split(" ")
             .map((word) => word.toLowerCase())
             .join("-")}`}
-          className="people flex justify-center flex-col items-center"
+          className="collaborators"
         >
-          <h2 className="text-3xl  font-header text-center lg:text-5xl">
-            {about_people.our_people_title}
+          <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl">
+            {about_people.our_partners_title}
           </h2>
-          <p className="text-center font-menu md:w-2/3">
-            {about_people.our_people_description}
-          </p>
-        </div>
-
-        <div id="our-team" className="team">
-          <h2 className="text-3xl lg:text-5xl font-header text-center">
-            Our Team
-          </h2>
-          <div className="break-words mt-5 flex flex-wrap items-start justify-center">
-            {team_with_image}
-          </div>
-          <div className="p-2 break-words flex items-start flex-wrap justify-center">
-            {team_without_image}
-          </div>
-        </div>
-
-        <div
-          id={`${about_people.other_team_members_title
-            .split(" ")
-            .map((word) => word.toLowerCase())
-            .join("-")}`}
-          className="other-team-member font-body md:w-4/5 mx-auto space-y-10 lg:space-y-16"
-        >
-          <h3 className="text-3xl font-header text-center lg:text-5xl">
-            {about_people.other_team_members_title}
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+            {about_people.project_collaborators_title}
           </h3>
           <div
-            className="space-y-p text-center font-body text-base md:text-center"
+            className="space-y-p text-center font-body md:text-left"
             dangerouslySetInnerHTML={{
-              __html: about_people.other_team_members_description,
+              __html: about_people.project_collaborators_description,
             }}
           />
         </div>
-
         <div
-          id={`${about_people.our_partners_title
+          id={`${about_people.board_members_title
             .split(" ")
             .map((word) => word.toLowerCase())
             .join("-")}`}
-          className="md:w-4/5 mx-auto space-y-10 lg:space-y-16"
+          className="board-members "
         >
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl ">
+            {about_people.board_members_title}
+          </h3>
           <div
-            id={`${about_people.project_collaborators_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-")}`}
-            className="collaborators"
-          >
-            <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl">
-              {about_people.our_partners_title}
-            </h2>
-            <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
-              {about_people.project_collaborators_title}
-            </h3>
+            className="space-y-p text-center font-body md:text-left"
+            dangerouslySetInnerHTML={{
+              __html: about_people.board_members_description,
+            }}
+          />
+        </div>
+        <div
+          id={`${about_people.project_advisers_title
+            .split(" ")
+            .map((word) => word.toLowerCase())
+            .join("-")}`}
+          className="project-advisers "
+        >
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+            {about_people.project_advisers_title}
+          </h3>
+          <div
+            className="space-y-p text-center font-body md:text-left"
+            dangerouslySetInnerHTML={{
+              __html: about_people.project_advisers_description,
+            }}
+          />
+        </div>
+        <div
+          id={`${about_people.institutional_collaborators_title
+            .split(" ")
+            .map((word) => word.toLowerCase())
+            .join("-")}`}
+          className="institutional-collaborators "
+        >
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+            {about_people.institutional_collaborators_title}
+          </h3>
+          <div
+            className="space-y-p text-center font-body md:text-left"
+            dangerouslySetInnerHTML={{
+              __html: about_people.institutional_collaborators_description,
+            }}
+          />
+        </div>
+        <div
+          id={`${about_people.our_funders_title
+            .split(" ")
+            .map((word) => word.toLowerCase())
+            .join("-")}`}
+          className="funders "
+        >
+          <h2 className="text-3xl font-header text-center lg:text-5xl">
+            {about_people.our_funders_title}
+          </h2>
+          <div>
+            <img
+              className="w-48 py-3 mx-auto"
+              width={720}
+              height={720}
+              src={`${img_path}${about_people.main_image.id}`}
+            />
             <div
               className="space-y-p text-center font-body md:text-left"
               dangerouslySetInnerHTML={{
-                __html: about_people.project_collaborators_description,
+                __html: about_people.main_image_description,
               }}
             />
           </div>
-          <div
-            id={`${about_people.board_members_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-")}`}
-            className="board-members "
-          >
-            <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl ">
-              {about_people.board_members_title}
-            </h3>
-            <div
-              className="space-y-p text-center font-body md:text-left"
-              dangerouslySetInnerHTML={{
-                __html: about_people.board_members_description,
-              }}
-            />
-          </div>
-          <div
-            id={`${about_people.project_advisers_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-")}`}
-            className="project-advisers "
-          >
-            <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
-              {about_people.project_advisers_title}
-            </h3>
-            <div
-              className="space-y-p text-center font-body md:text-left"
-              dangerouslySetInnerHTML={{
-                __html: about_people.project_advisers_description,
-              }}
-            />
-          </div>
-          <div
-            id={`${about_people.institutional_collaborators_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-")}`}
-            className="institutional-collaborators "
-          >
-            <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
-              {about_people.institutional_collaborators_title}
-            </h3>
-            <div
-              className="space-y-p text-center font-body md:text-left"
-              dangerouslySetInnerHTML={{
-                __html: about_people.institutional_collaborators_description,
-              }}
-            />
-          </div>
-          <div
-            id={`${about_people.our_funders_title
-              .split(" ")
-              .map((word) => word.toLowerCase())
-              .join("-")}`}
-            className="funders "
-          >
-            <h2 className="text-3xl font-header text-center lg:text-5xl">
-              {about_people.our_funders_title}
-            </h2>
-            <div>
+          <div className="flex-wrap justify-center items-start gap-5 mb-3 md:flex">
+            <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
               <img
-                className="w-48 py-3 mx-auto"
-                width={720}
-                height={720}
-                src={`${img_path}${about_people.main_image.id}`}
+                className="w-48 h-48 object-contain mx-auto"
+                src={`${img_path}${about_people.sub_image_1.id}`}
               />
               <div
                 className="space-y-p text-center font-body md:text-left"
                 dangerouslySetInnerHTML={{
-                  __html: about_people.main_image_description,
+                  __html: about_people.sub_image_1_description,
                 }}
               />
             </div>
-            <div className="flex-wrap justify-center items-start gap-5 mb-3 md:flex">
-              <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
-                <img
-                  className="w-48 h-48 object-contain mx-auto"
-                  src={`${img_path}${about_people.sub_image_1.id}`}
-                />
-                <div
-                  className="space-y-p text-center font-body md:text-left"
-                  dangerouslySetInnerHTML={{
-                    __html: about_people.sub_image_1_description,
-                  }}
-                />
-              </div>
-              <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
-                <img
-                  className="w-48 h-48 object-contain mx-auto"
-                  src={`${img_path}${about_people.sub_image_2.id}`}
-                />
-                <div
-                  className="space-y-p text-center font-body md:text-left"
-                  dangerouslySetInnerHTML={{
-                    __html: about_people.sub_image_2_description,
-                  }}
-                />
-              </div>
-              <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
-                <img
-                  className="w-48 h-48 object-contain mx-auto"
-                  src={`${img_path}${about_people.sub_image_3.id}`}
-                />
-                <div
-                  className="space-y-p text-center font-body md:text-left"
-                  dangerouslySetInnerHTML={{
-                    __html: about_people.sub_image_3_description,
-                  }}
-                />
-              </div>
+            <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
+              <img
+                className="w-48 h-48 object-contain mx-auto"
+                src={`${img_path}${about_people.sub_image_2.id}`}
+              />
+              <div
+                className="space-y-p text-center font-body md:text-left"
+                dangerouslySetInnerHTML={{
+                  __html: about_people.sub_image_2_description,
+                }}
+              />
             </div>
-            <div
-              className="py-3 space-y-p text-center font-body md:text-left"
-              dangerouslySetInnerHTML={{
-                __html: about_people.our_funders_description,
-              }}
-            />
+            <div className="flex flex-col items-center w-64 px-2 mx-auto lg:items-start">
+              <img
+                className="w-48 h-48 object-contain mx-auto"
+                src={`${img_path}${about_people.sub_image_3.id}`}
+              />
+              <div
+                className="space-y-p text-center font-body md:text-left"
+                dangerouslySetInnerHTML={{
+                  __html: about_people.sub_image_3_description,
+                }}
+              />
+            </div>
           </div>
+          <div
+            className="py-3 space-y-p text-center font-body md:text-left"
+            dangerouslySetInnerHTML={{
+              __html: about_people.our_funders_description,
+            }}
+          />
         </div>
       </div>
     </div>

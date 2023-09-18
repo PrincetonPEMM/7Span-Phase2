@@ -112,9 +112,9 @@ const PaintingByMSDetail = ({ list, Id }) => {
   console.log(data, "debouncedFetchData");
 
   return (
-    <div className="py-10 container-fluid">
+    <div className="container-fluid py-4 lg:py-10">
       {header && (
-        <h2 className="font-body font-bold text-2xl lg:text-3xl xl:text-5xl">
+        <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
           {header?.manuscript_full_name}&nbsp;(
           {`${
             header?.manuscript_date_range_start &&

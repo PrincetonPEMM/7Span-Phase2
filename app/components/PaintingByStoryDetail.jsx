@@ -48,8 +48,8 @@ const PaintingByStoryDetail = ({ list, Id }) => {
   }, [page]);
 
   return (
-    <div className="py-10 container-fluid">
-      <h2 className="font-body font-bold text-2xl lg:text-3xl xl:text-5xl">
+    <div className="container-fluid py-4 lg:py-10">
+      <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
         {header?.canonical_story_title}
       </h2>
       <div className="pt-5 lg:pt-10">

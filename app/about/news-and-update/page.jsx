@@ -107,7 +107,7 @@ export default function page() {
     },
   ];
   return (
-    // <div className="container font-body space-y-4 py-12">
+    // <div className="container font-body  py-4 lg:py-7">
     //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
     //   <Masonry
     //     breakpointCols={breakpointColumnsForMasonry}

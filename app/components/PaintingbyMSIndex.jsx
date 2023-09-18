@@ -57,7 +57,7 @@ const PaintingbyMSIndex = ({ list }) => {
   }, 300);
 
   return (
-    <div className="py-10 container-fluid">
+    <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
           <InputText
