@@ -111,8 +111,8 @@ const PaintingByStoryIndex = ({ list }) => {
                     item.manuscript_date_range_end
                 : "-"
             }${item?.manuscript ? ", " + item.manuscript : ""}${
-              item?.painting_folio ? ", f." + item.painting_folio : ""
-            }${item?.painting_scan ? ", s." + item.painting_scan : ""}`}
+              item?.painting_folio ? ", f. " + item.painting_folio : ""
+            }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
             btnText={`View 
             ${
               item.painting_count > 1

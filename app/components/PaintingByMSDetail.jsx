@@ -172,9 +172,9 @@ const PaintingByMSDetail = ({ list, Id }) => {
             image={item.image_link}
             title={item.pemm_short_title}
             content={item.episodes}
-            desc={`Story ID ${item.canonical_story_id}, ${
-              item.painting_folio ? "f." + item.painting_folio : ""
-            } ${item.painting_scan ? "s." + item.painting_scan : ""}`}
+            desc={`Story ID ${item.canonical_story_id}${
+              item.painting_folio ? ", f. " + item.painting_folio : ""
+            }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
             className="mt-3"
           />
         ))}
