@@ -114,7 +114,7 @@ const Paintings = ({
           )}
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl lg:justify-normal  ">
         <Dropdown
           title="Date of Paintings"
           selected={dateOfPaintins}
@@ -143,24 +143,24 @@ const Paintings = ({
           options={institution}
           isMultiple={false}
         />
-      </div>
-      <div className="block text-center mx-3 mb-4 font-body">
-        <button
-          className="bg-primary-500 text-white py-2 px-3 text-center rounded-lg text-xs md:text-base"
-          onClick={() => {
-            setDateOfPaintins([]);
-            setPaintingsInColorOnly(paintingInColor[0]);
-            setStoryType();
-            setArchiveOfPainting();
-            setPage(1);
-            setSearch("");
-          }}
-        >
-          Reset
-        </button>
+        <div className="md:w-full col-span-2 md:col-span-1 w-auto md:text-left text-center">
+          <button
+            className="bg-primary-500 w-auto md:w-full text-white py-2 px-3  text-center rounded-lg text-xs md:text-base"
+            onClick={() => {
+              setDateOfPaintins([]);
+              setPaintingsInColorOnly(paintingInColor[0]);
+              setStoryType(null);
+              setArchiveOfPainting(null);
+              setPage(1);
+              setSearch("");
+            }}
+          >
+            Clear All
+          </button>
+        </div>
       </div>
 
-      <div className="pb-10">
+      <div className="pb-10 mt-10">
         {data.length ? (
           <Masonry
             breakpointCols={breakpointColumnsForMasonry}
