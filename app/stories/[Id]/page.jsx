@@ -16,7 +16,7 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div className="px-4 py-5 md:px-8">
+    <div>
       <StoryDetail data={data} Id={Id} />
     </div>
   );
