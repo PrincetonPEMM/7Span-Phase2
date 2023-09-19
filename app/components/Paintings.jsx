@@ -7,6 +7,7 @@ import PaintingCard from "./PaintingCard";
 import Dropdown from "./Dropdown";
 import {
   breakpointColumnsForMasonry,
+  breakpointTwoColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import { TablePagination } from "./Pagination";
@@ -164,7 +165,11 @@ const Paintings = ({
       <div className="pb-10 mt-10">
         {data.length ? (
           <Masonry
-            breakpointCols={breakpointColumnsForMasonry}
+            breakpointCols={
+              data.lenght > 2
+                ? breakpointColumnsForMasonry
+                : breakpointTwoColumnsForMasonry
+            }
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >

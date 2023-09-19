@@ -2,6 +2,7 @@
 import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
+  breakpointTwoColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
@@ -89,7 +90,11 @@ const PaintingbyMSIndex = ({ list }) => {
         </div>
       </div>
       <Masonry
-        breakpointCols={breakpointColumnsForMasonry}
+        breakpointCols={
+          data.lenght > 2
+            ? breakpointColumnsForMasonry
+            : breakpointTwoColumnsForMasonry
+        }
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >

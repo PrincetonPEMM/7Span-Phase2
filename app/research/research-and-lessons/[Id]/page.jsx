@@ -16,7 +16,6 @@ const Page = async ({ params }) => {
       })
     );
     data = data[0];
-    console.log(data, "data");
   } catch (e) {
     console.log(e);
   }
