@@ -764,6 +764,13 @@ body {
   @apply bg-primary-500;
 }
 
+.my-masonary-grid-grid_column .odd:hover .card-background {
+  box-shadow: 3px 7px 13px -2px #3c6f57;
+}
+.my-masonary-grid-grid_column .even:hover .card-background {
+  box-shadow: 3px 7px 13px -2px #e5a942;
+}
+
 @media only screen and (min-width: 1024px) {
   .submenu {
     /* display: block; */
