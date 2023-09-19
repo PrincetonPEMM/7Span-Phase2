@@ -1,115 +1,75 @@
-import React, { useState } from "react";
-import MdiClose from "@/assets/icons/MdiClose";
+import React from "react";
+import BannerDetail from "./BannerDetail";
+import SubBanner from "./SubBanner";
+import MdiChevronDown from "@/assets/icons/MdiChevronDown";
+import Image from "next/image";
 
-const Banner = ({
-  image,
-  title,
-  description,
-  data,
-  setSelectedBanner,
-  setIsOpen,
-  isOpen,
-}) => {
-  const [isShow, setIsShow] = useState(false);
-
+const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
   return (
-    <div className="relative ">
+    <div className="relative flex flex-col">
       <button
-        className="w-full aspect-auto md:h-full"
+        className="w-full aspect-auto h-full banner-image relative"
         onClick={() => {
-          setSelectedBanner(data);
-          setIsOpen(!isOpen);
-          setIsShow(!isShow);
+          selectedBanner.img === data.img
+            ? setSelectedBanner({})
+            : setSelectedBanner(data);
         }}
       >
-        <div className="relative flex h-full text-left z-30">
-          {
-            <img
-              src={image}
-              alt="Picture of the author"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-                width: "100%",
-                height: "100%",
-              }}
-              property="true"
-            />
-          }
+        <div className="relative hero-img overflow-hidden">
+          <Image
+            src={data.img}
+            width="400"
+            alt={data.alt}
+            height="700"
+            layout="responsive"
+            className="h-full bg-cover bg-top absolute inset-0"
+          />
+        </div>
 
-          <div className="absolute m-auto top-1/3 z-10 text-white px-10">
-            <span className="text-sm lg:text-xl font-bold uppercase mr-1">
-              {title.split(" ")[0]}
-            </span>
-            <h3
-              className="text-2xl lg:text-5xl leading-tight font-header uppercase"
-              onClick={() => toggleContent(index)}
+        <div className="text-white h-auto text-left z-30 px-5 absolute bottom-3 lg:bottom-1 xl:bottom-10 2xl:bottom-12 md:min-h-[300px] ">
+          <span className="text-sm xl:text-xl font-bold uppercase mr-1">
+            {data.title.split(" ")[0]}
+          </span>
+          <h3
+            className="text-xl leading-none font-header uppercase sm:text-3xl xl:text-5xl xl:leading-tight"
+            // onClick={() => toggleContent(index)}
+          >
+            {data.title.split(" ")[1]}
+          </h3>
+          <div className="banner-content">
+            <p className="text-xs mt-1 xl:text-sm">{data.description}</p>
+            <a
+              href={data.id}
+              className="text-offWhite-500 text-sm delay-75 flex items-center hover:text-secondary-500"
             >
-              {title.split(" ")[1]}
-            </h3>
-
-            <p className="text-xs lg:text-base mt-1">{description}</p>
+              <span>Learn More</span>
+              <span
+                className={` transition-all ${
+                  setSelectedBanner ? "rotate-0 " : "rotate-180"
+                }`}
+              >
+                <MdiChevronDown />
+              </span>
+            </a>
+            <div
+              className="mt-2 text-xs xl:mt-5"
+              dangerouslySetInnerHTML={{ __html: data.credit }}
+            ></div>
           </div>
         </div>
       </button>
       {/* Show the detailed view for the clicked item */}
-      {isShow && isOpen && (
-        <div className="md:hidden block">
-          <div className="md:flex relative bg-secondary-500 text-center md:text-left">
-            <div className="relative aspect-square lg:aspect-auto max-w-xs lg:max-w-none mx-auto md:mr-0 md:w-3/6 lg:max-h-[600px]">
-              <img
-                src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.img}`}
-                alt="Picture of the author"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  width: "100%",
-                  height: "100%",
-                  "@media (max-width: 1024px)": {
-                    height: "auto",
-                    aspectRaio: "1/1",
-                    maxWidth: "100%",
-                  },
-                }}
-              />
-            </div>
-            <div className="w-full col-span-2 flex text-white bg-secondary-500">
-              <div className=" z-10 space-y-4 p-10 max-w-3xl">
-                <h3 className="text-2xl lg:text-5xl font-bold font-body">
-                  Featured {data.title}
-                </h3>
-                <p className="text-sm md:text-base lg:text-xl">{data.text}</p>
-              </div>
-              <button
-                className="absolute top-5 right-5 left-auto bottom-auto text-black"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              >
-                <MdiClose />
-              </button>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3">
-            {data.storyPart &&
-              data.storyPart.map((data, subIndex) => (
-                <div
-                  className="relative items-center justify-center uppercase text-center"
-                  key={subIndex}
-                >
-                  <img
-                    src={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.img}`}
-                    alt="Picture of the author"
-                    sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw"
-                  />
-                  <div className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0 bg-black bg-opacity-50 ">
-                    <span className="text-lg lg:text-2xl font-bold font-body">
-                      Story 1{data.title}
-                    </span>
-                  </div>
-                </div>
-              ))}
-          </div>
+      {selectedBanner.img === data.img && (
+        <div className="md:hidden block" id="mobileScroll">
+          <BannerDetail
+            img={data?.img}
+            title={data?.title}
+            text={data?.text}
+            data={data}
+            setSelectedBanner={setSelectedBanner}
+            clsBtnCondition={selectedBanner.img === data.img}
+          />
+          <SubBanner stories={data?.storyPart} />
         </div>
       )}
     </div>
