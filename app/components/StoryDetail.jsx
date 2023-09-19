@@ -119,7 +119,7 @@ export default function StoryDetail({ data, Id }) {
                       data.manuscript_date_range_end
                         ? data.manuscript_date_range_start ===
                           data.manuscript_date_range_end
-                          ? manuscript_date_range_start
+                          ? data.manuscript_date_range_start
                           : data.manuscript_date_range_start +
                             " - " +
                             data.manuscript_date_range_end
