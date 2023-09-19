@@ -12,8 +12,7 @@ const Page = async () => {
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story?page=1&perPage=${pagePerLimitForPainting}`
     );
     data = await response.json();
-  }
-  catch (error) {
+  } catch (error) {
     console.log("Error", error);
   }
   return (
