@@ -91,7 +91,7 @@ const Header = () => {
         },
         {
           title: "Events & Workshops",
-          link: "/about/connect",
+          link: "/about/event-and-workshop",
         },
         {
           title: "Using the Site",

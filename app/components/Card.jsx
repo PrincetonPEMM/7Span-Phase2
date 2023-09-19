@@ -9,7 +9,7 @@ export default function Card({
   author,
   keyword,
   date = "",
-  redirect,
+  redirect = "",
 }) {
   return (
     <div className={`${category === keyword ? "even" : "odd"}`}>

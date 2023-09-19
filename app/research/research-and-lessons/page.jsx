@@ -4,6 +4,7 @@ import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";
 import MasonryComp from "@/app/components/MasonryComp";
+import ComingSoon from "@/app/components/ComingSoon";
 
 const Page = async () => {
   let data = null;
@@ -18,20 +19,21 @@ const Page = async () => {
   }
 
   return (
-    <div className="container font-body  py-4 lg:py-7">
-      {data && (
-        <div className="space-y-4">
-          <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
-            Research & Lessons
-          </h3>
-          <MasonryComp
-            cards={data}
-            keyword={"Research Post"}
-            redirect={`research-and-lessons/`}
-          />
-        </div>
-      )}
-    </div>
+    // <div className="container font-body  py-4 lg:py-7">
+    //   {data && (
+    //     <div className="space-y-4">
+    //       <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
+    //         Research & Lessons
+    //       </h3>
+    //       <MasonryComp
+    //         cards={data}
+    //         keyword={"Research Post"}
+    //         redirect={`research-and-lessons/`}
+    //       />
+    //     </div>
+    //   )}
+    // </div>
+    <ComingSoon />
   );
 };
 

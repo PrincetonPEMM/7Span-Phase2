@@ -2,12 +2,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
-import MdiMagnify from "@assets/icons/MdiMagnify";
 import PaintingCard from "./PaintingCard";
 import Dropdown from "./Dropdown";
 import {
   breakpointColumnsForMasonry,
-  breakpointTwoColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import { TablePagination } from "./Pagination";
@@ -165,11 +163,7 @@ const Paintings = ({
       <div className="pb-10 mt-10">
         {data.length ? (
           <Masonry
-            breakpointCols={
-              data.lenght > 2
-                ? breakpointColumnsForMasonry
-                : breakpointTwoColumnsForMasonry
-            }
+            breakpointCols={breakpointColumnsForMasonry}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column"
           >

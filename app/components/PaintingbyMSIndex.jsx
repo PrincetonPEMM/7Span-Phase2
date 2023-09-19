@@ -2,14 +2,12 @@
 import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
-  breakpointTwoColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import { TablePagination } from "./Pagination";
 import Masonry from "react-masonry-css";
 import InputText from "./form/InputText";
-import MdiMagnify from "@/assets/icons/MdiMagnify";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 
@@ -90,11 +88,7 @@ const PaintingbyMSIndex = ({ list }) => {
         </div>
       </div>
       <Masonry
-        breakpointCols={
-          data.lenght > 2
-            ? breakpointColumnsForMasonry
-            : breakpointTwoColumnsForMasonry
-        }
+        breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
