@@ -14,7 +14,7 @@ export default function Card({
   return (
     <div className={`${category === keyword ? "even" : "odd"}`}>
       <div
-        className={` card-background rounded-lg text-white px-5 md:px-8 py-10 relative inline-block `}
+        className={`card-background rounded-lg text-white px-5 md:px-8 py-10 relative inline-block `}
       >
         <button
           className={`absolute top-3 inline-block right-3 text-xs px-2 py-1 card-button rounded-md leading-tight`}
