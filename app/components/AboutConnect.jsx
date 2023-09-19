@@ -12,9 +12,14 @@ const AboutConnect = ({ cards }) => {
       columnClassName="my-masonry-grid_column mesonry "
     >
       {cards.map((card, index) => (
-        <div className={`${index % 2 ? "even" : "odd"}`}>
-          <Card key={index} {...card} />
-        </div>
+        <Card
+          key={card.id + index}
+          title={card.title}
+          category={card.category}
+          description={card.description}
+          author={card.author}
+          intro={card.intro}
+        />
       ))}
     </Masonry>
   );
