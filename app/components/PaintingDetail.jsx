@@ -93,16 +93,22 @@ const PaintingDetail = ({ data }) => {
             </p>
             <p>
               <strong>Manuscript: </strong>&nbsp;
-              <Link href={data.manuscript_link} className="text-primary-600">
+              <Link
+                href={data.manuscript_link}
+                className="text-primary-600 hover:underline"
+              >
                 {data.manuscript_name && data.manuscript_name}
               </Link>
               {data.painting_folio ? ", f. " + data.painting_folio : ""}&nbsp;
-              Date:&nbsp;
+              <strong>Date</strong>:&nbsp;
               {data.manuscript_date_range_start &&
-              data.manuscript_date_range_start
-                ? data.manuscript_date_range_start +
-                  "-" +
-                  data.manuscript_date_range_start
+              data.manuscript_date_range_end
+                ? data.manuscript_date_range_start ===
+                  data.manuscript_date_range_end
+                  ? manuscript_date_range_end
+                  : data.manuscript_date_range_start +
+                    "-" +
+                    data.manuscript_date_range_end
                 : "-"}
             </p>
             <p>
@@ -113,7 +119,7 @@ const PaintingDetail = ({ data }) => {
               <strong> PEMM Story ID:</strong>&nbsp;
               <Link
                 href={"/stories/" + data.canonical_story_id}
-                className="text-primary-600"
+                className="text-primary-600 hover:underline"
               >
                 {data.canonical_story_id ? data.canonical_story_id : "none"}
               </Link>
