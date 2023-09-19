@@ -12,7 +12,13 @@ const SliderModal = ({ sliderImg }) => {
   return images.length ? (
     <>
       <hr />
-      <ImageGallery items={images} infinite={true} autoPlay={false} />
+      <ImageGallery
+        items={images}
+        infinite={true}
+        autoPlay={false}
+        showPlayButton={images.length > 1 ? true : false}
+        showThumbnails={images.length > 1 ? true : false}
+      />
     </>
   ) : null;
 };

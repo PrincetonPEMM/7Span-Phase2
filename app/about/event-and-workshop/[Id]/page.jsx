@@ -1,14 +1,10 @@
+import ComingSoon from "@/app/components/ComingSoon";
 import React from "react";
-import ComingSoon from "../components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
 const page = () => {
-  return (
-    <div>
-      <ComingSoon />
-    </div>
-  );
+  return <ComingSoon />;
 };
 
 export default page;

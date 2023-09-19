@@ -117,13 +117,13 @@ const PaintingByStoryIndex = ({ list }) => {
             ${
               item.painting_count > 1
                 ? `all ${item.painting_count} images for`
-                : ""
+                : "the one painting for"
             }
             this story`}
             btnLink={` ${
               item.painting_count > 1
                 ? "/paintings/by-story/" + item.canonical_story_id
-                : "/stories/" + item.canonical_story_id
+                : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
             }`}
           />
         ))}

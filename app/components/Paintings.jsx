@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
-import MdiMagnify from "@assets/icons/MdiMagnify";
 import PaintingCard from "./PaintingCard";
 import Dropdown from "./Dropdown";
 import {

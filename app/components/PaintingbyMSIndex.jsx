@@ -8,7 +8,6 @@ import React, { useEffect, useState } from "react";
 import { TablePagination } from "./Pagination";
 import Masonry from "react-masonry-css";
 import InputText from "./form/InputText";
-import MdiMagnify from "@/assets/icons/MdiMagnify";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 
