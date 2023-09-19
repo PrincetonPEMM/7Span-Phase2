@@ -1,7 +1,3 @@
-export const dynamic = "force-dynamic";
-
-import { client } from "@/utils/directUs";
-import { readItems } from "@directus/sdk";
 import React from "react";
 
 const page = async () => {
@@ -12,7 +8,7 @@ const page = async () => {
     console.log(e);
   }
   return (
-    <div className="container">
+    <div>
       <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
         {repositories_data && (
           <div>
