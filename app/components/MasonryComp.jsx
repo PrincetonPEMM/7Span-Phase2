@@ -1,13 +1,20 @@
 "use client";
-import { breakpointColumnsForMasonry } from "@/utils/constant";
+import {
+  breakpointColumnsForMasonry,
+  breakpointTwoColumnsForMasonry,
+} from "@/utils/constant";
 import React from "react";
 import Masonry from "react-masonry-css";
 import Card from "./Card";
 
-const AboutConnect = ({ cards }) => {
+const MasonryComp = ({ cards, keyword, redirect }) => {
   return (
     <Masonry
-      breakpointCols={breakpointColumnsForMasonry}
+      breakpointCols={
+        cards.lenght > 2
+          ? breakpointColumnsForMasonry
+          : breakpointTwoColumnsForMasonry
+      }
       className="my-masonry-grid "
       columnClassName="my-masonry-grid_column mesonry "
     >
@@ -19,10 +26,13 @@ const AboutConnect = ({ cards }) => {
           description={card.description}
           author={card.author}
           intro={card.intro}
+          keyword={keyword}
+          date={card.date}
+          redirect={redirect + card.id}
         />
       ))}
     </Masonry>
   );
 };
 
-export default AboutConnect;
+export default MasonryComp;

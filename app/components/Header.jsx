@@ -91,11 +91,11 @@ const Header = () => {
         },
         {
           title: "Events & Workshops",
-          link: "/about/connect",
+          link: "/about/event-and-workshop",
         },
         {
           title: "Using the Site",
-          link: "/about/connect",
+          link: "/about/connect/using-the-site",
         },
         {
           title: "Contact Us",

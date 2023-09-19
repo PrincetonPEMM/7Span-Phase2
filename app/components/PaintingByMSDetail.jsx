@@ -12,56 +12,6 @@ import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import { TablePagination } from "./Pagination";
 
-const data1 = [
-  {
-    title: "Title not Found",
-    content: "St Mary and Jesus Christ, surrounded by angels (full)",
-    text: "text here",
-    btnText: "View all Images ",
-  },
-  {
-    title: "Title not Found",
-    content:
-      "St Mary giving the dog water to drink from her shoe (left), 2. The group of virgins gathered around the well while one of them chases away the thirsty dog (right) ",
-    text: "text here",
-  },
-  {
-    title: "Title not Found",
-    content: "Joachim and Hanna hold the child Mary (bottom)",
-    text: "text here",
-  },
-
-  {
-    title: "Title not Found",
-    content: "COntent here",
-    text: "text here",
-    btnText: "View all Images ",
-  },
-  {
-    title: "Title not Found",
-    content:
-      "The group of virgins gathered around the well while one of them chases away the thirsty dog (right), 2. St Mary giving the dog water to drink from her shoe (left)",
-    text: "text here",
-  },
-  {
-    title: "Title not Found",
-    content: "Joachim and Hanna hold the child Mary (bottom)",
-    text: "text here",
-  },
-
-  {
-    title: "Title not Found",
-    content:
-      "St Mary giving the dog water to drink from her shoe (left), 2.St Mary giving the dog water to drink from her shoe (left), 2. The group of virgins gathered around the well while one of them chases away the thirsty dog (right) The group of virgins gathered around the well while one of them chases away the thirsty dog (right)",
-    text: "text here",
-  },
-  {
-    title: "Title not Found",
-    content:
-      "The group of virgins gathered around the well while one of them chases away the thirsty dog (right), 2. St Mary giving the dog water to drink from her shoe (left)",
-    text: "text here",
-  },
-];
 const PaintingByMSDetail = ({ list, Id }) => {
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
@@ -85,7 +35,6 @@ const PaintingByMSDetail = ({ list, Id }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "data");
         setData(data.data);
         setTotalPage(data.total);
         setIsLoadint(false);
@@ -108,8 +57,6 @@ const PaintingByMSDetail = ({ list, Id }) => {
     fetchData(e);
     setPage(1);
   }, 300);
-
-  console.log(data, "debouncedFetchData");
 
   return (
     <div className="container-fluid py-4 lg:py-10">
