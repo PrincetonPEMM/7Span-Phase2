@@ -107,20 +107,20 @@ export default function page() {
     },
   ];
   return (
-    // <div className="container font-body  py-4 lg:py-7">
-    //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
-    //   <Masonry
-    //     breakpointCols={breakpointColumnsForMasonry}
-    //     className="my-masonry-grid "
-    //     columnClassName="my-masonry-grid_column mesonry "
-    //   >
-    //     {cards.map((card, index) => (
-    //       <div className={`${index % 2 ? "even" : "odd"}`}>
-    //         <Card key={index} {...card} />
-    //       </div>
-    //     ))}
-    //   </Masonry>
-    // </div>
-    <ComingSoon />
+    <div className="container font-body  py-4 lg:py-7">
+      <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
+      <Masonry
+        breakpointCols={breakpointColumnsForMasonry}
+        className="my-masonry-grid "
+        columnClassName="my-masonry-grid_column mesonry "
+      >
+        {cards.map((card, index) => (
+          <div className={`${index % 2 ? "even" : "odd"}`}>
+            <Card key={index} {...card} />
+          </div>
+        ))}
+      </Masonry>
+    </div>
+    // <ComingSoon />
   );
 }
