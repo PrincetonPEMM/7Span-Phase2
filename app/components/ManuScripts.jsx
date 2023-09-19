@@ -80,7 +80,6 @@ const ManuScripts = () => {
   };
 
   useEffect(() => {
-    console.log(window);
     if (isOpen && window.innerWidth < 768) {
       document.body.classList.add("filter_open");
       document.body.classList.remove("sidebar_close");

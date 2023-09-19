@@ -1,17 +1,17 @@
-import React from "react";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import React from "react";
 import MasonryComp from "@/app/components/MasonryComp";
 import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
-export default async function Page() {
+const Page = async () => {
   let data = null;
 
   try {
     data = await client.request(
-      readItems("news_and_updates", {
+      readItems("events_and_workshops", {
         fields: ["*.*.*"],
       })
     );
@@ -20,14 +20,18 @@ export default async function Page() {
   }
 
   return (
-    // <div className="container font-body py-4 lg:py-7">
-    //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
+    // <div className="container font-body  py-4 lg:py-7">
+    //   <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
+    //     Event and Workshop
+    //   </h3>
     //   <MasonryComp
     //     cards={data}
-    //     keyword={"News"}
-    //     redirect={`news-and-update/`}
+    //     keyword={"Workshop"}
+    //     redirect={`event-and-workshop/`}
     //   />
     // </div>
     <ComingSoon />
   );
-}
+};
+
+export default Page;

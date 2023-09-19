@@ -92,7 +92,11 @@ export default function StoryDetail({ data, Id }) {
 
             {/* slider content */}
 
-            <div className="space-y-4 mb-10 md:block hidden">
+            <div
+              className={`space-y-4 mb-10 md:block hidden ${
+                data.paintingLinks.length <= 1 && "mt-10"
+              } `}
+            >
               <ol className="list-inside space-y-5">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
@@ -111,8 +115,15 @@ export default function StoryDetail({ data, Id }) {
                   <ul className="text-sm">
                     <p className="leading-normal">
                       <b>Earliest Attested Instance of the Story:</b>{" "}
-                      {data.manuscript_date_range_start} -{" "}
-                      {data.manuscript_date_range_end}
+                      {data.manuscript_date_range_start &&
+                      data.manuscript_date_range_end
+                        ? data.manuscript_date_range_start ===
+                          data.manuscript_date_range_end
+                          ? manuscript_date_range_start
+                          : data.manuscript_date_range_start +
+                            " - " +
+                            data.manuscript_date_range_end
+                        : " none "}
                     </p>
                     <p className="leading-normal">
                       <b>Earliest Manuscripts in which Story Appears:</b>{" "}
