@@ -115,11 +115,11 @@ export default function StoryDetail({ data, Id }) {
                   <ul className="text-sm">
                     <p className="leading-normal">
                       <b>Earliest Attested Instance of the Story:</b>{" "}
-                      {data.manuscript_date_range_start &&
-                      data.manuscript_date_range_end
-                        ? data.manuscript_date_range_start ===
-                          data.manuscript_date_range_end
-                          ? data.manuscript_date_range_start
+                      {data?.manuscript_date_range_start &&
+                      data?.manuscript_date_range_end
+                        ? data?.manuscript_date_range_start ===
+                          data?.manuscript_date_range_end
+                          ? data?.manuscript_date_range_start
                           : data.manuscript_date_range_start +
                             " - " +
                             data.manuscript_date_range_end

@@ -11,7 +11,7 @@ const MasonryComp = ({ cards, keyword, redirect }) => {
   return (
     <Masonry
       breakpointCols={
-        cards.lenght > 2
+        cards.length > 2
           ? breakpointColumnsForMasonry
           : breakpointTwoColumnsForMasonry
       }
