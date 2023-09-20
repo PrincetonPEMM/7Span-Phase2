@@ -20,7 +20,7 @@ const page = async ({ params }) => {
     console.log(e);
   }
 
-  return (
+  return data ? (
     <div className="container">
       <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
         <div>
@@ -36,6 +36,10 @@ const page = async ({ params }) => {
           />
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
+      <h1>Records Not Found</h1>
     </div>
   );
 };
