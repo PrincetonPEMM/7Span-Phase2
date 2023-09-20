@@ -22,7 +22,7 @@ export default async function page() {
             {about_mission_data.mission_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu lg:w-2/3 md:text-left"
+            className="space-y-p text-center font-menu md:text-left lg:w-2/3"
             dangerouslySetInnerHTML={{
               __html: about_mission_data.mission_description,
             }}
@@ -35,7 +35,7 @@ export default async function page() {
             .join("-")}`}
           className="people flex justify-center flex-col items-center"
         >
-          <h2 className="text-3xl font-header text-center  lg:text-5xl">
+          <h2 className="text-3xl font-header text-center lg:text-5xl">
             {about_mission_data.history_title}
           </h2>
           <p className="text-center font-menu py-5 lg:w-2/3">
