@@ -2,6 +2,10 @@ import Image from "next/image";
 import Logo from "../../assets/images/logo-footer.png";
 import React from "react";
 import Link from "next/link";
+import IconoirTiktok from "@/assets/icons/IconoirTiktok";
+import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
+import MdiInstagram from "@/assets/icons/MdiInstagram";
+import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
 
 const Footer = () => {
   const aboutItems = [
@@ -37,7 +41,7 @@ const Footer = () => {
   ];
   return (
     <div className="w-auto px-5 py-8 grid bg-primary-500 text-white grid-cols-1 gap-5 sm:grid-cols-3 md:px-8 lg:px-16 lg:gap-5 lg:grid-cols-5">
-      <div className=" text-left lg:py-5 md:pr-5 text-sm sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
+      <div className="text-left lg:py-5 md:pr-5 text-sm sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
         <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
           <Image
             src={Logo}
@@ -45,11 +49,13 @@ const Footer = () => {
             alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
           />
         </Link>
+
         <p className="pt-4 md:pt-0">
           PEMM is a comprehensive resource for the 1,000+ miracle stories
           written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
           preserved in Gǝˁǝz between 1300 and the present.
         </p>
+
         <div className="py-5 text-sm space-y-2 md:pr-10">
           <p>
             Princeton Department of Comparative Literature 133 East Pyne,
@@ -60,13 +66,30 @@ const Footer = () => {
             Princeton, NJ 08540
           </p>
         </div>
+
+        <div className="flex items-start space-x-10 pb-3">
+          <Link href="#" className="w-6 h-6 group">
+            <MingcuteFacebookLine className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
+          </Link>
+          <Link href="#" className="w-6 h-6 group">
+            <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
+          </Link>
+          <Link href="#" className="w-6 h-6 group transition-colors">
+            <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
+          </Link>
+          <Link href="#" className="w-6 h-6 group">
+            <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
+          </Link>
+        </div>
+
         <Link
           href="mailto: pemm@princeton.edu"
-          className="text-sm hover:text-secondary-500 "
+          className="text-sm hover:text-secondary-500 transition-colors hover:transition-colors"
         >
           pemm@princeton.edu
         </Link>
-        <p className="pt-2 text-sm md:pt-5 lg:pt-4">
+
+        <p className="pt-2 text-sm md:pt-3">
           © {new Date().getFullYear()} The Trustees of Princeton University
         </p>
       </div>
