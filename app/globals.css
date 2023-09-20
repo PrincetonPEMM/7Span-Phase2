@@ -754,20 +754,20 @@ body {
 .my-masonry-grid .my-masonry-grid_column:first-child {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
-  @apply sm:mr-3;
+  @apply sm:mr-5;
 }
 
 .my-masonry-grid .my-masonry-grid_column:nth-child(2) {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
-  @apply lg:mr-3;
+  @apply lg:mr-5;
 }
 
-.my-masonry-grid_column .even {
-  @apply bg-secondary-500 rounded-lg mb-4;
-}
 .my-masonry-grid_column .odd {
-  @apply bg-primary-500 rounded-lg mb-4;
+  @apply bg-primary-500 rounded-lg mb-5 text-white;
+}
+.my-masonry-grid_column .odd .tag {
+  @apply text-black;
 }
 .masonry-item {
   @apply mb-7;
@@ -775,16 +775,26 @@ body {
 .my-masonry-grid_column .odd .card-background > .card-button {
   @apply bg-secondary-500;
 }
-
+.my-masonry-grid_column .even {
+  @apply bg-secondary-500 rounded-lg mb-5;
+}
 .my-masonry-grid_column .even .card-background > .card-button {
   @apply bg-primary-500 text-offWhite-500;
 }
-
+.my-masonry-grid_column .even a {
+  @apply text-white;
+}
+.my-masonry-grid_column .even a:hover {
+  @apply text-primary-500;
+}
 .my-masonry-grid_column .even .card-background {
   @apply text-black;
 }
 .my-masonry-grid_column .even .card-background button {
   @apply border-black;
+}
+.my-masonry-grid_column .even {
+  @apply text-white;
 }
 .my-masonry-grid_column .even .card-background button:hover {
   @apply border-offWhite-500;

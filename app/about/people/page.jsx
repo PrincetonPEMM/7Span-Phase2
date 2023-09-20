@@ -59,7 +59,7 @@ export default async function page() {
           .join("-")}`}
         className="people flex justify-center flex-col items-center"
       >
-        <h2 className="text-3xl  font-header text-center lg:text-5xl">
+        <h2 className="text-3xl  font-header text-center lg:text-5xl text-primary-500">
           {about_people.our_people_title}
         </h2>
         <p className="text-center font-menu md:w-2/3">
@@ -67,8 +67,8 @@ export default async function page() {
         </p>
       </div>
 
-      <div id="our-team" className="team">
-        <h2 className="text-3xl lg:text-5xl font-header text-center">
+      <div id="our-team" className="team mt-10">
+        <h2 className="text-3xl lg:text-5xl font-header text-center text-primary-500">
           Our Team
         </h2>
         <div className="break-words mt-5 flex flex-wrap items-start justify-center">
@@ -84,9 +84,9 @@ export default async function page() {
           .split(" ")
           .map((word) => word.toLowerCase())
           .join("-")}`}
-        className="other-team-member font-body md:w-4/5 mx-auto space-y-10 lg:space-y-16"
+        className="other-team-member font-body md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-10"
       >
-        <h3 className="text-3xl font-header text-center lg:text-5xl">
+        <h3 className="text-3xl font-header text-center lg:text-5xl text-primary-500">
           {about_people.other_team_members_title}
         </h3>
         <div
@@ -102,7 +102,7 @@ export default async function page() {
           .split(" ")
           .map((word) => word.toLowerCase())
           .join("-")}`}
-        className="md:w-4/5 mx-auto space-y-10 lg:space-y-16"
+        className="md:w-4/5 mx-auto space-y-10 lg:space-y-16 mt-10"
       >
         <div
           id={`${about_people.project_collaborators_title
@@ -111,10 +111,10 @@ export default async function page() {
             .join("-")}`}
           className="collaborators"
         >
-          <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl">
+          <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl text-primary-500">
             {about_people.our_partners_title}
           </h2>
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.project_collaborators_title}
           </h3>
           <div
@@ -131,7 +131,7 @@ export default async function page() {
             .join("-")}`}
           className="board-members "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl ">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500 ">
             {about_people.board_members_title}
           </h3>
           <div
@@ -148,7 +148,7 @@ export default async function page() {
             .join("-")}`}
           className="project-advisers "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.project_advisers_title}
           </h3>
           <div
@@ -165,7 +165,7 @@ export default async function page() {
             .join("-")}`}
           className="institutional-collaborators "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.institutional_collaborators_title}
           </h3>
           <div
@@ -182,7 +182,7 @@ export default async function page() {
             .join("-")}`}
           className="funders "
         >
-          <h2 className="text-3xl font-header text-center lg:text-5xl">
+          <h2 className="text-3xl font-header text-center lg:text-5xl text-primary-500">
             {about_people.our_funders_title}
           </h2>
           <div>
