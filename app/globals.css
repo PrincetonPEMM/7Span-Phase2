@@ -563,7 +563,23 @@ body {
   @apply underline text-sm md:text-base inline;
 }
 .Subbanner_img {
-  @apply aspect-square w-full h-auto;
+  @apply aspect-square w-full h-auto relative;
+}
+.Subbanner_img:before {
+  @apply absolute inset-0 h-full w-full bg-gradient-to-r  from-black/25 to-black/25 content-[""];
+  transition: opacity 4s;
+  opacity: 1;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.5, 0.99);
+}
+
+.Subbanner_img:hover:before {
+  @apply from-black/5 to-black/5 opacity-10;
+  transition: opacity 4s;
+  opacity: 0.5;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.5, 0.99);
+}
+.Subbanner_img:hover {
+  @apply aspect-square w-full h-auto bg-gradient-to-r from-black/10 to-black/10;
 }
 
 .Subbanner_img img {
