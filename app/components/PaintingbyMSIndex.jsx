@@ -57,36 +57,6 @@ const PaintingbyMSIndex = ({ list }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
-      <div className="mb-10 flex items-start space-x-4 ">
-        <div className="relative w-full max-w-4xl mx-auto">
-          <InputText
-            magnify={true}
-            value={search}
-            iconBefore
-            iconAfter
-            placeholderText="Search"
-            onChange={(e) => {
-              const query = e.target.value;
-              setSearch(query);
-              if (query.length > 3) {
-                debouncedFetchData(query);
-              }
-              if (query.length === 0) {
-                debouncedFetchData(query);
-              }
-            }}
-          />
-          {search && (
-            <MdiWindowClose
-              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
-              onClick={() => {
-                setSearch("");
-                debouncedFetchData("");
-              }}
-            />
-          )}
-        </div>
-      </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
