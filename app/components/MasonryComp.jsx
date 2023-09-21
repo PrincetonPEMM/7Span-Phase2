@@ -8,10 +8,10 @@ import Masonry from "react-masonry-css";
 import Card from "./Card";
 
 const MasonryComp = ({ cards, keyword, redirect }) => {
-  return (
+  return cards?.length ? (
     <Masonry
       breakpointCols={
-        cards.lenght > 2
+        cards?.length > 2
           ? breakpointColumnsForMasonry
           : breakpointTwoColumnsForMasonry
       }
@@ -32,6 +32,10 @@ const MasonryComp = ({ cards, keyword, redirect }) => {
         />
       ))}
     </Masonry>
+  ) : (
+    <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
+      <h1>Records Not Found</h1>
+    </div>
   );
 };
 

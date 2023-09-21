@@ -259,7 +259,7 @@ export default function Manuscript({ Id, data, table }) {
     return array;
   };
 
-  return (
+  return data ? (
     <div className="container-fluid py-4 lg:py-7 space-y-4">
       <h2 className="font-menu text-2xl text-primary-500 lg:text-3xl xl:text-5xl font-medium">
         {data.manuscript_full_name}
@@ -309,6 +309,10 @@ export default function Manuscript({ Id, data, table }) {
           />
         </div>
       )}
+    </div>
+  ) : (
+    <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
+      <h1>Records Not Found</h1>
     </div>
   );
 }
