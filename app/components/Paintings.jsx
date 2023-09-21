@@ -90,7 +90,7 @@ const Paintings = ({
             magnify={true}
             iconBefore
             iconAfter
-            placeholderText="Search"
+            placeholderText="Search painting descriptions"
             onChange={(e) => {
               const query = e.target.value;
               setSearch(query);
@@ -158,6 +158,10 @@ const Paintings = ({
             Clear All
           </button>
         </div>
+      </div>
+      <div className="text-center block py-2">
+        {" "}
+        Results: ({totalPage ? totalPage : 0} records)
       </div>
 
       <div className="pb-10 mt-10">
