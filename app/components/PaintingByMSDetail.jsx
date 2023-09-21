@@ -77,7 +77,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
           )
         </h2>
       )}
-      {/* <div className="mb-10 flex items-start space-x-4 ">
+      <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-4 w-4 absolute inset-y-0 left-3 my-auto text-primary-700 md:h-6 md:w-6 md:left-5" />
           <InputText
@@ -107,7 +107,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
             />
           )}
         </div>
-      </div> */}
+      </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"

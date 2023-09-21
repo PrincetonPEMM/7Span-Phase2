@@ -256,10 +256,10 @@ const Stories = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 sm:mt-0 sm:grid sm:grid-cols-5 items-center justify-between pb-2">
-          <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 ">
+        <div className="mt-4 sm:mt-0 grid grid-cols-3  sm:grid-cols-5 items-center justify-between pb-2">
+          <div className="relative w-full sm:max-w-sm md:max-w-4xl col-span-3 sm:col-span-2">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
-              Filter
+              Search manuscript names
             </span>
             <InputText
               value={search}
@@ -275,10 +275,10 @@ const Stories = () => {
               }}
             />
           </div>
-          <p className="text-offBlack-400 font-medium pl-2 text-sm lg:text-base">
+          <p className="text-offBlack-400 font-medium pl-2 text-sm lg:text-base col-span-2 sm:text-center">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
-          <div className="w-full mt-2 sm:mt-0 sm:col-span-3 md:col-span-2 flex items-center justify-end gap-3">
+          <div className="w-full mt-2 sm:mt-0 flex items-center justify-end gap-3">
             <button
               className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
               onClick={() => {
