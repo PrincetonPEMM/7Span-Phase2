@@ -57,28 +57,62 @@ const PaintingbyMSIndex = ({ list }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <div className="mb-10 flex items-start space-x-4 ">
+        <div className="relative w-full max-w-4xl mx-auto">
+          <InputText
+            magnify={true}
+            value={search}
+            iconBefore
+            iconAfter
+            placeholderText="Search"
+            onChange={(e) => {
+              const query = e.target.value;
+              setSearch(query);
+              if (query.length > 3) {
+                debouncedFetchData(query);
+              }
+              if (query.length === 0) {
+                debouncedFetchData(query);
+              }
+            }}
+          />
+          {search && (
+            <MdiWindowClose
+              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+              onClick={() => {
+                setSearch("");
+                debouncedFetchData("");
+              }}
+            />
+          )}
+        </div>
+      </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard
+          <div
             key={item.image_link + index}
-            image={item.image_link}
-            title={item?.manuscript_full_name}
-            content={`${
-              item?.manuscript_date_range_start &&
-              item?.manuscript_date_range_end
-                ? item.manuscript_date_range_start ===
-                  item.manuscript_date_range_end
-                  ? item.manuscript_date_range_start + "s"
-                  : item.manuscript_date_range_start +
-                    "-" +
+            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+          >
+            <PaintingStoryCard
+              key={item.image_link + index}
+              image={item.image_link}
+              title={item?.manuscript_full_name}
+              content={`${
+                item?.manuscript_date_range_start &&
+                item?.manuscript_date_range_end
+                  ? item.manuscript_date_range_start ===
                     item.manuscript_date_range_end
-                : "-"
-            }`}
-            desc={`
+                    ? item.manuscript_date_range_start + "s"
+                    : item.manuscript_date_range_start +
+                      "-" +
+                      item.manuscript_date_range_end
+                  : "-"
+              }`}
+              desc={`
             ${
               item.total_manuscript_paintings > 1
                 ? `${item.total_manuscript_paintings} paintings `
@@ -89,9 +123,10 @@ const PaintingbyMSIndex = ({ list }) => {
                 ? "color"
                 : "black & white"
             }`}
-            btnText={"View all images for this manuscript"}
-            btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
-          />
+              btnText={"View all images for this manuscript"}
+              btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
+            />
+          </div>
         ))}
       </Masonry>
       {Boolean(!data?.length) && (

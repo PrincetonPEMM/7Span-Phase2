@@ -59,33 +59,38 @@ const PaintingByStoryDetail = ({ list, Id }) => {
           columnClassName="my-masonry-grid_column"
         >
           {data.map((item, index) => (
-            <PaintingStoryCard
+            <div
               key={item.image_link + index}
-              image={item.image_link}
-              isTitle={false}
-              content={item.episodes}
-              desc={`Keywords: ${
-                item.episode_keywords_objects
-                  ? item.episode_keywords_objects + "; "
-                  : ""
-              }${
-                item.episode_keywords_agents ? item.episode_keywords_agents : ""
-              }`}
-              lastLine={`${
-                item?.manuscript_date_range_start &&
-                item?.manuscript_date_range_end
-                  ? item.manuscript_date_range_start ===
-                    item.manuscript_date_range_end
-                    ? item.manuscript_date_range_start
-                    : item.manuscript_date_range_start +
-                      "-" +
+              className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+            >
+              <PaintingStoryCard
+                key={item.image_link + index}
+                image={item.image_link}
+                isTitle={false}
+                content={item.episodes}
+                // desc={`Keywords: ${
+                //   item.episode_keywords_objects
+                //     ? item.episode_keywords_objects + "; "
+                //     : ""
+                // }${
+                //   item.episode_keywords_agents ? item.episode_keywords_agents : ""
+                // }`}
+                desc={`${
+                  item?.manuscript_date_range_start &&
+                  item?.manuscript_date_range_end
+                    ? item.manuscript_date_range_start ===
                       item.manuscript_date_range_end
-                  : "-"
-              }${item?.manuscript ? ", " + item.manuscript : ""}${
-                item.painting_folio ? ", f. " + item.painting_folio : ""
-              }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
-              className="mt-3"
-            />
+                      ? item.manuscript_date_range_start
+                      : item.manuscript_date_range_start +
+                        "-" +
+                        item.manuscript_date_range_end
+                    : "-"
+                }${item?.manuscript ? ", " + item.manuscript : ""}${
+                  item.painting_folio ? ", f. " + item.painting_folio : ""
+                }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
+                className="mt-3"
+              />
+            </div>
           ))}
         </Masonry>
       </div>
