@@ -20,7 +20,9 @@ export default async function Page() {
 
   return (
     <div className="container font-body py-4 lg:py-7">
-      <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
+      <h1 className="text-3xl lg:text-5xl font-header text-primary-500">
+        News & Updates
+      </h1>
       <MasonryComp
         cards={data}
         keyword={"news"}

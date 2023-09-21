@@ -25,7 +25,9 @@ export default function Card({
         <button
           onClick={() => setToggle(false)}
           className={`${
-            category === keyword ? "text-primary-500" : "text-yellow-500"
+            category.toLowerCase() === keyword
+              ? "text-primary-500"
+              : "text-yellow-500"
           }`}
         >
           &nbsp; See Less
