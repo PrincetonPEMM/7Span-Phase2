@@ -749,7 +749,7 @@ body {
 
 /* Masonry */
 .my-masonry-grid {
-  @apply flex w-auto justify-between;
+  @apply flex w-auto justify-start;
 }
 .my-masonry-grid .my-masonry-grid_column:first-child {
   /* @apply sm:!w-[48%] md:!w-[31%]; */

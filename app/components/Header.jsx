@@ -240,7 +240,7 @@ const Header = () => {
                                 href={subItem.link}
                                 className={`header-link transition-all  flex py-1 text-lg p-1 text-primary-500 lg:hover:bg-secondary-500 xl:text-base lg:px-3 lg:py-0 ${
                                   pathname === "/"
-                                    ? " text-white hover:text-secondary-500 lg:text-primary-500"
+                                    ? " text-white hover:text-secondary-500 lg:hover:text-primary-500 lg:text-primary-500"
                                     : " text-primary-500  "
                                 }`}
                                 onClick={() => {

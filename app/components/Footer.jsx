@@ -80,7 +80,7 @@ const Footer = () => {
                 >
                   {item.title}
                 </Link>
-                {[1, 4, 6, 8].includes(index) && <div className="mt-5" />}
+                {[1, 4, 6].includes(index) && <div className="mt-5" />}
               </>
             ))}
           </ul>
@@ -123,7 +123,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="pt-5 sm:w-auto flex flex-col-reverse sm:grid text-white sm:items-end grid-cols-1 sm:gap-5 sm:pt-0 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
+      <div className="pt-2 flex flex-col-reverse sm:w-auto sm:grid text-white sm:items-end sm:gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
         <div className="sm:col-span-2 md:col-span-2 lg:col-span-4">
           <Link
             href="mailto: pemm@princeton.edu"
@@ -132,7 +132,7 @@ const Footer = () => {
             pemm@princeton.edu
           </Link>
 
-          <p className="pt-2 text-sm md:pt-3">
+          <p className="pt-2 text-sm ">
             © {new Date().getFullYear()} The Trustees of Princeton University
           </p>
         </div>
