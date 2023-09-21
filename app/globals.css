@@ -170,9 +170,9 @@ body {
     opacity 0.3s ease;
 }
 
-.header .header-link {
+/* .header .header-link {
   @apply text-primary-500;
-}
+} */
 .container {
   @apply mx-auto px-4;
 }
