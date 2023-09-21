@@ -138,16 +138,22 @@ const Footer = () => {
         </div>
 
         <div className="flex items-start space-x-5 pb-3 sm:pb-0 xl:space-x-10">
-          <Link href="#" className="w-6 h-6 group">
+          <Link
+            href="https://www.facebook.com/pemmaryam"
+            className="w-6 h-6 group"
+          >
             <MingcuteFacebookLine className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <Link href="#" className="w-6 h-6 group">
+          <Link
+            href="https://www.instagram.com/pemmaryam/?igshid=NzZlODBkYWE4Ng%3D%3D"
+            className="w-6 h-6 group"
+          >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <Link href="#" className="w-6 h-6 group transition-colors">
+          <Link href="@pemmaryam" className="w-6 h-6 group transition-colors">
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <Link href="#" className="w-6 h-6 group">
+          <Link href="https://twitter.com/pemmaryam" className="w-6 h-6 group">
             <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
         </div>
