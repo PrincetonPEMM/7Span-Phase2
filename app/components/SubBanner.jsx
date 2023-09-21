@@ -5,21 +5,6 @@ import { subBannerDefaultImageUrl } from "@/utils/constant";
 
 const SubBanner = ({ stories, divClass }) => {
   const route = useRouter();
-  const [loading, setLoading] = useState(true);
-  // const [flag, setFlag] = useState(true);
-  // const [flag2, setFlag2] = useState(true);
-
-  // useEffect(() => {
-  //   setFlag(false);
-  //   setFlag2(false);
-  //   setTimeout(() => {
-  //     setFlag(true);
-  //   }, [2000]);
-  //   setTimeout(() => {
-  //     setFlag2(true);
-  //   }, [2500]);
-  // }, [stories]);
-
   return (
     <div className="grid sm:grid-cols-3">
       {stories &&
@@ -54,26 +39,13 @@ const Img = ({ data }) => {
           loader={() => data?.img}
         />
         {!loading && (
-          <button className="absolute flex items-center justify-center z-10 text-white space-y-4 px-10 w-full inset-0">
-            <span className="text-lg lg:text-2xl font-bold font-body">
+          <button className="absolute flex items-end justify-center p-5 z-10 text-white space-y-4 px-10 w-full inset-0 md:px-5 md:pb-10 lg:px-12 lg:pt-12 lg:pb-28">
+            <span className="text-lg font-bold font-body mt-auto lg:text-2xl">
               {data?.title}
             </span>
           </button>
         )}
       </>
-
-      {/* {loading && (
-        <Image
-          // src="https://placehold.co/500x500?text=PEMM"
-          src={subBannerDefaultImageUrl}
-          alt="Picture of the author"
-          width={400}
-          height={400}
-          sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw"
-          style={{ width: "100%", height: "100%" }}
-          className="animate-pulse"
-        />
-      )} */}
     </div>
   );
 };

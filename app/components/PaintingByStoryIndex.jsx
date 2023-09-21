@@ -95,37 +95,42 @@ const PaintingByStoryIndex = ({ list }) => {
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard
+          <div
             key={item.image_link + index}
-            item={item}
-            image={item.image_link}
-            title={item?.pemm_short_title}
-            content={`${
-              item?.manuscript_date_range_start &&
-              item?.manuscript_date_range_end
-                ? item.manuscript_date_range_start ===
-                  item.manuscript_date_range_end
-                  ? item.manuscript_date_range_start + "s"
-                  : item.manuscript_date_range_start +
-                    "-" +
+            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+          >
+            <PaintingStoryCard
+              key={item.image_link + index}
+              item={item}
+              image={item.image_link}
+              title={item?.pemm_short_title}
+              content={`${
+                item?.manuscript_date_range_start &&
+                item?.manuscript_date_range_end
+                  ? item.manuscript_date_range_start ===
                     item.manuscript_date_range_end
-                : "-"
-            }${item?.manuscript ? ", " + item.manuscript : ""}${
-              item?.painting_folio ? ", f. " + item.painting_folio : ""
-            }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
-            btnText={`View 
+                    ? item.manuscript_date_range_start + "s"
+                    : item.manuscript_date_range_start +
+                      "-" +
+                      item.manuscript_date_range_end
+                  : "-"
+              }${item?.manuscript ? ", " + item.manuscript : ""}${
+                item?.painting_folio ? ", f. " + item.painting_folio : ""
+              }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
+              btnText={`View 
             ${
               item.painting_count > 1
-                ? `all ${item.painting_count} images for`
+                ? `all ${item.painting_count} paintings for`
                 : "the one painting for"
             }
             this story`}
-            btnLink={` ${
-              item.painting_count > 1
-                ? "/paintings/by-story/" + item.canonical_story_id
-                : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
-            }`}
-          />
+              btnLink={` ${
+                item.painting_count > 1
+                  ? "/paintings/by-story/" + item.canonical_story_id
+                  : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
+              }`}
+            />
+          </div>
         ))}
       </Masonry>
       {Boolean(!data?.length) && (

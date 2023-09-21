@@ -2,7 +2,6 @@ import React from "react";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import MasonryComp from "@/app/components/MasonryComp";
-import ComingSoon from "@/app/components/ComingSoon";
 
 export const dynamic = "force-dynamic";
 
@@ -20,14 +19,15 @@ export default async function Page() {
   }
 
   return (
-    // <div className="container font-body py-4 lg:py-7">
-    //   <h1 className="text-3xl lg:text-5xl font-header">News & Updates</h1>
-    //   <MasonryComp
-    //     cards={data}
-    //     keyword={"News"}
-    //     redirect={`news-and-update/`}
-    //   />
-    // </div>
-    <ComingSoon />
+    <div className="container font-body py-4 lg:py-7">
+      <h1 className="text-3xl lg:text-5xl font-header text-primary-500">
+        News & Updates
+      </h1>
+      <MasonryComp
+        cards={data}
+        keyword={"news"}
+        redirect={`news-and-update/`}
+      />
+    </div>
   );
 }

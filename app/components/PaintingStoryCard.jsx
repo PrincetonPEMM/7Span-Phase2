@@ -23,9 +23,7 @@ const PaintingStoryCard = ({
   }, []);
 
   return (
-    <div
-      className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
-    >
+    <>
       <div className="aspect-square bg-offWhite-500">
         <img
           src={Boolean(image) ? image : defaultImageforPainting}
@@ -57,7 +55,7 @@ const PaintingStoryCard = ({
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
