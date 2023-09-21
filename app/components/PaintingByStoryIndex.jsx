@@ -57,43 +57,80 @@ const PaintingByStoryIndex = ({ list }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <div className="mb-10 flex items-start space-x-4 ">
+        <div className="relative w-full max-w-4xl mx-auto">
+          <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
+          <InputText
+            magnify={true}
+            value={search}
+            iconBefore
+            iconAfter
+            placeholderText="Search"
+            onChange={(e) => {
+              const query = e.target.value;
+              setSearch(query);
+              if (query.length > 3) {
+                debouncedFetchData(query);
+              }
+              if (query.length === 0) {
+                debouncedFetchData(query);
+              }
+            }}
+          />
+
+          {search && (
+            <MdiWindowClose
+              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+              onClick={() => {
+                setSearch("");
+                debouncedFetchData("");
+              }}
+            />
+          )}
+        </div>
+      </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard
+          <div
             key={item.image_link + index}
-            item={item}
-            image={item.image_link}
-            title={item?.pemm_short_title}
-            content={`${
-              item?.manuscript_date_range_start &&
-              item?.manuscript_date_range_end
-                ? item.manuscript_date_range_start ===
-                  item.manuscript_date_range_end
-                  ? item.manuscript_date_range_start + "s"
-                  : item.manuscript_date_range_start +
-                    "-" +
+            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+          >
+            <PaintingStoryCard
+              key={item.image_link + index}
+              item={item}
+              image={item.image_link}
+              title={item?.pemm_short_title}
+              content={`${
+                item?.manuscript_date_range_start &&
+                item?.manuscript_date_range_end
+                  ? item.manuscript_date_range_start ===
                     item.manuscript_date_range_end
-                : "-"
-            }${item?.manuscript ? ", " + item.manuscript : ""}${
-              item?.painting_folio ? ", f. " + item.painting_folio : ""
-            }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
-            btnText={`View 
+                    ? item.manuscript_date_range_start + "s"
+                    : item.manuscript_date_range_start +
+                      "-" +
+                      item.manuscript_date_range_end
+                  : "-"
+              }${item?.manuscript ? ", " + item.manuscript : ""}${
+                item?.painting_folio ? ", f. " + item.painting_folio : ""
+              }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
+              btnText={`View 
             ${
               item.painting_count > 1
-                ? `all ${item.painting_count} images for`
+                ? `all ${item.painting_count} paintings for`
                 : "the one painting for"
             }
             this story`}
-            btnLink={` ${
-              item.painting_count > 1
-                ? "/paintings/by-story/" + item.canonical_story_id
-                : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
-            }`}
-          />
+              btnLink={` ${
+                item.painting_count > 1
+                  ? "/paintings/by-story/" + item.canonical_story_id
+                  : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
+              }`}
+            />
+          </div>
         ))}
       </Masonry>
       {Boolean(!data?.length) && (

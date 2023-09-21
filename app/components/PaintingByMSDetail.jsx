@@ -11,6 +11,7 @@ import MdiMagnify from "@/assets/icons/MdiMagnify";
 import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import { TablePagination } from "./Pagination";
+import Link from "next/link";
 
 const PaintingByMSDetail = ({ list, Id }) => {
   const { debounce } = useDebounce();
@@ -77,7 +78,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
           )
         </h2>
       )}
-      {/* <div className="mb-10 flex items-start space-x-4 ">
+      <div className="mb-10 flex items-start space-x-4 ">
         <div className="relative w-full max-w-4xl mx-auto">
           <MdiMagnify className="h-4 w-4 absolute inset-y-0 left-3 my-auto text-primary-700 md:h-6 md:w-6 md:left-5" />
           <InputText
@@ -107,23 +108,29 @@ const PaintingByMSDetail = ({ list, Id }) => {
             />
           )}
         </div>
-      </div> */}
+      </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
         {data.map((item, index) => (
-          <PaintingStoryCard
+          <Link
             key={item.image_link + index}
-            image={item.image_link}
-            title={item.pemm_short_title}
-            content={item.episodes}
-            desc={`Story ID ${item.canonical_story_id}${
-              item.painting_folio ? ", f. " + item.painting_folio : ""
-            }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
-            className="mt-3"
-          />
+            href={`/paintings/${Id}_${item.painting_unique_id}`}
+            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+          >
+            <PaintingStoryCard
+              key={item.image_link + index}
+              image={item.image_link}
+              title={item.pemm_short_title}
+              content={item.episodes}
+              desc={`Story ID ${item.canonical_story_id}${
+                item.painting_folio ? ", f. " + item.painting_folio : ""
+              }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
+              className="mt-3"
+            />
+          </Link>
         ))}
       </Masonry>
 
