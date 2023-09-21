@@ -171,7 +171,7 @@ const Header = () => {
           } ${
             pathname === "/"
               ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
-              : "lg:relative text-primary-500 py-5 header bg-white lg:bg-offWhite-500 "
+              : "lg:relative  py-5 header bg-white lg:bg-offWhite-500 "
           }`}
         >
           {/*Close header */}
@@ -204,57 +204,75 @@ const Header = () => {
             }}
           >
             <ul className="font-body relative mt-5 lg:mt-0 lg:flex">
-              {menuItems.map((item, index) => (
-                <li key={index} className="lg:ml-3 xl:ml-6">
-                  {item.subItems ? (
-                    <div className="group capitalize relative">
-                      <button
-                        className="text-lg p-1 font-semibold flex items-center lg:px-3 lg:py-0 lg:hover:text-secondary-50 lg:pointer-events-none  xl:text-xl"
-                        onClick={() => toggleSubmenu(index)}
-                      >
-                        <span>{item.title}</span>
-                        <MdiChevronDown
-                          className={`h-5 w-5 ml-2 transition-transform transform inline-flex lg:hidden ${
-                            activeSubmenu === index ? "rotate-180" : ""
+              {menuItems.map((item, index) => {
+                return (
+                  <li key={index} className="lg:ml-3 xl:ml-6">
+                    {item.subItems ? (
+                      <div className="group capitalize relative">
+                        <button
+                          className={`text-lg p-1 font-semibold flex items-center lg:px-3 lg:py-0 lg:hover:text-secondary-500   xl:text-xl ${
+                            pathname.includes(item.link)
+                              ? "text-secondary-500"
+                              : pathname === "/"
+                              ? " text-white hover:text-secondary-500"
+                              : " text-primary-500  "
                           }`}
-                        />
-                      </button>
-                      <ul
-                        className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black  lg:hover:bg-secondary-500mt-1 space-y-1 ${
-                          activeSubmenu === index
-                            ? "group:hover:block block z-50 "
-                            : "hidden"
-                        }`}
-                        // lg:group-hover:block lg:group-hover:transiton-all
+                          onClick={() => toggleSubmenu(index)}
+                        >
+                          <span>{item.title}</span>
+                          <MdiChevronDown
+                            className={`h-5 w-5 ml-2 transition-transform transform inline-flex lg:hidden ${
+                              activeSubmenu === index ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                        <ul
+                          className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black  lg:hover:bg-secondary-500mt-1 space-y-1 ${
+                            activeSubmenu === index
+                              ? "group:hover:block block z-50 "
+                              : "hidden"
+                          }`}
+                          // lg:group-hover:block lg:group-hover:transiton-all
+                        >
+                          {item.subItems.map((subItem, subIndex) => (
+                            <li key={subIndex}>
+                              <Link
+                                href={subItem.link}
+                                className={`header-link transition-all  flex py-1 text-lg p-1 text-primary-500 lg:hover:bg-secondary-500 xl:text-base lg:px-3 lg:py-0 ${
+                                  pathname === "/"
+                                    ? " text-white hover:text-secondary-500 lg:text-primary-500"
+                                    : " text-primary-500  "
+                                }`}
+                                onClick={() => {
+                                  setActiveSubmenu(null);
+                                  // redirect(subItem.link);
+                                  setMenuCollapse(false);
+                                }}
+                              >
+                                {subItem.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <Link
+                        onClick={() => setMenuCollapse(false)}
+                        href={item.link}
+                        className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
+                          pathname === item.link
+                            ? "text-secondary-500"
+                            : pathname === "/"
+                            ? " text-white hover:text-secondary-500"
+                            : " text-primary-500  "
+                        } `}
                       >
-                        {item.subItems.map((subItem, subIndex) => (
-                          <li key={subIndex}>
-                            <Link
-                              href={subItem.link}
-                              className="header-link transition-all flex py-1 text-lg p-1 lg:text-primary-500 lg:hover:bg-secondary-500 xl:text-base lg:px-3 lg:py-0"
-                              onClick={() => {
-                                setActiveSubmenu(null);
-                                // redirect(subItem.link);
-                                setMenuCollapse(false);
-                              }}
-                            >
-                              {subItem.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <Link
-                      onClick={() => setMenuCollapse(false)}
-                      href={item.link}
-                      className="header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:text-white lg:hover:text-secondary-500 "
-                    >
-                      {item.title}
-                    </Link>
-                  )}
-                </li>
-              ))}
+                        {item.title}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </OutsideClickHandler>
         </div>

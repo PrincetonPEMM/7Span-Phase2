@@ -52,7 +52,7 @@ export default async function page() {
   }
   return (
     <div className="container-fluid py-4 lg:py-7">
-      <div
+      {/* <div
         id={`${about_people.our_people_title
           .split(" ")
           .map((word) => word.toLowerCase())
@@ -65,7 +65,7 @@ export default async function page() {
         <p className="text-center font-menu md:w-2/3">
           {about_people.our_people_description}
         </p>
-      </div>
+      </div> */}
 
       <div id="our-team" className="team mt-10">
         <h2 className="text-3xl lg:text-5xl font-header text-center text-primary-500">
