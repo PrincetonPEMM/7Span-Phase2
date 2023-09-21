@@ -99,7 +99,7 @@ const Header = () => {
         },
         {
           title: "Contact Us",
-          link: "/about/connect",
+          link: "/about/connect/contact-us",
         },
       ],
     },
