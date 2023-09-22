@@ -173,13 +173,15 @@ export default function Manuscript({ Id, data, table }) {
           data.total_manuscript_paintings > 1
             ? `<b>${data.total_manuscript_paintings}</b> paintings`
             : `<b>${data.total_manuscript_paintings}</b> painting`
-        } of Mary and events in her life. ${
+        } of Mary and events in her life.  `;
+      }
+      array.push({
+        text: `${text} ${
           data.link_to_digital_copy
             ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript" target="_blank">Paintings by Manuscript</a> page.`
             : ""
-        } `;
-      }
-      array.push({ text });
+        }`,
+      });
     }
     if (
       data.tm_story_paintings != null ||
