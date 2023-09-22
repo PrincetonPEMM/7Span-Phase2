@@ -280,14 +280,10 @@ export default function Manuscript({ Id, data, table }) {
       }
     }
     if (data.pemm_volunteer_name != null) {
-      s2 = `Assistance in the form of typing incipits was provided by <b>${data.pemm_volunteer_name}</b>.`;
+      s2 = `Assistance and/or typing of incipits by <b>${data.pemm_volunteer_name}</b>.`;
     }
     array.push({
-      text: `${s1} ${s2} ${
-        data.pemm_volunteer_name
-          ? `Assistance and/or typing of incipits by ${data.pemm_volunteer_name}.`
-          : ""
-      }`,
+      text: `${s1} ${s2} `,
     });
 
     if (data.manuscript !== null) {
