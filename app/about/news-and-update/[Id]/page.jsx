@@ -1,7 +1,10 @@
 export const dynamic = "force-dynamic";
 
+import BackBtn from "@/app/components/BackBtn";
+import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }) => {
@@ -23,6 +26,7 @@ const page = async ({ params }) => {
   return data ? (
     <div className="container">
       <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
+        <BackBtn />
         <div>
           <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
             {data?.title ?? ""}

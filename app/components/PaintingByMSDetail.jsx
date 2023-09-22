@@ -12,6 +12,7 @@ import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import { TablePagination } from "./Pagination";
 import Link from "next/link";
+import BackBtn from "./BackBtn";
 
 const PaintingByMSDetail = ({ list, Id }) => {
   const { debounce } = useDebounce();
@@ -61,6 +62,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <BackBtn />
       {header && (
         <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
           {header?.manuscript_full_name}&nbsp;(
