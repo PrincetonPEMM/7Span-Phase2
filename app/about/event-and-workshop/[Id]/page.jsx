@@ -1,14 +1,15 @@
+import BackBtn from "@/app/components/BackBtn";
 import ComingSoon from "@/app/components/ComingSoon";
+import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import Link from "next/link";
 import React from "react";
-
 export const dynamic = "force-dynamic";
 
 const page = async ({ params }) => {
   const { Id } = params;
   let data = null;
-
   try {
     data = await client.request(
       readItems("events_and_workshops", {
@@ -20,10 +21,10 @@ const page = async ({ params }) => {
   } catch (e) {
     console.log(e);
   }
-
   return data ? (
     <div className="container">
       <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
+        <BackBtn />
         <div>
           <h3 className="text-3xl text-primary-500 font-bold lg:text-5xl">
             {data?.title ?? ""}
