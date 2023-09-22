@@ -11,6 +11,8 @@ export default function Card({
   keyword,
   date = "",
   redirect = "",
+  value1,
+  value2,
 }) {
   const [toggle, setToggle] = useState(false);
   const numberOfWords = 500;
@@ -60,7 +62,7 @@ export default function Card({
         <span
           className={`absolute top-3 inline-block right-3 text-xs px-2 py-1 card-button rounded-md leading-tight tag`}
         >
-          {category}
+          {category.toLowerCase() === keyword ? value1 : value2}
         </span>
         <h2 className="lg:text-2xl font-bold">{title}</h2>
         {date && <p className="my-2 font-light">{date}</p>}

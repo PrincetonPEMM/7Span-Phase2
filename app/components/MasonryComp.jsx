@@ -7,7 +7,7 @@ import React from "react";
 import Masonry from "react-masonry-css";
 import Card from "./Card";
 
-const MasonryComp = ({ cards, keyword, redirect }) => {
+const MasonryComp = ({ cards, keyword, redirect, value1, value2 }) => {
   return cards?.length ? (
     <Masonry
       breakpointCols={
@@ -29,6 +29,8 @@ const MasonryComp = ({ cards, keyword, redirect }) => {
           keyword={keyword}
           date={card.date}
           redirect={redirect + card.id}
+          value1={value1}
+          value2={value2}
         />
       ))}
     </Masonry>
