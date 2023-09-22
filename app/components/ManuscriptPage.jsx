@@ -125,26 +125,26 @@ export default function Manuscript({ Id, data, table }) {
       } else {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
-      if (data?.total_unique_story === 1) {
+      if (Number(data?.total_unique_story) === 1) {
         text +=
           " Of these stories, 1 is unique, marked with a ☆ in the table below, under Other Aspects.";
       }
-      if (data?.total_unique_story > 1) {
+      if (Number(data?.total_unique_story) > 1) {
         text += ` Of these stories, ${data.total_unique_story} are unique, marked with a ☆ in the table below, under Other Aspects.`;
       }
 
-      if (data?.total_stanza_story === 1) {
+      if (Number(data?.total_stanza_story) === 1) {
         text +=
           " Also, 1 has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.";
       }
-      if (data?.total_stanza_story > 1) {
+      if (Number(data?.total_stanza_story) > 1) {
         text += ` Also, ${data.total_stanza_story} have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
       }
 
-      if (data?.total_confidence_score === 1) {
+      if (Number(data?.total_confidence_score) === 1) {
         text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} stories, marked with a [?] in the table below, under Other Aspects.`;
       }
-      if (data?.total_confidence_score > 1) {
+      if (Number(data?.total_confidence_score) > 1) {
         text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} number of stories, marked with a [?] in the table below, under Other Aspects.`;
       }
 
