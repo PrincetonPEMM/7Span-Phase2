@@ -125,26 +125,26 @@ export default function Manuscript({ Id, data, table }) {
       } else {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
-      if (data?.total_unique_story === 1) {
+      if (Number(data?.total_unique_story) === 1) {
         text +=
           " Of these stories, 1 is unique, marked with a ☆ in the table below, under Other Aspects.";
       }
-      if (data?.total_unique_story > 1) {
+      if (Number(data?.total_unique_story) > 1) {
         text += ` Of these stories, ${data.total_unique_story} are unique, marked with a ☆ in the table below, under Other Aspects.`;
       }
 
-      if (data?.total_stanza_story === 1) {
+      if (Number(data?.total_stanza_story) === 1) {
         text +=
           " Also, 1 has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.";
       }
-      if (data?.total_stanza_story > 1) {
+      if (Number(data?.total_stanza_story) > 1) {
         text += ` Also, ${data.total_stanza_story} have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
       }
 
-      if (data?.total_confidence_score === 1) {
+      if (Number(data?.total_confidence_score) === 1) {
         text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} stories, marked with a [?] in the table below, under Other Aspects.`;
       }
-      if (data?.total_confidence_score > 1) {
+      if (Number(data?.total_confidence_score) > 1) {
         text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} number of stories, marked with a [?] in the table below, under Other Aspects.`;
       }
 
@@ -178,7 +178,7 @@ export default function Manuscript({ Id, data, table }) {
       array.push({
         text: `${text} ${
           data.link_to_digital_copy
-            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript" target="_blank">Paintings by Manuscript</a> page.`
+            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
             : ""
         }`,
       });
@@ -260,8 +260,9 @@ export default function Manuscript({ Id, data, table }) {
     }
     array.push({
       text: `${s1} ${s2} ${folio_start} ${
-        data.duplicate_missing_scans_rebound_in_disorder === "Yes"
-          ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>in disarray</>.`
+        data.duplicate_missing_scans_rebound_in_disorder === "Yes" &&
+        data.mss_rebound_in_disorder_or_breaks_in_sequence
+          ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>${data.mss_rebound_in_disorder_or_breaks_in_sequence}</b>.`
           : ""
       }`,
     });
@@ -279,9 +280,11 @@ export default function Manuscript({ Id, data, table }) {
       }
     }
     if (data.pemm_volunteer_name != null) {
-      s2 = `Assistance in the form of typing incipits was provided by <b>${data.pemm_volunteer_name}</b>.`;
+      s2 = `Assistance and/or typing of incipits by <b>${data.pemm_volunteer_name}</b>.`;
     }
-    array.push({ text: `${s1} ${s2}` });
+    array.push({
+      text: `${s1} ${s2} `,
+    });
 
     if (data.manuscript !== null) {
       p1 = `The PEMM abbreviation for this manuscript is <b>${data.manuscript}</b>.`;
