@@ -44,6 +44,13 @@ export default function Manuscript({ Id, data, table }) {
   const generateFirstParagraph = () => {
     const array = [];
 
+    if (data.ms_status !== "Complete") {
+      let text =
+        "PEMM has not yet cataloged this manuscript. The cataloging is <b>awaiting digitization</b>.";
+
+      array.push({ text });
+    }
+
     if (
       data.language &&
       data.manuscript_date_range_start &&
@@ -55,8 +62,11 @@ export default function Manuscript({ Id, data, table }) {
           text +=
             "This date is precise, based on the scribe noting the date in the manuscript. ";
         } else if (data.date_note == "Date from king's name") {
-          text +=
-            "This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript.";
+          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript. ${
+            !data.royal_manuscript
+              ? ""
+              : `The king's name is <b>${data.royal_manuscript}</b>.`
+          }`;
         } else if (data.date_note == "Date from ms (paleography)") {
           text +=
             "This date is estimated, based on paleography (a study of the manuscript&apos;s letter shapes).";
@@ -74,7 +84,15 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     if (data.collections_sheet_relevant == "True") {
-      let text = `This manuscript is held in the repository of ${data.institution_name} in their ${data.collection_name} in ${data.institution_city_state}, ${data.institution_country}. `;
+      let text = `This manuscript is held in the repository of ${
+        data.institution_name
+      } in their ${data.collection_name} in ${data.institution_city_state}, ${
+        data.institution_country
+      }. ${
+        data.ms_location_note
+          ? `This manuscript's last known location in Ethiopia was in ${data.ms_location_note}.`
+          : ""
+      }`;
       if (data.link_to_digital_copy != null) {
         // text += `To view the manuscript online, go <a class="text-primary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>.`;
       } else {
@@ -106,6 +124,29 @@ export default function Manuscript({ Id, data, table }) {
       } else {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
+      if (data?.total_unique_story === 1) {
+        text +=
+          " Of these stories, 1 is unique, marked with a ☆ in the table below, under Other Aspects.";
+      }
+      if (data?.total_unique_story > 1) {
+        text += ` Of these stories, ${data.total_unique_story} are unique, marked with a ☆ in the table below, under Other Aspects.`;
+      }
+
+      if (data?.total_stanza_story === 1) {
+        text +=
+          " Also, 1 has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.";
+      }
+      if (data?.total_stanza_story > 1) {
+        text += ` Also, ${data.total_stanza_story} have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
+      }
+
+      if (data?.total_confidence_score === 1) {
+        text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} stories, marked with a [?] in the table below, under Other Aspects.`;
+      }
+      if (data?.total_confidence_score > 1) {
+        text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} number of stories, marked with a [?] in the table below, under Other Aspects.`;
+      }
+
       array.push({ text });
     }
 
@@ -127,7 +168,15 @@ export default function Manuscript({ Id, data, table }) {
           text = `This manuscript has a lot of paintings of Marian miracle stories: <b>${data.total_manuscript_paintings}</b>.`;
         }
       } else if (data.tm_story_paintings == "RelatedImages") {
-        text = `This manuscript has no paintings of Marian miracle stories, but it does have <b>${data.total_manuscript_paintings}</b> painting(s) of Mary and events in her life.`;
+        text = `This manuscript has no paintings of Marian miracle stories, but it does have ${
+          data.total_manuscript_paintings > 1
+            ? `<b>${data.total_manuscript_paintings}</b> paintings`
+            : `<b>${data.total_manuscript_paintings}</b> painting`
+        } of Mary and events in her life. ${
+          data.link_to_digital_copy
+            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript" target="_blank">Paintings by Manuscript</a> page.`
+            : ""
+        } `;
       }
       array.push({ text });
     }
@@ -206,7 +255,13 @@ export default function Manuscript({ Id, data, table }) {
     if (data.folio_start_of_the_tm_part != null) {
       folio_start = `The Marian miracle stories begin on folio <b>${data.folio_start_of_the_tm_part}</b> of the whole manuscript.`;
     }
-    array.push({ text: `${s1} ${s2} ${folio_start}` });
+    array.push({
+      text: `${s1} ${s2} ${folio_start} ${
+        data.duplicate_missing_scans_rebound_in_disorder === "Yes"
+          ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>in disarray</>.`
+          : ""
+      }`,
+    });
     s1 = "";
     s2 = "";
     s2 = "";
@@ -231,7 +286,13 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     if (data.hamburg_ms_id !== null) {
-      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${data.hamburg_ms_id}</b>.`;
+      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${
+        data.hamburg_ms_id
+      }</b>. ${
+        data.other_ms_id
+          ? `Other shelfmarks and/or abbreviations for this manuscript include <b>${data.other_ms_id}</b>.`
+          : ""
+      }`;
       array.push({ text: p2 });
     }
     array.push({ text: p3 });
