@@ -20,14 +20,18 @@ export default async function Page() {
 
   return (
     <div className="container font-body py-4 lg:py-7">
-      <h1 className="text-3xl lg:text-5xl font-header text-primary-500">
+      <h1 className="text-3xl text-primary-500 font-bold lg:text-5xl">
         News & Updates
       </h1>
-      <MasonryComp
-        cards={data}
-        keyword={"news"}
-        redirect={`news-and-update/`}
-      />
+      <div className="pt-5">
+        <MasonryComp
+          cards={data}
+          keyword={"news"}
+          value1={"News"}
+          value2={"Updates"}
+          redirect={`news-and-update/`}
+        />
+      </div>
     </div>
   );
 }

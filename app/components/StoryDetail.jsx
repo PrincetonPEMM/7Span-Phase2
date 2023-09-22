@@ -9,6 +9,7 @@ import {
   macomber_id_number,
 } from "@/utils/constant";
 import Link from "next/link";
+import BackBtn from "./BackBtn";
 
 export default function StoryDetail({ data, Id }) {
   const numberOfWords = 100;
@@ -117,6 +118,7 @@ export default function StoryDetail({ data, Id }) {
 
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
+      <BackBtn />
       <h3 className="font-menu text-primary-500 text-2xl lg:text-5xl leading-tight font-medium">
         {data?.canonical_story_title}
       </h3>

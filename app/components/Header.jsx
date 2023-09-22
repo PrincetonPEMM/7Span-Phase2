@@ -210,7 +210,7 @@ const Header = () => {
                     {item.subItems ? (
                       <div className="group capitalize relative">
                         <button
-                          className={`text-lg p-1 font-semibold flex items-center lg:px-3 lg:py-0 lg:hover:text-secondary-500   xl:text-xl ${
+                          className={`text-lg p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500   xl:text-xl ${
                             pathname.includes(item.link)
                               ? "text-secondary-500"
                               : pathname === "/"

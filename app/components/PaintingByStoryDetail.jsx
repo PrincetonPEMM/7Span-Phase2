@@ -7,6 +7,8 @@ import {
 } from "@/utils/constant";
 import Masonry from "react-masonry-css";
 import { TablePagination } from "./Pagination";
+import BackBtn from "./BackBtn";
+import Link from "next/link";
 
 const PaintingByStoryDetail = ({ list, Id }) => {
   const [isLoading, setIsLoadint] = useState(true);
@@ -49,6 +51,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <BackBtn />
       <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
         {header?.canonical_story_title}
       </h2>
@@ -59,7 +62,8 @@ const PaintingByStoryDetail = ({ list, Id }) => {
           columnClassName="my-masonry-grid_column"
         >
           {data.map((item, index) => (
-            <div
+            <Link
+              href={`/paintings/${item.web_page_address}_${item.painting_unique_id}`}
               key={item.image_link + index}
               className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
             >
@@ -90,7 +94,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
                 }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
                 className="mt-3"
               />
-            </div>
+            </Link>
           ))}
         </Masonry>
       </div>
