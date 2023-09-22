@@ -4,7 +4,8 @@ import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Link from "next/link";
 import React from "react";
-
+import { useRouter } from "next/navigation";
+import BackBtn from "@/app/components/BackBtn";
 export const dynamic = "force-dynamic";
 
 const PeopleDetailPage = async ({ params }) => {
@@ -16,13 +17,9 @@ const PeopleDetailPage = async ({ params }) => {
       filter: { slug: name },
     })
   );
-
   return (
     <div className="container mx-auto">
-      <Link href="/about/people" className="inline-flex items-center back-btn">
-        <MdiKeyboardBackspace />
-        <span className="ml-2">Back</span>
-      </Link>
+      <BackBtn />
       <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
         {(results[0]?.profile_image || results[0]?.favorite_painting_image) && (
           <div className="w-full lg:pb-10 max-w-sm mx-auto ">

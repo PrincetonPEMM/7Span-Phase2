@@ -7,6 +7,7 @@ import {
 } from "@/utils/constant";
 import Masonry from "react-masonry-css";
 import { TablePagination } from "./Pagination";
+import BackBtn from "./BackBtn";
 
 const PaintingByStoryDetail = ({ list, Id }) => {
   const [isLoading, setIsLoadint] = useState(true);
@@ -49,6 +50,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <BackBtn />
       <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
         {header?.canonical_story_title}
       </h2>
