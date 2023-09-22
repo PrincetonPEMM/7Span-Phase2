@@ -8,6 +8,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import Table from "./Table";
 import { TablePagination } from "./Pagination";
+import BackBtn from "./BackBtn";
 
 export default function Manuscript({ Id, data, table }) {
   const [expandedRows, setExpandedRows] = useState([]);
@@ -261,6 +262,7 @@ export default function Manuscript({ Id, data, table }) {
 
   return data ? (
     <div className="container-fluid py-4 lg:py-7 space-y-4">
+      <BackBtn />
       <h2 className="font-menu text-2xl text-primary-500 lg:text-3xl xl:text-5xl font-medium">
         {data.manuscript_full_name}
       </h2>

@@ -5,6 +5,9 @@ import MdiOpenInNew from "@/assets/icons/MdiOpenInNew";
 import ImageGallery from "react-image-gallery";
 import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
+import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
+import { useRouter } from "next/navigation";
+import BackBtn from "./BackBtn";
 
 const PaintingDetail = ({ data }) => {
   const [image, setImage] = useState([]);
@@ -21,27 +24,9 @@ const PaintingDetail = ({ data }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-7 md:gap-7 lg:gap-10 xl:gap-20 2">
-        <div>
-          {/* <Image
-            onClick={() => setisOpen(true)}
-            src={logo}
-            showNav="false"
-            autoPlay="false"
-            showThumbnails="false"
-            alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
-          />
-          <Modal
-            isOpen={isOpen}
-            modalClose={() => setisOpen(false)}
-            pModalclassName="pc-max-w-md"
-          >
-            <Image
-              src={logo}
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
-            />
-          </Modal> */}
+        <div className="space-y-5">
+          <BackBtn />
 
-          {/* slider with modal */}
           <ImageGallery
             items={image}
             infinite={false}
