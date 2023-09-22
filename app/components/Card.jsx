@@ -55,7 +55,7 @@ export default function Card({
   };
 
   return (
-    <div className={`${category === keyword ? "even" : "odd"}`}>
+    <div className={`${category.toLowerCase() === keyword ? "even" : "odd"}`}>
       <div
         className={`card-background rounded-lg px-5 md:px-8 py-10 relative inline-block `}
       >
