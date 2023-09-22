@@ -178,7 +178,7 @@ export default function Manuscript({ Id, data, table }) {
       array.push({
         text: `${text} ${
           data.link_to_digital_copy
-            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript" target="_blank">Paintings by Manuscript</a> page.`
+            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
             : ""
         }`,
       });
@@ -260,8 +260,9 @@ export default function Manuscript({ Id, data, table }) {
     }
     array.push({
       text: `${s1} ${s2} ${folio_start} ${
-        data.duplicate_missing_scans_rebound_in_disorder === "Yes"
-          ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>in disarray</>.`
+        data.duplicate_missing_scans_rebound_in_disorder === "Yes" &&
+        data.mss_rebound_in_disorder_or_breaks_in_sequence
+          ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>${data.mss_rebound_in_disorder_or_breaks_in_sequence}</b>.`
           : ""
       }`,
     });
@@ -281,7 +282,13 @@ export default function Manuscript({ Id, data, table }) {
     if (data.pemm_volunteer_name != null) {
       s2 = `Assistance in the form of typing incipits was provided by <b>${data.pemm_volunteer_name}</b>.`;
     }
-    array.push({ text: `${s1} ${s2}` });
+    array.push({
+      text: `${s1} ${s2} ${
+        data.pemm_volunteer_name
+          ? `Assistance and/or typing of incipits by ${data.pemm_volunteer_name}.`
+          : ""
+      }`,
+    });
 
     if (data.manuscript !== null) {
       p1 = `The PEMM abbreviation for this manuscript is <b>${data.manuscript}</b>.`;
