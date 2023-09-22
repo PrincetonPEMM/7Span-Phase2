@@ -206,7 +206,6 @@ const ManuScripts = () => {
           }
         }}
       >
-        {" "}
         <div
           className={`manuscript-page font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
             isOpen
@@ -294,7 +293,7 @@ const ManuScripts = () => {
                 }
               }}
             />
-          </div>{" "}
+          </div>
           <p className="text-offBlack-400 font-medium pl-2 text-sm lg:text-base col-span-2 sm:text-center">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>

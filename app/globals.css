@@ -472,7 +472,7 @@ body {
 }
 
 .container-fluid {
-  @apply px-4 md:px-11 lg:px-12;
+  @apply px-4 md:px-11 lg:px-8 xl:px-12;
 }
 /* slider  css */
 

@@ -146,11 +146,11 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul>
                     <p className="text-sm leading-normal">
-                      <b>Story Type:</b>{" "}
+                      <b>Story Type:</b>
                       {data?.type_of_story ? data?.type_of_story : "none"}
                     </p>
                     <p className="text-sm leading-normal">
-                      <b>Story Theme(s):</b>{" "}
+                      <b>Story Theme(s):</b>
                       {data?.canonical_story_subject
                         ? data?.canonical_story_subject
                         : "none"}
@@ -163,7 +163,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="text-sm">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>{" "}
+                      <b>Earliest Attested Instance of the Story:</b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -175,25 +175,25 @@ export default function StoryDetail({ data, Id }) {
                         : " none "}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>{" "}
+                      <b>Earliest Manuscripts in which Story Appears:</b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>{" "}
+                      <b>Total Manuscripts in which Story Appears:</b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool:</b>{" "}
+                      <b>Total Incipits in the ITool:</b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s):</b>{" "}
+                      <b>Incipit(s):</b>
                       {data?.canonical_incipit && data.canonical_incipit}
                       {data?.canonical_incipit_2 && data.canonical_incipit_2}
                       {data?.canonical_incipit_3 && data.canonical_incipit_3}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers:</b> PEMM Theme ID{" "}
+                      <b>ID Numbers:</b> PEMM Theme ID
                       {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
@@ -245,8 +245,8 @@ export default function StoryDetail({ data, Id }) {
                     TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3 italic">
-                    Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name},{" "}
+                    Translated by {data.translation_author} from
+                    {data.manuscript_name},
                     {data.translation_source_manuscript_folio}
                     {", in "}
                     {data.translation_as_of_date}.
@@ -263,12 +263,12 @@ export default function StoryDetail({ data, Id }) {
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
-                    {data?.translation_author}. &quot;ID{" "}
+                    {data?.translation_author}. &quot;ID
                     {data?.canonical_story_id}: {data?.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.{" "}
+                    and Egyptian Miracles of Mary project.
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
                     modified: {data.translation_as_of_date}
                   </p>
@@ -357,11 +357,11 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul>
                     <p className="text-base leading-normal">
-                      <b>Story Type:</b>{" "}
+                      <b>Story Type:</b>
                       {data?.type_of_story ? data?.type_of_story : "none"}
                     </p>
                     <p className="text-base leading-normal">
-                      <b>Story Theme(s):</b>{" "}
+                      <b>Story Theme(s):</b>
                       {data?.canonical_story_subject
                         ? data?.canonical_story_subject
                         : "none"}
@@ -374,7 +374,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="text-sm">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>{" "}
+                      <b>Earliest Attested Instance of the Story:</b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -386,25 +386,25 @@ export default function StoryDetail({ data, Id }) {
                         : " none "}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>{" "}
+                      <b>Earliest Manuscripts in which Story Appears:</b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>{" "}
+                      <b>Total Manuscripts in which Story Appears:</b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool:</b>{" "}
+                      <b>Total Incipits in the ITool:</b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s):</b>{" "}
+                      <b>Incipit(s):</b>
                       {data?.canonical_incipit && data.canonical_incipit}
                       {data?.canonical_incipit_2 && data.canonical_incipit_2}
                       {data?.canonical_incipit_3 && data.canonical_incipit_3}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers:</b> PEMM Theme ID{" "}
+                      <b>ID Numbers:</b> PEMM Theme ID
                       {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
@@ -434,8 +434,8 @@ export default function StoryDetail({ data, Id }) {
                     TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3 italic">
-                    Translated by {data.translation_author} from{" "}
-                    {data.manuscript_name}, f.{" "}
+                    Translated by {data.translation_author} from
+                    {data.manuscript_name}, f.
                     {data.translation_source_manuscript_folio}
                     {data.translation_as_of_date}.
                   </p>
@@ -449,12 +449,12 @@ export default function StoryDetail({ data, Id }) {
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
-                    {data?.translation_author}. &quot;ID{" "}
+                    {data?.translation_author}. &quot;ID
                     {data?.canonical_story_id}: {data?.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.{" "}
+                    and Egyptian Miracles of Mary project.
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
                     modified: {data?.translation_as_of_date}
                   </p>
@@ -649,7 +649,7 @@ function FifthLine(origin) {
 function SixthLine(languageAvailableIn) {
   return (
     <p className="text-base leading-relaxed">
-      This story is available in the following <b>languages</b>:{" "}
+      This story is available in the following <b>languages</b>:
       {languageAvailableIn.join(", ")}.
     </p>
   );
@@ -658,7 +658,7 @@ function SeventhLine() {
   return (
     <p className="text-sm leading-relaxed py-2">
       1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
-      has catalogued. For more information, see{" "}
+      has catalogued. For more information, see
       <Link href="/about/using-the-site" className="text-primary-600">
         Using the Site
       </Link>

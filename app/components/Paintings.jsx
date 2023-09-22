@@ -80,17 +80,25 @@ const Paintings = ({
   }, [page]);
 
   const debouncedFetchData = debounce(fetchData, 300);
-
+  const paintingBy = [
+    {
+      value: "Paintings for Particular Stories",
+      key: "/paintings/by-story",
+    },
+    {
+      value: "Paintings for Particular Manuscripts",
+      key: "paintings/by-manuscript",
+    },
+  ];
   return (
     <div className="container-fluid">
-      <div className="flex items-start space-x-4 mb-1">
-        <div className="relative w-full max-w-4xl mx-auto">
+      <div className="mx-auto grid grid-cols-1 pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-end justify-start mb-3">
+        <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 lg:col-span-3">
+          <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
+            Search painting descriptions
+          </span>
           <InputText
             value={search}
-            magnify={true}
-            iconBefore
-            iconAfter
-            placeholderText="Search painting descriptions"
             onChange={(e) => {
               const query = e.target.value;
               setSearch(query);
@@ -102,7 +110,6 @@ const Paintings = ({
               }
             }}
           />
-
           {search && (
             <MdiWindowClose
               className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
@@ -113,39 +120,23 @@ const Paintings = ({
             />
           )}
         </div>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 items-start justify-center mb-1 font-body lg:mx-auto max-w-4xl lg:justify-normal  ">
-        <Dropdown
-          title="Date of Paintings"
-          selected={dateOfPaintins}
-          setSelected={setDateOfPaintins}
-          options={dateOfPainting}
-          isMultiple={true}
-        />
-        <Dropdown
-          title="Paintings in color only"
-          selected={paintingsInColorOnly}
-          setSelected={setPaintingsInColorOnly}
-          options={paintingInColor}
-          isMultiple={false}
-        />
-        <Dropdown
-          title="Story Type"
-          selected={storyType}
-          setSelected={setStoryType}
-          options={typeOfStory}
-          isMultiple={false}
-        />
-        <Dropdown
-          title="Repository of Painting"
-          selected={archiveOfPainting}
-          setSelected={setArchiveOfPainting}
-          options={institution}
-          isMultiple={false}
-        />
-        <div className="md:w-full col-span-2 md:col-span-1 w-auto md:text-left text-center">
+
+        <div className="sm:col-span-2 lg:col-span-1">
+          <div className="text-center block h-auto py-3 text-xs md:text-sm md:w-full">
+            Results: ({totalPage ? totalPage : 0} records)
+          </div>
+        </div>
+        <div className="sm:col-span-2 lg:col-span-1">
+          <Dropdown
+            title="All Paintings"
+            options={paintingBy}
+            isMultiple={false}
+          />
+        </div>
+
+        <div className="text-center w-full md:text-left sm:col-span-2 lg:col-span-1">
           <button
-            className="bg-primary-500 w-auto md:w-full text-white py-2 px-3  text-center rounded-lg text-xs md:text-base"
+            className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
             onClick={() => {
               setDateOfPaintins([]);
               setPaintingsInColorOnly(paintingInColor[0]);
@@ -159,9 +150,46 @@ const Paintings = ({
           </button>
         </div>
       </div>
-      <div className="text-center block py-2">
-        {" "}
-        Results: ({totalPage ? totalPage : 0} records)
+
+      <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
+        <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-12">
+          <div className="sm:col-span-2">
+            <Dropdown
+              title="Date of Paintings"
+              selected={dateOfPaintins}
+              setSelected={setDateOfPaintins}
+              options={dateOfPainting}
+              isMultiple={true}
+            />
+          </div>
+          <div className="sm:col-span-2 lg:col-span-3">
+            <Dropdown
+              title="Paintings in color only"
+              selected={paintingsInColorOnly}
+              setSelected={setPaintingsInColorOnly}
+              options={paintingInColor}
+              isMultiple={false}
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <Dropdown
+              title="Story Type"
+              selected={storyType}
+              setSelected={setStoryType}
+              options={typeOfStory}
+              isMultiple={false}
+            />
+          </div>
+          <div className="sm:col-span-2 lg:col-span-5">
+            <Dropdown
+              title="Repository of Painting"
+              selected={archiveOfPainting}
+              setSelected={setArchiveOfPainting}
+              options={institution}
+              isMultiple={false}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="pb-10 mt-10">
