@@ -83,9 +83,13 @@ function CustomPagination({
 
   const handleInputChange = (event) => {
     const value = event.target.value;
-    if (+value < 1) {
-      setInputValue(1);
-    } else setInputValue(value);
+    // if (+value < 1) {
+    //   setInputValue(1);
+    //   onPageChange(1);
+    // } else {
+    setInputValue(value);
+    onPageChange(value);
+    // }
   };
 
   const handleInputKeyPress = (event) => {
@@ -116,10 +120,10 @@ function CustomPagination({
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleInputKeyPress}
-        min={1}
+        // min={1}
         // placeholder={`Page ${currentPage}`}
       />
-      <span className="page-total text-primary-600">
+      <span className="page-total text-primary-600 flex-none">
         of {totalPages ? totalPages : 0}
       </span>
       <span

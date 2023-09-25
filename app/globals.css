@@ -860,7 +860,8 @@ body {
   transition:
     background-color 0.3s,
     color 0.3s;
-  margin-right: 10px;
+  margin-right: 5px;
+  z-index: 30;
 }
 .pagination-button:hover {
   background-color: #3c6f57;
@@ -900,7 +901,7 @@ input::-webkit-inner-spin-button {
 }
 
 .page-total {
-  margin: 0 10px;
+  margin: 0 5px;
   font-weight: bold;
 }
 
@@ -913,11 +914,11 @@ input::-webkit-inner-spin-button {
 }
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   .pagination-tablet {
-    margin-right: -50px;
+    margin-right: -30px;
   }
 }
 @media only screen and (min-width: 1280px) and (max-width: 1440px) {
   .pagination-tablet {
-    margin-right: -80px;
+    margin-right: -55px;
   }
 }
