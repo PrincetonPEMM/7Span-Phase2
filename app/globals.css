@@ -880,12 +880,12 @@ body {
 }
 
 input[type="number"] {
-  padding: 5px;
+  padding: 3px;
   border: 2px solid #3c6f57;
   color: #3c6f57;
   font-weight: 700;
   border-radius: 4px;
-  width: 50px;
+  width: 45px;
   text-align: center;
   background-color: #e7e3dc;
 }
