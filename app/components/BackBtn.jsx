@@ -8,7 +8,7 @@ const BackBtn = () => {
   return (
     <div
       onClick={() => window?.history?.back()}
-      className="inline-flex items-center back-btn"
+      className="inline-flex items-center back-btn cursor-pointer"
     >
       <MdiKeyboardBackspace />
       <span className="ml-2">Back</span>

@@ -837,3 +837,43 @@ body {
 .masonry .odd .card-button {
   @apply bg-primary-500;
 }
+
+.pagination-container {
+  @apply flex items-center justify-center space-x-1;
+}
+
+.pagination-button {
+  @apply py-1 px-1 border-2 w-8 text-base text-center border-primary-500 z-30 rounded-md text-primary-500 font-bold h-8 flex items-center justify-center xl:px-2;
+  --tw-text-opacity: 1;
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.pagination-button svg {
+  @apply h-5 lg:w-5 flex-none;
+}
+.pagination-button:hover {
+  @apply bg-primary-500 text-offWhite-500;
+}
+.pagination-button:hover {
+  @apply bg-primary-500;
+}
+.pagination-button.disabled {
+  @apply pointer-events-none bg-[#dbdbdb] border-2 text-[#9b9b9b] border-gray-300;
+}
+input[type="number"] {
+  @apply p-1 border-2 border-primary-500 text-primary-500 w-8 h-8 font-medium rounded-md text-sm text-center bg-transparent;
+}
+input[type="number"]:focus {
+  border: 2px solid #3c6f57 !important;
+  --tw-ring-shadow: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.page-total {
+  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
+}

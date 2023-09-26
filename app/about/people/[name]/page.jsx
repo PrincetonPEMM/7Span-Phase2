@@ -36,7 +36,7 @@ const PeopleDetailPage = async ({ params }) => {
             {results[0]?.favorite_painting_image && (
               <div className=" hidden md:py-8 md:block lg:py-12">
                 <h1 className="text-center text-2xl font-extrabold text-primary-500 block mb-4 lg:text-3xl tracking-tighter">
-                  {`${results[0].first_name}'s Favorite Painting`}
+                  Favorite Painting
                 </h1>
                 <div className="mx-auto w-56 h-auto">
                   <img
@@ -84,7 +84,7 @@ const PeopleDetailPage = async ({ params }) => {
           {results[0]?.favorite_painting_image && (
             <div className="block md:hidden">
               <h1 className="text-center text-2xl font-body font-bold text-primary-500 block mb-4">
-                {`${results[0].first_name}'s Favorite Painting`}
+                Favorite Painting
               </h1>
               <div className="max-w-xs mx-auto aspect-[9/11]">
                 <img

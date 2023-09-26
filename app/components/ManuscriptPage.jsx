@@ -91,7 +91,7 @@ export default function Manuscript({ Id, data, table }) {
         data.institution_country
       }. ${
         data.ms_location_note
-          ? `This manuscript's last known location in Ethiopia was in ${data.ms_location_note}.`
+          ? `This manuscript's last known location in Ethiopia was ${data.ms_location_note}.`
           : ""
       }`;
       if (data.link_to_digital_copy != null) {
@@ -126,19 +126,17 @@ export default function Manuscript({ Id, data, table }) {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
       if (Number(data?.total_unique_story) === 1) {
-        text +=
-          " Of these stories, 1 is unique, marked with a ☆ in the table below, under Other Aspects.";
+        text += ` Of these stories, <b>${data?.total_unique_story}</b> is unique, marked with a ☆ in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_unique_story) > 1) {
-        text += ` Of these stories, ${data.total_unique_story} are unique, marked with a ☆ in the table below, under Other Aspects.`;
+        text += ` Of these stories, <b>${data.total_unique_story}</b> are unique, marked with a ☆ in the table below, under Other Aspects.`;
       }
 
       if (Number(data?.total_stanza_story) === 1) {
-        text +=
-          " Also, 1 has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.";
+        text += ` Also, <b>${data?.total_stanza_story}<b> has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_stanza_story) > 1) {
-        text += ` Also, ${data.total_stanza_story} have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
+        text += ` Also, <b>${data.total_stanza_story}</b> have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
       }
 
       if (Number(data?.total_confidence_score) === 1) {
@@ -178,7 +176,7 @@ export default function Manuscript({ Id, data, table }) {
       array.push({
         text: `${text} ${
           data.link_to_digital_copy
-            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
+            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500 font-bold" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
             : ""
         }`,
       });
