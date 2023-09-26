@@ -21,7 +21,7 @@ import {
   rangeSliderMaxForPaintingsStoriesPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import { TablePagination } from "./Pagination";
+import CustomPagination, { TablePagination } from "./Pagination";
 
 const Stories = () => {
   const { debounce } = useDebounce();
@@ -158,10 +158,12 @@ const Stories = () => {
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
     setPage(1);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 5000);
   }, 300);
 
   const resetFilter = () => {
@@ -256,8 +258,8 @@ const Stories = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 sm:mt-0 grid grid-cols-3  sm:grid-cols-5 items-center justify-between pb-2">
-          <div className="relative w-full sm:max-w-sm md:max-w-4xl col-span-3 sm:col-span-2">
+        <div className="mt-4 sm:mt-0 flex flex-col sm:grid grid-cols-2 sm:grid-cols-3 items-center justify-between pb-2 lg:grid-cols-6">
+          <div className="relative w-full sm:col-span-3 mb-2 lg:mb-0 lg:col-span-2  lg:max-w-4xl">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search titles and translations
             </span>
@@ -275,12 +277,46 @@ const Stories = () => {
               }}
             />
           </div>
-          <p className="text-offBlack-400 font-medium pl-2 text-sm lg:text-base col-span-2 sm:text-center">
+          <div className="w-full flex items-center justify-between sm:hidden">
+            <p className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center">
+              Results: {`(${totalPage ? totalPage : 0} records)`}
+            </p>
+            <button
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
+                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              onClick={() => {
+                setToggleBtn(!toggleBtn);
+                {
+                  !toggleBtn
+                    ? setTableHeader(manuscriptsTableDetailView)
+                    : setTableHeader(manuscriptsTableTitleView);
+                }
+              }}
+            >
+              {toggleBtn ? "Detail view" : "Title View"}
+            </button>
+          </div>
+          <p className="hidden text-offBlack-400 font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
-          <div className="w-full mt-2 sm:mt-0 flex items-center justify-end gap-3">
+
+          <div className="order-3 sm:-order-none mt-4 sm:mt-0 lg:col-span-2">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+                setExpandedRows([]);
+              }}
+            />
+          </div>
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
             <button
-              className="bg-primary-500 text-white max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
+                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -323,7 +359,7 @@ const Stories = () => {
             {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
           </div>
         )}
-        <TablePagination
+        {/* <TablePagination
           meta={{
             total: totalPage,
             per_page: perPage,
@@ -340,7 +376,7 @@ const Stories = () => {
             });
             setExpandedRows([]);
           }}
-        />
+        /> */}
       </div>
     </div>
     // </div>

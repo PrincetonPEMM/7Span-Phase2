@@ -20,7 +20,7 @@ export default async function Page() {
 
   return (
     <div className="container font-body py-4 lg:py-7">
-      <h1 className="text-3xl text-primary-500 font-bold lg:text-5xl">
+      <h1 className="text-3xl text-primary-500 font-header lg:text-5xl">
         News & Updates
       </h1>
       <div className="pt-5">

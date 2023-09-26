@@ -126,6 +126,43 @@ const Sidebar = ({
           ref1={childRef1}
         />
       </div>
+      <div className="block mt-10">
+        <lable className="text-white text-lg block mb-3">
+          {isPageName === STORIES && " Manuscripts with Story"}
+          {isPageName === MANUSCRIPTS && "Manuscript's No. of Stories"}
+        </lable>
+        <RangeSlider
+          min={slider2InitMin}
+          max={slider2InitMax}
+          onChange={onChangeManuscript}
+          ref1={childRef2}
+        />
+      </div>
+      <div className="block mt-10">
+        <lable className="text-white text-lg block mb-3">
+          {isPageName === STORIES && " Paintings of Story"}
+          {isPageName === MANUSCRIPTS && "Manuscript's No. of Paintings"}
+        </lable>
+        <RangeSlider
+          min={slider3InitMin}
+          max={slider3InitMax}
+          onChange={onChangePainting}
+          ref1={childRef3}
+        />
+      </div>
+      {isPageName === MANUSCRIPTS && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            Manuscript's No. of Unique Stories
+          </lable>
+          <RangeSlider
+            min={slider4InitMin}
+            max={slider4InitMax}
+            onChange={onChangeUnique}
+            ref1={childRef4}
+          />
+        </div>
+      )}
       {isPageName === STORIES && (
         <div className="block mt-10">
           <lable className="text-white text-lg block">{placeItem?.title}</lable>
@@ -139,43 +176,6 @@ const Sidebar = ({
               />
             ))}
           </div>
-        </div>
-      )}
-      <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
-          {isPageName === STORIES && " Manuscripts with Story"}
-          {isPageName === MANUSCRIPTS && "Manuscript's Number of Stories"}
-        </lable>
-        <RangeSlider
-          min={slider2InitMin}
-          max={slider2InitMax}
-          onChange={onChangeManuscript}
-          ref1={childRef2}
-        />
-      </div>
-      <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
-          {isPageName === STORIES && " Paintings of Story"}
-          {isPageName === MANUSCRIPTS && "Manuscript's Number of Paintings"}
-        </lable>
-        <RangeSlider
-          min={slider3InitMin}
-          max={slider3InitMax}
-          onChange={onChangePainting}
-          ref1={childRef3}
-        />
-      </div>
-      {isPageName === MANUSCRIPTS && (
-        <div className="block mt-10">
-          <lable className="text-white text-lg block mb-3">
-            Manuscript's Number of Unique Stories
-          </lable>
-          <RangeSlider
-            min={slider4InitMin}
-            max={slider4InitMax}
-            onChange={onChangeUnique}
-            ref1={childRef4}
-          />
         </div>
       )}
       {isPageName === MANUSCRIPTS && (

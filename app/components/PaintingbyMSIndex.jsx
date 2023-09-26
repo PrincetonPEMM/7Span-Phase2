@@ -5,7 +5,7 @@ import {
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
-import { TablePagination } from "./Pagination";
+import CustomPagination, { TablePagination } from "./Pagination";
 import Masonry from "react-masonry-css";
 import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
@@ -58,7 +58,8 @@ const PaintingbyMSIndex = ({ list }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
-        <div className="relative w-full max-w-4xl mx-auto">
+        {/* <div className="grid lg:grid-cols-5 grid-cols-2 w-full"> */}
+        <div className="relative w-full md:col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
           <InputText
             magnify={true}
             value={search}
@@ -86,6 +87,21 @@ const PaintingbyMSIndex = ({ list }) => {
             />
           )}
         </div>
+        {/* <p className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+            Results: {`(${totalPage ? totalPage : 0} records)`}
+          </p>
+
+          <div className="order-3 sm:-order-none mt-4  sm:mt-0 lg:col-span-2">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+              }}
+            />
+          </div>
+        </div> */}
       </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}

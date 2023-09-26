@@ -22,7 +22,7 @@ export default function Card({
     }
 
     return toggle ? (
-      <p className="py-2 text-sm">
+      <p className="py-2 text-sm text-offWhite-300">
         {text}
         <button
           onClick={() => setToggle(false)}
@@ -57,7 +57,7 @@ export default function Card({
   return (
     <div className={`${category.toLowerCase() === keyword ? "even" : "odd"}`}>
       <div
-        className={`card-background rounded-lg px-5 md:px-8 py-10 relative inline-block `}
+        className={`card-background rounded-lg px-5 md:px-8 py-10 relative inline-block w-full`}
       >
         <span
           className={`absolute top-3 inline-block right-3 text-xs px-2 py-1 card-button rounded-md leading-tight tag`}
@@ -65,8 +65,8 @@ export default function Card({
           {category.toLowerCase() === keyword ? value1 : value2}
         </span>
         <h2 className="lg:text-2xl font-bold">{title}</h2>
-        {date && <p className="my-2 font-light">{date}</p>}
-        <h3 className="font-sm py-2">{author && "by " + author}</h3>
+        {date && <p className="my-1 font-light text-xs">{date}</p>}
+        <h3 className="font-sm font-semibold">{author && "by " + author}</h3>
         {collapseText(intro)}
         <Link
           href={redirect}
