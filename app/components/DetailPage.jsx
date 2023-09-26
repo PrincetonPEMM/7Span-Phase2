@@ -12,10 +12,10 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
             {title ?? ""}
           </h3>
           <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
-            {!image && (
+            {image && (
               <div className="w-60  aspect-squre mx-auto sm:h-80 sm:w-80">
                 <img
-                  src={`${image || defaultImageforPainting}`}
+                  src={`${image}`}
                   alt={title}
                   className="object-cover object-center w-60 sm:h-60 lg:h-80 xl:w-80"
                 />
