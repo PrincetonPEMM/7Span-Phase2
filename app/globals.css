@@ -904,7 +904,7 @@ input::-webkit-inner-spin-button {
   margin: 0 5px;
   font-weight: bold;
 }
-
+/* 
 @media only screen and (max-width: 1024px) {
   .pagination-tablet {
     grid-column: 1 / -1;
@@ -921,4 +921,8 @@ input::-webkit-inner-spin-button {
   .pagination-tablet {
     margin-right: -55px;
   }
+} */
+
+.truncate {
+  @apply break-words text-clip whitespace-normal lg:whitespace-nowrap;
 }

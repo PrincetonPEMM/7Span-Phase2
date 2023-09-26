@@ -8,7 +8,7 @@ import {
   breakpointColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import { TablePagination } from "./Pagination";
+import CustomPagination, { TablePagination } from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
@@ -93,7 +93,7 @@ const Paintings = ({
   return (
     <div className="container-fluid">
       <div className="mx-auto grid grid-cols-1 pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-end justify-start mb-3">
-        <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 lg:col-span-3">
+        <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 ">
           <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
             Search painting descriptions
           </span>
@@ -122,38 +122,35 @@ const Paintings = ({
         </div>
 
         <div className="sm:col-span-2 lg:col-span-1">
-          <div className="text-center block h-auto py-3 text-xs md:text-sm md:w-full">
+          <div className="text-center block h-auto py-3 text-xs md:w-full">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>
-        <div className="sm:col-span-2 lg:col-span-1">
+
+        <div className="col-span-2">
+          <CustomPagination
+            className="pagination-tablet"
+            currentPage={page}
+            totalPages={Math.ceil(totalPage / perPage)}
+            onPageChange={(num) => {
+              setPage(num);
+              setExpandedRows([]);
+            }}
+          />
+        </div>
+
+        <div className="sm:col-span-1">
           <Dropdown
             title="All Paintings"
             options={paintingBy}
             isMultiple={false}
           />
         </div>
-
-        <div className="text-center w-full md:text-left sm:col-span-2 lg:col-span-1">
-          <button
-            className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
-            onClick={() => {
-              setDateOfPaintins([]);
-              setPaintingsInColorOnly(paintingInColor[0]);
-              setStoryType(null);
-              setArchiveOfPainting(null);
-              setPage(1);
-              setSearch("");
-            }}
-          >
-            Clear All
-          </button>
-        </div>
       </div>
 
       <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
-        <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-12">
-          <div className="sm:col-span-2">
+        <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-8">
+          <div className="">
             <Dropdown
               title="Date of Paintings"
               selected={dateOfPaintins}
@@ -162,7 +159,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2 lg:col-span-3">
+          <div className="sm:col-span-2">
             <Dropdown
               title="Paintings in color only"
               selected={paintingsInColorOnly}
@@ -180,7 +177,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="sm:col-span-2 lg:col-span-5">
+          <div className="sm:col-span-2">
             <Dropdown
               title="Repository of Painting"
               selected={archiveOfPainting}
@@ -188,6 +185,21 @@ const Paintings = ({
               options={institution}
               isMultiple={false}
             />
+          </div>
+          <div className="text-center w-full md:text-left ">
+            <button
+              className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+              onClick={() => {
+                setDateOfPaintins([]);
+                setPaintingsInColorOnly(paintingInColor[0]);
+                setStoryType(null);
+                setArchiveOfPainting(null);
+                setPage(1);
+                setSearch("");
+              }}
+            >
+              Clear All
+            </button>
           </div>
         </div>
       </div>

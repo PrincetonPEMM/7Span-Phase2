@@ -275,7 +275,7 @@ const ManuScripts = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 sm:mt-0 grid grid-cols-3  sm:grid-cols-5 items-center justify-between pb-2">
+        <div className="mt-4 sm:mt-0 grid grid-cols-3 sm:grid-cols-5 items-center justify-between pb-2">
           <div className="relative w-full sm:max-w-sm md:max-w-4xl col-span-3 sm:col-span-2">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search manuscript names
