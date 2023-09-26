@@ -111,7 +111,7 @@ function CustomPagination({
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(1)}
       >
-        <MdiChevronDoubleRight className="text-base" />
+        <MdiChevronDoubleLeft className="text-base" />
       </span>
       <span
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
@@ -144,7 +144,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(totalPages)}
       >
-        <MdiChevronDoubleLeft className="text-base" />
+        <MdiChevronDoubleRight className="text-base" />
       </span>
     </div>
   );
