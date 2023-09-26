@@ -553,3 +553,19 @@ export const monthNames = [
   "November",
   "December",
 ];
+
+export const dateFormate = (inputDate) => {
+  if (!inputDate) {
+    return "";
+  }
+
+  const parsedDate = new Date(inputDate);
+
+  const day = parsedDate.getDate();
+  const month = monthNames[parsedDate.getMonth()];
+  const year = parsedDate.getFullYear();
+
+  const formattedDate = `${month} ${day}, ${year}`;
+
+  return formattedDate;
+};
