@@ -860,7 +860,7 @@ body {
   @apply bg-primary-500;
 }
 .pagination-button.disabled {
-  @apply pointer-events-none bg-coolGray-200 border-2 text-gray-400 border-gray-300;
+  @apply pointer-events-none bg-[#dbdbdb] border-2 text-[#9b9b9b] border-gray-300;
 }
 input[type="number"] {
   @apply p-1 border-2 border-primary-500 text-primary-500 w-8 h-8 font-medium rounded-md text-sm text-center bg-transparent;
