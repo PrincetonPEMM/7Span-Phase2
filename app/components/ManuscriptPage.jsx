@@ -91,7 +91,7 @@ export default function Manuscript({ Id, data, table }) {
         data.institution_country
       }. ${
         data.ms_location_note
-          ? `This manuscript's last known location in Ethiopia was in ${data.ms_location_note}.`
+          ? `This manuscript's last known location in Ethiopia was ${data.ms_location_note}.`
           : ""
       }`;
       if (data.link_to_digital_copy != null) {
@@ -178,7 +178,7 @@ export default function Manuscript({ Id, data, table }) {
       array.push({
         text: `${text} ${
           data.link_to_digital_copy
-            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
+            ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500 font-bold" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
             : ""
         }`,
       });
