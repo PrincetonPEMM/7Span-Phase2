@@ -54,7 +54,7 @@ const Footer = () => {
           <p className="pt-4 md:pt-0">
             PEMM is a comprehensive resource for the 1,000+ miracle stories
             written about the Virgin Mary in Ethiopia, Eritrea, and Egypt, and
-            preserved in Gǝˁǝz between 1300 and the present.
+            preserved in Geʿez between 1300 and the present.
           </p>
           <div className="pt-5 text-sm space-y-5 md:pr-10">
             <p>

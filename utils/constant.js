@@ -225,6 +225,20 @@ export const initialPlaceItem = {
     {
       id: "8",
       icon: false,
+      label: "Byzantium",
+      name: "byzantium",
+      isChecked: false,
+    },
+    {
+      id: "9",
+      icon: false,
+      label: "Early Christian World",
+      name: "early christian world",
+      isChecked: false,
+    },
+    {
+      id: "10",
+      icon: false,
       label: "Unknown",
       name: "unknown",
       isChecked: false,
@@ -236,7 +250,7 @@ export const initialLangItem = {
   checkItem: [
     {
       id: "1",
-      label: "Gǝˁǝz",
+      label: "Geʿez",
       name: "geez",
       isChecked: false,
     },
@@ -338,7 +352,7 @@ export const initialfilterItemManuScript = {
       name: "arabic",
       key: "arabicAndGaazManuscript",
       isCheckbox: false,
-      label: "Arabic & Gǝˁǝz manuscripts",
+      label: "Arabic & Geʿez manuscripts",
       isChecked: false,
     },
   },
