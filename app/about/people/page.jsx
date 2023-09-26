@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 export const dynamic = "force-dynamic";
 const img_path = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/`;
+
 export default async function page() {
   const about_people = await client.request(
     readItems("about_people", { fields: ["*.*.*"] })
@@ -36,20 +37,28 @@ export default async function page() {
       );
     } else {
       team_without_image.push(
-        <Link
-          href={`/about/people/${about_people_detail[i].slug}`}
-          className="text-center font-body w-72 p-1 mx-auto lg:w-2/3 2xl:w-1/4"
-        >
+        <div className="text-center font-body w-72 p-1 mx-auto lg:w-2/3 2xl:w-1/4">
           <h3 className="font-bold text-center w-full text-xl tracking-tight">{`${
             about_people_detail[i].first_name ?? ""
           } ${about_people_detail[i].last_name ?? ""}`}</h3>
-          <p className="text-center text-base">
-            {about_people_detail[i].designation ?? ""}
-          </p>
-        </Link>
+          {about_people_detail[i]?.website ? (
+            <Link
+              href={about_people_detail[i]?.website}
+              target="_blank"
+              className="text-center text-base text-primary-600 font-semibold"
+            >
+              {about_people_detail[i].designation ?? ""}
+            </Link>
+          ) : (
+            <div className="text-center text-base ">
+              {about_people_detail[i].designation ?? ""}
+            </div>
+          )}
+        </div>
       );
     }
   }
+  console.log(about_people_detail, "about_people_detail");
   return (
     <div className="container-fluid py-4 lg:py-7">
       {/* <div
