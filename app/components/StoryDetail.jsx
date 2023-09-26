@@ -187,10 +187,23 @@ export default function StoryDetail({ data, Id }) {
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
+<<<<<<< HEAD
                       <b>Incipit(s):</b>
                       {data?.canonical_incipit && data.canonical_incipit}
                       {data?.canonical_incipit_2 && data.canonical_incipit_2}
                       {data?.canonical_incipit_3 && data.canonical_incipit_3}
+=======
+                      <b>Incipit(s):</b>{" "}
+                      <p className="indent-1 mb-1">
+                        {data?.canonical_incipit && data.canonical_incipit}
+                      </p>
+                      <p className="indent-1 mb-1">
+                        {data?.canonical_incipit_2 && data.canonical_incipit_2}
+                      </p>
+                      <p className="indent-1">
+                        {data?.canonical_incipit_3 && data.canonical_incipit_3}
+                      </p>
+>>>>>>> 5b3d9f6cd56701bb4f479c2acb1ae86cf83146fb
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID

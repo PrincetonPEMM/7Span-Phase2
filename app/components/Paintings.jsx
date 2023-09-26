@@ -12,6 +12,9 @@ import CustomPagination, { TablePagination } from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
+import OutsideClickHandler from "react-outside-click-handler";
+import MdiFormatListBulletedSquare from "@/assets/icons/MdiFormatListBulletedSquare";
+import MdiClose from "@/assets/icons/MdiClose";
 
 const Paintings = ({
   dateOfPainting,
@@ -90,10 +93,41 @@ const Paintings = ({
       key: "paintings/by-manuscript",
     },
   ];
+
+  const [menuCollapse, setMenuCollapse] = useState(false);
+
+  useEffect(() => {
+    if (menuCollapse) {
+      document.body.classList.add("sidebar_open");
+      document.body.classList.remove("sidebar_close");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("filter_close");
+    } else {
+      document.body.classList.add("sidebar_close");
+      document.body.classList.remove("sidebar_open");
+      document.body.classList.remove("filter_open");
+      document.body.classList.remove("filter_close");
+    }
+  }, [menuCollapse]);
+
+  const menuIconClick = () => {
+    setMenuCollapse(!menuCollapse);
+  };
+
   return (
     <div className="container-fluid">
-      <div className="mx-auto grid grid-cols-1 pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-end justify-start mb-3">
-        <div className="relative w-full sm:max-w-sm md:max-w-4xl sm:col-span-2 ">
+      <button
+        onClick={menuIconClick}
+        className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
+      >
+        {menuCollapse ? (
+          <MdiFormatListBulletedSquare className="text-primary-500" />
+        ) : (
+          <MdiFormatListBulletedSquare className="text-primary-500" />
+        )}
+      </button>
+      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-end justify-start mb-3">
+        <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
           <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
             Search painting descriptions
           </span>
@@ -121,13 +155,13 @@ const Paintings = ({
           )}
         </div>
 
-        <div className="sm:col-span-2 lg:col-span-1">
+        <div className="lg:col-span-1">
           <div className="text-center block h-auto py-3 text-xs md:w-full">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-2 mb-4 sm:mb-0 lg:col-span-2">
           <CustomPagination
             className="pagination-tablet"
             currentPage={page}
@@ -139,7 +173,7 @@ const Paintings = ({
           />
         </div>
 
-        <div className="sm:col-span-1">
+        <div className="lg:col-span-1">
           <Dropdown
             title="All Paintings"
             options={paintingBy}
@@ -148,9 +182,74 @@ const Paintings = ({
         </div>
       </div>
 
+      {/* sidebar filter start  */}
+
+      <OutsideClickHandler
+        onOutsideClick={() => {
+          setMenuCollapse(false);
+        }}
+      >
+        <div
+          className={`z-50 justify-between bg-primary-100 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
+            menuCollapse
+              ? "open -translate-x-5 sm:-translate-x-14 transform"
+              : "-translate-x-96 close transform"
+          } `}
+        >
+          <button
+            className="text-right block "
+            onClick={() => {
+              setMenuCollapse(!menuCollapse);
+            }}
+          >
+            <MdiClose />
+          </button>
+          <div className="text-lg p-1 font-semibold space-y-4 mt-4">
+            <div>
+              <Dropdown
+                title="Date of Paintings"
+                selected={dateOfPaintins}
+                setSelected={setDateOfPaintins}
+                options={dateOfPainting}
+                isMultiple={true}
+              />
+            </div>
+            <div>
+              <Dropdown
+                title="Paintings in color only"
+                selected={paintingsInColorOnly}
+                setSelected={setPaintingsInColorOnly}
+                options={paintingInColor}
+                isMultiple={false}
+              />
+            </div>
+            <div>
+              <Dropdown
+                title="Story Type"
+                selected={storyType}
+                setSelected={setStoryType}
+                options={typeOfStory}
+                isMultiple={false}
+              />
+            </div>
+            <div>
+              <Dropdown
+                title="Repository of Painting"
+                selected={archiveOfPainting}
+                setSelected={setArchiveOfPainting}
+                options={institution}
+                isMultiple={false}
+              />
+            </div>
+          </div>
+        </div>
+      </OutsideClickHandler>
+
+      {/* sidebar filter ENd  */}
+
       <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
-        <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-8">
-          <div className="">
+        <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
+          <div className="lg:col-span-2 hidden lg:block">
             <Dropdown
               title="Date of Paintings"
               selected={dateOfPaintins}
@@ -159,7 +258,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2  hidden lg:block">
             <Dropdown
               title="Paintings in color only"
               selected={paintingsInColorOnly}
@@ -168,7 +267,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2  hidden lg:block">
             <Dropdown
               title="Story Type"
               selected={storyType}
@@ -177,7 +276,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2 hidden lg:block ">
             <Dropdown
               title="Repository of Painting"
               selected={archiveOfPainting}
@@ -186,7 +285,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="text-center w-full md:text-left ">
+          <div className="text-center w-full md:text-left  hidden lg:block">
             <button
               className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
               onClick={() => {

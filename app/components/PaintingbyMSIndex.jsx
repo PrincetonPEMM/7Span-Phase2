@@ -5,7 +5,7 @@ import {
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
-import { TablePagination } from "./Pagination";
+import CustomPagination, { TablePagination } from "./Pagination";
 import Masonry from "react-masonry-css";
 import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
@@ -58,33 +58,48 @@ const PaintingbyMSIndex = ({ list }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
-        <div className="relative w-full max-w-4xl mx-auto">
-          <InputText
-            magnify={true}
-            value={search}
-            iconBefore
-            iconAfter
-            placeholderText="Search"
-            onChange={(e) => {
-              const query = e.target.value;
-              setSearch(query);
-              if (query.length > 3) {
-                debouncedFetchData(query);
-              }
-              if (query.length === 0) {
-                debouncedFetchData(query);
-              }
-            }}
-          />
-          {search && (
-            <MdiWindowClose
-              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
-              onClick={() => {
-                setSearch("");
-                debouncedFetchData("");
+        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center">
+          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+            <InputText
+              magnify={true}
+              value={search}
+              iconBefore
+              iconAfter
+              placeholderText="Search"
+              onChange={(e) => {
+                const query = e.target.value;
+                setSearch(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
-          )}
+            {search && (
+              <MdiWindowClose
+                className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+                onClick={() => {
+                  setSearch("");
+                  debouncedFetchData("");
+                }}
+              />
+            )}
+          </div>
+          <p className=" text-offBlack-400  font-medium pl-2 text-xs text-center sm:text-left lg:text-center xl:text-sm lg:col-span-1">
+            Results: ({totalPage ? totalPage : 0} records)
+          </p>
+          <div className="order-3 sm:mt-0 sm:-order-none mt-4 lg:col-span-2 ml-auto mr-0">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+              }}
+            />
+          </div>
         </div>
       </div>
       <Masonry
