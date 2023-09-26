@@ -839,86 +839,41 @@ body {
 }
 
 .pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex items-center justify-center space-x-1;
 }
 
 .pagination-button {
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgb(60 111 87 / var(--tw-border-opacity));
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  font-weight: 700;
+  @apply py-1 px-1 border-2 w-8 text-base text-center border-primary-500 z-30 rounded-md text-primary-500 font-bold h-8 flex items-center justify-center xl:px-2;
   --tw-text-opacity: 1;
-  color: rgb(60 111 87 / var(--tw-text-opacity));
   text-decoration: none;
-  border-radius: 5px;
   transition:
     background-color 0.3s,
     color 0.3s;
-  margin-right: 5px;
-  z-index: 30;
+}
+.pagination-button svg {
+  @apply h-5 lg:w-5 flex-none;
 }
 .pagination-button:hover {
-  background-color: #3c6f57;
-  color: #e7e3dc;
+  @apply bg-primary-500 text-offWhite-500;
 }
-
 .pagination-button:hover {
-  background-color: #3c6f57;
+  @apply bg-primary-500;
 }
-
 .pagination-button.disabled {
-  pointer-events: none;
-  color: #9b9b9b;
-  border: 1px solid #9b9b9b;
-  background-color: #dbdbdb;
+  @apply pointer-events-none bg-coolGray-200 border-2 text-gray-400 border-gray-300;
 }
-
 input[type="number"] {
-  padding: 3px;
-  border: 2px solid #3c6f57;
-  color: #3c6f57;
-  font-weight: 700;
-  border-radius: 4px;
-  width: 45px;
-  text-align: center;
-  background-color: #e7e3dc;
+  @apply p-1 border-2 border-primary-500 text-primary-500 w-8 h-8 font-medium rounded-md text-sm text-center bg-transparent;
 }
 input[type="number"]:focus {
   border: 2px solid #3c6f57 !important;
   --tw-ring-shadow: none;
 }
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 .page-total {
-  margin: 0 5px;
-  font-weight: bold;
-}
-
-@media only screen and (max-width: 1024px) {
-  .pagination-tablet {
-    grid-column: 1 / -1;
-    order: 1;
-    margin-top: 10px;
-  }
-}
-@media only screen and (min-width: 1024px) and (max-width: 1280px) {
-  .pagination-tablet {
-    margin-right: -30px;
-  }
-}
-@media only screen and (min-width: 1280px) and (max-width: 1440px) {
-  .pagination-tablet {
-    margin-right: -55px;
-  }
+  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
 }

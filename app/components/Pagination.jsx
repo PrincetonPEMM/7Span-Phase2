@@ -1,6 +1,10 @@
 import MdiArrowUp from "@/assets/icons/MdiArrowUp";
+import MdiChevronRight from "@/assets/icons/MdiChevronRight";
+import MdiChevronLeft from "@/assets/icons/MdiChevronLeft";
 import { useState } from "react";
 import Pagination from "react-js-pagination";
+import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
+import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
 
 export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
@@ -107,13 +111,13 @@ function CustomPagination({
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(1)}
       >
-        «
+        <MdiChevronDoubleRight className="text-base" />
       </span>
       <span
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(currentPage - 1)}
       >
-        ⟨
+        <MdiChevronLeft className="text-base" />
       </span>
       <input
         type="number"
@@ -132,7 +136,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(currentPage + 1)}
       >
-        ⟩
+        <MdiChevronRight className="text-base" />
       </span>
       <span
         className={`pagination-button ${
@@ -140,7 +144,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(totalPages)}
       >
-        »
+        <MdiChevronDoubleLeft className="text-base" />
       </span>
     </div>
   );

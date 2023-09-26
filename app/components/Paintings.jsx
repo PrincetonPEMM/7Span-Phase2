@@ -163,7 +163,6 @@ const Paintings = ({
         {" "}
         Results: ({totalPage ? totalPage : 0} records)
       </div>
-
       <div className="pb-10 mt-10">
         {data.length ? (
           <Masonry
