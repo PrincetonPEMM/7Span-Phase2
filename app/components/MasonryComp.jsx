@@ -2,6 +2,7 @@
 import {
   breakpointColumnsForMasonry,
   breakpointTwoColumnsForMasonry,
+  dateFormate,
   monthNames,
 } from "@/utils/constant";
 import React from "react";
@@ -9,22 +10,6 @@ import Masonry from "react-masonry-css";
 import Card from "./Card";
 
 const MasonryComp = ({ cards, keyword, redirect, value1, value2 }) => {
-  const dateFormate = (inputDate) => {
-    if (!inputDate) {
-      return "";
-    }
-
-    const parsedDate = new Date(inputDate);
-
-    const day = parsedDate.getDate();
-    const month = monthNames[parsedDate.getMonth()];
-    const year = parsedDate.getFullYear();
-
-    const formattedDate = `${month} ${day}, ${year}`;
-
-    return formattedDate;
-  };
-
   return cards?.length ? (
     <Masonry
       breakpointCols={
