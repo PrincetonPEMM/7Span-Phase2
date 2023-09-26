@@ -289,7 +289,9 @@ const Stories = () => {
           />
           <div className="w-full mt-2 sm:mt-0 flex items-center justify-end gap-3">
             <button
-              className="bg-primary-500 text-white mr-5 max-w-fit w-auto px-2 py-3 md:py-3 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
+                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
