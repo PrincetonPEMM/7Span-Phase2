@@ -158,10 +158,12 @@ const Stories = () => {
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
     setPage(1);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 5000);
   }, 300);
 
   const resetFilter = () => {

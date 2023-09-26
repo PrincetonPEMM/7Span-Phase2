@@ -101,6 +101,21 @@ const PaintingbyMSIndex = ({ list }) => {
             />
           </div>
         </div>
+        {/* <p className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+            Results: {`(${totalPage ? totalPage : 0} records)`}
+          </p>
+
+          <div className="order-3 sm:-order-none mt-4  sm:mt-0 lg:col-span-2">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+              }}
+            />
+          </div>
+        </div> */}
       </div>
       <Masonry
         breakpointCols={breakpointColumnsForMasonry}

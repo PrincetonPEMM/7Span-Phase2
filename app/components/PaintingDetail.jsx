@@ -52,7 +52,7 @@ const PaintingDetail = ({ data }) => {
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these episodes. This painting of PEMM Story ID ${data.canonical_story_id} has ${data?.number_of_episodes} episodes. The description of the episodes in this painting, their locations, and their keywords is`,
+          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these episodes. This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has ${data?.number_of_episodes} episodes. The description of the episodes in this painting, their locations, and their keywords is`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
