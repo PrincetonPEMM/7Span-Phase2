@@ -58,34 +58,47 @@ const PaintingbyMSIndex = ({ list }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
-        {/* <div className="grid lg:grid-cols-5 grid-cols-2 w-full"> */}
-        <div className="relative w-full md:col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
-          <InputText
-            magnify={true}
-            value={search}
-            iconBefore
-            iconAfter
-            placeholderText="Search"
-            onChange={(e) => {
-              const query = e.target.value;
-              setSearch(query);
-              if (query.length > 3) {
-                debouncedFetchData(query);
-              }
-              if (query.length === 0) {
-                debouncedFetchData(query);
-              }
-            }}
-          />
-          {search && (
-            <MdiWindowClose
-              className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
-              onClick={() => {
-                setSearch("");
-                debouncedFetchData("");
+        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center">
+          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+            <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
+              Search painting descriptions
+            </span>
+            <InputText
+              value={search}
+              onChange={(e) => {
+                const query = e.target.value;
+                setSearch(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
-          )}
+            {search && (
+              <MdiWindowClose
+                className="h-3 w-3 md:h-4 md:w-4 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700"
+                onClick={() => {
+                  setSearch("");
+                  debouncedFetchData("");
+                }}
+              />
+            )}
+          </div>
+          <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+              }}
+            />
+          </div>
+          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-left sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium  text-xs  lg:col-span-1">
+            Results: ({totalPage ? totalPage : 0} records)
+          </p>
         </div>
         {/* <p className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
             Results: {`(${totalPage ? totalPage : 0} records)`}
@@ -128,18 +141,26 @@ const PaintingbyMSIndex = ({ list }) => {
                       item.manuscript_date_range_end
                   : "-"
               }`}
-              desc={`
-            ${
-              item.total_manuscript_paintings > 1
-                ? `${item.total_manuscript_paintings} paintings `
-                : `${item.total_manuscript_paintings} painting `
-            }
-            in ${
-              item.scans_of_manuscript_in_color === "Yes"
-                ? "color"
-                : "black & white"
-            }`}
-              btnText={"View all images for this manuscript"}
+              //   desc={`
+              // ${
+              //   item.total_manuscript_paintings > 1
+              //     ? `${item.total_manuscript_paintings} paintings `
+              //     : `${item.total_manuscript_paintings} painting `
+              // }
+              // in ${
+              //   item.scans_of_manuscript_in_color === "Yes"
+              //     ? "color"
+              //     : "black & white"
+              // }`}
+              btnText={`View all ${
+                item.total_manuscript_paintings > 1
+                  ? `${item.total_manuscript_paintings} paintings `
+                  : `${item.total_manuscript_paintings} painting `
+              } in ${
+                item.scans_of_manuscript_in_color === "Yes"
+                  ? "color"
+                  : "black & white"
+              } for this manuscript`}
               btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
             />
           </div>
@@ -150,7 +171,7 @@ const PaintingbyMSIndex = ({ list }) => {
           {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
         </div>
       )}
-      <TablePagination
+      {/* <TablePagination
         meta={{
           total: totalPage,
           per_page: perPage,
@@ -166,7 +187,7 @@ const PaintingbyMSIndex = ({ list }) => {
             behavior: "smooth",
           });
         }}
-      />
+      /> */}
     </div>
   );
 };

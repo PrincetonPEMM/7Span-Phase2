@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import MdiChevronDown from "@assets/icons/MdiChevronDown";
+import { useRouter } from "next/navigation";
+
 const Dropdown = ({
   selected,
   setSelected,
@@ -9,10 +11,19 @@ const Dropdown = ({
   title,
   isMultiple = false,
 }) => {
+  const route = useRouter();
   return (
-    <Listbox value={selected} onChange={setSelected} multiple={isMultiple}>
+    <Listbox
+      value={selected}
+      onChange={(e) => {
+        if (title === "All Paintings") {
+          route.push(e?.key);
+        } else setSelected(e);
+      }}
+      multiple={isMultiple}
+    >
       <div className="relative">
-        <Listbox.Button className="relative w-full rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300  sm:text-sm md:text-base">
+        <Listbox.Button className="option-box relative w-full rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
           <span className="block truncate">
             {title === "Date of Paintings"
               ? title
@@ -33,7 +44,7 @@ const Dropdown = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md bg-primary-500 text-white py-1 text-xs md:text-base xl:min-w-full shadow-lg xl:right-0 xl:left-auto ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Listbox.Options className="option-box-option absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md bg-primary-500 text-white py-1 text-xs xl:min-w-full shadow-lg xl:right-0 xl:left-auto ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {options.map((item, personIdx) => (
               <Listbox.Option
                 key={personIdx}

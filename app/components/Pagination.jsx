@@ -105,7 +105,7 @@ function CustomPagination({
     }
   };
 
-  return (
+  return totalPages > 1 ? (
     <div className={`pagination-container ${className}`}>
       <span
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
@@ -147,7 +147,7 @@ function CustomPagination({
         <MdiChevronDoubleRight className="text-base" />
       </span>
     </div>
-  );
+  ) : null;
 }
 
 export default CustomPagination;

@@ -12,11 +12,7 @@ import Card from "./Card";
 const MasonryComp = ({ cards, keyword, redirect, value1, value2 }) => {
   return cards?.length ? (
     <Masonry
-      breakpointCols={
-        cards?.length > 2
-          ? breakpointColumnsForMasonry
-          : breakpointTwoColumnsForMasonry
-      }
+      breakpointCols={masonryTilesForResearchs_News_Events(cards?.length)}
       className="my-masonry-grid "
       columnClassName="my-masonry-grid_column mesonry "
     >

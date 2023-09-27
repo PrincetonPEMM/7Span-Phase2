@@ -30,7 +30,7 @@ const PaintingDetail = ({ data }) => {
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
         text = `This painting (also called an illumination) appears in a manuscript dated to ${
           data.manuscript_date_range_start === data.manuscript_date_range_end
-            ? manuscript_date_range_end
+            ? data.manuscript_date_range_end
             : data.manuscript_date_range_start +
               "-" +
               data.manuscript_date_range_end
