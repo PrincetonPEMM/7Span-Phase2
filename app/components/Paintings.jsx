@@ -86,11 +86,11 @@ const Paintings = ({
   const debouncedFetchData = debounce(fetchData, 300);
   const paintingBy = [
     {
-      value: "Paintings for Particular Stories",
+      value: "Paintings by Story",
       key: "/paintings/by-story",
     },
     {
-      value: "Paintings for Particular Manuscripts",
+      value: "Paintings by Manuscript",
       key: "paintings/by-manuscript",
     },
   ];

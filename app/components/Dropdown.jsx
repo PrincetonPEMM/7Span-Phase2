@@ -49,7 +49,9 @@ const Dropdown = ({
               <Listbox.Option
                 key={personIdx}
                 className={({ active }) =>
-                  `relative cursor-default select-none transition-all py-2 pl-6 lg:pl-8 pr-2 lg:pr-4 ${
+                  `relative cursor-default select-none transition-all py-2 pl-6 ${
+                    title !== "All Paintings" && "lg:pl-8"
+                  }  pr-2 lg:pr-4 ${
                     active ? "bg-offWhite-400 text-black" : "text-offwhite-500"
                   }`
                 }

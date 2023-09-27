@@ -267,14 +267,25 @@ export default function StoryDetail({ data, Id }) {
                     TO CITE THIS TRANSLATION
                   </h3>
                   <p className="text-base leading-loose mb-3">
-                    {data?.translation_author}. &quot;ID
-                    {data?.canonical_story_id}: {data?.canonical_story_title}
-                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.
-                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data.translation_as_of_date}
+                    {data?.translation_author}. {data.translation_as_of_date}.{" "}
+                    &quot;ID&nbsp;
+                    {data?.canonical_story_id}: {data?.original_macomber_title}
+                    &quot; <i>{data?.published_translation_book_title}</i>,
+                    edited by {data?.translation_author}
+                    {data.published_translation_book_page_span
+                      ? `, page ${data.published_translation_book_page_span}`
+                      : data.published_translation_book_item
+                      ? `, page ${data.published_translation_book_item}`
+                      : ""}
+                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;{" "}
+                    <Link
+                      href={`/stories/${data.canonical_story_id}`}
+                      target="_blank"
+                      className="text-primary-500 font-bold"
+                    >
+                      {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
+                    </Link>
+                    .
                   </p>
                 </li>
               </ol>
@@ -584,7 +595,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500"
+                  className="text-primary-500 font-bold"
                 >
                   Paintings by Story
                 </Link>
@@ -600,7 +611,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500"
+                  className="text-primary-500 font-bold"
                 >
                   Paintings by Story
                 </Link>
@@ -662,8 +673,8 @@ function SeventhLine() {
   return (
     <p className="text-sm leading-relaxed py-2">
       1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
-      has catalogued. For more information, see
-      <Link href="/about/using-the-site" className="text-primary-600">
+      has catalogued. For more information, see&nbsp;
+      <Link href="/about/using-the-site" className="text-primary-600 font-bold">
         Using the Site
       </Link>
       .
