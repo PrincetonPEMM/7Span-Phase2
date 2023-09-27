@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import MdiChevronDown from "@assets/icons/MdiChevronDown";
+import { useRouter } from "next/navigation";
+
 const Dropdown = ({
   selected,
   setSelected,
@@ -9,8 +11,17 @@ const Dropdown = ({
   title,
   isMultiple = false,
 }) => {
+  const route = useRouter();
   return (
-    <Listbox value={selected} onChange={setSelected} multiple={isMultiple}>
+    <Listbox
+      value={selected}
+      onChange={(e) => {
+        if (title === "All Paintings") {
+          route.push(e?.key);
+        } else setSelected(e);
+      }}
+      multiple={isMultiple}
+    >
       <div className="relative">
         <Listbox.Button className="option-box relative w-full rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
           <span className="block truncate">

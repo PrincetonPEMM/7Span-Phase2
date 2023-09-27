@@ -1,5 +1,5 @@
 export const pagePerLimit = 20;
-export const pagePerLimitForPainting = 21;
+export const pagePerLimitForPainting = pagePerLimit; //21;
 export const macomber_id_number = 642;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 641;
 export const defaultImageforPainting = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/2afd0f28-0147-4624-91ec-ad3afe99ea45`;
@@ -525,15 +525,16 @@ export const initialOriginRegionManuScript = {
 };
 
 export const breakpointColumnsForMasonry = {
-  default: 3,
-  1100: 2,
-  700: 1,
+  default: 4,
+  1024: 3,
+  768: 2,
+  425: 1,
 };
 
-export const breakpointTwoColumnsForMasonry = {
-  default: 2,
-  1100: 2,
-  700: 1,
+export const masonryTilesForResearchs_News_Events = (num) => {
+  return num > 2
+    ? { default: 3, 1100: 2, 700: 1 }
+    : { default: 2, 1100: 2, 700: 1 };
 };
 
 export const subBannerDefaultImageUrl =

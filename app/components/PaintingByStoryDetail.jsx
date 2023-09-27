@@ -6,7 +6,7 @@ import {
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import Masonry from "react-masonry-css";
-import { TablePagination } from "./Pagination";
+import CustomPagination, { TablePagination } from "./Pagination";
 import BackBtn from "./BackBtn";
 import Link from "next/link";
 
@@ -31,6 +31,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
     )
       .then((res) => res.json())
       .then((data) => {
+        
         setData(data.data);
         setTotalPage(data.total);
         setIsLoadint(false);
@@ -55,6 +56,21 @@ const PaintingByStoryDetail = ({ list, Id }) => {
       <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
         {header?.canonical_story_title}
       </h2>
+      <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 w-full items-center">
+        <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+          <CustomPagination
+            className="pagination-tablet"
+            currentPage={page}
+            totalPages={Math.ceil(totalPage / perPage)}
+            onPageChange={(num) => {
+              setPage(num);
+            }}
+          />
+        </div>
+        <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-left sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium  text-xs  lg:col-span-1">
+          Results: ({totalPage ? totalPage : 0} records)
+        </p>
+      </div>
       <div className="pt-5 lg:pt-10">
         <Masonry
           breakpointCols={breakpointColumnsForMasonry}
@@ -103,7 +119,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
           {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
         </div>
       )}
-      <TablePagination
+      {/* <TablePagination
         meta={{
           total: totalPage,
           per_page: perPage,
@@ -119,7 +135,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
             behavior: "smooth",
           });
         }}
-      />
+      /> */}
     </div>
   );
 };

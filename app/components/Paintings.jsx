@@ -126,7 +126,7 @@ const Paintings = ({
           <MdiFormatListBulletedSquare className="text-primary-500" />
         )}
       </button>
-      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-end justify-start mb-3">
+      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-start mb-3">
         <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
           <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
             Search painting descriptions
@@ -154,14 +154,7 @@ const Paintings = ({
             />
           )}
         </div>
-
-        <div className="lg:col-span-1">
-          <div className="text-center block h-auto py-3 text-xs md:w-full">
-            Results: ({totalPage ? totalPage : 0} records)
-          </div>
-        </div>
-
-        <div className="col-span-2 mb-4 sm:mb-0 lg:col-span-2">
+        <div className="col-span-2 lg:col-span-2 grid justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 lg:pt-0">
           <CustomPagination
             className="pagination-tablet"
             currentPage={page}
@@ -172,7 +165,11 @@ const Paintings = ({
             }}
           />
         </div>
-
+        <div className="lg:col-span-1">
+          <div className="text-center block h-auto py-3  text-xs md:w-full">
+            Results: ({totalPage ? totalPage : 0} records)
+          </div>
+        </div>
         <div className="lg:col-span-1">
           <Dropdown
             title="All Paintings"
@@ -190,7 +187,7 @@ const Paintings = ({
         }}
       >
         <div
-          className={`z-50 justify-between bg-primary-100 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
+          className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
               ? "open -translate-x-5 sm:-translate-x-14 transform"
               : "-translate-x-96 close transform"
@@ -209,7 +206,12 @@ const Paintings = ({
               <Dropdown
                 title="Date of Paintings"
                 selected={dateOfPaintins}
-                setSelected={setDateOfPaintins}
+                setSelected={(e) => {
+                  setDateOfPaintins(e);
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
+                }}
                 options={dateOfPainting}
                 isMultiple={true}
               />
@@ -218,7 +220,12 @@ const Paintings = ({
               <Dropdown
                 title="Paintings in color only"
                 selected={paintingsInColorOnly}
-                setSelected={setPaintingsInColorOnly}
+                setSelected={(e) => {
+                  setPaintingsInColorOnly(e);
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
+                }}
                 options={paintingInColor}
                 isMultiple={false}
               />
@@ -227,7 +234,12 @@ const Paintings = ({
               <Dropdown
                 title="Story Type"
                 selected={storyType}
-                setSelected={setStoryType}
+                setSelected={(e) => {
+                  setStoryType(e);
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
+                }}
                 options={typeOfStory}
                 isMultiple={false}
               />
@@ -236,10 +248,30 @@ const Paintings = ({
               <Dropdown
                 title="Repository of Painting"
                 selected={archiveOfPainting}
-                setSelected={setArchiveOfPainting}
+                setSelected={(e) => {
+                  setArchiveOfPainting(e);
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
+                }}
                 options={institution}
                 isMultiple={false}
               />
+            </div>
+            <div className="text-center w-full md:text-left">
+              <button
+                className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+                onClick={() => {
+                  setDateOfPaintins([]);
+                  setPaintingsInColorOnly(paintingInColor[0]);
+                  setStoryType(null);
+                  setArchiveOfPainting(null);
+                  setPage(1);
+                  setSearch("");
+                }}
+              >
+                Clear All
+              </button>
             </div>
           </div>
         </div>
@@ -321,7 +353,7 @@ const Paintings = ({
             </div>
           )
         )}
-        <TablePagination
+        {/* <TablePagination
           meta={{
             total: totalPage,
             per_page: perPage,
@@ -337,7 +369,7 @@ const Paintings = ({
               behavior: "smooth",
             });
           }}
-        />
+        /> */}
       </div>
     </div>
   );

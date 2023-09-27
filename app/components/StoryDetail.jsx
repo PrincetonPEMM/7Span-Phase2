@@ -114,8 +114,6 @@ export default function StoryDetail({ data, Id }) {
     },
   ];
 
-  console.log(data, "data-data");
-
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -187,12 +185,6 @@ export default function StoryDetail({ data, Id }) {
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-<<<<<<< HEAD
-                      <b>Incipit(s):</b>
-                      {data?.canonical_incipit && data.canonical_incipit}
-                      {data?.canonical_incipit_2 && data.canonical_incipit_2}
-                      {data?.canonical_incipit_3 && data.canonical_incipit_3}
-=======
                       <b>Incipit(s):</b>{" "}
                       <p className="indent-1 mb-1">
                         {data?.canonical_incipit && data.canonical_incipit}
@@ -203,7 +195,6 @@ export default function StoryDetail({ data, Id }) {
                       <p className="indent-1">
                         {data?.canonical_incipit_3 && data.canonical_incipit_3}
                       </p>
->>>>>>> 5b3d9f6cd56701bb4f479c2acb1ae86cf83146fb
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID
@@ -293,7 +284,7 @@ export default function StoryDetail({ data, Id }) {
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3 ">
                     {data.languageAvailableIn.length > 0 &&
-                      "OTHER TRANSLATIONS & EDITIONS OF THIS STORY"}
+                      "TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
                   <ul className="space-y-2">
                     <p
