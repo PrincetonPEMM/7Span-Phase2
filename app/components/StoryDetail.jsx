@@ -277,7 +277,9 @@ export default function StoryDetail({ data, Id }) {
                       : data.published_translation_book_item
                       ? `, page ${data.published_translation_book_item}`
                       : ""}
-                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;{" "}
+                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;From&nbsp;
+                    {data.manuscript_name},{" "}
+                    {data.translation_source_manuscript_folio}.&nbsp;
                     <Link
                       href={`/stories/${data.canonical_story_id}`}
                       target="_blank"
