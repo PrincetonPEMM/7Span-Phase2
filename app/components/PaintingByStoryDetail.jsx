@@ -31,7 +31,6 @@ const PaintingByStoryDetail = ({ list, Id }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        
         setData(data.data);
         setTotalPage(data.total);
         setIsLoadint(false);
@@ -57,7 +56,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
         {header?.canonical_story_title}
       </h2>
       <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 w-full items-center">
-        <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+        <div className=" lg:text-center lg:col-span-2 my-3 grid justify-items-center sm:justify-items-start lg:justify-items-center">
           <CustomPagination
             className="pagination-tablet"
             currentPage={page}
