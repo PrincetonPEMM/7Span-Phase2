@@ -15,6 +15,7 @@ import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiFormatListBulletedSquare from "@/assets/icons/MdiFormatListBulletedSquare";
 import MdiClose from "@/assets/icons/MdiClose";
+import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 
 const Paintings = ({
   dateOfPainting,
@@ -120,11 +121,7 @@ const Paintings = ({
         onClick={menuIconClick}
         className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
       >
-        {menuCollapse ? (
-          <MdiFormatListBulletedSquare className="text-primary-500" />
-        ) : (
-          <MdiFormatListBulletedSquare className="text-primary-500" />
-        )}
+        <MdiMenuOpen className="text-primary-500" />
       </button>
       <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-start mb-3">
         <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
@@ -154,7 +151,7 @@ const Paintings = ({
             />
           )}
         </div>
-        <div className="col-span-2 lg:col-span-2 grid justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 lg:pt-0">
+        <div className="col-span-2 lg:col-span-2 grid justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
           <CustomPagination
             className="pagination-tablet"
             currentPage={page}
@@ -166,7 +163,7 @@ const Paintings = ({
           />
         </div>
         <div className="lg:col-span-1">
-          <div className="text-center block h-auto py-3  text-xs md:w-full">
+          <div className="text-center block h-auto py-3  font-medium xl:text-sm text-xs md:w-full">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>
@@ -268,6 +265,9 @@ const Paintings = ({
                   setArchiveOfPainting(null);
                   setPage(1);
                   setSearch("");
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
                 }}
               >
                 Clear All
