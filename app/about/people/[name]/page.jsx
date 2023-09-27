@@ -1,10 +1,8 @@
-import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
 import MdiTwitterBox from "@/assets/icons/MdiTwitterBox";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/navigation";
 import BackBtn from "@/app/components/BackBtn";
 export const dynamic = "force-dynamic";
 

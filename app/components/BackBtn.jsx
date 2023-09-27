@@ -1,10 +1,8 @@
 "use client";
 import MdiKeyboardBackspace from "@/assets/icons/MdiKeyboardBackspace";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const BackBtn = () => {
-  //   const route = useRouter();
   return (
     <div
       onClick={() => window?.history?.back()}

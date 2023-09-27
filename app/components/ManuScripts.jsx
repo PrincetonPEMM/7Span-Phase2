@@ -208,7 +208,6 @@ const ManuScripts = () => {
           }
         }}
       >
-        {" "}
         <div
           className={`manuscript-page font-menu bg-primary-500 fixed inset-y-0 p-3 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
             isOpen
@@ -298,7 +297,7 @@ const ManuScripts = () => {
             />
           </div>
           <div className="w-full flex items-center justify-between sm:hidden">
-            <p className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center">
+            <p className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center">
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </p>
             <button

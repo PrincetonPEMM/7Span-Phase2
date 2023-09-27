@@ -30,7 +30,7 @@ const Page = async () => {
           value1={"Event"}
           value2={"Workshop"}
           redirect={`event-and-workshop/`}
-        />{" "}
+        />
       </div>
     </div>
   );
