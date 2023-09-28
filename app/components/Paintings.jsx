@@ -31,9 +31,9 @@ const Paintings = ({
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dateOfPaintins, setDateOfPaintins] = useState([]);
-  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
-    paintingInColor[0]
-  );
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([
+    paintingInColor[0],
+  ]);
   const [storyType, setStoryType] = useState();
   const [archiveOfPainting, setArchiveOfPainting] = useState();
 
@@ -51,9 +51,10 @@ const Paintings = ({
       const params = `page=${page}&perPage=${perPage}&${makeParamsArray(
         "dateOfPainting",
         dateOfPaintins
-      )}${makeParamsArray("paintingInColor", [
-        paintingsInColorOnly,
-      ])}${makeParamsArray(
+      )}${makeParamsArray(
+        "paintingInColor",
+        paintingsInColorOnly
+      )}${makeParamsArray(
         "typeOfStory",
         Boolean(storyType) ? [storyType] : []
       )}${makeParamsArray(
@@ -218,13 +219,57 @@ const Paintings = ({
                 title="Paintings in color only"
                 selected={paintingsInColorOnly}
                 setSelected={(e) => {
-                  setPaintingsInColorOnly(e);
+                  if (e?.length === 0) {
+                    setPaintingsInColorOnly([]);
+                  }
+                  if (e?.length === 1) {
+                    setPaintingsInColorOnly(e);
+                  } else {
+                    // let DQY = e.filter(
+                    //   (d) => d.key === "default" && d.value === "Digital Quality"
+                    // );
+                    if (
+                      e[0].key === "default" &&
+                      e[0].value === "Digital Quality"
+                    ) {
+                      let selected = e.filter(
+                        (d) =>
+                          d.key !== "default" && d.value !== "Digital Quality"
+                      );
+                      setPaintingsInColorOnly(selected);
+                    }
+                    if (
+                      e[e.length - 1].key === "default" &&
+                      e[e.length - 1].value === "Digital Quality"
+                    ) {
+                      let selected = e.filter(
+                        (d) =>
+                          d.key === "default" && d.value === "Digital Quality"
+                      );
+                      setPaintingsInColorOnly(selected);
+                    } else {
+                      let selected = e.filter(
+                        (d) =>
+                          d.key === "exclude_no_image" &&
+                          d.value === "Exclude Image Not Available"
+                      );
+                      let lastSelected = e.filter(
+                        (d) =>
+                          d.key !== "exclude_no_image" &&
+                          d.value !== "Exclude Image Not Available"
+                      );
+                      setPaintingsInColorOnly([
+                        ...selected,
+                        lastSelected[lastSelected.length - 1],
+                      ]);
+                    }
+                  }
                   setTimeout(() => {
                     setMenuCollapse(false);
                   }, 5000);
                 }}
                 options={paintingInColor}
-                isMultiple={false}
+                isMultiple={true}
               />
             </div>
             <div>
@@ -260,7 +305,7 @@ const Paintings = ({
                 className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
                 onClick={() => {
                   setDateOfPaintins([]);
-                  setPaintingsInColorOnly(paintingInColor[0]);
+                  setPaintingsInColorOnly([paintingInColor[0]]);
                   setStoryType(null);
                   setArchiveOfPainting(null);
                   setPage(1);
@@ -294,9 +339,55 @@ const Paintings = ({
             <Dropdown
               title="Paintings in color only"
               selected={paintingsInColorOnly}
-              setSelected={setPaintingsInColorOnly}
+              setSelected={(e) => {
+                if (e?.length === 0) {
+                  setPaintingsInColorOnly([]);
+                }
+                if (e?.length === 1) {
+                  setPaintingsInColorOnly(e);
+                } else {
+                  // let DQY = e.filter(
+                  //   (d) => d.key === "default" && d.value === "Digital Quality"
+                  // );
+                  if (
+                    e[0].key === "default" &&
+                    e[0].value === "Digital Quality"
+                  ) {
+                    let selected = e.filter(
+                      (d) =>
+                        d.key !== "default" && d.value !== "Digital Quality"
+                    );
+                    setPaintingsInColorOnly(selected);
+                  }
+                  if (
+                    e[e.length - 1].key === "default" &&
+                    e[e.length - 1].value === "Digital Quality"
+                  ) {
+                    let selected = e.filter(
+                      (d) =>
+                        d.key === "default" && d.value === "Digital Quality"
+                    );
+                    setPaintingsInColorOnly(selected);
+                  } else {
+                    let selected = e.filter(
+                      (d) =>
+                        d.key === "exclude_no_image" &&
+                        d.value === "Exclude Image Not Available"
+                    );
+                    let lastSelected = e.filter(
+                      (d) =>
+                        d.key !== "exclude_no_image" &&
+                        d.value !== "Exclude Image Not Available"
+                    );
+                    setPaintingsInColorOnly([
+                      ...selected,
+                      lastSelected[lastSelected.length - 1],
+                    ]);
+                  }
+                }
+              }}
               options={paintingInColor}
-              isMultiple={false}
+              isMultiple={true}
             />
           </div>
           <div className="sm:col-span-2  hidden lg:block">
@@ -322,7 +413,7 @@ const Paintings = ({
               className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
               onClick={() => {
                 setDateOfPaintins([]);
-                setPaintingsInColorOnly(paintingInColor[0]);
+                setPaintingsInColorOnly([paintingInColor[0]]);
                 setStoryType(null);
                 setArchiveOfPainting(null);
                 setPage(1);
