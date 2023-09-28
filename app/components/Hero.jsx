@@ -85,12 +85,12 @@ const Hero = ({ data }) => {
               },
               {
                 title: data?.reveal_image_manuscript_2_title,
-                redirectLink: data?.reveal_image_manuscript_1_redirection_link,
+                redirectLink: data?.reveal_image_manuscript_2_redirection_link,
                 img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_manuscript_2.id}`,
               },
               {
                 title: data?.reveal_image_manuscript_3_title,
-                redirectLink: data?.reveal_image_manuscript_1_redirection_link,
+                redirectLink: data?.reveal_image_manuscript_3_redirection_link,
                 img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_manuscript_3.id}`,
               },
             ],
@@ -114,12 +114,12 @@ const Hero = ({ data }) => {
               },
               {
                 title: data?.reveal_image_painting_2_title,
-                redirectLink: data?.reveal_image_painting_1_redirection_link,
+                redirectLink: data?.reveal_image_painting_2_redirection_link,
                 img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_painting_2.id}`,
               },
               {
                 title: data?.reveal_image_painting_3_title,
-                redirectLink: data?.reveal_image_painting_1_redirection_link,
+                redirectLink: data?.reveal_image_painting_3_redirection_link,
                 img: `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/${data?.reveal_image_painting_3.id}`,
               },
             ],
