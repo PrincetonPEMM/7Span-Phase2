@@ -175,7 +175,7 @@ export default function Manuscript({ Id, data, table }) {
       }
       array.push({
         text: `${text} ${
-          data.link_to_digital_copy
+          data.total_manuscript_paintings > 0
             ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500 font-bold" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
             : ""
         }`,

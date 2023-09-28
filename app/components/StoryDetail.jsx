@@ -114,6 +114,58 @@ export default function StoryDetail({ data, Id }) {
     },
   ];
 
+  const IncipitFun = () => {
+    let text = "";
+    if (data?.canonical_incipit) {
+      text = data?.canonical_incipit;
+    }
+    if (data?.canonical_incipit_2) {
+      text += (data.canonical_incipit ? "; " : "") + data?.canonical_incipit_2;
+    }
+    if (data?.canonical_incipit_3) {
+      text +=
+        (data?.canonical_incipit || data?.canonical_incipit_2 ? "; " : "") +
+        data?.canonical_incipit_3;
+    }
+    return text;
+  };
+
+  const cityThisTranslation = () => {
+    return !data.is_published
+      ? `${data?.translation_author}. "ID
+    ${data?.canonical_story_id}: ${data?.canonical_story_title}
+    ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
+    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
+    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
+    and Egyptian Miracles of Mary project. 
+    <a
+      href=/stories/${data.canonical_story_id}
+      target="_blank"
+      class="text-primary-500 font-bold"
+    >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
+      : `${data?.translation_author}. ${data.translation_as_of_date}.
+    "ID
+    ${data?.canonical_story_id}: ${data?.original_macomber_title}" <i>${
+      data?.published_translation_book_title
+    }</i>,
+    edited by ${data?.translation_author}${
+      data.published_translation_book_page_span
+        ? `, page ${data.published_translation_book_page_span}`
+        : data.published_translation_book_item
+        ? `, page ${data.published_translation_book_item}`
+        : ""
+    }. Updated by PEMM Copyeditor Taylor Eggan. From
+    ${data.manuscript_name},
+    ${data.translation_source_manuscript_folio}.
+    <a
+      href=/stories/${data.canonical_story_id}
+      target="_blank"
+      class="text-primary-500 font-bold"
+    >https://${window?.location?.hostname}/stories/${
+      data.canonical_story_id
+    }</a>.`;
+  };
+
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -185,16 +237,7 @@ export default function StoryDetail({ data, Id }) {
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s):</b>{" "}
-                      <p className="indent-1 mb-1">
-                        {data?.canonical_incipit && data.canonical_incipit}
-                      </p>
-                      <p className="indent-1 mb-1">
-                        {data?.canonical_incipit_2 && data.canonical_incipit_2}
-                      </p>
-                      <p className="indent-1">
-                        {data?.canonical_incipit_3 && data.canonical_incipit_3}
-                      </p>
+                      <b>Incipit(s):</b> {IncipitFun()}
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID
@@ -266,8 +309,22 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase  my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3">
-                    {data?.translation_author}. {data.translation_as_of_date}.{" "}
+                  <p
+                    className="text-base leading-loose mb-3"
+                    dangerouslySetInnerHTML={{
+                      __html: cityThisTranslation(),
+                    }}
+                  >
+                    {/* {data?.translation_author}. &quot;ID
+                    {data?.canonical_story_id}: {data?.canonical_story_title}
+                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
+                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
+                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
+                    and Egyptian Miracles of Mary project.&nbsp;
+                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
+                    modified: {data?.translation_as_of_date} */}
+
+                    {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
                     &quot;ID&nbsp;
                     {data?.canonical_story_id}: {data?.original_macomber_title}
                     &quot; <i>{data?.published_translation_book_title}</i>,
@@ -287,7 +344,7 @@ export default function StoryDetail({ data, Id }) {
                     >
                       {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
                     </Link>
-                    .
+                    . */}
                   </p>
                 </li>
               </ol>
@@ -416,9 +473,7 @@ export default function StoryDetail({ data, Id }) {
                     </p>
                     <p className="leading-normal">
                       <b>Incipit(s):</b>
-                      {data?.canonical_incipit && data.canonical_incipit}
-                      {data?.canonical_incipit_2 && data.canonical_incipit_2}
-                      {data?.canonical_incipit_3 && data.canonical_incipit_3}
+                      {IncipitFun()}
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID
@@ -465,15 +520,41 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3">
-                    {data?.translation_author}. &quot;ID
+                  <p
+                    className="text-base leading-loose mb-3"
+                    dangerouslySetInnerHTML={{
+                      __html: cityThisTranslation(),
+                    }}
+                  >
+                    {/* {data?.translation_author}. &quot;ID
                     {data?.canonical_story_id}: {data?.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
                     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.
+                    and Egyptian Miracles of Mary project.&nbsp;
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data?.translation_as_of_date}
+                    modified: {data?.translation_as_of_date} */}
+                    {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
+                    &quot;ID&nbsp;
+                    {data?.canonical_story_id}: {data?.original_macomber_title}
+                    &quot; <i>{data?.published_translation_book_title}</i>,
+                    edited by {data?.translation_author}
+                    {data.published_translation_book_page_span
+                      ? `, page ${data.published_translation_book_page_span}`
+                      : data.published_translation_book_item
+                      ? `, page ${data.published_translation_book_item}`
+                      : ""}
+                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;From&nbsp;
+                    {data.manuscript_name},{" "}
+                    {data.translation_source_manuscript_folio}.&nbsp;
+                    <Link
+                      href={`/stories/${data.canonical_story_id}`}
+                      target="_blank"
+                      className="text-primary-500 font-bold"
+                    >
+                      {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
+                    </Link>
+                    . */}
                   </p>
                 </li>
               </ol>
