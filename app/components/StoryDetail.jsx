@@ -107,6 +107,9 @@ export default function StoryDetail({ data, Id }) {
       label: "Information",
     },
     {
+      label: "Summary",
+    },
+    {
       label: "Translation",
     },
     {
@@ -166,6 +169,8 @@ export default function StoryDetail({ data, Id }) {
     }</a>.`;
   };
 
+  console.log(data, "canonical_story_recension");
+
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -196,11 +201,11 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="ml-3 -indent-3">
                     <p className="text-sm leading-normal">
-                      <b>Story Type:</b>
+                      <b>Story Type: </b>
                       {data?.type_of_story ? data?.type_of_story : "none"}
                     </p>
                     <p className="text-sm leading-normal">
-                      <b>Story Theme(s):</b>
+                      <b>Story Theme(s): </b>
                       {data?.canonical_story_subject
                         ? data?.canonical_story_subject
                         : "none"}
@@ -213,7 +218,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="text-sm ml-3 -indent-3">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>
+                      <b>Earliest Attested Instance of the Story: </b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -225,19 +230,19 @@ export default function StoryDetail({ data, Id }) {
                         : " none "}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>
+                      <b>Earliest Manuscripts in which Story Appears: </b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>
+                      <b>Total Manuscripts in which Story Appears: </b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool:</b>
+                      <b>Total Incipits in the ITool: </b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s):</b> {IncipitFun()}
+                      <b>Incipit(s): </b> {IncipitFun()}
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID
@@ -284,26 +289,55 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
 
+            {/* Summary */}
+            <div className="space-y-4">
+              <ol className="list-inside md:pl-4 p-0">
+                <li>
+                  <h3
+                    className={`text-lg font-bold uppercase my-3 ${
+                      !data.summary_plot && "mb-5"
+                    }`}
+                  >
+                    summary
+                  </h3>
+                  <p
+                    className="text-base leading-loose mb-3"
+                    dangerouslySetInnerHTML={{
+                      __html: data.summary_plot,
+                    }}
+                  ></p>
+                </li>
+              </ol>
+            </div>
             {/* English translation */}
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 p-0">
                 <li>
-                  <h3 className="text-lg font-bold uppercase mb-3 ">
+                  <h3
+                    className={`text-lg font-bold uppercase mb-3 ${
+                      data.canonical_translation_recension !== "True" && "mb-5"
+                    } `}
+                  >
                     TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3 italic">
-                    Translated by {data.translation_author} from
-                    {data.manuscript_name},
-                    {data.translation_source_manuscript_folio}
-                    {", in "}
-                    {data.translation_as_of_date}.
-                  </p>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.english_translation,
-                    }}
-                  ></p>
+
+                  {data.canonical_translation_recension === "True" && (
+                    <>
+                      <p className="text-base leading-loose mb-3 italic">
+                        Translated by {data.translation_author} from
+                        {data.manuscript_name},
+                        {data.translation_source_manuscript_folio}
+                        {", in "}
+                        {data.translation_as_of_date}.
+                      </p>
+                      <p
+                        className="text-base leading-loose mb-3"
+                        dangerouslySetInnerHTML={{
+                          __html: data.english_translation,
+                        }}
+                      ></p>
+                    </>
+                  )}
                 </li>
                 <li>
                   <h3 className="text-lg font-bold uppercase  my-3">
@@ -431,11 +465,11 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="ml-3 -indent-3">
                     <p className="text-base leading-normal">
-                      <b>Story Type:</b>
+                      <b>Story Type: </b>
                       {data?.type_of_story ? data?.type_of_story : "none"}
                     </p>
                     <p className="text-base leading-normal">
-                      <b>Story Theme(s):</b>
+                      <b>Story Theme(s): </b>
                       {data?.canonical_story_subject
                         ? data?.canonical_story_subject
                         : "none"}
@@ -448,7 +482,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="text-sm ml-3 -indent-3">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story:</b>
+                      <b>Earliest Attested Instance of the Story: </b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -460,23 +494,23 @@ export default function StoryDetail({ data, Id }) {
                         : " none "}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears:</b>
+                      <b>Earliest Manuscripts in which Story Appears: </b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears:</b>
+                      <b>Total Manuscripts in which Story Appears: </b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool:</b>
+                      <b>Total Incipits in the ITool: </b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s):</b>
+                      <b>Incipit(s): </b>
                       {IncipitFun()}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers:</b> PEMM Theme ID
+                      <b>ID Numbers: </b> PEMM Theme ID
                       {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
@@ -496,6 +530,22 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
           </Tab.Panel>
+          {/* Summary */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4">
+              <ol className="list-inside md:pl-4 p-0">
+                <li>
+                  <h3 className="text-lg font-bold uppercase my-3">summary</h3>
+                  <p
+                    className="text-base leading-loose mb-3"
+                    dangerouslySetInnerHTML={{
+                      __html: data.summary_plot,
+                    }}
+                  ></p>
+                </li>
+              </ol>
+            </div>
+          </Tab.Panel>
 
           {/* TRANSLATION */}
           <Tab.Panel className="p-4 md:p-6">
@@ -503,20 +553,24 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 p-0">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3">
-                    TRANSLATION
+                    TO CITE THIS TRANSLATION
                   </h3>
-                  <p className="text-base leading-loose mb-3 italic">
-                    Translated by {data.translation_author} from
-                    {data.manuscript_name}, f.
-                    {data.translation_source_manuscript_folio}
-                    {data.translation_as_of_date}.
-                  </p>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.english_translation,
-                    }}
-                  ></p>
+                  {data.canonical_translation_recension === "True" && (
+                    <>
+                      <p className="text-base leading-loose mb-3 italic">
+                        Translated by {data.translation_author} from
+                        {data.manuscript_name}, f.
+                        {data.translation_source_manuscript_folio}
+                        {data.translation_as_of_date}.
+                      </p>
+                      <p
+                        className="text-base leading-loose mb-3"
+                        dangerouslySetInnerHTML={{
+                          __html: data.english_translation,
+                        }}
+                      ></p>
+                    </>
+                  )}
                   <h3 className="text-lg font-bold uppercase my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
@@ -571,7 +625,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="space-y-2">
                     <p className="text-base leading-relaxed">
-                      PEMM Manuscripts in which story appears (with page or
+                      PEMM Manuscripts in which the story appears (with page or
                       folio start):
                     </p>
                     <p className="text-base leading-relaxed">
@@ -643,7 +697,7 @@ function SeconsdLine(total_records) {
           : appearing in&nbsp;
           {total_records < 10
             ? `only ${total_records} of the PEMM manuscripts.`
-            : `${Math.round(
+            : `${Math.ceil(
                 (total_records /
                   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
                   100
@@ -757,7 +811,10 @@ function SeventhLine() {
     <p className="text-sm leading-relaxed py-2">
       1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
       has catalogued. For more information, see&nbsp;
-      <Link href="/about/using-the-site" className="text-primary-600 font-bold">
+      <Link
+        href="/about/connect/using-the-site"
+        className="text-primary-600 font-bold"
+      >
         Using the Site
       </Link>
       .
