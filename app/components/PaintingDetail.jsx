@@ -28,35 +28,35 @@ const PaintingDetail = ({ data }) => {
     ) {
       let text;
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
-        text = `This painting (also called an illumination) appears in a manuscript dated to ${
+        text = `This painting (also called an illumination) appears in a manuscript dated to <b>${
           data.manuscript_date_range_start === data.manuscript_date_range_end
             ? data.manuscript_date_range_end
             : data.manuscript_date_range_start +
               "-" +
               data.manuscript_date_range_end
-        }. `;
+        }</b>. `;
       }
       if (data.manuscript_name) {
-        text += `You can view this painting in the manuscript (<a class="text-primary-500 font-bold" href="${
+        text += `You can view this painting in the manuscript <a class="text-primary-500 font-bold" href="${
           data.manuscript_link
         }" >${data.manuscript_name}</a>${
           data.painting_folio ? ", f. " + data.painting_folio : ""
-        }) or learn more about this manuscript at <a class="text-primary-500 font-bold" href="/manuscripts/${
+        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold" href="/manuscripts/${
           data.web_page_address
-        }" >link</a>. You can also read the related <a class="text-primary-500 font-bold" href="/stories/${
+        }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold" href="/stories/${
           data.canonical_story_id
-        }">story<a>.`;
+        }">PEMM Story page<a>.`;
       }
       arr.push({ text });
     }
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these episodes. This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has ${data?.number_of_episodes} episodes. The description of the episodes in this painting, their locations, and their keywords is`,
+          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has ${data?.number_of_episodes} episodes. The painting's episode descriptions, locations, and keywords are:`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
-          text: `This painting of PEMM Story ID ${data.canonical_story_id} depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting and its keyword(s) is`,
+          text: `This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
         });
       }
     }
@@ -67,7 +67,7 @@ const PaintingDetail = ({ data }) => {
     }
     if (data?.episode_caption) {
       arr.push({
-        text: `This painting has a caption in Geʿez, which Jeremy Brown has translated as ${data.episode_caption}.`,
+        text: `This painting has a caption in Geʿez, which Jeremy Brown has translated as: ${data.episode_caption}.`,
       });
     }
     if (
@@ -92,15 +92,19 @@ const PaintingDetail = ({ data }) => {
     return arr;
   };
 
-  console.log(generateParagraph(), "generateParagraph");
-  console.log(data, "painting-index");
-
   return (
     <div className="container-fluid py-4 lg:py-10">
+      <div class="grid justify-items-stretch">
+        <div class="justify-self-start my-3">
+          <BackBtn />
+        </div>
+      </div>
+      <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-5xl text-primary-500 font-medium">
+        {data.canonical_story_title}
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-7 md:gap-7 lg:gap-10 xl:gap-20 2">
         <div className="space-y-5">
-          <BackBtn />
-
           <ImageGallery
             items={image}
             infinite={false}
@@ -110,7 +114,7 @@ const PaintingDetail = ({ data }) => {
           />
         </div>
 
-        <div className=" col-span-2 text-offBlack-400 ">
+        <div className=" col-span-2 text-black ">
           {/* <h3 className="text-primary-500 font-menu text-2xl lg:text-4xl font-medium">
             {data.pemm_short_title
               ? data.pemm_short_title
@@ -200,10 +204,14 @@ const PaintingDetail = ({ data }) => {
                 : "none"}
             </p>
           </div> */}
-          <div className="space-y-1 font-body text-base lg:text-xl mt-3">
-            <ul className="list-inside text-offBlack-500 leading-loose">
+          <h2 className="hidden md:block font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-4xl text-primary-500 font-medium">
+            {data.canonical_story_title}
+          </h2>
+          <div className="list-inside">
+            <ul className="  space-y-2">
               {generateParagraph().map((item, index) => (
                 <li
+                  className="text-base leading-relaxed"
                   key={index}
                   dangerouslySetInnerHTML={{ __html: item.text }}
                 ></li>

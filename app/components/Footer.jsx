@@ -16,8 +16,8 @@ const Footer = () => {
     { title: "Our Funders", link: "/about/people" },
     { title: "News & Updates", link: "/about/news-and-update" },
     { title: "Events & Workshops", link: "/about/events" },
-    { title: "Using the Site", link: "/about/using-site" },
-    { title: "Contact Us", link: "/about/using-site" },
+    { title: "Using the Site", link: "/about/connect/using-site" },
+    { title: "Contact Us", link: "/about/connect/using-site" },
   ];
   const exploreItems = [
     { title: "Find Stories", link: "/stories" },
