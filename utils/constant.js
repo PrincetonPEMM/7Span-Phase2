@@ -462,7 +462,7 @@ export const initialPlaceItemManuScript = {
   ],
 };
 export const initialOriginRegionManuScript = {
-  title: "Manuscript's Known Region of origin",
+  title: "Manuscript's Known Region of Origin",
   checkItem: [
     {
       id: "1",

@@ -114,13 +114,16 @@ export default function Manuscript({ Id, data, table }) {
 
     if (data.total_stories != null) {
       let text;
-      if (data.total_stories <= 1) {
+      if (+data.total_stories === 0) {
+        text =
+          "This manuscript has an unidentified number of Marian miracle stories.";
+      } else if (+data.total_stories === 1) {
         text = "This manuscript has only one Marian miracle story.";
-      } else if (data.total_stories < 24) {
+      } else if (+data.total_stories < 24) {
         text = `This manuscript has fewer Marian miracle stories than most, only <b>${data.total_stories}</b>.`;
-      } else if (data.total_stories < 99) {
+      } else if (+data.total_stories < 99) {
         text = `This manuscript has a typical number of Marian miracle stories: <b>${data.total_stories}</b>.`;
-      } else if (data.total_stories < 199) {
+      } else if (+data.total_stories < 199) {
         text = `This manuscript has a high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       } else {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
@@ -318,7 +321,7 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     array.push({
-      text: `For more information about understanding this table, see <b><a href="/about/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
+      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
     });
 
     return array;
