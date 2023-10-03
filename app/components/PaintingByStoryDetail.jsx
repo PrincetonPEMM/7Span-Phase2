@@ -76,7 +76,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <Link
               href={`/paintings/${item.web_page_address}_${item.painting_unique_id}`}
               key={item.image_link + index}

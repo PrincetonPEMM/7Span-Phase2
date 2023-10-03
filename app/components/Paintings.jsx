@@ -157,7 +157,6 @@ const Paintings = ({
             totalPages={Math.ceil(totalPage / perPage)}
             onPageChange={(num) => {
               setPage(num);
-              setExpandedRows([]);
             }}
           />
         </div>
@@ -425,7 +424,7 @@ const Paintings = ({
       </div>
 
       <div className="pb-10 mt-10">
-        {data.length ? (
+        {data?.length ? (
           <Masonry
             breakpointCols={breakpointColumnsForMasonry}
             className="my-masonry-grid"
