@@ -56,7 +56,7 @@ export const rangeSliderMaxDateOfCreationManuscriptsPage = 2020;
 export const rangeSliderMinNoOfStoriesManuscriptsPage = 0;
 export const rangeSliderMaxNoOfStoriesManuscriptsPage = 400;
 export const rangeSliderMinNoOfPaintingsManuscriptsPage = 0;
-export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 100;
+export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 200;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
 export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
 export const storiesTableDetailView = [{ name: "Title of Story" }];
@@ -245,8 +245,8 @@ export const initialPlaceItem = {
     },
   ],
 };
-export const initialLangItem = {
-  title: "Languages of Story",
+export const initialOriginalLangItem = {
+  title: "Original Languages of Story",
   checkItem: [
     {
       id: "1",
@@ -260,6 +260,11 @@ export const initialLangItem = {
       name: "arabic",
       isChecked: false,
     },
+  ],
+};
+export const initialTranslatedLangItem = {
+  title: "Translated Languages of Story",
+  checkItem: [
     {
       id: "3",
       label: "Amharic",
@@ -350,9 +355,9 @@ export const initialfilterItemManuScript = {
     arabicAndGaazManuscript: {
       id: "8",
       name: "arabic",
-      key: "arabicAndGaazManuscript",
+      key: "gaazManuscript",
       isCheckbox: false,
-      label: "Arabic & Geʿez manuscripts",
+      label: "Geʿez manuscripts",
       isChecked: false,
     },
   },

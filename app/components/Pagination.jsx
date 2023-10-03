@@ -1,7 +1,7 @@
 import MdiArrowUp from "@/assets/icons/MdiArrowUp";
 import MdiChevronRight from "@/assets/icons/MdiChevronRight";
 import MdiChevronLeft from "@/assets/icons/MdiChevronLeft";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
 import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
@@ -85,15 +85,31 @@ function CustomPagination({
     }
   };
 
+  useEffect(() => {
+    if (inputValue === "") {
+      setInputValue("");
+      onPageChange(currentPage);
+    } else {
+      if (currentPage <= 1) {
+        setInputValue(1);
+        onPageChange(1);
+      }
+      if (currentPage > totalPages) {
+        setInputValue(totalPages);
+        onPageChange(totalPages);
+      }
+    }
+  }, [currentPage]);
+
   const handleInputChange = (event) => {
     const value = event.target.value;
-    // if (+value < 1) {
-    //   setInputValue(1);
-    //   onPageChange(1);
-    // } else {
-    setInputValue(value);
-    onPageChange(value);
-    // }
+    if (value === "") {
+      setInputValue("");
+      onPageChange(currentPage);
+    } else {
+      setInputValue(value);
+      onPageChange(value);
+    }
   };
 
   const handleInputKeyPress = (event) => {

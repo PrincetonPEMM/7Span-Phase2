@@ -31,9 +31,7 @@ const Paintings = ({
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dateOfPaintins, setDateOfPaintins] = useState([]);
-  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([
-    paintingInColor[0],
-  ]);
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([]);
   const [storyType, setStoryType] = useState();
   const [archiveOfPainting, setArchiveOfPainting] = useState();
 
@@ -159,7 +157,6 @@ const Paintings = ({
             totalPages={Math.ceil(totalPage / perPage)}
             onPageChange={(num) => {
               setPage(num);
-              setExpandedRows([]);
             }}
           />
         </div>
@@ -216,7 +213,7 @@ const Paintings = ({
             </div>
             <div>
               <Dropdown
-                title="Paintings in color only"
+                title="Digital Quality"
                 selected={paintingsInColorOnly}
                 setSelected={(e) => {
                   if (e?.length === 0) {
@@ -305,7 +302,7 @@ const Paintings = ({
                 className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
                 onClick={() => {
                   setDateOfPaintins([]);
-                  setPaintingsInColorOnly([paintingInColor[0]]);
+                  setPaintingsInColorOnly([]);
                   setStoryType(null);
                   setArchiveOfPainting(null);
                   setPage(1);
@@ -337,7 +334,7 @@ const Paintings = ({
           </div>
           <div className="sm:col-span-2  hidden lg:block">
             <Dropdown
-              title="Paintings in color only"
+              title="Digital Quality"
               selected={paintingsInColorOnly}
               setSelected={(e) => {
                 if (e?.length === 0) {
@@ -413,7 +410,7 @@ const Paintings = ({
               className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
               onClick={() => {
                 setDateOfPaintins([]);
-                setPaintingsInColorOnly([paintingInColor[0]]);
+                setPaintingsInColorOnly([]);
                 setStoryType(null);
                 setArchiveOfPainting(null);
                 setPage(1);
@@ -427,7 +424,7 @@ const Paintings = ({
       </div>
 
       <div className="pb-10 mt-10">
-        {data.length ? (
+        {data?.length ? (
           <Masonry
             breakpointCols={breakpointColumnsForMasonry}
             className="my-masonry-grid"

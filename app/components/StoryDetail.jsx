@@ -134,6 +134,8 @@ export default function StoryDetail({ data, Id }) {
   };
 
   const cityThisTranslation = () => {
+    console.log(data, "data");
+
     return !data.is_published
       ? `${data?.translation_author}. "ID
     ${data?.canonical_story_id}: ${data?.canonical_story_title}
@@ -323,13 +325,15 @@ export default function StoryDetail({ data, Id }) {
 
                   {data.canonical_translation_recension === "True" && (
                     <>
-                      <p className="text-base leading-loose mb-3 italic">
-                        Translated by {data.translation_author} from
-                        {data.manuscript_name},
-                        {data.translation_source_manuscript_folio}
-                        {", in "}
-                        {data.translation_as_of_date}.
-                      </p>
+                      {data.translation_author && data.manuscript_name && (
+                        <p className="text-base leading-loose mb-3 italic">
+                          Translated by {data.translation_author} from&nbsp;
+                          {data.manuscript_name},
+                          {data.translation_source_manuscript_folio}
+                          {", in "}
+                          {data.translation_as_of_date}.
+                        </p>
+                      )}
                       <p
                         className="text-base leading-loose mb-3"
                         dangerouslySetInnerHTML={{
@@ -343,13 +347,14 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase  my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: cityThisTranslation(),
-                    }}
-                  >
-                    {/* {data?.translation_author}. &quot;ID
+                  {data?.translation_author && (
+                    <p
+                      className="text-base leading-loose mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: cityThisTranslation(),
+                      }}
+                    >
+                      {/* {data?.translation_author}. &quot;ID
                     {data?.canonical_story_id}: {data?.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
@@ -358,7 +363,7 @@ export default function StoryDetail({ data, Id }) {
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
                     modified: {data?.translation_as_of_date} */}
 
-                    {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
+                      {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
                     &quot;ID&nbsp;
                     {data?.canonical_story_id}: {data?.original_macomber_title}
                     &quot; <i>{data?.published_translation_book_title}</i>,
@@ -379,7 +384,8 @@ export default function StoryDetail({ data, Id }) {
                       {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
                     </Link>
                     . */}
-                  </p>
+                    </p>
+                  )}
                 </li>
               </ol>
             </div>
@@ -409,7 +415,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="space-y-2">
                     <p className="text-base leading-relaxed">
-                      PEMM Manuscripts in which story appears (with page or
+                      PEMM Manuscripts in which the story appears (with page or
                       folio start):
                     </p>
                     <p className="text-base leading-relaxed">
@@ -553,16 +559,18 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 p-0">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3">
-                    TO CITE THIS TRANSLATION
+                    TRANSLATION
                   </h3>
                   {data.canonical_translation_recension === "True" && (
                     <>
-                      <p className="text-base leading-loose mb-3 italic">
-                        Translated by {data.translation_author} from
-                        {data.manuscript_name}, f.
-                        {data.translation_source_manuscript_folio}
-                        {data.translation_as_of_date}.
-                      </p>
+                      {data.translation_author && data.manuscript_name && (
+                        <p className="text-base leading-loose mb-3 italic">
+                          Translated by {data.translation_author} from&nbsp;
+                          {data.manuscript_name}, f.
+                          {data.translation_source_manuscript_folio}
+                          {data.translation_as_of_date}.
+                        </p>
+                      )}
                       <p
                         className="text-base leading-loose mb-3"
                         dangerouslySetInnerHTML={{
@@ -574,13 +582,14 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase my-3">
                     TO CITE THIS TRANSLATION
                   </h3>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: cityThisTranslation(),
-                    }}
-                  >
-                    {/* {data?.translation_author}. &quot;ID
+                  {data?.translation_author && (
+                    <p
+                      className="text-base leading-loose mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: cityThisTranslation(),
+                      }}
+                    >
+                      {/* {data?.translation_author}. &quot;ID
                     {data?.canonical_story_id}: {data?.canonical_story_title}
                     .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
                     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
@@ -588,7 +597,7 @@ export default function StoryDetail({ data, Id }) {
                     and Egyptian Miracles of Mary project.&nbsp;
                     {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
                     modified: {data?.translation_as_of_date} */}
-                    {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
+                      {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
                     &quot;ID&nbsp;
                     {data?.canonical_story_id}: {data?.original_macomber_title}
                     &quot; <i>{data?.published_translation_book_title}</i>,
@@ -609,7 +618,8 @@ export default function StoryDetail({ data, Id }) {
                       {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
                     </Link>
                     . */}
-                  </p>
+                    </p>
+                  )}
                 </li>
               </ol>
             </div>

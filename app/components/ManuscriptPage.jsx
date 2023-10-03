@@ -46,9 +46,10 @@ export default function Manuscript({ Id, data, table }) {
     const array = [];
 
     if (data.ms_status !== "Complete") {
-      let text =
-        "PEMM has not yet cataloged this manuscript. The cataloging is <b>awaiting digitization</b>.";
-
+      let text = "PEMM has not yet cataloged this manuscript.";
+      if (data.ms_status === "Incomplete: awaiting digitization") {
+        text += " The cataloging is <b>awaiting digitization</b>.";
+      }
       array.push({ text });
     }
 
@@ -76,7 +77,7 @@ export default function Manuscript({ Id, data, table }) {
             "This date is estimated, based on a print or electronic catalog entry about the manuscript.";
         } else if (data.date_note == "Date from JRB and SGD") {
           text +=
-            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by Jeremy Brown and Stephen Delamarter.";
+            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by <b>Jeremy Brown and Stephen Delamarter</b>.";
         } else {
           text += "This date is estimated based on various methods.";
         }
@@ -85,13 +86,13 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     if (data.collections_sheet_relevant == "True") {
-      let text = `This manuscript is held in the repository of ${
+      let text = `This manuscript is held in the repository of <b>${
         data.institution_name
-      } in their ${data.collection_name} in ${data.institution_city_state}, ${
-        data.institution_country
-      }. ${
+      }</b> in their <b>${data.collection_name}</b> in <b>${
+        data.institution_city_state
+      }, ${data.institution_country}</b>. ${
         data.ms_location_note
-          ? `This manuscript's last known location in Ethiopia was ${data.ms_location_note}.`
+          ? `This manuscript's last known location in Ethiopia was <b>${data.ms_location_note}</b>.`
           : ""
       }`;
       if (data.link_to_digital_copy != null) {
@@ -101,7 +102,7 @@ export default function Manuscript({ Id, data, table }) {
       }
       array.push({ text });
     } else {
-      let text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of ${data.location_of_ms_imaging} in ${data.location_of_ms_imaging_city}, ${data.location_of_ms_imaging_country}.`;
+      let text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of <b>${data.location_of_ms_imaging} in ${data.location_of_ms_imaging_city}, ${data.location_of_ms_imaging_country}</b>.`;
       if (
         data.digital_repository &&
         data.digital_repository_city &&
@@ -129,24 +130,24 @@ export default function Manuscript({ Id, data, table }) {
         text = `This manuscript has a very high number of Marian miracle stories: <b>${data.total_stories}</b>.`;
       }
       if (Number(data?.total_unique_story) === 1) {
-        text += ` Of these stories, <b>${data?.total_unique_story}</b> is unique, marked with a ☆ in the table below, under Other Aspects.`;
+        text += ` Of these stories, <b>${data?.total_unique_story}</b> is unique, marked with a <b>☆</b> in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_unique_story) > 1) {
-        text += ` Of these stories, <b>${data.total_unique_story}</b> are unique, marked with a ☆ in the table below, under Other Aspects.`;
+        text += ` Of these stories, <b>${data.total_unique_story}</b> are unique, marked with a <b>☆</b> in the table below, under Other Aspects.`;
       }
 
       if (Number(data?.total_stanza_story) === 1) {
-        text += ` Also, <b>${data?.total_stanza_story}<b> has a stanza or hymn at the end, marked with a ♫ in the table below, under Other Aspects.`;
+        text += ` Also, <b>${data?.total_stanza_story}<b> has a stanza or hymn at the end, marked with a <b>♫</b> in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_stanza_story) > 1) {
-        text += ` Also, <b>${data.total_stanza_story}</b> have stanzas or hymns at their end, marked with a ♫ in the table below, under Other Aspects.`;
+        text += ` Also, <b>${data.total_stanza_story}</b> have stanzas or hymns at their end, marked with a <b>♫</b> in the table below, under Other Aspects.`;
       }
 
       if (Number(data?.total_confidence_score) === 1) {
-        text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} stories, marked with a [?] in the table below, under Other Aspects.`;
+        text += ` Also, we are uncertain about the identification of <b>${data.total_confidence_score}</b> stories, marked with a <b>[?]</b> in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_confidence_score) > 1) {
-        text += ` Also, we are uncertain about the identification of ${data.total_confidence_score} number of stories, marked with a [?] in the table below, under Other Aspects.`;
+        text += ` Also, we are uncertain about the identification of <b>${data.total_confidence_score}</b> number of stories, marked with a <b>[?]</b> in the table below, under Other Aspects.`;
       }
 
       array.push({ text });

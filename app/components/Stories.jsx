@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import OutsideClickHandler from "react-outside-click-handler";
 import {
-  initialLangItem,
   initialPlaceItem,
   storiesTableDetailView,
   storiesTableTitleView,
@@ -19,6 +18,8 @@ import {
   rangeSliderMaxForManuscriptsStoriesPage,
   rangeSliderMinForPaintingsStoriesPage,
   rangeSliderMaxForPaintingsStoriesPage,
+  initialOriginalLangItem,
+  initialTranslatedLangItem,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import CustomPagination, { TablePagination } from "./Pagination";
@@ -30,7 +31,12 @@ const Stories = () => {
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItem);
   const [placeItem, setPlaceItem] = useState(initialPlaceItem);
-  const [langItem, setLangItem] = useState(initialLangItem);
+  const [langOriginalItem, setOriginalLangItem] = useState(
+    initialOriginalLangItem
+  );
+  const [langTranslatedItem, setTranslatedLangItem] = useState(
+    initialTranslatedLangItem
+  );
   const [storyMin, setStoryMin] = useState(rangeSliderMinForStoriesStoriesPage);
   const [storyMax, setStoryMax] = useState(rangeSliderMaxForStoriesStoriesPage);
   const [manuscriptsMin, setManuscriptsMin] = useState(
@@ -112,8 +118,11 @@ const Stories = () => {
         "origin",
         placeItem
       )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
-        "languages",
-        langItem
+        "originalLanguages",
+        langOriginalItem
+      )}&${makeParamsArray(
+        "translatedLanguages",
+        langTranslatedItem
       )}${getFilterFalsyValue(
         filterItem,
         "withEnglishTranslation"
@@ -139,7 +148,7 @@ const Stories = () => {
   useEffect(() => {
     fetchData(search);
     setPage(1);
-  }, [filterItem, placeItem, langItem]);
+  }, [filterItem, placeItem, langOriginalItem, langTranslatedItem]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -169,7 +178,8 @@ const Stories = () => {
   const resetFilter = () => {
     setFilterItem(initialfilterItem);
     setPlaceItem(initialPlaceItem);
-    setLangItem(initialLangItem);
+    setOriginalLangItem(initialOriginalLangItem);
+    setTranslatedLangItem(initialTranslatedLangItem);
     setStoryMin(rangeSliderMinForStoriesStoriesPage);
     setStoryMax(rangeSliderMaxForStoriesStoriesPage);
     setManuscriptsMin(rangeSliderMinForManuscriptsStoriesPage);
@@ -238,8 +248,10 @@ const Stories = () => {
             setFilterItem={setFilterItem}
             placeItem={placeItem}
             setPlaceItem={setPlaceItem}
-            langItem={langItem}
-            setLangItem={setLangItem}
+            langItem={langOriginalItem}
+            setLangItem={setOriginalLangItem}
+            translatedItem={langTranslatedItem}
+            setTranslatedItem={setTranslatedLangItem}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
           />

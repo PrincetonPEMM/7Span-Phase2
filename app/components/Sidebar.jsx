@@ -36,6 +36,8 @@ const Sidebar = ({
   setPlaceItem,
   langItem,
   setLangItem,
+  translatedItem = "",
+  setTranslatedItem = () => {},
   onClick,
   resetFilter,
 }) => {
@@ -200,7 +202,6 @@ const Sidebar = ({
 
         {langItem?.checkItem.map((item, index) => (
           <InputIcon
-            label="input"
             key={index}
             item={item}
             itemList={langItem}
@@ -208,6 +209,22 @@ const Sidebar = ({
           />
         ))}
       </div>
+      {isPageName === STORIES && (
+        <div className="block mt-10">
+          <lable className="text-white text-lg block mb-3">
+            {translatedItem.title}
+          </lable>
+
+          {translatedItem?.checkItem.map((item, index) => (
+            <InputIcon
+              key={index}
+              item={item}
+              itemList={translatedItem}
+              setItemList={setTranslatedItem}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

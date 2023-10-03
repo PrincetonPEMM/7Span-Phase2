@@ -119,7 +119,7 @@ const ManuScripts = () => {
         "arabicManuscript"
       )}${getFilterFalsyValue(
         filterItem,
-        "arabicAndGaazManuscript"
+        "gaazManuscript"
       )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
         "lastKnownLocation",
         placeItem
