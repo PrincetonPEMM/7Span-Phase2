@@ -86,7 +86,15 @@ function CustomPagination({
   };
 
   useEffect(() => {
-    setInputValue(currentPage);
+    if (inputValue === "") {
+      setInputValue("");
+    } else if (currentPage <= 1) {
+      setInputValue(1);
+      onPageChange(1);
+    } else if (currentPage > totalPages) {
+      setInputValue(totalPages);
+      onPageChange(totalPages);
+    }
   }, [currentPage]);
 
   const handleInputChange = (event) => {

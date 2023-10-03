@@ -245,8 +245,8 @@ export const initialPlaceItem = {
     },
   ],
 };
-export const initialLangItem = {
-  title: "Languages of Story",
+export const initialOriginalLangItem = {
+  title: "Original Languages of Story",
   checkItem: [
     {
       id: "1",
@@ -260,6 +260,11 @@ export const initialLangItem = {
       name: "arabic",
       isChecked: false,
     },
+  ],
+};
+export const initialTranslatedLangItem = {
+  title: "Translated Languages of Story",
+  checkItem: [
     {
       id: "3",
       label: "Amharic",
