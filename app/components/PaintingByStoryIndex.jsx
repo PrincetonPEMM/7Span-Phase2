@@ -106,7 +106,7 @@ const PaintingByStoryIndex = ({ list }) => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <div
             key={item.image_link + index}
             className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}

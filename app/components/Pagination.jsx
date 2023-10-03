@@ -88,24 +88,28 @@ function CustomPagination({
   useEffect(() => {
     if (inputValue === "") {
       setInputValue("");
-    } else if (currentPage <= 1) {
-      setInputValue(1);
-      onPageChange(1);
-    } else if (currentPage > totalPages) {
-      setInputValue(totalPages);
-      onPageChange(totalPages);
+      onPageChange(currentPage);
+    } else {
+      if (currentPage <= 1) {
+        setInputValue(1);
+        onPageChange(1);
+      }
+      if (currentPage > totalPages) {
+        setInputValue(totalPages);
+        onPageChange(totalPages);
+      }
     }
   }, [currentPage]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
-    // if (+value < 1) {
-    //   setInputValue(1);
-    //   onPageChange(1);
-    // } else {
-    setInputValue(value);
-    onPageChange(value);
-    // }
+    if (value === "") {
+      setInputValue("");
+      onPageChange(currentPage);
+    } else {
+      setInputValue(value);
+      onPageChange(value);
+    }
   };
 
   const handleInputKeyPress = (event) => {
