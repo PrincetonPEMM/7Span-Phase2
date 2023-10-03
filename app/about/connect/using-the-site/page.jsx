@@ -15,6 +15,8 @@ export default async function page() {
     console.log(e);
   }
 
+  console.log(about_using_this_site, "about_using_this_site");
+
   return (
     <div className="container">
       <div className="space-y-4 py-12">

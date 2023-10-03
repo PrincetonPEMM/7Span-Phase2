@@ -1,7 +1,7 @@
 import MdiArrowUp from "@/assets/icons/MdiArrowUp";
 import MdiChevronRight from "@/assets/icons/MdiChevronRight";
 import MdiChevronLeft from "@/assets/icons/MdiChevronLeft";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
 import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
@@ -84,6 +84,10 @@ function CustomPagination({
       onPageChange(newPage);
     }
   };
+
+  useEffect(() => {
+    setInputValue(currentPage);
+  }, [currentPage]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
