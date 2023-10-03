@@ -37,9 +37,14 @@ const PaintingDetail = ({ data }) => {
         }</b>. `;
       }
       if (data.manuscript_name) {
-        text += `You can view this painting in the manuscript <a class="text-primary-500 font-bold" href="${
-          data.manuscript_link
-        }" >${data.manuscript_name}</a>${
+        text += `You can view this painting in the manuscript ${
+          data.link_to_digital_copy
+            ? `<a
+              class="text-primary-500 font-bold"
+              href=${data.manuscript_link}
+            >${data.manuscript_name}</a>`
+            : `<b>${data.manuscript_name}</b>`
+        }${
           data.painting_folio ? ", f. " + data.painting_folio : ""
         }, or learn more about this manuscript at its <a class="text-primary-500 font-bold" href="/manuscripts/${
           data.web_page_address
@@ -52,7 +57,7 @@ const PaintingDetail = ({ data }) => {
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has ${data?.number_of_episodes} episodes. The painting's episode descriptions, locations, and keywords are:`,
+          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has <b>${data?.number_of_episodes}</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
@@ -76,17 +81,17 @@ const PaintingDetail = ({ data }) => {
     ) {
       let text;
       if (data?.total_manuscripts_with_this_story_id_illustrated) {
-        text = `The number of PEMM manuscripts that have paintings of this story is ${data?.total_manuscripts_with_this_story_id_illustrated}.`;
+        text = `The number of PEMM manuscripts that have paintings of this story is <b>${data?.total_manuscripts_with_this_story_id_illustrated}</b>.`;
       }
       if (data.total_story_id_paintings)
-        text += ` The total number of paintings of this story in PEMM manuscripts is ${data.total_story_id_paintings}.`;
+        text += ` The total number of paintings of this story in PEMM manuscripts is <b>${data.total_story_id_paintings}</b>.`;
       arr.push({
         text,
       });
     }
     if (data.painting_unique_id) {
       arr.push({
-        text: ` PEMM's ID number for this painting is ${data.painting_unique_id}.`,
+        text: ` PEMM's ID number for this painting is <b>${data.painting_unique_id}</b>.`,
       });
     }
     return arr;

@@ -355,11 +355,14 @@ body {
 }
 /* slider css  */
 
+input[type="range"]::-moz-range-progress {
+  background-color: transparent;
+}
+
 .slider {
   position: relative;
   width: 200px;
 }
-
 .slider__track,
 .slider__range,
 .slider__left-value,
@@ -382,6 +385,17 @@ body {
 .slider__range {
   background-color: #e5a942;
   z-index: 2;
+}
+
+@-moz-document url-prefix() {
+  /* Add CSS here */
+  input[type="range"]::-moz-range-thumb {
+    background-color: #e5a942;
+    border: none;
+  }
+  .slider {
+    margin-top: -2px;
+  }
 }
 
 .slider__left-value,
@@ -442,12 +456,25 @@ body {
   position: relative;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 /* For Firefox browsers */
 .thumb::-moz-range-thumb {
   @apply bg-white border-0 cursor-pointer h-4 w-4 mt-1 appearance-none relative;
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ced4da;
+  /* box-shadow: 0 0 1px 1px #ced4da; */
   pointer-events: all;
+  border: none;
 }
 
 .sidebar-close {
@@ -763,7 +790,7 @@ body {
   @apply lg:mr-5;
 }
 
-.my-masonry-grid .my-masonry-grid_column:nth-child(3  ) {
+.my-masonry-grid .my-masonry-grid_column:nth-child(3) {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
   @apply lg:mr-5;

@@ -1,15 +1,14 @@
 "use client";
 import {
-  breakpointColumnsForMasonry,
-  breakpointTwoColumnsForMasonry,
   dateFormate,
-  monthNames,
+  masonryTilesForResearchs_News_Events,
 } from "@/utils/constant";
 import React from "react";
 import Masonry from "react-masonry-css";
 import Card from "./Card";
 
 const MasonryComp = ({ cards, keyword, redirect, value1, value2 }) => {
+  console.log(cards?.length, "cards?.lengthcards?.length");
   return cards?.length ? (
     <Masonry
       breakpointCols={masonryTilesForResearchs_News_Events(cards?.length)}
