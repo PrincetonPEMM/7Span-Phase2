@@ -9,8 +9,13 @@ import Masonry from "react-masonry-css";
 import CustomPagination, { TablePagination } from "./Pagination";
 import BackBtn from "./BackBtn";
 import Link from "next/link";
+import InputText from "./form/InputText";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
+import useDebounce from "@/utils/useDebounce";
 
 const PaintingByStoryDetail = ({ list, Id }) => {
+  const { debounce } = useDebounce();
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
@@ -24,10 +29,10 @@ const PaintingByStoryDetail = ({ list, Id }) => {
     setTotalPage(list?.total);
   }, []);
 
-  const fetchData = () => {
+  const fetchData = (searchKey = "") => {
     setIsLoadint(true);
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story/${Id}?page=${page}&perPage=${perPage}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story/${Id}?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -42,12 +47,17 @@ const PaintingByStoryDetail = ({ list, Id }) => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(search);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, [page]);
+
+  const debouncedFetchData = debounce((e) => {
+    fetchData(e);
+    setPage(1);
+  }, 300);
 
   return (
     <div className="container-fluid py-4 lg:py-10">
@@ -55,7 +65,35 @@ const PaintingByStoryDetail = ({ list, Id }) => {
       <h2 className="font-menu text-2xl lg:text-3xl xl:text-5xl text-primary-500 font-medium">
         {header?.canonical_story_title}
       </h2>
-      <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 w-full items-center">
+      <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center">
+        <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+          <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
+            Search painting descriptions
+          </span>
+          <InputText
+            value={search}
+            onChange={(e) => {
+              const query = e.target.value;
+              setSearch(query);
+              if (query.length > 3) {
+                debouncedFetchData(query);
+              }
+              if (query.length === 0) {
+                debouncedFetchData(query);
+              }
+            }}
+          />
+
+          {search && (
+            <MdiWindowClose
+              className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
+              onClick={() => {
+                setSearch("");
+                debouncedFetchData("");
+              }}
+            />
+          )}
+        </div>
         <div className=" lg:text-center lg:col-span-2 my-3 grid justify-items-center sm:justify-items-start lg:justify-items-center">
           <CustomPagination
             className="pagination-tablet"
