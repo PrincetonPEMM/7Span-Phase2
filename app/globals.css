@@ -917,3 +917,6 @@ input::-webkit-inner-spin-button {
 .truncate {
   @apply break-words text-clip whitespace-normal 2xl:whitespace-nowrap;
 }
+.table thead {
+  @apply xl:table-caption;
+}
