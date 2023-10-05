@@ -30,6 +30,7 @@ const ManuScripts = () => {
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
   const [search, setSearch] = useState("");
+  const [isMount, setIsMount] = useState(false);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItemManuScript);
   const [placeItem, setPlaceItem] = useState(initialPlaceItemManuScript);
@@ -164,15 +165,21 @@ const ManuScripts = () => {
     }
   }, []);
 
+  const scrollTop = () => {
+    if (isMount) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }, 5000);
+    }
+    setIsMount(true);
+  };
+
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
     setPage(1);
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 5000);
   }, 300);
 
   const resetFilter = () => {
@@ -223,6 +230,7 @@ const ManuScripts = () => {
                 setDateCreationMin(min);
                 setDateCreationMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [dateCreationMin, dateCreationMax]
             )}
@@ -232,6 +240,7 @@ const ManuScripts = () => {
                 setNoOfStoriesMin(min);
                 setNoOfStoriesMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [noOfStoriesMin, noOfStoriesMax]
             )}
@@ -241,6 +250,7 @@ const ManuScripts = () => {
                 setNoOfPaintingMin(min);
                 setNoOfPaintingMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [noOfPaintingMin, noOfPaintingMax]
             )}
@@ -250,6 +260,7 @@ const ManuScripts = () => {
                 setNoOfUniqueMin(min);
                 setNoOfUniqueMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [noOfUniqueMin, noOfUniqueMax]
             )}

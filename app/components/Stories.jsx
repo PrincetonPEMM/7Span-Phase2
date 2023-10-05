@@ -51,6 +51,7 @@ const Stories = () => {
   const [paintingMax, setPaintingMax] = useState(
     rangeSliderMaxForPaintingsStoriesPage
   );
+  const [isMount, setIsMount] = useState(false);
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(pagePerLimit);
@@ -164,15 +165,21 @@ const Stories = () => {
     }
   }, []);
 
+  const scrollTop = () => {
+    if (isMount) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }, 5000);
+    }
+    setIsMount(true);
+  };
+
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
     setPage(1);
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 5000);
   }, 300);
 
   const resetFilter = () => {
@@ -222,6 +229,7 @@ const Stories = () => {
                 setStoryMin(min);
                 setStoryMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [storyMin, storyMax]
             )}
@@ -231,6 +239,7 @@ const Stories = () => {
                 setManuscriptsMin(min);
                 setManuscriptsMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [manuscriptsMin, manuscriptsMax]
             )}
@@ -240,6 +249,7 @@ const Stories = () => {
                 setPaintingMin(min);
                 setPaintingMax(max);
                 debouncedFetchData();
+                scrollTop();
               },
               [paintingMin, paintingMax]
             )}
@@ -249,9 +259,15 @@ const Stories = () => {
             placeItem={placeItem}
             setPlaceItem={setPlaceItem}
             langItem={langOriginalItem}
-            setLangItem={setOriginalLangItem}
+            setLangItem={(e) => {
+              setOriginalLangItem(e);
+              setTranslatedLangItem(initialTranslatedLangItem)
+            }}
             translatedItem={langTranslatedItem}
-            setTranslatedItem={setTranslatedLangItem}
+            setTranslatedItem={(e) => {
+              setTranslatedLangItem(e);
+              setOriginalLangItem(initialOriginalLangItem)
+            }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
           />

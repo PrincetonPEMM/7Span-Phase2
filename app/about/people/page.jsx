@@ -58,7 +58,7 @@ export default async function page() {
       );
     }
   }
-  console.log(about_people_detail, "about_people_detail");
+
   return (
     <div className="container-fluid py-4 lg:py-7">
       {/* <div
