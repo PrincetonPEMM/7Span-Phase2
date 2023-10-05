@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
 import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
-
 export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
@@ -24,7 +23,6 @@ export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
     </>
   );
 };
-
 // export const PaginationLoader = () => {
 //   return (
 //     <>
@@ -39,7 +37,6 @@ export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
 //     </>
 //   );
 // };
-
 // const NextPage = ({ meta }) => {
 //   return (
 //     <>
@@ -55,7 +52,6 @@ export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
 //     </>
 //   );
 // };
-
 // const PrevPage = ({ meta }) => {
 //   return (
 //     <>
@@ -69,7 +65,6 @@ export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
 //     </>
 //   );
 // };
-
 function CustomPagination({
   className,
   currentPage,
@@ -77,7 +72,6 @@ function CustomPagination({
   onPageChange,
 }) {
   const [inputValue, setInputValue] = useState(currentPage);
-
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setInputValue(newPage);
@@ -86,21 +80,32 @@ function CustomPagination({
   };
 
   useEffect(() => {
-    // if (inputValue === "") {
-    //   setInputValue("");
-    //   onPageChange(currentPage);
-    // } else {
-    //   if (currentPage <= 1) {
-    //     setInputValue(1);
-    //     onPageChange(1);
-    //   }
-    //   if (currentPage > totalPages) {
-    //     setInputValue(totalPages);
-    //     onPageChange(totalPages);
-    //   }
-
-    // }
-    onPageChange(totalPages);
+    if (inputValue === "") {
+      setInputValue("");
+      onPageChange(currentPage);
+    } else {
+      if (currentPage <= 1) {
+        setInputValue(1);
+        onPageChange(1);
+      }
+      if (currentPage > totalPages) {
+        setInputValue(totalPages);
+        onPageChange(totalPages);
+      }
+    }
+    if (inputValue === "") {
+      setInputValue("");
+      onPageChange(currentPage);
+    } else {
+      if (currentPage <= 1) {
+        setInputValue(1);
+        onPageChange(1);
+      }
+      if (currentPage > totalPages) {
+        setInputValue(totalPages);
+        onPageChange(totalPages);
+      }
+    }
   }, [currentPage]);
 
   const handleInputChange = (event) => {
@@ -113,7 +118,6 @@ function CustomPagination({
       onPageChange(value);
     }
   };
-
   const handleInputKeyPress = (event) => {
     if (event.key === "Enter") {
       const value = parseInt(inputValue);
@@ -122,7 +126,6 @@ function CustomPagination({
       }
     }
   };
-
   return totalPages > 1 ? (
     <div className={`pagination-container ${className}`}>
       <span
@@ -167,5 +170,4 @@ function CustomPagination({
     </div>
   ) : null;
 }
-
 export default CustomPagination;
