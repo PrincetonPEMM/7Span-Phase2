@@ -27,8 +27,8 @@ const Page = async () => {
         <MasonryComp
           cards={data}
           keyword={"workshop"}
-          value1={"Event"}
-          value2={"Workshop"}
+          value2={"Event"}
+          value1={"Workshop"}
           redirect={`event-and-workshop/`}
         />
       </div>

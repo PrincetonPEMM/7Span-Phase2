@@ -99,23 +99,32 @@ export default function StoryDetail({ data, Id }) {
     return finalString;
   };
 
-  const discoverPage = [
-    {
-      label: "About",
-    },
-    {
-      label: "Information",
-    },
-    {
-      label: "Summary",
-    },
-    {
-      label: "Translation",
-    },
-    {
+  const discoverPage = () => {
+    const tabArr = [
+      {
+        label: "About",
+      },
+      {
+        label: "Information",
+      },
+    ];
+    if (data.summary_plot)
+      tabArr.push({
+        label: "Summary",
+      });
+    if (
+      data.canonical_translation_recension === "True" ||
+      data?.translation_author
+    )
+      tabArr.push({
+        label: "Translation",
+      });
+    tabArr.push({
       label: "Manuscripts",
-    },
-  ];
+    });
+
+    return tabArr;
+  };
 
   const IncipitFun = () => {
     let text = "";
@@ -134,8 +143,6 @@ export default function StoryDetail({ data, Id }) {
   };
 
   const cityThisTranslation = () => {
-    console.log(data, "data");
-
     return !data.is_published
       ? `${data?.translation_author}. "ID
     ${data?.canonical_story_id}: ${data?.canonical_story_title}
@@ -170,8 +177,6 @@ export default function StoryDetail({ data, Id }) {
       data.canonical_story_id
     }</a>.`;
   };
-
-  console.log(data, "canonical_story_recension");
 
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
@@ -247,7 +252,7 @@ export default function StoryDetail({ data, Id }) {
                       <b>Incipit(s): </b> {IncipitFun()}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers:</b> PEMM Theme ID
+                      <b>ID Numbers:</b> PEMM Theme ID{" "}
                       {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
@@ -292,101 +297,72 @@ export default function StoryDetail({ data, Id }) {
             </div>
 
             {/* Summary */}
-            <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3
-                    className={`text-lg font-bold uppercase my-3 ${
-                      !data.summary_plot && "mb-5"
-                    }`}
-                  >
-                    summary
-                  </h3>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.summary_plot,
-                    }}
-                  ></p>
-                </li>
-              </ol>
-            </div>
+            {data.summary_plot && (
+              <div className="space-y-4">
+                <ol className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3
+                      className={`text-lg font-bold uppercase my-3 ${
+                        !data.summary_plot && "mb-5"
+                      }`}
+                    >
+                      summary
+                    </h3>
+                    <p
+                      className="text-base leading-loose mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: data.summary_plot,
+                      }}
+                    ></p>
+                  </li>
+                </ol>
+              </div>
+            )}
             {/* English translation */}
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3
-                    className={`text-lg font-bold uppercase mb-3 ${
-                      data.canonical_translation_recension !== "True" && "mb-5"
-                    } `}
-                  >
-                    TRANSLATION
-                  </h3>
+                {data.canonical_translation_recension === "True" && (
+                  <li>
+                    <h3
+                      className={`text-lg font-bold uppercase mb-3 ${
+                        data.canonical_translation_recension !== "True" &&
+                        "mb-5"
+                      } `}
+                    >
+                      TRANSLATION
+                    </h3>
 
-                  {data.canonical_translation_recension === "True" && (
-                    <>
-                      {data.translation_author && data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3 italic">
-                          Translated by {data.translation_author} from&nbsp;
-                          {data.manuscript_name},
-                          {data.translation_source_manuscript_folio}
-                          {", in "}
-                          {data.translation_as_of_date}.
-                        </p>
-                      )}
-                      <p
-                        className="text-base leading-loose mb-3"
-                        dangerouslySetInnerHTML={{
-                          __html: data.english_translation,
-                        }}
-                      ></p>
-                    </>
-                  )}
-                </li>
-                <li>
-                  <h3 className="text-lg font-bold uppercase  my-3">
-                    TO CITE THIS TRANSLATION
-                  </h3>
-                  {data?.translation_author && (
+                    {data.translation_author && data.manuscript_name && (
+                      <p className="text-base leading-loose mb-3 italic">
+                        Translated by {data.translation_author} from&nbsp;
+                        {data.manuscript_name},
+                        {data.translation_source_manuscript_folio}
+                        {", in "}
+                        {data.translation_as_of_date}.
+                      </p>
+                    )}
+                    <p
+                      className="text-base leading-loose mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: data.english_translation,
+                      }}
+                    ></p>
+                  </li>
+                )}
+                {data?.translation_author && (
+                  <li>
+                    <h3 className="text-lg font-bold uppercase  my-3">
+                      TO CITE THIS TRANSLATION
+                    </h3>
+
                     <p
                       className="text-base leading-loose mb-3"
                       dangerouslySetInnerHTML={{
                         __html: cityThisTranslation(),
                       }}
-                    >
-                      {/* {data?.translation_author}. &quot;ID
-                    {data?.canonical_story_id}: {data?.canonical_story_title}
-                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.&nbsp;
-                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data?.translation_as_of_date} */}
-
-                      {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
-                    &quot;ID&nbsp;
-                    {data?.canonical_story_id}: {data?.original_macomber_title}
-                    &quot; <i>{data?.published_translation_book_title}</i>,
-                    edited by {data?.translation_author}
-                    {data.published_translation_book_page_span
-                      ? `, page ${data.published_translation_book_page_span}`
-                      : data.published_translation_book_item
-                      ? `, page ${data.published_translation_book_item}`
-                      : ""}
-                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;From&nbsp;
-                    {data.manuscript_name},{" "}
-                    {data.translation_source_manuscript_folio}.&nbsp;
-                    <Link
-                      href={`/stories/${data.canonical_story_id}`}
-                      target="_blank"
-                      className="text-primary-500 font-bold"
-                    >
-                      {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
-                    </Link>
-                    . */}
-                    </p>
-                  )}
-                </li>
+                    ></p>
+                  </li>
+                )}
               </ol>
             </div>
             <div className="space-y-4 mb-10">
@@ -432,7 +408,7 @@ export default function StoryDetail({ data, Id }) {
       {/* This below content is for mobile responsive  */}
       <div className="md:hidden block font-menu">
         <Tabs
-          tabs={discoverPage}
+          tabs={discoverPage()}
           onClick={(e) => {
             console.log("onClick prop:", e);
           }}
@@ -516,7 +492,7 @@ export default function StoryDetail({ data, Id }) {
                       {IncipitFun()}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers: </b> PEMM Theme ID
+                      <b>ID Numbers: </b> PEMM Theme ID{" "}
                       {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
@@ -537,93 +513,72 @@ export default function StoryDetail({ data, Id }) {
             </div>
           </Tab.Panel>
           {/* Summary */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg font-bold uppercase my-3">summary</h3>
-                  <p
-                    className="text-base leading-loose mb-3"
-                    dangerouslySetInnerHTML={{
-                      __html: data.summary_plot,
-                    }}
-                  ></p>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
-
-          {/* TRANSLATION */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
-                <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3">
-                    TRANSLATION
-                  </h3>
-                  {data.canonical_translation_recension === "True" && (
-                    <>
-                      {data.translation_author && data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3 italic">
-                          Translated by {data.translation_author} from&nbsp;
-                          {data.manuscript_name}, f.
-                          {data.translation_source_manuscript_folio}
-                          {data.translation_as_of_date}.
-                        </p>
-                      )}
-                      <p
-                        className="text-base leading-loose mb-3"
-                        dangerouslySetInnerHTML={{
-                          __html: data.english_translation,
-                        }}
-                      ></p>
-                    </>
-                  )}
-                  <h3 className="text-lg font-bold uppercase my-3">
-                    TO CITE THIS TRANSLATION
-                  </h3>
-                  {data?.translation_author && (
+          {data.summary_plot && (
+            <Tab.Panel className="p-4 md:p-6">
+              <div className="space-y-4">
+                <ol className="list-inside md:pl-4 p-0">
+                  <li>
+                    <h3 className="text-lg font-bold uppercase my-3">
+                      summary
+                    </h3>
                     <p
                       className="text-base leading-loose mb-3"
                       dangerouslySetInnerHTML={{
-                        __html: cityThisTranslation(),
+                        __html: data.summary_plot,
                       }}
-                    >
-                      {/* {data?.translation_author}. &quot;ID
-                    {data?.canonical_story_id}: {data?.canonical_story_title}
-                    .&quot; <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-                    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-                    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-                    and Egyptian Miracles of Mary project.&nbsp;
-                    {process.env.NEXT_PUBLIC_DIRECTUS_URL}/stories/{Id}. Last
-                    modified: {data?.translation_as_of_date} */}
-                      {/* {data?.translation_author}. {data.translation_as_of_date}.{" "}
-                    &quot;ID&nbsp;
-                    {data?.canonical_story_id}: {data?.original_macomber_title}
-                    &quot; <i>{data?.published_translation_book_title}</i>,
-                    edited by {data?.translation_author}
-                    {data.published_translation_book_page_span
-                      ? `, page ${data.published_translation_book_page_span}`
-                      : data.published_translation_book_item
-                      ? `, page ${data.published_translation_book_item}`
-                      : ""}
-                    . Updated by PEMM Copyeditor Taylor Eggan.&nbsp;From&nbsp;
-                    {data.manuscript_name},{" "}
-                    {data.translation_source_manuscript_folio}.&nbsp;
-                    <Link
-                      href={`/stories/${data.canonical_story_id}`}
-                      target="_blank"
-                      className="text-primary-500 font-bold"
-                    >
-                      {`https://${window?.location?.hostname}/stories/${data.canonical_story_id}`}
-                    </Link>
-                    . */}
-                    </p>
-                  )}
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
+                    ></p>
+                  </li>
+                </ol>
+              </div>
+            </Tab.Panel>
+          )}
+
+          {/* TRANSLATION */}
+          {(data.canonical_translation_recension === "True" ||
+            data?.translation_author) && (
+            <Tab.Panel className="p-4 md:p-6">
+              <div className="space-y-4">
+                <ol className="list-inside md:pl-4 p-0">
+                  <li>
+                    {data.canonical_translation_recension === "True" && (
+                      <>
+                        <h3 className="text-lg font-bold uppercase  mb-3">
+                          TRANSLATION
+                        </h3>
+                        {data.translation_author && data.manuscript_name && (
+                          <p className="text-base leading-loose mb-3 italic">
+                            Translated by {data.translation_author} from&nbsp;
+                            {data.manuscript_name}, f.
+                            {data.translation_source_manuscript_folio}
+                            {data.translation_as_of_date}.
+                          </p>
+                        )}
+                        <p
+                          className="text-base leading-loose mb-3"
+                          dangerouslySetInnerHTML={{
+                            __html: data.english_translation,
+                          }}
+                        ></p>
+                      </>
+                    )}
+                    {data?.translation_author && (
+                      <>
+                        <h3 className="text-lg font-bold uppercase my-3">
+                          TO CITE THIS TRANSLATION
+                        </h3>
+                        <p
+                          className="text-base leading-loose mb-3"
+                          dangerouslySetInnerHTML={{
+                            __html: cityThisTranslation(),
+                          }}
+                        ></p>
+                      </>
+                    )}
+                  </li>
+                </ol>
+              </div>
+            </Tab.Panel>
+          )}
 
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
