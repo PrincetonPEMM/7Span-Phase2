@@ -917,3 +917,25 @@ input::-webkit-inner-spin-button {
 .truncate {
   @apply break-words text-clip whitespace-normal 2xl:whitespace-nowrap;
 }
+.table thead {
+  @apply xl:table-caption;
+}
+
+/* RESEARCH AND SPELLLINGS PAGE TABLE CSS */
+
+.interchangable-table thead {
+  @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0;
+}
+
+.interchangable-table td {
+  @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm lg:text-base;
+}
+.interchangable-table tr + tr {
+  @apply border-b border-b-gray-300;
+}
+.interchangable-table tr:first-child {
+  @apply border-b border-b-gray-300;
+}
+.interchangable-table tr:last-child {
+  @apply border-b-0;
+}
