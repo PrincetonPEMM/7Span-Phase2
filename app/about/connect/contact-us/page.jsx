@@ -13,7 +13,6 @@ export default async function page() {
     );
   } catch (e) {
     console.log(e);
-    console.log(about_using_this_site);
   }
 
   return (
