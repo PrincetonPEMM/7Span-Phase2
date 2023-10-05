@@ -49,6 +49,7 @@ const PaintingbyMSIndex = ({ list }) => {
       behavior: "smooth",
     });
   }, [page]);
+  2;
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
