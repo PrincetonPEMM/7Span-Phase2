@@ -1,5 +1,4 @@
 export const dynamic = "force-dynamic";
-
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";

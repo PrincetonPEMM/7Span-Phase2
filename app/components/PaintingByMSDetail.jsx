@@ -64,7 +64,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
       {header && (
-        <h2 className="font-menu text-2xl mb-3 lg:text-3xl xl:text-5xl text-primary-500 font-medium">
+        <h2 className="font-menu text-2xl mb-5 lg:text-3xl xl:text-5xl text-primary-500 font-medium">
           {header?.manuscript_full_name}&nbsp;(
           {`${
             header?.manuscript_date_range_start &&
@@ -120,7 +120,10 @@ const PaintingByMSDetail = ({ list, Id }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-left sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium  text-xs  lg:col-span-1">
+          <p
+            className=" text-offBlack-400  mt-4 ml-auto font-medium  text-xs order-3 text-center mr-0 sm:mt-0 sm:text-left sm:-order-none
+           lg:ml-0  lg:col-span-1 xl:text-sm"
+          >
             Results: ({totalPage ? totalPage : 0} records)
           </p>
         </div>
@@ -134,7 +137,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
           <Link
             key={item.image_link + index}
             href={`/paintings/${Id}_${item.painting_unique_id}`}
-            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto  inline-block relative overflow-hidden w-full`}
+            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto inline-block relative overflow-hidden w-full`}
           >
             <PaintingStoryCard
               key={item.image_link + index}

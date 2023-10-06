@@ -37,7 +37,11 @@ const PaintingStoryCard = ({
       {isImgload && (
         <div className="bg-black p-5">
           {isTitle && (
-            <h2 className="font-bold mt-3 lg:text-2xl ">
+            <h2
+              className={`font-bold  lg:text-2xl ${
+                isImgload ? "mt-0" : "mt-3"
+              }`}
+            >
               {title ? title : "PEMM title not found"}
             </h2>
           )}

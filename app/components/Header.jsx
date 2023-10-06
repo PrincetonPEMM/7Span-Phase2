@@ -183,7 +183,7 @@ const Header = () => {
           </button>
 
           {/* LOGO IMAGE HERE  */}
-          <Link href="/" className="sm:w-[30%] w-64 relative z-20">
+          <Link href="/" className="w-64 relative z-20 sm:w-[30%]">
             {pathname === "/" ? (
               <Image
                 src={Logo}
@@ -227,7 +227,8 @@ const Header = () => {
                           />
                         </button>
                         <ul
-                          className={`submenu lg:absolute lg:top-9 lg:inset-x-0 transition-all lg:right-0 lg:left-auto lg:min-w-max z-50 lg:group:hover:block lg:py-2 lg:bg-white rounded-md top-0 text-white lg:text-black  lg:hover:bg-secondary-500mt-1 space-y-1 ${
+                          className={`submenu rounded-md top-0 text-white  transition-all  space-y-1 lg:absolute z-50 lg:top-9 lg:inset-x-0lg:right-0 lg:left-auto lg:min-w-max  
+                          lg:group:hover:block lg:py-2 lg:bg-white lg:text-black lg:hover:bg-secondary-500mt-1  ${
                             activeSubmenu === index
                               ? "group:hover:block block z-50 "
                               : "hidden"
@@ -238,7 +239,7 @@ const Header = () => {
                             <li key={subIndex}>
                               <Link
                                 href={subItem.link}
-                                className={`header-link transition-all  flex py-1 text-lg p-1 text-primary-500 lg:hover:bg-secondary-500 xl:text-base lg:px-3 lg:py-0 ${
+                                className={`header-link transition-all  flex py-1 text-lg p-1 text-primary-500 lg:hover:bg-secondary-500 lg:px-3 lg:py-0  xl:text-base${
                                   pathname === "/"
                                     ? " text-white hover:text-secondary-500 lg:hover:text-primary-500 lg:text-primary-500"
                                     : " text-primary-500  "
@@ -260,7 +261,7 @@ const Header = () => {
                         onClick={() => setMenuCollapse(false)}
                         href={item.link}
                         className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
-                          pathname === item.link
+                          pathname.includes(item.link)
                             ? "text-secondary-500"
                             : pathname === "/"
                             ? " text-white hover:text-secondary-500"
