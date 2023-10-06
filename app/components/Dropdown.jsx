@@ -44,7 +44,11 @@ const Dropdown = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="option-box-option absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md bg-primary-500 text-white py-1 text-xs xl:min-w-full shadow-lg xl:right-0 xl:left-auto ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Listbox.Options
+            className="option-box-option absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md
+           bg-primary-500 text-white py-1 text-xs  
+          shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm xl:right-0 xl:left-auto xl:min-w-full"
+          >
             {options.map((item, personIdx) => (
               <Listbox.Option
                 key={personIdx}

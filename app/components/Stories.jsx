@@ -325,7 +325,7 @@ const Stories = () => {
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
           </div>
-          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs sm:block lg:text-center lg:col-span-1 xl:text-sm">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
 

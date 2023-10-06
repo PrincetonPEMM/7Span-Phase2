@@ -778,11 +778,7 @@ input[type="number"] {
 .my-masonry-grid {
   @apply flex w-auto justify-start;
 }
-.my-masonry-grid .my-masonry-grid_column:first-child {
-  /* @apply sm:!w-[48%] md:!w-[31%]; */
 
-  @apply sm:mr-5;
-}
 .my-masonry-grid .my-masonry-grid_column:nth-child(2) {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
@@ -836,22 +832,6 @@ input[type="number"] {
   box-shadow: 3px 7px 13px -2px #e5a942;
 }
 
-@media only screen and (min-width: 1024px) {
-  .submenu {
-    /* display: block; */
-    top: 100% !important;
-    padding-top: 8px;
-  }
-  .group:hover .submenu {
-    display: block;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .hero-img {
-    padding-top: 174.778%;
-  }
-}
 .masonry .even .card-background {
   @apply bg-primary-500;
 }
@@ -930,4 +910,34 @@ input::-webkit-inner-spin-button {
 }
 .interchangable-table tr:last-child {
   @apply border-b-0;
+}
+.table-wrap:before {
+  @apply top-0 left-0 rounded-lg;
+}
+@media only screen and (max-width: 440px) {
+  span.tagline {
+    @apply w-56 -top-5;
+  }
+}
+@media only screen and (min-width: 425px) {
+  .my-masonry-grid .my-masonry-grid_column:first-child {
+    /* @apply sm:!w-[48%] md:!w-[31%]; */
+    @apply mr-5;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .submenu {
+    /* display: block; */
+    top: 100% !important;
+    padding-top: 8px;
+  }
+  .group:hover .submenu {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-img {
+    padding-top: 174.778%;
+  }
 }
