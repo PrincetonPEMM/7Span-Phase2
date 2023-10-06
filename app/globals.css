@@ -638,9 +638,9 @@ input[type="number"] {
 .twitter-icon {
   color: #00b5d9;
 }
-.table {
+/* .table {
   min-height: 200px;
-}
+} */
 .story-page .table-body tr:nth-child(4n + 1),
 .story-page .table-body tr:nth-child(4n + 2) {
   @apply bg-offWhite-400;
@@ -783,19 +783,16 @@ input[type="number"] {
 
   @apply sm:mr-5;
 }
-
 .my-masonry-grid .my-masonry-grid_column:nth-child(2) {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
   @apply lg:mr-5;
 }
-
 .my-masonry-grid .my-masonry-grid_column:nth-child(3) {
   /* @apply sm:!w-[48%] md:!w-[31%]; */
 
   @apply lg:mr-5;
 }
-
 .my-masonry-grid_column .odd {
   @apply bg-primary-500 rounded-lg mb-5 text-white;
 }
@@ -910,15 +907,11 @@ input::-webkit-inner-spin-button {
 .page-total {
   @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
 }
-
 .option-box .truncate {
   @apply whitespace-nowrap;
 }
 .truncate {
   @apply break-words text-clip whitespace-normal 2xl:whitespace-nowrap;
-}
-.table thead {
-  @apply xl:table-caption;
 }
 
 /* RESEARCH AND SPELLLINGS PAGE TABLE CSS */
@@ -926,7 +919,6 @@ input::-webkit-inner-spin-button {
 .interchangable-table thead {
   @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0;
 }
-
 .interchangable-table td {
   @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm lg:text-base;
 }
