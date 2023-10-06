@@ -261,12 +261,12 @@ const Stories = () => {
             langItem={langOriginalItem}
             setLangItem={(e) => {
               setOriginalLangItem(e);
-              setTranslatedLangItem(initialTranslatedLangItem)
+              setTranslatedLangItem(initialTranslatedLangItem);
             }}
             translatedItem={langTranslatedItem}
             setTranslatedItem={(e) => {
               setTranslatedLangItem(e);
-              setOriginalLangItem(initialOriginalLangItem)
+              setOriginalLangItem(initialOriginalLangItem);
             }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
@@ -383,8 +383,12 @@ const Stories = () => {
           setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+          <div className="flex items-center py-20 justify-center w-full text-2xl text-primary-500 font-bold">
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : (
+              <h1 className="py-20">Records Not Found</h1>
+            )}
           </div>
         )}
         {/* <TablePagination
