@@ -42,7 +42,7 @@ const Footer = () => {
   return (
     <div className="bg-primary-500 px-5 py-12 md:px-8 lg:px-16">
       <div className="w-auto grid text-white grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
-        <div className="text-left md:py-0 py-5 md:pr-5 text-sm sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
+        <div className="text-left md:py-0 py-5 text-sm md:pr-5 sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
           <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
             <Image
               src={Logo}
@@ -68,8 +68,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="md:py-0 py-5">
-          <h2 className="text-lg font-bold lg:text-xl mb-3">About</h2>
+        <div className="py-5 md:py-0">
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
           <ul className="font-menu text-xl flex flex-col">
             {aboutItems.map((item, index) => (
               <>
@@ -86,8 +86,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="text-left md:py-0 py-5">
-          <h2 className="text-lg font-bold lg:text-xl mb-3">Explore</h2>
+        <div className="text-left py-5 md:py-0">
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
           <ul className="font-menu text-xl flex flex-col">
             {exploreItems.map((item, index) => (
               <>
@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
 
         <div className="text-left md:py-0 py-5">
-          <h2 className="text-lg font-bold lg:text-xl mb-3">Research Tools</h2>
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
           <ul className="font-menu text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
               <>
@@ -132,7 +132,7 @@ const Footer = () => {
             pemm@princeton.edu
           </Link>
 
-          <p className="pt-2 text-sm ">
+          <p className="pt-2 text-sm">
             © {new Date().getFullYear()} The Trustees of Princeton University
           </p>
         </div>

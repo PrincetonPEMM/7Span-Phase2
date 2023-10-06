@@ -15,7 +15,7 @@ const Modal = ({
   return (
     <>
       <Transition appear show={isOpen} as={Fragment} onClose={close}>
-        <Dialog as="div" className="relative z-50 ">
+        <Dialog as="div" className="relative z-50">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -42,7 +42,7 @@ const Modal = ({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`relative w-full transform overflow-hidden  rounded-2xl bg-white p-7 text-left align-middle shadow-xl transition-all ${previewClass}`}
+                  className={`relative w-full transform overflow-hidden rounded-2xl bg-white p-7 text-left align-middle shadow-xl transition-all ${previewClass}`}
                 >
                   {label && (
                     <Dialog.Title
@@ -54,7 +54,7 @@ const Modal = ({
                   )}
 
                   <button
-                    className=" absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-offWhite-500"
+                    className="absolute btn-close right-3 top-3 bg-black h-10 w-10 rounded-full p-2 font-bold text-offWhite-500"
                     onClick={modalClose}
                   >
                     X{closeModal}
