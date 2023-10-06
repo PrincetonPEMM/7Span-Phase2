@@ -261,12 +261,12 @@ const Stories = () => {
             langItem={langOriginalItem}
             setLangItem={(e) => {
               setOriginalLangItem(e);
-              setTranslatedLangItem(initialTranslatedLangItem)
+              setTranslatedLangItem(initialTranslatedLangItem);
             }}
             translatedItem={langTranslatedItem}
             setTranslatedItem={(e) => {
               setTranslatedLangItem(e);
-              setOriginalLangItem(initialOriginalLangItem)
+              setOriginalLangItem(initialOriginalLangItem);
             }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
@@ -325,7 +325,7 @@ const Stories = () => {
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
           </div>
-          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs sm:block lg:text-center lg:col-span-1 xl:text-sm">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
 
@@ -383,8 +383,12 @@ const Stories = () => {
           setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+          <div className="flex items-center py-20 justify-center w-full text-2xl text-primary-500 font-bold">
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : (
+              <h1 className="py-20">Records Not Found</h1>
+            )}
           </div>
         )}
         {/* <TablePagination

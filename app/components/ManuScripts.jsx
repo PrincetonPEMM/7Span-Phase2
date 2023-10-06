@@ -345,7 +345,8 @@ const ManuScripts = () => {
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 uppercase lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              } font-semibold border-2 border-primary-500 text-xs rounded-md  uppercase md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
+               transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -384,8 +385,12 @@ const ManuScripts = () => {
           setExpandedRows={setExpandedRows}
         />
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+          <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : (
+              <h1 className="py-20">Records Not Found</h1>
+            )}
           </div>
         )}
         {/* <TablePagination

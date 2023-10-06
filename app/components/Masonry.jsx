@@ -23,7 +23,7 @@ export default function Masonry(props) {
   }, []);
 
   return (
-    <div className="masonry columns-1 md:columns-2 lg:columns-3 ">
+    <div className="masonry columns-1 md:columns-2 lg:columns-3">
       {props.children.map((child, index) => {
         const total_row = Math.ceil(props.children.length / noOfColumns);
         const row = index % total_row;
