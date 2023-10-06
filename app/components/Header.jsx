@@ -227,7 +227,7 @@ const Header = () => {
                           />
                         </button>
                         <ul
-                          className={`submenu rounded-md top-0 text-white  transition-all  space-y-1 lg:absolute z-50 lg:top-9 lg:inset-x-0lg:right-0 lg:left-auto lg:min-w-max  
+                          className={`submenu rounded-md top-0 text-white  transition-all  space-y-1 lg:absolute z-50 lg:top-9 lg:inset-x-0 lg:right-0 lg:left-auto lg:min-w-max  
                           lg:group:hover:block lg:py-2 lg:bg-white lg:text-black lg:hover:bg-secondary-500mt-1  ${
                             activeSubmenu === index
                               ? "group:hover:block block z-50 "
