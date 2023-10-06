@@ -113,7 +113,7 @@ export default function StoryDetail({ data, Id }) {
         label: "Summary",
       });
     if (
-      data.canonical_translation_recension === "True" ||
+      data.canonical_translation_recension === "True" &&
       data?.translation_author
     )
       tabArr.push({
@@ -349,20 +349,21 @@ export default function StoryDetail({ data, Id }) {
                     ></p>
                   </li>
                 )}
-                {data?.translation_author && (
-                  <li>
-                    <h3 className="text-lg font-bold uppercase  my-3">
-                      TO CITE THIS TRANSLATION
-                    </h3>
+                {data.canonical_translation_recension === "True" &&
+                  data?.translation_author && (
+                    <li>
+                      <h3 className="text-lg font-bold uppercase  my-3">
+                        TO CITE THIS TRANSLATION
+                      </h3>
 
-                    <p
-                      className="text-base leading-loose mb-3"
-                      dangerouslySetInnerHTML={{
-                        __html: cityThisTranslation(),
-                      }}
-                    ></p>
-                  </li>
-                )}
+                      <p
+                        className="text-base leading-loose mb-3"
+                        dangerouslySetInnerHTML={{
+                          __html: cityThisTranslation(),
+                        }}
+                      ></p>
+                    </li>
+                  )}
               </ol>
             </div>
             <div className="space-y-4 mb-10">
@@ -534,51 +535,52 @@ export default function StoryDetail({ data, Id }) {
           )}
 
           {/* TRANSLATION */}
-          {(data.canonical_translation_recension === "True" ||
-            data?.translation_author) && (
-            <Tab.Panel className="p-4 md:p-6">
-              <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0">
-                  <li>
-                    {data.canonical_translation_recension === "True" && (
-                      <>
-                        <h3 className="text-lg font-bold uppercase  mb-3">
-                          TRANSLATION
-                        </h3>
-                        {data.translation_author && data.manuscript_name && (
-                          <p className="text-base leading-loose mb-3 italic">
-                            Translated by {data.translation_author} from&nbsp;
-                            {data.manuscript_name}, f.
-                            {data.translation_source_manuscript_folio}
-                            {data.translation_as_of_date}.
-                          </p>
+          {data.canonical_translation_recension === "True" &&
+            data?.translation_author && (
+              <Tab.Panel className="p-4 md:p-6">
+                <div className="space-y-4">
+                  <ol className="list-inside md:pl-4 p-0">
+                    <li>
+                      {data.canonical_translation_recension === "True" && (
+                        <>
+                          <h3 className="text-lg font-bold uppercase  mb-3">
+                            TRANSLATION
+                          </h3>
+                          {data.translation_author && data.manuscript_name && (
+                            <p className="text-base leading-loose mb-3 italic">
+                              Translated by {data.translation_author} from&nbsp;
+                              {data.manuscript_name}, f.
+                              {data.translation_source_manuscript_folio}
+                              {data.translation_as_of_date}.
+                            </p>
+                          )}
+                          <p
+                            className="text-base leading-loose mb-3"
+                            dangerouslySetInnerHTML={{
+                              __html: data.english_translation,
+                            }}
+                          ></p>
+                        </>
+                      )}
+                      {data.canonical_translation_recension === "True" &&
+                        data?.translation_author && (
+                          <>
+                            <h3 className="text-lg font-bold uppercase my-3">
+                              TO CITE THIS TRANSLATION
+                            </h3>
+                            <p
+                              className="text-base leading-loose mb-3"
+                              dangerouslySetInnerHTML={{
+                                __html: cityThisTranslation(),
+                              }}
+                            ></p>
+                          </>
                         )}
-                        <p
-                          className="text-base leading-loose mb-3"
-                          dangerouslySetInnerHTML={{
-                            __html: data.english_translation,
-                          }}
-                        ></p>
-                      </>
-                    )}
-                    {data?.translation_author && (
-                      <>
-                        <h3 className="text-lg font-bold uppercase my-3">
-                          TO CITE THIS TRANSLATION
-                        </h3>
-                        <p
-                          className="text-base leading-loose mb-3"
-                          dangerouslySetInnerHTML={{
-                            __html: cityThisTranslation(),
-                          }}
-                        ></p>
-                      </>
-                    )}
-                  </li>
-                </ol>
-              </div>
-            </Tab.Panel>
-          )}
+                    </li>
+                  </ol>
+                </div>
+              </Tab.Panel>
+            )}
 
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
