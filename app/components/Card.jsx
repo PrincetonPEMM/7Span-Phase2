@@ -22,7 +22,7 @@ export default function Card({
     }
 
     return toggle ? (
-      <p className="py-2 text-sm text-offWhite-300">
+      <p className="py-2 text-sm ">
         {text}
         <button
           onClick={() => setToggle(false)}
