@@ -261,7 +261,7 @@ const Header = () => {
                         onClick={() => setMenuCollapse(false)}
                         href={item.link}
                         className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
-                          pathname === item.link
+                          pathname.includes(item.link)
                             ? "text-secondary-500"
                             : pathname === "/"
                             ? " text-white hover:text-secondary-500"

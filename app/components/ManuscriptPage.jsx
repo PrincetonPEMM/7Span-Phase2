@@ -310,7 +310,7 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     if (data.source) {
-      p5 = `Regarding this manuscript's repository: ${data.source}.`;
+      p5 = `Regarding this manuscript's repository: ${data.source}`;
       array.push({ text: p5 });
     }
     // array.push({ text: `${p1} ${p2} ${p3} ${p4} ${p5}` });
