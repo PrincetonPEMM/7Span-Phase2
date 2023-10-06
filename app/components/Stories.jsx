@@ -387,7 +387,7 @@ const Stories = () => {
             {isLoading ? (
               <h1>Loading...</h1>
             ) : (
-              <h1 className="py-30 block">Records Not Found</h1>
+              <h1 className="py-20">Records Not Found</h1>
             )}
           </div>
         )}

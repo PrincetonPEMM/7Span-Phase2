@@ -385,7 +385,11 @@ const ManuScripts = () => {
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center  w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : (
+              <h1 className="py-20">Records Not Found</h1>
+            )}
           </div>
         )}
         {/* <TablePagination
