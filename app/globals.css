@@ -947,3 +947,9 @@ input::-webkit-inner-spin-button {
 .p-beside-p + p {
   display: inline;
 }
+.descriptions-left {
+  @apply text-left;
+}
+.descriptions-left h3 {
+  @apply text-primary-500 font-body;
+}
