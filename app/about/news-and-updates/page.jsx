@@ -29,7 +29,7 @@ export default async function Page() {
           keyword={"news"}
           value1={"News"}
           value2={"Updates"}
-          redirect={`news-and-update/`}
+          redirect={`news-and-updates/`}
         />
       </div>
     </div>

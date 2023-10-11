@@ -941,3 +941,15 @@ input::-webkit-inner-spin-button {
     padding-top: 174.778%;
   }
 }
+.p-beside-p {
+  display: inline;
+}
+.p-beside-p + p {
+  display: inline;
+}
+.descriptions-left {
+  @apply text-left;
+}
+.descriptions-left h3 {
+  @apply text-primary-500 font-body;
+}

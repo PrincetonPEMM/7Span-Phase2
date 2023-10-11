@@ -12,18 +12,18 @@ const Footer = () => {
     { title: "Our Mission", link: "/about/mission" },
     { title: "Our History", link: "/about/mission" },
     { title: "Our Team", link: "/about/people" },
-    { title: "Our Partners", link: "/about/people" },
-    { title: "Our Funders", link: "/about/people" },
-    { title: "News & Updates", link: "/about/news-and-update" },
-    { title: "Events & Workshops", link: "/about/events" },
-    { title: "Using the Site", link: "/about/connect/using-site" },
-    { title: "Contact Us", link: "/about/connect/using-site" },
+    { title: "Our Partners", link: "/about/people#our-partners" },
+    { title: "Our Funders", link: "/about/people#our-funders" },
+    { title: "News & Updates", link: "/about/news-and-updates" },
+    { title: "Events & Workshops", link: "/about/events-and-workshops" },
+    { title: "Using the Site", link: "/about/connect/using-the-site" },
+    { title: "Contact Us", link: "/about/connect/contact-us" },
   ];
   const exploreItems = [
     { title: "Find Stories", link: "/stories" },
     { title: "Find Paintings", link: "/paintings" },
-    { title: "Find Manuscripts", link: "/manuscripts" },
-    { title: "Find Archives", link: "/research-tools/maps" },
+    { title: "Find Manuscripts", link: "/research/arabic-manuscripts" },
+    { title: "Find Archives", link: "/research/repositories" },
     { title: "Featured Stories", link: "/stories" },
     { title: "Featured Paintings", link: "/paintings" },
     { title: "Featured Manuscripts", link: "/manuscripts" },
@@ -36,7 +36,7 @@ const Footer = () => {
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
     { title: "Bibliography", link: "/research/bibliography" },
-    { title: "Arabic Manuscripts", link: "/research/manuscripts" },
+    { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
@@ -150,9 +150,12 @@ const Footer = () => {
           >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <Link href="@pemmaryam" className="w-6 h-6 group transition-colors">
+          <div className="w-6 h-6 group transition-colors">
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
-          </Link>
+          </div>
+          {/* <Link href="@pemmaryam" className="w-6 h-6 group transition-colors">
+            <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
+          </Link> */}
           <Link href="https://twitter.com/pemmaryam" className="w-6 h-6 group">
             <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col bg-black">
       <button
         className="w-full aspect-auto h-full banner-image relative"
         onClick={() => {
