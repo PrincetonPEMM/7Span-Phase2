@@ -1,5 +1,5 @@
 "use client";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/images/logo-white.png";
 import LogoBlack from "../../assets/images/logo-black.png";
@@ -57,7 +57,7 @@ const Header = () => {
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Bibliography", link: "/research/bibliography" },
         { title: "Incipit Tool", link: "/research/incipit-tool" },
-        { title: "Arabic Manuscripts", link: "/research/manuscript" },
+        { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
         { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
@@ -87,11 +87,11 @@ const Header = () => {
         },
         {
           title: "News & Updates",
-          link: "/about/news-and-update",
+          link: "/about/news-and-updates",
         },
         {
           title: "Events & Workshops",
-          link: "/about/event-and-workshop",
+          link: "/about/events-and-workshops",
         },
         {
           title: "Using the Site",

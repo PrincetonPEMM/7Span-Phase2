@@ -29,7 +29,7 @@ const Page = async () => {
           keyword={"workshop"}
           value2={"Event"}
           value1={"Workshop"}
-          redirect={`event-and-workshop/`}
+          redirect={`events-and-workshops/`}
         />
       </div>
     </div>
