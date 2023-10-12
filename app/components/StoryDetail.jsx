@@ -113,8 +113,8 @@ export default function StoryDetail({ data, Id }) {
         label: "Summary",
       });
     if (
-      data.canonical_translation_recension === "True" &&
-      data?.translation_author
+      data.canonical_translation_recension === "True" ||
+      data?.translation_author !== "No Translator"
     )
       tabArr.push({
         label: "Translation",
@@ -332,15 +332,17 @@ export default function StoryDetail({ data, Id }) {
                       TRANSLATION
                     </h3>
 
-                    {data.translation_author && data.manuscript_name && (
-                      <p className="text-base leading-loose mb-3 italic">
-                        Translated by {data.translation_author} from&nbsp;
-                        {data.manuscript_name},
-                        {data.translation_source_manuscript_folio}
-                        {", in "}
-                        {data.translation_as_of_date}.
-                      </p>
-                    )}
+                    {data.translation_author !== "No Translator" &&
+                      data.translation_author &&
+                      data.manuscript_name && (
+                        <p className="text-base leading-loose mb-3 italic">
+                          Translated by {data.translation_author} from&nbsp;
+                          {data.manuscript_name},&nbsp;
+                          {data.translation_source_manuscript_folio}
+                          {", in "}
+                          {data.translation_as_of_date}.
+                        </p>
+                      )}
                     <p
                       className="text-base leading-loose mb-3"
                       dangerouslySetInnerHTML={{
@@ -350,6 +352,7 @@ export default function StoryDetail({ data, Id }) {
                   </li>
                 )}
                 {data.canonical_translation_recension === "True" &&
+                  data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
                     <li>
                       <h3 className="text-lg font-bold uppercase  my-3">
@@ -370,7 +373,7 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3 ">
-                    {data.languageAvailableIn.length > 0 &&
+                    {data.translations.length > 0 &&
                       "TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
                   <ul className="space-y-2">
@@ -535,52 +538,69 @@ export default function StoryDetail({ data, Id }) {
           )}
 
           {/* TRANSLATION */}
-          {data.canonical_translation_recension === "True" &&
-            data?.translation_author && (
-              <Tab.Panel className="p-4 md:p-6">
-                <div className="space-y-4">
-                  <ol className="list-inside md:pl-4 p-0">
-                    <li>
-                      {data.canonical_translation_recension === "True" && (
-                        <>
-                          <h3 className="text-lg font-bold uppercase  mb-3">
-                            TRANSLATION
-                          </h3>
-                          {data.translation_author && data.manuscript_name && (
+          {(data.canonical_translation_recension === "True" ||
+            data?.translation_author !== "No Translator" ||
+            data.translations.length > 0) && (
+            <Tab.Panel className="p-4 md:p-6">
+              <div className="space-y-4">
+                <ol className="list-inside md:pl-4 p-0">
+                  <li>
+                    {data.canonical_translation_recension === "True" && (
+                      <>
+                        <h3 className="text-lg font-bold uppercase  mb-3">
+                          TRANSLATION
+                        </h3>
+                        {data.translation_author !== "No Translator" &&
+                          data.translation_author &&
+                          data.manuscript_name && (
                             <p className="text-base leading-loose mb-3 italic">
                               Translated by {data.translation_author} from&nbsp;
-                              {data.manuscript_name}, f.
+                              {data.manuscript_name},&nbsp;
                               {data.translation_source_manuscript_folio}
                               {data.translation_as_of_date}.
                             </p>
                           )}
+                        <p
+                          className="text-base leading-loose mb-3"
+                          dangerouslySetInnerHTML={{
+                            __html: data.english_translation,
+                          }}
+                        ></p>
+                      </>
+                    )}
+                    {data.canonical_translation_recension === "True" &&
+                      data?.translation_author !== "No Translator" &&
+                      data?.translation_author && (
+                        <>
+                          <h3 className="text-lg font-bold uppercase my-3">
+                            TO CITE THIS TRANSLATION
+                          </h3>
                           <p
                             className="text-base leading-loose mb-3"
                             dangerouslySetInnerHTML={{
-                              __html: data.english_translation,
+                              __html: cityThisTranslation(),
                             }}
                           ></p>
                         </>
                       )}
-                      {data.canonical_translation_recension === "True" &&
-                        data?.translation_author && (
-                          <>
-                            <h3 className="text-lg font-bold uppercase my-3">
-                              TO CITE THIS TRANSLATION
-                            </h3>
-                            <p
-                              className="text-base leading-loose mb-3"
-                              dangerouslySetInnerHTML={{
-                                __html: cityThisTranslation(),
-                              }}
-                            ></p>
-                          </>
-                        )}
-                    </li>
-                  </ol>
-                </div>
-              </Tab.Panel>
-            )}
+
+                    <h3 className="text-lg font-bold uppercase  mb-3 ">
+                      {data.translations.length > 0 &&
+                        "TRANSLATIONS & EDITIONS OF THIS STORY"}
+                    </h3>
+                    <ul className="space-y-2">
+                      <p
+                        className="text-base leading-relaxed"
+                        dangerouslySetInnerHTML={{
+                          __html: generateTranslations(),
+                        }}
+                      ></p>
+                    </ul>
+                  </li>
+                </ol>
+              </div>
+            </Tab.Panel>
+          )}
 
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
@@ -630,8 +650,8 @@ function FirstLine(earliest_attestation) {
               ? "very recent"
               : ""}
           </b>
-          : the earliest manuscript<sup>1</sup> in which this story appears is
-          from around {earliest_attestation}.
+          : the earliest PEMM manuscript<sup>1</sup> in which this story appears
+          is from around {earliest_attestation}.
         </p>
       )}
     </>
@@ -768,7 +788,7 @@ function FifthLine(origin) {
 function SixthLine(languageAvailableIn) {
   return (
     <p className="text-base leading-relaxed">
-      This story is available in the following <b>languages</b>:
+      This story is available in the following <b>languages</b>:&nbsp;
       {languageAvailableIn.join(", ")}.
     </p>
   );
@@ -776,8 +796,8 @@ function SixthLine(languageAvailableIn) {
 function SeventhLine() {
   return (
     <p className="text-sm leading-relaxed py-2">
-      1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript that PEMM
-      has catalogued. For more information, see&nbsp;
+      1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript or book
+      that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
         className="text-primary-600 font-bold"
