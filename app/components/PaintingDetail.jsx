@@ -144,7 +144,7 @@ const PaintingDetail = ({ data }) => {
               )}
             </p>
             <p>
-              13<strong> Painting's Gəˁəz Caption in Translation: </strong>
+              13<strong> Painting's Geʿez Caption in Translation: </strong>
               &nbsp;
               {data?.episode_caption ? data?.episode_caption : "none"}
             </p>

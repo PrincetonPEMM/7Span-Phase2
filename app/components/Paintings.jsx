@@ -13,7 +13,6 @@ import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
-import MdiFormatListBulletedSquare from "@/assets/icons/MdiFormatListBulletedSquare";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 
@@ -216,50 +215,10 @@ const Paintings = ({
                 title="Digital Quality"
                 selected={paintingsInColorOnly}
                 setSelected={(e) => {
-                  if (e?.length === 0) {
-                    setPaintingsInColorOnly([]);
-                  }
-                  if (e?.length === 1) {
-                    setPaintingsInColorOnly(e);
+                  if (e.length > 2) {
+                    setPaintingsInColorOnly([e[e.length - 2], e[e.length - 1]]);
                   } else {
-                    // let DQY = e.filter(
-                    //   (d) => d.key === "default" && d.value === "Digital Quality"
-                    // );
-                    if (
-                      e[0].key === "default" &&
-                      e[0].value === "Digital Quality"
-                    ) {
-                      let selected = e.filter(
-                        (d) =>
-                          d.key !== "default" && d.value !== "Digital Quality"
-                      );
-                      setPaintingsInColorOnly(selected);
-                    }
-                    if (
-                      e[e.length - 1].key === "default" &&
-                      e[e.length - 1].value === "Digital Quality"
-                    ) {
-                      let selected = e.filter(
-                        (d) =>
-                          d.key === "default" && d.value === "Digital Quality"
-                      );
-                      setPaintingsInColorOnly(selected);
-                    } else {
-                      let selected = e.filter(
-                        (d) =>
-                          d.key === "exclude_no_image" &&
-                          d.value === "Exclude Image Not Available"
-                      );
-                      let lastSelected = e.filter(
-                        (d) =>
-                          d.key !== "exclude_no_image" &&
-                          d.value !== "Exclude Image Not Available"
-                      );
-                      setPaintingsInColorOnly([
-                        ...selected,
-                        lastSelected[lastSelected.length - 1],
-                      ]);
-                    }
+                    setPaintingsInColorOnly(e);
                   }
                   setTimeout(() => {
                     setMenuCollapse(false);
@@ -337,50 +296,10 @@ const Paintings = ({
               title="Digital Quality"
               selected={paintingsInColorOnly}
               setSelected={(e) => {
-                if (e?.length === 0) {
-                  setPaintingsInColorOnly([]);
-                }
-                if (e?.length === 1) {
-                  setPaintingsInColorOnly(e);
+                if (e.length > 2) {
+                  setPaintingsInColorOnly([e[e.length - 2], e[e.length - 1]]);
                 } else {
-                  // let DQY = e.filter(
-                  //   (d) => d.key === "default" && d.value === "Digital Quality"
-                  // );
-                  if (
-                    e[0].key === "default" &&
-                    e[0].value === "Digital Quality"
-                  ) {
-                    let selected = e.filter(
-                      (d) =>
-                        d.key !== "default" && d.value !== "Digital Quality"
-                    );
-                    setPaintingsInColorOnly(selected);
-                  }
-                  if (
-                    e[e.length - 1].key === "default" &&
-                    e[e.length - 1].value === "Digital Quality"
-                  ) {
-                    let selected = e.filter(
-                      (d) =>
-                        d.key === "default" && d.value === "Digital Quality"
-                    );
-                    setPaintingsInColorOnly(selected);
-                  } else {
-                    let selected = e.filter(
-                      (d) =>
-                        d.key === "exclude_no_image" &&
-                        d.value === "Exclude Image Not Available"
-                    );
-                    let lastSelected = e.filter(
-                      (d) =>
-                        d.key !== "exclude_no_image" &&
-                        d.value !== "Exclude Image Not Available"
-                    );
-                    setPaintingsInColorOnly([
-                      ...selected,
-                      lastSelected[lastSelected.length - 1],
-                    ]);
-                  }
+                  setPaintingsInColorOnly(e);
                 }
               }}
               options={paintingInColor}
