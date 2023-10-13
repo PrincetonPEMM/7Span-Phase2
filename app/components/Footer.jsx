@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Logo from "../../assets/images/logo-footer.png";
 import React from "react";
@@ -6,8 +7,10 @@ import IconoirTiktok from "@/assets/icons/IconoirTiktok";
 import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
 import MdiInstagram from "@/assets/icons/MdiInstagram";
 import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
   const aboutItems = [
     { title: "Our Mission", link: "/about/mission" },
     { title: "Our History", link: "/about/mission" },
@@ -24,9 +27,21 @@ const Footer = () => {
     { title: "Find Paintings", link: "/paintings" },
     { title: "Find Manuscripts", link: "/research/arabic-manuscripts" },
     { title: "Find Archives", link: "/research/repositories" },
-    { title: "Featured Stories", link: "/stories" },
-    { title: "Featured Paintings", link: "/paintings" },
-    { title: "Featured Manuscripts", link: "/manuscripts" },
+    {
+      title: "Featured Stories",
+      link: "/#featured-stories",
+      label: "featured-stories",
+    },
+    {
+      title: "Featured Paintings",
+      link: "/#featured-paintings",
+      label: "featured-paintings",
+    },
+    {
+      title: "Featured Manuscripts",
+      link: "/#featured-manuscripts",
+      label: "featured-manuscripts",
+    },
   ];
   const researchToolItems = [
     { title: "Maps", link: "/research/maps" },
@@ -91,14 +106,25 @@ const Footer = () => {
           <ul className="font-menu text-xl flex flex-col">
             {exploreItems.map((item, index) => (
               <>
-                <Link
-                  href={item.link}
-                  key={index}
-                  className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
-                >
-                  {item.title}
-                </Link>
-                {[3, 6].includes(index) && <div className="mt-5" />}
+                {pathname !== "/" ? (
+                  <Link
+                    href={item.link}
+                    key={index}
+                    className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
+                  >
+                    {item.title}
+                    {[3, 6].includes(index) && <div className="mt-5" />}
+                  </Link>
+                ) : (
+                  <label
+                    htmlFor={item.label}
+                    key={index}
+                    className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
+                  >
+                    {item.title}
+                    {[3, 6].includes(index) && <div className="mt-5" />}
+                  </label>
+                )}
               </>
             ))}
           </ul>

@@ -28,7 +28,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: macomber_handlist_data?.description,
               }}
-              className="space-y-p"
+              className="space-y-p descriptions-left"
             />
           </div>
         )}
