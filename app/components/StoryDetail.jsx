@@ -796,7 +796,7 @@ function SixthLine(languageAvailableIn) {
 function SeventhLine() {
   return (
     <p className="text-sm leading-relaxed py-2">
-      1. A "PEMM manuscript" is defined as any Gəˁəz Marian manuscript or book
+      1. A "PEMM manuscript" is defined as any Geʿez Marian manuscript or book
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"

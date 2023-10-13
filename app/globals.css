@@ -953,3 +953,6 @@ input::-webkit-inner-spin-button {
 .descriptions-left h3 {
   @apply text-primary-500 font-body;
 }
+.descriptions-left h1 {
+  @apply text-primary-500 font-body;
+}
