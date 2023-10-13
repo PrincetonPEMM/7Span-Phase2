@@ -4,10 +4,11 @@ import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 import Image from "next/image";
 
-const Banner = ({ data, setSelectedBanner, selectedBanner }) => {
+const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
   return (
     <div className="relative flex flex-col bg-black">
       <button
+        id={id}
         className="w-full aspect-auto h-full banner-image relative"
         onClick={() => {
           selectedBanner.img === data.img
