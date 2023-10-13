@@ -106,7 +106,7 @@ const Footer = () => {
           <ul className="font-menu text-xl flex flex-col">
             {exploreItems.map((item, index) => (
               <>
-                {pathname !== "/" ? (
+                {pathname !== "/" || !item.label ? (
                   <Link
                     href={item.link}
                     key={index}
