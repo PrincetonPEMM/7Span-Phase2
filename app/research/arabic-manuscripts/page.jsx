@@ -28,7 +28,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: arabic_manuscripts_data?.description,
               }}
-              className="space-y-p"
+              className="descriptions-left"
             />
           </div>
         )}
