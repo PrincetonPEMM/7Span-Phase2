@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 
-const RangeSlider = ({  min, max, onChange, ref1 }) => {
+const RangeSlider = ({ min, max, onChange, ref1 }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -25,6 +25,13 @@ const RangeSlider = ({  min, max, onChange, ref1 }) => {
       setMaxVal(max);
       maxValRef.current = max;
       minValRef.current = min;
+      return null;
+    },
+    set(minP, maxP) {
+      setMinVal(minP);
+      setMaxVal(maxP);
+      minValRef.current = minP;
+      maxValRef.current = maxP;
       return null;
     },
   }));

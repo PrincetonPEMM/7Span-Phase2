@@ -1,5 +1,5 @@
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import React, { useRef } from "react";
+import React from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
@@ -25,6 +25,10 @@ import Radio from "./form/Radio";
 import MdiReload from "@/assets/icons/MdiReload";
 
 const Sidebar = ({
+  childRef1,
+  childRef2,
+  childRef3,
+  childRef4 = null,
   isPageName,
   onChangeStory,
   onChangeManuscript,
@@ -67,10 +71,6 @@ const Sidebar = ({
       : rangeSliderMaxNoOfPaintingsManuscriptsPage;
   const slider4InitMin = rangeSliderMinUniqueStoriesManuscriptsPage;
   const slider4InitMax = rangeSliderMaxUniqueStoriesManuscriptsPage;
-  const childRef1 = useRef();
-  const childRef2 = useRef();
-  const childRef3 = useRef();
-  const childRef4 = useRef();
 
   const resetHandler = () => {
     resetFilter();
