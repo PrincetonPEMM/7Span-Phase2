@@ -60,6 +60,7 @@ const Stories = () => {
     rangeSliderMaxForPaintingsStoriesPage
   );
   const [isMount, setIsMount] = useState(false);
+  const [isMount1, setIsMount1] = useState(false);
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimit);
@@ -206,7 +207,10 @@ const Stories = () => {
 
   useEffect(() => {
     fetchData(search);
-    setPage(1);
+    if (isMount1) setPage(1);
+    else {
+      setPage(pageParams);
+    }
   }, [filterItem, placeItem, langOriginalItem, langTranslatedItem]);
 
   useEffect(() => {
@@ -225,7 +229,7 @@ const Stories = () => {
   }, []);
 
   const scrollTop = () => {
-    if (isMount) {
+    if (!isMount) {
       setTimeout(() => {
         window.scrollTo({
           top: 0,
@@ -238,7 +242,11 @@ const Stories = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
-    setPage(1);
+    if (isMount1) setPage(1);
+    else {
+      setIsMount1(true);
+      setPage(pageParams);
+    }
   }, 300);
 
   const debouncedSliderParams = debounce((keyword, value, isDelete) => {
