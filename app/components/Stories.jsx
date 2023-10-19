@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
@@ -22,9 +22,17 @@ import {
   initialTranslatedLangItem,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination, { TablePagination } from "./Pagination";
+import CustomPagination from "./Pagination";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Stories = () => {
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+  const pageP = params.get("page");
+  const pageParams = pageP > 1 ? pageP : 1;
+
   const { debounce } = useDebounce();
   const [search, setSearch] = useState("");
   const [expandedRows, setExpandedRows] = useState([]);
@@ -52,25 +60,42 @@ const Stories = () => {
     rangeSliderMaxForPaintingsStoriesPage
   );
   const [isMount, setIsMount] = useState(false);
+  const [isMount1, setIsMount1] = useState(false);
   const [isLoading, setIsLoadint] = useState(true);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
+  const childRef1 = useRef();
+  const childRef2 = useRef();
+  const childRef3 = useRef();
 
   const [isOpen, setIsOpen] = useState(true);
 
   const getFilterFalsyValue = (itemList, key) => {
-    return `filters[${key}]=${itemList.checkItem[key]?.isChecked || false}&`;
+    const value = itemList.checkItem[key]?.isChecked;
+    if (value) setFilterInParams(key, value, false);
+    else setFilterInParams(key, value, true);
+    return `filters[${key}]=${value || false}&`;
   };
 
   const makeParamsArray = (key, arr) => {
-    return arr.checkItem
+    arr.checkItem
+      .filter((ar) => !ar.isChecked)
+      .map((itm) => {
+        setFilterInParams(key, itm.name, true);
+      });
+    const resData = arr.checkItem
       .filter((ar) => ar.isChecked)
-      .map((itm) => `filters[${key}][]=${itm.name}&`)
+      .map((itm) => {
+        setFilterInParams(key, itm.name, false);
+        return `filters[${key}][]=${itm.name}&`;
+      })
       .join("");
+    return resData;
   };
+
   useEffect(() => {
     if (isOpen && window.innerWidth < 768) {
       document.body.classList.add("filter_open");
@@ -86,6 +111,40 @@ const Stories = () => {
   }, [isOpen, window]);
 
   async function fetchData(searchKey = "") {
+    if (storyMin !== rangeSliderMinForStoriesStoriesPage) {
+      setFilterInParams("storyMin", storyMin, false);
+    } else setFilterInParams("storyMin", storyMin, true);
+    if (storyMax !== rangeSliderMaxForStoriesStoriesPage) {
+      setFilterInParams("storyMax", storyMax, false);
+    } else setFilterInParams("storyMax", storyMax, true);
+
+    if (manuscriptsMin !== rangeSliderMinForManuscriptsStoriesPage) {
+      setFilterInParams("manuscriptsMin", manuscriptsMin, false);
+    } else setFilterInParams("manuscriptsMin", manuscriptsMin, true);
+    if (manuscriptsMax !== rangeSliderMaxForManuscriptsStoriesPage) {
+      setFilterInParams("manuscriptsMax", manuscriptsMax, false);
+    } else setFilterInParams("manuscriptsMax", manuscriptsMax, true);
+
+    if (paintingMin !== rangeSliderMinForPaintingsStoriesPage) {
+      setFilterInParams("paintingMin", paintingMin, false);
+    } else setFilterInParams("paintingMin", paintingMin, true);
+    if (paintingMax !== rangeSliderMaxForPaintingsStoriesPage) {
+      setFilterInParams("paintingMax", paintingMax, false);
+    } else setFilterInParams("paintingMax", paintingMax, true);
+
+    if (searchKey.length > 3) {
+      setFilterInParams("search", searchKey, false);
+    }
+    if (searchKey.length === 0) {
+      setFilterInParams("search", searchKey, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
+
     try {
       setIsLoadint(true);
       const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
@@ -148,10 +207,14 @@ const Stories = () => {
 
   useEffect(() => {
     fetchData(search);
-    setPage(1);
+    if (isMount1) setPage(1);
+    else {
+      setPage(pageParams);
+    }
   }, [filterItem, placeItem, langOriginalItem, langTranslatedItem]);
 
   useEffect(() => {
+    getFilterFromParams();
     if (typeof window !== "undefined") {
       const checkWidth = () => {
         if (window?.innerWidth < 1024) {
@@ -166,7 +229,7 @@ const Stories = () => {
   }, []);
 
   const scrollTop = () => {
-    if (isMount) {
+    if (!isMount) {
       setTimeout(() => {
         window.scrollTo({
           top: 0,
@@ -179,7 +242,15 @@ const Stories = () => {
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
-    setPage(1);
+    if (isMount1) setPage(1);
+    else {
+      setIsMount1(true);
+      setPage(pageParams);
+    }
+  }, 300);
+
+  const debouncedSliderParams = debounce((keyword, value, isDelete) => {
+    setFilterInParams(keyword, value, isDelete);
   }, 300);
 
   const resetFilter = () => {
@@ -196,9 +267,160 @@ const Stories = () => {
     setExpandedRows([]);
     setPage(1);
     setSearch("");
-    // setToggleBtn(false);
-    // setTableHeader()
     fetchData("");
+    router.push(`${pathname}`);
+  };
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove) return;
+    if (["translatedLanguages", "originalLanguages", "origin"].includes(key)) {
+      newParams.append(key, value);
+    } else newParams.set(key, value);
+
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  const getFilterFromParams = () => {
+    const search = params.get("search");
+    setSearch(search ? search : "");
+    const pageP = params.get("page");
+    setPage(pageP > 1 ? pageP : 1);
+    const storyMinP = params.get("storyMin");
+    const storyMaxP = params.get("storyMax");
+    if (storyMinP && storyMaxP) {
+      setStoryMin(storyMinP);
+      setStoryMax(storyMaxP);
+      childRef1?.current?.set(storyMinP, storyMaxP);
+    } else if (storyMinP) {
+      setStoryMin(storyMinP);
+      childRef1?.current?.set(storyMinP, rangeSliderMaxForStoriesStoriesPage);
+    } else if (storyMaxP) {
+      setStoryMax(storyMaxP);
+      childRef1?.current?.set(rangeSliderMinForStoriesStoriesPage, storyMaxP);
+    }
+    const manuscriptsMinP = params.get("manuscriptsMin");
+    const manuscriptsMaxP = params.get("manuscriptsMax");
+    if (manuscriptsMinP && manuscriptsMaxP) {
+      setManuscriptsMin(manuscriptsMinP);
+      setManuscriptsMax(manuscriptsMaxP);
+      childRef2?.current?.set(manuscriptsMinP, manuscriptsMaxP);
+    } else if (manuscriptsMinP) {
+      setManuscriptsMin(manuscriptsMinP);
+      childRef2?.current?.set(
+        manuscriptsMinP,
+        rangeSliderMaxForManuscriptsStoriesPage
+      );
+    } else if (manuscriptsMaxP) {
+      setManuscriptsMax(manuscriptsMaxP);
+      childRef2?.current?.set(
+        rangeSliderMinForManuscriptsStoriesPage,
+        manuscriptsMaxP
+      );
+    }
+    const paintingMinP = params.get("paintingMin");
+    const paintingMaxP = params.get("paintingMax");
+    if (paintingMinP && paintingMaxP) {
+      setPaintingMin(paintingMinP);
+      setPaintingMax(paintingMaxP);
+      childRef3?.current?.set(paintingMinP, paintingMaxP);
+    } else if (paintingMinP) {
+      setPaintingMin(paintingMinP);
+      childRef3?.current?.set(
+        paintingMinP,
+        rangeSliderMaxForPaintingsStoriesPage
+      );
+    } else if (paintingMaxP) {
+      setPaintingMax(paintingMaxP);
+      childRef3?.current?.set(
+        rangeSliderMinForPaintingsStoriesPage,
+        paintingMaxP
+      );
+    }
+    const origin = params.getAll("origin");
+    const updatedPlace = placeItem.checkItem.map((temp) => {
+      return { ...temp, isChecked: origin.includes(temp.name) ? true : false };
+    });
+    setPlaceItem({ ...placeItem, checkItem: updatedPlace });
+
+    const originalLanguages = params.getAll("originalLanguages");
+    const updatedLanguages = langOriginalItem.checkItem.map((temp) => {
+      return {
+        ...temp,
+        isChecked: originalLanguages.includes(temp.name) ? true : false,
+      };
+    });
+    setOriginalLangItem({ ...langOriginalItem, checkItem: updatedLanguages });
+
+    const translatedLanguages = params.getAll("translatedLanguages");
+    const updatedTranslated = langTranslatedItem.checkItem.map((temp) => {
+      return {
+        ...temp,
+        isChecked: translatedLanguages.includes(temp.name) ? true : false,
+      };
+    });
+    setTranslatedLangItem({
+      ...langTranslatedItem,
+      checkItem: updatedTranslated,
+    });
+
+    const withPaintings = params.get("withPaintings");
+    const mostIllustrated = params.get("mostIllustrated");
+    const withEnglishTranslation = params.get("withEnglishTranslation");
+    const ethiopianStories = params.get("ethiopianStories");
+    const miracleOfMaryStories = params.get("miracleOfMaryStories");
+    const lifeOfMaryStories = params.get("lifeOfMaryStories");
+    const earliestStories = params.get("earliestStories");
+    const recentStories = params.get("recentStories");
+    const popularStories = params.get("popularStories");
+    const uniqueStories = params.get("uniqueStories");
+
+    const newFilterItem = {
+      ...filterItem,
+      checkItem: {
+        ...filterItem.checkItem,
+        ["withPaintings"]: {
+          ...filterItem.checkItem["withPaintings"],
+          isChecked: withPaintings ? true : false,
+        },
+        ["mostIllustrated"]: {
+          ...filterItem.checkItem["mostIllustrated"],
+          isChecked: mostIllustrated ? true : false,
+        },
+        ["withEnglishTranslation"]: {
+          ...filterItem.checkItem["withEnglishTranslation"],
+          isChecked: withEnglishTranslation ? true : false,
+        },
+        ["ethiopianStories"]: {
+          ...filterItem.checkItem["ethiopianStories"],
+          isChecked: ethiopianStories ? true : false,
+        },
+        ["miracleOfMaryStories"]: {
+          ...filterItem.checkItem["miracleOfMaryStories"],
+          isChecked: miracleOfMaryStories ? true : false,
+        },
+        ["lifeOfMaryStories"]: {
+          ...filterItem.checkItem["lifeOfMaryStories"],
+          isChecked: lifeOfMaryStories ? true : false,
+        },
+        ["earliestStories"]: {
+          ...filterItem.checkItem["earliestStories"],
+          isChecked: earliestStories ? true : false,
+        },
+        ["recentStories"]: {
+          ...filterItem.checkItem["recentStories"],
+          isChecked: recentStories ? true : false,
+        },
+        ["popularStories"]: {
+          ...filterItem.checkItem["popularStories"],
+          isChecked: popularStories ? true : false,
+        },
+        ["uniqueStories"]: {
+          ...filterItem.checkItem["uniqueStories"],
+          isChecked: uniqueStories ? true : false,
+        },
+      },
+    };
+    setFilterItem(newFilterItem);
   };
 
   return (
@@ -222,6 +444,9 @@ const Stories = () => {
           } `}
         >
           <Sidebar
+            childRef1={childRef1}
+            childRef2={childRef2}
+            childRef3={childRef3}
             isPageName={STORIES}
             onChangeStory={useCallback(
               (e) => {
@@ -230,6 +455,12 @@ const Stories = () => {
                 setStoryMax(max);
                 debouncedFetchData();
                 scrollTop();
+                // if (min !== rangeSliderMinForStoriesStoriesPage) {
+                //   debouncedSliderParams("storyMin", min, false);
+                // } else setFilterInParams("storyMin", min, true);
+                // if (max !== rangeSliderMaxForStoriesStoriesPage) {
+                //   debouncedSliderParams("storyMax", max, false);
+                // } else setFilterInParams("storyMax", max, true);
               },
               [storyMin, storyMax]
             )}
@@ -240,6 +471,12 @@ const Stories = () => {
                 setManuscriptsMax(max);
                 debouncedFetchData();
                 scrollTop();
+                // if (min !== rangeSliderMinForManuscriptsStoriesPage) {
+                //   debouncedSliderParams("manuscriptsMin", min, false);
+                // } else setFilterInParams("manuscriptsMin", min, true);
+                // if (max !== rangeSliderMaxForManuscriptsStoriesPage) {
+                //   debouncedSliderParams("manuscriptsMax", max, false);
+                // } else setFilterInParams("manuscriptsMax", max, true);
               },
               [manuscriptsMin, manuscriptsMax]
             )}
@@ -250,6 +487,12 @@ const Stories = () => {
                 setPaintingMax(max);
                 debouncedFetchData();
                 scrollTop();
+                // if (min !== rangeSliderMinForPaintingsStoriesPage) {
+                //   debouncedSliderParams("paintingMin", min, false);
+                // } else setFilterInParams("paintingMin", min, true);
+                // if (max !== rangeSliderMaxForPaintingsStoriesPage) {
+                //   debouncedSliderParams("paintingMax", max, false);
+                // } else setFilterInParams("paintingMax", max, true);
               },
               [paintingMin, paintingMax]
             )}
@@ -297,9 +540,11 @@ const Stories = () => {
                 const query = e.target.value;
                 setSearch(query);
                 if (query.length > 3) {
+                  // setFilterInParams("search", query, false);
                   debouncedFetchData(query);
                 }
                 if (query.length === 0) {
+                  // setFilterInParams("search", query, true);
                   debouncedFetchData(query);
                 }
               }}
@@ -335,6 +580,8 @@ const Stories = () => {
               currentPage={page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
+                // if (num !== 1) setFilterInParams("page", num, false);
+                // else setFilterInParams("page", num, true);
                 setPage(num);
                 setExpandedRows([]);
               }}
