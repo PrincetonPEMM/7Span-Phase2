@@ -94,6 +94,11 @@ const PaintingDetail = ({ data }) => {
         text: ` PEMM's ID number for this painting is <b>${data.painting_unique_id}</b>.`,
       });
     }
+    if (data.painting_research_note) {
+      arr.push({
+        text: data.painting_research_note,
+      });
+    }
     return arr;
   };
 

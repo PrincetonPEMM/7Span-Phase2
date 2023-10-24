@@ -176,6 +176,15 @@ const Stories = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "uniqueStories"
+      )}${getFilterFalsyValue(filterItem, "withHymn")}${getFilterFalsyValue(
+        filterItem,
+        "printOnly"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "readInChurch"
       )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
         "origin",
         placeItem
@@ -210,6 +219,7 @@ const Stories = () => {
   useEffect(() => {
     if (isMount1) {
       setPage(1);
+      setIsMount(true);
       fetchData(search);
     } else {
       setPage(pageParams);
@@ -232,7 +242,7 @@ const Stories = () => {
   }, []);
 
   const scrollTop = () => {
-    if (!isMount) {
+    if (isMount) {
       setTimeout(() => {
         window.scrollTo({
           top: 0,
@@ -240,13 +250,13 @@ const Stories = () => {
         });
       }, 5000);
     }
-    setIsMount(true);
   };
 
   const debouncedFetchData = debounce((e) => {
-    fetchData(e);
-    if (isMount1) setPage(1);
-    else {
+    if (isMount1) {
+      fetchData(e);
+      setPage(1);
+    } else {
       setPage(pageParams);
     }
   }, 300);
@@ -372,6 +382,10 @@ const Stories = () => {
     const recentStories = params.get("recentStories");
     const popularStories = params.get("popularStories");
     const uniqueStories = params.get("uniqueStories");
+    const withHymn = params.get("withHymn");
+    const printOnly = params.get("printOnly");
+    const excludePrintOnly = params.get("excludePrintOnly");
+    const readInChurch = params.get("readInChurch");
 
     const newFilterItem = {
       ...filterItem,
@@ -416,6 +430,22 @@ const Stories = () => {
         ["uniqueStories"]: {
           ...filterItem.checkItem["uniqueStories"],
           isChecked: uniqueStories ? true : false,
+        },
+        ["withHymn"]: {
+          ...filterItem.checkItem["withHymn"],
+          isChecked: withHymn ? true : false,
+        },
+        ["printOnly"]: {
+          ...filterItem.checkItem["printOnly"],
+          isChecked: printOnly ? true : false,
+        },
+        ["excludePrintOnly"]: {
+          ...filterItem.checkItem["excludePrintOnly"],
+          isChecked: excludePrintOnly ? true : false,
+        },
+        ["readInChurch"]: {
+          ...filterItem.checkItem["readInChurch"],
+          isChecked: readInChurch ? true : false,
         },
       },
     };
