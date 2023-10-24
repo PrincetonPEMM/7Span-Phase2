@@ -209,13 +209,16 @@ export default function StoryDetail({ data, Id }) {
                   <ul className="ml-3 -indent-3">
                     <p className="text-sm leading-normal">
                       <b>Story Type: </b>
-                      {data?.type_of_story ? data?.type_of_story : "none"}
+                      {data?.type_of_story && data?.type_of_story}
                     </p>
                     <p className="text-sm leading-normal">
                       <b>Story Theme(s): </b>
-                      {data?.canonical_story_subject
-                        ? data?.canonical_story_subject
-                        : "none"}
+                      {data?.canonical_story_subject &&
+                        data?.canonical_story_subject}
+                    </p>
+                    <p className="text-sm leading-normal">
+                      <b>Date Read in Church: </b>
+                      {data?.readings_dates && data?.readings_dates}
                     </p>
                   </ul>
                 </li>
@@ -351,6 +354,19 @@ export default function StoryDetail({ data, Id }) {
                     ></p>
                   </li>
                 )}
+                {data.canonical_story_research_note && (
+                  <li>
+                    <h3 className={`text-lg font-bold uppercase mb-3  `}>
+                      ADDITIONAL INFORMATION
+                    </h3>
+                    <p
+                      className="text-base leading-loose mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: data.canonical_story_research_note,
+                      }}
+                    ></p>
+                  </li>
+                )}
                 {data.canonical_translation_recension === "True" &&
                   data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
@@ -460,6 +476,10 @@ export default function StoryDetail({ data, Id }) {
                         ? data?.canonical_story_subject
                         : "none"}
                     </p>
+                    <p className="text-sm leading-normal">
+                      <b>Date Read in Church: </b>
+                      {data?.readings_dates && data?.readings_dates}
+                    </p>
                   </ul>
                 </li>
                 <li>
@@ -567,6 +587,19 @@ export default function StoryDetail({ data, Id }) {
                           }}
                         ></p>
                       </>
+                    )}
+                    {data.canonical_story_research_note && (
+                      <li>
+                        <h3 className={`text-lg font-bold uppercase mb-3  `}>
+                          ADDITIONAL INFORMATION
+                        </h3>
+                        <p
+                          className="text-base leading-loose mb-3"
+                          dangerouslySetInnerHTML={{
+                            __html: data.canonical_story_research_note,
+                          }}
+                        ></p>
+                      </li>
                     )}
                     {data.canonical_translation_recension === "True" &&
                       data?.translation_author !== "No Translator" &&

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Table from "../components/Table";
 import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
@@ -23,14 +23,24 @@ import {
   rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination, { TablePagination } from "./Pagination";
+import CustomPagination from "./Pagination";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const ManuScripts = () => {
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+  const pageP = params.get("page");
+  const pageParams = pageP > 1 ? pageP : 1;
+  const searchP = params.get("search");
+  const searchParams = searchP ? searchP : "";
   const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams);
   const [isMount, setIsMount] = useState(false);
+  const [isMount1, setIsMount1] = useState(false);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItemManuScript);
   const [placeItem, setPlaceItem] = useState(initialPlaceItemManuScript);
@@ -62,22 +72,38 @@ const ManuScripts = () => {
     rangeSliderMaxUniqueStoriesManuscriptsPage
   );
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(manuscriptsTableTitleView);
   const [isOpen, setIsOpen] = useState(true);
+  const childRef1 = useRef();
+  const childRef2 = useRef();
+  const childRef3 = useRef();
+  const childRef4 = useRef();
 
   const getFilterFalsyValue = (itemList, key) => {
-    return `filters[${key}]=${itemList.checkItem[key]?.isChecked || false}&`;
+    const value = itemList.checkItem[key]?.isChecked;
+    if (value) setFilterInParams(key, value, false);
+    else setFilterInParams(key, value, true);
+    return `filters[${key}]=${value || false}&`;
   };
 
   const makeParamsArray = (key, arr) => {
-    return arr.checkItem
+    arr.checkItem
+      .filter((ar) => !ar.isChecked)
+      .map((itm) => {
+        setFilterInParams(key, itm.name, true);
+      });
+    const resData = arr.checkItem
       .filter((ar) => ar.isChecked)
-      .map((itm) => `filters[${key}][]=${itm.name}&`)
+      .map((itm) => {
+        setFilterInParams(key, itm.name, false);
+        return `filters[${key}][]=${itm.name}&`;
+      })
       .join("");
+    return resData;
   };
 
   useEffect(() => {
@@ -94,7 +120,48 @@ const ManuScripts = () => {
     }
   }, [isOpen, window]);
 
-  async function fetchData(searchKey = "") {
+  async function fetchData(searchKey = search) {
+    if (dateCreationMin !== rangeSliderMinDateOfCreationManuscriptsPage) {
+      setFilterInParams("dateCreationMin", dateCreationMin, false);
+    } else setFilterInParams("dateCreationMin", dateCreationMin, true);
+    if (dateCreationMax !== rangeSliderMaxDateOfCreationManuscriptsPage) {
+      setFilterInParams("dateCreationMax", dateCreationMax, false);
+    } else setFilterInParams("dateCreationMax", dateCreationMax, true);
+
+    if (noOfStoriesMin !== rangeSliderMinNoOfStoriesManuscriptsPage) {
+      setFilterInParams("noOfStoriesMin", noOfStoriesMin, false);
+    } else setFilterInParams("noOfStoriesMin", noOfStoriesMin, true);
+    if (noOfStoriesMax !== rangeSliderMaxNoOfStoriesManuscriptsPage) {
+      setFilterInParams("noOfStoriesMax", noOfStoriesMax, false);
+    } else setFilterInParams("noOfStoriesMax", noOfStoriesMax, true);
+
+    if (noOfPaintingMin !== rangeSliderMinNoOfPaintingsManuscriptsPage) {
+      setFilterInParams("noOfPaintingMin", noOfPaintingMin, false);
+    } else setFilterInParams("noOfPaintingMin", noOfPaintingMin, true);
+    if (noOfPaintingMax !== rangeSliderMaxNoOfPaintingsManuscriptsPage) {
+      setFilterInParams("noOfPaintingMax", noOfPaintingMax, false);
+    } else setFilterInParams("noOfPaintingMax", noOfPaintingMax, true);
+
+    if (noOfUniqueMin !== rangeSliderMinUniqueStoriesManuscriptsPage) {
+      setFilterInParams("noOfUniqueMin", noOfUniqueMin, false);
+    } else setFilterInParams("noOfUniqueMin", noOfUniqueMin, true);
+    if (noOfUniqueMax !== rangeSliderMaxUniqueStoriesManuscriptsPage) {
+      setFilterInParams("noOfUniqueMax", noOfUniqueMax, false);
+    } else setFilterInParams("noOfUniqueMax", noOfUniqueMax, true);
+
+    if (searchKey.length > 3) {
+      setFilterInParams("search", searchKey, false);
+    }
+    if (searchKey.length === 0) {
+      setFilterInParams("search", searchKey, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
+
     try {
       setIsLoadint(true);
       const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
@@ -121,6 +188,15 @@ const ManuScripts = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "gaazManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
+        filterItem,
+        "manyStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "fewStories"
       )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
         "lastKnownLocation",
         placeItem
@@ -143,12 +219,18 @@ const ManuScripts = () => {
     }
   }
   useEffect(() => {
-    fetchData(search);
-    setPage(1);
+    if (isMount1) {
+      setPage(1);
+      setIsMount(true);
+      fetchData(search);
+    } else {
+      setPage(pageParams);
+      getFilterFromParams();
+    }
   }, [filterItem, placeItem, originRegion]);
 
   useEffect(() => {
-    fetchData(search);
+    if (isMount1) fetchData(search);
   }, [page]);
 
   useEffect(() => {
@@ -174,12 +256,15 @@ const ManuScripts = () => {
         });
       }, 5000);
     }
-    setIsMount(true);
   };
 
   const debouncedFetchData = debounce((e) => {
-    fetchData(e);
-    setPage(1);
+    if (isMount1) {
+      fetchData(e);
+      setPage(1);
+    } else {
+      setPage(pageParams);
+    }
   }, 300);
 
   const resetFilter = () => {
@@ -197,9 +282,184 @@ const ManuScripts = () => {
     setPlaceItem(initialPlaceItemManuScript);
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
-    // setToggleBtn(false);
-    // setTableHeader()
     fetchData("");
+    router.push(`${pathname}`);
+  };
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove) return;
+    if (["lastKnownLocation", "knownOriginRegion"].includes(key)) {
+      newParams.append(key, value);
+    } else newParams.set(key, value);
+
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  const getFilterFromParams = () => {
+    setIsMount1(true);
+    const search = params.get("search");
+    setSearch(search ? search : "");
+    const pageP = params.get("page");
+    setPage(pageP > 1 ? pageP : 1);
+    const dateCreationMinP = params.get("dateCreationMin");
+    const dateCreationMaxP = params.get("dateCreationMax");
+    if (dateCreationMinP && dateCreationMaxP) {
+      setDateCreationMin(dateCreationMinP);
+      setDateCreationMax(dateCreationMaxP);
+      childRef1?.current?.set(dateCreationMinP, dateCreationMaxP);
+    } else if (dateCreationMinP) {
+      setDateCreationMin(dateCreationMinP);
+      childRef1?.current?.set(
+        dateCreationMinP,
+        rangeSliderMaxDateOfCreationManuscriptsPage
+      );
+    } else if (dateCreationMaxP) {
+      setDateCreationMax(dateCreationMaxP);
+      childRef1?.current?.set(
+        rangeSliderMinDateOfCreationManuscriptsPage,
+        dateCreationMaxP
+      );
+    }
+    const noOfStoriesMinP = params.get("noOfStoriesMin");
+    const noOfStoriesMaxP = params.get("noOfStoriesMax");
+    if (noOfStoriesMinP && noOfStoriesMaxP) {
+      setNoOfStoriesMin(noOfStoriesMinP);
+      setNoOfStoriesMax(noOfStoriesMaxP);
+      childRef2?.current?.set(noOfStoriesMinP, noOfStoriesMaxP);
+    } else if (noOfStoriesMinP) {
+      setNoOfStoriesMin(noOfStoriesMinP);
+      childRef2?.current?.set(
+        noOfStoriesMinP,
+        rangeSliderMaxNoOfStoriesManuscriptsPage
+      );
+    } else if (noOfStoriesMaxP) {
+      setNoOfStoriesMax(noOfStoriesMaxP);
+      childRef2?.current?.set(
+        rangeSliderMinNoOfStoriesManuscriptsPage,
+        noOfStoriesMaxP
+      );
+    }
+    const noOfPaintingMinP = params.get("noOfPaintingMin");
+    const noOfPaintingMaxP = params.get("noOfPaintingMax");
+    if (noOfPaintingMinP && noOfPaintingMaxP) {
+      setNoOfPaintingMin(noOfPaintingMinP);
+      setNoOfPaintingMax(noOfPaintingMaxP);
+      childRef3?.current?.set(noOfPaintingMinP, noOfPaintingMaxP);
+    } else if (noOfPaintingMinP) {
+      setNoOfPaintingMin(noOfPaintingMinP);
+      childRef3?.current?.set(
+        noOfPaintingMinP,
+        rangeSliderMaxNoOfPaintingsManuscriptsPage
+      );
+    } else if (noOfPaintingMaxP) {
+      setNoOfPaintingMax(noOfPaintingMaxP);
+      childRef3?.current?.set(
+        rangeSliderMinNoOfPaintingsManuscriptsPage,
+        noOfPaintingMaxP
+      );
+    }
+    const noOfUniqueMinP = params.get("noOfUniqueMin");
+    const noOfUniqueMaxP = params.get("noOfUniqueMax");
+    if (noOfUniqueMinP && noOfUniqueMaxP) {
+      setNoOfUniqueMin(noOfUniqueMinP);
+      setNoOfUniqueMax(noOfUniqueMaxP);
+      childRef4?.current?.set(noOfUniqueMinP, noOfUniqueMaxP);
+    } else if (noOfUniqueMinP) {
+      setNoOfUniqueMin(noOfUniqueMinP);
+      childRef4?.current?.set(
+        noOfUniqueMinP,
+        rangeSliderMaxUniqueStoriesManuscriptsPage
+      );
+    } else if (noOfUniqueMaxP) {
+      setNoOfUniqueMax(noOfUniqueMaxP);
+      childRef4?.current?.set(
+        rangeSliderMinUniqueStoriesManuscriptsPage,
+        noOfUniqueMaxP
+      );
+    }
+    const location = params.getAll("lastKnownLocation");
+    const updatedLocation = placeItem.checkItem.map((temp) => {
+      return {
+        ...temp,
+        isChecked: location.includes(temp.name) ? true : false,
+      };
+    });
+    setPlaceItem({ ...placeItem, checkItem: updatedLocation });
+    const originalRegion = params.getAll("knownOriginRegion");
+    const updatedRegion = originRegion.checkItem.map((temp) => {
+      return {
+        ...temp,
+        isChecked: originalRegion.includes(temp.name) ? true : false,
+      };
+    });
+    setOriginRegion({ ...originRegion, checkItem: updatedRegion });
+    const withPaintings = params.get("withPaintings");
+    const withOnlineDigitalCopy = params.get("withOnlineDigitalCopy");
+    const withColorDigitalCopy = params.get("withColorDigitalCopy");
+    const withUniqueStories = params.get("withUniqueStories");
+    const oldestManuscript = params.get("oldestManuscript");
+    const recentManuscript = params.get("recentManuscript");
+    const arabicManuscript = params.get("arabicManuscript");
+    const gaazManuscript = params.get("gaazManuscript");
+    const royalManuscript = params.get("royalManuscript");
+    const withHymns = params.get("withHymns");
+    const manyStories = params.get("manyStories");
+    const fewStories = params.get("fewStories");
+    const newFilterItem = {
+      ...filterItem,
+      checkItem: {
+        ...filterItem.checkItem,
+        ["withPaintings"]: {
+          ...filterItem.checkItem["withPaintings"],
+          isChecked: withPaintings ? true : false,
+        },
+        ["withOnlineDigitalCopy"]: {
+          ...filterItem.checkItem["withOnlineDigitalCopy"],
+          isChecked: withOnlineDigitalCopy ? true : false,
+        },
+        ["withColorDigitalCopy"]: {
+          ...filterItem.checkItem["withColorDigitalCopy"],
+          isChecked: withColorDigitalCopy ? true : false,
+        },
+        ["withUniqueStories"]: {
+          ...filterItem.checkItem["withUniqueStories"],
+          isChecked: withUniqueStories ? true : false,
+        },
+        ["oldestManuscript"]: {
+          ...filterItem.checkItem["oldestManuscript"],
+          isChecked: oldestManuscript ? true : false,
+        },
+        ["recentManuscript"]: {
+          ...filterItem.checkItem["recentManuscript"],
+          isChecked: recentManuscript ? true : false,
+        },
+        ["arabicManuscript"]: {
+          ...filterItem.checkItem["arabicManuscript"],
+          isChecked: arabicManuscript ? true : false,
+        },
+        ["arabicAndGaazManuscript"]: {
+          ...filterItem.checkItem["arabicAndGaazManuscript"],
+          isChecked: gaazManuscript ? true : false,
+        },
+        ["royalManuscript"]: {
+          ...filterItem.checkItem["royalManuscript"],
+          isChecked: royalManuscript ? true : false,
+        },
+        ["withHymns"]: {
+          ...filterItem.checkItem["withHymns"],
+          isChecked: withHymns ? true : false,
+        },
+        ["manyStories"]: {
+          ...filterItem.checkItem["manyStories"],
+          isChecked: manyStories ? true : false,
+        },
+        ["fewStories"]: {
+          ...filterItem.checkItem["fewStories"],
+          isChecked: fewStories ? true : false,
+        },
+      },
+    };
+    setFilterItem(newFilterItem);
   };
 
   return (
@@ -223,6 +483,10 @@ const ManuScripts = () => {
           } `}
         >
           <Sidebar
+            childRef1={childRef1}
+            childRef2={childRef2}
+            childRef3={childRef3}
+            childRef4={childRef4}
             isPageName={MANUSCRIPTS}
             onChangeStory={useCallback(
               (e) => {
