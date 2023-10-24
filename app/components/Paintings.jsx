@@ -15,6 +15,7 @@ import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Paintings = ({
   dateOfPainting,
@@ -22,10 +23,18 @@ const Paintings = ({
   typeOfStory,
   institution,
 }) => {
-  const [page, setPage] = useState(1);
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+  const pageP = params.get("page");
+  const pageParams = pageP > 1 ? pageP : 1;
+  const searchP = params.get("search");
+  const searchParams = searchP ? searchP : "";
+  const [page, setPage] = useState(pageParams);
   const { debounce } = useDebounce();
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams);
   const [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,16 +42,41 @@ const Paintings = ({
   const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([]);
   const [storyType, setStoryType] = useState();
   const [archiveOfPainting, setArchiveOfPainting] = useState();
+  const [isMount1, setIsMount1] = useState(false);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
       if (key === "dateOfPainting")
-        return arr.map((itm) => `filters[${key}][]=${itm.key}&`).join("");
-      else return arr.map((itm) => `filters[${key}]=${itm.key}&`).join("");
+        return arr
+          .map((itm) => {
+            setFilterInParams(key, itm.value, false);
+            return `filters[${key}][]=${itm.key}&`;
+          })
+          .join("");
+      else
+        return arr
+          .map((itm) => {
+            setFilterInParams(key, itm.value, false);
+            return `filters[${key}]=${itm.key}&`;
+          })
+          .join("");
     return "";
   };
 
   const fetchData = async (searchKey = "") => {
+    if (searchKey.length > 3) {
+      setFilterInParams("search", searchKey, false);
+    }
+    if (searchKey.length === 0) {
+      setFilterInParams("search", searchKey, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
+
     setLoading(true);
     try {
       const params = `page=${page}&perPage=${perPage}&${makeParamsArray(
@@ -73,12 +107,17 @@ const Paintings = ({
   };
 
   useEffect(() => {
-    fetchData(search);
-    setPage(1);
+    if (isMount1) {
+      setPage(1);
+      fetchData(search);
+    } else {
+      setPage(pageParams);
+      getFilterFromParams();
+    }
   }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
 
   useEffect(() => {
-    fetchData(search);
+    if (isMount1) fetchData(search);
   }, [page]);
 
   const debouncedFetchData = debounce(fetchData, 300);
@@ -111,6 +150,31 @@ const Paintings = ({
 
   const menuIconClick = () => {
     setMenuCollapse(!menuCollapse);
+  };
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove) return;
+    if (["dateOfPainting", "paintingInColor"].includes(key)) {
+      newParams.append(key, value);
+    } else newParams.set(key, value);
+
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  const getFilterFromParams = () => {
+    setIsMount1(true);
+    const search = params.get("search");
+    setSearch(search ? search : "");
+    const pageP = params.get("page");
+    setPage(pageP > 1 ? pageP : 1);
+
+    const datePainting = params.getAll("dateOfPainting");
+    console.log(dateOfPainting, "dateOfPainting");
+
+    const newDatePainting = dateOfPainting.filter((dop) =>
+      datePainting.includes(dop.value)
+    );
+    setDateOfPaintins(newDatePainting);
   };
 
   return (
@@ -269,6 +333,7 @@ const Paintings = ({
                   setTimeout(() => {
                     setMenuCollapse(false);
                   }, 5000);
+                  router.push(`${pathname}`);
                 }}
               >
                 Clear All
@@ -334,6 +399,7 @@ const Paintings = ({
                 setArchiveOfPainting(null);
                 setPage(1);
                 setSearch("");
+                router.push(`${pathname}`);
               }}
             >
               Clear All
