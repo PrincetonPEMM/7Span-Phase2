@@ -191,7 +191,7 @@ export const initialfilterItem = {
       isChecked: false,
     },
     readInChurch: {
-      id: "11",
+      id: "14",
       isCheckbox: true,
       key: "readInChurch",
       label: "Read in Church",
