@@ -322,6 +322,11 @@ export default function Manuscript({ Id, data, table }) {
       });
     }
 
+    if (data?.manuscript_research_note != null)
+      array.push({
+        text: data.manuscript_research_note,
+      });
+
     array.push({
       text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
     });

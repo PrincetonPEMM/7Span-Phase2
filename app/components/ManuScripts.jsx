@@ -188,6 +188,15 @@ const ManuScripts = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "gaazManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
+        filterItem,
+        "manyStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "fewStories"
       )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
         "lastKnownLocation",
         placeItem
@@ -212,6 +221,7 @@ const ManuScripts = () => {
   useEffect(() => {
     if (isMount1) {
       setPage(1);
+      setIsMount(true);
       fetchData(search);
     } else {
       setPage(pageParams);
@@ -246,13 +256,13 @@ const ManuScripts = () => {
         });
       }, 5000);
     }
-    setIsMount(true);
   };
 
   const debouncedFetchData = debounce((e) => {
-    fetchData(e);
-    if (isMount1) setPage(1);
-    else {
+    if (isMount1) {
+      fetchData(e);
+      setPage(1);
+    } else {
       setPage(pageParams);
     }
   }, 300);
@@ -391,6 +401,10 @@ const ManuScripts = () => {
     const recentManuscript = params.get("recentManuscript");
     const arabicManuscript = params.get("arabicManuscript");
     const gaazManuscript = params.get("gaazManuscript");
+    const royalManuscript = params.get("royalManuscript");
+    const withHymns = params.get("withHymns");
+    const manyStories = params.get("manyStories");
+    const fewStories = params.get("fewStories");
     const newFilterItem = {
       ...filterItem,
       checkItem: {
@@ -426,6 +440,22 @@ const ManuScripts = () => {
         ["arabicAndGaazManuscript"]: {
           ...filterItem.checkItem["arabicAndGaazManuscript"],
           isChecked: gaazManuscript ? true : false,
+        },
+        ["royalManuscript"]: {
+          ...filterItem.checkItem["royalManuscript"],
+          isChecked: royalManuscript ? true : false,
+        },
+        ["withHymns"]: {
+          ...filterItem.checkItem["withHymns"],
+          isChecked: withHymns ? true : false,
+        },
+        ["manyStories"]: {
+          ...filterItem.checkItem["manyStories"],
+          isChecked: manyStories ? true : false,
+        },
+        ["fewStories"]: {
+          ...filterItem.checkItem["fewStories"],
+          isChecked: fewStories ? true : false,
         },
       },
     };
