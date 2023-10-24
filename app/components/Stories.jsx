@@ -32,9 +32,11 @@ const Stories = () => {
   const newParams = new URLSearchParams();
   const pageP = params.get("page");
   const pageParams = pageP > 1 ? pageP : 1;
+  const searchP = params.get("search");
+  const searchParams = searchP ? searchP : "";
 
   const { debounce } = useDebounce();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams);
   const [expandedRows, setExpandedRows] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [filterItem, setFilterItem] = useState(initialfilterItem);
@@ -110,7 +112,7 @@ const Stories = () => {
     }
   }, [isOpen, window]);
 
-  async function fetchData(searchKey = "") {
+  async function fetchData(searchKey = search) {
     if (storyMin !== rangeSliderMinForStoriesStoriesPage) {
       setFilterInParams("storyMin", storyMin, false);
     } else setFilterInParams("storyMin", storyMin, true);
@@ -202,19 +204,20 @@ const Stories = () => {
   }
 
   useEffect(() => {
-    fetchData(search);
+    if (isMount1) fetchData(search);
   }, [page]);
 
   useEffect(() => {
-    fetchData(search);
-    if (isMount1) setPage(1);
-    else {
+    if (isMount1) {
+      setPage(1);
+      fetchData(search);
+    } else {
       setPage(pageParams);
+      getFilterFromParams();
     }
   }, [filterItem, placeItem, langOriginalItem, langTranslatedItem]);
 
   useEffect(() => {
-    getFilterFromParams();
     if (typeof window !== "undefined") {
       const checkWidth = () => {
         if (window?.innerWidth < 1024) {
@@ -244,13 +247,8 @@ const Stories = () => {
     fetchData(e);
     if (isMount1) setPage(1);
     else {
-      setIsMount1(true);
       setPage(pageParams);
     }
-  }, 300);
-
-  const debouncedSliderParams = debounce((keyword, value, isDelete) => {
-    setFilterInParams(keyword, value, isDelete);
   }, 300);
 
   const resetFilter = () => {
@@ -281,6 +279,7 @@ const Stories = () => {
   };
 
   const getFilterFromParams = () => {
+    setIsMount1(true);
     const search = params.get("search");
     setSearch(search ? search : "");
     const pageP = params.get("page");
@@ -455,12 +454,6 @@ const Stories = () => {
                 setStoryMax(max);
                 debouncedFetchData();
                 scrollTop();
-                // if (min !== rangeSliderMinForStoriesStoriesPage) {
-                //   debouncedSliderParams("storyMin", min, false);
-                // } else setFilterInParams("storyMin", min, true);
-                // if (max !== rangeSliderMaxForStoriesStoriesPage) {
-                //   debouncedSliderParams("storyMax", max, false);
-                // } else setFilterInParams("storyMax", max, true);
               },
               [storyMin, storyMax]
             )}
@@ -471,12 +464,6 @@ const Stories = () => {
                 setManuscriptsMax(max);
                 debouncedFetchData();
                 scrollTop();
-                // if (min !== rangeSliderMinForManuscriptsStoriesPage) {
-                //   debouncedSliderParams("manuscriptsMin", min, false);
-                // } else setFilterInParams("manuscriptsMin", min, true);
-                // if (max !== rangeSliderMaxForManuscriptsStoriesPage) {
-                //   debouncedSliderParams("manuscriptsMax", max, false);
-                // } else setFilterInParams("manuscriptsMax", max, true);
               },
               [manuscriptsMin, manuscriptsMax]
             )}
@@ -487,12 +474,6 @@ const Stories = () => {
                 setPaintingMax(max);
                 debouncedFetchData();
                 scrollTop();
-                // if (min !== rangeSliderMinForPaintingsStoriesPage) {
-                //   debouncedSliderParams("paintingMin", min, false);
-                // } else setFilterInParams("paintingMin", min, true);
-                // if (max !== rangeSliderMaxForPaintingsStoriesPage) {
-                //   debouncedSliderParams("paintingMax", max, false);
-                // } else setFilterInParams("paintingMax", max, true);
               },
               [paintingMin, paintingMax]
             )}
@@ -540,11 +521,9 @@ const Stories = () => {
                 const query = e.target.value;
                 setSearch(query);
                 if (query.length > 3) {
-                  // setFilterInParams("search", query, false);
                   debouncedFetchData(query);
                 }
                 if (query.length === 0) {
-                  // setFilterInParams("search", query, true);
                   debouncedFetchData(query);
                 }
               }}
@@ -580,8 +559,6 @@ const Stories = () => {
               currentPage={page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
-                // if (num !== 1) setFilterInParams("page", num, false);
-                // else setFilterInParams("page", num, true);
                 setPage(num);
                 setExpandedRows([]);
               }}
