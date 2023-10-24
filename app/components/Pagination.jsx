@@ -84,29 +84,18 @@ function CustomPagination({
       setInputValue("");
       onPageChange(currentPage);
     } else {
-      if (currentPage <= 1) {
+      if (+currentPage <= 1) {
         setInputValue(1);
         onPageChange(1);
-      }
-      if (currentPage > totalPages) {
+      } else if (+currentPage > +totalPages) {
         setInputValue(totalPages);
         onPageChange(totalPages);
+      } else {
+        setInputValue(currentPage);
+        onPageChange(currentPage);
       }
     }
-    if (inputValue === "") {
-      setInputValue("");
-      onPageChange(currentPage);
-    } else {
-      if (currentPage <= 1) {
-        setInputValue(1);
-        onPageChange(1);
-      }
-      if (currentPage > totalPages) {
-        setInputValue(totalPages);
-        onPageChange(totalPages);
-      }
-    }
-  }, [currentPage]);
+  }, [currentPage, totalPages]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
