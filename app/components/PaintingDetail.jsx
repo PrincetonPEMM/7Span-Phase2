@@ -75,6 +75,11 @@ const PaintingDetail = ({ data }) => {
         text: `This painting has a caption in Geʿez, which Jeremy Brown has translated as: ${data.episode_caption}.`,
       });
     }
+    if (data.painting_research_note) {
+      arr.push({
+        text: data.painting_research_note,
+      });
+    }
     if (
       data?.total_manuscripts_with_this_story_id_illustrated ||
       data.total_story_id_paintings
@@ -94,11 +99,7 @@ const PaintingDetail = ({ data }) => {
         text: ` PEMM's ID number for this painting is <b>${data.painting_unique_id}</b>.`,
       });
     }
-    if (data.painting_research_note) {
-      arr.push({
-        text: data.painting_research_note,
-      });
-    }
+
     return arr;
   };
 
