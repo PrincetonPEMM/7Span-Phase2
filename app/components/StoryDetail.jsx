@@ -216,10 +216,12 @@ export default function StoryDetail({ data, Id }) {
                       {data?.canonical_story_subject &&
                         data?.canonical_story_subject}
                     </p>
-                    <p className="text-sm leading-normal">
-                      <b>Date Read in Church: </b>
-                      {data?.readings_dates && data?.readings_dates}
-                    </p>
+                    {data?.readings_dates && (
+                      <p className="text-sm leading-normal">
+                        <b>Date Read in Church: </b>
+                        {data?.readings_dates}
+                      </p>
+                    )}
                   </ul>
                 </li>
                 <li>
@@ -476,10 +478,12 @@ export default function StoryDetail({ data, Id }) {
                         ? data?.canonical_story_subject
                         : "none"}
                     </p>
-                    <p className="text-sm leading-normal">
-                      <b>Date Read in Church: </b>
-                      {data?.readings_dates && data?.readings_dates}
-                    </p>
+                    {data?.readings_dates && (
+                      <p className="text-sm leading-normal">
+                        <b>Date Read in Church: </b>
+                        {data?.readings_dates}
+                      </p>
+                    )}
                   </ul>
                 </li>
                 <li>
