@@ -64,11 +64,7 @@ export default function Manuscript({ Id, data, table }) {
           text +=
             "This date is precise, based on the scribe noting the date in the manuscript. ";
         } else if (data.date_note == "Date from king's name") {
-          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript. ${
-            !data.royal_manuscript
-              ? ""
-              : `The king's name is <b>${data.royal_manuscript}</b>.`
-          }`;
+          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript.`;
         } else if (data.date_note == "Date from ms (paleography)") {
           text +=
             "This date is estimated, based on paleography (a study of the manuscript&apos;s letter shapes).";
@@ -81,6 +77,9 @@ export default function Manuscript({ Id, data, table }) {
         } else {
           text += "This date is estimated based on various methods.";
         }
+      }
+      if (data.royal_manuscript) {
+        text += ` The king's name is <b>${data.royal_manuscript}</b>.`;
       }
       array.push({ text });
     }
