@@ -64,11 +64,7 @@ export default function Manuscript({ Id, data, table }) {
           text +=
             "This date is precise, based on the scribe noting the date in the manuscript. ";
         } else if (data.date_note == "Date from king's name") {
-          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript. ${
-            !data.royal_manuscript
-              ? ""
-              : `The king's name is <b>${data.royal_manuscript}</b>.`
-          }`;
+          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript.`;
         } else if (data.date_note == "Date from ms (paleography)") {
           text +=
             "This date is estimated, based on paleography (a study of the manuscript&apos;s letter shapes).";
@@ -81,6 +77,9 @@ export default function Manuscript({ Id, data, table }) {
         } else {
           text += "This date is estimated based on various methods.";
         }
+      }
+      if (data.royal_manuscript) {
+        text += ` The king's name is <b>${data.royal_manuscript}</b>.`;
       }
       array.push({ text });
     }
@@ -310,6 +309,11 @@ export default function Manuscript({ Id, data, table }) {
       array.push({ text: p4 });
     }
 
+    if (data?.manuscript_research_note != null)
+      array.push({
+        text: data.manuscript_research_note,
+      });
+
     if (data.source) {
       p5 = `<p class="p-beside-p">Regarding this manuscript's repository: ${data.source}</p>`;
       array.push({ text: p5 });
@@ -321,11 +325,6 @@ export default function Manuscript({ Id, data, table }) {
         text: `This manuscript has a print catalog: <b>${data.manuscript.catalog}</b>.`,
       });
     }
-
-    if (data?.manuscript_research_note != null)
-      array.push({
-        text: data.manuscript_research_note,
-      });
 
     array.push({
       text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
