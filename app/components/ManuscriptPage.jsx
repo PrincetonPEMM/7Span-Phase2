@@ -310,6 +310,11 @@ export default function Manuscript({ Id, data, table }) {
       array.push({ text: p4 });
     }
 
+    if (data?.manuscript_research_note != null)
+      array.push({
+        text: data.manuscript_research_note,
+      });
+
     if (data.source) {
       p5 = `<p class="p-beside-p">Regarding this manuscript's repository: ${data.source}</p>`;
       array.push({ text: p5 });
@@ -321,11 +326,6 @@ export default function Manuscript({ Id, data, table }) {
         text: `This manuscript has a print catalog: <b>${data.manuscript.catalog}</b>.`,
       });
     }
-
-    if (data?.manuscript_research_note != null)
-      array.push({
-        text: data.manuscript_research_note,
-      });
 
     array.push({
       text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
