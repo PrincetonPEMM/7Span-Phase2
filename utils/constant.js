@@ -156,7 +156,7 @@ export const initialfilterItem = {
       isCheckbox: false,
       name: "top of story",
       key: "popularStories",
-      label: "Comman Stories",
+      label: "Common  Stories",
       isChecked: false,
     },
     uniqueStories: {
@@ -171,7 +171,7 @@ export const initialfilterItem = {
       id: "11",
       isCheckbox: true,
       key: "withHymn",
-      label: "With Hymn",
+      label: "With Hymns",
       isChecked: false,
     },
     printOnly: {
