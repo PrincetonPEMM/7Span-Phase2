@@ -72,7 +72,7 @@ export default function Manuscript({ Id, data, table }) {
             "This date is estimated, based on a print or electronic catalog entry about the manuscript.";
         } else if (data.date_note == "Date from JRB and SGD") {
           text +=
-            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by <b>Jeremy Brown and Stephen Delamarter</b>."; 
+            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by <b>Jeremy Brown and Stephen Delamarter</b>.";
         } else {
           text += "This date is estimated based on various methods.";
         }
@@ -80,7 +80,6 @@ export default function Manuscript({ Id, data, table }) {
       if (data.royal_manuscript) {
         text += ` The king's name is <b>${data.royal_manuscript}</b>.`;
       }
-
       array.push({ text });
     }
 
