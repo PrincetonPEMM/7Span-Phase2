@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import PaintingCard from "./PaintingCard";
@@ -8,7 +8,7 @@ import {
   breakpointColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import CustomPagination, { TablePagination } from "./Pagination";
+import CustomPagination from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
@@ -16,6 +16,8 @@ import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+let mounted = false;
 
 const Paintings = ({
   dateOfPainting,
@@ -27,43 +29,49 @@ const Paintings = ({
   const pathname = usePathname();
   const router = useRouter();
   const newParams = new URLSearchParams();
-  const pageP = params.get("page");
-  const pageParams = pageP > 1 ? pageP : 1;
-  const searchP = params.get("search");
-  const searchParams = searchP ? searchP : "";
-  const [page, setPage] = useState(pageParams);
+
+  const {
+    search: searchParams,
+    pageP: pageParams,
+    newDatePainting,
+    newPaintingInColor,
+    newTypeOfStory,
+    newInstitution,
+  } = getFilterFromParams();
+  const [page, setPage] = useState(pageParams ?? 1);
   const { debounce } = useDebounce();
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
-  const [search, setSearch] = useState(searchParams);
+  const [search, setSearch] = useState(searchParams ?? "");
   const [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [dateOfPaintins, setDateOfPaintins] = useState([]);
-  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([]);
-  const [storyType, setStoryType] = useState();
-  const [archiveOfPainting, setArchiveOfPainting] = useState();
-  const [isMount1, setIsMount1] = useState(false);
+  const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
+    newPaintingInColor ?? []
+  );
+  const [storyType, setStoryType] = useState(newTypeOfStory);
+  const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
       if (key === "dateOfPainting")
         return arr
           .map((itm) => {
-            setFilterInParams(key, itm.value, false);
+            setFilterInParams(key, itm.key, false);
             return `filters[${key}][]=${itm.key}&`;
           })
           .join("");
       else
         return arr
           .map((itm) => {
-            setFilterInParams(key, itm.value, false);
+            setFilterInParams(key, itm.key, false);
             return `filters[${key}]=${itm.key}&`;
           })
           .join("");
     return "";
   };
 
-  const fetchData = async (searchKey = "") => {
+  const fetchData = async (searchKey = search) => {
     if (searchKey.length > 3) {
       setFilterInParams("search", searchKey, false);
     }
@@ -107,20 +115,19 @@ const Paintings = ({
   };
 
   useEffect(() => {
-    if (isMount1) {
-      setPage(1);
-      fetchData(search);
-    } else {
-      setPage(pageParams);
-      getFilterFromParams();
-    }
-  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
-
-  useEffect(() => {
-    if (isMount1) fetchData(search);
+    fetchData();
   }, [page]);
 
-  const debouncedFetchData = debounce(fetchData, 300);
+  useEffect(() => {
+    if (!mounted) return;
+    setPage(1);
+    fetchData(search);
+  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
+
+  const debouncedFetchData = debounce((e) => {
+    fetchData(e);
+    setPage(1);
+  }, 300);
   const paintingBy = [
     {
       value: "Paintings by Story",
@@ -146,6 +153,7 @@ const Paintings = ({
       document.body.classList.remove("filter_open");
       document.body.classList.remove("filter_close");
     }
+    mounted = true;
   }, [menuCollapse]);
 
   const menuIconClick = () => {
@@ -153,29 +161,48 @@ const Paintings = ({
   };
 
   const setFilterInParams = (key, value, isRemove = false) => {
-    if (isRemove) return;
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
     if (["dateOfPainting", "paintingInColor"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);
-
     router.push(`${pathname}?${newParams.toString()}`);
   };
 
-  const getFilterFromParams = () => {
-    setIsMount1(true);
+  function getFilterFromParams() {
     const search = params.get("search");
-    setSearch(search ? search : "");
     const pageP = params.get("page");
-    setPage(pageP > 1 ? pageP : 1);
-
     const datePainting = params.getAll("dateOfPainting");
-    console.log(dateOfPainting, "dateOfPainting");
-
     const newDatePainting = dateOfPainting.filter((dop) =>
-      datePainting.includes(dop.value)
+      datePainting.includes(dop.key)
     );
-    setDateOfPaintins(newDatePainting);
-  };
+
+    const paintingColor = params.getAll("paintingInColor");
+    const newPaintingInColor = paintingInColor.filter((dop) =>
+      paintingColor.includes(dop.key)
+    );
+
+    const typeStory = params.get("typeOfStory");
+    const newTypeOfStory = typeOfStory.filter((dop) =>
+      [typeStory].includes(dop.key)
+    );
+
+    const inst = params.get("institution");
+    const newInstitution = institution.filter((dop) =>
+      [inst].includes(dop.key)
+    );
+    return {
+      search,
+      pageP,
+      newDatePainting,
+      newPaintingInColor,
+      newTypeOfStory: newTypeOfStory[0],
+      newInstitution: newInstitution[0],
+    };
+  }
 
   return (
     <div className="container-fluid">
@@ -351,7 +378,12 @@ const Paintings = ({
             <Dropdown
               title="Date of Paintings"
               selected={dateOfPaintins}
-              setSelected={setDateOfPaintins}
+              setSelected={useCallback(
+                (e) => {
+                  setDateOfPaintins(e);
+                },
+                [dateOfPaintins]
+              )}
               options={dateOfPainting}
               isMultiple={true}
             />

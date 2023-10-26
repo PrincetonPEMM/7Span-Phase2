@@ -61,14 +61,9 @@ export default function Manuscript({ Id, data, table }) {
       let text = `This <b>${data.language}</b> language manuscript was created between <b>${data.manuscript_date_range_start}</b> and <b>${data.manuscript_date_range_end}</b>. `;
       if (data.date_note) {
         if (data.date_note == "Date from ms (colophon)") {
-          text +=
-            "This date is precise, based on the scribe noting the date in the manuscript. ";
+          text += `This date is precise, based on the scribe noting the date in the manuscript. `;
         } else if (data.date_note == "Date from king's name") {
-          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript. ${
-            !data.royal_manuscript
-              ? ""
-              : `The king's name is <b>${data.royal_manuscript}</b>.`
-          }`;
+          text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript.`;
         } else if (data.date_note == "Date from ms (paleography)") {
           text +=
             "This date is estimated, based on paleography (a study of the manuscript&apos;s letter shapes).";
@@ -77,11 +72,15 @@ export default function Manuscript({ Id, data, table }) {
             "This date is estimated, based on a print or electronic catalog entry about the manuscript.";
         } else if (data.date_note == "Date from JRB and SGD") {
           text +=
-            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by <b>Jeremy Brown and Stephen Delamarter</b>.";
+            "This date is estimated, based on paleography, a study of the manuscript&apos;s letter shapes, by <b>Jeremy Brown and Stephen Delamarter</b>."; 
         } else {
           text += "This date is estimated based on various methods.";
         }
       }
+      if (data.royal_manuscript) {
+        text += ` The king's name is <b>${data.royal_manuscript}</b>.`;
+      }
+
       array.push({ text });
     }
 

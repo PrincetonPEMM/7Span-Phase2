@@ -36,6 +36,7 @@ const Stories = () => {
   const searchParams = searchP ? searchP : "";
 
   const { debounce } = useDebounce();
+  const [page, setPage] = useState(pageParams);
   const [search, setSearch] = useState(searchParams);
   const [expandedRows, setExpandedRows] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(false);
@@ -64,7 +65,6 @@ const Stories = () => {
   const [isMount, setIsMount] = useState(false);
   const [isMount1, setIsMount1] = useState(false);
   const [isLoading, setIsLoadint] = useState(true);
-  const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimit);
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
@@ -280,7 +280,11 @@ const Stories = () => {
   };
 
   const setFilterInParams = (key, value, isRemove = false) => {
-    if (isRemove) return;
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
     if (["translatedLanguages", "originalLanguages", "origin"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);

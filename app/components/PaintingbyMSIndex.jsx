@@ -10,23 +10,44 @@ import Masonry from "react-masonry-css";
 import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PaintingbyMSIndex = ({ list }) => {
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+  const pageP = params.get("page");
+  const pageParams = pageP > 1 ? pageP : 1;
+  const searchP = params.get("search");
+  const searchParams = searchP ? searchP : "";
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
   const [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams);
 
   useEffect(() => {
     setData(list?.data);
     setTotalPage(list?.total);
   }, []);
 
-  const fetchData = (searchKey = "") => {
+  const fetchData = (searchKey = search) => {
     setIsLoadint(true);
+    if (searchKey.length > 3) {
+      setFilterInParams("search", searchKey, false);
+    }
+    if (searchKey.length === 0) {
+      setFilterInParams("search", searchKey, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
     fetch(
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
     )
@@ -55,6 +76,16 @@ const PaintingbyMSIndex = ({ list }) => {
     fetchData(e);
     setPage(1);
   }, 300);
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
+    newParams.set(key, value);
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
 
   return (
     <div className="container-fluid py-5 lg:py-10">
