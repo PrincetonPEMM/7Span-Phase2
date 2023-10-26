@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
 import InputText from "./form/InputText";
 import PaintingCard from "./PaintingCard";
@@ -8,13 +8,16 @@ import {
   breakpointColumnsForMasonry,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import CustomPagination, { TablePagination } from "./Pagination";
+import CustomPagination from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+let mounted = false;
 
 const Paintings = ({
   dateOfPainting,
@@ -22,27 +25,66 @@ const Paintings = ({
   typeOfStory,
   institution,
 }) => {
-  const [page, setPage] = useState(1);
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+
+  const {
+    search: searchParams,
+    pageP: pageParams,
+    newDatePainting,
+    newPaintingInColor,
+    newTypeOfStory,
+    newInstitution,
+  } = getFilterFromParams();
+  const [page, setPage] = useState(pageParams ?? 1);
   const { debounce } = useDebounce();
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams ?? "");
   const [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [dateOfPaintins, setDateOfPaintins] = useState([]);
-  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState([]);
-  const [storyType, setStoryType] = useState();
-  const [archiveOfPainting, setArchiveOfPainting] = useState();
+  const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
+  const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
+    newPaintingInColor ?? []
+  );
+  const [storyType, setStoryType] = useState(newTypeOfStory);
+  const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
       if (key === "dateOfPainting")
-        return arr.map((itm) => `filters[${key}][]=${itm.key}&`).join("");
-      else return arr.map((itm) => `filters[${key}]=${itm.key}&`).join("");
+        return arr
+          .map((itm) => {
+            setFilterInParams(key, itm.key, false);
+            return `filters[${key}][]=${itm.key}&`;
+          })
+          .join("");
+      else
+        return arr
+          .map((itm) => {
+            setFilterInParams(key, itm.key, false);
+            return `filters[${key}]=${itm.key}&`;
+          })
+          .join("");
     return "";
   };
 
-  const fetchData = async (searchKey = "") => {
+  const fetchData = async (searchKey = search) => {
+    if (searchKey.length > 3) {
+      setFilterInParams("search", searchKey, false);
+    }
+    if (searchKey.length === 0) {
+      setFilterInParams("search", searchKey, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
+
     setLoading(true);
     try {
       const params = `page=${page}&perPage=${perPage}&${makeParamsArray(
@@ -73,15 +115,19 @@ const Paintings = ({
   };
 
   useEffect(() => {
-    fetchData(search);
-    setPage(1);
-  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
-
-  useEffect(() => {
-    fetchData(search);
+    fetchData();
   }, [page]);
 
-  const debouncedFetchData = debounce(fetchData, 300);
+  useEffect(() => {
+    if (!mounted) return;
+    setPage(1);
+    fetchData(search);
+  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
+
+  const debouncedFetchData = debounce((e) => {
+    fetchData(e);
+    setPage(1);
+  }, 300);
   const paintingBy = [
     {
       value: "Paintings by Story",
@@ -107,11 +153,56 @@ const Paintings = ({
       document.body.classList.remove("filter_open");
       document.body.classList.remove("filter_close");
     }
+    mounted = true;
   }, [menuCollapse]);
 
   const menuIconClick = () => {
     setMenuCollapse(!menuCollapse);
   };
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
+    if (["dateOfPainting", "paintingInColor"].includes(key)) {
+      newParams.append(key, value);
+    } else newParams.set(key, value);
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
+
+  function getFilterFromParams() {
+    const search = params.get("search");
+    const pageP = params.get("page");
+    const datePainting = params.getAll("dateOfPainting");
+    const newDatePainting = dateOfPainting.filter((dop) =>
+      datePainting.includes(dop.key)
+    );
+
+    const paintingColor = params.getAll("paintingInColor");
+    const newPaintingInColor = paintingInColor.filter((dop) =>
+      paintingColor.includes(dop.key)
+    );
+
+    const typeStory = params.get("typeOfStory");
+    const newTypeOfStory = typeOfStory.filter((dop) =>
+      [typeStory].includes(dop.key)
+    );
+
+    const inst = params.get("institution");
+    const newInstitution = institution.filter((dop) =>
+      [inst].includes(dop.key)
+    );
+    return {
+      search,
+      pageP,
+      newDatePainting,
+      newPaintingInColor,
+      newTypeOfStory: newTypeOfStory[0],
+      newInstitution: newInstitution[0],
+    };
+  }
 
   return (
     <div className="container-fluid">
@@ -269,6 +360,7 @@ const Paintings = ({
                   setTimeout(() => {
                     setMenuCollapse(false);
                   }, 5000);
+                  router.push(`${pathname}`);
                 }}
               >
                 Clear All
@@ -286,7 +378,12 @@ const Paintings = ({
             <Dropdown
               title="Date of Paintings"
               selected={dateOfPaintins}
-              setSelected={setDateOfPaintins}
+              setSelected={useCallback(
+                (e) => {
+                  setDateOfPaintins(e);
+                },
+                [dateOfPaintins]
+              )}
               options={dateOfPainting}
               isMultiple={true}
             />
@@ -334,6 +431,7 @@ const Paintings = ({
                 setArchiveOfPainting(null);
                 setPage(1);
                 setSearch("");
+                router.push(`${pathname}`);
               }}
             >
               Clear All

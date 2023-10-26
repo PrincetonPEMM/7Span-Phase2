@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import MdiChevronDown from "@assets/icons/MdiChevronDown";
@@ -12,13 +12,26 @@ const Dropdown = ({
   isMultiple = false,
 }) => {
   const route = useRouter();
+  const [flag, setFlag] = useState(true);
+
   return (
     <Listbox
       value={selected}
       onChange={(e) => {
         if (title === "All Paintings") {
           route.push(e?.key);
-        } else setSelected(e);
+        } else {
+          let ulist;
+          if (["Date of Paintings", "Digital Quality"].includes(title)) {
+            ulist = Object.values(
+              e.reduce((acc, obj) => ({ ...acc, [obj.key]: obj }), {})
+            );
+          } else {
+            ulist = e;
+          }
+          setFlag(!flag);
+          setSelected(ulist);
+        }
       }}
       multiple={isMultiple}
     >
@@ -51,7 +64,7 @@ const Dropdown = ({
           >
             {options.map((item, personIdx) => (
               <Listbox.Option
-                key={personIdx}
+                key={item.key + personIdx}
                 className={({ active }) =>
                   `relative cursor-default select-none transition-all py-2 pl-6 ${
                     title !== "All Paintings" && "lg:pl-8"
@@ -61,22 +74,32 @@ const Dropdown = ({
                 }
                 value={item}
               >
-                {({ selected }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? "font-medium" : "font-normal"
-                      }`}
-                    >
-                      {item.value}
-                    </span>
-                    {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-secondary-500 lg:pl-3">
-                        <CheckIcon className="h-4 w-4" aria-hidden="true" />
+                {(values) => {
+                  let isSelected = false;
+                  if (["Date of Paintings", "Digital Quality"].includes(title))
+                    isSelected = Boolean(
+                      selected?.find((itm) => itm.key === item?.key)
+                    );
+                  else isSelected = Boolean(selected?.key === item?.key);
+                  return (
+                    <>
+                      <span
+                        className={`block truncate ${
+                          values.selected || isSelected
+                            ? "font-medium"
+                            : "font-normal"
+                        }`}
+                      >
+                        {item.value}
                       </span>
-                    ) : null}
-                  </>
-                )}
+                      {values.selected || isSelected ? (
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-secondary-500 lg:pl-3">
+                          <CheckIcon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
+                  );
+                }}
               </Listbox.Option>
             ))}
           </Listbox.Options>
