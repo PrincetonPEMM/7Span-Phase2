@@ -287,7 +287,11 @@ const ManuScripts = () => {
   };
 
   const setFilterInParams = (key, value, isRemove = false) => {
-    if (isRemove) return;
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
     if (["lastKnownLocation", "knownOriginRegion"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);

@@ -61,8 +61,7 @@ export default function Manuscript({ Id, data, table }) {
       let text = `This <b>${data.language}</b> language manuscript was created between <b>${data.manuscript_date_range_start}</b> and <b>${data.manuscript_date_range_end}</b>. `;
       if (data.date_note) {
         if (data.date_note == "Date from ms (colophon)") {
-          text +=
-            "This date is precise, based on the scribe noting the date in the manuscript. ";
+          text += `This date is precise, based on the scribe noting the date in the manuscript. `;
         } else if (data.date_note == "Date from king's name") {
           text += `This date is estimated, based on the reigning Ethiopian king&apos;s name appearing in the manuscript.`;
         } else if (data.date_note == "Date from ms (paleography)") {
