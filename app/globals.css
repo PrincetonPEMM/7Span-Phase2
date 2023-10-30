@@ -110,7 +110,7 @@ body {
 }
 
 .space-y-p a {
-  @apply underline text-xs md:text-base inline text-primary-500;
+  @apply text-xs md:text-base inline font-bold text-primary-500;
 }
 
 .space-y-p h1 {
@@ -190,10 +190,6 @@ body {
 
 .space-y-p h3 {
   @apply font-bold text-xl my-2;
-}
-
-.space-y-p a {
-  @apply underline text-xs md:text-base inline;
 }
 
 .shell {
@@ -586,9 +582,7 @@ input[type="number"] {
 .space-y-p {
   @apply lg:overflow-hidden overflow-auto;
 }
-.space-y-p a {
-  @apply underline text-sm md:text-base inline;
-}
+
 .Subbanner_img {
   @apply aspect-square w-full h-auto relative;
 }
