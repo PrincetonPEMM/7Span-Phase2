@@ -1,6 +1,6 @@
+import HashTitle from "@/app/components/HashTitle";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
-import Image from "next/image";
 import Link from "next/link";
 export const dynamic = "force-dynamic";
 const img_path = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/`;
@@ -76,10 +76,8 @@ export default async function page() {
         </p>
       </div> */}
 
-      <div id="our-team" className="team mt-10">
-        <h2 className="text-3xl lg:text-5xl font-header text-center text-primary-500">
-          Our Team
-        </h2>
+      <div className="team mt-10">
+        <HashTitle title={"Our Team"} id="our-team" />
         <div className="break-words mt-5 flex flex-wrap items-start justify-center">
           {team_with_image}
         </div>
@@ -106,13 +104,7 @@ export default async function page() {
         />
       </div>
 
-      <div
-        id={`${about_people.our_partners_title
-          .split(" ")
-          .map((word) => word.toLowerCase())
-          .join("-")}`}
-        className="md:w-4/5 mx-auto space-y-10 lg:space-y-16 mt-10"
-      >
+      <div className="md:w-4/5 mx-auto space-y-10 lg:space-y-16 mt-10">
         <div
           id={`${about_people.project_collaborators_title
             .split(" ")
@@ -120,9 +112,10 @@ export default async function page() {
             .join("-")}`}
           className="collaborators"
         >
-          <h2 className="text-3xl font-header mb-3 text-center lg:text-5xl text-primary-500">
-            {about_people.our_partners_title}
-          </h2>
+          <HashTitle
+            title={about_people.our_partners_title}
+            id="our-partners"
+          />
           <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.project_collaborators_title}
           </h3>
@@ -191,9 +184,8 @@ export default async function page() {
             .join("-")}`}
           className="funders "
         >
-          <h2 className="text-3xl font-header text-center lg:text-5xl text-primary-500">
-            {about_people.our_funders_title}
-          </h2>
+          <HashTitle title={about_people.our_funders_title} id="our-funders" />
+
           <div>
             <img
               className="w-48 py-3 mx-auto"
