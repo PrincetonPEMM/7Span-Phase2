@@ -222,7 +222,7 @@ const Table = ({
                               <a
                                 href={event.link_to_digital_copy}
                                 target="_blank"
-                                className="text-primary-500 underline"
+                                className="text-primary-500 font-bold"
                               >
                                 Digital Copy
                               </a>
