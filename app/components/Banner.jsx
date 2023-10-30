@@ -45,11 +45,11 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
             >
               <span>Learn More</span>
               <span
-                className={` transition-all ${
+                className={`h-6 w-6 transition-all ${
                   setSelectedBanner ? "rotate-0 " : "rotate-180"
                 }`}
               >
-                <MdiChevronDown />
+                <MdiChevronDown className="h-6 w-6" />
               </span>
             </a>
             <div
