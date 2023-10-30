@@ -9,14 +9,14 @@ export default async function Home() {
 
   return (
     <main>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-L1XB3HXBQM" />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-WWKGHWWHRQ" />
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
  
-          gtag('config', 'G-L1XB3HXBQM');
+          gtag('config', 'G-WWKGHWWHRQ');
         `}
       </Script>
       <Hero data={result} />
