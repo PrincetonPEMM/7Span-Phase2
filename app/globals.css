@@ -951,7 +951,7 @@ input::-webkit-inner-spin-button {
   @apply text-primary-500 font-body;
 }
 .descriptions-left h2 {
-  @apply font-body mt-2 text-xl font-bold text-primary-500;
+  @apply font-body mt-2 text-2xl font-bold text-primary-500;
   /* margin-top: 0.5rem; */
   margin-bottom: 0.5rem;
 }
