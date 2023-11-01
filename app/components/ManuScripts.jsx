@@ -289,14 +289,14 @@ const ManuScripts = () => {
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
       newParams.delete(key);
-      router.push(`${pathname}?${newParams.toString()}`);
+      history.pushState({}, "", `${pathname}?${newParams.toString()}`);
       return;
     }
     if (["lastKnownLocation", "knownOriginRegion"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);
-
-    router.push(`${pathname}?${newParams.toString()}`);
+    history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+    // router.push(`${pathname}?${newParams.toString()}`);
   };
 
   const getFilterFromParams = () => {
