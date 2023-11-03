@@ -28,11 +28,11 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
         </div>
 
         <div className="text-white h-auto text-left z-30 px-5 absolute bottom-3 md:min-h-[300px] lg:bottom-1 xl:bottom-10 2xl:bottom-12">
-          <span className="text-sm xl:text-xl font-bold uppercase mr-1">
+          <span className="text-sm font-normal uppercase mr-1 !font-menu xl:text-xl">
             {data.title.split(" ")[0]}
           </span>
           <h3
-            className="text-xl leading-none font-header uppercase sm:text-3xl xl:text-5xl xl:leading-tight"
+            className="text-xl leading-none font-header uppercase sm:text-3xl xl:text-4xl xl:leading-tight"
             // onClick={() => toggleContent(index)}
           >
             {data.title.split(" ")[1]}
