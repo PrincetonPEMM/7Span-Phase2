@@ -26,7 +26,7 @@ export default async function page() {
             {about_using_this_site.using_the_site_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu lg:w-2/3"
+            className="space-y-p text-center font-menu lg:w-2/3 description-center"
             dangerouslySetInnerHTML={{
               __html: about_using_this_site.using_the_site_description,
             }}

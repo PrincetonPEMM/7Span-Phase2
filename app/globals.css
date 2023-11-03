@@ -907,16 +907,23 @@ input::-webkit-inner-spin-button {
 .descriptions-left {
   @apply text-left;
 }
-.descriptions-left h3 {
+.descriptions-left h3,
+.description-center h3 {
   @apply text-primary-500 font-body text-2xl;
 }
-.descriptions-left h1 {
+.descriptions-left h1,
+.description-center h1 {
   @apply text-primary-500 font-body;
 }
-.descriptions-left h2 {
+.descriptions-left h2,
+.description-center h2 {
   @apply font-body mt-2 text-2xl font-bold text-primary-500;
   /* margin-top: 0.5rem; */
   margin-bottom: 0.5rem;
+}
+
+.description-center h2 {
+  @apply text-3xl;
 }
 
 @media only screen and (max-width: 440px) {
