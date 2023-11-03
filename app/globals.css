@@ -200,7 +200,7 @@ body {
 } */
 
 .shell__sidebar {
-  @apply inset-y-0 bottom-0 right-auto z-20  w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
+  @apply inset-y-0 bottom-0 right-auto z-20  w-[250px] xl:w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
 }
 
 ::-webkit-scrollbar {

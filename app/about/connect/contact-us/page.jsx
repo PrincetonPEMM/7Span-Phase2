@@ -22,7 +22,7 @@ export default async function page() {
           <h2 className="text-3xl font-header text-center lg:text-4xl text-primary-500">
             {about_using_this_site.contact_us_title}
           </h2>
-          <p className="text-center font-menu py-5 lg:w-2/3">
+          <p className="text-center !font-menu py-5 lg:w-2/3">
             {about_using_this_site.contact_us_intro}
           </p>
           <div
