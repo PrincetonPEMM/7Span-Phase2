@@ -37,13 +37,11 @@ const PaintingStoryCard = ({
       {isImgload && (
         <div className="bg-black p-5">
           {isTitle && (
-            <h2
-              className={`font-bold  lg:text-2xl ${
-                isImgload ? "mt-0" : "mt-3"
-              }`}
+            <h3
+              className={`font-bold lg:text-xl ${isImgload ? "mt-0" : "mt-3"}`}
             >
               {title ? title : "PEMM title not found"}
-            </h2>
+            </h3>
           )}
           <p className={`text-sm break-words ${className}`}>{content}</p>
           {desc && <p className={`text-sm break-words ${className}`}>{desc}</p>}

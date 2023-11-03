@@ -124,7 +124,7 @@ const Table = ({
                       <tr>
                         <td
                           className="w-full px-3 py-2 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
-                          colSpan="10"
+                          colSpan="6"
                         >
                           <Link
                             href={

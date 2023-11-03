@@ -345,7 +345,7 @@ export default function Manuscript({ Id, data, table }) {
       </div>
       {tableData && (
         <div id="emip-table">
-          <h3 className="font-menu text-2xl font-medium lg:text-3xl ">
+          <h3 className="font-menu text-2xl font-medium lg:text-3xl">
             {data.manuscript}
           </h3>
           <Table
