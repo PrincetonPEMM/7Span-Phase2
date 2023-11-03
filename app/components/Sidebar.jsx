@@ -99,9 +99,7 @@ const Sidebar = ({
 
       <div className="block mt-3">
         <div>
-          <lable className="text-white text-lg block mb-3">
-            {filterItem.title}
-          </lable>
+          <p className="text-white text-lg block mb-3">{filterItem.title}</p>
           {Object.values(filterItem.checkItem)?.map((item, index) =>
             item.isCheckbox ? (
               <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
@@ -117,10 +115,10 @@ const Sidebar = ({
         </div>
       </div>
       <div className="block mt-7">
-        <lable className="text-white text-lg block mb-3">
+        <p className="text-white text-lg block mb-3">
           {isPageName === STORIES && "Story's Date of Origin"}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
-        </lable>
+        </p>
         <RangeSlider
           min={slider1InitMin}
           max={slider1InitMax}
@@ -129,10 +127,10 @@ const Sidebar = ({
         />
       </div>
       <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
+        <p className="text-white text-lg block mb-3">
           {isPageName === STORIES && " Manuscripts with Story"}
           {isPageName === MANUSCRIPTS && "Manuscript's No. of Stories"}
-        </lable>
+        </p>
         <RangeSlider
           min={slider2InitMin}
           max={slider2InitMax}
@@ -141,10 +139,10 @@ const Sidebar = ({
         />
       </div>
       <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
+        <p className="text-white text-lg block mb-3">
           {isPageName === STORIES && " Paintings of Story"}
           {isPageName === MANUSCRIPTS && "Manuscript's No. of Paintings"}
-        </lable>
+        </p>
         <RangeSlider
           min={slider3InitMin}
           max={slider3InitMax}
@@ -154,9 +152,9 @@ const Sidebar = ({
       </div>
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
-          <lable className="text-white text-lg block mb-3">
+          <p className="text-white text-lg block mb-3">
             Manuscript's No. of Unique Stories
-          </lable>
+          </p>
           <RangeSlider
             min={slider4InitMin}
             max={slider4InitMax}
@@ -167,7 +165,7 @@ const Sidebar = ({
       )}
       {isPageName === STORIES && (
         <div className="block mt-10">
-          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <p className="text-white text-lg block">{placeItem?.title}</p>
           <div className="mt-5 flex items-start flex-wrap">
             {placeItem?.checkItem.map((item, index) => (
               <InputIcon
@@ -182,7 +180,7 @@ const Sidebar = ({
       )}
       {isPageName === MANUSCRIPTS && (
         <div className="block mt-10">
-          <lable className="text-white text-lg block">{placeItem?.title}</lable>
+          <p className="text-white text-lg block">{placeItem?.title}</p>
           <div className="mt-5 flex items-start flex-wrap">
             {placeItem?.checkItem.map((item, index) => (
               <InputIcon
@@ -196,9 +194,7 @@ const Sidebar = ({
         </div>
       )}
       <div className="block mt-10">
-        <lable className="text-white text-lg block mb-3">
-          {langItem.title}
-        </lable>
+        <p className="text-white text-lg block mb-3">{langItem.title}</p>
 
         {langItem?.checkItem.map((item, index) => (
           <InputIcon
@@ -211,9 +207,9 @@ const Sidebar = ({
       </div>
       {isPageName === STORIES && (
         <div className="block mt-10">
-          <lable className="text-white text-lg block mb-3">
+          <p className="text-white text-lg block mb-3">
             {translatedItem.title}
-          </lable>
+          </p>
 
           {translatedItem?.checkItem.map((item, index) => (
             <InputIcon

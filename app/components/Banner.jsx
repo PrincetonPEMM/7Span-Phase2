@@ -32,7 +32,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
             {data.title.split(" ")[0]}
           </span>
           <h3
-            className="text-xl leading-none font-header uppercase sm:text-3xl xl:text-5xl xl:leading-tight"
+            className="text-xl leading-none font-header uppercase sm:text-3xl xl:text-4xl xl:leading-tight"
             // onClick={() => toggleContent(index)}
           >
             {data.title.split(" ")[1]}

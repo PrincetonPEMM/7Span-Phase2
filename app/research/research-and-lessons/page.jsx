@@ -20,9 +20,9 @@ const Page = async () => {
   return (
     <div className="container font-body  py-4 lg:py-7">
       <div className="space-y-4">
-        <h3 className="text-3xl text-primary-500 font-header lg:text-5xl">
+        <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl">
           Research & Lessons
-        </h3>
+        </h2>
         <MasonryComp
           cards={data}
           keyword={"research_post"}
