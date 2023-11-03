@@ -181,7 +181,7 @@ export default function StoryDetail({ data, Id }) {
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <h3 className="font-menu text-primary-500 text-2xl lg:text-5xl leading-tight font-medium">
+      <h3 className="font-menu text-primary-500 text-2xl lg:text-3xl xl:text-4xl leading-tight font-medium">
         {data?.canonical_story_title}
       </h3>
 

@@ -95,7 +95,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
       {header && (
-        <h2 className="font-menu text-2xl mb-5 lg:text-3xl xl:text-5xl text-primary-500 font-medium">
+        <h2 className="font-menu text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500 font-medium">
           {header?.manuscript_full_name}&nbsp;(
           {`${
             header?.manuscript_date_range_start &&
