@@ -13,7 +13,7 @@ const Footer = () => {
   const pathname = usePathname();
   const aboutItems = [
     { title: "Our Mission", link: "/about/mission" },
-    { title: "Our History", link: "/about/mission" },
+    { title: "Our History", link: "/about/mission#our-history" },
     { title: "Our Team", link: "/about/people" },
     { title: "Our Partners", link: "/about/people#our-partners" },
     { title: "Our Funders", link: "/about/people#our-funders" },
