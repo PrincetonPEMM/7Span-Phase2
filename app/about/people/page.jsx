@@ -68,7 +68,7 @@ export default async function page() {
           .join("-")}`}
         className="people flex justify-center flex-col items-center"
       >
-        <h2 className="text-3xl  font-header text-center lg:text-5xl text-primary-500">
+        <h2 className="text-3xl  font-header text-center lg:text-4xl text-primary-500">
           {about_people.our_people_title}
         </h2>
         <p className="text-center font-menu md:w-2/3">
@@ -93,7 +93,7 @@ export default async function page() {
           .join("-")}`}
         className="other-team-member font-body md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-10"
       >
-        <h3 className="text-3xl font-header text-center lg:text-5xl text-primary-500">
+        <h3 className="text-3xl font-header text-center lg:text-4xl text-primary-500">
           {about_people.other_team_members_title}
         </h3>
         <div

@@ -64,13 +64,13 @@ export default function Card({
         >
           {category.toLowerCase() === keyword ? value1 : value2}
         </span>
-        <h2 className="font-bold lg:text-2xl">{title}</h2>
+        <h3 className="font-bold lg:text-2xl">{title}</h3>
         {date && <p className="my-1 font-light text-xs">{date}</p>}
-        <h3 className="font-sm font-semibold">{author && "by " + author}</h3>
+        <h4 className="font-sm font-semibold">{author && "by " + author}</h4>
         {collapseText(intro)}
         <Link
           href={redirect}
-          className="border mt-5 py-1 px-2 rounded inline-block transition-colors hover:text-primary-500 hover:bg-offWhite-500 hover:transition-colors"
+          className="border mt-5 py-1 px-2 rounded inline-block text-sm transition-colors hover:text-primary-500 hover:bg-offWhite-500 hover:transition-colors"
         >
           Read More
         </Link>

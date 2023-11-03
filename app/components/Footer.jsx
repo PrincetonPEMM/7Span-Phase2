@@ -13,7 +13,7 @@ const Footer = () => {
   const pathname = usePathname();
   const aboutItems = [
     { title: "Our Mission", link: "/about/mission" },
-    { title: "Our History", link: "/about/mission" },
+    { title: "Our History", link: "/about/mission#our-history" },
     { title: "Our Team", link: "/about/people" },
     { title: "Our Partners", link: "/about/people#our-partners" },
     { title: "Our Funders", link: "/about/people#our-funders" },
@@ -88,7 +88,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
           <ul className="font-menu text-xl flex flex-col">
             {aboutItems.map((item, index) => (
-              <>
+              <li>
                 <Link
                   href={item.link}
                   key={index}
@@ -96,8 +96,8 @@ const Footer = () => {
                 >
                   {item.title}
                 </Link>
-                {[1, 4, 6].includes(index) && <div className="mt-5" />}
-              </>
+                {[1, 4, 6].includes(index) && <span className="mt-5 block" />}
+              </li>
             ))}
           </ul>
         </div>
@@ -106,7 +106,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
           <ul className="font-menu text-xl flex flex-col">
             {exploreItems.map((item, index) => (
-              <>
+              <li>
                 {pathname !== "/" || !item.label ? (
                   <Link
                     href={item.link}
@@ -114,7 +114,7 @@ const Footer = () => {
                     className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
                   >
                     {item.title}
-                    {[3, 6].includes(index) && <div className="mt-5" />}
+                    {[3, 6].includes(index) && <span className="mt-5 block" />}
                   </Link>
                 ) : (
                   <label
@@ -123,10 +123,10 @@ const Footer = () => {
                     className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
                   >
                     {item.title}
-                    {[3, 6].includes(index) && <div className="mt-5" />}
+                    {[3, 6].includes(index) && <span className="mt-5 block" />}
                   </label>
                 )}
-              </>
+              </li>
             ))}
           </ul>
         </div>
@@ -135,7 +135,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
           <ul className="font-menu text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
-              <>
+              <li>
                 <Link
                   href={item.link}
                   key={index}
@@ -143,8 +143,8 @@ const Footer = () => {
                 >
                   {item.title}
                 </Link>
-                {[1, 4, 6].includes(index) && <div className="mt-5" />}
-              </>
+                {[1, 4, 6].includes(index) && <span className="mt-5 block" />}
+              </li>
             ))}
           </ul>
         </div>

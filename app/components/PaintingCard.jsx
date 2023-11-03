@@ -47,11 +47,11 @@ const PaintingCard = (props) => {
           }${
             props.card.painting_scan ? ", s. " + props.card.painting_scan : ""
           }`}</p>
-          <h2 className="lg:text-2xl font-bold mt-3">
+          <h3 className="lg:text-xl font-bold mt-3">
             {props.card.pemm_short_title
               ? props.card.pemm_short_title
               : "PEMM title not found"}
-          </h2>
+          </h3>
           <p className="pt-2">
             {props.card.episodes ? props.card.episodes + "." : "-"}
           </p>

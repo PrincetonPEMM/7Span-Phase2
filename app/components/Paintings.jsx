@@ -251,7 +251,7 @@ const Paintings = ({
           />
         </div>
         <div className="lg:col-span-1">
-          <div className="text-center block h-auto py-3  font-medium xl:text-sm text-xs md:w-full">
+          <div className="text-center block h-auto py-3 xl:text-sm text-xs md:w-full">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>

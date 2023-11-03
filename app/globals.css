@@ -106,7 +106,7 @@ body {
 }
 
 .space-y-p h3 {
-  @apply font-bold text-xl my-2;
+  @apply font-bold text-2xl my-2;
 }
 
 .space-y-p a {
@@ -114,7 +114,7 @@ body {
 }
 
 .space-y-p h1 {
-  @apply text-4xl lg:text-5xl font-bold;
+  @apply text-3xl lg:text-4xl font-bold;
 }
 
 @keyframes slideIn {
@@ -188,10 +188,6 @@ body {
   margin-top: 10px;
 }
 
-.space-y-p h3 {
-  @apply font-bold text-xl my-2;
-}
-
 .shell {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -204,7 +200,7 @@ body {
 } */
 
 .shell__sidebar {
-  @apply inset-y-0 bottom-0 right-auto z-20  w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
+  @apply inset-y-0 bottom-0 right-auto z-20  w-[250px] xl:w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
 }
 
 ::-webkit-scrollbar {
@@ -576,9 +572,7 @@ input[type="number"] {
 .space-y-p p + p {
   margin-top: 10px;
 }
-.space-y-p h3 {
-  @apply font-bold text-xl my-2;
-}
+
 .space-y-p {
   @apply lg:overflow-hidden overflow-auto;
 }
@@ -833,19 +827,15 @@ input[type="number"] {
 .masonry .even .card-button {
   @apply bg-secondary-500;
 }
-
 .masonry .odd .card-background {
   @apply bg-secondary-500;
 }
-
 .masonry .odd .card-button {
   @apply bg-primary-500;
 }
-
 .pagination-container {
   @apply flex items-center justify-center space-x-1;
 }
-
 .pagination-button {
   @apply py-1 px-1 border-2 w-8 text-base text-center border-primary-500 z-30 rounded-md text-primary-500 font-bold h-8 flex items-center justify-center xl:px-2;
   --tw-text-opacity: 1;
@@ -908,6 +898,27 @@ input::-webkit-inner-spin-button {
 .table-wrap:before {
   @apply top-0 left-0 rounded-lg;
 }
+.p-beside-p {
+  display: inline;
+}
+.p-beside-p + p {
+  display: inline;
+}
+.descriptions-left {
+  @apply text-left;
+}
+.descriptions-left h3 {
+  @apply text-primary-500 font-body text-2xl;
+}
+.descriptions-left h1 {
+  @apply text-primary-500 font-body;
+}
+.descriptions-left h2 {
+  @apply font-body mt-2 text-2xl font-bold text-primary-500;
+  /* margin-top: 0.5rem; */
+  margin-bottom: 0.5rem;
+}
+
 @media only screen and (max-width: 440px) {
   span.tagline {
     @apply w-56 -top-5;
@@ -934,24 +945,4 @@ input::-webkit-inner-spin-button {
   .hero-img {
     padding-top: 174.778%;
   }
-}
-.p-beside-p {
-  display: inline;
-}
-.p-beside-p + p {
-  display: inline;
-}
-.descriptions-left {
-  @apply text-left;
-}
-.descriptions-left h3 {
-  @apply text-primary-500 font-body;
-}
-.descriptions-left h1 {
-  @apply text-primary-500 font-body;
-}
-.descriptions-left h2 {
-  @apply font-body mt-2 text-2xl font-bold text-primary-500;
-  /* margin-top: 0.5rem; */
-  margin-bottom: 0.5rem;
 }
