@@ -56,13 +56,13 @@ const Footer = () => {
   ];
   return (
     <div className="bg-primary-500 px-5 py-12 md:px-8 lg:px-16">
-      <div className="w-auto grid text-white grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
+      <div className="w-auto grid text-white font-body grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
         <div className="text-left md:py-0 py-5 text-sm md:pr-5 sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
           <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
             <Image
               src={Logo}
               className="mb-3"
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
             />
           </Link>
 

@@ -11,7 +11,7 @@ const HashTitle = ({ title, id }) => {
 
   return (
     <h2
-      className="text-3xl font-header text-center lg:text-4xl text-primary-500"
+      className="text-3xl font-header w-full text-left lg:text-4xl text-primary-500 mx-auto"
       id={id}
     >
       {title}

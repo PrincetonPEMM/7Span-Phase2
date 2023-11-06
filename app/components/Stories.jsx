@@ -470,7 +470,7 @@ const Stories = () => {
         }}
       >
         <div
-          className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
+          className={`font-body bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
             isOpen
               ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
               : "hidden -left-full transition-all"
