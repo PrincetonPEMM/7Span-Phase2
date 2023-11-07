@@ -36,7 +36,7 @@ const Dropdown = ({
       multiple={isMultiple}
     >
       <div className="relative">
-        <Listbox.Button className="option-box relative w-full rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
+        <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
           <span className="block truncate">
             {title === "Date of Paintings"
               ? title
@@ -58,7 +58,7 @@ const Dropdown = ({
           leaveTo="opacity-0"
         >
           <Listbox.Options
-            className="option-box-option absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md
+            className="option-box-option font-body  absolute mt-1 max-h-60 z-30 overflow-auto inset-x-0 rounded-md
            bg-primary-500 text-white py-1 text-xs  
           shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm xl:right-0 xl:left-auto xl:min-w-full"
           >
