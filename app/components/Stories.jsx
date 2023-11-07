@@ -544,7 +544,7 @@ const Stories = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 flex flex-col items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
+        <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
           <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search titles and translations

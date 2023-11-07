@@ -39,7 +39,7 @@ const Header = () => {
       title: "Paintings",
       link: "/paintings",
       subItems: [
-        { title: "all Paintings", link: "/paintings" },
+        { title: "All Paintings", link: "/paintings" },
         { title: "Paintings by Story", link: "/paintings/by-story" },
         { title: "Paintings by Manuscript", link: "/paintings/by-manuscript" },
       ],
