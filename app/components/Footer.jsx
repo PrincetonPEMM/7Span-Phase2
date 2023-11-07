@@ -66,7 +66,7 @@ const Footer = () => {
             />
           </Link>
 
-          <p className="pt-4 md:pt-0">
+          <p className="pt-4 block md:pt-4">
             PEMM is a comprehensive resource for the 1,000+ miracle stories
             written about and the 2,500+ paintings of the Virgin Mary in
             Ethiopia, Eritrea, and Egypt, and preserved in Geʿez between 1300
@@ -86,7 +86,7 @@ const Footer = () => {
 
         <div className="py-5 md:py-0">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {aboutItems.map((item, index) => (
               <li>
                 <Link
@@ -104,7 +104,7 @@ const Footer = () => {
 
         <div className="text-left py-5 md:py-0">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {exploreItems.map((item, index) => (
               <li>
                 {pathname !== "/" || !item.label ? (
@@ -133,7 +133,7 @@ const Footer = () => {
 
         <div className="text-left md:py-0 py-5">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
               <li>
                 <Link

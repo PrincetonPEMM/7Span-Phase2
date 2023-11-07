@@ -96,7 +96,7 @@ export default async function page() {
           .split(" ")
           .map((word) => word.toLowerCase())
           .join("-")}`}
-        className="other-team-member font-body md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-10"
+        className="other-team-member font-body md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-7"
       >
         <h3 className="text-3xl font-header text-left lg:text-4xl text-primary-500">
           {about_people.other_team_members_title}

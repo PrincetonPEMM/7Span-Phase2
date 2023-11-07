@@ -40,15 +40,15 @@ const PaintingDetail = ({ data }) => {
         text += `You can view this painting in the manuscript ${
           data.link_to_digital_copy
             ? `<a
-              class="text-primary-500 font-bold"
+              class="text-primary-500 font-bold hover:text-secondary-500"
               href=${data.manuscript_link}
             >${data.manuscript_name}</a>`
             : `<b>${data.manuscript_name}</b>`
         }${
           data.painting_folio ? ", f. " + data.painting_folio : ""
-        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold" href="/manuscripts/${
+        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
           data.web_page_address
-        }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold" href="/stories/${
+        }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${
           data.canonical_story_id
         }">PEMM Story page<a>.`;
       }
@@ -57,11 +57,11 @@ const PaintingDetail = ({ data }) => {
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has <b>${data?.number_of_episodes}</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
+          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has <b>${data?.number_of_episodes}</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
-          text: `This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
+          text: `This painting of PEMM Story ID <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
         });
       }
     }

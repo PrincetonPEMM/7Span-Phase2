@@ -210,7 +210,7 @@ const Header = () => {
                     {item.subItems ? (
                       <div className="group capitalize relative">
                         <button
-                          className={`text-lg p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500   xl:text-xl ${
+                          className={`p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
                             pathname.includes(item.link)
                               ? "text-secondary-500"
                               : pathname === "/"
@@ -260,7 +260,7 @@ const Header = () => {
                       <Link
                         onClick={() => setMenuCollapse(false)}
                         href={item.link}
-                        className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
+                        className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-2xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
                           pathname.includes(item.link)
                             ? "text-secondary-500"
                             : pathname === "/"

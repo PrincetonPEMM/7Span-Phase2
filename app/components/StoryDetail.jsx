@@ -153,7 +153,7 @@ export default function StoryDetail({ data, Id }) {
     <a
       href=/stories/${data.canonical_story_id}
       target="_blank"
-      class="text-primary-500 font-bold"
+      class="text-primary-500 font-bold hover:text-secondary-500"
     >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
@@ -172,7 +172,7 @@ export default function StoryDetail({ data, Id }) {
     <a
       href=/stories/${data.canonical_story_id}
       target="_blank"
-      class="text-primary-500 font-bold"
+      class="text-primary-500 font-bold hover:text-secondary-500"
     >https://${window?.location?.hostname}/stories/${
       data.canonical_story_id
     }</a>.`;
@@ -756,7 +756,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold"
+                  className="text-primary-500 font-bold hover:text-secondary-500"
                 >
                   Paintings by Story
                 </Link>
@@ -772,7 +772,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold"
+                  className="text-primary-500 font-bold hover:text-secondary-500"
                 >
                   Paintings by Story
                 </Link>

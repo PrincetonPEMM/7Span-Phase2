@@ -20,7 +20,7 @@ const page = async () => {
             <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
               {bibliography_data?.title ?? ""}
             </h2>
-            <p className="py-6">{bibliography_data?.intro}</p>
+            <p className="pt-4 pb-6">{bibliography_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
                 __html: bibliography_data?.description,
