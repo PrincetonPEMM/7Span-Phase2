@@ -14,11 +14,11 @@ export default async function page() {
             title={about_mission_data.mission_title}
             id={`our-mission`}
           />
-          <p className="font-menu py-5 lg:w-full">
+          <p className="font-body py-5 lg:w-full">
             {about_mission_data.mission_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu md:text-left lg:w-full descriptions-left"
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.mission_description,
             }}
@@ -29,11 +29,11 @@ export default async function page() {
             title={about_mission_data.history_title}
             id={`our-history`}
           />
-          <p className="font-menu py-5 lg:w-full">
+          <p className="font-body py-5 lg:w-full">
             {about_mission_data.history_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu md:text-left lg:w-full descriptions-left"
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.history_description,
             }}

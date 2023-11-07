@@ -11,7 +11,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
           <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
             {title ?? ""}
           </h2>
-          <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
+          <div className="items-start font-body py-7 lg:grid lg:grid-cols-3 lg:space-x-10">
             {image && (
               <div className="w-60 aspect-squre md:mx-auto sm:h-80 sm:w-80 md:w-full">
                 <img
@@ -23,7 +23,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
             )}
             <div class="mt-5 lg:mt-0 lg:col-span-2">
               <p className="pb-2 font-sm font-semibold">By {author}</p>
-              <p className="py-2 font-light text-xs">{dateFormate(date)}</p>
+              <p className="py-2 font-light text-sm">{dateFormate(date)}</p>
               <p className="py-2">{intro}</p>
             </div>
           </div>

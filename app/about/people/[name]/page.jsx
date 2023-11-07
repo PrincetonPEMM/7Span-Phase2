@@ -67,7 +67,7 @@ const PeopleDetailPage = async ({ params }) => {
                 <a
                   href={results[0].website}
                   target="_blank"
-                  className="cursor-pointer"
+                  className="cursor-pointer text-primary-500 hover:text-secondary-500"
                 >
                   {results[0].website}
                 </a>
@@ -75,7 +75,7 @@ const PeopleDetailPage = async ({ params }) => {
             )}
           </div>
           <div
-            className="space-y-5 font-semibold text-offBlack-500 lg:text-left"
+            className="space-y-5  text-offBlack-500 lg:text-left"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 
