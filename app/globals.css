@@ -90,6 +90,12 @@
   }
 }
 
+.font-menu {
+  font-family: "Source Serif Pro", sans-serif;
+}
+.font-body {
+  font-family: "Source Sans 3", sans-serif;
+}
 .logo {
   width: 26vw;
 }
@@ -110,7 +116,7 @@ body {
 }
 
 .space-y-p a {
-  @apply text-xs md:text-base inline font-bold text-primary-500;
+  @apply text-base inline font-bold text-primary-500 hover:text-secondary-600;
 }
 
 .space-y-p h1 {
@@ -909,7 +915,7 @@ input::-webkit-inner-spin-button {
 }
 .descriptions-left h3,
 .description-center h3 {
-  @apply text-primary-500 font-body text-2xl;
+  @apply text-primary-500 font-body text-xl lg:text-2xl;
 }
 .descriptions-left h1,
 .description-center h1 {
@@ -923,7 +929,7 @@ input::-webkit-inner-spin-button {
 }
 
 .description-center h2 {
-  @apply text-3xl;
+  @apply text-2xl lg:text-3xl;
 }
 
 @media only screen and (max-width: 440px) {

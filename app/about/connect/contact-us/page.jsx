@@ -18,15 +18,15 @@ export default async function page() {
   return (
     <div className="container">
       <div className="space-y-4 py-12">
-        <div className="people flex justify-center flex-col items-center">
-          <h2 className="text-3xl font-header text-center lg:text-4xl text-primary-500">
+        <div className="people flex justify-start flex-col items-center ">
+          <h2 className="text-3xl block w-full text-left font-header mx-auto lg:w-2/3 lg:text-4xl text-primary-500">
             {about_using_this_site.contact_us_title}
           </h2>
-          <p className="text-center !font-menu py-5 lg:w-2/3">
+          <p className="font-body text-left py-5 font-normal lg:w-2/3">
             {about_using_this_site.contact_us_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu lg:w-2/3 md:text-center description-center about-contact-page"
+            className="space-y-p text-left font-menu lg:w-2/3 md:text-center description-center about-contact-page"
             dangerouslySetInnerHTML={{
               __html: about_using_this_site.contact_us_description,
             }}
