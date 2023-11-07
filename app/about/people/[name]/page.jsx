@@ -67,7 +67,7 @@ const PeopleDetailPage = async ({ params }) => {
                 <a
                   href={results[0].website}
                   target="_blank"
-                  className="cursor-pointer text-primary-500 hover:text-secondary-500"
+                  className="cursor-pointer text-primary-500 hover:text-secondary-500 font-semibold"
                 >
                   {results[0].website}
                 </a>

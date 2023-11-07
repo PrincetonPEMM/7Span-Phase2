@@ -25,7 +25,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: repositories_data?.description,
               }}
-              className="space-y-p descriptions-left"
+              className="space-y-p descriptions-left font-body"
             />
           </div>
         )}

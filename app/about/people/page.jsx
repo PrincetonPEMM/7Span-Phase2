@@ -102,7 +102,7 @@ export default async function page() {
           {about_people.other_team_members_title}
         </h3>
         <div
-          className="space-y-p text-left font-body text-base md:text-center descriptions-left"
+          className="space-y-p text-left font-body text-base md:text-center descriptions-left font-body"
           dangerouslySetInnerHTML={{
             __html: about_people.other_team_members_description,
           }}

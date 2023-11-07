@@ -18,7 +18,7 @@ export default async function page() {
             {about_mission_data.mission_intro}
           </p>
           <div
-            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left "
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left font-body "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.mission_description,
             }}
@@ -33,7 +33,7 @@ export default async function page() {
             {about_mission_data.history_intro}
           </p>
           <div
-            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left "
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left font-body "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.history_description,
             }}
