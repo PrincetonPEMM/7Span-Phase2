@@ -208,7 +208,7 @@ const Header = () => {
                 return (
                   <li key={index} className="lg:ml-3 xl:ml-6">
                     {item.subItems ? (
-                      <div className="group capitalize relative">
+                      <div className="group relative">
                         <button
                           className={`p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
                             pathname.includes(item.link)

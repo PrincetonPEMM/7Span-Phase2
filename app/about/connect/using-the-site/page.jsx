@@ -22,11 +22,11 @@ export default async function page() {
           <h2 className="text-3xl text-left font-header text-primary-500 w-full lg:text-4xl">
             {about_using_this_site.using_the_site_title}
           </h2>
-          <p className="font-menu py-5 w-full">
+          <p className="font-body py-5 w-full">
             {about_using_this_site.using_the_site_intro}
           </p>
           <div
-            className="space-y-p font-menu description-center"
+            className="space-y-p font-body description-center"
             dangerouslySetInnerHTML={{
               __html: about_using_this_site.using_the_site_description,
             }}

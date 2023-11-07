@@ -33,7 +33,7 @@ export default function StoryDetail({ data, Id }) {
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className={`${"text-primary-500"}`}
+          className={`${"text-primary-500 hover:text-secondary-500 font-semibold"}`}
         >
           &nbsp; See Less
         </button>
@@ -46,7 +46,7 @@ export default function StoryDetail({ data, Id }) {
         {Number(text?.length) > numberOfWords && (
           <button
             onClick={() => toggleExpand(index)}
-            className={`${"text-primary-500"}`}
+            className={`${"text-primary-500  hover:text-secondary-500"}`}
           >
             See More
           </button>
@@ -281,7 +281,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Right side content portion */}
           <div className="col-span-2 md:block hidden">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 ">
+              <ol className="list-inside md:pl-4 font-body ">
                 <li>
                   <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
@@ -304,7 +304,7 @@ export default function StoryDetail({ data, Id }) {
             {/* Summary */}
             {data.summary_plot && (
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0 font-body">
+                <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3
                       className={`text-lg font-bold uppercase my-3 ${
@@ -325,7 +325,7 @@ export default function StoryDetail({ data, Id }) {
             )}
             {/* English translation */}
             <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0 font-body">
+              <ol className="list-inside md:pl-4 font-body p-0 ">
                 {data.canonical_translation_recension === "True" && (
                   <li>
                     <h3
@@ -388,7 +388,7 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3 ">
                     {data.translations.length > 0 &&
@@ -406,7 +406,7 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
@@ -438,7 +438,7 @@ export default function StoryDetail({ data, Id }) {
           {/* About */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
@@ -462,7 +462,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Information */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 p-0 font-body">
+              <ol className="list-inside md:pl-4 font-body p-0 ">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
                     CONTENT INFORMATION
@@ -544,7 +544,7 @@ export default function StoryDetail({ data, Id }) {
           {data.summary_plot && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0 font-body">
+                <ol className="list-inside md:pl-4 font-body p-0 ">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
                       summary
@@ -567,7 +567,7 @@ export default function StoryDetail({ data, Id }) {
             data.translations.length > 0) && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0 font-body">
+                <ol className="list-inside md:pl-4 font-body p-0 ">
                   <li>
                     {data.canonical_translation_recension === "True" && (
                       <>
@@ -642,7 +642,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 ">
+              <ol className="list-inside md:pl-4 font-body ">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS

@@ -167,7 +167,7 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL && (
                           <Link
                             href={`/stories/${event.id}`}
-                            className="text-primary-500 hover:text-secondary-500"
+                            className="text-primary-500 hover:text-secondary-500 font-semibold"
                           >
                             {buildShowingText(event.canonical_story_id)}
                           </Link>
