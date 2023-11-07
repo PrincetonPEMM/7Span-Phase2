@@ -470,7 +470,7 @@ const Stories = () => {
         }}
       >
         <div
-          className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
+          className={`font-body bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
             isOpen
               ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
               : "hidden -left-full transition-all"
@@ -604,7 +604,7 @@ gap-2 lg:gap-0 "
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {

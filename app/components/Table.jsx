@@ -102,7 +102,7 @@ const Table = ({
         } `}
       > */}
       <div className="relative overflow-auto table-wrap">
-        <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
+        <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
           <thead className="font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
             <tr>
               {tableHeader?.map((item, index) => (
@@ -124,7 +124,7 @@ const Table = ({
                       <tr>
                         <td
                           className="w-full px-3 py-2 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
-                          colSpan="6"
+                          colSpan={`${isPageName === STORIES ? "6" : "8"}`}
                         >
                           <Link
                             href={
@@ -167,7 +167,7 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL && (
                           <Link
                             href={`/stories/${event.id}`}
-                            className="underline text-primary-500"
+                            className="text-primary-500 hover:text-secondary-500"
                           >
                             {buildShowingText(event.canonical_story_id)}
                           </Link>
@@ -222,7 +222,7 @@ const Table = ({
                               <a
                                 href={event.link_to_digital_copy}
                                 target="_blank"
-                                className="text-primary-500 font-bold"
+                                className="text-primary-500 font-bold hover:text-secondary-500"
                               >
                                 Digital Copy
                               </a>

@@ -203,7 +203,7 @@ const Header = () => {
               setActiveSubmenu(null);
             }}
           >
-            <ul className="font-body relative mt-5 lg:mt-0 lg:flex">
+            <ul className="font-menu relative mt-5 lg:mt-0 lg:flex">
               {menuItems.map((item, index) => {
                 return (
                   <li key={index} className="lg:ml-3 xl:ml-6">

@@ -35,10 +35,12 @@ const PaintingStoryCard = ({
         />
       </div>
       {isImgload && (
-        <div className="bg-black p-5">
+        <div className="bg-black p-5 font-body">
           {isTitle && (
             <h3
-              className={`font-bold lg:text-xl ${isImgload ? "mt-0" : "mt-3"}`}
+              className={`font-semibold lg:text-xl tracking-wide ${
+                isImgload ? "mt-0" : "mt-3"
+              }`}
             >
               {title ? title : "PEMM title not found"}
             </h3>

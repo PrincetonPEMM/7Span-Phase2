@@ -212,7 +212,7 @@ const Paintings = ({
       >
         <MdiMenuOpen className="text-primary-500" />
       </button>
-      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-start mb-3">
+      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-center font-body justify-start mb-3">
         <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
           <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
             Search titles and painting descriptions
@@ -388,7 +388,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2  hidden lg:block">
+          <div className="sm:col-span-2 font-body hidden lg:block">
             <Dropdown
               title="Digital Quality"
               selected={paintingsInColorOnly}
@@ -403,7 +403,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2  hidden lg:block">
+          <div className="sm:col-span-2 font-body hidden lg:block">
             <Dropdown
               title="Story Type"
               selected={storyType}
@@ -412,7 +412,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="sm:col-span-2 hidden lg:block ">
+          <div className="sm:col-span-2 font-body hidden lg:block ">
             <Dropdown
               title="Repository of Painting"
               selected={archiveOfPainting}
@@ -453,7 +453,7 @@ const Paintings = ({
           </Masonry>
         ) : (
           Boolean(!data?.length) && (
-            <div className="flex items-center py-36 justify-center  w-full text-2xl text-primary-500 font-bold">
+            <div className="flex items-center py-36 justify-center font-body w-full text-2xl text-primary-500 font-bold">
               {loading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
             </div>
           )
