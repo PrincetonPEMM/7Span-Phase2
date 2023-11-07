@@ -215,7 +215,7 @@ const PaintingDetail = ({ data }) => {
                 : "none"}
             </p>
           </div> */}
-          <h2 className="hidden md:block font-menu mt-2 mb-5 text-2xl text-primary-500 font-medium leading-tight lg:text-3xl xl:text-4xl">
+          <h2 className="hidden md:block font-body mt-2 mb-5 text-2xl text-primary-500 font-medium leading-tight lg:text-3xl xl:text-4xl">
             {data.canonical_story_title}
           </h2>
           <div className="list-inside">
@@ -229,16 +229,16 @@ const PaintingDetail = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row ">
+          <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
               <span>View Paintings by Manuscript</span>
             </Link>
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />

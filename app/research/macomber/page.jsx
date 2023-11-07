@@ -20,7 +20,7 @@ const page = async () => {
       <div className="font-body space-y-4 py-12 mx-auto lg:w-3/4">
         {macomber_handlist_data && (
           <div>
-            <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl">
+            <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
               {macomber_handlist_data?.title}
             </h2>
             <p className="py-6">{macomber_handlist_data?.intro}</p>

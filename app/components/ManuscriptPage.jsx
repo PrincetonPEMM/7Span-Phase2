@@ -335,7 +335,7 @@ export default function Manuscript({ Id, data, table }) {
   return data ? (
     <div className="container-fluid py-4 space-y-4 lg:py-7">
       <BackBtn />
-      <h2 className="font-menu text-2xl text-primary-500 font-medium lg:text-3xl xl:text-4xl">
+      <h2 className="text-2xl text-primary-500 font-medium lg:text-3xl xl:text-4xl font-body">
         {data.manuscript_full_name}
       </h2>
       <div className="space-y-2 a-tag-whithout-underline-and-green">
@@ -345,7 +345,7 @@ export default function Manuscript({ Id, data, table }) {
       </div>
       {tableData && (
         <div id="emip-table">
-          <h3 className="font-menu text-2xl font-medium lg:text-3xl">
+          <h3 className="text-2xl font-medium font-body lg:text-2xl">
             {data.manuscript}
           </h3>
           <Table

@@ -8,7 +8,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
       <div className="font-body space-y-4 py-8 md:py-12 mx-auto lg:w-3/4">
         <BackBtn />
         <div>
-          <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl">
+          <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
             {title ?? ""}
           </h2>
           <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
