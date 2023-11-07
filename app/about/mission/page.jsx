@@ -9,31 +9,31 @@ export default async function page() {
   return (
     <div className="container">
       <div className="space-y-4 py-12">
-        <div className="people flex justify-center flex-col items-center">
+        <div className="people flex justify-center flex-col items-center lg:w-2/3 mx-auto">
           <HashTitle
             title={about_mission_data.mission_title}
             id={`our-mission`}
           />
-          <p className="text-center font-menu py-5 lg:w-2/3">
+          <p className="font-body py-5 lg:w-full">
             {about_mission_data.mission_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu md:text-left lg:w-2/3 descriptions-left"
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left font-body "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.mission_description,
             }}
           />
         </div>
-        <div className="people flex justify-center flex-col items-center">
+        <div className="people flex justify-center flex-col items-center lg:w-2/3 mx-auto">
           <HashTitle
             title={about_mission_data.history_title}
             id={`our-history`}
           />
-          <p className="text-center font-menu py-5 lg:w-2/3">
+          <p className="font-body py-5 lg:w-full">
             {about_mission_data.history_intro}
           </p>
           <div
-            className="space-y-p text-center font-menu md:text-left lg:w-2/3 descriptions-left"
+            className="space-y-p text-center font-body md:text-left lg:w-full descriptions-left font-body "
             dangerouslySetInnerHTML={{
               __html: about_mission_data.history_description,
             }}

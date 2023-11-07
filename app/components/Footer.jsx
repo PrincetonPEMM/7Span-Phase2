@@ -56,17 +56,17 @@ const Footer = () => {
   ];
   return (
     <div className="bg-primary-500 px-5 py-12 md:px-8 lg:px-16">
-      <div className="w-auto grid text-white grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
+      <div className="w-auto grid text-white font-body grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
         <div className="text-left md:py-0 py-5 text-sm md:pr-5 sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
           <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
             <Image
               src={Logo}
               className="mb-3"
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
             />
           </Link>
 
-          <p className="pt-4 md:pt-0">
+          <p className="pt-4 block md:pt-4">
             PEMM is a comprehensive resource for the 1,000+ miracle stories
             written about and the 2,500+ paintings of the Virgin Mary in
             Ethiopia, Eritrea, and Egypt, and preserved in Geʿez between 1300
@@ -86,7 +86,7 @@ const Footer = () => {
 
         <div className="py-5 md:py-0">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {aboutItems.map((item, index) => (
               <li>
                 <Link
@@ -104,7 +104,7 @@ const Footer = () => {
 
         <div className="text-left py-5 md:py-0">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {exploreItems.map((item, index) => (
               <li>
                 {pathname !== "/" || !item.label ? (
@@ -133,7 +133,7 @@ const Footer = () => {
 
         <div className="text-left md:py-0 py-5">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
-          <ul className="font-menu text-xl flex flex-col">
+          <ul className="font-body text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
               <li>
                 <Link

@@ -203,14 +203,14 @@ const Header = () => {
               setActiveSubmenu(null);
             }}
           >
-            <ul className="font-body relative mt-5 lg:mt-0 lg:flex">
+            <ul className="font-menu relative mt-5 lg:mt-0 lg:flex">
               {menuItems.map((item, index) => {
                 return (
                   <li key={index} className="lg:ml-3 xl:ml-6">
                     {item.subItems ? (
-                      <div className="group capitalize relative">
+                      <div className="group relative">
                         <button
-                          className={`text-lg p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500   xl:text-xl ${
+                          className={`p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
                             pathname.includes(item.link)
                               ? "text-secondary-500"
                               : pathname === "/"
@@ -260,7 +260,7 @@ const Header = () => {
                       <Link
                         onClick={() => setMenuCollapse(false)}
                         href={item.link}
-                        className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
+                        className={`header-link transition-all flex py-1 p-1 font-semibold text-lg xl:text-2xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
                           pathname.includes(item.link)
                             ? "text-secondary-500"
                             : pathname === "/"

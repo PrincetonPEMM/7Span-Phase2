@@ -33,7 +33,7 @@ export default function StoryDetail({ data, Id }) {
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className={`${"text-primary-500"}`}
+          className={`${"text-primary-500 hover:text-secondary-500 font-semibold"}`}
         >
           &nbsp; See Less
         </button>
@@ -46,7 +46,7 @@ export default function StoryDetail({ data, Id }) {
         {Number(text?.length) > numberOfWords && (
           <button
             onClick={() => toggleExpand(index)}
-            className={`${"text-primary-500"}`}
+            className={`${"text-primary-500  hover:text-secondary-500"}`}
           >
             See More
           </button>
@@ -153,7 +153,7 @@ export default function StoryDetail({ data, Id }) {
     <a
       href=/stories/${data.canonical_story_id}
       target="_blank"
-      class="text-primary-500 font-bold"
+      class="text-primary-500 font-bold hover:text-secondary-500"
     >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
@@ -172,7 +172,7 @@ export default function StoryDetail({ data, Id }) {
     <a
       href=/stories/${data.canonical_story_id}
       target="_blank"
-      class="text-primary-500 font-bold"
+      class="text-primary-500 font-bold hover:text-secondary-500"
     >https://${window?.location?.hostname}/stories/${
       data.canonical_story_id
     }</a>.`;
@@ -181,7 +181,7 @@ export default function StoryDetail({ data, Id }) {
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <h3 className="font-menu text-primary-500 text-2xl lg:text-4xl leading-tight font-medium">
+      <h3 className="font-body text-primary-500 text-2xl lg:text-4xl leading-tight font-medium">
         {data?.canonical_story_title}
       </h3>
 
@@ -197,7 +197,7 @@ export default function StoryDetail({ data, Id }) {
             {/* slider content */}
 
             <div
-              className={`space-y-4 mb-10 md:block hidden ${
+              className={`space-y-4 mb-10 md:block hidden font-body ${
                 data?.paintingLinks.length <= 1 && "mt-10"
               } `}
             >
@@ -281,9 +281,9 @@ export default function StoryDetail({ data, Id }) {
           {/* Right side content portion */}
           <div className="col-span-2 md:block hidden">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 ">
+              <ol className="list-inside md:pl-4 font-body ">
                 <li>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
                     {SeconsdLine(data?.total_records)}
                     {ThirdLine(
@@ -304,7 +304,7 @@ export default function StoryDetail({ data, Id }) {
             {/* Summary */}
             {data.summary_plot && (
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0">
+                <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3
                       className={`text-lg font-bold uppercase my-3 ${
@@ -325,7 +325,7 @@ export default function StoryDetail({ data, Id }) {
             )}
             {/* English translation */}
             <div className="space-y-4">
-              <ol className="list-inside md:pl-4 p-0">
+              <ol className="list-inside md:pl-4 font-body p-0 ">
                 {data.canonical_translation_recension === "True" && (
                   <li>
                     <h3
@@ -388,13 +388,13 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase  mb-3 ">
                     {data.translations.length > 0 &&
                       "TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-body">
                     <p
                       className="text-base leading-relaxed"
                       dangerouslySetInnerHTML={{
@@ -406,12 +406,12 @@ export default function StoryDetail({ data, Id }) {
               </ol>
             </div>
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-body">
                     <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which the story appears (with page or
                       folio start):
@@ -438,9 +438,9 @@ export default function StoryDetail({ data, Id }) {
           {/* About */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
                     {SeconsdLine(data?.total_records)}
                     {ThirdLine(
@@ -462,7 +462,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Information */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 p-0">
+              <ol className="list-inside md:pl-4 font-body p-0 ">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
                     CONTENT INFORMATION
@@ -544,7 +544,7 @@ export default function StoryDetail({ data, Id }) {
           {data.summary_plot && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0">
+                <ol className="list-inside md:pl-4 font-body p-0 ">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
                       summary
@@ -567,7 +567,7 @@ export default function StoryDetail({ data, Id }) {
             data.translations.length > 0) && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 p-0">
+                <ol className="list-inside md:pl-4 font-body p-0 ">
                   <li>
                     {data.canonical_translation_recension === "True" && (
                       <>
@@ -625,7 +625,7 @@ export default function StoryDetail({ data, Id }) {
                       {data.translations.length > 0 &&
                         "TRANSLATIONS & EDITIONS OF THIS STORY"}
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 font-body">
                       <p
                         className="text-base leading-relaxed"
                         dangerouslySetInnerHTML={{
@@ -642,12 +642,12 @@ export default function StoryDetail({ data, Id }) {
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 ">
+              <ol className="list-inside md:pl-4 font-body ">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 font-body">
                     <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which the story appears (with page or
                       folio start):
@@ -756,7 +756,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold"
+                  className="text-primary-500 font-bold hover:text-secondary-500"
                 >
                   Paintings by Story
                 </Link>
@@ -772,7 +772,7 @@ function ThirdLine(
                 paintings, go to its PEMM&nbsp;
                 <Link
                   href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold"
+                  className="text-primary-500 font-bold hover:text-secondary-500"
                 >
                   Paintings by Story
                 </Link>

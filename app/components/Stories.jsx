@@ -470,7 +470,7 @@ const Stories = () => {
         }}
       >
         <div
-          className={`font-menu bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
+          className={`font-body bg-primary-500 fixed inset-y-0 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
             isOpen
               ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
               : "hidden -left-full transition-all"
@@ -544,11 +544,8 @@ const Stories = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div
-          className="mt-4 sm:mt-0 flex flex-col sm:grid grid-cols-2 sm:grid-cols-4 items-center justify-between pb-2 lg:grid-cols-6 
-gap-2 lg:gap-0 "
-        >
-          <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2  lg:max-w-4xl">
+        <div className="mt-4 flex flex-col items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
+          <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search titles and translations
             </span>
@@ -586,7 +583,7 @@ gap-2 lg:gap-0 "
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
           </div>
-          <div className="order-3 sm:-order-none mt-4 sm:mt-0 col-span-2">
+          <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
             <CustomPagination
               className="pagination-tablet"
               currentPage={page}
@@ -597,14 +594,14 @@ gap-2 lg:gap-0 "
               }}
             />
           </div>
-          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs sm:block text-center lg:col-span-1 xl:text-sm">
+          <p className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 items-center justify-end gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
