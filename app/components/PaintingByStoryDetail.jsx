@@ -53,7 +53,11 @@ const PaintingByStoryDetail = ({ list, Id }) => {
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story/${Id}?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-story/${Id}?page=${page}&perPage=${perPage}&filters[search]=${
+        searchKey.lenght > 3 ? searchKey : ""
+      }`
     )
       .then((res) => res.json())
       .then((data) => {

@@ -40,7 +40,12 @@ const BannerDetail = ({
           <h3 className="text-xl font-header sm:text-3xl xl:text-4xl">
             {title}
           </h3>
-          <p className="text-sm font-body md:text-lg xl:text-2xl">{text}</p>
+          <p
+            className="text-sm font-body md:text-lg xl:text-2xl"
+            dangerouslySetInnerHTML={{
+              __html: text,
+            }}
+          ></p>
         </div>
         <button
           className="absolute top-5 right-5 left-auto bottom-auto text-black z-10"
