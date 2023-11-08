@@ -231,18 +231,18 @@ const PaintingDetail = ({ data }) => {
           </div>
           <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
+              className="bg-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
-              <span>View Paintings by Manuscript</span>
+              <span>View more paintings by manuscript</span>
             </Link>
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
+              className="bg-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
               <MdiOpenInNew className="sm:h-6 sm:w-6" />
-              <span>View Paintings by Story</span>
+              <span>View more paintings by story</span>
             </Link>
 
             {/* Next and previous buttons  */}

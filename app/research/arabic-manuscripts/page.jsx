@@ -28,7 +28,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: arabic_manuscripts_data?.description,
               }}
-              className="descriptions-left font-body"
+              className="descriptions-left"
             />
           </div>
         )}
