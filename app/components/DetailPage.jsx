@@ -31,7 +31,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
             dangerouslySetInnerHTML={{
               __html: description,
             }}
-            className="space-y-p descriptions-left font-body"
+            className="space-y-p descriptions-left"
           />
         </div>
       </div>

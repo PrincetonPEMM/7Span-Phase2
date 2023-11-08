@@ -96,13 +96,13 @@ export default async function page() {
           .split(" ")
           .map((word) => word.toLowerCase())
           .join("-")}`}
-        className="other-team-member font-body md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-7"
+        className="other-team-member font-body  md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-7"
       >
-        <h3 className="text-3xl font-header text-left lg:text-4xl text-primary-500">
+        <h3 className="text-3xl font-header text-center lg:text-4xl text-primary-500">
           {about_people.other_team_members_title}
         </h3>
         <div
-          className="space-y-p text-left font-body text-base md:text-center descriptions-left font-body"
+          className="space-y-p text-left font-body text-base md:text-center descriptions-left"
           dangerouslySetInnerHTML={{
             __html: about_people.other_team_members_description,
           }}
@@ -117,15 +117,17 @@ export default async function page() {
             .join("-")}`}
           className="collaborators"
         >
-          <HashTitle
-            title={about_people.our_partners_title}
+          <h2
             id="our-partners"
-          />
-          <h3 className="text-2xl font-header text-left mb-3 md:mb-5 lg:text-3xl text-primary-500">
+            className="text-3xl font-header w-full text-center lg:text-4xl text-primary-500 mx-auto"
+          >
+            {about_people.our_partners_title}
+          </h2>
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-3xl text-primary-500">
             {about_people.project_collaborators_title}
           </h3>
           <div
-            className="space-y-p text-left font-body md:text-left"
+            className="space-y-p text-left font-body md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.project_collaborators_description,
             }}
@@ -138,11 +140,11 @@ export default async function page() {
             .join("-")}`}
           className="board-members "
         >
-          <h3 className="text-2xl font-header text-left mb-3 md:mb-5 lg:text-4xl text-primary-500 ">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.board_members_title}
           </h3>
           <div
-            className="space-y-p text-center font-body md:text-left"
+            className="space-y-p text-center font-body md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.board_members_description,
             }}
@@ -155,11 +157,11 @@ export default async function page() {
             .join("-")}`}
           className="project-advisers "
         >
-          <h3 className="text-2xl font-header text-left mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
             {about_people.project_advisers_title}
           </h3>
           <div
-            className="space-y-p text-center font-body md:text-left"
+            className="space-y-p text-center font-body md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.project_advisers_description,
             }}
@@ -172,11 +174,11 @@ export default async function page() {
             .join("-")}`}
           className="institutional-collaborators "
         >
-          <h3 className="text-2xl font-header text-left mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
             {about_people.institutional_collaborators_title}
           </h3>
           <div
-            className="space-y-p text-center font-body md:text-left"
+            className="space-y-p text-center font-body md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.institutional_collaborators_description,
             }}
@@ -189,22 +191,26 @@ export default async function page() {
             .join("-")}`}
           className="funders "
         >
-          <HashTitle title={about_people.our_funders_title} id="our-funders" />
+          <h2
+            id="our-funders"
+            className="text-3xl font-header w-full text-center lg:text-4xl text-primary-500 mx-auto"
+          >
+            {about_people.our_funders_title}
+          </h2>
 
-          <div className="lg:flex items-center justify-between">
-            <img
-              className="w-48 py-3 mr-8"
-              width={720}
-              height={720}
-              src={`${img_path}${about_people.main_image.id}`}
-            />
-            <div
-              className="space-y-p text-center font-body md:text-left"
-              dangerouslySetInnerHTML={{
-                __html: about_people.main_image_description,
-              }}
-            />
-          </div>
+          <img
+            className="w-48 py-3 mx-auto"
+            width={720}
+            height={720}
+            src={`${img_path}${about_people.main_image.id}`}
+          />
+          <div
+            className="space-y-p text-center font-body md:text-center"
+            dangerouslySetInnerHTML={{
+              __html: about_people.main_image_description,
+            }}
+          />
+
           <div className="flex-wrap justify-between items-start gap-5 mb-3 md:flex">
             <div className="flex flex-col items-center w-64 px-2 lg:items-start">
               <img
@@ -212,7 +218,7 @@ export default async function page() {
                 src={`${img_path}${about_people.sub_image_1.id}`}
               />
               <div
-                className="space-y-p text-center font-body md:text-left"
+                className="space-y-p text-center font-body md:text-center"
                 dangerouslySetInnerHTML={{
                   __html: about_people.sub_image_1_description,
                 }}
@@ -224,7 +230,7 @@ export default async function page() {
                 src={`${img_path}${about_people.sub_image_2.id}`}
               />
               <div
-                className="space-y-p text-center font-body md:text-left"
+                className="space-y-p text-center font-body md:text-center"
                 dangerouslySetInnerHTML={{
                   __html: about_people.sub_image_2_description,
                 }}
@@ -236,7 +242,7 @@ export default async function page() {
                 src={`${img_path}${about_people.sub_image_3.id}`}
               />
               <div
-                className="space-y-p text-center font-body md:text-left"
+                className="space-y-p text-center font-body md:text-center"
                 dangerouslySetInnerHTML={{
                   __html: about_people.sub_image_3_description,
                 }}
@@ -244,7 +250,7 @@ export default async function page() {
             </div>
           </div>
           <div
-            className="py-3 space-y-p text-center font-body md:text-left"
+            className="py-3 space-y-p text-center font-body md:text-center"
             dangerouslySetInnerHTML={{
               __html: about_people.our_funders_description,
             }}
