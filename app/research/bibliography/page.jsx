@@ -25,7 +25,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: bibliography_data?.description,
               }}
-              className="space-y-p descriptions-left font-body"
+              className="space-y-p descriptions-left"
             />
           </div>
         )}
