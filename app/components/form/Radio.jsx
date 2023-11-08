@@ -18,14 +18,12 @@ const Radio = (props) => {
         }
         return { [item.key]: item };
       });
-
       const resultObject = {};
       data.forEach((item) => {
         const key = Object.keys(item)[0];
 
         resultObject[key] = item[key];
       });
-
       return {
         ...prevState,
         checkItem: {
@@ -37,7 +35,7 @@ const Radio = (props) => {
 
   return (
     <>
-      <label className="checkbox flex items-center" htmlFor={id}>
+      <label className="radiobox flex items-center" htmlFor={id}>
         <input
           type="radio"
           id={id}
@@ -45,9 +43,9 @@ const Radio = (props) => {
           checked={isChecked}
           onChange={changeHandler}
           defaultChecked
-          className={`checkbox-input ${isChecked ? "checked" : ""}`}
+          className={`radiobox-input ${isChecked ? "checked" : ""}`}
         />
-        <span className="checkmark"></span>
+        <span className="radiomark"></span>
         {label && <span className="ml-4 text-sm">{label}</span>}
       </label>
     </>

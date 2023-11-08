@@ -235,7 +235,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #cecccb;
 }
-
+.people-card {
+  @apply hover:shadow-lg transition-shadow hover:transition-shadow hover:duration-200;
+}
 /* checkbox css */
 [type="checkbox"]:checked {
   @apply bg-transparent bg-none bottom-0 outline-0 shadow-none;
@@ -243,6 +245,15 @@ body {
 }
 
 [type="checkbox"]:checked:focus {
+  @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
+  font-size: 0;
+}
+[type="radio"]:checked {
+  @apply bg-transparent bg-none bottom-0 outline-0 shadow-none;
+  font-size: 0;
+}
+
+[type="radio"]:checked:focus {
   @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
   font-size: 0;
 }
@@ -327,7 +338,7 @@ body {
   height: 10px;
 }
 .radiobox .radiobox-input {
-  @apply absolute h-full inset-0 w-full opacity-0 cursor-pointer;
+  @apply absolute h-full inset-0 w-full opacity-0 cursor-pointer appearance-none bg-transparent;
 }
 .radiobox .radiomark {
   background-color: #ccc;
@@ -339,18 +350,22 @@ body {
   width: 18px;
   height: 18px;
 }
-.radiobox:hover .radiobox-input + .radiomark {
-  background-color: #ccc;
+.radiobox .radiobox-input:checked {
+  background: transparent;
+}
+.radiobox .radiobox-input + .radiomark {
+  @apply bg-offWhite-500;
 }
 .radiobox .radiobox-input.checked + .radiomark {
-  background-color: #000;
+  @apply bg-secondary-500;
+}
+.radiobox .radiobox-input.checked + .radiomark {
+  background-color: rgb(0, 0, 0) 111;
 }
 .radiobox .radiobox-input.checked + .radiomark::before {
   display: block;
 }
-.people-card {
-  @apply hover:shadow-lg transition-shadow hover:transition-shadow hover:duration-200;
-}
+
 /* slider css  */
 
 input[type="range"]::-moz-range-progress {
