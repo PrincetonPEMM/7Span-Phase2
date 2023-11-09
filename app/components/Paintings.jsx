@@ -99,7 +99,7 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey.lenght > 3 ? searchKey : ""}`;
+      )}filters[search]=${searchKey.length > 3 ? searchKey : ""}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
