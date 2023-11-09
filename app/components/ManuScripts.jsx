@@ -203,7 +203,9 @@ const ManuScripts = () => {
       )}&${makeParamsArray(
         "knownOriginRegion",
         originRegion
-      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${
+        searchKey.lenght > 3 ? searchKey : ""
+      }
     `;
 
       const response = await fetch(
@@ -608,7 +610,7 @@ const ManuScripts = () => {
           </div>
 
           <p
-            className="hidden text-offBlack-400 font-medium font-body pl-2 sm:block  text-xs xl:text-sm lg:col-span-1
+            className="hidden text-offBlack-400 font-medium font-body pl-2 sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1
           sm:text-center"
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}

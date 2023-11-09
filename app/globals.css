@@ -780,7 +780,7 @@ input[type="number"] {
 }
 
 .a-tag-whithout-underline-and-green a {
-  @apply text-primary-500;
+  @apply text-primary-500 font-bold hover:text-secondary-500;
 }
 
 /* Masonry */

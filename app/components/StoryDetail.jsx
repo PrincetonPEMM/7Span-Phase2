@@ -181,7 +181,7 @@ export default function StoryDetail({ data, Id }) {
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <h3 className="font-body text-primary-500 text-2xl lg:text-4xl leading-tight font-medium">
+      <h3 className="font-body text-primary-500 text-2xl lg:text-4xl leading-tight font-bold">
         {data?.canonical_story_title}
       </h3>
 
@@ -837,7 +837,7 @@ function SeventhLine() {
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold"
+        className="text-primary-600 font-bold hover:text-secondary-500"
       >
         Using the Site
       </Link>
