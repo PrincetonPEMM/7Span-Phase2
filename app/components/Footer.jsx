@@ -95,7 +95,7 @@ const Footer = () => {
                 <Link
                   href={item.link}
                   key={index}
-                  className="text-base hover:text-secondary-500"
+                  className="text-base hover:text-secondary-500 font-normal"
                 >
                   {item.title}
                 </Link>
@@ -114,7 +114,7 @@ const Footer = () => {
                   <Link
                     href={item.link}
                     key={index}
-                    className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
+                    className="text-base hover:text-secondary-500 font-normal transition-colors hover:transition-colors"
                   >
                     {item.title}
                     {[3, 6].includes(index) && <span className="mt-5 block" />}
@@ -123,7 +123,7 @@ const Footer = () => {
                   <label
                     htmlFor={item.label}
                     key={index}
-                    className="text-base hover:text-secondary-500 transition-colors hover:transition-colors"
+                    className="text-base hover:text-secondary-500 font-normal transition-colors hover:transition-colors"
                   >
                     {item.title}
                     {[3, 6].includes(index) && <span className="mt-5 block" />}
@@ -142,7 +142,7 @@ const Footer = () => {
                 <Link
                   href={item.link}
                   key={index}
-                  className="text-base hover:text-secondary-500"
+                  className="text-base hover:text-secondary-500 font-normal"
                 >
                   {item.title}
                 </Link>
