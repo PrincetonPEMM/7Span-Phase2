@@ -827,7 +827,7 @@ function SeventhLine() {
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold hover:text-secondary-500"
+        className="text-primary-600 font-bold hover:text-secondary-500 "
       >
         Using the Site
       </Link>

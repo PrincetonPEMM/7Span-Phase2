@@ -928,7 +928,9 @@ input::-webkit-inner-spin-button {
 .p-beside-p + p {
   display: inline;
 }
-
+a {
+  font-weight: 600;
+}
 .banner-detail a {
   @apply text-primary-500 font-bold hover:text-black;
 }
