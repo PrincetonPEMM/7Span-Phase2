@@ -94,7 +94,7 @@ export default function Manuscript({ Id, data, table }) {
           : " "
       }`;
       if (data.link_to_digital_copy != null) {
-        text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>.`;
+        text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">here</a>.`;
       } else {
         text += data.link_to_digital_copy_note_external;
       }

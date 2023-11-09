@@ -778,6 +778,9 @@ input[type="number"] {
 .image-gallery-icon:focus-visible {
   @apply !text-primary-500;
 }
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  object-position: top;
+}
 
 .a-tag-whithout-underline-and-green a {
   @apply text-primary-500 font-bold hover:text-secondary-500;
@@ -924,6 +927,10 @@ input::-webkit-inner-spin-button {
 }
 .p-beside-p + p {
   display: inline;
+}
+
+.banner-detail a {
+  @apply text-primary-500 font-semibold hover:text-black;
 }
 .descriptions-left {
   @apply text-left;

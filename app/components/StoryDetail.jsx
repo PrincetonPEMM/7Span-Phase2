@@ -149,12 +149,8 @@ export default function StoryDetail({ data, Id }) {
     ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-    and Egyptian Miracles of Mary project. 
-    <a
-      href=/stories/${data.canonical_story_id}
-      target="_blank"
-      class="text-primary-500 font-bold hover:text-secondary-500"
-    >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
+    and Egyptian Miracles of Mary project.
+    https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
     ${data?.canonical_story_id}: ${data?.original_macomber_title}" <i>${
@@ -169,13 +165,7 @@ export default function StoryDetail({ data, Id }) {
     }. Updated by PEMM Copyeditor Taylor Eggan. From
     ${data.manuscript_name},
     ${data.translation_source_manuscript_folio}.
-    <a
-      href=/stories/${data.canonical_story_id}
-      target="_blank"
-      class="text-primary-500 font-bold hover:text-secondary-500"
-    >https://${window?.location?.hostname}/stories/${
-      data.canonical_story_id
-    }</a>.`;
+   https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`;
   };
 
   return data ? (
@@ -314,7 +304,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3 space-y-3"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -340,7 +330,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3 italic">
+                        <p className="text-base leading-relaxed mb-3 space-y-3 italic">
                           Translated by {data.translation_author} from&nbsp;
                           {data.manuscript_name},&nbsp;
                           {data.translation_source_manuscript_folio}
@@ -349,7 +339,7 @@ export default function StoryDetail({ data, Id }) {
                         </p>
                       )}
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3 space-y-3"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -362,7 +352,7 @@ export default function StoryDetail({ data, Id }) {
                       ADDITIONAL INFORMATION
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3 space-y-3"
                       dangerouslySetInnerHTML={{
                         __html: data.canonical_story_research_note,
                       }}
@@ -378,7 +368,7 @@ export default function StoryDetail({ data, Id }) {
                       </h3>
 
                       <p
-                        className="text-base leading-loose mb-3"
+                        className="text-base leading-relaxed mb-3 space-y-3"
                         dangerouslySetInnerHTML={{
                           __html: cityThisTranslation(),
                         }}
@@ -550,7 +540,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3 space-y-3"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -577,7 +567,7 @@ export default function StoryDetail({ data, Id }) {
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
-                            <p className="text-base leading-loose mb-3 italic">
+                            <p className="text-base leading-relaxed mb-3 space-y-3 italic">
                               Translated by {data.translation_author} from&nbsp;
                               {data.manuscript_name},&nbsp;
                               {data.translation_source_manuscript_folio}
@@ -585,7 +575,7 @@ export default function StoryDetail({ data, Id }) {
                             </p>
                           )}
                         <p
-                          className="text-base leading-loose mb-3"
+                          className="text-base leading-relaxed mb-3 space-y-3"
                           dangerouslySetInnerHTML={{
                             __html: data.english_translation,
                           }}
@@ -598,7 +588,7 @@ export default function StoryDetail({ data, Id }) {
                           ADDITIONAL INFORMATION
                         </h3>
                         <p
-                          className="text-base leading-loose mb-3"
+                          className="text-base leading-relaxed mb-3 space-y-3"
                           dangerouslySetInnerHTML={{
                             __html: data.canonical_story_research_note,
                           }}
@@ -613,7 +603,7 @@ export default function StoryDetail({ data, Id }) {
                             TO CITE THIS TRANSLATION
                           </h3>
                           <p
-                            className="text-base leading-loose mb-3"
+                            className="text-base leading-relaxed mb-3 space-y-3"
                             dangerouslySetInnerHTML={{
                               __html: cityThisTranslation(),
                             }}
