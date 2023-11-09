@@ -90,13 +90,13 @@ export default function Manuscript({ Id, data, table }) {
         data.institution_city_state
       }, ${data.institution_country}</b>. ${
         data.ms_location_note
-          ? `This manuscript's last known location in Ethiopia was <b>${data.ms_location_note}</b>.`
-          : ""
+          ? `This manuscript's last known location in Ethiopia was <b>${data.ms_location_note}</b>. `
+          : " "
       }`;
       if (data.link_to_digital_copy != null) {
-        // text += `To view the manuscript online, go <a class="text-primary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>.`;
+        text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank"><b>here</b></a>.`;
       } else {
-        // text += data.link_to_digital_copy_note_external;
+        text += data.link_to_digital_copy_note_external;
       }
       array.push({ text });
     } else {
