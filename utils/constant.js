@@ -214,14 +214,14 @@ export const initialPlaceItem = {
     {
       id: "2",
       icon: false,
-      label: "Ethiopia:",
+      label: "Ethiopia",
       name: "ethiopia",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Egypt:",
+      label: "Egypt",
       name: "egypt",
       isChecked: false,
     },
@@ -250,7 +250,7 @@ export const initialPlaceItem = {
     {
       id: "7",
       icon: true,
-      label: "Levant",
+      label: "Levant:",
       name: "levant",
       isChecked: false,
     },
@@ -440,21 +440,21 @@ export const initialPlaceItemManuScript = {
     {
       id: "2",
       icon: false,
-      label: "Egypt:",
+      label: "Egypt",
       name: "egypt",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Ethiopia:",
+      label: "Ethiopia",
       name: "ethiopia",
       isChecked: false,
     },
     {
       id: "4",
       icon: true,
-      label: "Middle East",
+      label: "Middle East:",
       name: "middle_east",
       isChecked: false,
     },
@@ -468,7 +468,7 @@ export const initialPlaceItemManuScript = {
     {
       id: "11",
       icon: true,
-      label: "North America",
+      label: "North America:",
       name: "north_america",
       isChecked: false,
     },
@@ -489,7 +489,7 @@ export const initialPlaceItemManuScript = {
     {
       id: "6",
       icon: true,
-      label: "Europe :",
+      label: "Europe:",
       name: "europe",
       isChecked: false,
     },

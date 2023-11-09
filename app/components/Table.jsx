@@ -115,7 +115,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] table-body align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
+          <tbody className="min-h-[300px] table-body align-baseline  bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
