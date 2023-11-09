@@ -234,14 +234,14 @@ const PaintingDetail = ({ data }) => {
               className="bg-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
-              <MdiOpenInNew className="sm:h-6 sm:w-6" />
+              {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
               <span>View more paintings by manuscript</span>
             </Link>
             <Link
               className="bg-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide font-medium"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
-              <MdiOpenInNew className="sm:h-6 sm:w-6" />
+              {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
               <span>View more paintings by story</span>
             </Link>
 

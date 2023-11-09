@@ -26,14 +26,14 @@ const InputIcon = (props) => {
 
   return (
     <div
-      className={`inline-flex m-1 items-start cursor-pointer py-1 px-2 h-6 relative iconcheck  ${
+      className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 h-6 relative iconcheck  ${
         item.icon ? "space-x-1 lg:space-x-0" : ""
       } ${item?.isChecked && "isChecked"}`}
       onClick={clickHandler}
     >
       {item?.icon && (
         <span
-          className={`w-4 h-4 relative z-10 ${
+          className={`w-4 h-4 relative z-10  mr-1 ${
             item?.isChecked ? "text-white" : ""
           } `}
         >
