@@ -585,13 +585,13 @@ export const initialOriginRegionManuScript = {
       name: "syria",
       isChecked: false,
     },
-    // {
-    //   id: "8",
-    //   icon: false,
-    //   label: "Unknown",
-    //   name: "unknown",
-    //   isChecked: false,
-    // },
+    {
+      id: "8",
+      icon: false,
+      label: "Unknown",
+      name: "unknown",
+      isChecked: false,
+    },
   ],
 };
 
