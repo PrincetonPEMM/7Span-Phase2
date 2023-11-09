@@ -858,7 +858,7 @@ input[type="number"] {
   @apply bg-primary-500;
 }
 .pagination-container {
-  @apply flex items-center justify-center space-x-1;
+  @apply flex items-center justify-start lg:justify-center space-x-1;
 }
 .pagination-button {
   @apply py-1 px-1 border-2 w-8 text-base text-center border-primary-500 z-30 rounded-md text-primary-500 font-bold h-8 flex items-center justify-center xl:px-2;
@@ -928,9 +928,11 @@ input::-webkit-inner-spin-button {
 .p-beside-p + p {
   display: inline;
 }
-
+a {
+  font-weight: 600;
+}
 .banner-detail a {
-  @apply text-primary-500 font-semibold hover:text-black;
+  @apply text-primary-500 font-bold hover:text-black;
 }
 .descriptions-left {
   @apply text-left;

@@ -45,7 +45,7 @@ export default async function page() {
             <Link
               href={about_people_detail[i]?.website}
               target="_blank"
-              className="text-center block w-full text-base text-primary-600 font-semibold"
+              className="text-center block w-full text-base text-primary-600 font-bold"
             >
               {about_people_detail[i].designation ?? ""}
             </Link>
