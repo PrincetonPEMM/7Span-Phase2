@@ -197,7 +197,7 @@ export default function Manuscript({ Id, data, table }) {
           if (data.scans_of_manuscript_in_color == "Yes") {
             if (data.link_to_digital_copy != null) {
               text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>. To view the manuscript, go to the
-                            <b><a class="text-primary-500 hover:text-secondary-500 font-semibold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+                            <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
             } else {
               text =
                 "These paintings have been <b>digitized in color</b> but are <b>not available online</b>. We hope the repository will put this manuscript online soon.";
@@ -205,7 +205,7 @@ export default function Manuscript({ Id, data, table }) {
           } else {
             if (data.link_to_digital_copy != null) {
               text = `These paintings are digitized and available online but only in black and white. To view the manuscript online, go to the
-                            <b><a class="text-primary-500 hover:text-secondary-500 font-semibold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+                            <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
             }
           }
         }
@@ -326,7 +326,7 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     array.push({
-      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500">Using This Site</a></b>.`,
+      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500 font-bold hover:text-secondary-500">Using This Site</a></b>.`,
     });
 
     return array;
@@ -335,7 +335,7 @@ export default function Manuscript({ Id, data, table }) {
   return data ? (
     <div className="container-fluid py-4 space-y-4 lg:py-7">
       <BackBtn />
-      <h2 className="text-2xl text-primary-500 font-medium lg:text-3xl xl:text-4xl font-body">
+      <h2 className="text-2xl text-primary-500 font-bold lg:text-3xl xl:text-4xl font-body">
         {data.manuscript_full_name}
       </h2>
       <div className="space-y-2 a-tag-whithout-underline-and-green">

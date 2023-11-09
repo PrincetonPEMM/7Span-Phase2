@@ -26,7 +26,7 @@ export default async function page() {
             {about_using_this_site.contact_us_intro}
           </p>
           <div
-            className="space-y-p text-left font-menu lg:w-2/3 md:text-center description-center about-contact-page"
+            className="space-y-p text-left lg:w-2/3 md:text-center font-body description-center about-contact-page"
             dangerouslySetInnerHTML={{
               __html: about_using_this_site.contact_us_description,
             }}

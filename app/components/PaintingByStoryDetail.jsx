@@ -97,7 +97,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <h2 className="text-2xl lg:text-3xl xl:text-4xl text-primary-500 font-medium font-body">
+      <h2 className="text-2xl lg:text-3xl xl:text-4xl text-primary-500 font-bold font-body">
         {header?.canonical_story_title}
       </h2>
       <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
