@@ -204,7 +204,7 @@ const ManuScripts = () => {
         "knownOriginRegion",
         originRegion
       )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${
-        searchKey.lenght > 3 ? searchKey : ""
+        searchKey.length > 3 ? searchKey : ""
       }
     `;
 
