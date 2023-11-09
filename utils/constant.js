@@ -109,7 +109,7 @@ export const initialfilterItem = {
       id: "3",
       isCheckbox: true,
       key: "withEnglishTranslation",
-      label: "With english translation",
+      label: "With English translation",
       isChecked: false,
     },
     ethiopianStories: {
@@ -138,7 +138,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "miracleOfMaryStories",
-      label: "Miracle of mary stories",
+      label: "Miracle of Mary Stories",
       isChecked: false,
     },
     lifeOfMaryStories: {
@@ -146,7 +146,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "lifeOfMaryStories",
-      label: "Life of mary stories ",
+      label: "Life of Mary Stories ",
       isChecked: false,
     },
     earliestStories: {
@@ -195,7 +195,7 @@ export const initialfilterItem = {
       name: "printing",
       isCheckbox: false,
       key: "excludePrintOnly",
-      label: "Exclude print only",
+      label: "Exclude Print only",
       isChecked: false,
     },
   },
@@ -338,7 +338,7 @@ export const initialfilterItemManuScript = {
       id: "1",
       key: "withPaintings",
       isCheckbox: true,
-      label: "With Paintings",
+      label: "With paintings",
       isChecked: false,
     },
     withOnlineDigitalCopy: {
@@ -366,7 +366,7 @@ export const initialfilterItemManuScript = {
       id: "9",
       key: "royalManuscript",
       isCheckbox: true,
-      label: "Royal Manuscripts",
+      label: "Royal manuscripts",
       isChecked: false,
     },
     withHymns: {
@@ -405,7 +405,7 @@ export const initialfilterItemManuScript = {
       name: "story count",
       key: "fewStories",
       isCheckbox: false,
-      label: "Few Stories",
+      label: "Few stories",
       isChecked: false,
     },
     arabicManuscript: {
