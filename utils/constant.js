@@ -202,6 +202,7 @@ export const initialfilterItem = {
 };
 export const initialPlaceItem = {
   title: "Story's Place of Origin",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
@@ -278,6 +279,7 @@ export const initialPlaceItem = {
 };
 export const initialOriginalLangItem = {
   title: "Original Languages of Story",
+  isCheckbox: true,
   checkItem: [
     {
       id: "1",
@@ -295,6 +297,7 @@ export const initialOriginalLangItem = {
 };
 export const initialTranslatedLangItem = {
   title: "Translated Languages of Story",
+  isCheckbox: true,
   checkItem: [
     {
       id: "3",
@@ -425,6 +428,7 @@ export const initialfilterItemManuScript = {
 };
 export const initialPlaceItemManuScript = {
   title: "Manuscript's Last Known Location",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
@@ -529,6 +533,7 @@ export const initialPlaceItemManuScript = {
 };
 export const initialOriginRegionManuScript = {
   title: "Manuscript's Known Region of Origin",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
