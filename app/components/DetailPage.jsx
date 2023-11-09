@@ -22,7 +22,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
               </div>
             )}
             <div class="mt-5 lg:mt-0 lg:col-span-2">
-              <p className="pb-2 font-sm font-semibold">By {author}</p>
+              <p className="pb-2 font-sm font-bold">By {author}</p>
               <p className="py-2 font-light text-sm">{dateFormate(date)}</p>
               <p className="py-2">{intro}</p>
             </div>
