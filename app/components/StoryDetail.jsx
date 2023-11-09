@@ -33,7 +33,7 @@ export default function StoryDetail({ data, Id }) {
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className={`${"text-primary-500 hover:text-secondary-500 font-semibold"}`}
+          className={`${"text-primary-500 hover:text-secondary-500 font-bold"}`}
         >
           &nbsp; See Less
         </button>
@@ -46,7 +46,7 @@ export default function StoryDetail({ data, Id }) {
         {Number(text?.length) > numberOfWords && (
           <button
             onClick={() => toggleExpand(index)}
-            className={`${"text-primary-500  hover:text-secondary-500"}`}
+            className={`${"text-primary-500  hover:text-secondary-500 font-bold"}`}
           >
             See More
           </button>
@@ -827,7 +827,7 @@ function SeventhLine() {
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold hover:text-secondary-500"
+        className="text-primary-600 font-bold hover:text-secondary-500 "
       >
         Using the Site
       </Link>
