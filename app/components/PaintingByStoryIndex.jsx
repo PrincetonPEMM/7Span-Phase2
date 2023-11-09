@@ -50,7 +50,11 @@ const PaintingByStoryIndex = ({ list }) => {
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-story?page=${page}&perPage=${perPage}&filters[search]=${
+        searchKey.lenght > 3 ? searchKey : ""
+      }`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -127,7 +131,7 @@ const PaintingByStoryIndex = ({ list }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium  text-xs  lg:col-span-1">
+          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium text-xs lg:col-span-1">
             Results: ({totalPage ? totalPage : 0} records)
           </p>
         </div>

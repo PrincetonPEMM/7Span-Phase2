@@ -5,13 +5,23 @@ const InputIcon = (props) => {
   const { item, itemList, setItemList } = props;
 
   const clickHandler = () => {
-    const updatedPlace = itemList.checkItem.map((temp) => {
-      if (temp.label === item?.label) {
-        return { ...temp, isChecked: !item.isChecked };
-      }
-      return temp;
-    });
-    setItemList({ ...itemList, checkItem: updatedPlace });
+    if (itemList.isCheckbox) {
+      const updatedPlace = itemList.checkItem.map((temp) => {
+        if (temp.label === item?.label) {
+          return { ...temp, isChecked: !item.isChecked };
+        }
+        return temp;
+      });
+      setItemList({ ...itemList, checkItem: updatedPlace });
+    } else {
+      const updatedPlace = itemList.checkItem.map((temp) => {
+        if (temp.label === item?.label) {
+          return { ...temp, isChecked: !item.isChecked };
+        }
+        return { ...temp, isChecked: item.isChecked };
+      });
+      setItemList({ ...itemList, checkItem: updatedPlace });
+    }
   };
 
   return (

@@ -99,7 +99,7 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey}`;
+      )}filters[search]=${searchKey.lenght > 3 ? searchKey : ""}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
@@ -251,7 +251,7 @@ const Paintings = ({
           />
         </div>
         <div className="lg:col-span-1">
-          <div className="text-offBlack-400 font-medium font-body pl-2 text-xs sm:text-center xl:text-sm ">
+          <div className="text-offBlack-400 font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>

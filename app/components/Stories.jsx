@@ -197,7 +197,7 @@ const Stories = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "withEnglishTranslation"
-      )}filters[search]=${searchKey}
+      )}filters[search]=${searchKey.lenght > 3 ? searchKey : ""}
     `;
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
@@ -532,7 +532,7 @@ const Stories = () => {
         </div>
       </OutsideClickHandler>
 
-      <div className="w-full grid">
+      <div className="w-full grid pt-1">
         {!isOpen && (
           <button onClick={() => setIsOpen(true)} className="">
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
