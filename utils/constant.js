@@ -95,28 +95,42 @@ export const initialfilterItem = {
       id: "1",
       isCheckbox: true,
       key: "withPaintings",
-      label: "With Paintings",
+      label: "With paintings",
       isChecked: false,
     },
     mostIllustrated: {
       id: "2",
       isCheckbox: true,
       key: "mostIllustrated",
-      label: "Most Illustrated",
+      label: "Most illustrated",
       isChecked: false,
     },
     withEnglishTranslation: {
       id: "3",
       isCheckbox: true,
       key: "withEnglishTranslation",
-      label: "With English Translation",
+      label: "With english translation",
       isChecked: false,
     },
     ethiopianStories: {
       id: "4",
       isCheckbox: true,
       key: "ethiopianStories",
-      label: "Ethiopian Stories",
+      label: "Ethiopian stories",
+      isChecked: false,
+    },
+    withHymn: {
+      id: "11",
+      isCheckbox: true,
+      key: "withHymn",
+      label: "With hymns",
+      isChecked: false,
+    },
+    readInChurch: {
+      id: "14",
+      isCheckbox: true,
+      key: "readInChurch",
+      label: "Most read in church",
       isChecked: false,
     },
     miracleOfMaryStories: {
@@ -124,7 +138,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "miracleOfMaryStories",
-      label: "Miracle of Mary Stories ",
+      label: "Miracle of mary stories",
       isChecked: false,
     },
     lifeOfMaryStories: {
@@ -132,7 +146,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "lifeOfMaryStories",
-      label: "Life of Mary Stories ",
+      label: "Life of mary stories ",
       isChecked: false,
     },
     earliestStories: {
@@ -140,7 +154,7 @@ export const initialfilterItem = {
       name: "timeline",
       isCheckbox: false,
       key: "earliestStories",
-      label: "Earliest Stories",
+      label: "Earliest stories",
       isChecked: false,
     },
     recentStories: {
@@ -148,7 +162,7 @@ export const initialfilterItem = {
       name: "timeline",
       isCheckbox: false,
       key: "recentStories",
-      label: "Recent Stories",
+      label: "Recent stories",
       isChecked: false,
     },
     popularStories: {
@@ -156,7 +170,7 @@ export const initialfilterItem = {
       isCheckbox: false,
       name: "top of story",
       key: "popularStories",
-      label: "Common  Stories",
+      label: "Common stories",
       isChecked: false,
     },
     uniqueStories: {
@@ -164,22 +178,16 @@ export const initialfilterItem = {
       name: "top of story",
       isCheckbox: false,
       key: "uniqueStories",
-      label: "Rare Stories",
+      label: "Rare stories",
       isChecked: false,
     },
-    withHymn: {
-      id: "11",
-      isCheckbox: true,
-      key: "withHymn",
-      label: "With Hymns",
-      isChecked: false,
-    },
+
     printOnly: {
       id: "12",
       isCheckbox: false,
       name: "printing",
       key: "printOnly",
-      label: "Print Only",
+      label: "Print only",
       isChecked: false,
     },
     excludePrintOnly: {
@@ -187,46 +195,40 @@ export const initialfilterItem = {
       name: "printing",
       isCheckbox: false,
       key: "excludePrintOnly",
-      label: "Exclude Print Only",
-      isChecked: false,
-    },
-    readInChurch: {
-      id: "14",
-      isCheckbox: true,
-      key: "readInChurch",
-      label: "Read in Church",
+      label: "Exclude print only",
       isChecked: false,
     },
   },
 };
 export const initialPlaceItem = {
   title: "Story's Place of Origin",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
       icon: true,
-      label: "Africa",
+      label: "Africa:",
       name: "africa",
       isChecked: false,
     },
     {
       id: "2",
       icon: false,
-      label: "Ethiopia",
+      label: "Ethiopia:",
       name: "ethiopia",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Egypt",
+      label: "Egypt:",
       name: "egypt",
       isChecked: false,
     },
     {
       id: "4",
       icon: true,
-      label: "Europe",
+      label: "Europe:",
       name: "europe",
       isChecked: false,
     },
@@ -266,17 +268,18 @@ export const initialPlaceItem = {
       name: "early christian world",
       isChecked: false,
     },
-    {
-      id: "10",
-      icon: false,
-      label: "Unknown",
-      name: "unknown",
-      isChecked: false,
-    },
+    // {
+    //   id: "10",
+    //   icon: false,
+    //   label: "Unknown",
+    //   name: "unknown",
+    //   isChecked: false,
+    // },
   ],
 };
 export const initialOriginalLangItem = {
   title: "Original Languages of Story",
+  isCheckbox: true,
   checkItem: [
     {
       id: "1",
@@ -294,6 +297,7 @@ export const initialOriginalLangItem = {
 };
 export const initialTranslatedLangItem = {
   title: "Translated Languages of Story",
+  isCheckbox: true,
   checkItem: [
     {
       id: "3",
@@ -358,6 +362,20 @@ export const initialfilterItemManuScript = {
       label: "With unique stories",
       isChecked: false,
     },
+    royalManuscript: {
+      id: "9",
+      key: "royalManuscript",
+      isCheckbox: true,
+      label: "Royal Manuscripts",
+      isChecked: false,
+    },
+    withHymns: {
+      id: "10",
+      key: "withHymns",
+      isCheckbox: true,
+      label: "With Hymns",
+      isChecked: false,
+    },
     oldestManuscript: {
       id: "5",
       name: "timeline",
@@ -372,36 +390,6 @@ export const initialfilterItemManuScript = {
       key: "recentManuscript",
       isCheckbox: false,
       label: "Recent manuscripts",
-      isChecked: false,
-    },
-    arabicManuscript: {
-      id: "7",
-      name: "arabic",
-      key: "arabicManuscript",
-      isCheckbox: false,
-      label: "Arabic manuscripts",
-      isChecked: false,
-    },
-    arabicAndGaazManuscript: {
-      id: "8",
-      name: "arabic",
-      key: "gaazManuscript",
-      isCheckbox: false,
-      label: "Geʿez manuscripts",
-      isChecked: false,
-    },
-    royalManuscript: {
-      id: "9",
-      key: "royalManuscript",
-      isCheckbox: true,
-      label: "Royal Manuscript",
-      isChecked: false,
-    },
-    withHymns: {
-      id: "10",
-      key: "withHymns",
-      isCheckbox: true,
-      label: "With Hymns",
       isChecked: false,
     },
     manyStories: {
@@ -420,29 +408,46 @@ export const initialfilterItemManuScript = {
       label: "Few Stories",
       isChecked: false,
     },
+    arabicManuscript: {
+      id: "7",
+      name: "arabic",
+      key: "arabicManuscript",
+      isCheckbox: false,
+      label: "Arabic manuscripts",
+      isChecked: false,
+    },
+    arabicAndGaazManuscript: {
+      id: "8",
+      name: "arabic",
+      key: "gaazManuscript",
+      isCheckbox: false,
+      label: "Geʿez manuscripts",
+      isChecked: false,
+    },
   },
 };
 export const initialPlaceItemManuScript = {
   title: "Manuscript's Last Known Location",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
       icon: true,
-      label: "Africa",
+      label: "Africa:",
       name: "africa",
       isChecked: false,
     },
     {
       id: "2",
       icon: false,
-      label: "Egypt",
+      label: "Egypt:",
       name: "egypt",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Ethiopia",
+      label: "Ethiopia:",
       name: "ethiopia",
       isChecked: false,
     },
@@ -484,7 +489,7 @@ export const initialPlaceItemManuScript = {
     {
       id: "6",
       icon: true,
-      label: "Europe",
+      label: "Europe :",
       name: "europe",
       isChecked: false,
     },
@@ -528,6 +533,7 @@ export const initialPlaceItemManuScript = {
 };
 export const initialOriginRegionManuScript = {
   title: "Manuscript's Known Region of Origin",
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
@@ -579,13 +585,13 @@ export const initialOriginRegionManuScript = {
       name: "syria",
       isChecked: false,
     },
-    {
-      id: "8",
-      icon: false,
-      label: "Unknown",
-      name: "unknown",
-      isChecked: false,
-    },
+    // {
+    //   id: "8",
+    //   icon: false,
+    //   label: "Unknown",
+    //   name: "unknown",
+    //   isChecked: false,
+    // },
   ],
 };
 

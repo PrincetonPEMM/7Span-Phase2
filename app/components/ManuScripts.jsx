@@ -203,7 +203,9 @@ const ManuScripts = () => {
       )}&${makeParamsArray(
         "knownOriginRegion",
         originRegion
-      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${searchKey}
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${
+        searchKey.lenght > 3 ? searchKey : ""
+      }
     `;
 
       const response = await fetch(
@@ -556,8 +558,8 @@ const ManuScripts = () => {
         >
           <MdiMenuOpen className="text-white-500" />
         </button>
-        <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
-          <div className="relative w-full sm:col-span-3 mb-2 lg:mb-0 lg:col-span-2  lg:max-w-4xl">
+        <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0">
+          <div className="relative w-full sm:col-span-3 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search manuscript names
             </span>
@@ -606,10 +608,13 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <p className="hidden text-offBlack-400 font-medium font-body pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+
+          <p
+            className="hidden text-offBlack-400 font-medium font-body pl-2 sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1
+          sm:text-center"
+          >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
-
           <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${

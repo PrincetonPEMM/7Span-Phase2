@@ -68,7 +68,7 @@ const Table = ({
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className="text-primary-500 "
+          className="text-primary-500 hover:text-secondary-500"
         >
           &nbsp; See Less
         </button>
@@ -79,7 +79,7 @@ const Table = ({
         {Number(text?.length) > 40 && (
           <button
             onClick={() => toggleExpand(index)}
-            className="text-primary-500 "
+            className="text-primary-500 hover:text-secondary-500 "
           >
             See More
           </button>
