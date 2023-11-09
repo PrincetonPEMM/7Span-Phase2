@@ -53,7 +53,7 @@ const BannerDetail = ({
             clsBtnCondition ? setSelectedBanner({}) : setSelectedBanner(data);
           }}
         >
-          <MdiClose className=" text-white" />
+          <MdiClose className=" text-black" />
         </button>
       </div>
     </div>
