@@ -291,13 +291,21 @@ const ManuScripts = () => {
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
       newParams.delete(key);
-      history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+      history.replaceState(
+        { path: `${pathname}?${newParams.toString()}` },
+        "",
+        `${pathname}?${newParams.toString()}`
+      );
       return;
     }
     if (["lastKnownLocation", "knownOriginRegion"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);
-    history.pushState({}, "", `${pathname}?${newParams.toString()}`);
+    history.replaceState(
+      { path: `${pathname}?${newParams.toString()}` },
+      "",
+      `${pathname}?${newParams.toString()}`
+    );
     // router.push(`${pathname}?${newParams.toString()}`);
   };
 
