@@ -349,7 +349,7 @@ const Paintings = ({
             </div>
             <div className="text-center w-full md:text-left">
               <button
-                className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+                className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                 onClick={() => {
                   setDateOfPaintins([]);
                   setPaintingsInColorOnly([]);
@@ -423,7 +423,7 @@ const Paintings = ({
           </div>
           <div className="text-center w-full md:text-left  hidden lg:block">
             <button
-              className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+              className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
               onClick={() => {
                 setDateOfPaintins([]);
                 setPaintingsInColorOnly([]);
