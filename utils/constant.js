@@ -373,7 +373,7 @@ export const initialfilterItemManuScript = {
       id: "10",
       key: "withHymns",
       isCheckbox: true,
-      label: "With Hymns",
+      label: "With hymns",
       isChecked: false,
     },
     oldestManuscript: {

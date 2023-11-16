@@ -72,7 +72,7 @@ const Footer = () => {
               (PEMM) project is a comprehensive resource for the 1,000+ miracle
               stories written about and the 2,500+ images painted of the Virgin
               Mary in these African countries, and preserved in Geʿez between
-              1300 and the present
+              1300 and the present.
             </p>
           </div>
           <div className="pt-5 text-sm space-y-4 md:pr-10">
