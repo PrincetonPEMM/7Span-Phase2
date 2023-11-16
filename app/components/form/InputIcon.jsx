@@ -18,7 +18,7 @@ const InputIcon = (props) => {
         if (temp.label === item?.label) {
           return { ...temp, isChecked: !item.isChecked };
         }
-        return { ...temp, isChecked: item.isChecked };
+        return { ...temp, isChecked: false };
       });
       setItemList({ ...itemList, checkItem: updatedPlace });
     }
