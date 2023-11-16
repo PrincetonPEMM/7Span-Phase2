@@ -959,6 +959,10 @@ a {
   @apply text-2xl lg:text-3xl;
 }
 
+.people-description a:hover{
+  @apply text-secondary-500;
+}
+
 @media only screen and (max-width: 440px) {
   span.tagline {
     @apply w-56 -top-5;
@@ -986,3 +990,4 @@ a {
     padding-top: 174.778%;
   }
 }
+

@@ -75,7 +75,7 @@ const PeopleDetailPage = async ({ params }) => {
             )}
           </div>
           <div
-            className="space-y-5  text-offBlack-500 lg:text-left"
+            className="space-y-5  text-offBlack-500 lg:text-left people-description"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 
