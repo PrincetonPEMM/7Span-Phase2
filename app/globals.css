@@ -819,6 +819,9 @@ input[type="number"] {
 .my-masonry-grid_column .even .card-background > .card-button {
   @apply bg-primary-500 text-offWhite-500;
 }
+.my-masonry-grid_column .odd .card-background > a {
+  @apply border bg-secondary-500 text-offBlack-500 hover:bg-transparent hover:border-offWhite-500 hover:text-offWhite-500;
+}
 .my-masonry-grid_column .even a {
   @apply text-white;
 }
@@ -956,6 +959,10 @@ a {
   @apply text-2xl lg:text-3xl;
 }
 
+.people-description a:hover{
+  @apply text-secondary-500;
+}
+
 @media only screen and (max-width: 440px) {
   span.tagline {
     @apply w-56 -top-5;
@@ -983,3 +990,4 @@ a {
     padding-top: 174.778%;
   }
 }
+
