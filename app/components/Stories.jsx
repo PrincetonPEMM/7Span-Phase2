@@ -236,6 +236,7 @@ const Stories = () => {
           setIsOpen(true);
         }
       };
+      
       checkWidth();
       window?.addEventListener("resize", checkWidth);
     }
@@ -495,7 +496,7 @@ const Stories = () => {
                 setStoryMin(min);
                 setStoryMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [storyMin, storyMax]
             )}
@@ -505,7 +506,7 @@ const Stories = () => {
                 setManuscriptsMin(min);
                 setManuscriptsMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [manuscriptsMin, manuscriptsMax]
             )}
@@ -515,7 +516,7 @@ const Stories = () => {
                 setPaintingMin(min);
                 setPaintingMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [paintingMin, paintingMax]
             )}

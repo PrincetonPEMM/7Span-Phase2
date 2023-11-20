@@ -116,7 +116,11 @@ body {
 }
 
 .space-y-p a {
-  @apply text-base inline font-bold text-primary-500 hover:text-secondary-600;
+  @apply text-sm md:text-base inline font-bold text-primary-500 hover:text-secondary-500;
+}
+
+.text-base.leading-relaxed a {
+  @apply text-primary-500 hover:text-secondary-500;
 }
 
 .space-y-p h1 {
@@ -201,9 +205,6 @@ body {
   gap: 10px;
   align-items: self-start;
 }
-/* .table-wrap {
-  height: calc(100vh - 25vh);
-} */
 
 .shell__sidebar {
   @apply inset-y-0 bottom-0 right-auto z-20  w-[250px] xl:w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
@@ -896,7 +897,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .page-total {
-  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
+  @apply w-11 mx-1 font-medium text-sm text-center;
 }
 .option-box .truncate {
   @apply whitespace-nowrap;
@@ -925,44 +926,25 @@ input::-webkit-inner-spin-button {
 .table-wrap:before {
   @apply top-0 left-0 rounded-lg;
 }
-.p-beside-p {
-  display: inline;
-}
-.p-beside-p + p {
-  display: inline;
-}
-a {
-  font-weight: 600;
-}
-.banner-detail a {
-  @apply text-primary-500 font-bold hover:text-black;
-}
-.descriptions-left {
-  @apply text-left;
-}
-.descriptions-left h3,
-.description-center h3 {
-  @apply text-primary-500 font-body text-xl lg:text-2xl;
-}
-.descriptions-left h1,
-.description-center h1 {
-  @apply text-primary-500 font-body;
-}
-.descriptions-left h2,
-.description-center h2 {
-  @apply font-body mt-2 text-2xl font-bold text-primary-500;
-  /* margin-top: 0.5rem; */
-  margin-bottom: 0.5rem;
-}
 
-.description-center h2 {
-  @apply text-2xl lg:text-3xl;
+@media only screen and (max-width: 640px) {
+  .table-wrap {
+    @apply overflow-auto;
+  }
+  .table-head tr th {
+    min-width: 100px;
+  }
+  .table-body tr td {
+    min-width: 100px;
+  }
+  .table-head.active {
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    z-index: 30;
+    overflow: auto;
+  }
 }
-
-.people-description a:hover{
-  @apply text-secondary-500;
-}
-
 @media only screen and (max-width: 440px) {
   span.tagline {
     @apply w-56 -top-5;
@@ -990,4 +972,3 @@ a {
     padding-top: 174.778%;
   }
 }
-
