@@ -93,22 +93,37 @@ const Table = ({
       ? newText
       : text;
   };
+
+  function getPos(el) {
+    // yay readability
+    for (var ly = 0; el != null; ly += el.offsetTop, el = el.offsetParent);
+    return ly;
+  }
+
   const tableFixed = () => {
     console.log(window.scrollY);
+    const element = document.querySelector(".table-head");
     if (window.innerWidth < 640) {
-      if (window.scrollY < 248) {
+      if (window.scrollY > getPos(element)) {
+        document.querySelector(".table-head").classList.add("active");
+      } else {
         document.querySelector(".table-head").classList.remove("active");
       }
-      if (window.scrollY > 248) {
-        document.querySelector(".table-head").classList.add("active");
+      if (
+        window.scrollY >
+        getPos(element) + document.querySelector(".table").offsetHeight + 100
+      ) {
+        document.querySelector(".table-head").classList.remove("active");
       }
+    } else {
+      document.querySelector(".table-head").classList.remove("active");
     }
   };
 
   useEffect(() => {
-    document.addEventListener("scroll", tableFixed());
+    document.addEventListener("scroll", tableFixed);
     return () => {
-      document.removeEventListener("scroll", tableFixed());
+      document.removeEventListener("scroll", tableFixed);
     };
   }, []);
 
