@@ -93,39 +93,24 @@ const Table = ({
       ? newText
       : text;
   };
+  // const tableFixed = () => {
+  //   console.log(window.scrollY);
+  //   if (window.innerWidth < 640) {
+  //     if (window.scrollY < 248) {
+  //       document.querySelector(".table-head").classList.remove("active");
+  //     }
+  //     if (window.scrollY > 248) {
+  //       document.querySelector(".table-head").classList.add("active");
+  //     }
+  //   }
+  // };
 
-  function getPos(el) {
-    // yay readability
-    for (var ly = 0; el != null; ly += el.offsetTop, el = el.offsetParent);
-    return ly;
-  }
-
-  const tableFixed = () => {
-    console.log(window.scrollY);
-    const element = document.querySelector(".table-head");
-    if (window.innerWidth < 640) {
-      if (window.scrollY > getPos(element)) {
-        document.querySelector(".table-head").classList.add("active");
-      } else {
-        document.querySelector(".table-head").classList.remove("active");
-      }
-      if (
-        window.scrollY >
-        getPos(element) + document.querySelector(".table").offsetHeight + 100
-      ) {
-        document.querySelector(".table-head").classList.remove("active");
-      }
-    } else {
-      document.querySelector(".table-head").classList.remove("active");
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("scroll", tableFixed);
-    return () => {
-      document.removeEventListener("scroll", tableFixed);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("scroll", tableFixed());
+  //   return () => {
+  //     document.removeEventListener("scroll", tableFixed());
+  //   };
+  // }, []);
 
   return (
     <>
@@ -135,12 +120,12 @@ const Table = ({
         } `}
       > */}
       <div className="relative table-wrap">
-        <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
-          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
+        <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
+          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm ">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
+                  className=" px-3 py-3  text-left font-medium tracking-wider text-sm lg:text-base"
                   key={index}
                 >
                   {item.name}
