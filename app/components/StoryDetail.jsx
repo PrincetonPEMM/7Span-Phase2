@@ -46,7 +46,7 @@ export default function StoryDetail({ data, Id }) {
         {Number(text?.length) > numberOfWords && (
           <button
             onClick={() => toggleExpand(index)}
-            className={`${"text-primary-500  hover:text-secondary-500 font-bold"}`}
+            className={`${"text-primary-500 hover:text-secondary-500 font-bold"}`}
           >
             See More
           </button>
@@ -149,8 +149,8 @@ export default function StoryDetail({ data, Id }) {
     ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-    and Egyptian Miracles of Mary project.
-    https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`
+    and Egyptian Miracles of Mary project. 
+   https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
     ${data?.canonical_story_id}: ${data?.original_macomber_title}" <i>${
@@ -271,7 +271,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Right side content portion */}
           <div className="col-span-2 md:block hidden">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body ">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
@@ -304,7 +304,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-relaxed mb-3 space-y-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -315,7 +315,7 @@ export default function StoryDetail({ data, Id }) {
             )}
             {/* English translation */}
             <div className="space-y-4">
-              <ol className="list-inside md:pl-4 font-body p-0 ">
+              <ol className="list-inside md:pl-4 font-body p-0">
                 {data.canonical_translation_recension === "True" && (
                   <li>
                     <h3
@@ -330,7 +330,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-relaxed mb-3 space-y-3 italic">
+                        <p className="text-base leading-loose mb-3 space-y-p italic">
                           Translated by {data.translation_author} from&nbsp;
                           {data.manuscript_name},&nbsp;
                           {data.translation_source_manuscript_folio}
@@ -339,7 +339,7 @@ export default function StoryDetail({ data, Id }) {
                         </p>
                       )}
                     <p
-                      className="text-base leading-relaxed mb-3 space-y-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -352,7 +352,7 @@ export default function StoryDetail({ data, Id }) {
                       ADDITIONAL INFORMATION
                     </h3>
                     <p
-                      className="text-base leading-relaxed mb-3 space-y-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.canonical_story_research_note,
                       }}
@@ -363,12 +363,12 @@ export default function StoryDetail({ data, Id }) {
                   data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
                     <li>
-                      <h3 className="text-lg font-bold uppercase  my-3">
+                      <h3 className="text-lg font-bold uppercase my-3">
                         TO CITE THIS TRANSLATION
                       </h3>
 
                       <p
-                        className="text-base leading-relaxed mb-3 space-y-3"
+                        className="text-base leading-loose mb-3 space-y-p"
                         dangerouslySetInnerHTML={{
                           __html: cityThisTranslation(),
                         }}
@@ -380,7 +380,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 font-body">
                 <li>
-                  <h3 className="text-lg font-bold uppercase  mb-3 ">
+                  <h3 className="text-lg font-bold uppercase mb-3">
                     {data.translations.length > 0 &&
                       "TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
@@ -418,7 +418,7 @@ export default function StoryDetail({ data, Id }) {
       </div>
 
       {/* This below content is for mobile responsive  */}
-      <div className="md:hidden block font-menu">
+      <div className="md:hidden block font-body">
         <Tabs
           tabs={discoverPage()}
           onClick={(e) => {
@@ -452,7 +452,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Information */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body p-0 ">
+              <ol className="list-inside md:pl-4 font-body p-0">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
                     CONTENT INFORMATION
@@ -534,13 +534,13 @@ export default function StoryDetail({ data, Id }) {
           {data.summary_plot && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 font-body p-0 ">
+                <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
                       summary
                     </h3>
                     <p
-                      className="text-base leading-relaxed mb-3 space-y-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -557,17 +557,17 @@ export default function StoryDetail({ data, Id }) {
             data.translations.length > 0) && (
             <Tab.Panel className="p-4 md:p-6">
               <div className="space-y-4">
-                <ol className="list-inside md:pl-4 font-body p-0 ">
+                <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     {data.canonical_translation_recension === "True" && (
                       <>
-                        <h3 className="text-lg font-bold uppercase  mb-3">
+                        <h3 className="text-lg font-bold uppercase mb-3">
                           TRANSLATION
                         </h3>
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
-                            <p className="text-base leading-relaxed mb-3 space-y-3 italic">
+                            <p className="text-base leading-loose mb-3 space-y-p italic">
                               Translated by {data.translation_author} from&nbsp;
                               {data.manuscript_name},&nbsp;
                               {data.translation_source_manuscript_folio}
@@ -575,7 +575,7 @@ export default function StoryDetail({ data, Id }) {
                             </p>
                           )}
                         <p
-                          className="text-base leading-relaxed mb-3 space-y-3"
+                          className="text-base leading-loose mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.english_translation,
                           }}
@@ -588,7 +588,7 @@ export default function StoryDetail({ data, Id }) {
                           ADDITIONAL INFORMATION
                         </h3>
                         <p
-                          className="text-base leading-relaxed mb-3 space-y-3"
+                          className="text-base leading-loose mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.canonical_story_research_note,
                           }}
@@ -603,7 +603,7 @@ export default function StoryDetail({ data, Id }) {
                             TO CITE THIS TRANSLATION
                           </h3>
                           <p
-                            className="text-base leading-relaxed mb-3 space-y-3"
+                            className="text-base leading-loose mb-3 space-y-p"
                             dangerouslySetInnerHTML={{
                               __html: cityThisTranslation(),
                             }}
@@ -611,7 +611,7 @@ export default function StoryDetail({ data, Id }) {
                         </>
                       )}
 
-                    <h3 className="text-lg font-bold uppercase  mb-3 ">
+                    <h3 className="text-lg font-bold uppercase mb-3">
                       {data.translations.length > 0 &&
                         "TRANSLATIONS & EDITIONS OF THIS STORY"}
                     </h3>
@@ -632,7 +632,7 @@ export default function StoryDetail({ data, Id }) {
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">
             <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body ">
+              <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
@@ -827,7 +827,7 @@ function SeventhLine() {
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold hover:text-secondary-500 "
+        className="text-primary-600 font-bold hover:text-secondary-500"
       >
         Using the Site
       </Link>

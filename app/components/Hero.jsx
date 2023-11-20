@@ -140,6 +140,15 @@ const Hero = ({ data }) => {
 
   return (
     <>
+      <link rel="preload" href={storyData.storyPart[0].img} as="image" />
+      <link rel="preload" href={storyData.storyPart[1].img} as="image" />
+      <link rel="preload" href={storyData.storyPart[2].img} as="image" />
+      <link rel="preload" href={manuscriptData.storyPart[0].img} as="image" />
+      <link rel="preload" href={manuscriptData.storyPart[1].img} as="image" />
+      <link rel="preload" href={manuscriptData.storyPart[2].img} as="image" />
+      <link rel="preload" href={paintingData.storyPart[0].img} as="image" />
+      <link rel="preload" href={paintingData.storyPart[1].img} as="image" />
+      <link rel="preload" href={paintingData.storyPart[2].img} as="image" />
       <div className="grid md:grid-cols-3">
         <Banner
           id="featured-stories"
