@@ -33,7 +33,7 @@ export default function StoryDetail({ data, Id }) {
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className={`${"text-primary-500"}`}
+          className={`${"text-primary-500 hover:text-secondary-500"}`}
         >
           &nbsp; See Less
         </button>
@@ -46,7 +46,7 @@ export default function StoryDetail({ data, Id }) {
         {Number(text?.length) > numberOfWords && (
           <button
             onClick={() => toggleExpand(index)}
-            className={`${"text-primary-500"}`}
+            className={`${"text-primary-500 hover:text-secondary-500"}`}
           >
             See More
           </button>
@@ -153,7 +153,7 @@ export default function StoryDetail({ data, Id }) {
     <a
       href=/stories/${data.canonical_story_id}
       target="_blank"
-      class="text-primary-500 font-bold"
+      class="text-primary-500 font-bold "
     >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
@@ -314,7 +314,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -340,7 +340,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3 italic">
+                        <p className="text-base leading-loose mb-3 space-y-p italic">
                           Translated by {data.translation_author} from&nbsp;
                           {data.manuscript_name},&nbsp;
                           {data.translation_source_manuscript_folio}
@@ -349,7 +349,7 @@ export default function StoryDetail({ data, Id }) {
                         </p>
                       )}
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -362,7 +362,7 @@ export default function StoryDetail({ data, Id }) {
                       ADDITIONAL INFORMATION
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.canonical_story_research_note,
                       }}
@@ -378,7 +378,7 @@ export default function StoryDetail({ data, Id }) {
                       </h3>
 
                       <p
-                        className="text-base leading-loose mb-3"
+                        className="text-base leading-loose mb-3 space-y-p"
                         dangerouslySetInnerHTML={{
                           __html: cityThisTranslation(),
                         }}
@@ -550,7 +550,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-loose mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -577,7 +577,7 @@ export default function StoryDetail({ data, Id }) {
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
-                            <p className="text-base leading-loose mb-3 italic">
+                            <p className="text-base leading-loose mb-3 space-y-p italic">
                               Translated by {data.translation_author} from&nbsp;
                               {data.manuscript_name},&nbsp;
                               {data.translation_source_manuscript_folio}
@@ -585,7 +585,7 @@ export default function StoryDetail({ data, Id }) {
                             </p>
                           )}
                         <p
-                          className="text-base leading-loose mb-3"
+                          className="text-base leading-loose mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.english_translation,
                           }}
@@ -598,7 +598,7 @@ export default function StoryDetail({ data, Id }) {
                           ADDITIONAL INFORMATION
                         </h3>
                         <p
-                          className="text-base leading-loose mb-3"
+                          className="text-base leading-loose mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.canonical_story_research_note,
                           }}
@@ -613,7 +613,7 @@ export default function StoryDetail({ data, Id }) {
                             TO CITE THIS TRANSLATION
                           </h3>
                           <p
-                            className="text-base leading-loose mb-3"
+                            className="text-base leading-loose mb-3 space-y-p"
                             dangerouslySetInnerHTML={{
                               __html: cityThisTranslation(),
                             }}
@@ -837,7 +837,7 @@ function SeventhLine() {
       that PEMM has catalogued. For more information, see&nbsp;
       <Link
         href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold"
+        className="text-primary-600 font-bold hover:text-secondary-500"
       >
         Using the Site
       </Link>

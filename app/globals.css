@@ -110,7 +110,11 @@ body {
 }
 
 .space-y-p a {
-  @apply text-xs md:text-base inline font-bold text-primary-500;
+  @apply text-xs md:text-base inline font-bold text-primary-500 hover:text-secondary-500;
+}
+
+.text-base.leading-relaxed a {
+  @apply text-primary-500 hover:text-secondary-500;
 }
 
 .space-y-p h1 {
