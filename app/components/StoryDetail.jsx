@@ -150,11 +150,7 @@ export default function StoryDetail({ data, Id }) {
     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
     and Egyptian Miracles of Mary project. 
-    <a
-      href=/stories/${data.canonical_story_id}
-      target="_blank"
-      class="text-primary-500 font-bold "
-    >https://${window?.location?.hostname}/stories/${data.canonical_story_id}</a>.`
+   https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`
       : `${data?.translation_author}. ${data.translation_as_of_date}.
     "ID
     ${data?.canonical_story_id}: ${data?.original_macomber_title}" <i>${

@@ -125,7 +125,7 @@ const Table = ({
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
+                  className=" px-3 py-3  text-left font-medium tracking-wider text-sm lg:text-base"
                   key={index}
                 >
                   {item.name}
