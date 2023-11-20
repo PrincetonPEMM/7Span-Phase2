@@ -231,18 +231,18 @@ const PaintingDetail = ({ data }) => {
           </div>
           <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">
             <Link
-              className="bg-primary-500 transition-all font-normal hover:text-primary-500 hover:bg-transparent border border-transparent hover:border-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
+              className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
               <span>View more paintings from this manuscript</span>
             </Link>
             <Link
-              className="bg-primary-500 transition-all font-normal hover:text-primary-500 hover:bg-transparent border border-transparent hover:border-primary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
+              className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
-              <span>View more paintings from this story</span>
+              <span>View more paintings for this story</span>
             </Link>
 
             {/* Next and previous buttons  */}
