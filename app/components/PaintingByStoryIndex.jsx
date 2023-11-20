@@ -50,7 +50,11 @@ const PaintingByStoryIndex = ({ list }) => {
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-story?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-story?page=${page}&perPage=${perPage}&filters[search]=${
+        searchKey.length > 3 ? searchKey : ""
+      }`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -89,7 +93,7 @@ const PaintingByStoryIndex = ({ list }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <div className="mb-10 flex items-start space-x-4 ">
-        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center">
+        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
           <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search painting descriptions
@@ -127,7 +131,7 @@ const PaintingByStoryIndex = ({ list }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-left sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium  text-xs  lg:col-span-1">
+          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium text-xs lg:col-span-1">
             Results: ({totalPage ? totalPage : 0} records)
           </p>
         </div>

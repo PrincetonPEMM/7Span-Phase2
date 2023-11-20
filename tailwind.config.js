@@ -14,8 +14,8 @@ module.exports = {
     extend: {
       fontFamily: {
         header: ["Maghfirea", ...defaultTheme.fontFamily.sans],
-        body: ["Source Serif Pro", ...defaultTheme.fontFamily.sans],
-        menu: ["Source Sans 3", ...defaultTheme.fontFamily.sans],
+        menu: ["Source Serif Pro", ...defaultTheme.fontFamily.sans],
+        body: ["Source Sans 3", ...defaultTheme.fontFamily.sans],
 
         // Add your custom font family here
       },

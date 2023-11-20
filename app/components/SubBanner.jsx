@@ -40,7 +40,7 @@ const Img = ({ data }) => {
         />
         {!loading && (
           <button className="absolute flex items-end justify-center p-5 z-10 text-white space-y-4 px-10 w-full inset-0 md:px-5 md:pb-10 lg:px-12 lg:pt-12 lg:pb-28">
-            <span className="text-lg font-bold font-body mt-auto lg:text-2xl">
+            <span className="text-lg font-bold font-body mt-auto lg:text-2xl min-h-[75px] block">
               {data?.title}
             </span>
           </button>

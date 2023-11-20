@@ -40,15 +40,15 @@ const PaintingDetail = ({ data }) => {
         text += `You can view this painting in the manuscript ${
           data.link_to_digital_copy
             ? `<a
-              class="text-primary-500 font-bold"
+              class="text-primary-500 font-bold hover:text-secondary-500"
               href=${data.manuscript_link}
             >${data.manuscript_name}</a>`
             : `<b>${data.manuscript_name}</b>`
         }${
           data.painting_folio ? ", f. " + data.painting_folio : ""
-        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold" href="/manuscripts/${
+        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
           data.web_page_address
-        }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold" href="/stories/${
+        }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${
           data.canonical_story_id
         }">PEMM Story page<a>.`;
       }
@@ -57,11 +57,11 @@ const PaintingDetail = ({ data }) => {
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has <b>${data?.number_of_episodes}</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
+          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> has <b>${data?.number_of_episodes}</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
-          text: `This painting of PEMM Story ID <a class="text-primary-500 font-bold" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
+          text: `This painting of PEMM Story ID <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a> depicts ${data.number_of_episodes} moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
         });
       }
     }
@@ -110,7 +110,7 @@ const PaintingDetail = ({ data }) => {
           <BackBtn />
         </div>
       </div>
-      <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-5xl text-primary-500 font-medium">
+      <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-3xl text-primary-500 font-medium">
         {data.canonical_story_title}
       </h2>
 
@@ -215,11 +215,11 @@ const PaintingDetail = ({ data }) => {
                 : "none"}
             </p>
           </div> */}
-          <h2 className="hidden md:block font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-4xl text-primary-500 font-medium">
+          <h2 className="hidden md:block font-body mt-2 mb-5 text-2xl text-primary-500 font-bold leading-tight lg:text-3xl xl:text-4xl">
             {data.canonical_story_title}
           </h2>
           <div className="list-inside">
-            <ul className="  space-y-2">
+            <ul className="space-y-2 font-body">
               {generateParagraph().map((item, index) => (
                 <li
                   className="text-base leading-relaxed"
@@ -229,20 +229,20 @@ const PaintingDetail = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row ">
+          <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
-              <MdiOpenInNew className="sm:h-6 sm:w-6" />
-              <span>View Paintings by Manuscript</span>
+              {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
+              <span>View more paintings from this manuscript</span>
             </Link>
             <Link
-              className="bg-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1"
+              className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
-              <MdiOpenInNew className="sm:h-6 sm:w-6" />
-              <span>View Paintings by Story</span>
+              {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
+              <span>View more paintings for this story</span>
             </Link>
 
             {/* Next and previous buttons  */}

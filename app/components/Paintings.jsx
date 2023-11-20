@@ -99,7 +99,7 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey}`;
+      )}filters[search]=${searchKey.length > 3 ? searchKey : ""}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
@@ -205,14 +205,14 @@ const Paintings = ({
   }
 
   return (
-    <div className="container-fluid">
+    <div className="px-4 md:px-5">
       <button
         onClick={menuIconClick}
         className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
       >
         <MdiMenuOpen className="text-primary-500" />
       </button>
-      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 lg:grid-cols-6 gap-2 items-center justify-start mb-3">
+      <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
         <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
           <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
             Search titles and painting descriptions
@@ -240,7 +240,7 @@ const Paintings = ({
             />
           )}
         </div>
-        <div className="col-span-2 lg:col-span-2 grid justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
+        <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
           <CustomPagination
             className="pagination-tablet"
             currentPage={page}
@@ -251,7 +251,7 @@ const Paintings = ({
           />
         </div>
         <div className="lg:col-span-1">
-          <div className="text-center block h-auto py-3  font-medium xl:text-sm text-xs md:w-full">
+          <div className="text-offBlack-400 font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
             Results: ({totalPage ? totalPage : 0} records)
           </div>
         </div>
@@ -349,7 +349,7 @@ const Paintings = ({
             </div>
             <div className="text-center w-full md:text-left">
               <button
-                className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+                className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                 onClick={() => {
                   setDateOfPaintins([]);
                   setPaintingsInColorOnly([]);
@@ -388,7 +388,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2  hidden lg:block">
+          <div className="sm:col-span-2 font-body hidden lg:block">
             <Dropdown
               title="Digital Quality"
               selected={paintingsInColorOnly}
@@ -403,7 +403,7 @@ const Paintings = ({
               isMultiple={true}
             />
           </div>
-          <div className="sm:col-span-2  hidden lg:block">
+          <div className="sm:col-span-2 font-body hidden lg:block">
             <Dropdown
               title="Story Type"
               selected={storyType}
@@ -412,7 +412,7 @@ const Paintings = ({
               isMultiple={false}
             />
           </div>
-          <div className="sm:col-span-2 hidden lg:block ">
+          <div className="sm:col-span-2 font-body hidden lg:block ">
             <Dropdown
               title="Repository of Painting"
               selected={archiveOfPainting}
@@ -423,7 +423,7 @@ const Paintings = ({
           </div>
           <div className="text-center w-full md:text-left  hidden lg:block">
             <button
-              className="bg-primary-500 w-full text-white p-2 text-center rounded-lg text-xs md:text-sm"
+              className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
               onClick={() => {
                 setDateOfPaintins([]);
                 setPaintingsInColorOnly([]);
@@ -453,7 +453,7 @@ const Paintings = ({
           </Masonry>
         ) : (
           Boolean(!data?.length) && (
-            <div className="flex items-center py-36 justify-center  w-full text-2xl text-primary-500 font-bold">
+            <div className="flex items-center py-36 justify-center font-body w-full text-2xl text-primary-500 font-bold">
               {loading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
             </div>
           )

@@ -31,7 +31,7 @@ const PaintingCard = (props) => {
         />
       </div>
       {isImgload && (
-        <div className="bg-black p-5 rounded-b-lg">
+        <div className="bg-black p-5 rounded-b-lg font-body">
           <p className="text-xs">{`${
             props.card.manuscript_date_range_start &&
             props.card.manuscript_date_range_end
@@ -47,12 +47,12 @@ const PaintingCard = (props) => {
           }${
             props.card.painting_scan ? ", s. " + props.card.painting_scan : ""
           }`}</p>
-          <h2 className="lg:text-2xl font-bold mt-3">
+          <h3 className="lg:text-xl font-semibold mt-3 tracking-wide">
             {props.card.pemm_short_title
               ? props.card.pemm_short_title
               : "PEMM title not found"}
-          </h2>
-          <p className="pt-2">
+          </h3>
+          <p className="pt-2 tracking-wider">
             {props.card.episodes ? props.card.episodes + "." : "-"}
           </p>
         </div>
