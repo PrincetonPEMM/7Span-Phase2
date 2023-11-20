@@ -927,6 +927,19 @@ input::-webkit-inner-spin-button {
   .table-wrap {
     @apply overflow-auto;
   }
+  .table-head tr th {
+    min-width: 100px;
+  }
+  .table-body tr td {
+    min-width: 100px;
+  }
+  .table-head.active {
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    z-index: 30;
+    overflow: auto;
+  }
 }
 @media only screen and (max-width: 440px) {
   span.tagline {
