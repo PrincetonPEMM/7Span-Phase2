@@ -508,7 +508,7 @@ const ManuScripts = () => {
                 setDateCreationMin(min);
                 setDateCreationMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [dateCreationMin, dateCreationMax]
             )}
@@ -518,7 +518,7 @@ const ManuScripts = () => {
                 setNoOfStoriesMin(min);
                 setNoOfStoriesMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [noOfStoriesMin, noOfStoriesMax]
             )}
@@ -528,7 +528,7 @@ const ManuScripts = () => {
                 setNoOfPaintingMin(min);
                 setNoOfPaintingMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [noOfPaintingMin, noOfPaintingMax]
             )}
@@ -538,7 +538,7 @@ const ManuScripts = () => {
                 setNoOfUniqueMin(min);
                 setNoOfUniqueMax(max);
                 debouncedFetchData();
-                scrollTop();
+                // scrollTop();
               },
               [noOfUniqueMin, noOfUniqueMax]
             )}
