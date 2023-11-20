@@ -897,7 +897,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .page-total {
-  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
+  @apply w-11 mx-1 font-medium text-sm text-center;
 }
 .option-box .truncate {
   @apply whitespace-nowrap;
