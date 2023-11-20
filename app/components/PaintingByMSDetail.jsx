@@ -54,7 +54,11 @@ const PaintingByMSDetail = ({ list, Id }) => {
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript/${Id}?page=${page}&perPage=${perPage}&filters[search]=${searchKey}`
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-manuscript/${Id}?page=${page}&perPage=${perPage}&filters[search]=${
+        searchKey.length > 3 ? searchKey : ""
+      }`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -95,7 +99,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
       {header && (
-        <h2 className="font-menu text-2xl mb-5 lg:text-3xl xl:text-5xl text-primary-500 font-medium">
+        <h2 className="font-bold text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500  font-body">
           {header?.manuscript_full_name}&nbsp;(
           {`${
             header?.manuscript_date_range_start &&
@@ -112,7 +116,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
         </h2>
       )}
       <div className="mb-10 flex items-start space-x-4 ">
-        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center">
+        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
           <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
               Search titles and painting descriptions.

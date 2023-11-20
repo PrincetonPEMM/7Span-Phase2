@@ -52,7 +52,7 @@ const PeopleDetailPage = async ({ params }) => {
         )}
         <div className="mt-5 lg:mt-0 lg:col-span-2">
           <div className="mb-3 text-center lg:mb-3 lg:text-left">
-            <h2 className="text-2xl lg:text-3xl font-bold text-primary-500 md:text-4xl">
+            <h2 className="text-2xl lg:text-3xl font-bold text-primary-500  md:text-5xl">
               {`${results[0].first_name ? results[0].first_name : ""} ${
                 results[0].last_name ? results[0].last_name : ""
               }`}
@@ -67,7 +67,7 @@ const PeopleDetailPage = async ({ params }) => {
                 <a
                   href={results[0].website}
                   target="_blank"
-                  className="cursor-pointer"
+                  className="cursor-pointer text-primary-500 hover:text-secondary-500 font-bold"
                 >
                   {results[0].website}
                 </a>
@@ -75,7 +75,7 @@ const PeopleDetailPage = async ({ params }) => {
             )}
           </div>
           <div
-            className="space-y-5 font-semibold text-offBlack-500 lg:text-left"
+            className="space-y-5  text-offBlack-500 lg:text-left people-description"
             dangerouslySetInnerHTML={{ __html: results[0].description }}
           ></div>
 

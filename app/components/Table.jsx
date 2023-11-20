@@ -2,7 +2,7 @@
 import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Pagination } from "./Pagination";
 
 const Table = ({
@@ -68,7 +68,7 @@ const Table = ({
         {text}
         <button
           onClick={() => toggleExpand(index)}
-          className="text-primary-500 "
+          className="text-primary-500 hover:text-secondary-500 font-bold"
         >
           &nbsp; See Less
         </button>
@@ -79,7 +79,7 @@ const Table = ({
         {Number(text?.length) > 40 && (
           <button
             onClick={() => toggleExpand(index)}
-            className="text-primary-500 "
+            className="text-primary-500 hover:text-secondary-500 font-bold"
           >
             See More
           </button>
@@ -93,6 +93,24 @@ const Table = ({
       ? newText
       : text;
   };
+  // const tableFixed = () => {
+  //   console.log(window.scrollY);
+  //   if (window.innerWidth < 640) {
+  //     if (window.scrollY < 248) {
+  //       document.querySelector(".table-head").classList.remove("active");
+  //     }
+  //     if (window.scrollY > 248) {
+  //       document.querySelector(".table-head").classList.add("active");
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("scroll", tableFixed());
+  //   return () => {
+  //     document.removeEventListener("scroll", tableFixed());
+  //   };
+  // }, []);
 
   return (
     <>
@@ -101,9 +119,9 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative overflow-auto table-wrap">
+      <div className="relative table-wrap">
         <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
-          <thead className="font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
+          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm ">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
@@ -115,7 +133,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] table-body align-baseline divide-y divide-gray-100 bg-offWhite-500 text-sm font-light text-primary-500">
+          <tbody className="min-h-[300px] table-body align-baseline  bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
@@ -124,7 +142,7 @@ const Table = ({
                       <tr>
                         <td
                           className="w-full px-3 py-2 font-bold hover:text-secondary-500 transition-all hover:transition-all text-sm lg:text-base"
-                          colSpan="10"
+                          colSpan={`${isPageName === STORIES ? "6" : "8"}`}
                         >
                           <Link
                             href={
@@ -167,7 +185,7 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL && (
                           <Link
                             href={`/stories/${event.id}`}
-                            className="underline text-primary-500"
+                            className="text-primary-500 hover:text-secondary-500 font-bold"
                           >
                             {buildShowingText(event.canonical_story_id)}
                           </Link>
@@ -222,7 +240,7 @@ const Table = ({
                               <a
                                 href={event.link_to_digital_copy}
                                 target="_blank"
-                                className="text-primary-500 font-bold"
+                                className="text-primary-500 font-bold hover:text-secondary-500"
                               >
                                 Digital Copy
                               </a>
