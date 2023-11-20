@@ -2,7 +2,7 @@
 import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Pagination } from "./Pagination";
 
 const Table = ({
@@ -93,6 +93,24 @@ const Table = ({
       ? newText
       : text;
   };
+  const tableFixed = () => {
+    console.log(window.scrollY);
+    if (window.innerWidth < 640) {
+      if (window.scrollY < 248) {
+        document.querySelector(".table-head").classList.remove("active");
+      }
+      if (window.scrollY > 248) {
+        document.querySelector(".table-head").classList.add("active");
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("scroll", tableFixed());
+    return () => {
+      document.removeEventListener("scroll", tableFixed());
+    };
+  }, []);
 
   return (
     <>
@@ -101,9 +119,9 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative overflow-auto table-wrap">
+      <div className="relative table-wrap">
         <table className="table  w-full shadow divide-y divide-gray-100 font-menu rounded-t-sm">
-          <thead className="font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
+          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm sticky top-0">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th

@@ -199,9 +199,6 @@ body {
   gap: 10px;
   align-items: self-start;
 }
-/* .table-wrap {
-  height: calc(100vh - 25vh);
-} */
 
 .shell__sidebar {
   @apply inset-y-0 bottom-0 right-auto z-20  w-[270px] transform items-start border-r border-gray-200 transition-all duration-300  lg:rounded-md h-screen xl:sticky;
@@ -907,6 +904,12 @@ input::-webkit-inner-spin-button {
 }
 .table-wrap:before {
   @apply top-0 left-0 rounded-lg;
+}
+
+@media only screen and (max-width: 640px) {
+  .table-wrap {
+    @apply overflow-auto;
+  }
 }
 @media only screen and (max-width: 440px) {
   span.tagline {
