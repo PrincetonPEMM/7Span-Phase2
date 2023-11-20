@@ -96,22 +96,29 @@ const Table = ({
 
   function getPos(el) {
     // yay readability
-    for (var ly = 0; el != null; ly += el.offsetTop, el = el.offsetParent);
+    for (
+      var lx = 0, ly = 0;
+      el != null;
+      lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent
+    );
     return ly;
   }
 
   const tableFixed = () => {
-    console.log(window.scrollY);
+    const tablePos = document.querySelector(".table-wrap").offsetTop;
     const element = document.querySelector(".table-head");
     if (window.innerWidth < 640) {
       if (window.scrollY > getPos(element)) {
         document.querySelector(".table-head").classList.add("active");
+        if (window.scrollY < tablePos - 88) {
+          document.querySelector(".table-head").classList.remove("active");
+        }
       } else {
         document.querySelector(".table-head").classList.remove("active");
       }
       if (
         window.scrollY >
-        getPos(element) + document.querySelector(".table").offsetHeight + 100
+        getPos(element) + document.querySelector(".table").offsetHeight + 150
       ) {
         document.querySelector(".table-head").classList.remove("active");
       }
@@ -120,9 +127,32 @@ const Table = ({
     }
   };
 
+  const scrollTable = () => {
+    const tableElement = document.querySelector(".table-wrap");
+    document.querySelector(".table-head").scrollTo({
+      left: tableElement.scrollLeft,
+    });
+  };
+
+  const scrollHeaderTable = () => {
+    const tableElement = document.querySelector(".table-head");
+    document.querySelector(".table-wrap").scrollTo({
+      left: tableElement.scrollLeft,
+    });
+  };
+
   useEffect(() => {
+    const tableHeaderElement = document.querySelector(".table-head");
+    tableHeaderElement.addEventListener("scroll", scrollHeaderTable);
+
+    const tableElement = document.querySelector(".table-wrap");
+    tableElement.addEventListener("scroll", scrollTable);
+
     document.addEventListener("scroll", tableFixed);
+
     return () => {
+      tableHeaderElement.addEventListener("scroll", scrollHeaderTable);
+      tableElement.removeEventListener("scroll", scrollTable);
       document.removeEventListener("scroll", tableFixed);
     };
   }, []);
@@ -148,7 +178,7 @@ const Table = ({
               ))}
             </tr>
           </thead>
-          <tbody className="min-h-[300px] table-body align-baseline  bg-offWhite-500 text-sm font-light text-primary-500">
+          <tbody className="table-body min-h-[300px] table-body align-baseline  bg-offWhite-500 text-sm font-light text-primary-500">
             {Boolean(tableData?.length) &&
               tableData?.map((event, index) => (
                 <React.Fragment key={index}>
