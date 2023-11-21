@@ -116,11 +116,7 @@ body {
 }
 
 .space-y-p a {
-  @apply text-sm md:text-base inline font-bold text-primary-500 hover:text-secondary-500;
-}
-
-.text-base.leading-relaxed a {
-  @apply text-primary-500 hover:text-secondary-500;
+  @apply text-base inline font-bold text-primary-500 hover:text-secondary-600;
 }
 
 .space-y-p h1 {
@@ -246,7 +242,7 @@ body {
 }
 
 [type="checkbox"]:checked:focus {
-  @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
+  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
   font-size: 0;
 }
 [type="radio"]:checked {
@@ -255,7 +251,7 @@ body {
 }
 
 [type="radio"]:checked:focus {
-  @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
+  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
   font-size: 0;
 }
 .iconcheck input[type="checkbox"] {
@@ -890,6 +886,7 @@ input[type="number"] {
 input[type="number"]:focus {
   border: 2px solid #3c6f57 !important;
   --tw-ring-shadow: none;
+  @apply outline-1 outline-primary-300;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -897,7 +894,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .page-total {
-  @apply w-11 mx-1 font-medium text-sm text-center;
+  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
 }
 .option-box .truncate {
   @apply whitespace-nowrap;
@@ -927,6 +924,40 @@ input::-webkit-inner-spin-button {
   @apply top-0 left-0 rounded-lg;
 }
 
+.banner-detail p a {
+  @apply text-primary-700 hover:text-secondary-500;
+}
+
+.people-description p a {
+  @apply text-primary-700 hover:text-secondary-500;
+}
+
+/* 
+web accisibility css start  */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+.table-head {
+  @apply top-0 sticky;
+}
+
 @media only screen and (max-width: 640px) {
   .table-wrap {
     @apply overflow-auto;
@@ -940,6 +971,7 @@ input::-webkit-inner-spin-button {
   .table-head.active {
     position: fixed;
     left: 15px;
+    top: 0;
     right: 15px;
     z-index: 30;
     overflow: auto;
