@@ -97,6 +97,7 @@ export const initialfilterItem = {
       key: "withPaintings",
       label: "With paintings",
       isChecked: false,
+      isFirstBreak: false,
     },
     mostIllustrated: {
       id: "2",
@@ -104,6 +105,7 @@ export const initialfilterItem = {
       key: "mostIllustrated",
       label: "Most illustrated",
       isChecked: false,
+      isFirstBreak: false,
     },
     withEnglishTranslation: {
       id: "3",
@@ -111,6 +113,7 @@ export const initialfilterItem = {
       key: "withEnglishTranslation",
       label: "With English translation",
       isChecked: false,
+      isFirstBreak: false,
     },
     ethiopianStories: {
       id: "4",
@@ -118,6 +121,7 @@ export const initialfilterItem = {
       key: "ethiopianStories",
       label: "Ethiopian stories",
       isChecked: false,
+      isFirstBreak: false,
     },
     withHymn: {
       id: "11",
@@ -125,6 +129,7 @@ export const initialfilterItem = {
       key: "withHymn",
       label: "With hymns",
       isChecked: false,
+      isFirstBreak: false,
     },
     readInChurch: {
       id: "14",
@@ -132,6 +137,7 @@ export const initialfilterItem = {
       key: "readInChurch",
       label: "Most read in church",
       isChecked: false,
+      isFirstBreak: false,
     },
     miracleOfMaryStories: {
       id: "5",
@@ -140,6 +146,7 @@ export const initialfilterItem = {
       key: "miracleOfMaryStories",
       label: "Miracle of Mary Stories",
       isChecked: false,
+      isFirstBreak: true,
     },
     lifeOfMaryStories: {
       id: "6",
@@ -148,6 +155,7 @@ export const initialfilterItem = {
       key: "lifeOfMaryStories",
       label: "Life of Mary Stories ",
       isChecked: false,
+      isFirstBreak: false,
     },
     earliestStories: {
       id: "7",
@@ -156,6 +164,7 @@ export const initialfilterItem = {
       key: "earliestStories",
       label: "Earliest stories",
       isChecked: false,
+      isFirstBreak: true,
     },
     recentStories: {
       id: "8",
@@ -164,6 +173,7 @@ export const initialfilterItem = {
       key: "recentStories",
       label: "Recent stories",
       isChecked: false,
+      isFirstBreak: false,
     },
     popularStories: {
       id: "9",
@@ -172,6 +182,7 @@ export const initialfilterItem = {
       key: "popularStories",
       label: "Common stories",
       isChecked: false,
+      isFirstBreak: true,
     },
     uniqueStories: {
       id: "10",
@@ -180,6 +191,7 @@ export const initialfilterItem = {
       key: "uniqueStories",
       label: "Rare stories",
       isChecked: false,
+      isFirstBreak: false,
     },
 
     printOnly: {
@@ -189,6 +201,7 @@ export const initialfilterItem = {
       key: "printOnly",
       label: "Print only",
       isChecked: false,
+      isFirstBreak: true,
     },
     excludePrintOnly: {
       id: "13",
@@ -197,6 +210,7 @@ export const initialfilterItem = {
       key: "excludePrintOnly",
       label: "Exclude Print only",
       isChecked: false,
+      isFirstBreak: false,
     },
   },
 };
@@ -340,6 +354,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "With paintings",
       isChecked: false,
+      isFirstBreak: false,
     },
     withOnlineDigitalCopy: {
       id: "2",
@@ -347,6 +362,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "With online digital copy",
       isChecked: false,
+      isFirstBreak: false,
     },
     withColorDigitalCopy: {
       id: "3",
@@ -354,6 +370,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "With color digital copy",
       isChecked: false,
+      isFirstBreak: false,
     },
     withUniqueStories: {
       id: "4",
@@ -361,6 +378,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "With unique stories",
       isChecked: false,
+      isFirstBreak: false,
     },
     royalManuscript: {
       id: "9",
@@ -368,6 +386,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "Royal manuscripts",
       isChecked: false,
+      isFirstBreak: false,
     },
     withHymns: {
       id: "10",
@@ -375,6 +394,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: true,
       label: "With hymns",
       isChecked: false,
+      isFirstBreak: false,
     },
     oldestManuscript: {
       id: "5",
@@ -383,6 +403,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Oldest manuscripts",
       isChecked: false,
+      isFirstBreak: true,
     },
     recentManuscript: {
       id: "6",
@@ -391,6 +412,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Recent manuscripts",
       isChecked: false,
+      isFirstBreak: false,
     },
     manyStories: {
       id: "11",
@@ -399,6 +421,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Many stories",
       isChecked: false,
+      isFirstBreak: true,
     },
     fewStories: {
       id: "12",
@@ -407,6 +430,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Few stories",
       isChecked: false,
+      isFirstBreak: false,
     },
     arabicManuscript: {
       id: "7",
@@ -415,6 +439,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Arabic manuscripts",
       isChecked: false,
+      isFirstBreak: true,
     },
     arabicAndGaazManuscript: {
       id: "8",
@@ -423,6 +448,7 @@ export const initialfilterItemManuScript = {
       isCheckbox: false,
       label: "Geʿez manuscripts",
       isChecked: false,
+      isFirstBreak: false,
     },
   },
 };

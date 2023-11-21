@@ -936,6 +936,7 @@ input::-webkit-inner-spin-button {
   .table-head.active {
     position: fixed;
     left: 15px;
+    top: 0;
     right: 15px;
     z-index: 30;
     overflow: auto;

@@ -104,12 +104,17 @@ const Sidebar = ({
             item.isCheckbox ? (
               <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
             ) : (
-              <Radio
-                item={item}
-                key={index}
-                setFilterItem={setFilterItem}
-                name={item.name}
-              />
+              <>
+                {item.isFirstBreak && (
+                  <div className="border-t mb-1 border-t-offWhite-500"></div>
+                )}
+                <Radio
+                  item={item}
+                  key={index}
+                  setFilterItem={setFilterItem}
+                  name={item.name}
+                />
+              </>
             )
           )}
         </div>
