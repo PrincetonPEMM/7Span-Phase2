@@ -929,7 +929,7 @@ input::-webkit-inner-spin-button {
 }
 
 .people-description p a {
-  @apply text-primary-700 hover:text-offBlack-500;
+  @apply text-primary-700 hover:text-secondary-500;
 }
 
 /* 
