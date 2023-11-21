@@ -115,7 +115,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
           )
         </h2>
       )}
-      <div className="mb-10 flex items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
+      <div className="mb-10 flex items-start space-x-4 ">
         <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
           <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
