@@ -223,7 +223,7 @@ const Table = ({
                         toggleBtn ? "hidden" : ""
                       }`}
                     >
-                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4 text-sm lg:text-base">
                         {isPageName === STORIES &&
                           buildShowingText(event.canonical_story_id)}
                         {isPageName === MANUSCRIPTS &&
