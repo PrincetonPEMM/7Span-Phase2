@@ -14,10 +14,16 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.png" />
       </head>
       <body>
+        {/* Skip navigation link */}
+        <a href="#main-content" className="sr-only sr-only-focusable">
+          Skip to main content
+        </a>
         <main>
           <div className="relative">
             <Header className="absolute inset-x-0" />
-            <div className="bg-offWhite-500">{children}</div>
+            <div className="bg-offWhite-500" id="main-content">
+              {children}
+            </div>
           </div>
           <Footer />
         </main>

@@ -242,7 +242,7 @@ body {
 }
 
 [type="checkbox"]:checked:focus {
-  @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
+  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
   font-size: 0;
 }
 [type="radio"]:checked {
@@ -251,7 +251,7 @@ body {
 }
 
 [type="radio"]:checked:focus {
-  @apply bg-transparent border-0 outline-0 shadow-none  bg-none;
+  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
   font-size: 0;
 }
 .iconcheck input[type="checkbox"] {
@@ -886,6 +886,7 @@ input[type="number"] {
 input[type="number"]:focus {
   border: 2px solid #3c6f57 !important;
   --tw-ring-shadow: none;
+  @apply outline-1 outline-primary-300;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -921,6 +922,40 @@ input::-webkit-inner-spin-button {
 }
 .table-wrap:before {
   @apply top-0 left-0 rounded-lg;
+}
+
+.banner-detail p a {
+  @apply text-primary-700 hover:text-secondary-500;
+}
+
+.people-description p a {
+  @apply text-primary-700 hover:text-offBlack-500;
+}
+
+/* 
+web accisibility css start  */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+.table-head {
+  @apply top-0 sticky;
 }
 
 @media only screen and (max-width: 640px) {
