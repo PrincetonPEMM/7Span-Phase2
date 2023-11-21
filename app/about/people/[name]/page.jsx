@@ -20,7 +20,7 @@ const PeopleDetailPage = async ({ params }) => {
       <BackBtn />
       <div className="items-start font-body py-10 lg:grid lg:grid-cols-3 lg:space-x-10">
         {(results[0]?.profile_image || results[0]?.favorite_painting_image) && (
-          <div className="w-full lg:pb-10 max-w-sm mx-auto ">
+          <div className="w-full lg:pb-10 max-w-sm mx-auto">
             {results[0]?.profile_image && (
               <div className="w-60 h-60 aspect-squre rounded-full mx-auto sm:h-80 sm:w-80">
                 <img
@@ -52,7 +52,7 @@ const PeopleDetailPage = async ({ params }) => {
         )}
         <div className="mt-5 lg:mt-0 lg:col-span-2">
           <div className="mb-3 text-center lg:mb-3 lg:text-left">
-            <h2 className="text-2xl lg:text-3xl font-bold text-primary-500  md:text-5xl">
+            <h2 className="text-2xl lg:text-3xl font-bold text-primary-500 md:text-5xl">
               {`${results[0].first_name ? results[0].first_name : ""} ${
                 results[0].last_name ? results[0].last_name : ""
               }`}
@@ -68,6 +68,7 @@ const PeopleDetailPage = async ({ params }) => {
                   href={results[0].website}
                   target="_blank"
                   className="cursor-pointer text-primary-500 hover:text-secondary-500 font-bold"
+                  area-label="click here to visit this link"
                 >
                   {results[0].website}
                 </a>
@@ -98,6 +99,7 @@ const PeopleDetailPage = async ({ params }) => {
             <Link
               href={results[0]?.twitter_link}
               className="my-3 cursor-pointer"
+              aria-label="Twitter"
             >
               <MdiTwitterBox className="twitter-icon" />
             </Link>

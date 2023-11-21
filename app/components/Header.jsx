@@ -109,6 +109,11 @@ const Header = () => {
     setMenuCollapse(!menuCollapse);
   };
 
+  // const isSubmenuOpen = (index) => {
+  //   console.log(activeSubmenu === index);
+  //   return activeSubmenu === index;
+  // };
+
   const toggleSubmenu = (index) => {
     setActiveSubmenu(activeSubmenu === index ? null : index);
   };
@@ -133,17 +138,18 @@ const Header = () => {
           {pathname === "/" ? (
             <Image
               src={Logo}
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
             />
           ) : (
             <Image
               src={LogoBlack}
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project "
+              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
             />
           )}
         </Link>
         <button
           onClick={menuIconClick}
+          aria-expanded={menuCollapse}
           className="block h-7 w-7 flex-none p-1 z-40 absolute top-5 right-5 lg:hidden"
         >
           {menuCollapse ? (
@@ -208,7 +214,11 @@ const Header = () => {
                 return (
                   <li key={index} className="lg:ml-3 xl:ml-6">
                     {item.subItems ? (
-                      <div className="group relative">
+                      <div
+                        className="group relative"
+                        onMouseEnter={() => setActiveSubmenu(index)}
+                        onMouseLeave={() => setActiveSubmenu(null)}
+                      >
                         <button
                           className={`p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
                             pathname.includes(item.link)
@@ -218,6 +228,7 @@ const Header = () => {
                               : " text-primary-500  "
                           }`}
                           onClick={() => toggleSubmenu(index)}
+                          aria-expanded={index == activeSubmenu}
                         >
                           <span>{item.title}</span>
                           <MdiChevronDown
