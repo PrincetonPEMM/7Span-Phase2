@@ -248,7 +248,7 @@ export default function StoryDetail({ data, Id }) {
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers:</b> PEMM Theme ID{" "}
-                      {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
+                      {data?.pemm_theme_id_number}; PEMM ID {Id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
                       {data?.hamburg_id
@@ -511,7 +511,7 @@ export default function StoryDetail({ data, Id }) {
                     </p>
                     <p className="leading-normal">
                       <b>ID Numbers: </b> PEMM Theme ID{" "}
-                      {data?.pemm_theme_id_number}; PEMM ID {data?.pemm_id}
+                      {data?.pemm_theme_id_number}; PEMM ID {Id}
                       {data?.canonical_story_id <= macomber_id_number &&
                         "; Macomber ID " + data?.canonical_story_id}
                       {data?.hamburg_id
