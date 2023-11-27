@@ -82,9 +82,9 @@ export default function Manuscript({ Id, data, table }) {
       }
       array.push({ text });
     }
-
+    let text;
     if (data.collections_sheet_relevant == "True") {
-      let text = `This manuscript is held in the repository of <b>${
+      text = `This manuscript is held in the repository of <b>${
         data.institution_name
       }</b> in their <b>${data.collection_name}</b> in <b>${
         data.institution_city_state
@@ -93,14 +93,10 @@ export default function Manuscript({ Id, data, table }) {
           ? `This manuscript's last known location in Ethiopia was <b>${data.ms_location_note}</b>. `
           : " "
       }`;
-      if (data.link_to_digital_copy != null) {
-        text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">here</a>.`;
-      } else {
-        text += data.link_to_digital_copy_note_external;
-      }
-      array.push({ text });
+
+      // array.push({ text });
     } else {
-      let text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of <b>${data.location_of_ms_imaging} in ${data.location_of_ms_imaging_city}, ${data.location_of_ms_imaging_country}</b>.`;
+      text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of <b>${data.location_of_ms_imaging} in ${data.location_of_ms_imaging_city}, ${data.location_of_ms_imaging_country}</b>. `;
       if (
         data.digital_repository &&
         data.digital_repository_city &&
@@ -108,8 +104,14 @@ export default function Manuscript({ Id, data, table }) {
       ) {
         text += `A digital copy of this manuscript is held by ${data.digital_repository} in ${data.digital_repository_city} , ${data.digital_repository_country}. `;
       }
-      array.push({ text });
+      // array.push({ text });
     }
+    if (data.link_to_digital_copy != null) {
+      text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">here</a>.`;
+    } else {
+      text += data.link_to_digital_copy_note_external;
+    }
+    array.push({ text });
 
     if (data.total_stories != null) {
       let text;
@@ -135,7 +137,7 @@ export default function Manuscript({ Id, data, table }) {
       }
 
       if (Number(data?.total_stanza_story) === 1) {
-        text += ` Also, <b>${data?.total_stanza_story}<b> has a stanza or hymn at the end, marked with a <b>♫</b> in the table below, under Other Aspects.`;
+        text += ` Also, <b>${data?.total_stanza_story}</b> has a stanza or hymn at the end, marked with a <b>♫</b> in the table below, under Other Aspects.`;
       }
       if (Number(data?.total_stanza_story) > 1) {
         text += ` Also, <b>${data.total_stanza_story}</b> have stanzas or hymns at their end, marked with a <b>♫</b> in the table below, under Other Aspects.`;
@@ -193,22 +195,25 @@ export default function Manuscript({ Id, data, table }) {
         data.tm_story_paintings == "Yes" ||
         data.tm_story_paintings == "RelatedImages"
       ) {
-        if (data.scans_of_manuscript_in_color != null) {
-          if (data.scans_of_manuscript_in_color == "Yes") {
-            if (data.link_to_digital_copy != null) {
-              text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>. To view the manuscript, go to the
-                            <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
-            } else {
-              text =
-                "These paintings have been <b>digitized in color</b> but are <b>not available online</b>. We hope the repository will put this manuscript online soon.";
-            }
+        // if (data.scans_of_manuscript_in_color != null) {
+        if (data.scans_of_manuscript_in_color == "Yes") {
+          if (data.link_to_digital_copy != null) {
+            // text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>. To view the manuscript, go to the
+            //                 <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+
+            text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>.`;
           } else {
-            if (data.link_to_digital_copy != null) {
-              text = `These paintings are digitized and available online but only in black and white. To view the manuscript online, go to the
-                            <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
-            }
+            text =
+              "These paintings have been <b>digitized in color</b> but are <b>not available online</b>. We hope the repository will put this manuscript online soon.";
+          }
+        } else {
+          if (data.link_to_digital_copy != null) {
+            // text = `These paintings are digitized and available online but only in black and white. To view the manuscript online, go to the
+            //                 <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+            text = `These paintings are digitized and available online but only in <b>black and white</b>.`;
           }
         }
+        // }
       }
       array.push({ text });
     }
@@ -326,7 +331,7 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     array.push({
-      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site" target="_blank" className="text-primary-500 font-bold hover:text-secondary-500">Using This Site</a></b>.`,
+      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site"  className="text-primary-500 font-bold hover:text-secondary-500">Using This Site</a></b>.`,
     });
 
     return array;
