@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
-import MdiOpenInNew from "@/assets/icons/MdiOpenInNew";
 import ImageGallery from "react-image-gallery";
 import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
@@ -41,11 +40,12 @@ const PaintingDetail = ({ data }) => {
           data.link_to_digital_copy
             ? `<a
               class="text-primary-500 font-bold hover:text-secondary-500"
+              target="_blank"
               href=${data.manuscript_link}
             >${data.manuscript_name}</a>`
             : `<b>${data.manuscript_name}</b>`
-        }${
-          data.painting_folio ? ", f. " + data.painting_folio : ""
+        }${data.painting_folio ? ", f. " + data.painting_folio : ""}${
+          data.painting_scan ? ", s. " + data.painting_scan : ""
         }, or learn more about this manuscript at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
           data.web_page_address
         }" >PEMM Manuscript page</a>. You can also read the related story at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${

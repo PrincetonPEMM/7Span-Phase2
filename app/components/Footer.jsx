@@ -25,7 +25,7 @@ const Footer = () => {
   const exploreItems = [
     { title: "Find Stories", link: "/stories" },
     { title: "Find Paintings", link: "/paintings" },
-    { title: "Find Manuscripts", link: "/research/arabic-manuscripts" },
+    { title: "Find Manuscripts", link: "/manuscripts" },
     { title: "Find Archives", link: "/research/repositories" },
     {
       title: "Featured Stories",
