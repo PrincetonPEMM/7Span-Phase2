@@ -2,6 +2,7 @@ import MdiMagnify from "@/assets/icons/MdiMagnify";
 import React from "react";
 
 const InputText = ({
+  id,
   label,
   value,
   onChange,
@@ -19,6 +20,7 @@ const InputText = ({
         <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
       )}
       <input
+        id={id}
         type="text"
         value={value}
         onChange={onChange}

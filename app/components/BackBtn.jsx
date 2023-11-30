@@ -4,13 +4,14 @@ import React from "react";
 
 const BackBtn = () => {
   return (
-    <div
+    <button
       onClick={() => window?.history?.back()}
+      area-label="Back to previous page"
       className="inline-flex items-center back-btn cursor-pointer mb-4 lg:hidden"
     >
       <MdiKeyboardBackspace />
       <span className="ml-2">Back</span>
-    </div>
+    </button>
   );
 };
 
