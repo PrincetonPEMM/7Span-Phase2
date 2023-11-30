@@ -16,6 +16,7 @@ const MasonryComp = ({ cards, keyword, redirect, value1, value2 }) => {
     >
       {cards.map((card, index) => (
         <Card
+          alt={`Read more about ${card.title}`}
           key={card.id + index}
           title={card.title}
           category={card.category}

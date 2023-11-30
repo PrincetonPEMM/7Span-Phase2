@@ -6,6 +6,7 @@ export default function Card({
   category,
   description,
   title,
+  alt,
   intro,
   author,
   keyword,
@@ -70,6 +71,7 @@ export default function Card({
         {collapseText(intro)}
         <Link
           href={redirect}
+          alt={alt}
           className="border mt-5 py-1 px-2 rounded font-normal inline-block text-sm bg-primary-500 hover:bg-transparent transition-colors text-primary-500 hover:text-primary-500 border-primary-500 hover:transition-colors"
         >
           Read More
