@@ -170,27 +170,31 @@ const Footer = () => {
           <Link
             href="https://www.facebook.com/pemmaryam"
             className="w-6 h-6 group"
-            aria-label="Facebook"
+            title="Facebook"
           >
             <MingcuteFacebookLine className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
           <Link
             href="https://www.instagram.com/pemmaryam/?igshid=NzZlODBkYWE4Ng%3D%3D"
             className="w-6 h-6 group"
-            aria-label="Instagram"
+            title="Instagram"
           >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <div className="w-6 h-6 group transition-colors" aria-label="TikTok">
+          <Link
+            href="#"
+            className="w-6 h-6 group transition-colors"
+            title="TikTok"
+          >
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
-          </div>
+          </Link>
           {/* <Link href="@pemmaryam" className="w-6 h-6 group transition-colors">
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link> */}
           <Link
             href="https://twitter.com/pemmaryam"
             className="w-6 h-6 group"
-            aria-label="Twitter"
+            title="Twitter"
           >
             <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>

@@ -117,18 +117,24 @@ function CustomPagination({
   };
   return totalPages > 1 ? (
     <div className={`pagination-container ${className}`}>
-      <span
+      <button
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(1)}
+        area-label={`${currentPage === 1 ? "disabled" : "Move to first page"}`}
       >
         <MdiChevronDoubleLeft className="text-base" />
-      </span>
-      <span
-        className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
+      </button>
+      <button
+        className={`pagination-button ${
+          currentPage === 1 ? "disabled cursor-not-allowed" : ""
+        }`}
+        area-label={`Go to previous page ${
+          currentPage === 1 ? "disabled" : ""
+        }`}
         onClick={() => handlePageChange(currentPage - 1)}
       >
         <MdiChevronLeft className="text-base" />
-      </span>
+      </button>
       <input
         type="number"
         value={inputValue}
@@ -140,22 +146,26 @@ function CustomPagination({
       <span className="page-total text-primary-600 flex-none">
         of {totalPages ? totalPages : 0}
       </span>
-      <span
+      <button
         className={`pagination-button ${
+          currentPage === totalPages ? "disabled" : ""
+        }`}
+        area-label={`Move to next page ${
           currentPage === totalPages ? "disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage + 1)}
       >
         <MdiChevronRight className="text-base" />
-      </span>
-      <span
+      </button>
+      <button
         className={`pagination-button ${
           currentPage === totalPages ? "disabled" : ""
         }`}
         onClick={() => handlePageChange(totalPages)}
+        area-label={`Move to last page ${currentPage === 1 ? "enab" : ""}`}
       >
         <MdiChevronDoubleRight className="text-base" />
-      </span>
+      </button>
     </div>
   ) : null;
 }

@@ -322,10 +322,14 @@ const Paintings = ({
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
-              <span className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500">
+              <label
+                for="Search titles and painting descriptions"
+                className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
+              >
                 Search titles and painting descriptions
-              </span>
+              </label>
               <InputText
+                id="Search titles and painting descriptions"
                 value={search}
                 onChange={(e) => {
                   const query = e.target.value;
