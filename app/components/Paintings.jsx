@@ -291,6 +291,7 @@ const Paintings = ({
             </div>
             <div className="text-center w-full md:text-left">
               <button
+                area-label="clear all selected values"
                 className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                 onClick={() => {
                   setDateOfPaintins([]);
@@ -429,6 +430,7 @@ const Paintings = ({
               </div>
               <div className="text-center w-full md:text-left  hidden lg:block">
                 <button
+                  area-label="clear all selected values"
                   className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);

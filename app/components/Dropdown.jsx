@@ -37,13 +37,13 @@ const Dropdown = ({
     >
       <div className="relative">
         <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
-          <span className="block truncate">
+          <button className="block truncate">
             {title === "Date of Paintings"
               ? title
               : selected?.value
               ? selected?.value
               : title}
-          </span>
+          </button>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <MdiChevronDown
               className="h-5 w-5 text-offWhite-400"
@@ -83,7 +83,8 @@ const Dropdown = ({
                   else isSelected = Boolean(selected?.key === item?.key);
                   return (
                     <>
-                      <span
+                      <button
+                        area-label={`Select ${item.value}`}
                         className={`block truncate ${
                           values.selected || isSelected
                             ? "font-medium"
@@ -91,11 +92,11 @@ const Dropdown = ({
                         }`}
                       >
                         {item.value}
-                      </span>
+                      </button>
                       {values.selected || isSelected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-secondary-500 lg:pl-3">
+                        <button className="absolute inset-y-0 left-0 flex items-center pl-1 text-secondary-500 lg:pl-3">
                           <CheckIcon className="h-4 w-4" aria-hidden="true" />
-                        </span>
+                        </button>
                       ) : null}
                     </>
                   );
