@@ -490,6 +490,11 @@ const Stories = () => {
             childRef2={childRef2}
             childRef3={childRef3}
             isPageName={STORIES}
+            areaLabel={`${
+              setIsOpen
+                ? "Sidebar filter is expanded"
+                : "Sidebar filter is hidden"
+            }`}
             onChangeStory={useCallback(
               (e) => {
                 const { min, max } = e;
@@ -549,6 +554,7 @@ const Stories = () => {
         )}
         <button
           onClick={() => setIsOpen(true)}
+          area-label={setIsOpen ? "false" : "true"}
           className="block md:hidden h-6 w-6 text-primary-500"
         >
           <MdiMenuOpen className="text-white-500" />

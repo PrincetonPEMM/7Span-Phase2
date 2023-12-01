@@ -58,7 +58,7 @@ const Table = ({
     }`;
   };
 
-  const collapseText = (index, text) => {
+  const collapseText = (index, text, ariaLabel = "") => {
     if (!Number(text?.length)) {
       return "-";
     }
@@ -80,6 +80,7 @@ const Table = ({
           <button
             onClick={() => toggleExpand(index)}
             className="text-primary-500 hover:text-secondary-500 font-bold"
+            aria-label={`See more about ${ariaLabel}`}
           >
             See More
           </button>
@@ -175,13 +176,13 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative table-wrap">
+      <div className="relative table-wrap overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm ">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className=" px-3 py-3  text-left font-medium tracking-wider text-sm lg:text-base"
+                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
                   key={index}
                 >
                   {item.name}
@@ -267,7 +268,11 @@ const Table = ({
                         {isPageName === STORIES &&
                           buildShowingText(event.total_story_id_paintings)}
                         {isPageName === MANUSCRIPTS &&
-                          collapseText(index, event.ms_location_note)}
+                          collapseText(
+                            index,
+                            event.ms_location_note,
+                            event.manuscript_full_name
+                          )}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           buildShowingText(event.miracle_number)}
                       </td>
@@ -282,11 +287,19 @@ const Table = ({
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {/* This */}
                         {isPageName === STORIES &&
-                          collapseText(index, event.canonical_story_subject)}
+                          collapseText(
+                            index,
+                            event.canonical_story_subject,
+                            event.canonical_story_title
+                          )}
                         {isPageName === MANUSCRIPTS && event.language}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           (Boolean(event.incipit)
-                            ? collapseText(index, event.incipit)
+                            ? collapseText(
+                                index,
+                                event.incipit
+                                // event.manuscript_full_name
+                              )
                             : "-")}
                       </td>
                       {isPageName === MANUSCRIPTS && (
@@ -296,6 +309,7 @@ const Table = ({
                               <a
                                 href={event.link_to_digital_copy}
                                 target="_blank"
+                                area-label="Click here to See the Digital Copy"
                                 className="text-primary-500 font-bold hover:text-secondary-500"
                               >
                                 Digital Copy

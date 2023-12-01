@@ -30,6 +30,7 @@ const Sidebar = ({
   childRef3,
   childRef4 = null,
   isPageName,
+  areaLabel,
   onChangeStory,
   onChangeManuscript,
   onChangePainting,
@@ -86,11 +87,13 @@ const Sidebar = ({
         <button
           onClick={onClick}
           className="sticky top-0 block py-2 bg-primary-500 z-20"
+          area-label={areaLabel}
         >
           <MdiMenuOpen className="text-white-500 h-6 w-6" />
         </button>
         <button
           onClick={resetHandler}
+          area-label="Clear all selected values"
           className="sticky top-0 py-2 text-offWhite-500 inline-flex items-center z-20 text-sm"
         >
           Clear All <MdiReload className="text-white-500 h-5 w-5 ml-2" />
