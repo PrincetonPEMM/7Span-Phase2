@@ -201,7 +201,7 @@ const Sidebar = ({
           </div>
         </div>
       )}
-      <div className="block mt-10">
+      <div className="mt-5 flex items-start flex-wrap">
         <p className="text-white text-lg block mb-3">{langItem.title}</p>
 
         {langItem?.checkItem.map((item, index) => (

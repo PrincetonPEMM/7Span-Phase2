@@ -2,7 +2,7 @@ import { client } from "@/utils/directUs";
 import Hero from "./components/Hero";
 import { readItems } from "@directus/sdk";
 export const dynamic = "force-dynamic";
-import Script from 'next/script'
+import Script from "next/script";
 
 export default async function Home() {
   const result = await client.request(readItems("home", { fields: ["*.*.*"] }));
