@@ -502,6 +502,11 @@ const ManuScripts = () => {
             childRef3={childRef3}
             childRef4={childRef4}
             isPageName={MANUSCRIPTS}
+            areaLabel={`${
+              setIsOpen
+                ? "Sidebar filter is expanded"
+                : "Sidebar filter is hidden"
+            }`}
             onChangeStory={useCallback(
               (e) => {
                 const { min, max } = e;
@@ -556,12 +561,17 @@ const ManuScripts = () => {
 
       <div className="w-full grid pt-1">
         {!isOpen && (
-          <button onClick={() => setIsOpen(true)} className="">
+          <button
+            onClick={() => setIsOpen(true)}
+            className=""
+            areaLabel={`${setIsOpen ? "false " : "true"}`}
+          >
             <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
           </button>
         )}
         <button
           onClick={() => setIsOpen(true)}
+          area-label={setIsOpen ? "false" : "true"}
           className="block md:hidden h-6 w-6 text-primary-500"
         >
           <MdiMenuOpen className="text-white-500" />

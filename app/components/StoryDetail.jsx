@@ -68,7 +68,7 @@ export default function StoryDetail({ data, Id }) {
     // TRANSLATION_STATUS_OPTIONS
     let finalString = "";
     for (let translation of data.translations) {
-      let string = "<h2>";
+      let string = "<p>";
       string += `<b> ${translation.language_translated_to}: </b>`;
       string += `${translation.translation_author}. ${
         translation.translation_as_of_date
@@ -93,7 +93,7 @@ export default function StoryDetail({ data, Id }) {
         string += ` From ${translation.manuscript_name}, ${translation.translation_source_manuscript_folio}.`;
       }
 
-      string += "</h2>";
+      string += "</p>";
       finalString += string;
     }
     return finalString;

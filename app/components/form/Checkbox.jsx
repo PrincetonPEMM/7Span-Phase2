@@ -21,10 +21,10 @@ const Checkbox = (props) => {
 
   return (
     <>
-      <label className="checkbox flex items-center" htmlFor={id}>
+      <label className="checkbox flex items-center" htmlFor={label + " " + id}>
         <input
           type="checkbox"
-          name={id}
+          name={label + " " + id}
           checked={isChecked}
           defaultChecked={isChecked}
           onChange={changeHandler}

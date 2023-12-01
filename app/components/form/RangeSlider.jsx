@@ -89,6 +89,11 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
         min={min}
         max={max}
         value={maxVal}
+        role="slider"
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-valuenow={minVal}
+        aria-valuetext={`Selected range: ${minVal}`}
         onChange={(event) => {
           const value = Math.max(Number(event.target.value), minVal + 1);
           setMaxVal(value);
@@ -99,7 +104,7 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
 
       <div className="slider">
         <div className="slider__track inline-block" />
-        <div ref={range} className="slider__range inline-block" />
+        <button ref={range} className="slider__range inline-block" />
         <div className="slider__left-value inline-block">{minVal}</div>
         <div className="slider__right-value inline-block">{maxVal}</div>
       </div>

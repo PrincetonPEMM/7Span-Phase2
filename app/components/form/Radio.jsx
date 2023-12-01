@@ -35,10 +35,10 @@ const Radio = (props) => {
 
   return (
     <>
-      <label className="radiobox flex items-center" htmlFor={id}>
+      <label className="radiobox flex items-center" htmlFor={label + " " + id}>
         <input
           type="radio"
-          id={id}
+          id={label + " " + id}
           name={name}
           checked={isChecked}
           onChange={changeHandler}
