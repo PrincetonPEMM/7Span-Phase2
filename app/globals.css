@@ -266,6 +266,12 @@ body {
 .iconcheck input[type="checkbox"]:checked + span {
   @apply bg-secondary-500 text-white relative;
 }
+.isNotChecked {
+  @apply bg-offWhite-500 text-black rounded-3xl;
+}
+.isChecked {
+  @apply bg-secondary-500 text-white relative rounded-3xl;
+}
 .checkbox {
   @apply relative block cursor-pointer text-xs select-none;
   margin-bottom: 2px;
