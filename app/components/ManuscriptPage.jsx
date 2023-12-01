@@ -106,10 +106,13 @@ export default function Manuscript({ Id, data, table }) {
       }
       // array.push({ text });
     }
+    array.push({ text });
+
+    text = "";
     if (data.link_to_digital_copy != null) {
-      text += `To view the manuscript online, go <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">here</a>.`;
+      text = `To view the manuscript, go to the <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">digital copy</a>.`;
     } else {
-      text += data.link_to_digital_copy_note_external;
+      text = data.link_to_digital_copy_note_external;
     }
     array.push({ text });
 
