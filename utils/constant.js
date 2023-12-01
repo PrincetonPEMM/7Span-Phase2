@@ -59,14 +59,15 @@ export const rangeSliderMinNoOfPaintingsManuscriptsPage = 0;
 export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 200;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
 export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
+export const omitCanonical_Story_Id = 7000;
 export const storiesTableDetailView = [{ name: "Title of Story" }];
 export const storiesTableTitleView = [
-  { name: "Story ID" },
-  { name: "Story's Date of Origin" },
+  { name: "Story's Earliest Date" },
   { name: "Manuscripts with Story" },
   { name: "Paintings of Story" },
   { name: "Type of Mary Story" },
   { name: "Theme " },
+  { name: "Story ID" },
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
 export const manuscriptsTableTitleView = [
@@ -80,13 +81,14 @@ export const manuscriptsTableTitleView = [
   { name: "Manuscript's Digital Quality" },
 ];
 export const manuscriptsDetailTableTitle = [
-  { name: "Story ID" },
+  { name: "Order in MS" },
   { name: "Story Title" },
   { name: "Location in MS" },
-  { name: "Number in MS" },
+  // { name: "Paintings" },
   { name: "Story Recension" },
   { name: "Incipit" },
   { name: "Other Aspects" },
+  { name: "Story ID" },
 ];
 export const initialfilterItem = {
   title: "Filtered Search",
@@ -118,8 +120,8 @@ export const initialfilterItem = {
     ethiopianStories: {
       id: "4",
       isCheckbox: true,
-      key: "ethiopianStories",
-      label: "Ethiopian stories",
+      key: "africanStories",
+      label: "African stories",
       isChecked: false,
       isFirstBreak: false,
     },
@@ -562,6 +564,13 @@ export const initialOriginRegionManuScript = {
   isCheckbox: false,
   checkItem: [
     {
+      id: "10",
+      icon: true,
+      label: "Ethiopia:",
+      name: "ethiopia",
+      isChecked: false,
+    },
+    {
       id: "1",
       icon: false,
       label: "North Ethiopia ",
@@ -614,8 +623,8 @@ export const initialOriginRegionManuScript = {
     {
       id: "8",
       icon: false,
-      label: "Unknown",
-      name: "unknown",
+      label: "Iraq",
+      name: "iraq",
       isChecked: false,
     },
   ],
