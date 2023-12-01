@@ -625,11 +625,23 @@ input[type="number"] {
   transition-duration: 0.8s;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.banner-image:hover .banner-content {
+.banner-image:hover .banner-content,
+.banner-image:focus .banner-content,
+.banner-image:focus-visible .banner-content,
+.banner-image:focus-within .banner-content {
   transition-duration: 0.8s;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   opacity: 1;
+  outline: 0;
 }
+
+.banner-image:hover,
+.banner-image:focus,
+.banner-image:focus-visible,
+.banner-image:focus-within {
+  outline: 0;
+}
+
 .banner-image:hover img {
   transform: scale(1.1);
   transition: 2s;
@@ -925,7 +937,7 @@ input::-webkit-inner-spin-button {
 }
 
 .banner-detail p a {
-  @apply text-primary-700 hover:text-secondary-500;
+  @apply text-primary-700 hover:text-offBlack-500;
 }
 
 .people-description p a {

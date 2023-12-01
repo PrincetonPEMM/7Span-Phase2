@@ -7,27 +7,19 @@ import Image from "next/image";
 const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
   return (
     <div className="relative flex flex-col bg-black">
-      <button
+      <div
         id={id}
-        className="w-full aspect-auto h-full banner-image relative"
+        className="w-full aspect-auto h-full  relative"
         onClick={() => {
           selectedBanner.img === data.img
             ? setSelectedBanner({})
             : setSelectedBanner(data);
         }}
       >
-        <div className="relative hero-img overflow-hidden">
-          <Image
-            src={data.img}
-            width="400"
-            alt={data.alt}
-            height="700"
-            layout="responsive"
-            className="h-full bg-cover bg-top absolute inset-0"
-          />
-        </div>
-
-        <div className="text-white h-auto text-left z-30 px-5 absolute bottom-3 md:min-h-[300px] lg:bottom-1 xl:bottom-10 2xl:bottom-12">
+        <button
+          area-label={data.title}
+          className="text-white h-auto banner-image text-left z-30 px-5 absolute bottom-3 md:min-h-[300px] lg:bottom-1 xl:bottom-10 2xl:bottom-12"
+        >
           <span className="text-sm font-normal uppercase mr-1 font-menu xl:text-xl">
             {data.title.split(" ")[0]}
           </span>
@@ -46,7 +38,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
               <span>Learn More</span>
               <span
                 className={`h-6 w-6 transition-all ${
-                  setSelectedBanner ? "rotate-0 " : "rotate-180"
+                  setSelectedBanner ? "rotate-0" : "rotate-180"
                 }`}
               >
                 <MdiChevronDown className="h-6 w-6" />
@@ -57,8 +49,18 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
               dangerouslySetInnerHTML={{ __html: data.credit }}
             ></div>
           </div>
+        </button>
+        <div className="relative hero-img overflow-hidden">
+          <Image
+            src={data.img}
+            width="400"
+            alt={data.alt}
+            height="700"
+            layout="responsive"
+            className="h-full bg-cover bg-top absolute inset-0"
+          />
         </div>
-      </button>
+      </div>
       {/* Show the detailed view for the clicked item */}
       {selectedBanner.img === data.img && (
         <div className="md:hidden block" id="mobileScroll">
