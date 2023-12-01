@@ -9,7 +9,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
     <div className="relative flex flex-col bg-black">
       <div
         id={id}
-        className="w-full aspect-auto h-full  relative"
+        className="w-full aspect-auto h-full banner-image relative"
         onClick={() => {
           selectedBanner.img === data.img
             ? setSelectedBanner({})
@@ -17,8 +17,8 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
         }}
       >
         <button
-          area-label={data.title}
-          className="text-white h-auto banner-image text-left z-30 px-5 absolute bottom-3 md:min-h-[300px] lg:bottom-1 xl:bottom-10 2xl:bottom-12"
+          area-label={`Learn more ${data.title}`}
+          className="text-white h-auto  text-left z-30 px-5 absolute bottom-3 md:min-h-[300px] lg:bottom-1 xl:bottom-10 2xl:bottom-12"
         >
           <span className="text-sm font-normal uppercase mr-1 font-menu xl:text-xl">
             {data.title.split(" ")[0]}
@@ -34,6 +34,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
             <a
               href={data.id}
               className="text-offWhite-500 text-sm delay-75 flex items-center hover:text-secondary-500"
+              aria-expanded={`${setSelectedBanner ? "false" : "true"}`}
             >
               <span>Learn More</span>
               <span

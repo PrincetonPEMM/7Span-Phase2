@@ -58,7 +58,7 @@ const Table = ({
     }`;
   };
 
-  const collapseText = (index, text) => {
+  const collapseText = (index, text, ariaLabel = "") => {
     if (!Number(text?.length)) {
       return "-";
     }
@@ -80,6 +80,7 @@ const Table = ({
           <button
             onClick={() => toggleExpand(index)}
             className="text-primary-500 hover:text-secondary-500 font-bold"
+            aria-label={`See more about ${ariaLabel}`}
           >
             See More
           </button>
@@ -175,13 +176,13 @@ const Table = ({
           tableData?.length ? "h-screen" : "h-auto block"
         } `}
       > */}
-      <div className="relative table-wrap">
+      <div className="relative table-wrap overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm ">
             <tr>
               {tableHeader?.map((item, index) => (
                 <th
-                  className=" px-3 py-3  text-left font-medium tracking-wider text-sm lg:text-base"
+                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
                   key={index}
                 >
                   {item.name}
@@ -225,7 +226,7 @@ const Table = ({
                     >
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4 text-sm lg:text-base">
                         {isPageName === STORIES &&
-                          buildShowingText(event.canonical_story_id)}
+                          buildShowingText(event.earliest_attestation)}
                         {isPageName === MANUSCRIPTS &&
                           `${
                             event.manuscript_date_range_start &&
@@ -238,42 +239,43 @@ const Table = ({
                                   event.manuscript_date_range_end
                               : "-"
                           }`}
-                        {isPageName === MANUSCRIPT_DETAIL && (
-                          <Link
-                            href={`/stories/${event.id}`}
-                            className="text-primary-500 hover:text-secondary-500 font-bold"
-                          >
-                            {buildShowingText(event.canonical_story_id)}
-                          </Link>
-                        )}
-                      </td>
-                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                        {isPageName === STORIES &&
-                          buildShowingText(event.earliest_attestation)}
-                        {isPageName === MANUSCRIPTS &&
-                          buildShowingText(event.total_stories)}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          buildShowingText(event.canonical_story_title)}
+                          buildShowingText(event.miracle_number)}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
                           buildShowingText(event.total_records)}
                         {isPageName === MANUSCRIPTS &&
-                          buildShowingText(event.total_unique_stories)}
-                        {isPageName === MANUSCRIPT_DETAIL &&
-                          LocationInMs(event)}
+                          buildShowingText(event.total_stories)}
+                        {isPageName === MANUSCRIPT_DETAIL && (
+                          <Link
+                            href={`/stories/${event.id}`}
+                            className="text-primary-500 hover:text-secondary-500 font-bold"
+                          >
+                            {buildShowingText(event.canonical_story_title)}
+                          </Link>
+                        )}
                       </td>
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {isPageName === STORIES &&
                           buildShowingText(event.total_story_id_paintings)}
                         {isPageName === MANUSCRIPTS &&
-                          collapseText(index, event.ms_location_note)}
+                          buildShowingText(event.total_unique_stories)}
                         {isPageName === MANUSCRIPT_DETAIL &&
-                          buildShowingText(event.miracle_number)}
+                          LocationInMs(event)}
                       </td>
+                      {[STORIES, MANUSCRIPTS].includes(isPageName) && (
+                        <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
+                          {isPageName === STORIES &&
+                            buildShowingText(event.type_of_story)}
+                          {isPageName === MANUSCRIPTS &&
+                            collapseText(index, event.ms_location_note)}
+                          {/* {isPageName === MANUSCRIPT_DETAIL && "-"} */}
+                        </td>
+                      )}
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
                         {isPageName === STORIES &&
-                          buildShowingText(event.type_of_story)}
+                          collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS &&
                           buildShowingText(event.total_manuscript_paintings)}
                         {isPageName === MANUSCRIPT_DETAIL &&
@@ -282,11 +284,15 @@ const Table = ({
                       <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                         {/* This */}
                         {isPageName === STORIES &&
-                          collapseText(index, event.canonical_story_subject)}
+                          buildShowingText(event.canonical_story_id)}
                         {isPageName === MANUSCRIPTS && event.language}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           (Boolean(event.incipit)
-                            ? collapseText(index, event.incipit)
+                            ? collapseText(
+                                index,
+                                event.incipit
+                                // event.manuscript_full_name
+                              )
                             : "-")}
                       </td>
                       {isPageName === MANUSCRIPTS && (
@@ -296,6 +302,7 @@ const Table = ({
                               <a
                                 href={event.link_to_digital_copy}
                                 target="_blank"
+                                area-label="Click here to See the Digital Copy"
                                 className="text-primary-500 font-bold hover:text-secondary-500"
                               >
                                 Digital Copy
@@ -312,18 +319,23 @@ const Table = ({
                         </>
                       )}
                       {isPageName === MANUSCRIPT_DETAIL && (
-                        <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
-                          {(() => {
-                            if (event.total_records === 1) return "☆";
-                            if (event.stanza === "Yes") return "♫";
-                            if (
-                              event.confidence_score === "Low" ||
-                              event.confidence_score === "Medium"
-                            )
-                              return "(?)";
-                            return "-";
-                          })()}
-                        </td>
+                        <>
+                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                            {(() => {
+                              if (event.total_records === 1) return "☆";
+                              if (event.stanza === "Yes") return "♫";
+                              if (
+                                event.confidence_score === "Low" ||
+                                event.confidence_score === "Medium"
+                              )
+                                return "(?)";
+                              return "-";
+                            })()}
+                          </td>
+                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                            {buildShowingText(event.canonical_story_id)}
+                          </td>
+                        </>
                       )}
                     </tr>
                   }

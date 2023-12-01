@@ -14,8 +14,8 @@ const InputText = ({
   children,
 }) => {
   return (
-    <div className="w-full">
-      {label && <label className={previewClass}>{label}</label>}
+    <fieldset className="w-full">
+      {label && <legend className={previewClass}>{label}</legend>}
       {magnify && (
         <MdiMagnify className="h-4 w-4 md:h-6 md:w-6 absolute inset-y-0 left-3 md:left-5 my-auto text-primary-700" />
       )}
@@ -32,7 +32,7 @@ const InputText = ({
       {iconBefore && children}
       <span>{label}</span>
       {iconAfter && children}
-    </div>
+    </fieldset>
   );
 };
 
