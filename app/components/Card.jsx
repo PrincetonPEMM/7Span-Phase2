@@ -65,7 +65,7 @@ export default function Card({
           {category.toLowerCase() === keyword ? value1 : value2}
         </span>
         <h3 className="font-bold lg:text-2xl">{title}</h3>
-        {date && <p className="my-1 font-light text-xs">{date}</p>}
+        {date && <p className="my-1 text-xs font-bold">{date}</p>}
         <h4 className="font-sm font-semibold">{author && "by " + author}</h4>
         {collapseText(intro)}
         <Link

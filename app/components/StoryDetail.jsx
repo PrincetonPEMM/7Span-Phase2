@@ -104,9 +104,6 @@ export default function StoryDetail({ data, Id }) {
       {
         label: "About",
       },
-      {
-        label: "Information",
-      },
     ];
     if (data.summary_plot)
       tabArr.push({
@@ -119,6 +116,9 @@ export default function StoryDetail({ data, Id }) {
       tabArr.push({
         label: "Translation",
       });
+    tabArr.push({
+      label: "Information",
+    });
     tabArr.push({
       label: "Manuscripts",
     });
@@ -449,87 +449,6 @@ export default function StoryDetail({ data, Id }) {
             </div>
           </Tab.Panel>
 
-          {/* Information */}
-          <Tab.Panel className="p-4 md:p-6">
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body p-0">
-                <li>
-                  <h3 className="text-lg font-bold uppercase text-justify">
-                    CONTENT INFORMATION
-                  </h3>
-                  <ul className="ml-3 -indent-3">
-                    <p className="text-base leading-normal">
-                      <b>Story Type: </b>
-                      {data?.type_of_story ? data?.type_of_story : "none"}
-                    </p>
-                    <p className="text-base leading-normal">
-                      <b>Story Theme(s): </b>
-                      {data?.canonical_story_subject
-                        ? data?.canonical_story_subject
-                        : "none"}
-                    </p>
-                    {data?.readings_dates && (
-                      <p className="text-sm leading-normal">
-                        <b>Date Read in Church: </b>
-                        {data?.readings_dates}
-                      </p>
-                    )}
-                  </ul>
-                </li>
-                <li>
-                  <h3 className="text-lg mb-1 font-bold uppercase text-justify">
-                    TECHNICAL INFORMATION
-                  </h3>
-                  <ul className="text-sm ml-3 -indent-3">
-                    <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story: </b>
-                      {data?.manuscript_date_range_start &&
-                      data?.manuscript_date_range_end
-                        ? data?.manuscript_date_range_start ===
-                          data?.manuscript_date_range_end
-                          ? data?.manuscript_date_range_start
-                          : data.manuscript_date_range_start +
-                            " - " +
-                            data.manuscript_date_range_end
-                        : " none "}
-                    </p>
-                    <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears: </b>
-                      {data?.names_of_mss_with_earliest_attestation}
-                    </p>
-                    <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears: </b>
-                      {data?.total_records}
-                    </p>
-                    <p className="leading-normal">
-                      <b>Total Incipits in the ITool: </b>
-                      {data?.total_incipits_typed}
-                    </p>
-                    <p className="leading-normal">
-                      <b>Incipit(s): </b>
-                      {IncipitFun()}
-                    </p>
-                    <p className="leading-normal">
-                      <b>ID Numbers: </b> PEMM Theme ID{" "}
-                      {data?.pemm_theme_id_number}; PEMM ID {Id}
-                      {data?.canonical_story_id <= macomber_id_number &&
-                        "; Macomber ID " + data?.canonical_story_id}
-                      {data?.hamburg_id
-                        ? "; Beta maṣāḥǝft  ID " + data?.hamburg_id
-                        : ""}
-                      {data?.clavis_id ? "; Clavis ID " + data?.clavis_id : ""}
-                      {data?.csm_number
-                        ? "; Cantigas ID " + data.csm_number
-                        : ""}
-                      {data?.poncelet_number
-                        ? "; Poncelet ID " + data.poncelet_number
-                        : ""}
-                    </p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-          </Tab.Panel>
           {/* Summary */}
           {data.summary_plot && (
             <Tab.Panel className="p-4 md:p-6">
@@ -628,6 +547,87 @@ export default function StoryDetail({ data, Id }) {
               </div>
             </Tab.Panel>
           )}
+          {/* Information */}
+          <Tab.Panel className="p-4 md:p-6">
+            <div className="space-y-4 mb-10">
+              <ol className="list-inside md:pl-4 font-body p-0">
+                <li>
+                  <h3 className="text-lg font-bold uppercase text-justify">
+                    CONTENT INFORMATION
+                  </h3>
+                  <ul className="ml-3 -indent-3">
+                    <p className="text-base leading-normal">
+                      <b>Story Type: </b>
+                      {data?.type_of_story ? data?.type_of_story : "none"}
+                    </p>
+                    <p className="text-base leading-normal">
+                      <b>Story Theme(s): </b>
+                      {data?.canonical_story_subject
+                        ? data?.canonical_story_subject
+                        : "none"}
+                    </p>
+                    {data?.readings_dates && (
+                      <p className="text-sm leading-normal">
+                        <b>Date Read in Church: </b>
+                        {data?.readings_dates}
+                      </p>
+                    )}
+                  </ul>
+                </li>
+                <li>
+                  <h3 className="text-lg mb-1 font-bold uppercase text-justify">
+                    TECHNICAL INFORMATION
+                  </h3>
+                  <ul className="text-sm ml-3 -indent-3">
+                    <p className="leading-normal">
+                      <b>Earliest Attested Instance of the Story: </b>
+                      {data?.manuscript_date_range_start &&
+                      data?.manuscript_date_range_end
+                        ? data?.manuscript_date_range_start ===
+                          data?.manuscript_date_range_end
+                          ? data?.manuscript_date_range_start
+                          : data.manuscript_date_range_start +
+                            " - " +
+                            data.manuscript_date_range_end
+                        : " none "}
+                    </p>
+                    <p className="leading-normal">
+                      <b>Earliest Manuscripts in which Story Appears: </b>
+                      {data?.names_of_mss_with_earliest_attestation}
+                    </p>
+                    <p className="leading-normal">
+                      <b>Total Manuscripts in which Story Appears: </b>
+                      {data?.total_records}
+                    </p>
+                    <p className="leading-normal">
+                      <b>Total Incipits in the ITool: </b>
+                      {data?.total_incipits_typed}
+                    </p>
+                    <p className="leading-normal">
+                      <b>Incipit(s): </b>
+                      {IncipitFun()}
+                    </p>
+                    <p className="leading-normal">
+                      <b>ID Numbers: </b> PEMM Theme ID{" "}
+                      {data?.pemm_theme_id_number}; PEMM ID {Id}
+                      {data?.canonical_story_id <= macomber_id_number &&
+                        "; Macomber ID " + data?.canonical_story_id}
+                      {data?.hamburg_id
+                        ? "; Beta maṣāḥǝft  ID " + data?.hamburg_id
+                        : ""}
+                      {data?.clavis_id ? "; Clavis ID " + data?.clavis_id : ""}
+                      {data?.csm_number
+                        ? "; Cantigas ID " + data.csm_number
+                        : ""}
+                      {data?.poncelet_number
+                        ? "; Poncelet ID " + data.poncelet_number
+                        : ""}
+                    </p>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </Tab.Panel>
 
           {/* Manuscripts */}
           <Tab.Panel className="p-4 md:p-6">

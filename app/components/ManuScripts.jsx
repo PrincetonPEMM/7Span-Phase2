@@ -25,6 +25,7 @@ import {
 import useDebounce from "@/utils/useDebounce";
 import CustomPagination from "./Pagination";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import FilterButton from "./form/FilterButton";
 
 const ManuScripts = () => {
   const params = useSearchParams();
@@ -35,6 +36,9 @@ const ManuScripts = () => {
   const pageParams = pageP > 1 ? pageP : 1;
   const searchP = params.get("search");
   const searchParams = searchP ? searchP : "";
+  const sortP = params.get("sort");
+  const sortParams = sortP ? sortP : "";
+
   const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
@@ -78,6 +82,8 @@ const ManuScripts = () => {
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(manuscriptsTableTitleView);
   const [isOpen, setIsOpen] = useState(true);
+  const [ascDescFil, setAscDescFil] = useState(sortParams);
+  const [sortingRow, setSortingRow] = useState({});
   const childRef1 = useRef();
   const childRef2 = useRef();
   const childRef3 = useRef();
@@ -162,6 +168,12 @@ const ManuScripts = () => {
       setFilterInParams("page", page, true);
     }
 
+    if (ascDescFil) {
+      setFilterInParams("sort", ascDescFil, false);
+    } else {
+      setFilterInParams("sort", "", true);
+    }
+
     try {
       setIsLoadint(true);
       const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
@@ -203,7 +215,7 @@ const ManuScripts = () => {
       )}&${makeParamsArray(
         "knownOriginRegion",
         originRegion
-      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
         searchKey.length > 3 ? searchKey : ""
       }
     `;
@@ -229,7 +241,7 @@ const ManuScripts = () => {
       setPage(pageParams);
       getFilterFromParams();
     }
-  }, [filterItem, placeItem, originRegion]);
+  }, [filterItem, placeItem, originRegion, ascDescFil]);
 
   useEffect(() => {
     if (isMount1) fetchData(search);
@@ -285,6 +297,8 @@ const ManuScripts = () => {
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
     fetchData("");
+    setAscDescFil("");
+    setSortingRow({});
     router.push(`${pathname}`);
   };
 
@@ -503,9 +517,7 @@ const ManuScripts = () => {
             childRef4={childRef4}
             isPageName={MANUSCRIPTS}
             areaLabel={`${
-              setIsOpen
-                ? "Sidebar filter is expanded"
-                : "Sidebar filter is hidden"
+              isOpen ? "Sidebar filter is expanded" : "Sidebar filter is hidden"
             }`}
             onChangeStory={useCallback(
               (e) => {
@@ -561,21 +573,36 @@ const ManuScripts = () => {
 
       <div className="w-full grid pt-1">
         {!isOpen && (
-          <button
-            onClick={() => setIsOpen(true)}
-            className=""
-            areaLabel={`${setIsOpen ? "false " : "true"}`}
-          >
-            <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
-          </button>
+          // <button
+          //   onClick={() => setIsOpen(true)}
+          //   className="kwya"
+          //   areaLabel={isOpen ? true : false}
+          // >
+          //   <MdiMenuOpen className="text-primary-500 md:block hidden h-6 w-6" />
+          // </button>
+
+          <FilterButton
+            // onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            areaLabel={isOpen ? true : false}
+            className="text-primary-500 md:block hidden h-6 w-6"
+          />
         )}
-        <button
+        {/* <button
           onClick={() => setIsOpen(true)}
           area-label={setIsOpen ? "false" : "true"}
           className="block md:hidden h-6 w-6 text-primary-500"
         >
           <MdiMenuOpen className="text-white-500" />
-        </button>
+        </button> */}
+        <FilterButton
+          onClick={() => setIsOpen(true)}
+          area-label={isOpen ? false : true}
+          className="block md:hidden h-6 w-6 text-primary-500"
+        />
+
         <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6  lg:gap-0 ">
           <div className="relative w-full mb-2 lg:mb-0 sm:col-span-4 lg:col-span-2 lg:max-w-4xl">
             <label
@@ -679,6 +706,10 @@ const ManuScripts = () => {
           // }}
           expandedRows={expandedRows}
           setExpandedRows={setExpandedRows}
+          setAscDescFil={setAscDescFil}
+          ascDescFil={ascDescFil}
+          sortingRow={sortingRow}
+          setSortingRow={setSortingRow}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">

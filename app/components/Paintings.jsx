@@ -16,6 +16,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import FilterButton from "./form/FilterButton";
 
 let mounted = false;
 
@@ -314,12 +315,18 @@ const Paintings = ({
       </OutsideClickHandler>
       {/* sidebar filter ENd  */}
       <div className="px-4 md:px-5">
-        <button
+        {/* <button
           onClick={menuIconClick}
           className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
         >
           <MdiMenuOpen className="text-primary-500" />
-        </button>
+        </button> */}
+        <FilterButton
+          onClick={menuIconClick}
+          area-label={menuCollapse ? false : true}
+          className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
+        ></FilterButton>
+
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
