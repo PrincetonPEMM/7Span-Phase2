@@ -124,7 +124,7 @@ const Sidebar = ({
       </div>
       <div className="block mt-7">
         <p className="text-white text-lg block mb-3">
-          {isPageName === STORIES && "Story's Date of Origin"}
+          {isPageName === STORIES && "Story's Earliest Date"}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </p>
         <RangeSlider

@@ -34,6 +34,8 @@ const Stories = () => {
   const pageParams = pageP > 1 ? pageP : 1;
   const searchP = params.get("search");
   const searchParams = searchP ? searchP : "";
+  const sortP = params.get("sort");
+  const sortParams = sortP ? sortP : "";
 
   const { debounce } = useDebounce();
   const [page, setPage] = useState(pageParams);
@@ -69,6 +71,8 @@ const Stories = () => {
   const [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
+  const [ascDescFil, setAscDescFil] = useState(sortParams);
+  const [sortingRow, setSortingRow] = useState({});
   const childRef1 = useRef();
   const childRef2 = useRef();
   const childRef3 = useRef();
@@ -147,6 +151,12 @@ const Stories = () => {
       setFilterInParams("page", page, true);
     }
 
+    if (ascDescFil) {
+      setFilterInParams("sort", ascDescFil, false);
+    } else {
+      setFilterInParams("sort", "", true);
+    }
+
     try {
       setIsLoadint(true);
       const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
@@ -154,7 +164,7 @@ const Stories = () => {
         "withPaintings"
       )}${getFilterFalsyValue(
         filterItem,
-        "ethiopianStories"
+        "africanStories"
       )}${getFilterFalsyValue(
         filterItem,
         "miracleOfMaryStories"
@@ -197,7 +207,9 @@ const Stories = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "withEnglishTranslation"
-      )}filters[search]=${searchKey.length > 3 ? searchKey : ""}
+      )}sort=${ascDescFil}&filters[search]=${
+        searchKey.length > 3 ? searchKey : ""
+      }
     `;
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
@@ -225,7 +237,7 @@ const Stories = () => {
       setPage(pageParams);
       getFilterFromParams();
     }
-  }, [filterItem, placeItem, langOriginalItem, langTranslatedItem]);
+  }, [filterItem, placeItem, langOriginalItem, langTranslatedItem, ascDescFil]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -277,6 +289,7 @@ const Stories = () => {
     setPage(1);
     setSearch("");
     fetchData("");
+    setAscDescFil("");
     router.push(`${pathname}`);
   };
 
@@ -388,7 +401,7 @@ const Stories = () => {
     const withPaintings = params.get("withPaintings");
     const mostIllustrated = params.get("mostIllustrated");
     const withEnglishTranslation = params.get("withEnglishTranslation");
-    const ethiopianStories = params.get("ethiopianStories");
+    const africanStories = params.get("africanStories");
     const miracleOfMaryStories = params.get("miracleOfMaryStories");
     const lifeOfMaryStories = params.get("lifeOfMaryStories");
     const earliestStories = params.get("earliestStories");
@@ -416,9 +429,9 @@ const Stories = () => {
           ...filterItem.checkItem["withEnglishTranslation"],
           isChecked: withEnglishTranslation ? true : false,
         },
-        ["ethiopianStories"]: {
-          ...filterItem.checkItem["ethiopianStories"],
-          isChecked: ethiopianStories ? true : false,
+        ["africanStories"]: {
+          ...filterItem.checkItem["africanStories"],
+          isChecked: africanStories ? true : false,
         },
         ["miracleOfMaryStories"]: {
           ...filterItem.checkItem["miracleOfMaryStories"],
@@ -657,6 +670,10 @@ const Stories = () => {
           // }}
           expandedRows={expandedRows}
           setExpandedRows={setExpandedRows}
+          setAscDescFil={setAscDescFil}
+          ascDescFil={ascDescFil}
+          sortingRow={sortingRow}
+          setSortingRow={setSortingRow}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center py-20 justify-center w-full text-2xl text-primary-500 font-bold">
