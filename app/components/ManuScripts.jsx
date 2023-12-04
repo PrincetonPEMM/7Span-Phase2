@@ -297,6 +297,7 @@ const ManuScripts = () => {
     setSearch("");
     fetchData("");
     setAscDescFil("");
+    setSortingRow({});
     router.push(`${pathname}`);
   };
 
