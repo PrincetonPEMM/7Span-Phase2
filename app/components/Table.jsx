@@ -222,7 +222,7 @@ const Table = ({
       > */}
       <div className="relative table-wrap overflow-auto">
         <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
-          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm ">
+          <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm align-top">
             <tr>
               {tableHeader?.map((item, index) => {
                 return (
