@@ -291,6 +291,7 @@ const Stories = () => {
     setSearch("");
     fetchData("");
     setAscDescFil("");
+    setSortingRow({})
     router.push(`${pathname}`);
   };
 
