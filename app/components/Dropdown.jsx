@@ -66,10 +66,10 @@ const Dropdown = ({
               <Listbox.Option
                 key={item.key + personIdx}
                 className={({ active }) =>
-                  `relative cursor-default select-none transition-all py-2 pl-6 ${
+                  `relative cursor-default select-none transition-all hover:text-black py-2 pl-6 ${
                     title !== "All Paintings" && "lg:pl-8"
                   }  pr-2 lg:pr-4 ${
-                    active ? "bg-offWhite-400 text-black" : "text-offwhite-500"
+                    active ? "bg-secondary-400 text-black" : "text-offwhite-500"
                   }`
                 }
                 value={item}
@@ -94,7 +94,7 @@ const Dropdown = ({
                         {item.value}
                       </button>
                       {values.selected || isSelected ? (
-                        <button className="absolute inset-y-0 left-0 flex items-center pl-1 text-secondary-500 lg:pl-3">
+                        <button className="absolute inset-y-0 left-0 flex items-center pl-1 hover:text-black lg:pl-3">
                           <CheckIcon className="h-4 w-4" aria-hidden="true" />
                         </button>
                       ) : null}
