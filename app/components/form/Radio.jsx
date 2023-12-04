@@ -52,7 +52,15 @@ const Radio = (props) => {
           // }}
         />
         <span className="radiomark"></span>
-        {label && <span className="ml-4 text-sm">{label}</span>}
+        {label && (
+          <span
+            className={`ml-4 text-sm ${
+              isChecked ? "checked text-secondary-500" : ""
+            }`}
+          >
+            {label}
+          </span>
+        )}
       </label>
     </>
   );

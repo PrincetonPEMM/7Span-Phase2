@@ -264,16 +264,16 @@ body {
   @apply text-black relative capitalize;
 }
 .iconcheck input[type="checkbox"]:checked {
-  @apply bg-secondary-500 text-white outline-0 bg-none focus:ring-0 focus:border-0  focus:ring-offset-0;
+  @apply bg-secondary-500 text-black outline-0 bg-none focus:ring-0 focus:border-0  focus:ring-offset-0;
 }
 .iconcheck input[type="checkbox"]:checked + span {
-  @apply bg-secondary-500 text-white relative;
+  @apply bg-secondary-500 text-black relative;
 }
 .isNotChecked {
   @apply bg-offWhite-500 text-black rounded-3xl;
 }
 .isChecked {
-  @apply bg-secondary-500 text-white relative rounded-3xl;
+  @apply bg-secondary-500 text-black relative rounded-3xl;
 }
 .checkbox {
   @apply relative block cursor-pointer text-xs select-none;

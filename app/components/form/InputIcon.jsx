@@ -45,17 +45,17 @@ const InputIcon = (props) => {
       {item?.icon && (
         <span
           className={`w-4 h-4 relative z-10 mr-1 ${
-            item?.isChecked ? "text-white" : ""
+            item?.isChecked ? "text-black" : ""
           } `}
         >
           <MdiLocateIcon
-            className={` ${item?.isChecked ? "text-white" : "text-black"}`}
+            className={` ${item?.isChecked ? "text-black" : "text-black"}`}
           />
         </span>
       )}
       {item?.label && (
         <>
-          <span className="text-sm capitalize leading-none z-10 ">
+          <span className="text-sm capitalize text-black leading-none z-10 ">
             {item?.label}
           </span>
           <span className="inputBefore"></span>
