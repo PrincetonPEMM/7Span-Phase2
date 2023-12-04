@@ -1,4 +1,7 @@
 "use client";
+import MdiChevronDoubleUp from "@/assets/icons/CilSortAscending";
+import MdiChevronDoubleDown from "@/assets/icons/CilSortDescending";
+import PhArrowsDownUpFill from "@/assets/icons/PhArrowsDownUpFill";
 import { MANUSCRIPT_DETAIL } from "@/utils/constant";
 import { MANUSCRIPTS, STORIES } from "@/utils/constant";
 import Link from "next/link";
@@ -16,8 +19,11 @@ const Table = ({
   // onPageChange,
   expandedRows,
   setExpandedRows,
+  setAscDescFil,
+  ascDescFil,
+  sortingRow,
+  setSortingRow,
 }) => {
-  // const [expandedRows, setExpandedRows] = useState([]);
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
       setExpandedRows(expandedRows.filter((row) => row !== rowIndex));
@@ -169,6 +175,44 @@ const Table = ({
     };
   }, []);
 
+  const sortingFun = (value, isClicked) => {
+    const isSelected = value === ascDescFil;
+    console.log(sortingRow, "sortingRow", ascDescFil, value, isClicked);
+    if (!isClicked) {
+      return (
+        <button
+          onClick={() => {
+            setSortingRow({ [value]: true });
+            setAscDescFil(value);
+          }}
+          className={` hover:text-secondary-500 `}
+        >
+          <PhArrowsDownUpFill className="text-xl inline-block w-5 h-5 font-bold" />
+        </button>
+      );
+    }
+
+    return (
+      <span className="flex flex-col">
+        {isSelected ? (
+          <button
+            onClick={() => setAscDescFil(`-${value}`)}
+            className={` text-secondary-500 `}
+          >
+            <MdiChevronDoubleUp className="text-xl inline-block w-5 h-5 font-bold" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setAscDescFil(value)}
+            className={` text-secondary-600`}
+          >
+            <MdiChevronDoubleDown className="text-xl inline-block w-5 h-5 font-bold" />
+          </button>
+        )}
+      </span>
+    );
+  };
+
   return (
     <>
       {/* <div
@@ -180,14 +224,24 @@ const Table = ({
         <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm align-top">
             <tr>
-              {tableHeader?.map((item, index) => (
-                <th
-                  className=" px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
-                  key={index}
-                >
-                  {item.name}
-                </th>
-              ))}
+              {tableHeader?.map((item, index) => {
+                return (
+                  <th
+                    className="px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"
+                    key={index}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <span>{item.name}</span>
+                      {isPageName === STORIES &&
+                        [0, 1, 2].includes(index) &&
+                        sortingFun(item.value, sortingRow[item?.value])}
+                      {isPageName === MANUSCRIPTS &&
+                        [0, 1, 2, 4].includes(index) &&
+                        sortingFun(item.value, sortingRow[item?.value])}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody className="table-body min-h-[300px] table-body align-baseline  bg-offWhite-500 text-sm font-light text-primary-500">

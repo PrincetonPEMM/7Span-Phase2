@@ -36,6 +36,9 @@ const ManuScripts = () => {
   const pageParams = pageP > 1 ? pageP : 1;
   const searchP = params.get("search");
   const searchParams = searchP ? searchP : "";
+  const sortP = params.get("sort");
+  const sortParams = sortP ? sortP : "";
+
   const [expandedRows, setExpandedRows] = useState([]);
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
@@ -79,6 +82,8 @@ const ManuScripts = () => {
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(manuscriptsTableTitleView);
   const [isOpen, setIsOpen] = useState(true);
+  const [ascDescFil, setAscDescFil] = useState(sortParams);
+  const [sortingRow, setSortingRow] = useState({});
   const childRef1 = useRef();
   const childRef2 = useRef();
   const childRef3 = useRef();
@@ -163,6 +168,12 @@ const ManuScripts = () => {
       setFilterInParams("page", page, true);
     }
 
+    if (ascDescFil) {
+      setFilterInParams("sort", ascDescFil, false);
+    } else {
+      setFilterInParams("sort", "", true);
+    }
+
     try {
       setIsLoadint(true);
       const params = `page=${page}&perPage=${perPage}&${getFilterFalsyValue(
@@ -204,7 +215,7 @@ const ManuScripts = () => {
       )}&${makeParamsArray(
         "knownOriginRegion",
         originRegion
-      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&filters[search]=${
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
         searchKey.length > 3 ? searchKey : ""
       }
     `;
@@ -230,7 +241,7 @@ const ManuScripts = () => {
       setPage(pageParams);
       getFilterFromParams();
     }
-  }, [filterItem, placeItem, originRegion]);
+  }, [filterItem, placeItem, originRegion, ascDescFil]);
 
   useEffect(() => {
     if (isMount1) fetchData(search);
@@ -286,6 +297,7 @@ const ManuScripts = () => {
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
     fetchData("");
+    setAscDescFil("");
     router.push(`${pathname}`);
   };
 
@@ -693,6 +705,10 @@ const ManuScripts = () => {
           // }}
           expandedRows={expandedRows}
           setExpandedRows={setExpandedRows}
+          setAscDescFil={setAscDescFil}
+          ascDescFil={ascDescFil}
+          sortingRow={sortingRow}
+          setSortingRow={setSortingRow}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">

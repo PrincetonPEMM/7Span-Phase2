@@ -62,23 +62,23 @@ export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
 export const omitCanonical_Story_Id = 7000;
 export const storiesTableDetailView = [{ name: "Title of Story" }];
 export const storiesTableTitleView = [
-  { name: "Story's Earliest Date" },
-  { name: "Manuscripts with Story" },
-  { name: "Paintings of Story" },
-  { name: "Type of Mary Story" },
-  { name: "Theme " },
-  { name: "Story ID" },
+  { name: "Story's Earliest Date", value: "dateOfOrigin" },
+  { name: "Manuscripts with Story", value: "totalManuscriptStory" },
+  { name: "Paintings of Story", value: "totalPaintingStory" },
+  { name: "Type of Mary Story", value: "" },
+  { name: "Theme ", value: "" },
+  { name: "Story ID", value: "" },
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
 export const manuscriptsTableTitleView = [
-  { name: "Date Manuscript Created" },
-  { name: "Manuscript's Number of Stories" },
-  { name: "Manuscript's Number of Unique Stories" },
-  { name: "Manuscript's Place of Origin" },
-  { name: "Manuscript's Number of Paintings" },
-  { name: "Manuscript's Language" },
-  { name: "Link to Manuscript Online" },
-  { name: "Manuscript's Digital Quality" },
+  { name: "Date Manuscript Created", value: "dateCreated" },
+  { name: "Manuscript's Number of Stories", value: "totalStories" },
+  { name: "Manuscript's Number of Unique Stories", value: "uniqueStories" },
+  { name: "Manuscript's Place of Origin", value: "" },
+  { name: "Manuscript's Number of Paintings", value: "totalPaintings" },
+  { name: "Manuscript's Language", value: "" },
+  { name: "Link to Manuscript Online", value: "" },
+  { name: "Manuscript's Digital Quality", value: "" },
 ];
 export const manuscriptsDetailTableTitle = [
   { name: "Order in MS" },
