@@ -257,11 +257,14 @@ body {
 .iconcheck input[type="checkbox"] {
   @apply bg-offWhite-500 text-black;
 }
+.iconcheck input[type="checkbox"]:focus {
+  @apply outline-1 outline-secondary-500;
+}
 .iconcheck input[type="checkbox"] + span {
   @apply text-black relative capitalize;
 }
 .iconcheck input[type="checkbox"]:checked {
-  @apply bg-secondary-500 text-white outline-0 bg-none focus:ring-0 focus:border-0 focus:outline-0 focus:ring-offset-0 focus:outline-offset-0;
+  @apply bg-secondary-500 text-white outline-0 bg-none focus:ring-0 focus:border-0  focus:ring-offset-0;
 }
 .iconcheck input[type="checkbox"]:checked + span {
   @apply bg-secondary-500 text-white relative;
@@ -318,6 +321,9 @@ body {
 .checkbox .checkbox-input.checked + span + span {
   @apply text-secondary-500;
 }
+.checkbox .checkbox-input:focus + span {
+  @apply ring-1 ring-secondary-500;
+}
 .checkbox .checkbox-input.checked + .checkmark::before {
   @apply block;
 }
@@ -361,6 +367,9 @@ body {
 }
 .radiobox .radiobox-input.checked + .radiomark {
   @apply bg-secondary-500;
+}
+.radiobox .radiobox-input:focus + .radiomark {
+  @apply ring-1 ring-secondary-500;
 }
 .radiobox .radiobox-input.checked + .radiomark {
   background-color: rgb(0, 0, 0) 111;
@@ -997,10 +1006,12 @@ web accisibility css start  */
     transition: 2s;
   }
 }
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 1280px) {
   .table-wrap {
     @apply overflow-auto;
   }
+}
+@media only screen and (max-width: 640px) {
   .table-head tr th {
     min-width: 100px;
   }

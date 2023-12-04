@@ -117,7 +117,7 @@ export const initialfilterItem = {
       isChecked: false,
       isFirstBreak: false,
     },
-    ethiopianStories: {
+    africanStories: {
       id: "4",
       isCheckbox: true,
       key: "africanStories",
@@ -126,7 +126,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     withHymn: {
-      id: "11",
+      id: "5",
       isCheckbox: true,
       key: "withHymn",
       label: "With hymns",
@@ -134,7 +134,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     readInChurch: {
-      id: "14",
+      id: "6",
       isCheckbox: true,
       key: "readInChurch",
       label: "Most read in church",
@@ -142,7 +142,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     miracleOfMaryStories: {
-      id: "5",
+      id: "7",
       name: "type of story",
       isCheckbox: false,
       key: "miracleOfMaryStories",
@@ -151,7 +151,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     lifeOfMaryStories: {
-      id: "6",
+      id: "8",
       name: "type of story",
       isCheckbox: false,
       key: "lifeOfMaryStories",
@@ -160,7 +160,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     earliestStories: {
-      id: "7",
+      id: "9",
       name: "timeline",
       isCheckbox: false,
       key: "earliestStories",
@@ -169,7 +169,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     recentStories: {
-      id: "8",
+      id: "10",
       name: "timeline",
       isCheckbox: false,
       key: "recentStories",
@@ -178,7 +178,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     popularStories: {
-      id: "9",
+      id: "11",
       isCheckbox: false,
       name: "top of story",
       key: "popularStories",
@@ -187,7 +187,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     uniqueStories: {
-      id: "10",
+      id: "12",
       name: "top of story",
       isCheckbox: false,
       key: "uniqueStories",
@@ -197,7 +197,7 @@ export const initialfilterItem = {
     },
 
     printOnly: {
-      id: "12",
+      id: "13",
       isCheckbox: false,
       name: "printing",
       key: "printOnly",
@@ -206,7 +206,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     excludePrintOnly: {
-      id: "13",
+      id: "14",
       name: "printing",
       isCheckbox: false,
       key: "excludePrintOnly",
@@ -383,7 +383,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: false,
     },
     royalManuscript: {
-      id: "9",
+      id: "5",
       key: "royalManuscript",
       isCheckbox: true,
       label: "Royal manuscripts",
@@ -391,7 +391,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: false,
     },
     withHymns: {
-      id: "10",
+      id: "6",
       key: "withHymns",
       isCheckbox: true,
       label: "With hymns",
@@ -399,7 +399,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: false,
     },
     oldestManuscript: {
-      id: "5",
+      id: "7",
       name: "timeline",
       key: "oldestManuscript",
       isCheckbox: false,
@@ -408,7 +408,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: true,
     },
     recentManuscript: {
-      id: "6",
+      id: "8",
       name: "timeline",
       key: "recentManuscript",
       isCheckbox: false,
@@ -417,7 +417,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: false,
     },
     manyStories: {
-      id: "11",
+      id: "9",
       name: "story count",
       key: "manyStories",
       isCheckbox: false,
@@ -426,7 +426,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: true,
     },
     fewStories: {
-      id: "12",
+      id: "10",
       name: "story count",
       key: "fewStories",
       isCheckbox: false,
@@ -435,7 +435,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: false,
     },
     arabicManuscript: {
-      id: "7",
+      id: "11",
       name: "arabic",
       key: "arabicManuscript",
       isCheckbox: false,
@@ -444,7 +444,7 @@ export const initialfilterItemManuScript = {
       isFirstBreak: true,
     },
     arabicAndGaazManuscript: {
-      id: "8",
+      id: "12",
       name: "arabic",
       key: "gaazManuscript",
       isCheckbox: false,

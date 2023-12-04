@@ -19,6 +19,10 @@ const Footer = () => {
     { title: "Our Funders", link: "/about/people#our-funders" },
     { title: "News & Updates", link: "/about/news-and-updates" },
     { title: "Events & Workshops", link: "/about/events-and-workshops" },
+    {
+      title: "Digital accessibility",
+      link: "https://accessibility.princeton.edu/help",
+    },
     { title: "Using the Site", link: "/about/connect/using-the-site" },
     { title: "Contact Us", link: "/about/connect/contact-us" },
   ];

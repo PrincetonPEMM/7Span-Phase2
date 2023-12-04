@@ -44,7 +44,7 @@ const InputIcon = (props) => {
       />
       {item?.icon && (
         <span
-          className={`w-4 h-4 relative z-10  mr-1 ${
+          className={`w-4 h-4 relative z-10 mr-1 ${
             item?.isChecked ? "text-white" : ""
           } `}
         >
