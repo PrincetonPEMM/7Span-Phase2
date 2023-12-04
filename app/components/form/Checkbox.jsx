@@ -6,29 +6,39 @@ const Checkbox = (props) => {
     setFilterItem,
   } = props;
 
-  const changeHandler = () => {
-    setFilterItem((prevState) => ({
-      ...prevState,
-      checkItem: {
-        ...prevState.checkItem,
-        [key]: {
-          ...prevState.checkItem[key],
-          isChecked: !isChecked,
+  const changeHandler = (isFocus) => {
+    console.log(label, "Checkbox");
+    if (isFocus)
+      setFilterItem((prevState) => ({
+        ...prevState,
+        checkItem: {
+          ...prevState.checkItem,
+          [key]: {
+            ...prevState.checkItem[key],
+            isChecked: !isChecked,
+          },
         },
-      },
-    }));
+      }));
   };
 
   return (
     <>
-      <label className="checkbox flex items-center" htmlFor={label + " " + id}>
+      <label
+        className="checkbox focus:outline-1 focus:outline-secondary-500 flex items-center"
+        htmlFor={id}
+      >
         <input
           type="checkbox"
           name={label + " " + id}
           checked={isChecked}
+          id={id}
           defaultChecked={isChecked}
           onChange={changeHandler}
-          className={`checkbox-input  focus:ring-0 ${
+          // onKeyDown={(e) => {
+          //   if (e.keyCode === 13) changeHandler(true);
+          //   if (e.keyCode === 9) changeHandler(false);
+          // }}
+          className={`checkbox-input  focus:outline-1 focus:outline-secondary-500 ${
             isChecked ? "checked" : ""
           }`}
         />

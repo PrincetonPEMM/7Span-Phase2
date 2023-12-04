@@ -1,5 +1,5 @@
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
@@ -23,6 +23,8 @@ import {
 } from "@/utils/constant";
 import Radio from "./form/Radio";
 import MdiReload from "@/assets/icons/MdiReload";
+import { useAmp } from "next/amp";
+import FilterButton from "./form/FilterButton";
 
 const Sidebar = ({
   childRef1,
@@ -84,13 +86,18 @@ const Sidebar = ({
   return (
     <div className=" w-full rounded-md text-white">
       <div className="flex items-center justify-between sticky z-20 top-0 bg-primary-500">
-        <button
+        {/* <button
           onClick={onClick}
           className="sticky top-0 block py-2 bg-primary-500 z-20"
           area-label={areaLabel}
         >
           <MdiMenuOpen className="text-white-500 h-6 w-6" />
-        </button>
+        </button> */}
+        <FilterButton
+          onClick={onClick}
+          area-label={areaLabel}
+          className="sticky top-0 block py-2 bg-primary-500 z-20"
+        />
         <button
           onClick={resetHandler}
           area-label="Clear all selected values"
@@ -124,7 +131,7 @@ const Sidebar = ({
       </div>
       <div className="block mt-7">
         <p className="text-white text-lg block mb-3">
-          {isPageName === STORIES && "Story's Date of Origin"}
+          {isPageName === STORIES && "Story's Earliest Date"}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </p>
         <RangeSlider
