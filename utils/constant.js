@@ -141,14 +141,14 @@ export const initialfilterItem = {
       isChecked: false,
       isFirstBreak: false,
     },
-    arabicOnly: {
-      id: "7",
-      isCheckbox: true,
-      key: "arabicOnly",
-      label: "Story in Arabic not Geʿez",
-      isChecked: false,
-      isFirstBreak: false,
-    },
+    // arabicOnly: {
+    //   id: "7",
+    //   isCheckbox: true,
+    //   key: "arabicOnly",
+    //   label: "Story in Arabic not Geʿez",
+    //   isChecked: false,
+    //   isFirstBreak: false,
+    // },
     miracleOfMaryStories: {
       id: "8",
       name: "type of story",
