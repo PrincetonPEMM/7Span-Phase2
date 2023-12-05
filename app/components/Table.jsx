@@ -23,6 +23,7 @@ const Table = ({
   ascDescFil,
   sortingRow,
   setSortingRow,
+  Id = "",
 }) => {
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
@@ -177,7 +178,6 @@ const Table = ({
 
   const sortingFun = (value, isClicked) => {
     const isSelected = value === ascDescFil;
-    console.log(sortingRow, "sortingRow", ascDescFil, value, isClicked);
     if (!isClicked) {
       return (
         <button
@@ -221,7 +221,11 @@ const Table = ({
         } `}
       > */}
       <div className="relative table-wrap overflow-auto">
-        <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
+        <table
+          className={`${
+            isPageName === MANUSCRIPT_DETAIL && "manuscript_detail_table"
+          } table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm`}
+        >
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm align-top">
             <tr>
               {tableHeader?.map((item, index) => {
@@ -236,7 +240,7 @@ const Table = ({
                         [0, 1, 2].includes(index) &&
                         sortingFun(item.value, sortingRow[item?.value])}
                       {isPageName === MANUSCRIPTS &&
-                        [0, 1, 2, 4].includes(index) &&
+                        [0, 1, 2, 3].includes(index) &&
                         sortingFun(item.value, sortingRow[item?.value])}
                     </div>
                   </th>
@@ -318,20 +322,29 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL &&
                           LocationInMs(event)}
                       </td>
-                      {[STORIES, MANUSCRIPTS].includes(isPageName) && (
-                        <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                          {isPageName === STORIES &&
-                            buildShowingText(event.type_of_story)}
-                          {isPageName === MANUSCRIPTS &&
-                            collapseText(index, event.ms_location_note)}
-                          {/* {isPageName === MANUSCRIPT_DETAIL && "-"} */}
-                        </td>
-                      )}
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
+                        {isPageName === STORIES &&
+                          buildShowingText(event.type_of_story)}
+                        {isPageName === MANUSCRIPTS &&
+                          buildShowingText(event.total_manuscript_paintings)}
+                        {isPageName === MANUSCRIPT_DETAIL &&
+                        event.no_of_paintings_per_story_instance > 0 ? (
+                          <Link
+                            href={`/paintings/${Id}_${event.first_painting_unique_id}`}
+                            className="text-primary-500 hover:text-secondary-500 font-bold"
+                          >
+                            {event.no_of_paintings_per_story_instance}
+                          </Link>
+                        ) : (
+                          event.no_of_paintings_per_story_instance
+                        )}
+                      </td>
+
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
                         {isPageName === STORIES &&
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS &&
-                          buildShowingText(event.total_manuscript_paintings)}
+                          collapseText(index, event.ms_location_note)}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           buildShowingText(event.manuscript)}
                       </td>

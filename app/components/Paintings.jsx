@@ -19,6 +19,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
 let mounted = false;
+const paintingBy = [
+  {
+    value: "Paintings by Story",
+    key: "/paintings/by-story",
+  },
+  {
+    value: "Paintings by Manuscript",
+    key: "/paintings/by-manuscript",
+  },
+];
 
 const Paintings = ({
   dateOfPainting,
@@ -129,16 +139,6 @@ const Paintings = ({
     fetchData(e);
     setPage(1);
   }, 300);
-  const paintingBy = [
-    {
-      value: "Paintings by Story",
-      key: "/paintings/by-story",
-    },
-    {
-      value: "Paintings by Manuscript",
-      key: "paintings/by-manuscript",
-    },
-  ];
 
   const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -380,6 +380,7 @@ const Paintings = ({
                 title="All Paintings"
                 options={paintingBy}
                 isMultiple={false}
+                isRedirection={true}
               />
             </div>
           </div>

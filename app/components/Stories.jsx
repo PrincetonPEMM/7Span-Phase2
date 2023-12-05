@@ -74,6 +74,7 @@ const Stories = () => {
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
   const [ascDescFil, setAscDescFil] = useState(sortParams);
   const [sortingRow, setSortingRow] = useState({});
+  const [vennArabic, setVennArabic] = useState(false);
   const childRef1 = useRef();
   const childRef2 = useRef();
   const childRef3 = useRef();
@@ -193,10 +194,10 @@ const Stories = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "excludePrintOnly"
-      )}${getFilterFalsyValue(
+      )}${getFilterFalsyValue(filterItem, "readInChurch")}${getFilterFalsyValue(
         filterItem,
-        "readInChurch"
-      )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "arabicOnly"
+      )}filters[vennArabic]=${vennArabic}&filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
         "origin",
         placeItem
       )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
@@ -291,7 +292,7 @@ const Stories = () => {
     setSearch("");
     fetchData("");
     setAscDescFil("");
-    setSortingRow({})
+    setSortingRow({});
     router.push(`${pathname}`);
   };
 
@@ -414,6 +415,7 @@ const Stories = () => {
     const printOnly = params.get("printOnly");
     const excludePrintOnly = params.get("excludePrintOnly");
     const readInChurch = params.get("readInChurch");
+    const arabicOnly = params.get("arabicOnly");
 
     const newFilterItem = {
       ...filterItem,
@@ -474,6 +476,10 @@ const Stories = () => {
         ["readInChurch"]: {
           ...filterItem.checkItem["readInChurch"],
           isChecked: readInChurch ? true : false,
+        },
+        ["arabicOnly"]: {
+          ...filterItem.checkItem["arabicOnly"],
+          isChecked: arabicOnly ? true : false,
         },
       },
     };
@@ -557,6 +563,7 @@ const Stories = () => {
             }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
+            setVennArabic={setVennArabic}
           />
         </div>
       </OutsideClickHandler>

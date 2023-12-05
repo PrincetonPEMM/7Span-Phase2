@@ -10,6 +10,7 @@ const Dropdown = ({
   options,
   title,
   isMultiple = false,
+  isRedirection = false,
 }) => {
   const route = useRouter();
   const [flag, setFlag] = useState(true);
@@ -18,7 +19,7 @@ const Dropdown = ({
     <Listbox
       value={selected}
       onChange={(e) => {
-        if (title === "All Paintings") {
+        if (isRedirection) {
           route.push(e?.key);
         } else {
           let ulist;
@@ -67,7 +68,7 @@ const Dropdown = ({
                 key={item.key + personIdx}
                 className={({ active }) =>
                   `relative cursor-default select-none transition-all hover:text-black py-2 pl-6 ${
-                    title !== "All Paintings" && "lg:pl-8"
+                    !isRedirection && "lg:pl-8"
                   }  pr-2 lg:pr-4 ${
                     active ? "bg-secondary-400 text-black" : "text-offwhite-500"
                   }`

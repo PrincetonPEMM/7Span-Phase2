@@ -74,8 +74,8 @@ export const manuscriptsTableTitleView = [
   { name: "Date Manuscript Created", value: "dateCreated" },
   { name: "Manuscript's Number of Stories", value: "totalStories" },
   { name: "Manuscript's Number of Unique Stories", value: "uniqueStories" },
-  { name: "Manuscript's Place of Origin", value: "" },
   { name: "Manuscript's Number of Paintings", value: "totalPaintings" },
+  { name: "Manuscript's Place of Origin", value: "" },
   { name: "Manuscript's Language", value: "" },
   { name: "Link to Manuscript Online", value: "" },
   { name: "Manuscript's Digital Quality", value: "" },
@@ -84,7 +84,7 @@ export const manuscriptsDetailTableTitle = [
   { name: "Order in MS" },
   { name: "Story Title" },
   { name: "Location in MS" },
-  // { name: "Paintings" },
+  { name: "Paintings" },
   { name: "Story Recension" },
   { name: "Incipit" },
   { name: "Other Aspects" },
@@ -141,8 +141,16 @@ export const initialfilterItem = {
       isChecked: false,
       isFirstBreak: false,
     },
-    miracleOfMaryStories: {
+    arabicOnly: {
       id: "7",
+      isCheckbox: true,
+      key: "arabicOnly",
+      label: "Story in Arabic not Geʿez",
+      isChecked: false,
+      isFirstBreak: false,
+    },
+    miracleOfMaryStories: {
+      id: "8",
       name: "type of story",
       isCheckbox: false,
       key: "miracleOfMaryStories",
@@ -151,7 +159,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     lifeOfMaryStories: {
-      id: "8",
+      id: "9",
       name: "type of story",
       isCheckbox: false,
       key: "lifeOfMaryStories",
@@ -160,7 +168,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     earliestStories: {
-      id: "9",
+      id: "10",
       name: "timeline",
       isCheckbox: false,
       key: "earliestStories",
@@ -169,7 +177,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     recentStories: {
-      id: "10",
+      id: "11",
       name: "timeline",
       isCheckbox: false,
       key: "recentStories",
@@ -178,7 +186,7 @@ export const initialfilterItem = {
       isFirstBreak: false,
     },
     popularStories: {
-      id: "11",
+      id: "12",
       isCheckbox: false,
       name: "top of story",
       key: "popularStories",
@@ -187,7 +195,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     uniqueStories: {
-      id: "12",
+      id: "13",
       name: "top of story",
       isCheckbox: false,
       key: "uniqueStories",
@@ -197,7 +205,7 @@ export const initialfilterItem = {
     },
 
     printOnly: {
-      id: "13",
+      id: "14",
       isCheckbox: false,
       name: "printing",
       key: "printOnly",
@@ -206,7 +214,7 @@ export const initialfilterItem = {
       isFirstBreak: true,
     },
     excludePrintOnly: {
-      id: "14",
+      id: "15",
       name: "printing",
       isCheckbox: false,
       key: "excludePrintOnly",
@@ -578,13 +586,6 @@ export const initialOriginRegionManuScript = {
       isChecked: false,
     },
     {
-      id: "4",
-      icon: false,
-      label: "Eritrea",
-      name: "eritrea",
-      isChecked: false,
-    },
-    {
       id: "2",
       icon: false,
       label: "West Ethiopia",
@@ -598,7 +599,13 @@ export const initialOriginRegionManuScript = {
       name: "south",
       isChecked: false,
     },
-
+    {
+      id: "4",
+      icon: false,
+      label: "Eritrea",
+      name: "eritrea",
+      isChecked: false,
+    },
     {
       id: "5",
       icon: false,

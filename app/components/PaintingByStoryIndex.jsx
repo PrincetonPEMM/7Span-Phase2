@@ -12,6 +12,18 @@ import InputText from "./form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Dropdown from "./Dropdown";
+
+const paintingBy = [
+  {
+    value: "All Paintings",
+    key: "/paintings",
+  },
+  {
+    value: "Paintings by Manuscript",
+    key: "/paintings/by-manuscript",
+  },
+];
 
 const PaintingByStoryIndex = ({ list }) => {
   const params = useSearchParams();
@@ -92,9 +104,9 @@ const PaintingByStoryIndex = ({ list }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
-      <div className="mb-10 flex items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
-        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
-          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+      <div className="mb-10 items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
+        <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
+          <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
             <label
               for="Search painting by story"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -125,7 +137,7 @@ const PaintingByStoryIndex = ({ list }) => {
               />
             )}
           </div>
-          <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+          <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
             <CustomPagination
               className="pagination-tablet"
               currentPage={page}
@@ -135,9 +147,19 @@ const PaintingByStoryIndex = ({ list }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0  mt-4 font-medium text-xs lg:col-span-1">
-            Results: ({totalPage ? totalPage : 0} records)
+          <p className="lg:col-span-1 my-3 sm:my-0">
+            <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+              Results: ({totalPage ? totalPage : 0} records)
+            </div>
           </p>
+          <div className="lg:col-span-1">
+            <Dropdown
+              title="Paintings by Story"
+              options={paintingBy}
+              isMultiple={false}
+              isRedirection={true}
+            />
+          </div>
         </div>
       </div>
       <Masonry

@@ -48,13 +48,13 @@ const Footer = () => {
     },
   ];
   const researchToolItems = [
-    { title: "Maps", link: "/research/maps" },
-    { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
     { title: "Research & Lessons", link: "/research/research-and-lessons" },
     { title: "List of Repositories", link: "/research/repositories" },
-    { title: "Macomber Handlist", link: "/research/macomber" },
+    { title: "Maps", link: "/research/maps" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
+    { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Bibliography", link: "/research/bibliography" },
+    { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
     { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
@@ -91,24 +91,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="py-5 md:py-0">
-          <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
-          <ul className="font-body text-xl flex flex-col">
-            {aboutItems.map((item, index) => (
-              <li>
-                <Link
-                  href={item.link}
-                  key={index}
-                  className="text-base hover:text-secondary-500 font-normal"
-                >
-                  {item.title}
-                </Link>
-                {[1, 4, 6].includes(index) && <span className="mt-5 block" />}
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="text-left py-5 md:py-0">
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
           <ul className="font-body text-xl flex flex-col">
@@ -142,6 +124,24 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
           <ul className="font-body text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
+              <li>
+                <Link
+                  href={item.link}
+                  key={index}
+                  className="text-base hover:text-secondary-500 font-normal"
+                >
+                  {item.title}
+                </Link>
+                {[1, 4, 6].includes(index) && <span className="mt-5 block" />}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="py-5 md:py-0">
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
+          <ul className="font-body text-xl flex flex-col">
+            {aboutItems.map((item, index) => (
               <li>
                 <Link
                   href={item.link}
