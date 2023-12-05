@@ -104,18 +104,23 @@ const PaintingByStoryIndex = ({ list }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
-      <div className="mb-10 items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
-        <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
-          <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
-            <label
-              for="Search painting by story"
+      <div className="mb-10 flex items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
+        <div className="sm:grid lg:grid-cols-6 sm:grid-cols-2 gap-2 w-full items-center font-body">
+          <fieldset className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+            <legend
+              for="SearchPaintingByStory"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search painting descriptions
+            </legend>
+            <label for="SearchPaintingByStory" class="sr-only">
+              Search painting by story
             </label>
             <InputText
-              id="Search painting by story"
+              area-label="Search here painting descriptions by story "
+              id="SearchPaintingByStory"
               value={search}
+              data-eqoutlinebind="0"
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
@@ -136,8 +141,8 @@ const PaintingByStoryIndex = ({ list }) => {
                 }}
               />
             )}
-          </div>
-          <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
+          </fieldset>
+          <div className=" lg:col-span-2 lg:text-center grid justify-items-center sm:justify-items-start lg:justify-items-center">
             <CustomPagination
               className="pagination-tablet"
               currentPage={page}
@@ -152,7 +157,7 @@ const PaintingByStoryIndex = ({ list }) => {
               Results: ({totalPage ? totalPage : 0} records)
             </div>
           </p>
-          <div className="lg:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <Dropdown
               title="Paintings by Story"
               options={paintingBy}

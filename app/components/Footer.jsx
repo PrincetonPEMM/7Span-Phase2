@@ -22,6 +22,7 @@ const Footer = () => {
     {
       title: "Digital accessibility",
       link: "https://accessibility.princeton.edu/help",
+      LinkTarget: "_blank",
     },
     { title: "Using the Site", link: "/about/connect/using-the-site" },
     { title: "Contact Us", link: "/about/connect/contact-us" },

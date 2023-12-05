@@ -138,18 +138,20 @@ const Header = () => {
           {pathname === "/" ? (
             <Image
               src={Logo}
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
+              alt="Princeton Ethiopian, Eritrean & Egyptian Miracles of Mary Project Logo"
             />
           ) : (
             <Image
               src={LogoBlack}
-              alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
+              alt="Princeton Ethiopian, Eritrean & Egyptian Miracles of Mary Project Logo"
             />
           )}
         </Link>
         <button
           onClick={menuIconClick}
-          aria-expanded={menuCollapse}
+          aria-expanded={
+            menuCollapse ? "Menu button collapsed " : "Menu button close"
+          }
           className="block h-7 w-7 flex-none p-1 z-40 absolute top-5 right-5 lg:hidden"
         >
           {menuCollapse ? (
@@ -228,7 +230,11 @@ const Header = () => {
                               : " text-primary-500  "
                           }`}
                           onClick={() => toggleSubmenu(index)}
-                          aria-expanded={index == activeSubmenu}
+                          aria-expanded={
+                            index == activeSubmenu
+                              ? "submenu open"
+                              : "submenu close"
+                          }
                         >
                           <span>{item.title}</span>
                           <MdiChevronDown

@@ -121,28 +121,39 @@ function CustomPagination({
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(1)}
         area-label={`${currentPage === 1 ? "disabled" : "Move to first page"}`}
+        area-aria-disabled={`${currentPage === 1 ? "true" : "false"}`}
       >
         <MdiChevronDoubleLeft className="text-base" />
       </button>
+
+      {/* button previoud start */}
       <button
         className={`pagination-button ${
           currentPage === 1 ? "disabled cursor-not-allowed" : ""
         }`}
-        area-label={`Go to previous page ${
+        area-label={`Click here to go to previous page ${
           currentPage === 1 ? "disabled" : ""
         }`}
+        area-aria-disabled={`${currentPage === 1 ? "true" : "false"}`}
         onClick={() => handlePageChange(currentPage - 1)}
       >
         <MdiChevronLeft className="text-base" />
       </button>
-      <input
-        type="number"
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyPress={handleInputKeyPress}
-        // min={1}
-        // placeholder={`Page ${currentPage}`}
-      />
+
+      {/* pagination input value here  */}
+      <label
+        area-label={`Showing result of page ${inputValue} of ${totalPages}`}
+      >
+        <input
+          type="number"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyPress={handleInputKeyPress}
+          // min={1}
+          // placeholder={`Page ${currentPage}`}
+        />
+      </label>
+
       <span className="page-total text-primary-600 flex-none">
         of {totalPages ? totalPages : 0}
       </span>
@@ -150,10 +161,11 @@ function CustomPagination({
         className={`pagination-button ${
           currentPage === totalPages ? "disabled" : ""
         }`}
-        area-label={`Move to next page ${
+        area-label={`Click here to go to next page ${
           currentPage === totalPages ? "disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage + 1)}
+        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronRight className="text-base" />
       </button>
@@ -163,6 +175,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(totalPages)}
         area-label={`Move to last page ${currentPage === 1 ? "enab" : ""}`}
+        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronDoubleRight className="text-base" />
       </button>
