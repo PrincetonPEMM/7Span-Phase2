@@ -20,9 +20,9 @@ const page = async () => {
       <div className="font-body space-y-4 py-12 mx-auto lg:w-3/4">
         {macomber_handlist_data && (
           <div>
-            <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
+            <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
               {macomber_handlist_data?.title}
-            </h2>
+            </h1>
             <p className="pt-4 pb-6">{macomber_handlist_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
