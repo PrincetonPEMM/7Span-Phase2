@@ -478,10 +478,10 @@ const Stories = () => {
           ...filterItem.checkItem["readInChurch"],
           isChecked: readInChurch ? true : false,
         },
-        ["arabicOnly"]: {
-          ...filterItem.checkItem["arabicOnly"],
-          isChecked: arabicOnly ? true : false,
-        },
+        // ["arabicOnly"]: {
+        //   ...filterItem.checkItem["arabicOnly"],
+        //   isChecked: arabicOnly ? true : false,
+        // },
       },
     };
     setFilterItem(newFilterItem);
