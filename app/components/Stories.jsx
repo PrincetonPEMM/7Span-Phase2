@@ -74,6 +74,7 @@ const Stories = () => {
   const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
   const [ascDescFil, setAscDescFil] = useState(sortParams);
   const [sortingRow, setSortingRow] = useState({});
+  const [vennArabic, setVennArabic] = useState(false);
   const childRef1 = useRef();
   const childRef2 = useRef();
   const childRef3 = useRef();
@@ -193,10 +194,10 @@ const Stories = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "excludePrintOnly"
-      )}${getFilterFalsyValue(
+      )}${getFilterFalsyValue(filterItem, "readInChurch")}${getFilterFalsyValue(
         filterItem,
-        "readInChurch"
-      )}filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "arabicOnly"
+      )}filters[vennArabic]=${vennArabic}&filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
         "origin",
         placeItem
       )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
@@ -287,11 +288,12 @@ const Stories = () => {
     setPaintingMin(rangeSliderMinForPaintingsStoriesPage);
     setPaintingMax(rangeSliderMaxForPaintingsStoriesPage);
     setExpandedRows([]);
+    setVennArabic(false);
     setPage(1);
     setSearch("");
     fetchData("");
     setAscDescFil("");
-    setSortingRow({})
+    setSortingRow({});
     router.push(`${pathname}`);
   };
 
@@ -414,6 +416,7 @@ const Stories = () => {
     const printOnly = params.get("printOnly");
     const excludePrintOnly = params.get("excludePrintOnly");
     const readInChurch = params.get("readInChurch");
+    const arabicOnly = params.get("arabicOnly");
 
     const newFilterItem = {
       ...filterItem,
@@ -474,6 +477,10 @@ const Stories = () => {
         ["readInChurch"]: {
           ...filterItem.checkItem["readInChurch"],
           isChecked: readInChurch ? true : false,
+        },
+        ["arabicOnly"]: {
+          ...filterItem.checkItem["arabicOnly"],
+          isChecked: arabicOnly ? true : false,
         },
       },
     };
@@ -557,6 +564,7 @@ const Stories = () => {
             }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
+            setVennArabic={setVennArabic}
           />
         </div>
       </OutsideClickHandler>
@@ -586,16 +594,17 @@ const Stories = () => {
           className="block md:hidden h-6 w-6 text-primary-500"
         ></FilterButton>
 
-        <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
+        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
           <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <label
-              for="Search titles and translations"
+              for="searchtitle"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search titles and translations
             </label>
             <InputText
-              id="Search titles and translations"
+              area-label="Search here titles and translations of stories"
+              id="searchtitle"
               value={search}
               onChange={(e) => {
                 const query = e.target.value;

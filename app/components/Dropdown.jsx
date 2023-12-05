@@ -10,6 +10,7 @@ const Dropdown = ({
   options,
   title,
   isMultiple = false,
+  isRedirection = false,
 }) => {
   const route = useRouter();
   const [flag, setFlag] = useState(true);
@@ -18,11 +19,17 @@ const Dropdown = ({
     <Listbox
       value={selected}
       onChange={(e) => {
-        if (title === "All Paintings") {
+        if (isRedirection) {
           route.push(e?.key);
         } else {
           let ulist;
-          if (["Date of Paintings", "Digital Quality"].includes(title)) {
+          if (
+            [
+              "Date of Paintings",
+              "Digital Quality",
+              "Date of Manuscript",
+            ].includes(title)
+          ) {
             ulist = Object.values(
               e.reduce((acc, obj) => ({ ...acc, [obj.key]: obj }), {})
             );
@@ -38,7 +45,7 @@ const Dropdown = ({
       <div className="relative">
         <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
           <button className="block truncate">
-            {title === "Date of Paintings"
+            {["Date of Paintings", "Date of Manuscript"].includes(title)
               ? title
               : selected?.value
               ? selected?.value
@@ -67,7 +74,7 @@ const Dropdown = ({
                 key={item.key + personIdx}
                 className={({ active }) =>
                   `relative cursor-default select-none transition-all hover:text-black py-2 pl-6 ${
-                    title !== "All Paintings" && "lg:pl-8"
+                    !isRedirection && "lg:pl-8"
                   }  pr-2 lg:pr-4 ${
                     active ? "bg-secondary-400 text-black" : "text-offwhite-500"
                   }`
@@ -76,7 +83,13 @@ const Dropdown = ({
               >
                 {(values) => {
                   let isSelected = false;
-                  if (["Date of Paintings", "Digital Quality"].includes(title))
+                  if (
+                    [
+                      "Date of Paintings",
+                      "Digital Quality",
+                      "Date of Manuscript",
+                    ].includes(title)
+                  )
                     isSelected = Boolean(
                       selected?.find((itm) => itm.key === item?.key)
                     );

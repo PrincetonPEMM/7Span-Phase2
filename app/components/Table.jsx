@@ -23,6 +23,7 @@ const Table = ({
   ascDescFil,
   sortingRow,
   setSortingRow,
+  Id = "",
 }) => {
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
@@ -100,17 +101,6 @@ const Table = ({
       ? newText
       : text;
   };
-  // const tableFixed = () => {
-  //   console.log(window.scrollY);
-  //   if (window.innerWidth < 640) {
-  //     if (window.scrollY < 248) {
-  //       document.querySelector(".table-head").classList.remove("active");
-  //     }
-  //     if (window.scrollY > 248) {
-  //       document.querySelector(".table-head").classList.add("active");
-  //     }
-  //   }
-  // };
 
   function getPos(el) {
     // yay readability
@@ -125,23 +115,40 @@ const Table = ({
   const tableFixed = () => {
     const tablePos = document.querySelector(".table-wrap").offsetTop;
     const element = document.querySelector(".table-head");
-    if (window.innerWidth < 640) {
-      if (window.scrollY > getPos(element)) {
-        document.querySelector(".table-head").classList.add("active");
+
+    if (window.scrollY > getPos(element)) {
+      if (window.innerWidth < 1024) {
+        document.querySelector(".table-search").classList.remove("active");
+      } else {
+        document.querySelector(".table-search").classList.add("active");
+      }
+      document.querySelector(".table-head").classList.add("active");
+      document.querySelector(".table-body").classList.add("active");
+      if (window.innerWidth < 1280) {
         if (window.scrollY < tablePos - 88) {
+          document.querySelector(".table-search").classList.remove("active");
           document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
         }
       } else {
-        document.querySelector(".table-head").classList.remove("active");
-      }
-      if (
-        window.scrollY >
-        getPos(element) + document.querySelector(".table").offsetHeight + 150
-      ) {
-        document.querySelector(".table-head").classList.remove("active");
+        if (window.scrollY < tablePos - 38) {
+          document.querySelector(".table-search").classList.remove("active");
+          document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
+        }
       }
     } else {
+      document.querySelector(".table-search").classList.remove("active");
       document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
+    }
+    if (
+      window.scrollY >
+      getPos(element) + document.querySelector(".table").offsetHeight + 150
+    ) {
+      document.querySelector(".table-search").classList.remove("active");
+      document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
     }
   };
 
@@ -177,7 +184,6 @@ const Table = ({
 
   const sortingFun = (value, isClicked) => {
     const isSelected = value === ascDescFil;
-    console.log(sortingRow, "sortingRow", ascDescFil, value, isClicked);
     if (!isClicked) {
       return (
         <button
@@ -221,7 +227,11 @@ const Table = ({
         } `}
       > */}
       <div className="relative table-wrap overflow-auto">
-        <table className="table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm">
+        <table
+          className={`${
+            isPageName === MANUSCRIPT_DETAIL && "manuscript_detail_table"
+          } table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm`}
+        >
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm align-top">
             <tr>
               {tableHeader?.map((item, index) => {
@@ -236,7 +246,7 @@ const Table = ({
                         [0, 1, 2].includes(index) &&
                         sortingFun(item.value, sortingRow[item?.value])}
                       {isPageName === MANUSCRIPTS &&
-                        [0, 1, 2, 4].includes(index) &&
+                        [0, 1, 2, 3].includes(index) &&
                         sortingFun(item.value, sortingRow[item?.value])}
                     </div>
                   </th>
@@ -318,20 +328,29 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL &&
                           LocationInMs(event)}
                       </td>
-                      {[STORIES, MANUSCRIPTS].includes(isPageName) && (
-                        <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
-                          {isPageName === STORIES &&
-                            buildShowingText(event.type_of_story)}
-                          {isPageName === MANUSCRIPTS &&
-                            collapseText(index, event.ms_location_note)}
-                          {/* {isPageName === MANUSCRIPT_DETAIL && "-"} */}
-                        </td>
-                      )}
+                      <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
+                        {isPageName === STORIES &&
+                          buildShowingText(event.type_of_story)}
+                        {isPageName === MANUSCRIPTS &&
+                          buildShowingText(event.total_manuscript_paintings)}
+                        {isPageName === MANUSCRIPT_DETAIL &&
+                        event.no_of_paintings_per_story_instance > 0 ? (
+                          <Link
+                            href={`/paintings/${Id}_${event.first_painting_unique_id}`}
+                            className="text-primary-500 hover:text-secondary-500 font-bold"
+                          >
+                            {event.no_of_paintings_per_story_instance}
+                          </Link>
+                        ) : (
+                          event.no_of_paintings_per_story_instance
+                        )}
+                      </td>
+
                       <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
                         {isPageName === STORIES &&
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS &&
-                          buildShowingText(event.total_manuscript_paintings)}
+                          collapseText(index, event.ms_location_note)}
                         {isPageName === MANUSCRIPT_DETAIL &&
                           buildShowingText(event.manuscript)}
                       </td>
@@ -351,7 +370,7 @@ const Table = ({
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {event.link_to_digital_copy ? (
                               <a
                                 href={event.link_to_digital_copy}
@@ -365,7 +384,7 @@ const Table = ({
                               "-"
                             )}
                           </td>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {event.scans_of_manuscript_in_color === "Yes"
                               ? "Color"
                               : "Black & White"}
@@ -374,7 +393,7 @@ const Table = ({
                       )}
                       {isPageName === MANUSCRIPT_DETAIL && (
                         <>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {(() => {
                               if (event.total_records === 1) return "☆";
                               if (event.stanza === "Yes") return "♫";
@@ -386,7 +405,7 @@ const Table = ({
                               return "-";
                             })()}
                           </td>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {buildShowingText(event.canonical_story_id)}
                           </td>
                         </>

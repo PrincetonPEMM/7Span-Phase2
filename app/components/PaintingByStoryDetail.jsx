@@ -97,55 +97,58 @@ const PaintingByStoryDetail = ({ list, Id }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <h2 className="text-2xl lg:text-3xl xl:text-4xl text-primary-500 font-bold font-body">
-        {header?.canonical_story_title}
-      </h2>
-      <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
-        <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
-          <label
-            for="Search painting by story detail"
-            className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
-          >
-            Search painting descriptions
-          </label>
-          <InputText
-            id="Search painting by story detail"
-            value={search}
-            onChange={(e) => {
-              const query = e.target.value;
-              setSearch(query);
-              if (query.length > 3) {
-                debouncedFetchData(query);
-              }
-              if (query.length === 0) {
-                debouncedFetchData(query);
-              }
-            }}
-          />
-
-          {search && (
-            <MdiWindowClose
-              className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
-              onClick={() => {
-                setSearch("");
-                debouncedFetchData("");
+      <div className="sticky top-0 bg-offWhite-500 z-10 pt-1">
+        <h1 className="text-2xl lg:text-3xl xl:text-4xl text-primary-500 font-bold font-body">
+          {header?.canonical_story_title}
+        </h1>
+        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
+          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+            <legend
+              for="SearchDetail"
+              className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
+            >
+              Search painting descriptions
+            </legend>
+            <InputText
+              id="SearchDetail"
+              area-label="Search here painting descriptions by story detail"
+              value={search}
+              onChange={(e) => {
+                const query = e.target.value;
+                setSearch(query);
+                if (query.length > 3) {
+                  debouncedFetchData(query);
+                }
+                if (query.length === 0) {
+                  debouncedFetchData(query);
+                }
               }}
             />
-          )}
+
+            {search && (
+              <MdiWindowClose
+                className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
+                onClick={() => {
+                  setSearch("");
+                  debouncedFetchData("");
+                }}
+              />
+            )}
+          </div>
+          <div className=" lg:text-center lg:col-span-2 my-3 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+            <CustomPagination
+              className="pagination-tablet"
+              currentPage={page}
+              totalPages={Math.ceil(totalPage / perPage)}
+              onPageChange={(num) => {
+                setPage(num);
+              }}
+            />
+          </div>
+          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1">
+            Results: ({totalPage ? totalPage : 0} records)
+          </p>
         </div>
-        <div className=" lg:text-center lg:col-span-2 my-3 grid justify-items-center sm:justify-items-start lg:justify-items-center">
-          <CustomPagination
-            className="pagination-tablet"
-            currentPage={page}
-            totalPages={Math.ceil(totalPage / perPage)}
-            onPageChange={(num) => {
-              setPage(num);
-            }}
-          />
-        </div>
-        <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1">
-          Results: ({totalPage ? totalPage : 0} records)
-        </p>
       </div>
       <div className="pt-5 lg:pt-10">
         <Masonry

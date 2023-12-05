@@ -19,6 +19,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
 let mounted = false;
+const paintingBy = [
+  {
+    value: "Paintings by Story",
+    key: "/paintings/by-story",
+  },
+  {
+    value: "Paintings by Manuscript",
+    key: "/paintings/by-manuscript",
+  },
+];
 
 const Paintings = ({
   dateOfPainting,
@@ -129,16 +139,6 @@ const Paintings = ({
     fetchData(e);
     setPage(1);
   }, 300);
-  const paintingBy = [
-    {
-      value: "Paintings by Story",
-      key: "/paintings/by-story",
-    },
-    {
-      value: "Paintings by Manuscript",
-      key: "paintings/by-manuscript",
-    },
-  ];
 
   const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -156,10 +156,6 @@ const Paintings = ({
     }
     mounted = true;
   }, [menuCollapse]);
-
-  const menuIconClick = () => {
-    setMenuCollapse(!menuCollapse);
-  };
 
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
@@ -217,7 +213,7 @@ const Paintings = ({
         <div
           className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-14 transform"
+              ? "open -translate-x-5 sm:-translate-x-1 transform"
               : "-translate-x-96 close transform"
           } `}
         >
@@ -316,13 +312,17 @@ const Paintings = ({
       {/* sidebar filter ENd  */}
       <div className="px-4 md:px-5">
         {/* <button
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
         >
           <MdiMenuOpen className="text-primary-500" />
         </button> */}
         <FilterButton
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           area-label={menuCollapse ? false : true}
           className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
         ></FilterButton>
@@ -331,14 +331,15 @@ const Paintings = ({
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                for="Search titles and painting descriptions"
+                for="SearchTitles"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions
               </label>
               <InputText
-                id="Search titles and painting descriptions"
+                id="SearchTitles"
                 value={search}
+                aria-label="Search here titles and painting descriptions"
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
@@ -380,6 +381,7 @@ const Paintings = ({
                 title="All Paintings"
                 options={paintingBy}
                 isMultiple={false}
+                isRedirection={true}
               />
             </div>
           </div>
