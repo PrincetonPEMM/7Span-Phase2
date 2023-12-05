@@ -343,9 +343,9 @@ export default function Manuscript({ Id, data, table }) {
   return data ? (
     <div className="container-fluid py-4 space-y-4 lg:py-7">
       <BackBtn />
-      <h2 className="text-2xl text-primary-500 font-bold lg:text-3xl xl:text-4xl font-body">
+      <h1 className="text-2xl text-primary-500 font-bold lg:text-3xl xl:text-4xl font-body">
         {data.manuscript_full_name}
-      </h2>
+      </h1>
       <div className="space-y-2 font-body a-tag-whithout-underline-and-green">
         {generateFirstParagraph().map((data, index) => (
           <p key={index} dangerouslySetInnerHTML={{ __html: data.text }}></p>

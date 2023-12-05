@@ -242,9 +242,9 @@ const PaintingDetail = ({ data }) => {
                 : "none"}
             </p>
           </div> */}
-          <h2 className="hidden md:block font-body mt-2 mb-5 text-2xl text-primary-500 font-bold leading-tight lg:text-3xl xl:text-4xl">
-            {data?.canonical_story_title}
-          </h2>
+          <h1 className="hidden md:block font-body mt-2 mb-5 text-2xl text-primary-500 font-bold leading-tight lg:text-3xl xl:text-4xl">
+            {data.canonical_story_title}
+          </h1>
           <div className="list-inside">
             <ul className="space-y-2 font-body">
               {generateParagraph().map((item, index) => (
