@@ -15,7 +15,12 @@ const Page = async () => {
   } catch (error) {
     console.log("Error", error);
   }
-  return <PaintingbyMSIndex list={data} />;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters`
+  );
+  const filters = await res.json();
+
+  return <PaintingbyMSIndex list={data} {...filters} />;
 };
 
 export default Page;

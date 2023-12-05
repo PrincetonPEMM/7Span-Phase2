@@ -8,7 +8,6 @@ const Radio = (props) => {
   } = props;
 
   const changeHandler = (isFocus) => {
-    console.log(label, "Radio");
     if (isFocus)
       setFilterItem((prevState) => {
         const data = Object.values(prevState.checkItem).map((item) => {

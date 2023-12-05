@@ -374,6 +374,7 @@ export default function Manuscript({ Id, data, table }) {
             // }}
             expandedRows={expandedRows}
             setExpandedRows={setExpandedRows}
+            Id={Id}
           />
           <TablePagination
             meta={{

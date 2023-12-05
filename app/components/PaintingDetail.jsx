@@ -121,7 +121,7 @@ const PaintingDetail = ({ data }) => {
     }
 
     arr.push({
-      text: "To reproduce this image online or in print, please contact the Princeton University Library directly. PEMM does not own the rights.",
+      text: `To reproduce this image online or in print, please contact the ${data.institution_name}. PEMM does not own the rights.`,
     });
 
     return arr;
@@ -135,7 +135,7 @@ const PaintingDetail = ({ data }) => {
         </div>
       </div>
       <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-3xl text-primary-500 font-medium">
-        {data.canonical_story_title}
+        {data?.canonical_story_title}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-7 md:gap-7 lg:gap-10 xl:gap-20 2">
@@ -148,7 +148,7 @@ const PaintingDetail = ({ data }) => {
             showPlayButton={false}
           />
           <p className="font-body text-center">
-            Image displayed with permission of {data.institution_name}
+            Image displayed with permission of {data?.institution_name}
           </p>
         </div>
 

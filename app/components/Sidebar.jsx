@@ -47,6 +47,7 @@ const Sidebar = ({
   setTranslatedItem = () => {},
   onClick,
   resetFilter,
+  setVennArabic = () => {},
 }) => {
   const slider1InitMin =
     isPageName === STORIES
@@ -112,7 +113,13 @@ const Sidebar = ({
           <p className="text-white text-lg block mb-3">{filterItem.title}</p>
           {Object.values(filterItem.checkItem)?.map((item, index) =>
             item.isCheckbox ? (
-              <Checkbox item={item} key={index} setFilterItem={setFilterItem} />
+              <Checkbox
+                item={item}
+                key={index}
+                setFilterItem={setFilterItem}
+                langItem={langItem}
+                setVennArabic={setVennArabic}
+              />
             ) : (
               <>
                 {item.isFirstBreak && (

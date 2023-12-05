@@ -19,6 +19,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
 let mounted = false;
+const paintingBy = [
+  {
+    value: "Paintings by Story",
+    key: "/paintings/by-story",
+  },
+  {
+    value: "Paintings by Manuscript",
+    key: "/paintings/by-manuscript",
+  },
+];
 
 const Paintings = ({
   dateOfPainting,
@@ -129,16 +139,6 @@ const Paintings = ({
     fetchData(e);
     setPage(1);
   }, 300);
-  const paintingBy = [
-    {
-      value: "Paintings by Story",
-      key: "/paintings/by-story",
-    },
-    {
-      value: "Paintings by Manuscript",
-      key: "paintings/by-manuscript",
-    },
-  ];
 
   const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -156,10 +156,6 @@ const Paintings = ({
     }
     mounted = true;
   }, [menuCollapse]);
-
-  const menuIconClick = () => {
-    setMenuCollapse(!menuCollapse);
-  };
 
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
@@ -316,13 +312,17 @@ const Paintings = ({
       {/* sidebar filter ENd  */}
       <div className="px-4 md:px-5">
         {/* <button
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
         >
           <MdiMenuOpen className="text-primary-500" />
         </button> */}
         <FilterButton
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           area-label={menuCollapse ? false : true}
           className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
         ></FilterButton>
@@ -381,6 +381,7 @@ const Paintings = ({
                 title="All Paintings"
                 options={paintingBy}
                 isMultiple={false}
+                isRedirection={true}
               />
             </div>
           </div>
