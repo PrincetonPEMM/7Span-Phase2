@@ -217,7 +217,7 @@ const Paintings = ({
         <div
           className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-14 transform"
+              ? "open -translate-x-5 sm:-translate-x-1 transform"
               : "-translate-x-96 close transform"
           } `}
         >
@@ -331,14 +331,15 @@ const Paintings = ({
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                for="Search titles and painting descriptions"
+                for="SearchTitles"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions
               </label>
               <InputText
-                id="Search titles and painting descriptions"
+                id="SearchTitles"
                 value={search}
+                aria-label="Search here titles and painting descriptions"
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
