@@ -157,10 +157,6 @@ const Paintings = ({
     mounted = true;
   }, [menuCollapse]);
 
-  const menuIconClick = () => {
-    setMenuCollapse(!menuCollapse);
-  };
-
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
       newParams.delete(key);
@@ -217,7 +213,7 @@ const Paintings = ({
         <div
           className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-14 transform"
+              ? "open -translate-x-5 sm:-translate-x-1 transform"
               : "-translate-x-96 close transform"
           } `}
         >
@@ -316,13 +312,17 @@ const Paintings = ({
       {/* sidebar filter ENd  */}
       <div className="px-4 md:px-5">
         {/* <button
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           className="block h-7 w-7 flex-none p-1 z-40  lg:hidden"
         >
           <MdiMenuOpen className="text-primary-500" />
         </button> */}
         <FilterButton
-          onClick={menuIconClick}
+          onClick={() => {
+            setMenuCollapse(!menuCollapse);
+          }}
           area-label={menuCollapse ? false : true}
           className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
         ></FilterButton>
