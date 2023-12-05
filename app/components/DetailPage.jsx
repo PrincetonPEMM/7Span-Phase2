@@ -16,7 +16,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
               <img
                 src={`${image}`}
                 alt={title}
-                className="w-60 object-cover object-center float-left mr-5 sm:h-60 lg:h-80"
+                className="w-60 object-cover object-center float-left mr-5 mb-4 sm:h-60 lg:h-80"
               />
 
               <p className="pb-2 font-sm font-bold">By {author}</p>

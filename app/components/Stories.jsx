@@ -291,7 +291,7 @@ const Stories = () => {
     setSearch("");
     fetchData("");
     setAscDescFil("");
-    setSortingRow({})
+    setSortingRow({});
     router.push(`${pathname}`);
   };
 
@@ -586,7 +586,7 @@ const Stories = () => {
           className="block md:hidden h-6 w-6 text-primary-500"
         ></FilterButton>
 
-        <div className="mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
+        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
           <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <label
               for="Search titles and translations"
