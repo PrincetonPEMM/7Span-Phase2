@@ -236,7 +236,7 @@ body {
   @apply hover:shadow-lg transition-shadow hover:transition-shadow hover:duration-200;
 }
 /* checkbox css */
-[type="checkbox"]:checked {
+/* [type="checkbox"]:checked {
   @apply bg-transparent bg-none bottom-0 outline-0 shadow-none;
   font-size: 0;
 }
@@ -253,7 +253,7 @@ body {
 [type="radio"]:checked:focus {
   @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
   font-size: 0;
-}
+} */
 .iconcheck input[type="checkbox"] {
   @apply bg-offWhite-500 text-black;
 }
@@ -303,18 +303,15 @@ body {
 .checkbox .checkbox-input {
   @apply absolute h-full inset-0 z-20 w-full opacity-0 cursor-pointer;
 }
-
 .checkmark {
   @apply inline-block relative left-0 rounded bg-offWhite-500;
   top: 3px;
   width: 18px;
   height: 18px;
 }
-
 .checkbox:hover .checkbox-input + .checkmark {
   @apply bg-offWhite-500;
 }
-
 .checkbox .checkbox-input.checked + .checkmark {
   @apply bg-secondary-500;
 }
@@ -322,7 +319,7 @@ body {
   @apply text-secondary-500;
 }
 .checkbox .checkbox-input:focus + span {
-  @apply ring-1 ring-secondary-500;
+  @apply border-4  rounded-sm  border-secondary-500;
 }
 .checkbox .checkbox-input.checked + .checkmark::before {
   @apply block;
@@ -369,7 +366,7 @@ body {
   @apply bg-secondary-500;
 }
 .radiobox .radiobox-input:focus + .radiomark {
-  @apply ring-1 ring-secondary-500;
+  @apply border-4 bg-primary-500  border-secondary-500;
 }
 .radiobox .radiobox-input.checked + .radiomark {
   background-color: rgb(0, 0, 0) 111;
@@ -976,6 +973,51 @@ web accisibility css start  */
 .table-head {
   @apply top-0 sticky;
 }
+.table-head.active {
+  position: fixed;
+  left: 15px;
+  top: 0;
+  right: 15px;
+  z-index: 30;
+  overflow: auto;
+}
+tbody.table-body.active tr td {
+  min-width: 150px;
+}
+
+.table-head.active tr th {
+  min-width: 150px;
+}
+
+@media only screen and (min-width: 640px) {
+  .table-search.active {
+    position: fixed;
+    left: 15px;
+    top: 0;
+    right: 15px;
+    z-index: 30;
+    overflow: auto;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .table-head.active {
+    top: 65px;
+    left: 275px;
+  }
+  .table-search.active {
+    left: 275px;
+    background-color: #e7e3dd;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .table-head.active {
+    left: 295px;
+  }
+  .table-search.active {
+    left: 295px;
+    background-color: #e7e3dd;
+  }
+}
 
 /* 1 DEC */
 
@@ -1017,14 +1059,6 @@ web accisibility css start  */
   }
   .table-body tr td {
     min-width: 100px;
-  }
-  .table-head.active {
-    position: fixed;
-    left: 15px;
-    top: 0;
-    right: 15px;
-    z-index: 30;
-    overflow: auto;
   }
 }
 @media only screen and (max-width: 440px) {

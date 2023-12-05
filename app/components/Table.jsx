@@ -100,17 +100,6 @@ const Table = ({
       ? newText
       : text;
   };
-  // const tableFixed = () => {
-  //   console.log(window.scrollY);
-  //   if (window.innerWidth < 640) {
-  //     if (window.scrollY < 248) {
-  //       document.querySelector(".table-head").classList.remove("active");
-  //     }
-  //     if (window.scrollY > 248) {
-  //       document.querySelector(".table-head").classList.add("active");
-  //     }
-  //   }
-  // };
 
   function getPos(el) {
     // yay readability
@@ -125,23 +114,40 @@ const Table = ({
   const tableFixed = () => {
     const tablePos = document.querySelector(".table-wrap").offsetTop;
     const element = document.querySelector(".table-head");
-    if (window.innerWidth < 640) {
-      if (window.scrollY > getPos(element)) {
-        document.querySelector(".table-head").classList.add("active");
+
+    if (window.scrollY > getPos(element)) {
+      if (window.innerWidth < 1024) {
+        document.querySelector(".table-search").classList.remove("active");
+      } else {
+        document.querySelector(".table-search").classList.add("active");
+      }
+      document.querySelector(".table-head").classList.add("active");
+      document.querySelector(".table-body").classList.add("active");
+      if (window.innerWidth < 1280) {
         if (window.scrollY < tablePos - 88) {
+          document.querySelector(".table-search").classList.remove("active");
           document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
         }
       } else {
-        document.querySelector(".table-head").classList.remove("active");
-      }
-      if (
-        window.scrollY >
-        getPos(element) + document.querySelector(".table").offsetHeight + 150
-      ) {
-        document.querySelector(".table-head").classList.remove("active");
+        if (window.scrollY < tablePos - 38) {
+          document.querySelector(".table-search").classList.remove("active");
+          document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
+        }
       }
     } else {
+      document.querySelector(".table-search").classList.remove("active");
       document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
+    }
+    if (
+      window.scrollY >
+      getPos(element) + document.querySelector(".table").offsetHeight + 150
+    ) {
+      document.querySelector(".table-search").classList.remove("active");
+      document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
     }
   };
 
@@ -327,7 +333,7 @@ const Table = ({
                           {/* {isPageName === MANUSCRIPT_DETAIL && "-"} */}
                         </td>
                       )}
-                      <td className="max-w-xs whitespace-normal break-words px-6 py-4   text-sm lg:text-base">
+                      <td className="max-w-xs whitespace-normal break-words  px-3 py-4   text-sm lg:text-base">
                         {isPageName === STORIES &&
                           collapseText(index, event.canonical_story_subject)}
                         {isPageName === MANUSCRIPTS &&
@@ -351,7 +357,7 @@ const Table = ({
                       </td>
                       {isPageName === MANUSCRIPTS && (
                         <>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {event.link_to_digital_copy ? (
                               <a
                                 href={event.link_to_digital_copy}
@@ -365,7 +371,7 @@ const Table = ({
                               "-"
                             )}
                           </td>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {event.scans_of_manuscript_in_color === "Yes"
                               ? "Color"
                               : "Black & White"}
@@ -374,7 +380,7 @@ const Table = ({
                       )}
                       {isPageName === MANUSCRIPT_DETAIL && (
                         <>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {(() => {
                               if (event.total_records === 1) return "☆";
                               if (event.stanza === "Yes") return "♫";
@@ -386,7 +392,7 @@ const Table = ({
                               return "-";
                             })()}
                           </td>
-                          <td className="max-w-xs whitespace-normal break-words px-6 py-4  text-sm lg:text-base">
+                          <td className="max-w-xs whitespace-normal break-words px-3 py-4  text-sm lg:text-base">
                             {buildShowingText(event.canonical_story_id)}
                           </td>
                         </>
