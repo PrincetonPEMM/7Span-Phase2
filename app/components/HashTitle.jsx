@@ -10,12 +10,12 @@ const HashTitle = ({ title, id }) => {
   }, [id, location?.hash]);
 
   return (
-    <h2
+    <h1
       className="text-3xl font-header w-full text-left lg:text-4xl text-primary-500 mx-auto"
       id={id}
     >
       {title}
-    </h2>
+    </h1>
   );
 };
 

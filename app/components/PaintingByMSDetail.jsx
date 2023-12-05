@@ -98,73 +98,75 @@ const PaintingByMSDetail = ({ list, Id }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      {header && (
-        <h2 className="font-bold text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500  font-body">
-          {header?.manuscript_full_name}&nbsp;(
-          {`${
-            header?.manuscript_date_range_start &&
-            header?.manuscript_date_range_end
-              ? header.manuscript_date_range_start ===
-                header.manuscript_date_range_end
-                ? header.manuscript_date_range_start + "s"
-                : header.manuscript_date_range_start +
-                  "-" +
+      <div className="sticky top-0 bg-offWhite-500 z-10 pt-1">
+        {header && (
+          <h1 className="font-bold text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500  font-body">
+            {header?.manuscript_full_name}&nbsp;(
+            {`${
+              header?.manuscript_date_range_start &&
+              header?.manuscript_date_range_end
+                ? header.manuscript_date_range_start ===
                   header.manuscript_date_range_end
-              : "-"
-          }`}
-          )
-        </h2>
-      )}
-      <div className="mb-10 flex items-start space-x-4 ">
-        <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
-          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
-            <label
-              for="search painting by manuscript detail"
-              className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
-            >
-              Search titles and painting descriptions.
-            </label>
-            <InputText
-              id="search painting by manuscript detail"
-              value={search}
-              onChange={(e) => {
-                const query = e.target.value;
-                setSearch(query);
-                if (query.length > 3) {
-                  debouncedFetchData(query);
-                }
-                if (query.length === 0) {
-                  debouncedFetchData(query);
-                }
-              }}
-            />
-
-            {search && (
-              <MdiWindowClose
-                className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
-                onClick={() => {
-                  setSearch("");
-                  debouncedFetchData("");
+                  ? header.manuscript_date_range_start + "s"
+                  : header.manuscript_date_range_start +
+                    "-" +
+                    header.manuscript_date_range_end
+                : "-"
+            }`}
+            )
+          </h1>
+        )}
+        <div className="mb-10 flex items-start space-x-4 ">
+          <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
+            <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+              <label
+                for="search painting by manuscript detail"
+                className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
+              >
+                Search titles and painting descriptions.
+              </label>
+              <InputText
+                id="search painting by manuscript detail"
+                value={search}
+                onChange={(e) => {
+                  const query = e.target.value;
+                  setSearch(query);
+                  if (query.length > 3) {
+                    debouncedFetchData(query);
+                  }
+                  if (query.length === 0) {
+                    debouncedFetchData(query);
+                  }
                 }}
               />
-            )}
-          </div>
-          <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
-            <CustomPagination
-              className="pagination-tablet"
-              currentPage={page}
-              totalPages={Math.ceil(totalPage / perPage)}
-              onPageChange={(num) => {
-                setPage(num);
-              }}
-            />
-          </div>
-          <p
-            className=" text-offBlack-400  mt-4 ml-auto font-medium  text-xs order-3 text-center mr-0 sm:mt-0 sm:text-left sm:-order-none
+
+              {search && (
+                <MdiWindowClose
+                  className="h-3 w-3 absolute cursor-pointer inset-y-0 right-5 my-auto text-primary-700 md:h-4 md:w-4"
+                  onClick={() => {
+                    setSearch("");
+                    debouncedFetchData("");
+                  }}
+                />
+              )}
+            </div>
+            <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
+              <CustomPagination
+                className="pagination-tablet"
+                currentPage={page}
+                totalPages={Math.ceil(totalPage / perPage)}
+                onPageChange={(num) => {
+                  setPage(num);
+                }}
+              />
+            </div>
+            <p
+              className=" text-offBlack-400  mt-4 ml-auto font-medium  text-xs order-3 text-center mr-0 sm:mt-0 sm:text-left sm:-order-none
            lg:ml-0  lg:col-span-1 xl:text-sm"
-          >
-            Results: ({totalPage ? totalPage : 0} records)
-          </p>
+            >
+              Results: ({totalPage ? totalPage : 0} records)
+            </p>
+          </div>
         </div>
       </div>
       <Masonry

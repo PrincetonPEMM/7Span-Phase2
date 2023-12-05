@@ -4,10 +4,18 @@ const Checkbox = (props) => {
   const {
     item: { id, key, label, isChecked },
     setFilterItem,
+    langItem,
+    setVennArabic,
   } = props;
 
   const changeHandler = (isFocus) => {
-    console.log(label, "Checkbox");
+    if (
+      (langItem.checkItem[0].isChecked || langItem.checkItem[1].isChecked) &&
+      !isChecked
+    )
+      setVennArabic(true);
+    else setVennArabic(false);
+
     if (isFocus)
       setFilterItem((prevState) => ({
         ...prevState,

@@ -17,9 +17,9 @@ const page = async () => {
       <div className="font-body space-y-4 py-8 md:py-12 lg:w-3/4 mx-auto">
         {arabic_stories_data && (
           <div>
-            <h2 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
+            <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
               {arabic_stories_data?.title ?? ""}
-            </h2>
+            </h1>
             <p className="pt-4 pb-6">{arabic_stories_data?.intro}</p>
             <div
               dangerouslySetInnerHTML={{
