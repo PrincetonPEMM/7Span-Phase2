@@ -1038,6 +1038,12 @@ tbody.table-body.active tr td {
   font-weight: 600;
   font-family: "Source Sans 3", sans-serif;
 }
+
+/* manuscript css 5th dec */
+
+.manuscript_detail_table tbody tr td:first-child {
+  @apply w-28;
+}
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
