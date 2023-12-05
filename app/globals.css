@@ -319,11 +319,20 @@ body {
   @apply text-secondary-500;
 }
 .checkbox .checkbox-input:focus + span {
-  @apply border-4  rounded-sm  border-secondary-500;
+  @apply ring-2  rounded-sm  ring-secondary-500;
 }
 .checkbox .checkbox-input.checked + .checkmark::before {
   @apply block;
 }
+
+.checkbox .checkbox-input.checked + .checkmark::before {
+  display: block;
+}
+/* .checkbox .checkbox-input.checked + .checkmark::before {
+  left: 4px;
+  top: 1px;
+  width: 6px;
+} */
 
 /* radio button css */
 
