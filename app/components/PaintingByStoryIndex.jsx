@@ -108,12 +108,12 @@ const PaintingByStoryIndex = ({ list }) => {
         <div className="sm:grid lg:grid-cols-6 sm:grid-cols-2 gap-2 w-full items-center font-body">
           <fieldset className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <legend
-              for="SearchPaintingByStory"
+              htmlFor="SearchPaintingByStory"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search painting descriptions
             </legend>
-            <label for="SearchPaintingByStory" class="sr-only">
+            <label htmlFor="SearchPaintingByStory" class="sr-only">
               Search painting by story
             </label>
             <InputText
@@ -153,7 +153,12 @@ const PaintingByStoryIndex = ({ list }) => {
             />
           </div>
           <p className="lg:col-span-1 my-3 sm:my-0">
-            <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
+            >
               Results: ({totalPage ? totalPage : 0} records)
             </div>
           </p>

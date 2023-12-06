@@ -296,7 +296,6 @@ const ManuScripts = () => {
     setPlaceItem(initialPlaceItemManuScript);
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
-    fetchData("");
     setAscDescFil("");
     setSortingRow({});
     router.push(`${pathname}`);
@@ -585,6 +584,9 @@ const ManuScripts = () => {
             // onClick={() => setIsOpen(true)}
             onClick={() => {
               setIsOpen(true);
+              setTimeout(function () {
+                document.querySelector("#menuClose").focus();
+              }, 500);
             }}
             areaLabel={isOpen ? true : false}
             className="text-primary-500 md:block hidden h-6 w-6"
@@ -627,9 +629,14 @@ const ManuScripts = () => {
             />
           </div>
           <div className="w-full flex items-center justify-between sm:hidden">
-            <p className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+            >
               Results: {`(${totalPage ? totalPage : 0} records)`}
-            </p>
+            </div>
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
@@ -657,12 +664,15 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <p
+          <div
+            id="announce"
+            aria-live="polite"
+            results={`${totalPage ? totalPage : 0} records`}
             className="hidden font-body sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs 
           sm:text-center"
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
-          </p>
+          </div>
           <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${

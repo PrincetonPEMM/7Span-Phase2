@@ -104,7 +104,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
         <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
           <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <legend
-              for="SearchDetail"
+              htmlFor="SearchDetail"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search painting descriptions
@@ -145,9 +145,14 @@ const PaintingByStoryDetail = ({ list, Id }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1">
+          <div
+            id="announce"
+            aria-live="polite"
+            results={`${totalPage ? totalPage : 0} records`}
+            className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1"
+          >
             Results: ({totalPage ? totalPage : 0} records)
-          </p>
+          </div>
         </div>
       </div>
       <div className="pt-5 lg:pt-10">

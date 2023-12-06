@@ -205,7 +205,7 @@ const PaintingbyMSIndex = ({
         <div
           className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-1 transform"
+              ? "open -translate-x-5  transform"
               : "-translate-x-96 close transform"
           } `}
         >
@@ -214,6 +214,7 @@ const PaintingbyMSIndex = ({
             onClick={() => {
               setMenuCollapse(!menuCollapse);
             }}
+            area-label={menuCollapse ? "true" : "false"}
           >
             <MdiClose />
           </button>
@@ -292,13 +293,13 @@ const PaintingbyMSIndex = ({
         }}
         area-label={menuCollapse ? false : true}
         className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
-      ></FilterButton>
+      />
       <div className="container-fluid py-5 lg:py-10">
         <div className="mb-10 items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3 lg:space-x-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                for="search painting by manuscript"
+                htmlFor="search painting by manuscript"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500 tagline"
               >
                 Search manuscript name and painting descriptions
@@ -338,7 +339,12 @@ const PaintingbyMSIndex = ({
               />
             </div>
             <p className="lg:col-span-1 my-3 sm:my-0">
-              <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={`${totalPage ? totalPage : 0} records`}
+                className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
+              >
                 Results: ({totalPage ? totalPage : 0} records)
               </div>
             </p>
@@ -397,10 +403,10 @@ const PaintingbyMSIndex = ({
                   isMultiple={false}
                 />
               </div>
-              <div className="text-center w-full md:text-left  hidden lg:block">
+              <div className="text-center w-full md:text-left hidden lg:block">
                 <button
                   area-label="clear all selected values"
-                  className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+                  className="bg-primary-500 w-full text-white px-2 py-2 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
                     setPaintingsInColorOnly([]);
@@ -415,7 +421,9 @@ const PaintingbyMSIndex = ({
               </div>
             </div>
           </div>
-          {/* <p className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+          {/* <p id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`} className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
 

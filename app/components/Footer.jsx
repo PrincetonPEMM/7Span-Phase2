@@ -96,7 +96,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
           <ul className="font-body text-xl flex flex-col">
             {exploreItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 {pathname !== "/" || !item.label ? (
                   <Link
                     href={item.link}
@@ -125,7 +125,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
           <ul className="font-body text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 <Link
                   href={item.link}
                   key={index}
@@ -143,7 +143,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
           <ul className="font-body text-xl flex flex-col">
             {aboutItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 <Link
                   href={item.link}
                   key={index}
