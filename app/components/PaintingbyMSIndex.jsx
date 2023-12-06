@@ -214,6 +214,7 @@ const PaintingbyMSIndex = ({
             onClick={() => {
               setMenuCollapse(!menuCollapse);
             }}
+            area-label={menuCollapse ? "true" : "false"}
           >
             <MdiClose />
           </button>
@@ -292,9 +293,9 @@ const PaintingbyMSIndex = ({
         }}
         area-label={menuCollapse ? false : true}
         className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
-      ></FilterButton>
+      />
       <div className="container-fluid py-5 lg:py-10">
-        <div className="mb-10 items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3">
+        <div className="mb-10 items-start space-x-4 sticky top-0 bg-offWhite-500 z-10 py-3 lg:space-x-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
@@ -351,12 +352,12 @@ const PaintingbyMSIndex = ({
               />
             </div>
           </div>
-          <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
+          <div className="mb-1 font-body lg:justify-normal">
             <div
-              className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9
+              className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-4
             "
             >
-              <div className="lg:col-span-2 hidden lg:block">
+              <div className="hidden lg:block">
                 <Dropdown
                   title="Date of Manuscript"
                   selected={dateOfPaintins}
@@ -370,7 +371,7 @@ const PaintingbyMSIndex = ({
                   isMultiple={true}
                 />
               </div>
-              <div className="sm:col-span-3 font-body hidden lg:block">
+              <div className="font-body hidden lg:block">
                 <Dropdown
                   title="Digital Quality"
                   selected={paintingsInColorOnly}
@@ -388,7 +389,7 @@ const PaintingbyMSIndex = ({
                   isMultiple={true}
                 />
               </div>
-              <div className="sm:col-span-3 font-body hidden lg:block ">
+              <div className="font-body hidden lg:block ">
                 <Dropdown
                   title="Repository of Manuscript"
                   selected={archiveOfPainting}
@@ -397,10 +398,10 @@ const PaintingbyMSIndex = ({
                   isMultiple={false}
                 />
               </div>
-              <div className="text-center w-full md:text-left  hidden lg:block">
+              <div className="text-center w-full md:text-left hidden lg:block">
                 <button
                   area-label="clear all selected values"
-                  className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+                  className="bg-primary-500 w-full text-white px-2 py-2 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
                     setPaintingsInColorOnly([]);
