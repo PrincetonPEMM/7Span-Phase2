@@ -71,36 +71,62 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
 
   return (
     <div className="w-full block py-3 my-5">
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={minVal}
-        onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
-        className="thumb thumb--left bg-offWhite-500"
-        style={{ zIndex: minVal > max - 100 && "5" }}
-      />
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={maxVal}
-        role="slider"
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={minVal}
-        aria-valuetext={`Selected range: ${minVal}`}
-        onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-        }}
-        className="thumb thumb--right"
-      />
+      <label htmlFor={`${minVal} of Manuscript's Date of Creation Slider`}>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={minVal}
+          onChange={(event) => {
+            const value = Math.min(Number(event.target.value), maxVal - 1);
+            setMinVal(value);
+            minValRef.current = value;
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft" && minVal > min) {
+              setMinVal(minVal - 1);
+              minValRef.current = minVal - 1;
+            } else if (event.key === "ArrowRight" && minVal < maxVal - 1) {
+              setMinVal(minVal + 1);
+              minValRef.current = minVal + 1;
+            }
+          }}
+          className="thumb thumb--left bg-offWhite-500 "
+          style={{ zIndex: minVal > max - 100 && "5" }}
+        />
+      </label>
+      <label
+        htmlFor={`${maxVal} of Manuscript's Date of Creation Slider`}
+        className="rangeInput"
+      >
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={maxVal}
+          // role="slider"
+          // aria-valuemin={min}
+          // aria-valuemax={max}
+          // aria-valuenow={minVal}
+          // aria-valuetext={`Selected range: ${minVal}`}
+          onChange={(event) => {
+            const value = Math.max(Number(event.target.value), minVal + 1);
+            setMaxVal(value);
+            maxValRef.current = value;
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft" && maxVal < max) {
+              setMaxVal(maxVal - 1);
+              maxValRef.current = maxVal - 1;
+            } else if (event.key === "ArrowRight" && maxVal < maxVal - 1) {
+              setMaxVal(maxVal + 1);
+              maxValRef.current = maxVal + 1;
+            }
+          }}
+          className="thumb thumb--right  "
+        />
+        <span></span>
+      </label>
 
       <div className="slider">
         <div className="slider__track inline-block" />

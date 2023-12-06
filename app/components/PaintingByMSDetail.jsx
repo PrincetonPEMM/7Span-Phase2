@@ -120,7 +120,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
           <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
             <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
               <label
-                for="search painting by manuscript detail"
+                htmlFor="search painting by manuscript detail"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions.
@@ -160,12 +160,15 @@ const PaintingByMSDetail = ({ list, Id }) => {
                 }}
               />
             </div>
-            <p
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
               className=" text-offBlack-400  mt-4 ml-auto font-medium  text-xs order-3 text-center mr-0 sm:mt-0 sm:text-left sm:-order-none
            lg:ml-0  lg:col-span-1 xl:text-sm"
             >
               Results: ({totalPage ? totalPage : 0} records)
-            </p>
+            </div>
           </div>
         </div>
       </div>

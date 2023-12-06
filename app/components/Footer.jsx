@@ -20,7 +20,7 @@ const Footer = () => {
     { title: "News & Updates", link: "/about/news-and-updates" },
     { title: "Events & Workshops", link: "/about/events-and-workshops" },
     {
-      title: "Digital accessibility",
+      title: "Accessibility",
       link: "https://accessibility.princeton.edu/help",
       LinkTarget: "_blank",
     },
@@ -96,7 +96,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
           <ul className="font-body text-xl flex flex-col">
             {exploreItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 {pathname !== "/" || !item.label ? (
                   <Link
                     href={item.link}
@@ -125,7 +125,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
           <ul className="font-body text-xl flex flex-col">
             {researchToolItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 <Link
                   href={item.link}
                   key={index}
@@ -143,7 +143,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
           <ul className="font-body text-xl flex flex-col">
             {aboutItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 <Link
                   href={item.link}
                   key={index}
@@ -162,6 +162,7 @@ const Footer = () => {
         <div className="sm:col-span-2 md:col-span-2 lg:col-span-4">
           <Link
             href="mailto: pemm@princeton.edu"
+            target="_black"
             className="text-sm hover:text-secondary-500 transition-colors font-light hover:transition-colors"
           >
             pemm@princeton.edu
@@ -176,6 +177,7 @@ const Footer = () => {
             href="https://www.facebook.com/pemmaryam"
             className="w-6 h-6 group"
             title="Facebook"
+            target="_blank"
           >
             <MingcuteFacebookLine className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -183,6 +185,7 @@ const Footer = () => {
             href="https://www.instagram.com/pemmaryam/?igshid=NzZlODBkYWE4Ng%3D%3D"
             className="w-6 h-6 group"
             title="Instagram"
+            target="_blank"
           >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -190,6 +193,7 @@ const Footer = () => {
             href="#"
             className="w-6 h-6 group transition-colors"
             title="TikTok"
+            target="_blank"
           >
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -200,6 +204,7 @@ const Footer = () => {
             href="https://twitter.com/pemmaryam"
             className="w-6 h-6 group"
             title="Twitter"
+            target="_blank"
           >
             <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
