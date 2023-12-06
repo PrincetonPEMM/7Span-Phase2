@@ -950,7 +950,7 @@ input::-webkit-inner-spin-button {
 }
 
 .banner-detail p a {
-  @apply text-primary-700 hover:text-offBlack-500;
+  @apply text-primary-500 hover:text-offBlack-500;
 }
 
 .people-description p a {
