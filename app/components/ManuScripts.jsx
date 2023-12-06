@@ -296,7 +296,6 @@ const ManuScripts = () => {
     setPlaceItem(initialPlaceItemManuScript);
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
-    fetchData("");
     setAscDescFil("");
     setSortingRow({});
     router.push(`${pathname}`);
