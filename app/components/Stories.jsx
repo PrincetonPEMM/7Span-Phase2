@@ -288,6 +288,7 @@ const Stories = () => {
     setPaintingMin(rangeSliderMinForPaintingsStoriesPage);
     setPaintingMax(rangeSliderMaxForPaintingsStoriesPage);
     setExpandedRows([]);
+    setVennArabic(false);
     setPage(1);
     setSearch("");
     fetchData("");
