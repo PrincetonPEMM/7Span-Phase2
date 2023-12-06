@@ -160,12 +160,15 @@ const PaintingByMSDetail = ({ list, Id }) => {
                 }}
               />
             </div>
-            <p
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
               className=" text-offBlack-400  mt-4 ml-auto font-medium  text-xs order-3 text-center mr-0 sm:mt-0 sm:text-left sm:-order-none
            lg:ml-0  lg:col-span-1 xl:text-sm"
             >
               Results: ({totalPage ? totalPage : 0} records)
-            </p>
+            </div>
           </div>
         </div>
       </div>

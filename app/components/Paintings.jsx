@@ -204,113 +204,6 @@ const Paintings = ({
   return (
     <>
       {" "}
-      {/* sidebar filter start  */}
-      <OutsideClickHandler
-        onOutsideClick={() => {
-          setMenuCollapse(false);
-        }}
-      >
-        <div
-          className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
-            menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-1 transform"
-              : "-translate-x-96 close transform"
-          } `}
-        >
-          <button
-            className="text-right block "
-            onClick={() => {
-              setMenuCollapse(!menuCollapse);
-            }}
-            area-label={menuCollapse ? "true" : "false"}
-          >
-            <MdiClose />
-          </button>
-          <div className="text-lg p-1 font-semibold space-y-4 mt-4">
-            <div>
-              <Dropdown
-                title="Date of Paintings"
-                selected={dateOfPaintins}
-                setSelected={(e) => {
-                  setDateOfPaintins(e);
-                  setTimeout(() => {
-                    setMenuCollapse(false);
-                  }, 5000);
-                }}
-                options={dateOfPainting}
-                isMultiple={true}
-              />
-            </div>
-            <div>
-              <Dropdown
-                title="Digital Quality"
-                selected={paintingsInColorOnly}
-                setSelected={(e) => {
-                  if (e.length > 2) {
-                    setPaintingsInColorOnly([e[e.length - 2], e[e.length - 1]]);
-                  } else {
-                    setPaintingsInColorOnly(e);
-                  }
-                  setTimeout(() => {
-                    setMenuCollapse(false);
-                  }, 5000);
-                }}
-                options={paintingInColor}
-                isMultiple={true}
-              />
-            </div>
-            <div>
-              <Dropdown
-                title="Story Type"
-                selected={storyType}
-                setSelected={(e) => {
-                  setStoryType(e);
-                  setTimeout(() => {
-                    setMenuCollapse(false);
-                  }, 5000);
-                }}
-                options={typeOfStory}
-                isMultiple={false}
-              />
-            </div>
-            <div>
-              <Dropdown
-                title="Repository of Painting"
-                selected={archiveOfPainting}
-                setSelected={(e) => {
-                  setArchiveOfPainting(e);
-                  setTimeout(() => {
-                    setMenuCollapse(false);
-                  }, 5000);
-                }}
-                options={institution}
-                isMultiple={false}
-              />
-            </div>
-            <div className="text-center w-full md:text-left">
-              <button
-                area-label="clear all selected values"
-                className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
-                onClick={() => {
-                  setDateOfPaintins([]);
-                  setPaintingsInColorOnly([]);
-                  setStoryType(null);
-                  setArchiveOfPainting(null);
-                  setPage(1);
-                  setSearch("");
-                  setTimeout(() => {
-                    setMenuCollapse(false);
-                  }, 5000);
-                  router.push(`${pathname}`);
-                }}
-              >
-                Clear All
-              </button>
-            </div>
-          </div>
-        </div>
-      </OutsideClickHandler>
-      {/* sidebar filter ENd  */}
       <div className="px-4 md:px-5">
         {/* <button
           onClick={() => {
@@ -327,7 +220,118 @@ const Paintings = ({
           area-label={menuCollapse ? false : true}
           className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
         ></FilterButton>
-
+        {/* sidebar filter start  */}
+        {menuCollapse && (
+          <OutsideClickHandler
+            onOutsideClick={() => {
+              setMenuCollapse(false);
+            }}
+          >
+            <div
+              className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
+                menuCollapse
+                  ? "open -translate-x-5  transform"
+                  : "-translate-x-96 close transform"
+              } `}
+            >
+              <button
+                className="text-right block "
+                onClick={() => {
+                  setMenuCollapse(!menuCollapse);
+                }}
+                area-label={menuCollapse ? "true" : "false"}
+              >
+                <MdiClose />
+              </button>
+              <div className="text-lg p-1 font-semibold space-y-4 mt-4">
+                <div>
+                  <Dropdown
+                    title="Date of Paintings"
+                    selected={dateOfPaintins}
+                    setSelected={(e) => {
+                      setDateOfPaintins(e);
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                    }}
+                    options={dateOfPainting}
+                    isMultiple={true}
+                  />
+                </div>
+                <div>
+                  <Dropdown
+                    title="Digital Quality"
+                    selected={paintingsInColorOnly}
+                    setSelected={(e) => {
+                      if (e.length > 2) {
+                        setPaintingsInColorOnly([
+                          e[e.length - 2],
+                          e[e.length - 1],
+                        ]);
+                      } else {
+                        setPaintingsInColorOnly(e);
+                      }
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                    }}
+                    options={paintingInColor}
+                    isMultiple={true}
+                  />
+                </div>
+                <div>
+                  <Dropdown
+                    title="Story Type"
+                    selected={storyType}
+                    setSelected={(e) => {
+                      setStoryType(e);
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                    }}
+                    options={typeOfStory}
+                    isMultiple={false}
+                  />
+                </div>
+                <div>
+                  <Dropdown
+                    title="Repository of Painting"
+                    selected={archiveOfPainting}
+                    setSelected={(e) => {
+                      setArchiveOfPainting(e);
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                    }}
+                    options={institution}
+                    isMultiple={false}
+                  />
+                </div>
+                <div className="text-center w-full md:text-left">
+                  <button
+                    area-label="clear all selected values"
+                    className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+                    onClick={() => {
+                      setDateOfPaintins([]);
+                      setPaintingsInColorOnly([]);
+                      setStoryType(null);
+                      setArchiveOfPainting(null);
+                      setPage(1);
+                      setSearch("");
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                      router.push(`${pathname}`);
+                    }}
+                  >
+                    Clear All
+                  </button>
+                </div>
+              </div>
+            </div>
+          </OutsideClickHandler>
+        )}
+        {/* sidebar filter ENd  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
@@ -373,7 +377,12 @@ const Paintings = ({
               />
             </div>
             <div className="lg:col-span-1 my-3 sm:my-0">
-              <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={`${totalPage ? totalPage : 0} records`}
+                className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
+              >
                 Results: ({totalPage ? totalPage : 0} records)
               </div>
             </div>

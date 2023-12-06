@@ -205,7 +205,7 @@ const PaintingbyMSIndex = ({
         <div
           className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
             menuCollapse
-              ? "open -translate-x-5 sm:-translate-x-1 transform"
+              ? "open -translate-x-5  transform"
               : "-translate-x-96 close transform"
           } `}
         >
@@ -339,7 +339,12 @@ const PaintingbyMSIndex = ({
               />
             </div>
             <p className="lg:col-span-1 my-3 sm:my-0">
-              <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={`${totalPage ? totalPage : 0} records`}
+                className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
+              >
                 Results: ({totalPage ? totalPage : 0} records)
               </div>
             </p>
@@ -416,7 +421,9 @@ const PaintingbyMSIndex = ({
               </div>
             </div>
           </div>
-          {/* <p className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
+          {/* <p id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`} className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </p>
 
