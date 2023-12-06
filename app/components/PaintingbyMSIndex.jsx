@@ -298,7 +298,7 @@ const PaintingbyMSIndex = ({
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                for="search painting by manuscript"
+                htmlFor="search painting by manuscript"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500 tagline"
               >
                 Search manuscript name and painting descriptions
@@ -352,8 +352,10 @@ const PaintingbyMSIndex = ({
             </div>
           </div>
           <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
-            <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9
-            ">
+            <div
+              className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9
+            "
+            >
               <div className="lg:col-span-2 hidden lg:block">
                 <Dropdown
                   title="Date of Manuscript"

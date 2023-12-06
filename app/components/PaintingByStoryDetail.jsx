@@ -104,7 +104,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
         <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
           <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <legend
-              for="SearchDetail"
+              htmlFor="SearchDetail"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search painting descriptions
