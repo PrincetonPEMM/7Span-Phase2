@@ -177,7 +177,7 @@ const Footer = () => {
             href="https://www.facebook.com/pemmaryam"
             className="w-6 h-6 group"
             title="Facebook"
-            target="_black"
+            target="_blank"
           >
             <MingcuteFacebookLine className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -185,7 +185,7 @@ const Footer = () => {
             href="https://www.instagram.com/pemmaryam/?igshid=NzZlODBkYWE4Ng%3D%3D"
             className="w-6 h-6 group"
             title="Instagram"
-            target="_black"
+            target="_blank"
           >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -193,7 +193,7 @@ const Footer = () => {
             href="#"
             className="w-6 h-6 group transition-colors"
             title="TikTok"
-            target="_black"
+            target="_blank"
           >
             <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
@@ -204,7 +204,7 @@ const Footer = () => {
             href="https://twitter.com/pemmaryam"
             className="w-6 h-6 group"
             title="Twitter"
-            target="_black"
+            target="_blank"
           >
             <Fa6BrandsXTwitter className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>

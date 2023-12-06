@@ -22,7 +22,6 @@ const Radio = (props) => {
         const resultObject = {};
         data.forEach((item) => {
           const key = Object.keys(item)[0];
-
           resultObject[key] = item[key];
         });
         return {
@@ -45,10 +44,10 @@ const Radio = (props) => {
           onChange={changeHandler}
           defaultChecked
           className={`radiobox-input ${isChecked ? "checked" : ""}`}
-          // onKeyDown={(e) => {
-          //   if (e.keyCode === 13) changeHandler(true);
-          //   if (e.keyCode === 9) changeHandler(false);
-          // }}
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) changeHandler(true);
+            if (e.keyCode === 9) changeHandler(false);
+          }}
         />
         <span className="radiomark"></span>
         {label && (

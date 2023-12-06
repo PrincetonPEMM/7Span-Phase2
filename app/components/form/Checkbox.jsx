@@ -31,10 +31,7 @@ const Checkbox = (props) => {
 
   return (
     <>
-      <label
-        className="checkbox focus:outline-1 focus:outline-secondary-500 flex items-center"
-        htmlFor={id}
-      >
+      <label className="checkbox flex items-center" htmlFor={id}>
         <input
           type="checkbox"
           name={label + " " + id}
@@ -42,11 +39,11 @@ const Checkbox = (props) => {
           id={id}
           defaultChecked={isChecked}
           onChange={changeHandler}
-          // onKeyDown={(e) => {
-          //   if (e.keyCode === 13) changeHandler(true);
-          //   if (e.keyCode === 9) changeHandler(false);
-          // }}
-          className={`checkbox-input  focus:outline-1 focus:outline-secondary-500 ${
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) changeHandler(true);
+            if (e.keyCode === 9) changeHandler(false);
+          }}
+          className={`checkbox-input focus:ring-1 focus:ring-secondary-500 ${
             isChecked ? "checked" : ""
           }`}
         />
