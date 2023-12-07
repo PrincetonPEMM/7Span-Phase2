@@ -145,9 +145,14 @@ const PaintingByStoryDetail = ({ list, Id }) => {
               }}
             />
           </div>
-          <p className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1">
+          <div
+            id="announce"
+            aria-live="polite"
+            results={`${totalPage ? totalPage : 0} records`}
+            className=" text-offBlack-400 order-3 text-center xl:text-sm sm:text-right sm:-order-none lg:ml-0 ml-auto mr-0 sm:mt-0 mt-4 font-medium text-xs lg:col-span-1"
+          >
             Results: ({totalPage ? totalPage : 0} records)
-          </p>
+          </div>
         </div>
       </div>
       <div className="pt-5 lg:pt-10">

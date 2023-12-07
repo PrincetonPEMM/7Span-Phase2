@@ -153,7 +153,12 @@ const PaintingByStoryIndex = ({ list }) => {
             />
           </div>
           <p className="lg:col-span-1 my-3 sm:my-0">
-            <div className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
+            >
               Results: ({totalPage ? totalPage : 0} records)
             </div>
           </p>

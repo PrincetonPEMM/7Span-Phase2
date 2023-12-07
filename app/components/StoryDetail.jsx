@@ -176,6 +176,9 @@ export default function StoryDetail({ data, Id }) {
       </h1>
 
       <div className="pt-10 font-menu">
+        <a href="#content" className="sr-only sr-only-focusable">
+          Skip to content
+        </a>
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 ">
           {/* Left sided Image portion  */}
           <div>
@@ -269,7 +272,7 @@ export default function StoryDetail({ data, Id }) {
           </div>
 
           {/* Right side content portion */}
-          <div className="col-span-2 md:block hidden">
+          <div className="col-span-2 md:block hidden" id="content">
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 font-body">
                 <li>

@@ -106,7 +106,7 @@ const Header = () => {
   ];
 
   const menuIconClick = () => {
-    setMenuCollapse(!menuCollapse);
+    if (window.innerWidth < 1024) setMenuCollapse(!menuCollapse);
   };
 
   // const isSubmenuOpen = (index) => {
@@ -149,7 +149,8 @@ const Header = () => {
         </Link>
         <button
           onClick={menuIconClick}
-          aria-expanded={
+          aria-expanded={menuCollapse}
+          aria-label={
             menuCollapse ? "Menu button collapsed " : "Menu button close"
           }
           className="block h-7 w-7 flex-none p-1 z-40 absolute top-5 right-5 lg:hidden"

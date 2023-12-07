@@ -91,37 +91,41 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
               minValRef.current = minVal + 1;
             }
           }}
-          className="thumb thumb--left bg-offWhite-500"
+          className="thumb thumb--left bg-offWhite-500 "
           style={{ zIndex: minVal > max - 100 && "5" }}
         />
       </label>
-      <label htmlFor={`${maxVal} of Manuscript's Date of Creation Slider`}>
+      <label
+        htmlFor={`${maxVal} of Manuscript's Date of Creation Slider`}
+        className="rangeInput"
+      >
         <input
           type="range"
           min={min}
           max={max}
           value={maxVal}
-          role="slider"
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-valuenow={minVal}
-          aria-valuetext={`Selected range: ${minVal}`}
+          // role="slider"
+          // aria-valuemin={min}
+          // aria-valuemax={max}
+          // aria-valuenow={minVal}
+          // aria-valuetext={`Selected range: ${minVal}`}
           onChange={(event) => {
             const value = Math.max(Number(event.target.value), minVal + 1);
             setMaxVal(value);
             maxValRef.current = value;
           }}
           onKeyDown={(event) => {
-            if (event.key === "ArrowLeft" && minVal > min) {
-              setMinVal(minVal - 1);
-              minValRef.current = minVal - 1;
-            } else if (event.key === "ArrowRight" && minVal < maxVal - 1) {
-              setMinVal(minVal + 1);
-              minValRef.current = minVal + 1;
+            if (event.key === "ArrowLeft" && maxVal < max) {
+              setMaxVal(maxVal - 1);
+              maxValRef.current = maxVal - 1;
+            } else if (event.key === "ArrowRight" && maxVal < maxVal - 1) {
+              setMaxVal(maxVal + 1);
+              maxValRef.current = maxVal + 1;
             }
           }}
-          className="thumb thumb--right"
+          className="thumb thumb--right  "
         />
+        <span></span>
       </label>
 
       <div className="slider">
