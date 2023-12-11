@@ -1008,11 +1008,18 @@ tbody.table-body.active tr td {
   min-width: 150px;
 }
 
+.table-search {
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+  background: #e7e3dd;
+}
+
 @media only screen and (min-width: 640px) {
   .table-search.active {
     position: fixed;
     left: 15px;
-    top: 0;
+    top: 0px;
     right: 15px;
     z-index: 30;
     overflow: auto;
