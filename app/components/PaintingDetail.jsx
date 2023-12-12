@@ -134,7 +134,7 @@ const PaintingDetail = ({ data }) => {
           <BackBtn />
         </div>
       </div>
-      <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-[32px] text-primary-500 font-medium">
+      <h2 className="block md:hidden font-menu text-2xl lg:text-3xl mt-2 mb-5 xl:text-3xl text-primary-500 font-medium">
         {data?.canonical_story_title}
       </h2>
 

@@ -68,7 +68,7 @@ export default async function page() {
           .join("-")}`}
         className="people flex justify-center flex-col items-center"
       >
-        <h2 className="text-3xl  font-header text-center lg:text-[32px] text-primary-500">
+        <h2 className="text-3xl  font-header text-center lg:text-4xl text-primary-500">
           {about_people.our_people_title}
         </h2>
         <p className="text-center font-menu md:w-2/3">
@@ -79,7 +79,7 @@ export default async function page() {
       <div className="team mt-10">
         <h2
           id="our-team"
-          className="text-3xl font-header text-center lg:text-[32px] text-primary-500"
+          className="text-3xl font-header text-center lg:text-4xl text-primary-500"
         >
           Our Team
         </h2>
@@ -98,7 +98,7 @@ export default async function page() {
           .join("-")}`}
         className="other-team-member font-body  md:w-4/5 mx-auto mt-10 md:space-y-5 lg:space-y-7"
       >
-        <h3 className="text-3xl font-header text-center lg:text-[32px] text-primary-500">
+        <h3 className="text-3xl font-header text-center lg:text-4xl text-primary-500">
           {about_people.other_team_members_title}
         </h3>
         <div
@@ -119,7 +119,7 @@ export default async function page() {
         >
           <h2
             id="our-partners"
-            className="text-3xl font-header w-full text-center lg:text-[32px] text-primary-500 mx-auto"
+            className="text-3xl font-header w-full text-center lg:text-4xl text-primary-500 mx-auto"
           >
             {about_people.our_partners_title}
           </h2>
@@ -140,7 +140,7 @@ export default async function page() {
             .join("-")}`}
           className="board-members "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-[32px] text-primary-500">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500">
             {about_people.board_members_title}
           </h3>
           <div
@@ -157,7 +157,7 @@ export default async function page() {
             .join("-")}`}
           className="project-advisers "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-[32px] text-primary-500 w-full">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
             {about_people.project_advisers_title}
           </h3>
           <div
@@ -174,7 +174,7 @@ export default async function page() {
             .join("-")}`}
           className="institutional-collaborators "
         >
-          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-[32px] text-primary-500 w-full">
+          <h3 className="text-2xl font-header text-center mb-3 md:mb-5 lg:text-4xl text-primary-500 w-full">
             {about_people.institutional_collaborators_title}
           </h3>
           <div
@@ -193,7 +193,7 @@ export default async function page() {
         >
           <h2
             id="our-funders"
-            className="text-3xl font-header w-full text-center lg:text-[32px] text-primary-500 mx-auto"
+            className="text-3xl font-header w-full text-center lg:text-4xl text-primary-500 mx-auto"
           >
             {about_people.our_funders_title}
           </h2>

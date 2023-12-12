@@ -45,7 +45,6 @@ export const ID_LIST = [
 export const STORIES = "Stories";
 export const MANUSCRIPTS = "Manuscripts";
 export const MANUSCRIPT_DETAIL = "Manuscript-Detail";
-export const INCIPIT_TABLE = "Incipit-Table";
 export const rangeSliderMinForStoriesStoriesPage = 1350;
 export const rangeSliderMaxForStoriesStoriesPage = 2020;
 export const rangeSliderMinForManuscriptsStoriesPage = 0;
@@ -71,11 +70,6 @@ export const storiesTableTitleView = [
   { name: "Story ID", value: "" },
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
-export const IncipitTable = [
-  { name: "Macomber Id" },
-  { name: "Incipit" },
-  { name: "" },
-];
 export const manuscriptsTableTitleView = [
   { name: "Date Manuscript Created", value: "dateCreated" },
   { name: "Manuscript's Number of Stories", value: "totalStories" },
