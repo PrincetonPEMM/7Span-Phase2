@@ -49,13 +49,13 @@ const Footer = () => {
     },
   ];
   const researchToolItems = [
+    { title: "Maps", link: "/research/maps" },
+    { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
     { title: "Research & Lessons", link: "/research/research-and-lessons" },
     { title: "List of Repositories", link: "/research/repositories" },
-    { title: "Maps", link: "/research/maps" },
-    { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
     { title: "Macomber Handlist", link: "/research/macomber" },
+    { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
     { title: "Bibliography", link: "/research/bibliography" },
-    { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
     { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
     { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
