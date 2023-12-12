@@ -1033,7 +1033,7 @@ web accisibility css start  */
 .table-head.active {
   position: fixed;
   left: 15px;
-  top: 0;
+  top: 122px;
   right: 15px;
   z-index: 30;
   overflow: auto;
@@ -1102,31 +1102,36 @@ tbody.table-body.active tr td {
   }
 }
 
-@media only screen and (max-width: 1580px) {
-  .table-head tr th {
+/* @media only screen and (min-width: 1580px) {
+  .table-head.active tr th {
     min-width: 200px;
   }
-  .table-body tr td {
+  tbody.table-body.active tr td {
     min-width: 200px;
   }
-}
+  .table-head.active {
+    top: 71px;
+    left: 298px;
+  }
+} */
 
-@media only screen and (max-width: 1280px) {
+/* @media only screen and (max-width: 1280px) {
   .table-wrap {
     @apply overflow-auto;
   }
   .table-head.active {
-    left: 220px;
+    left: calc(51px + 270px);
+    top: 65px;
   }
   .table-search.active {
     left: 295px;
     background-color: #e7e3dd;
   }
-}
+} */
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
   .submenu {
-    /* display: block; */
+   
     top: 100% !important;
     padding-top: 8px;
   }
@@ -1137,27 +1142,30 @@ tbody.table-body.active tr td {
   table.incipit-tool .interchangable-table tr td:first-child {
     width: 50px;
   }
-  .table-head.active {
-    top: 65px;
-    left: 275px;
+  tbody.table-body.active tr td,
+  .table-head.active tr th {
+    width: 200px;
   }
+
   .table-search.active {
-    left: 275px;
+    top: 0;
+    left: 289px;
     background-color: #e7e3dd;
   }
-}
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .table-head.active {
+    left: calc(22px + 250px);
+    top: 65px;
+  }
+} */
+
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-img {
     padding-top: 174.778%;
   }
 }
 @media only screen and (max-width: 991px) {
-  .table-head.active {
-    left: 15px;
-    right: 15px;
-    top: 122px;
-  }
+ 
   .table-search {
     top: 0;
   }
@@ -1192,7 +1200,121 @@ tbody.table-body.active tr td {
 }
 @media only screen and (min-width: 425px) {
   .my-masonry-grid .my-masonry-grid_column:first-child {
+   
+    @apply mr-5;
+  }
+} */
+
+@media only screen and (max-width: 440px) {
+  span.tagline {
+    @apply w-56 -top-5;
+  }
+}
+
+@media only screen and (min-width: 425px) {
+  .my-masonry-grid .my-masonry-grid_column:first-child {
     /* @apply sm:!w-[48%] md:!w-[31%]; */
     @apply mr-5;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .table-search.active {
+    position: fixed;
+    top: 187px;
+    left: 15px;
+    right: 15px;
+    z-index: 30;
+    overflow: auto;
+  }
+  .table-head.active {
+    left: 15px;
+    top: 130px;
+  }
+  .table-head tr th {
+    min-width: 100px;
+  }
+  .table-body tr td {
+    min-width: 100px;
+  }
+  .table-search {
+    top: 0;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  /* .table-head.active {
+    left: 15px;
+    right: 15px;
+    top: 122px;
+  } */
+  .table-search {
+    top: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-img {
+    padding-top: 174.778%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .submenu {
+    /* display: block; */
+    top: 100% !important;
+    padding-top: 8px;
+  }
+  .group:hover .submenu {
+    display: block;
+  }
+  table.incipit-tool .interchangable-table tr th:first-child,
+  table.incipit-tool .interchangable-table tr td:first-child {
+    width: 50px;
+  }
+  tbody.table-body.active tr td,
+  .table-head.active tr th {
+    width: 200px;
+  }
+
+  .table-search.active {
+    top: 0;
+    left: 289px;
+    background-color: #e7e3dd;
+  }
+
+  .table-head.active {
+    left: calc(22px + 250px);
+    top: 65px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .table-wrap {
+    @apply overflow-auto;
+  }
+
+  .table-search.active {
+    left: 295px;
+    background-color: #e7e3dd;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .table-head.active {
+    left: calc(22px + 270px);
+    top: 65px;
+  }
+}
+@media only screen and (min-width: 1580px) {
+  .table-head.active tr th {
+    min-width: 200px;
+  }
+  tbody.table-body.active tr td {
+    min-width: 200px;
+  }
+  .table-head.active {
+    top: 64px;
+    left: 298px;
   }
 }
