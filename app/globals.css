@@ -955,6 +955,44 @@ input::-webkit-inner-spin-button {
 .interchangable-table tr:last-child {
   @apply border-b-0;
 }
+
+/* incipit tool design Start */
+.incipit-tool > table thead {
+  @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0 text-left;
+}
+
+.incipit-tool > table td {
+  @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm text-left lg:text-base;
+}
+.incipit-tool > table td:nth-child(2) {
+  @apply w-full;
+}
+.incipit-tool > table tr + tr {
+  @apply border-b border-b-gray-300;
+}
+.incipit-tool > table tr:first-child {
+  @apply border-b border-b-gray-300;
+}
+.incipit-tool > table tr:last-child {
+  @apply border-b-0;
+}
+.incipit-tool table tr th {
+  @apply p-3;
+}
+.incipit-tool table tr td:first-child,
+.incipit-tool table tr th:first-child {
+  @apply min-w-[50px] sm:min-w-[70px];
+}
+
+.incipit-tool table tr td:last-child,
+.incipit-tool table tr th:last-child {
+  min-width: 150px;
+}
+.incipit-tool {
+  @apply w-full overflow-y-auto;
+}
+/* incipit tool design End */
+
 .table-wrap:before {
   @apply top-0 left-0 rounded-lg;
 }
@@ -1015,53 +1053,35 @@ tbody.table-body.active tr td {
   background: #e7e3dd;
 }
 
-@media only screen and (min-width: 640px) {
-  .table-search.active {
-    position: fixed;
-    left: 15px;
-    top: 0px;
-    right: 15px;
-    z-index: 30;
-    overflow: auto;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .table-head.active {
-    top: 65px;
-    left: 275px;
-  }
-  .table-search.active {
-    left: 275px;
-    background-color: #e7e3dd;
-  }
-}
-@media only screen and (min-width: 1280px) {
-  .table-head.active {
-    left: 295px;
-  }
-  .table-search.active {
-    left: 295px;
-    background-color: #e7e3dd;
-  }
-}
-
 /* 1 DEC */
 
+.space-y-p.font-body.description-center p {
+  @apply text-offBlack-500;
+}
+
+.space-y-p.font-body.description-center p > img {
+  box-shadow: 0px 0px 10px 0px #c8c8c8;
+  margin: 20px 0;
+}
+
 .space-y-p.font-body.description-center h2 {
-  font-size: 35px;
+  font-size: 32px;
   font-weight: 600;
   font-family: "Source Sans 3", sans-serif;
   color: #3c7057;
 }
 .space-y-p.font-body.description-center h3 {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
+
+  color: #3c7057;
   font-family: "Source Sans 3", sans-serif;
 }
 
 .space-y-p.font-body.description-center h4 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
+  color: #3c7057;
   font-family: "Source Sans 3", sans-serif;
 }
 
@@ -1070,6 +1090,7 @@ tbody.table-body.active tr td {
 .manuscript_detail_table tbody tr td:first-child {
   @apply w-28;
 }
+
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
@@ -1080,17 +1101,88 @@ tbody.table-body.active tr td {
     transition: 2s;
   }
 }
+
+@media only screen and (max-width: 1580px) {
+  .table-head tr th {
+    min-width: 200px;
+  }
+  .table-body tr td {
+    min-width: 200px;
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   .table-wrap {
     @apply overflow-auto;
   }
+  .table-head.active {
+    left: 220px;
+  }
+  .table-search.active {
+    left: 295px;
+    background-color: #e7e3dd;
+  }
 }
+
+@media only screen and (min-width: 1024px) {
+  .submenu {
+    /* display: block; */
+    top: 100% !important;
+    padding-top: 8px;
+  }
+  .group:hover .submenu {
+    display: block;
+  }
+  table.incipit-tool .interchangable-table tr th:first-child,
+  table.incipit-tool .interchangable-table tr td:first-child {
+    width: 50px;
+  }
+  .table-head.active {
+    top: 65px;
+    left: 275px;
+  }
+  .table-search.active {
+    left: 275px;
+    background-color: #e7e3dd;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .hero-img {
+    padding-top: 174.778%;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .table-head.active {
+    left: 15px;
+    right: 15px;
+    top: 122px;
+  }
+  .table-search {
+    top: 0;
+  }
+}
+
 @media only screen and (max-width: 640px) {
+  .table-search.active {
+    position: fixed;
+    top: 187px;
+    left: 15px;
+    right: 15px;
+    z-index: 30;
+    overflow: auto;
+  }
+  .table-head.active {
+    left: 15px;
+  }
   .table-head tr th {
     min-width: 100px;
   }
   .table-body tr td {
     min-width: 100px;
+  }
+  .table-search {
+    top: 0;
   }
 }
 @media only screen and (max-width: 440px) {
@@ -1102,21 +1194,5 @@ tbody.table-body.active tr td {
   .my-masonry-grid .my-masonry-grid_column:first-child {
     /* @apply sm:!w-[48%] md:!w-[31%]; */
     @apply mr-5;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .submenu {
-    /* display: block; */
-    top: 100% !important;
-    padding-top: 8px;
-  }
-  .group:hover .submenu {
-    display: block;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .hero-img {
-    padding-top: 174.778%;
   }
 }
