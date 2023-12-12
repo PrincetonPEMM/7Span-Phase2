@@ -1008,6 +1008,10 @@ tbody.table-body.active tr td {
   min-width: 150px;
 }
 
+.map-container {
+  height: 800px;
+}
+
 @media only screen and (min-width: 640px) {
   .table-search.active {
     position: fixed;
