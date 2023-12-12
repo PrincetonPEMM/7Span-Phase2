@@ -1071,7 +1071,7 @@ tbody.table-body.active tr td {
   color: #3c7057;
 }
 .space-y-p.font-body.description-center h3 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
 
   color: #3c7057;
@@ -1079,7 +1079,7 @@ tbody.table-body.active tr td {
 }
 
 .space-y-p.font-body.description-center h4 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   color: #3c7057;
   font-family: "Source Sans 3", sans-serif;
