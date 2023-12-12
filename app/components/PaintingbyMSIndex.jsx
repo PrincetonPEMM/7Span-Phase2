@@ -124,9 +124,9 @@ const PaintingbyMSIndex = ({
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${
-        process.env.NEXT_PUBLIC_DIRECTUS_URL
-      }paintings/by-manuscript?page=${page}&perPage=${perPage}&${makeParamsArray(
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${
+        page ? page : 1
+      }&perPage=${perPage}&${makeParamsArray(
         "dateOfManuscript",
         dateOfPaintins
       )}${makeParamsArray(

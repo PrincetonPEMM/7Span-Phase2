@@ -280,7 +280,6 @@ const Table = ({
                         </td>
                       </tr>
                     )}
-
                   {
                     <tr
                       key={index}
