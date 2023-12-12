@@ -19,7 +19,7 @@ export default async function page() {
     <div className="container">
       <div className="space-y-4 py-12">
         <div className="people flex justify-start flex-col items-center mx-auto lg:w-2/3">
-          <h2 className="text-3xl text-left font-header text-primary-500 w-full xl:text-4xl">
+          <h2 className="text-3xl text-left font-header text-primary-500 w-full lg:text-4xl">
             {about_using_this_site.using_the_site_title}
           </h2>
           <p className="font-body py-5 w-full">
