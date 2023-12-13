@@ -9,7 +9,7 @@ import Link from "next/link";
 const perPage = 10;
 
 const page = () => {
-  const [search, setSearch] = useState("'ብእሲ፡'");
+  const [search, setSearch] = useState(""); // 'ብእሲ፡'
   const [totalPage, setTotalPage] = useState(0);
   const [maxRecord, setMaxRecord] = useState(0);
   const [page, setPage] = useState(1);
@@ -97,7 +97,7 @@ const page = () => {
         </div>
       </div>
       <div className="incipit-tool" id="incipit-table">
-        {tableData.length !== 0 && (
+        {tableData?.length !== 0 && (
           <table className="w-full">
             <thead>
               <tr>
