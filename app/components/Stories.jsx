@@ -566,7 +566,6 @@ const Stories = () => {
           />
         </div>
       </OutsideClickHandler>
-
       <div className="w-full grid pt-1">
         {!isOpen && (
           // <button onClick={() => setIsOpen(true)} className="">
@@ -688,6 +687,7 @@ const Stories = () => {
             tableData?.length ? "h-screen" : "h-auto block"
           } `}
         > */}
+
         <Table
           // search={search}
           isPageName={STORIES}
@@ -740,7 +740,6 @@ const Stories = () => {
         /> */}
       </div>
     </div>
-    // </div>
   );
 };
 

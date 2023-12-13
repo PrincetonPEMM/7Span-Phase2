@@ -39,6 +39,7 @@ const MapsCom = ({
       else
         return arr
           .map((itm) => {
+            if (!itm.key) return ``;
             setFilterInParams(key, itm.key, false);
             return `filters[${key}]=${itm.key}&`;
           })
@@ -220,9 +221,9 @@ const MapsCom = ({
       datePainting.includes(dop.key)
     );
 
-    const paintingColor = params.getAll("languageOfManuscript");
+    const paintingColor = params.get("languageOfManuscript");
     const langMsT = languageManuscript.filter((dop) =>
-      paintingColor.includes(dop.key)
+      [paintingColor].includes(dop.key)
     );
 
     const typeStory = params.get("paintingsOfManuscript");
@@ -243,7 +244,7 @@ const MapsCom = ({
   }
 
   return (
-    <div>
+    <div class="px-5">
       <FilterButton
         onClick={() => {
           setMenuCollapse(!menuCollapse);
@@ -323,8 +324,8 @@ const MapsCom = ({
                   className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfMs([]);
-                    setLanguageMs([]);
-                    setPaintingsMs([]);
+                    setLanguageMs(null);
+                    setPaintingsMs(null);
                     setCollectionMs(null);
                     setTimeout(() => {
                       setMenuCollapse(false);
