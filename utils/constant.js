@@ -70,6 +70,7 @@ export const storiesTableTitleView = [
   { name: "Story ID", value: "" },
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
+
 export const manuscriptsTableTitleView = [
   { name: "Date Manuscript Created", value: "dateCreated" },
   { name: "Manuscript's Number of Stories", value: "totalStories" },

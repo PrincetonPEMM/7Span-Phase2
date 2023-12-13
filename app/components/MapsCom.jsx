@@ -67,7 +67,7 @@ const MapsCom = ({
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MAPBOX_URL}?${params}`
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}maps?${params}`
       );
       const data = await response.json();
 
