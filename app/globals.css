@@ -960,13 +960,16 @@ input::-webkit-inner-spin-button {
 .incipit-tool > table thead {
   @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0 text-left;
 }
-
+.incipit-tool > table > tbody > tr > td > div > em {
+  @apply text-secondary-500 font-bold;
+}
 .incipit-tool > table td {
   @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm text-left lg:text-base;
 }
 .incipit-tool > table td:nth-child(2) {
-  @apply w-full;
+  @apply w-full min-w-[500px];
 }
+
 .incipit-tool > table tr + tr {
   @apply border-b border-b-gray-300;
 }
@@ -981,12 +984,12 @@ input::-webkit-inner-spin-button {
 }
 .incipit-tool table tr td:first-child,
 .incipit-tool table tr th:first-child {
-  @apply min-w-[50px] sm:min-w-[70px];
+  @apply min-w-[50px] sm:min-w-[130px];
 }
 
 .incipit-tool table tr td:last-child,
 .incipit-tool table tr th:last-child {
-  min-width: 150px;
+  @apply min-w-[250px];
 }
 .incipit-tool {
   @apply w-full overflow-y-auto;
