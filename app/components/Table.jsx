@@ -230,6 +230,8 @@ const Table = ({
         <table
           className={`${
             isPageName === MANUSCRIPT_DETAIL && "manuscript_detail_table"
+          } ${isPageName === MANUSCRIPTS && "manuscript-table"} ${
+            isPageName === STORIES && "story-table"
           } table  w-full shadow divide-y divide-gray-100 font-body rounded-t-sm`}
         >
           <thead className="table-head font-medium bg-primary-500 text-white rounded-t-sm align-top">

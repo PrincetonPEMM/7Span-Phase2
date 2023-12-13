@@ -503,7 +503,7 @@ const ManuScripts = () => {
         }}
       >
         <div
-          className={`manuscript-page font-body bg-primary-500 fixed inset-y-0 p-3 pb-10 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
+          className={`manuscript-page font-body bg-primary-500 fixed inset-y-0 p-3 pb-40 pt-0 overflow-y-auto shell__sidebar rounded-sm w-64 text-white ${
             isOpen
               ? "left-0 md:block md:static md:h-auto transition-all "
               : "hidden -left-full transition-all z-10"
