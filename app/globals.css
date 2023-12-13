@@ -1014,18 +1014,18 @@ tbody.table-body.active tr td {
   @apply text-offBlack-500;
 }
 .contact-page .space-y-p.description-center h2 {
-  @apply text-offBlack-500 font-medium;
+  @apply text-offBlack-500 font-bold;
   font-family: "Source Sans 3";
   font-size: 32px;
 }
 .contact-page .space-y-p.description-center h3 {
-  @apply text-2xl text-offBlack-500 font-medium;
+  @apply text-2xl text-offBlack-500 font-semibold;
   font-family: "Source Sans 3";
   font-weight: 600;
 }
 
 .contact-page .space-y-p.description-center h4 {
-  @apply text-offBlack-500 font-medium;
+  @apply text-offBlack-500 font-semibold;
   font-family: "Source Sans 3";
   font-size: 22px;
   font-weight: 600;
@@ -1036,25 +1036,25 @@ tbody.table-body.active tr td {
 }
 
 .space-y-p.description-center h2 {
-  @apply text-offBlack-500 font-medium;
+  @apply text-offBlack-500 font-bold;
   font-family: "Source Sans 3";
   font-size: 32px;
 }
 
 .space-y-p.description-center h3 {
-  @apply text-2xl text-offBlack-500 font-medium;
+  @apply text-2xl text-offBlack-500 font-semibold;
   font-family: "Source Sans 3", sans-serif;
 }
 
 .space-y-p.description-center h4 {
-  @apply text-offBlack-500 font-medium;
+  @apply text-offBlack-500 font-semibold;
   font-family: "Source Sans 3", sans-serif;
   font-size: 22px;
 }
 
 .descriptions-left h4,
 .descriptions-left h3 .descriptions-left h2 {
-  @apply font-body;
+  @apply font-body font-bold;
   font-family: "Source Sans 3", sans-serif;
 }
 /* manuscript css 5th dec */
@@ -1072,6 +1072,9 @@ tbody.table-body.active tr td {
     transform: scale(1);
     transition: 2s;
   }
+}
+.bg-transparent {
+  background-color: transparent !important;
 }
 
 /* @media only screen and (min-width: 1580px) {
@@ -1288,5 +1291,14 @@ tbody.table-body.active tr td {
   .table-head.active {
     top: 64px;
     left: 298px;
+  }
+
+  .story-table tbody.table-body.active tr td,
+  .story-table .table-head.active tr th {
+    width: 16%;
+  }
+  .manuscript tbody.table-body.active tr td,
+  .manuscript .table-head.active tr th {
+    width: 16%;
   }
 }
