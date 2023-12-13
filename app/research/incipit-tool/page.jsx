@@ -5,21 +5,46 @@ import { Line } from "rc-progress";
 import React, { useEffect, useState } from "react";
 import CustomPagination from "@/app/components/Pagination";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const perPage = 10;
 
 const page = () => {
-  const [search, setSearch] = useState(""); // 'ብእሲ፡'
+  const params = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const newParams = new URLSearchParams();
+  const searchp = params.get("search");
+  const pageP = params.get("page");
+  const [page, setPage] = useState(pageP ?? 1);
+  const [search, setSearch] = useState(searchp ?? ""); // 'ብእሲ፡'
   const [totalPage, setTotalPage] = useState(0);
   const [maxRecord, setMaxRecord] = useState(0);
-  const [page, setPage] = useState(1);
   const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMount, setIsMount] = useState(false);
 
   const fetchData = (searchData = search) => {
     setIsLoading(true);
+
+    if (searchData.length > 3) {
+      setFilterInParams("search", searchData, false);
+    }
+    if (searchData.length === 0) {
+      setFilterInParams("search", searchData, true);
+    }
+
+    if (page !== 1) {
+      setFilterInParams("page", page, false);
+    } else {
+      setFilterInParams("page", page, true);
+    }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}incipit-tool?search=${searchData}&page=${page}&perPage=${perPage}`
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }incipit-tool?search=${searchData}&page=${
+        page ? page : 1
+      }&perPage=${perPage}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -36,15 +61,30 @@ const page = () => {
 
   useEffect(() => {
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (isMount) fetchData();
+    else setIsMount(true);
   }, [page]);
+
+  const setFilterInParams = (key, value, isRemove = false) => {
+    if (isRemove || !value) {
+      newParams.delete(key);
+      router.push(`${pathname}?${newParams.toString()}`);
+      return;
+    }
+    newParams.set(key, value);
+    router.push(`${pathname}?${newParams.toString()}`);
+  };
 
   return (
     <div className="container space-y-10 py-10">
       <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
         Incipit Search
       </h1>
-      <div class=" justify-center flex items-center space-x-1  sm:space-x-4">
-        <div className="relative w-full sm:col-span-4 md:max-w-6xl">
+      <div class=" justify-between flex-wrap items-center  sm:flex sm:space-y-0 sm:justify-center sm:space-x-4">
+        <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 sm:max-w-[50%] lg:max-w-[75%]">
           <label
             htmlFor="SearchTitles"
             className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -70,10 +110,25 @@ const page = () => {
           )}
         </div>
         <button
-          onClick={() => fetchData()}
-          class="bg-primary-500 text-white max-w-fit w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+          onClick={() => {
+            if (search.length) {
+              setPage(1);
+              fetchData();
+            }
+          }}
+          class="bg-primary-500 w-full text-center justify-center max-w-[48%] text-white sm:max-w-fit inline-flex mr-1 sm:mr-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
         >
           Search
+        </button>
+        <button
+          onClick={() => {
+            setSearch("");
+            tableData?.length !== 0 && fetchData("");
+            setPage(1);
+          }}
+          class="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+        >
+          Clear All
         </button>
       </div>
       <div className="flex justify-between">
@@ -91,7 +146,7 @@ const page = () => {
             currentPage={page}
             totalPages={Math.ceil(totalPage / perPage)}
             onPageChange={(num) => {
-              setPage(num);
+              if (totalPage) setPage(num);
             }}
           />
         </div>
