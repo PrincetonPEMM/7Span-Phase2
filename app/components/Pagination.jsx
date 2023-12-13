@@ -121,7 +121,7 @@ function CustomPagination({
         className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
         onClick={() => handlePageChange(1)}
         area-label={`${currentPage === 1 ? "disabled" : "Move to first page"}`}
-        area-aria-disabled={`${currentPage === 1 ? "true" : "false"}`}
+        area-disabled={`${currentPage === 1 ? "true" : "false"}`}
       >
         <MdiChevronDoubleLeft className="text-base" />
       </button>
@@ -134,7 +134,7 @@ function CustomPagination({
         area-label={`Click here to go to previous page ${
           currentPage === 1 ? "disabled" : ""
         }`}
-        area-aria-disabled={`${currentPage === 1 ? "true" : "false"}`}
+        area-disabled={`${currentPage === 1 ? "true" : "false"}`}
         onClick={() => handlePageChange(currentPage - 1)}
       >
         <MdiChevronLeft className="text-base" />
@@ -165,7 +165,7 @@ function CustomPagination({
           currentPage === totalPages ? "disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage + 1)}
-        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
+        area-disabled={`${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronRight className="text-base" />
       </button>
@@ -175,7 +175,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(totalPages)}
         area-label={`Move to last page ${currentPage === 1 ? "enab" : ""}`}
-        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
+        area-disabled={`${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronDoubleRight className="text-base" />
       </button>

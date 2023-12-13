@@ -499,7 +499,7 @@ const Stories = () => {
         }}
       >
         <div
-          className={`font-body bg-primary-500 fixed inset-y-0 pt-0 pb-10 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
+          className={`font-body bg-primary-500 fixed inset-y-0 pt-0 pb-40 overflow-y-auto shell__sidebar rounded-sm w-64 lg:h-auto text-white p-3 ${
             isOpen
               ? "left-0 z-20 md:block md:static h-full top-0 transition-all"
               : "hidden -left-full transition-all"
@@ -566,7 +566,6 @@ const Stories = () => {
           />
         </div>
       </OutsideClickHandler>
-
       <div className="w-full grid pt-1">
         {!isOpen && (
           // <button onClick={() => setIsOpen(true)} className="">
@@ -688,6 +687,7 @@ const Stories = () => {
             tableData?.length ? "h-screen" : "h-auto block"
           } `}
         > */}
+
         <Table
           // search={search}
           isPageName={STORIES}
@@ -740,7 +740,6 @@ const Stories = () => {
         /> */}
       </div>
     </div>
-    // </div>
   );
 };
 
