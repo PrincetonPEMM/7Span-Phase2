@@ -45,7 +45,6 @@ const InputIcon = (props) => {
         }
         focus:ring-1`}
         onKeyDown={(e) => {
-          console.log(e, "Maulik Savaliya");
           if (e.key === "Enter") clickHandler(true);
           if (e.key === "Tab") clickHandler(false);
         }}
