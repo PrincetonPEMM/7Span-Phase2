@@ -1049,6 +1049,9 @@ tbody.table-body.active tr td {
   min-width: 150px;
 }
 
+.map-container {
+  height: 800px;
+}
 .table-search {
   position: sticky;
   top: 10px;
