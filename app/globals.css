@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "Source Sans 3";
+  src:
+    url("../assets/fonts/SourceSans3-Medium.woff2") format("woff2"),
+    url("../assets/fonts/SourceSans3-Medium.woff") format("woff"),
+    url("../assets/fonts/SourceSans3-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Maghfirea";
   src:
     url("../assets/fonts/Maghfirea.ttf") format("ttf"),
@@ -93,32 +104,36 @@
 .font-menu {
   font-family: "Source Serif Pro", sans-serif;
 }
-.font-body {
+/* .font-body 
+font-family: Source sans 3 ;{
+  font-family: "Source Sans 3", sans-serif;
+} */
+.descriptions-left {
   font-family: "Source Sans 3", sans-serif;
 }
 .logo {
   width: 26vw;
 }
-
 body {
   color: #000;
 }
-
 .space-y-p {
   @apply lg:overflow-hidden overflow-auto;
 }
 .space-y-p p + p {
   margin-top: 10px;
 }
-
-.space-y-p h3 {
-  @apply font-bold text-2xl my-2;
+.description-center h3 {
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 500;
 }
-
+.space-y-p h3 {
+  @apply font-bold text-2xl my-2 text-offBlack-500 font-body;
+  font-family: Source sans 3;
+}
 .space-y-p a {
   @apply text-base inline font-bold text-primary-500 hover:text-secondary-600;
 }
-
 .space-y-p h1 {
   @apply text-3xl lg:text-4xl font-bold;
 }
@@ -235,25 +250,7 @@ body {
 .people-card {
   @apply hover:shadow-lg transition-shadow hover:transition-shadow hover:duration-200;
 }
-/* checkbox css */
-/* [type="checkbox"]:checked {
-  @apply bg-transparent bg-none bottom-0 outline-0 shadow-none;
-  font-size: 0;
-}
 
-[type="checkbox"]:checked:focus {
-  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
-  font-size: 0;
-}
-[type="radio"]:checked {
-  @apply bg-transparent bg-none bottom-0 outline-0 shadow-none;
-  font-size: 0;
-}
-
-[type="radio"]:checked:focus {
-  @apply bg-transparent border-0 outline-1 outline-primary-300 shadow-none  bg-none;
-  font-size: 0;
-} */
 .iconcheck input[type="checkbox"] {
   @apply bg-offWhite-500 text-black;
 }
@@ -327,11 +324,6 @@ body {
 .checkbox .checkbox-input.checked + .checkmark::before {
   display: block;
 }
-/* .checkbox .checkbox-input.checked + .checkmark::before {
-  left: 4px;
-  top: 1px;
-  width: 6px;
-} */
 
 /* radio button css */
 
@@ -464,11 +456,6 @@ input[type="range"]::-moz-range-progress {
   z-index: 3;
 }
 
-/* .thumb--right {
-  z-index: 4;
-  color: #ccc !important;
-} */
-
 /* For Chrome browsers */
 .thumb::-webkit-slider-thumb {
   background-color: #e5a942 !important;
@@ -510,13 +497,6 @@ input[type="number"] {
   pointer-events: all;
   border: none;
 }
-/* .rangeInput > input:focus + span {
-  @apply relative h-4 w-4 bg-gray-400;
-}
-.rangeInput > input:focus + span:beofre {
-  @apply absolute inset-0 z-10 bg-white h-2 w-2;
-  content: "";
-} */
 
 .sidebar-close {
   transform: translateX(90%);
@@ -599,25 +579,11 @@ input[type="number"] {
   @apply h-8 w-4 md:w-8 md:h-8 lg:w-10 lg:h-10 px-0;
 }
 
-/* .image-gallery .image-gallery-fullscreen-button .image-gallery-svg,
-.image-gallery
-  .image-gallery-play-button
-  .image-gallery-svg
-  .image-gallery
-  .image-gallery-left-nav,
-.image-gallery .image-gallery-right-nav {
-  @apply h-6 w-6 px-0;
-} */
-
 .image-gallery-thumbnails-wrapper.thumbnails-swipe-horizontal
   .image-gallery-thumbnails {
   @apply py-5;
 }
 
-/* .image-gallery-icon.image-gallery-fullscreen-button,
-.image-gallery-icon.image-gallery-play-button {
-  @apply hidden;
-} */
 .space-y-p p + p {
   margin-top: 10px;
 }
@@ -727,18 +693,6 @@ input[type="number"] {
   @apply -translate-x-1 transition-transform text-primary-500;
 }
 
-/* @media only screen and (max-width: 991px) and (min-width: 899px) {
-  .hero-img {
-    padding-top: 179.778%;
-  }
-}
-
-@media only screen and (max-width: 898px) and (min-width: 768px) {
-  .hero-img {
-    padding-top: 220.778%;
-  }
-} */
-
 /* npm react-js-pagination package */
 .pagination {
   display: flex;
@@ -750,10 +704,6 @@ input[type="number"] {
   list-style: none;
   margin: 0 5px;
 }
-/* 
-.pagination .active a {
-  font-weight: bold;
-} */
 
 .pagination a {
   @apply text-primary-500 py-1 px-3 font-bold border-2 border-primary-500;
@@ -1011,14 +961,13 @@ input::-webkit-inner-spin-button {
 /* 
 web accisibility css start  */
 .sr-only {
-  position: absolute;
+  @apply absolute p-0 border-0;
+
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
 }
 
 .sr-only-focusable:active,
@@ -1061,36 +1010,53 @@ tbody.table-body.active tr td {
 
 /* 1 DEC */
 
-.space-y-p.font-body.description-center p {
+.space-y-p.description-center p {
   @apply text-offBlack-500;
 }
+.contact-page .space-y-p.description-center h2 {
+  @apply text-offBlack-500 font-medium;
+  font-family: "Source Sans 3";
+  font-size: 32px;
+}
+.contact-page .space-y-p.description-center h3 {
+  @apply text-2xl text-offBlack-500 font-medium;
+  font-family: "Source Sans 3";
+  font-weight: 600;
+}
 
-.space-y-p.font-body.description-center p > img {
+.contact-page .space-y-p.description-center h4 {
+  @apply text-offBlack-500 font-medium;
+  font-family: "Source Sans 3";
+  font-size: 22px;
+  font-weight: 600;
+}
+.space-y-p.description-center p > img {
   box-shadow: 0px 0px 10px 0px #c8c8c8;
   margin: 20px 0;
 }
 
-.space-y-p.font-body.description-center h2 {
+.space-y-p.description-center h2 {
+  @apply text-offBlack-500 font-medium;
+  font-family: "Source Sans 3";
   font-size: 32px;
-  font-weight: 600;
-  font-family: "Source Sans 3", sans-serif;
-  color: #3c7057;
 }
-.space-y-p.font-body.description-center h3 {
-  font-size: 24px;
-  font-weight: 600;
 
-  color: #3c7057;
+.space-y-p.description-center h3 {
+  @apply text-2xl text-offBlack-500 font-medium;
   font-family: "Source Sans 3", sans-serif;
 }
 
-.space-y-p.font-body.description-center h4 {
+.space-y-p.description-center h4 {
+  @apply text-offBlack-500 font-medium;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 22px;
-  font-weight: 600;
-  color: #3c7057;
-  font-family: "Source Sans 3", sans-serif;
 }
 
+.descriptions-left h4,
+.descriptions-left h3 .descriptions-left h2 {
+  @apply font-body;
+  font-family: "Source Sans 3", sans-serif;
+}
 /* manuscript css 5th dec */
 
 .manuscript_detail_table tbody tr td:first-child {

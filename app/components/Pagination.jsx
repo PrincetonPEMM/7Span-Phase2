@@ -165,7 +165,7 @@ function CustomPagination({
           currentPage === totalPages ? "disabled" : ""
         }`}
         onClick={() => handlePageChange(currentPage + 1)}
-        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
+        area-aria-disabled={`${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronRight className="text-base" />
       </button>
@@ -175,7 +175,7 @@ function CustomPagination({
         }`}
         onClick={() => handlePageChange(totalPages)}
         area-label={`Move to last page ${currentPage === 1 ? "enab" : ""}`}
-        area-aria-disabled={` ${currentPage === totalPages ? "true" : "false"}`}
+        area-aria-disabled={`${currentPage === totalPages ? "true" : "false"}`}
       >
         <MdiChevronDoubleRight className="text-base" />
       </button>
