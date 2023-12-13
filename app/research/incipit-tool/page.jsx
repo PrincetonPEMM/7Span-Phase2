@@ -181,6 +181,7 @@ const page = () => {
                     </td>
                     <td className="">
                       <div
+                        className="font-geez"
                         dangerouslySetInnerHTML={{
                           __html: col.incipit,
                         }}

@@ -61,6 +61,26 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Noto Serif";
+  src:
+    url("../assets/fonts/NotoSerif-Bold.woff2") format("woff2"),
+    url("../assets/fonts/NotoSerif-Bold.woff") format("woff");
+
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SemiCondensed";
+  src:
+    url("../assets/fonts/NotoSerifSemiCondensed-Regular.woff2") format("woff2"),
+    url("../assets/fonts/NotoSerifSemiCondensed-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "Noto Serif";
@@ -99,6 +119,10 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+.font-geez {
+  font-family: "Noto Serif";
 }
 
 .font-menu {
