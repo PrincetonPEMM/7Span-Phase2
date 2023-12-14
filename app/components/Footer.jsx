@@ -162,7 +162,7 @@ const Footer = () => {
         <div className="sm:col-span-2 md:col-span-2 lg:col-span-4">
           <Link
             href="mailto: pemm@princeton.edu"
-            target="_black"
+            target="_blank"
             className="text-sm hover:text-secondary-500 transition-colors font-light hover:transition-colors"
           >
             pemm@princeton.edu
