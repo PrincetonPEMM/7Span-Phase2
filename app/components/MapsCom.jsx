@@ -301,7 +301,7 @@ const MapsCom = ({
               </div>
               <div>
                 <Dropdown
-                  title="Collection of Manuscript"
+                  title="Repository of Manuscript"
                   selected={collectionMs}
                   setSelected={setCollectionMs}
                   options={collectionManuscript}
