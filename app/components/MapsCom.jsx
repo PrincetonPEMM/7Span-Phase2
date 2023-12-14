@@ -44,6 +44,7 @@ const MapsCom = ({
             return `filters[${key}]=${itm.key}&`;
           })
           .join("");
+    setFilterInParams(key, "", true);
     return "";
   };
 
@@ -245,13 +246,6 @@ const MapsCom = ({
 
   return (
     <div class="px-5">
-      <FilterButton
-        onClick={() => {
-          setMenuCollapse(!menuCollapse);
-        }}
-        area-label={menuCollapse ? false : true}
-        className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
-      ></FilterButton>
       {/* sidebar filter start  */}
       {menuCollapse && (
         <OutsideClickHandler
@@ -280,13 +274,9 @@ const MapsCom = ({
                 <Dropdown
                   title="Date of Manuscript"
                   selected={dateOfMs}
-                  setSelected={useCallback(
-                    (e) => {
-                      console.log(e, "e");
-                      setDateOfMs(e);
-                    },
-                    [dateOfMs]
-                  )}
+                  setSelected={(e) => {
+                    setDateOfMs(e);
+                  }}
                   options={dateOfManuscipts}
                   isMultiple={true}
                 />
@@ -311,7 +301,7 @@ const MapsCom = ({
               </div>
               <div>
                 <Dropdown
-                  title="Paintings in Manuscript"
+                  title="Collection of Manuscript"
                   selected={collectionMs}
                   setSelected={setCollectionMs}
                   options={collectionManuscript}
@@ -327,9 +317,6 @@ const MapsCom = ({
                     setLanguageMs(null);
                     setPaintingsMs(null);
                     setCollectionMs(null);
-                    setTimeout(() => {
-                      setMenuCollapse(false);
-                    }, 5000);
                     router.push(`${pathname}`);
                   }}
                 >
@@ -340,6 +327,13 @@ const MapsCom = ({
           </div>
         </OutsideClickHandler>
       )}
+      <FilterButton
+        onClick={() => {
+          setMenuCollapse(!menuCollapse);
+        }}
+        area-label={menuCollapse ? false : true}
+        className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
+      />
       <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
           <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
@@ -349,7 +343,6 @@ const MapsCom = ({
                 selected={dateOfMs}
                 setSelected={useCallback(
                   (e) => {
-                    console.log(e, "e");
                     setDateOfMs(e);
                   },
                   [dateOfMs]
@@ -378,7 +371,7 @@ const MapsCom = ({
             </div>
             <div className="sm:col-span-2 font-body hidden lg:block ">
               <Dropdown
-                title="Paintings in Manuscript"
+                title="Collection of Manuscript"
                 selected={collectionMs}
                 setSelected={setCollectionMs}
                 options={collectionManuscript}
@@ -391,8 +384,8 @@ const MapsCom = ({
                 className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                 onClick={() => {
                   setDateOfMs([]);
-                  setLanguageMs([]);
-                  setPaintingsMs([]);
+                  setLanguageMs(null);
+                  setPaintingsMs(null);
                   setCollectionMs(null);
                   router.push(`${pathname}`);
                 }}
