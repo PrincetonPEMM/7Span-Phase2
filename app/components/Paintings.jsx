@@ -336,13 +336,13 @@ const Paintings = ({
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                htmlFor="SearchTitles"
+                htmlFor="searchtitles"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions
               </label>
               <InputText
-                id="SearchTitles"
+                id="searchtitles"
                 value={search}
                 aria-label="Search here titles and painting descriptions"
                 onChange={(e) => {
