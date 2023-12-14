@@ -310,7 +310,7 @@ const Paintings = ({
                 <div className="text-center w-full md:text-left">
                   <button
                     area-label="clear all selected values"
-                    className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+                    className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-md text-xs md:text-sm hover:bg-transparent transition-colors"
                     onClick={() => {
                       setDateOfPaintins([]);
                       setPaintingsInColorOnly([]);
@@ -336,13 +336,13 @@ const Paintings = ({
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
               <label
-                htmlFor="SearchTitles"
+                htmlFor="searchtitles"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions
               </label>
               <InputText
-                id="SearchTitles"
+                id="searchtitles"
                 value={search}
                 aria-label="Search here titles and painting descriptions"
                 onChange={(e) => {
@@ -450,7 +450,7 @@ const Paintings = ({
               <div className="text-center w-full md:text-left hidden lg:block">
                 <button
                   area-label="clear all selected values"
-                  className="bg-primary-500 w-full text-white px-2 py-2 hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+                  className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
                     setPaintingsInColorOnly([]);
