@@ -128,10 +128,9 @@
 .font-menu {
   font-family: "Source Serif Pro", sans-serif;
 }
-/* .font-body 
-font-family: Source sans 3 ;{
+.font-body {
   font-family: "Source Sans 3", sans-serif;
-} */
+}
 .descriptions-left {
   font-family: "Source Sans 3", sans-serif;
 }
@@ -938,7 +937,7 @@ input::-webkit-inner-spin-button {
   @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0 text-left;
 }
 .incipit-tool > table > tbody > tr > td > div > em {
-  @apply text-secondary-500 font-bold;
+  @apply text-secondary-500 font-bold not-italic;
 }
 .incipit-tool > table td {
   @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm text-left lg:text-base;
