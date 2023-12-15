@@ -183,11 +183,11 @@ const MapsCom = ({
           new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-              `<b>id:</b> <a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${id} </a><br/>
-                  <b>Manuscript:</b> ${manuscript} <br/>
+              `   <b>Manuscript:</b> ${manuscript} <br/>
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
-                  <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>`
+                  <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
+                  <b>ID:</b> <a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${id} </a><br/>`
             )
             .addTo(map.current);
         });
@@ -198,6 +198,7 @@ const MapsCom = ({
         map.current.on("mouseleave", "clusters", () => {
           map.current.getCanvas().style.cursor = "";
         });
+        map.current.addControl(new mapboxgl.NavigationControl());
       });
     } catch (error) {
       console.error("Error fetching JSON:", error);
