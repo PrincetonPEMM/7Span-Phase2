@@ -168,6 +168,8 @@ export default function StoryDetail({ data, Id }) {
    https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`;
   };
 
+  console.log(data, "data-data");
+
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -278,7 +280,10 @@ export default function StoryDetail({ data, Id }) {
                 <li>
                   <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
-                    {SeconsdLine(data?.total_records)}
+                    {SecondLine(
+                      data?.total_records,
+                      +data?.total_completed_manuscript
+                    )}
                     {ThirdLine(
                       data?.total_records,
                       data?.total_story_id_paintings,
@@ -435,7 +440,10 @@ export default function StoryDetail({ data, Id }) {
                 <li>
                   <ul className="space-y-2 font-body">
                     {FirstLine(data?.earliest_attestation)}
-                    {SeconsdLine(data?.total_records)}
+                    {SecondLine(
+                      data?.total_records,
+                      +data?.total_completed_manuscript
+                    )}
                     {ThirdLine(
                       data?.total_records,
                       data?.total_story_id_paintings,
@@ -723,6 +731,43 @@ function SeconsdLine(total_records) {
       )}
     </>
   );
+}
+function SecondLine(total_records, total_completed_manuscript) {
+  const percentage = Math.ceil(
+    (total_records / total_completed_manuscript) * 100
+  );
+  const generateLine = () => {
+    if (total_records >= 300)
+      return (
+        <p>
+          This story is <b>extremely common</b>: it appears in {total_records}{" "}
+          out of {total_completed_manuscript} PEMM manuscripts ({percentage}%).
+          It is in the top 15 most common stories.
+        </p>
+      );
+    else if (total_records >= 2 && total_records <= 6)
+      return (
+        <p>
+          This story is <b>rare</b>: it appears in {total_records} of{" "}
+          {total_completed_manuscript} PEMM manuscripts.
+        </p>
+      );
+    else if (total_records === 1)
+      return (
+        <p>
+          This story is <b>unique</b>: it appears in only 1 of the{" "}
+          {total_completed_manuscript} PEMM manuscripts.
+        </p>
+      );
+    else
+      return (
+        <p>
+          This story appears in {total_records} out of{" "}
+          {total_completed_manuscript} PEMM manuscripts ({percentage}%).
+        </p>
+      );
+  };
+  return generateLine();
 }
 
 function ThirdLine(
