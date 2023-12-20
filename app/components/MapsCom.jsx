@@ -26,6 +26,7 @@ const MapsCom = ({
   const [paintingsMs, setPaintingsMs] = useState(paintingMs);
   const [collectionMs, setCollectionMs] = useState(colleMs);
   const [menuCollapse, setMenuCollapse] = useState(false);
+  const [totalPage, setTotalPage] = useState(0);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
@@ -72,6 +73,7 @@ const MapsCom = ({
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}maps?${params}`
       );
       const data = await response.json();
+      setTotalPage(data.mapBoxData.features.length);
 
       mapboxgl.accessToken = data.settings.token;
       // if (map.current) return;
@@ -141,7 +143,7 @@ const MapsCom = ({
           filter: ["!", ["has", "point_count"]],
           paint: {
             "circle-color": "#11b4da",
-            "circle-radius": 8,
+            "circle-radius": 12,
             "circle-stroke-width": 1,
             "circle-stroke-color": "#fff",
           },
@@ -183,11 +185,11 @@ const MapsCom = ({
           new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-              `   <b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
+              `<div style="line-height: 27px;font-size: 14px;font-weight: 500;"><b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
                   <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
-                  <b>ID:</b>  ${id} <br/>`
+                  <b>ID:</b>  ${id} <br/></div>`
             )
             .addTo(map.current);
         });
@@ -318,6 +320,7 @@ const MapsCom = ({
                     setLanguageMs(null);
                     setPaintingsMs(null);
                     setCollectionMs(null);
+                    setTotalPage(0);
                     router.push(`${pathname}`);
                   }}
                 >
@@ -388,6 +391,7 @@ const MapsCom = ({
                   setLanguageMs(null);
                   setPaintingsMs(null);
                   setCollectionMs(null);
+                  setTotalPage(0);
                   router.push(`${pathname}`);
                 }}
               >
@@ -396,6 +400,14 @@ const MapsCom = ({
             </div>
           </div>
         </div>
+      </div>
+      <div
+        id="announce"
+        aria-live="polite"
+        results={`${totalPage ? totalPage : 0} records`}
+        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+      >
+        Results: {`(${totalPage ? totalPage : 0} records)`}
       </div>
       <div className="map-wrap">
         <div ref={mapContainer} className="map-container" />

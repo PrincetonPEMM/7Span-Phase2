@@ -737,7 +737,7 @@ function SecondLine(total_records, total_completed_manuscript) {
     (total_records / total_completed_manuscript) * 100
   );
   const generateLine = () => {
-    if (total_records >= 300)
+    if (percentage >= 50)
       return (
         <p>
           This story is <b>extremely common</b>: it appears in {total_records}{" "}
