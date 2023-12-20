@@ -1,4 +1,5 @@
 import MapsCom from "@/app/components/MapsCom";
+export const dynamic = "force-dynamic";
 
 const Maps = async () => {
   const res = await fetch(
