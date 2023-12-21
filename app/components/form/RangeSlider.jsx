@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 
-const RangeSlider = ({ min, max, onChange, ref1 }) => {
+const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -71,7 +71,7 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
 
   return (
     <div className="w-full block py-3 my-5">
-      <label htmlFor={`${minVal} of Manuscript's Date of Creation Slider`}>
+      <label htmlFor={`Minimum value ${minVal} of ${areaLabel}`}>
         <input
           type="range"
           min={min}
@@ -96,7 +96,7 @@ const RangeSlider = ({ min, max, onChange, ref1 }) => {
         />
       </label>
       <label
-        htmlFor={`${maxVal} of Manuscript's Date of Creation Slider`}
+        htmlFor={`Maximum value is ${maxVal} of ${areaLabel}`}
         className="rangeInput"
       >
         <input

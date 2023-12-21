@@ -102,7 +102,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
           {header?.canonical_story_title}
         </h1>
         <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full mt-2 items-center font-body">
-          <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
+          <fieldset className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
             <legend
               htmlFor="SearchDetail"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -134,7 +134,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
                 }}
               />
             )}
-          </div>
+          </fieldset>
           <div className=" lg:text-center lg:col-span-2 my-3 grid justify-items-center sm:justify-items-start lg:justify-items-center">
             <CustomPagination
               className="pagination-tablet"

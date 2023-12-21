@@ -168,8 +168,6 @@ export default function StoryDetail({ data, Id }) {
    https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`;
   };
 
-  console.log(data, "data-data");
-
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
