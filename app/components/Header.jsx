@@ -134,7 +134,7 @@ const Header = () => {
     if (img) {
       // Transform the alt text to capitalize
       img.alt = img.alt
-        .split("")
+        .split(" ")
         .map(function (word) {
           return word.charAt(0).toUpperCase() + word.slice(1);
         })
