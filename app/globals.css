@@ -128,10 +128,9 @@
 .font-menu {
   font-family: "Source Serif Pro", sans-serif;
 }
-/* .font-body 
-font-family: Source sans 3 ;{
+.font-body {
   font-family: "Source Sans 3", sans-serif;
-} */
+}
 .descriptions-left {
   font-family: "Source Sans 3", sans-serif;
 }
@@ -1090,6 +1089,11 @@ tbody.table-body.active tr td {
   @apply w-28;
 }
 
+.logo-img > img::after,
+.logo-img > img {
+  content: attr(alt);
+  text-transform: capitalize;
+}
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
@@ -1192,7 +1196,6 @@ tbody.table-body.active tr td {
   .table-wrap {
     @apply overflow-auto;
   }
-
   .table-search.active {
     left: 295px;
     background-color: #e7e3dd;
@@ -1202,7 +1205,7 @@ tbody.table-body.active tr td {
 @media only screen and (min-width: 1280px) {
   .table-head.active {
     left: calc(22px + 270px);
-    top: 65px;
+    top: 70px;
   }
 }
 @media only screen and (min-width: 1580px) {

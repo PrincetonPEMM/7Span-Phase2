@@ -249,7 +249,7 @@ const MapsCom = ({
         onClick={() => {
           setMenuCollapse(!menuCollapse);
         }}
-        area-label={menuCollapse ? false : true}
+        areaLabel={menuCollapse ? false : true}
         className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
       ></FilterButton>
       {/* sidebar filter start  */}

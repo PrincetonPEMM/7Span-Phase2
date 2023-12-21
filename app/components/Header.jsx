@@ -125,6 +125,24 @@ const Header = () => {
   // };
   // window.addEventListener("resize", toggleSubmenu);
 
+  let img = document.getElementsByClassName(".image-logo img");
+
+  // Transform the alt text to capitalize
+  useEffect(() => {
+    // Select the image element
+    const img = document.querySelector(".logo-image img");
+
+    // Check if the img element is available
+    if (img) {
+      // Transform the alt text to capitalize
+      img.alt = img.alt
+        .split(" ")
+        .map(function (word) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(" ");
+    }
+  }, []);
   return (
     <>
       <div
@@ -192,7 +210,7 @@ const Header = () => {
           </button>
 
           {/* LOGO IMAGE HERE  */}
-          <Link href="/" className="w-64 relative z-20 sm:w-[30%]">
+          <Link href="/" className="w-64 relative z-20 sm:w-[30%] logo-image">
             {pathname === "/" ? (
               <Image
                 src={Logo}

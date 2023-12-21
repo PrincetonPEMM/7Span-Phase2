@@ -86,13 +86,13 @@ const page = () => {
       <div class=" justify-between flex-wrap items-center  sm:flex sm:space-y-0 sm:justify-center sm:space-x-4">
         <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 sm:max-w-[50%] lg:max-w-[75%]">
           <label
-            htmlFor="Searchtitles"
+            htmlFor="searchtitle"
             className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
           >
             Type to search
           </label>
           <InputText
-            id="Searchtitles"
+            id="searchtitle"
             aria-label="Search here titles and painting descriptions"
             value={search}
             onChange={(e) => {
