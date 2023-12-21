@@ -1083,10 +1083,34 @@ tbody.table-body.active tr td {
   @apply font-body font-bold;
   font-family: "Source Sans 3", sans-serif;
 }
+
 /* manuscript css 5th dec */
 
 .manuscript_detail_table tbody tr td:first-child {
   @apply w-28;
+}
+
+.logo-img > img::after,
+.logo-img > img {
+  content: attr(alt);
+  text-transform: capitalize;
+}
+.tablewrap {
+  overflow: auto;
+  width: 200px;
+  height: 320px;
+  margin-top: 10px;
+}
+.mapboxgl-popup-content {
+  padding: 20px !important;
+}
+.tablewrap + .mapboxgl-popup-close-button {
+  width: 20px;
+  height: 20px;
+  right: 5px;
+  top: 5px;
+  font-size: 20px;
+  display: inline-block;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1127,7 +1151,7 @@ tbody.table-body.active tr td {
   }
   .table-head.active {
     left: 15px;
-    top: 130px;
+    top: 136px;
   }
   .table-head tr th {
     min-width: 100px;
@@ -1191,7 +1215,6 @@ tbody.table-body.active tr td {
   .table-wrap {
     @apply overflow-auto;
   }
-
   .table-search.active {
     left: 295px;
     background-color: #e7e3dd;
@@ -1201,7 +1224,7 @@ tbody.table-body.active tr td {
 @media only screen and (min-width: 1280px) {
   .table-head.active {
     left: calc(22px + 270px);
-    top: 65px;
+    top: 70px;
   }
 }
 @media only screen and (min-width: 1580px) {
@@ -1212,10 +1235,9 @@ tbody.table-body.active tr td {
     min-width: 200px;
   }
   .table-head.active {
-    top: 64px;
+    top: 70px;
     left: 298px;
   }
-
   .story-table tbody.table-body.active tr td,
   .story-table .table-head.active tr th {
     width: 16%;

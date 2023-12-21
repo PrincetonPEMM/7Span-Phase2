@@ -173,7 +173,7 @@ const MapsCom = ({
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          let htmlData = "<table>";
+          let htmlData = `<div class="tablewrap"><table>`;
           const manuscriptIds = [];
           e.features.forEach((feature, index) => {
             const {
@@ -204,7 +204,7 @@ const MapsCom = ({
             }
           });
 
-          htmlData = htmlData + "</table>";
+          htmlData = htmlData + "</table></div>";
 
           new mapboxgl.Popup()
             .setLngLat(coordinates)
@@ -267,7 +267,6 @@ const MapsCom = ({
 
   return (
     <div class="px-5">
-      {/* sidebar filter start  */}
       {menuCollapse && (
         <OutsideClickHandler
           onOutsideClick={() => {
@@ -286,7 +285,9 @@ const MapsCom = ({
               onClick={() => {
                 setMenuCollapse(!menuCollapse);
               }}
-              area-label={menuCollapse ? "true" : "false"}
+              area-label={
+                menuCollapse ? "Map sidebar collapsed" : "Map sidebar hidden"
+              }
             >
               <MdiClose />
             </button>

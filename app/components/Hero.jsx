@@ -187,6 +187,7 @@ const Hero = ({ data }) => {
               divClass="md:h-full"
               setSelectedBanner={setSelectedBanner}
               clsBtnCondition={Boolean(Object.keys(selectedBanner).length)}
+              areaLabel={`${selectedBanner?.title} button`}
             />
             <SubBanner
               stories={selectedBanner?.storyPart}
