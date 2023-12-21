@@ -1096,6 +1096,7 @@ tbody.table-body.active tr td {
   text-transform: capitalize;
 }
 .tablewrap {
+  font-family: "Source Sans 3";
   overflow: auto;
   width: 200px;
   height: 320px;
