@@ -154,12 +154,12 @@ const Header = () => {
           {pathname === "/" ? (
             <Image
               src={Logo}
-              alt="Princeton Ethiopian, Eritrean & Egyptian Miracles of Mary Project Logo"
+              alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
             />
           ) : (
             <Image
               src={LogoBlack}
-              alt="Princeton Ethiopian, Eritrean & Egyptian Miracles of Mary Project Logo"
+              alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
             />
           )}
         </Link>
