@@ -79,8 +79,6 @@ const page = () => {
     router.push(`${pathname}?${newParams.toString()}`);
   };
 
-  console.log(isMount, "isMount");
-
   return (
     <div className="container space-y-10 py-10">
       <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
