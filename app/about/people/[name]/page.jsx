@@ -43,9 +43,18 @@ const PeopleDetailPage = async ({ params }) => {
                     className="object-cover object-center mx-auto h-full overflow-hidden w-60"
                   />
                 </div>
-                <p className="mx-auto block text-offBlack-500 font-bold text-lg text-center mt-2">
-                  {results[0]?.favorite_painting_description}
-                </p>
+                {results[0]?.favorite_painting_link ? (
+                  <Link
+                    href={results[0]?.favorite_painting_link}
+                    className="mx-auto block text-primary-500 font-bold hover:text-secondary-500 text-lg text-center mt-2"
+                  >
+                    {results[0]?.favorite_painting_description}
+                  </Link>
+                ) : (
+                  <p className="mx-auto block text-offBlack-500 font-bold text-lg text-center mt-2">
+                    {results[0]?.favorite_painting_description}
+                  </p>
+                )}
               </div>
             )}
           </div>

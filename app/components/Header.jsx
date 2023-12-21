@@ -167,7 +167,6 @@ const Header = () => {
         </Link>
         <button
           onClick={menuIconClick}
-          // aria-expanded={menuCollapse}
           aria-label={
             menuCollapse ? "Menu button expanded " : "Menu button hidden"
           }
@@ -204,6 +203,7 @@ const Header = () => {
           {/*Close header */}
           <button
             onClick={() => setMenuCollapse(!menuCollapse)}
+            area-label="click here to close sidebar menu"
             className="absolute top-4 right-4 p-2 inline-flex lg:hidden"
           >
             <MdiClose />

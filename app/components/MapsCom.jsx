@@ -26,6 +26,7 @@ const MapsCom = ({
   const [paintingsMs, setPaintingsMs] = useState(paintingMs);
   const [collectionMs, setCollectionMs] = useState(colleMs);
   const [menuCollapse, setMenuCollapse] = useState(false);
+  const [totalPage, setTotalPage] = useState(0);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
@@ -44,6 +45,7 @@ const MapsCom = ({
             return `filters[${key}]=${itm.key}&`;
           })
           .join("");
+    setFilterInParams(key, "", true);
     return "";
   };
 
@@ -71,6 +73,7 @@ const MapsCom = ({
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}maps?${params}`
       );
       const data = await response.json();
+      setTotalPage(data.mapBoxData.features.length);
 
       mapboxgl.accessToken = data.settings.token;
       // if (map.current) return;
@@ -140,7 +143,7 @@ const MapsCom = ({
           filter: ["!", ["has", "point_count"]],
           paint: {
             "circle-color": "#11b4da",
-            "circle-radius": 8,
+            "circle-radius": 12,
             "circle-stroke-width": 1,
             "circle-stroke-color": "#fff",
           },
@@ -165,29 +168,47 @@ const MapsCom = ({
 
         map.current.on("click", "unclustered-point", (e) => {
           const coordinates = e.features[0].geometry.coordinates.slice();
-          const {
-            id,
-            manuscript,
-            manuscript_full_name,
-            language,
-            manuscript_date_range_start,
-            manuscript_date_range_end,
-            web_page_address,
-          } = e.features[0].properties;
 
           while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(
-              `<b>id:</b> <a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${id} </a><br/>
-                  <b>Manuscript:</b> ${manuscript} <br/>
+          let htmlData = `<div class="tablewrap"><table>`;
+          const manuscriptIds = [];
+          e.features.forEach((feature, index) => {
+            const {
+              id,
+              manuscript,
+              manuscript_full_name,
+              language,
+              manuscript_date_range_start,
+              manuscript_date_range_end,
+              web_page_address,
+              location,
+            } = feature.properties;
+
+            if (!manuscriptIds.includes(id)) {
+              if (index >= 1)
+                htmlData += `<tr style="border-top: 3px solid #ccc;"><td><div style="line-height: 27px;font-size: 14px;font-weight: 500;">`;
+              else
+                htmlData += `<tr><td><div style="line-height: 27px;font-size: 14px;font-weight: 500;">`;
+              htmlData =
+                htmlData +
+                `<b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
-                  <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>`
-            )
+                  <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
+                  <b>Location:</b> ${location}<br/>
+                  <b>ID:</b>  ${id} <br/></div></td></tr>`;
+              manuscriptIds.push(id);
+            }
+          });
+
+          htmlData = htmlData + "</table></div>";
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(htmlData)
             .addTo(map.current);
         });
 
@@ -197,6 +218,7 @@ const MapsCom = ({
         map.current.on("mouseleave", "clusters", () => {
           map.current.getCanvas().style.cursor = "";
         });
+        map.current.addControl(new mapboxgl.NavigationControl());
       });
     } catch (error) {
       console.error("Error fetching JSON:", error);
@@ -245,14 +267,6 @@ const MapsCom = ({
 
   return (
     <div class="px-5">
-      <FilterButton
-        onClick={() => {
-          setMenuCollapse(!menuCollapse);
-        }}
-        areaLabel={menuCollapse ? false : true}
-        className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
-      ></FilterButton>
-      {/* sidebar filter start  */}
       {menuCollapse && (
         <OutsideClickHandler
           onOutsideClick={() => {
@@ -271,7 +285,9 @@ const MapsCom = ({
               onClick={() => {
                 setMenuCollapse(!menuCollapse);
               }}
-              area-label={menuCollapse ? "true" : "false"}
+              area-label={
+                menuCollapse ? "Map sidebar collapsed" : "Map sidebar hidden"
+              }
             >
               <MdiClose />
             </button>
@@ -280,13 +296,9 @@ const MapsCom = ({
                 <Dropdown
                   title="Date of Manuscript"
                   selected={dateOfMs}
-                  setSelected={useCallback(
-                    (e) => {
-                      console.log(e, "e");
-                      setDateOfMs(e);
-                    },
-                    [dateOfMs]
-                  )}
+                  setSelected={(e) => {
+                    setDateOfMs(e);
+                  }}
                   options={dateOfManuscipts}
                   isMultiple={true}
                 />
@@ -311,7 +323,7 @@ const MapsCom = ({
               </div>
               <div>
                 <Dropdown
-                  title="Paintings in Manuscript"
+                  title="Repository of Manuscript"
                   selected={collectionMs}
                   setSelected={setCollectionMs}
                   options={collectionManuscript}
@@ -327,9 +339,7 @@ const MapsCom = ({
                     setLanguageMs(null);
                     setPaintingsMs(null);
                     setCollectionMs(null);
-                    setTimeout(() => {
-                      setMenuCollapse(false);
-                    }, 5000);
+                    setTotalPage(0);
                     router.push(`${pathname}`);
                   }}
                 >
@@ -340,6 +350,13 @@ const MapsCom = ({
           </div>
         </OutsideClickHandler>
       )}
+      <FilterButton
+        onClick={() => {
+          setMenuCollapse(!menuCollapse);
+        }}
+        area-label={menuCollapse ? false : true}
+        className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
+      />
       <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
           <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
@@ -349,7 +366,6 @@ const MapsCom = ({
                 selected={dateOfMs}
                 setSelected={useCallback(
                   (e) => {
-                    console.log(e, "e");
                     setDateOfMs(e);
                   },
                   [dateOfMs]
@@ -378,7 +394,7 @@ const MapsCom = ({
             </div>
             <div className="sm:col-span-2 font-body hidden lg:block ">
               <Dropdown
-                title="Paintings in Manuscript"
+                title="Repository of Manuscript"
                 selected={collectionMs}
                 setSelected={setCollectionMs}
                 options={collectionManuscript}
@@ -391,9 +407,10 @@ const MapsCom = ({
                 className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                 onClick={() => {
                   setDateOfMs([]);
-                  setLanguageMs([]);
-                  setPaintingsMs([]);
+                  setLanguageMs(null);
+                  setPaintingsMs(null);
                   setCollectionMs(null);
+                  setTotalPage(0);
                   router.push(`${pathname}`);
                 }}
               >
@@ -402,6 +419,14 @@ const MapsCom = ({
             </div>
           </div>
         </div>
+      </div>
+      <div
+        id="announce"
+        aria-live="polite"
+        results={`${totalPage ? totalPage : 0} records`}
+        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+      >
+        Results: {`(${totalPage ? totalPage : 0} records)`}
       </div>
       <div className="map-wrap">
         <div ref={mapContainer} className="map-container" />

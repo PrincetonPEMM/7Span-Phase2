@@ -595,9 +595,8 @@ const Stories = () => {
           areaLabel={isOpen ? "true" : "false"}
           className="block md:hidden h-6 w-6 text-primary-500"
         />
-
-        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
-          <fieldset className="border-2 border-primary-500 bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md text-primary-500  pl-3 sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
+        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0">
+          <fieldset className="border-2 border-primary-500 w-full bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md text-primary-500  pl-3 sm:w-auto sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
             <legend>Search titles and translations</legend>
             <input
               type="text"

@@ -937,7 +937,7 @@ input::-webkit-inner-spin-button {
   @apply font-medium bg-primary-500 text-white rounded-t-sm sticky top-0 text-left;
 }
 .incipit-tool > table > tbody > tr > td > div > em {
-  @apply text-secondary-500 font-bold;
+  @apply text-secondary-500 font-bold not-italic;
 }
 .incipit-tool > table td {
   @apply max-w-xs whitespace-normal break-words px-3 py-4 text-sm text-left lg:text-base;
@@ -1083,6 +1083,7 @@ tbody.table-body.active tr td {
   @apply font-body font-bold;
   font-family: "Source Sans 3", sans-serif;
 }
+
 /* manuscript css 5th dec */
 
 .manuscript_detail_table tbody tr td:first-child {
@@ -1094,6 +1095,24 @@ tbody.table-body.active tr td {
   content: attr(alt);
   text-transform: capitalize;
 }
+.tablewrap {
+  overflow: auto;
+  width: 200px;
+  height: 320px;
+  margin-top: 10px;
+}
+.mapboxgl-popup-content {
+  padding: 20px !important;
+}
+.tablewrap + .mapboxgl-popup-close-button {
+  width: 20px;
+  height: 20px;
+  right: 5px;
+  top: 5px;
+  font-size: 20px;
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
@@ -1132,7 +1151,7 @@ tbody.table-body.active tr td {
   }
   .table-head.active {
     left: 15px;
-    top: 130px;
+    top: 136px;
   }
   .table-head tr th {
     min-width: 100px;
@@ -1216,10 +1235,9 @@ tbody.table-body.active tr td {
     min-width: 200px;
   }
   .table-head.active {
-    top: 64px;
+    top: 70px;
     left: 298px;
   }
-
   .story-table tbody.table-body.active tr td,
   .story-table .table-head.active tr th {
     width: 16%;

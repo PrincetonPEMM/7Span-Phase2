@@ -30,9 +30,20 @@ const Dropdown = ({
               "Date of Manuscript",
             ].includes(title)
           ) {
-            ulist = Object.values(
-              e.reduce((acc, obj) => ({ ...acc, [obj.key]: obj }), {})
-            );
+            // ulist = Object.values(
+            //   e.reduce((acc, obj) => ({ ...acc, [obj.key]: obj }), {})
+            // );
+
+            const result = [];
+            for (let i = 0; i < e.length; i++) {
+              for (let j = i + 1; j < e.length; j++) {
+                if (e[i].key === e[j].key) {
+                  result.push(e[i]);
+                }
+              }
+            }
+            let unique = e.filter((item) => item.key !== result[0]?.key);
+            ulist = unique;
           } else {
             ulist = e;
           }
@@ -73,7 +84,7 @@ const Dropdown = ({
               <Listbox.Option
                 key={item.key + personIdx}
                 className={({ active }) =>
-                  `relative cursor-default select-none transition-all hover:text-black py-2 pl-6 ${
+                  ` relative cursor-default select-none transition-all hover:text-black py-2 pl-6 ${
                     !isRedirection && "lg:pl-8"
                   }  pr-2 lg:pr-4 ${
                     active ? "bg-secondary-400 text-black" : "text-offwhite-500"
@@ -98,7 +109,7 @@ const Dropdown = ({
                     <>
                       <button
                         area-label={`Select ${item.value}`}
-                        className={`block truncate ${
+                        className={`block truncate text-left ${
                           values.selected || isSelected
                             ? "font-medium"
                             : "font-normal"

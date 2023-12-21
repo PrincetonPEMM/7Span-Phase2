@@ -12,6 +12,7 @@ const InputText = ({
   iconBefore,
   iconAfter,
   children,
+  onKeyDown = () => {},
 }) => {
   return (
     <fieldset className="w-full">
@@ -27,7 +28,8 @@ const InputText = ({
         placeholder={placeholderText}
         className={`border-2 border-primary-500 bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md w-full  text-sm md:text-lg ring-0 focus:ring-0 focus:border-primary-400 focus:ring-primary-400 outline-0 ${
           magnify ? "pl-7 md:pl-12 p-2" : "pl-5"
-        }  ${iconAfter ? "pr-8 md:pr-12" : "pr-5"}`}
+        }  ${iconAfter ? "pr-8 md:pr-12" : "pr-10"}`}
+        onKeyDown={onKeyDown}
       />
       {iconBefore && children}
       <span>{label}</span>

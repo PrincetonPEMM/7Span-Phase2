@@ -23,6 +23,7 @@ const page = () => {
   const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMount, setIsMount] = useState(false);
+  const [isFirstTime, setIsFirstTime] = useState(false);
 
   const fetchData = (searchData = search) => {
     setIsLoading(true);
@@ -86,18 +87,25 @@ const page = () => {
       <div class=" justify-between flex-wrap items-center  sm:flex sm:space-y-0 sm:justify-center sm:space-x-4">
         <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 sm:max-w-[50%] lg:max-w-[75%]">
           <label
-            htmlFor="searchtitle"
+            htmlFor="searchtitles"
             className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
           >
             Type to search
           </label>
           <InputText
-            id="searchtitle"
+            id="searchtitles"
             aria-label="Search here titles and painting descriptions"
             value={search}
             onChange={(e) => {
               const query = e.target.value;
               setSearch(query);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setPage(1);
+                setIsFirstTime(true);
+                fetchData();
+              }
             }}
           />
           {search && (
@@ -113,6 +121,7 @@ const page = () => {
           onClick={() => {
             if (search.length) {
               setPage(1);
+              setIsFirstTime(true);
               fetchData();
             }
           }}
@@ -125,6 +134,7 @@ const page = () => {
             setSearch("");
             tableData?.length !== 0 && fetchData("");
             setPage(1);
+            setIsFirstTime(false);
           }}
           class="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
         >
@@ -132,14 +142,6 @@ const page = () => {
         </button>
       </div>
       <div className="flex justify-between">
-        <div
-          id="announce"
-          aria-live="polite"
-          results={`${totalPage ? totalPage : 0} records`}
-          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
-        >
-          Results: {`(${totalPage ? totalPage : 0} records)`}
-        </div>
         <div>
           <CustomPagination
             className="pagination-tablet"
@@ -150,6 +152,14 @@ const page = () => {
             }}
           />
         </div>
+        <div
+          id="announce"
+          aria-live="polite"
+          results={`${totalPage ? totalPage : 0} records`}
+          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+        >
+          Results: {`(${totalPage ? totalPage : 0} records)`}
+        </div>
       </div>
       <div className="incipit-tool" id="incipit-table">
         {tableData?.length !== 0 && (
@@ -157,12 +167,14 @@ const page = () => {
             <thead>
               <tr>
                 <th className="px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base">
-                  Macomber Id
+                  Story ID
                 </th>
                 <th className="px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base">
-                  Incipit
+                  Incipit Match
                 </th>
-                <th className="px-3 py-3 text-left font-medium tracking-wider text-sm lg:text-base"></th>
+                <th className="px-5 py-3 text-center font-medium tracking-wider text-sm lg:text-base">
+                  Match Score
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -228,7 +240,16 @@ const page = () => {
         )}
         {Boolean(!tableData?.length) && (
           <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : isFirstTime ? (
+              <h1>Records Not Found</h1>
+            ) : (
+              <h1>
+                Type the Ethiopic letters of the first unique line into the
+                search bar
+              </h1>
+            )}
           </div>
         )}
       </div>
