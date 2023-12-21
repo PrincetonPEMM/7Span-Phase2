@@ -578,7 +578,7 @@ const Stories = () => {
                 document.querySelector("#menuClose").focus();
               }, 500);
             }}
-            area-label={isOpen ? "true" : "false"}
+            areaLabel={isOpen ? "true" : "false"}
             className="text-primary-500 md:block hidden h-6 w-6"
           ></FilterButton>
         )}
@@ -592,19 +592,15 @@ const Stories = () => {
 
         <FilterButton
           onClick={() => setIsOpen(true)}
-          area-label={isOpen ? "true" : "false"}
+          areaLabel={isOpen ? "true" : "false"}
           className="block md:hidden h-6 w-6 text-primary-500"
-        ></FilterButton>
-
-        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0 ">
-          <div className="relative w-full sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
-            <label
-              htmlFor="searchtitle"
-              className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
-            >
-              Search titles and translations
-            </label>
-            <InputText
+        />
+        <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0">
+          <fieldset className="border-2 border-primary-500 w-full bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md text-primary-500  pl-3 sm:w-auto sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
+            <legend>Search titles and translations</legend>
+            <input
+              type="text"
+              class="bg-transparent border-0 focus:bg-transparent active:bg-transparent focus:ring-0 focus-visible:bg-transparent focus:border-0 rounded-md w-full text-sm md:text-lg ring-0 pt-0 outline-0"
               area-label="Search here titles and translations of stories"
               id="searchtitle"
               value={search}
@@ -619,7 +615,7 @@ const Stories = () => {
                 }
               }}
             />
-          </div>
+          </fieldset>
           <div className="w-full flex items-center justify-between sm:hidden">
             <div
               id="announce"

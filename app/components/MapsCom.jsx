@@ -168,29 +168,47 @@ const MapsCom = ({
 
         map.current.on("click", "unclustered-point", (e) => {
           const coordinates = e.features[0].geometry.coordinates.slice();
-          const {
-            id,
-            manuscript,
-            manuscript_full_name,
-            language,
-            manuscript_date_range_start,
-            manuscript_date_range_end,
-            web_page_address,
-          } = e.features[0].properties;
 
           while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(
-              `<div style="line-height: 27px;font-size: 14px;font-weight: 500;"><b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
+          let htmlData = `<div class="tablewrap"><table>`;
+          const manuscriptIds = [];
+          e.features.forEach((feature, index) => {
+            const {
+              id,
+              manuscript,
+              manuscript_full_name,
+              language,
+              manuscript_date_range_start,
+              manuscript_date_range_end,
+              web_page_address,
+              location,
+            } = feature.properties;
+
+            if (!manuscriptIds.includes(id)) {
+              if (index >= 1)
+                htmlData += `<tr style="border-top: 3px solid #ccc;"><td><div style="line-height: 27px;font-size: 14px;font-weight: 500;">`;
+              else
+                htmlData += `<tr><td><div style="line-height: 27px;font-size: 14px;font-weight: 500;">`;
+              htmlData =
+                htmlData +
+                `<b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
                   <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
-                  <b>ID:</b>  ${id} <br/></div>`
-            )
+                  <b>Location:</b> ${location}<br/>
+                  <b>ID:</b>  ${id} <br/></div></td></tr>`;
+              manuscriptIds.push(id);
+            }
+          });
+
+          htmlData = htmlData + "</table></div>";
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(htmlData)
             .addTo(map.current);
         });
 
@@ -249,7 +267,6 @@ const MapsCom = ({
 
   return (
     <div class="px-5">
-      {/* sidebar filter start  */}
       {menuCollapse && (
         <OutsideClickHandler
           onOutsideClick={() => {
@@ -268,7 +285,9 @@ const MapsCom = ({
               onClick={() => {
                 setMenuCollapse(!menuCollapse);
               }}
-              area-label={menuCollapse ? "true" : "false"}
+              area-label={
+                menuCollapse ? "Map sidebar collapsed" : "Map sidebar hidden"
+              }
             >
               <MdiClose />
             </button>

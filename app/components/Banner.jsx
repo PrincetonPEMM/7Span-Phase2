@@ -70,6 +70,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
             title={data?.title}
             text={data?.text}
             data={data}
+            areaLabel={`${data?.title} button`}
             setSelectedBanner={setSelectedBanner}
             clsBtnCondition={selectedBanner.img === data.img}
           />
