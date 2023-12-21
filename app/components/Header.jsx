@@ -125,8 +125,6 @@ const Header = () => {
   // };
   // window.addEventListener("resize", toggleSubmenu);
 
-  let img = document.getElementsByClassName(".image-logo img");
-
   // Transform the alt text to capitalize
   useEffect(() => {
     // Select the image element
