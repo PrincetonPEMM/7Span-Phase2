@@ -42,19 +42,19 @@ const PaintingDetail = ({ data }) => {
         text += `You can view this painting in the manuscript ${
           data.link_to_digital_copy
             ? `<a
-              class="text-primary-500 font-bold hover:text-secondary-500"
+               class="text-primary-500 font-bold hover:text-secondary-500"
               target="_blank"
               href=${data.manuscript_link}
             >${data.manuscript_name}</a>`
             : `<b>${data.manuscript_name}</b>`
         }${data.painting_folio ? ", f. " + data.painting_folio : ""}${
           data.painting_scan ? ", s. " + data.painting_scan : ""
-        }, or learn more about this manuscript at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
+        }, or learn more about this manuscript at its <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
           data.web_page_address
         }" >PEMM Manuscript page</a>. `;
       }
       if (+data.canonical_story_id < omitCanonical_Story_Id)
-        text += `You can also read the related story at its <a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">PEMM Story page<a>.`;
+        text += `You can also read the related story at its <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">PEMM Story page<a>.`;
       arr.push({ text });
     }
     if (data.canonical_story_id && data?.number_of_episodes) {
@@ -63,12 +63,12 @@ const PaintingDetail = ({ data }) => {
           text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID ${
             +data.canonical_story_id < omitCanonical_Story_Id
               ? `<a
-                class="text-primary-500 font-bold hover:text-secondary-500"
+                 class="text-primary-500 font-bold hover:text-secondary-500"
                 href="/stories/${data.canonical_story_id}"
               >
                 ${data.canonical_story_id}
               </a>`
-              : `<span class="text-black font-bold">${data.canonical_story_id}</span>`
+              : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
           } has <b>${
             data?.number_of_episodes
           }</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
@@ -77,8 +77,8 @@ const PaintingDetail = ({ data }) => {
         arr.push({
           text: `This painting of PEMM Story ID ${
             +data.canonical_story_id < omitCanonical_Story_Id
-              ? `<a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a>`
-              : `<span class="text-black font-bold">${data.canonical_story_id}</span>`
+              ? `<a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a>`
+              : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
           } depicts ${
             data.number_of_episodes
           } moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
@@ -129,8 +129,8 @@ const PaintingDetail = ({ data }) => {
 
   return (
     <div className="container-fluid py-4 lg:py-10">
-      <div class="grid justify-items-stretch">
-        <div class="justify-self-start my-3">
+      <div className="grid justify-items-stretch">
+        <div className="justify-self-start my-3">
           <BackBtn />
         </div>
       </div>

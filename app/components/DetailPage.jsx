@@ -1,4 +1,4 @@
-import { dateFormate, defaultImageforPainting } from "@/utils/constant";
+import { dateFormate } from "@/utils/constant";
 import React from "react";
 import BackBtn from "./BackBtn";
 
@@ -12,7 +12,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
             {title ?? ""}
           </h1>
           <div className="font-body pb-7 pt-5">
-            <div class="mt-5 lg:mt-0 lg:col-span-2">
+            <div className="mt-5 lg:mt-0 lg:col-span-2">
               {image && (
                 <img
                   src={`${image}`}
