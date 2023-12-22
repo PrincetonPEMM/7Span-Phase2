@@ -5,6 +5,7 @@ import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import OutsideClickHandler from "react-outside-click-handler";
+import { replaceState } from "history-throttled";
 import {
   initialPlaceItem,
   storiesTableDetailView,
@@ -298,7 +299,7 @@ const Stories = () => {
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
       newParams.delete(key);
-      history.replaceState(
+      replaceState(
         { path: `${pathname}?${newParams.toString()}` },
         "",
         `${pathname}?${newParams.toString()}`
@@ -308,7 +309,7 @@ const Stories = () => {
     if (["translatedLanguages", "originalLanguages", "origin"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);
-    history.replaceState(
+    replaceState(
       { path: `${pathname}?${newParams.toString()}` },
       "",
       `${pathname}?${newParams.toString()}`
@@ -600,7 +601,7 @@ const Stories = () => {
             <legend>Search titles and translations</legend>
             <input
               type="text"
-              class="bg-transparent border-0 focus:bg-transparent active:bg-transparent focus:ring-0 focus-visible:bg-transparent focus:border-0 rounded-md w-full text-sm md:text-lg ring-0 pt-0 outline-0"
+              className="bg-transparent border-0 focus:bg-transparent active:bg-transparent focus:ring-0 focus-visible:bg-transparent focus:border-0 rounded-md w-full text-sm md:text-lg ring-0 pt-0 outline-0"
               area-label="Search here titles and translations of stories"
               id="searchtitle"
               value={search}

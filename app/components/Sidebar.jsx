@@ -1,5 +1,5 @@
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
@@ -122,7 +122,7 @@ const Sidebar = ({
                 setVennArabic={setVennArabic}
               />
             ) : (
-              <>
+              <Fragment key={index}>
                 {item.isFirstBreak && (
                   <div className="border-t mb-1 border-t-offWhite-500"></div>
                 )}
@@ -132,7 +132,7 @@ const Sidebar = ({
                   setFilterItem={setFilterItem}
                   name={item.name}
                 />
-              </>
+              </Fragment>
             )
           )}
         </div>
