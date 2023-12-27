@@ -5,6 +5,7 @@ import InputText from "../components/form/InputText";
 import Sidebar from "../components/Sidebar";
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import OutsideClickHandler from "react-outside-click-handler";
+import { replaceState } from "history-throttled";
 import {
   initialPlaceItemManuScript,
   manuscriptsTableDetailView,
@@ -304,7 +305,7 @@ const ManuScripts = () => {
   const setFilterInParams = (key, value, isRemove = false) => {
     if (isRemove || !value) {
       newParams.delete(key);
-      history.replaceState(
+      replaceState(
         { path: `${pathname}?${newParams.toString()}` },
         "",
         `${pathname}?${newParams.toString()}`
@@ -314,7 +315,7 @@ const ManuScripts = () => {
     if (["lastKnownLocation", "knownOriginRegion"].includes(key)) {
       newParams.append(key, value);
     } else newParams.set(key, value);
-    history.replaceState(
+    replaceState(
       { path: `${pathname}?${newParams.toString()}` },
       "",
       `${pathname}?${newParams.toString()}`
@@ -601,32 +602,51 @@ const ManuScripts = () => {
         </button> */}
         <FilterButton
           onClick={() => setIsOpen(true)}
-          area-label={isOpen ? false : true}
+          areaLabel={isOpen ? false : true}
           className="block md:hidden h-6 w-6 text-primary-500"
         />
 
-        <div className="table-search pt-2 mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6  lg:gap-0 ">
+        <div className="table-search pt-2 mt-4 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0">
           <div className="relative w-full mb-2 lg:mb-0 sm:col-span-4 lg:col-span-2 lg:max-w-4xl">
-            <label
+            <fieldset className="border-2 border-primary-500 bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md text-primary-500  pl-3">
+              <legend>Search manuscript names</legend>
+              {/* <InputText
+                id="search"
+                value={search}
+                onChange={(e) => {
+                  const query = e.target.value;
+                  setSearch(query);
+                  if (query.length > 3) {
+                    debouncedFetchData(query);
+                  }
+                  if (query.length === 0) {
+                    debouncedFetchData(query);
+                  }
+                }}
+              /> */}
+              <input
+                type="text"
+                id="search"
+                value={search}
+                className="bg-transparent border-0 focus:bg-transparent active:bg-transparent focus:ring-0 focus-visible:bg-transparent focus:border-0 rounded-md w-full text-sm md:text-lg ring-0 pt-0 outline-0"
+                onChange={(e) => {
+                  const query = e.target.value;
+                  setSearch(query);
+                  if (query.length > 3) {
+                    debouncedFetchData(query);
+                  }
+                  if (query.length === 0) {
+                    debouncedFetchData(query);
+                  }
+                }}
+              />
+            </fieldset>
+            {/* <label
               htmlFor={"search"}
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
               Search manuscript names
-            </label>
-            <InputText
-              id="search"
-              value={search}
-              onChange={(e) => {
-                const query = e.target.value;
-                setSearch(query);
-                if (query.length > 3) {
-                  debouncedFetchData(query);
-                }
-                if (query.length === 0) {
-                  debouncedFetchData(query);
-                }
-              }}
-            />
+            </label> */}
           </div>
           <div className="w-full flex items-center justify-between sm:hidden">
             <div

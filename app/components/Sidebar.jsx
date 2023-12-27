@@ -1,5 +1,5 @@
 import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Checkbox from "./form/Checkbox";
 import RangeSlider from "./form/RangeSlider";
 import InputIcon from "./form/InputIcon";
@@ -97,7 +97,7 @@ const Sidebar = ({
         <FilterButton
           _id="menuClose"
           onClick={onClick}
-          area-label={areaLabel}
+          areaLabel={areaLabel}
           className="sticky top-0 block py-2 bg-primary-500 z-20"
         />
         <button
@@ -122,7 +122,7 @@ const Sidebar = ({
                 setVennArabic={setVennArabic}
               />
             ) : (
-              <>
+              <Fragment key={index}>
                 {item.isFirstBreak && (
                   <div className="border-t mb-1 border-t-offWhite-500"></div>
                 )}
@@ -132,7 +132,7 @@ const Sidebar = ({
                   setFilterItem={setFilterItem}
                   name={item.name}
                 />
-              </>
+              </Fragment>
             )
           )}
         </div>
@@ -147,6 +147,11 @@ const Sidebar = ({
           max={slider1InitMax}
           onChange={onChangeStory}
           ref1={childRef1}
+          areaLabel={(() => {
+            if (isPageName === STORIES) return "Story's Earliest Date";
+            if (isPageName === MANUSCRIPTS)
+              return "Manuscript's Date of Creation";
+          })()}
         />
       </div>
       <div className="block mt-10">
@@ -159,6 +164,11 @@ const Sidebar = ({
           max={slider2InitMax}
           onChange={onChangeManuscript}
           ref1={childRef2}
+          areaLabel={(() => {
+            if (isPageName === STORIES) return "Manuscripts with Story";
+            if (isPageName === MANUSCRIPTS)
+              return "Manuscript's No. of Stories";
+          })()}
         />
       </div>
       <div className="block mt-10">
@@ -171,6 +181,11 @@ const Sidebar = ({
           max={slider3InitMax}
           onChange={onChangePainting}
           ref1={childRef3}
+          areaLabel={(() => {
+            if (isPageName === STORIES) return "Paintings of Story";
+            if (isPageName === MANUSCRIPTS)
+              return "Manuscript's No. of Paintings";
+          })()}
         />
       </div>
       {isPageName === MANUSCRIPTS && (
@@ -183,6 +198,7 @@ const Sidebar = ({
             max={slider4InitMax}
             onChange={onChangeUnique}
             ref1={childRef4}
+            areaLabel="Manuscript's No. of Unique Stories"
           />
         </div>
       )}

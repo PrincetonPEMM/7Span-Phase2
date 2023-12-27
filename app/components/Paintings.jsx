@@ -217,7 +217,7 @@ const Paintings = ({
           onClick={() => {
             setMenuCollapse(!menuCollapse);
           }}
-          area-label={menuCollapse ? false : true}
+          areaLabel={menuCollapse ? false : true}
           className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
         ></FilterButton>
         {/* sidebar filter start  */}
@@ -334,15 +334,15 @@ const Paintings = ({
         {/* sidebar filter ENd  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
-            <div className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
-              <label
-                htmlFor="searchtitles"
+            <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
+              <legend
+                htmlFor="searchtitle"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
                 Search titles and painting descriptions
-              </label>
+              </legend>
               <InputText
-                id="searchtitles"
+                id="searchtitle"
                 value={search}
                 aria-label="Search here titles and painting descriptions"
                 onChange={(e) => {
@@ -365,7 +365,7 @@ const Paintings = ({
                   }}
                 />
               )}
-            </div>
+            </fieldset>
             <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
               <CustomPagination
                 className="pagination-tablet"

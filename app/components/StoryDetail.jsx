@@ -57,7 +57,7 @@ export default function StoryDetail({ data, Id }) {
 
   const generateManuscript = () => {
     return Object.keys(data.manuscripts).map((item, index) => (
-      <p>
+      <p key={index}>
         <b>{item}</b>:&nbsp;
         {collapseText(index, data.manuscripts[item].join("; "))}
       </p>

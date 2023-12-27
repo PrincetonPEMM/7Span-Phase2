@@ -173,7 +173,7 @@ const MapsCom = ({
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          let htmlData = "<table>";
+          let htmlData = `<div  class="tablewrap"><table>`;
           const manuscriptIds = [];
           e.features.forEach((feature, index) => {
             const {
@@ -194,7 +194,7 @@ const MapsCom = ({
                 htmlData += `<tr><td><div style="line-height: 27px;font-size: 14px;font-weight: 500;">`;
               htmlData =
                 htmlData +
-                `<b>Manuscript:</b><a class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
+                `<b>Manuscript:</b><a  class="text-primary-500 font-bold hover:text-secondary-500" href='/manuscripts/${web_page_address}'> ${manuscript} </a><br/>
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
                   <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
@@ -204,7 +204,7 @@ const MapsCom = ({
             }
           });
 
-          htmlData = htmlData + "</table>";
+          htmlData = htmlData + "</table></div>";
 
           new mapboxgl.Popup()
             .setLngLat(coordinates)
@@ -266,8 +266,7 @@ const MapsCom = ({
   }
 
   return (
-    <div class="px-5">
-      {/* sidebar filter start  */}
+    <div className="px-5">
       {menuCollapse && (
         <OutsideClickHandler
           onOutsideClick={() => {
@@ -286,7 +285,9 @@ const MapsCom = ({
               onClick={() => {
                 setMenuCollapse(!menuCollapse);
               }}
-              area-label={menuCollapse ? "true" : "false"}
+              area-label={
+                menuCollapse ? "Map sidebar collapsed" : "Map sidebar hidden"
+              }
             >
               <MdiClose />
             </button>
