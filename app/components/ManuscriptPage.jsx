@@ -110,7 +110,7 @@ export default function Manuscript({ Id, data, table }) {
 
     text = "";
     if (data.link_to_digital_copy != null) {
-      text = `To view the manuscript, go to the <a class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">digital copy</a>.`;
+      text = `To view the manuscript, go to the <a  class="text-primary-500 hover:text-secondary-500" href=${data.link_to_digital_copy} target="_blank">digital copy</a>.`;
     } else {
       text = data.link_to_digital_copy_note_external;
     }
@@ -184,7 +184,7 @@ export default function Manuscript({ Id, data, table }) {
         array.push({
           text: `${text} ${
             data.total_manuscript_paintings > 0
-              ? `To see the paintings in this manuscript, go to its PEMM <a class="text-primary-500 font-bold hover:text-secondary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
+              ? `To see the paintings in this manuscript, go to its PEMM <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/paintings/by-manuscript/${Id}">Paintings by Manuscript</a> page.`
               : ""
           }`,
         });
@@ -202,7 +202,7 @@ export default function Manuscript({ Id, data, table }) {
         if (data.scans_of_manuscript_in_color == "Yes") {
           if (data.link_to_digital_copy != null) {
             // text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>. To view the manuscript, go to the
-            //                 <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+            //                 <b><a  class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
 
             text = `Fortunately, these paintings are <b>digitized</b> and available online in <b>color</b>.`;
           } else {
@@ -212,7 +212,7 @@ export default function Manuscript({ Id, data, table }) {
         } else {
           if (data.link_to_digital_copy != null) {
             // text = `These paintings are digitized and available online but only in black and white. To view the manuscript online, go to the
-            //                 <b><a class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
+            //                 <b><a  class="text-primary-500 hover:text-secondary-500 font-bold" href=${data.link_to_digital_copy} target="_blank"> digital copy</a></b>.`;
             text = `These paintings are digitized and available online but only in <b>black and white</b>.`;
           }
         }
@@ -322,7 +322,7 @@ export default function Manuscript({ Id, data, table }) {
       });
 
     if (data.source) {
-      p5 = `<p class="p-beside-p">Regarding this manuscript's repository: ${data.source}</p>`;
+      p5 = `<p  class="p-beside-p">Regarding this manuscript's repository: ${data.source}</p>`;
       array.push({ text: p5 });
     }
     // array.push({ text: `${p1} ${p2} ${p3} ${p4} ${p5}` });

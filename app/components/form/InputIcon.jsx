@@ -27,7 +27,7 @@ const InputIcon = (props) => {
 
   return (
     <label
-      for={item?.label}
+      htmlFor={item?.label}
       className={`inline-flex m-1 items-center cursor-pointer py-1 px-2 h-6 relative iconcheck  ${
         item.icon ? "space-x-1 lg:space-x-0" : ""
       } ${item?.isChecked ? "isChecked" : "isNotChecked"}`}

@@ -37,7 +37,7 @@ const Checkbox = (props) => {
           name={label + " " + id}
           checked={isChecked}
           id={id}
-          defaultChecked={isChecked}
+          // defaultChecked={isChecked}
           onChange={changeHandler}
           onKeyDown={(e) => {
             if (e.keyCode === 13) changeHandler(true);

@@ -113,7 +113,7 @@ const PaintingByStoryIndex = ({ list }) => {
             >
               Search painting descriptions
             </legend>
-            <label htmlFor="SearchPaintingByStory" class="sr-only">
+            <label htmlFor="SearchPaintingByStory" className="sr-only">
               Search painting by story
             </label>
             <InputText
