@@ -6,7 +6,7 @@ export const metadata = {
   title:
     "Home | Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary Project",
   description:
-    "Home | Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary Project",
+    "We provide beautifully illuminated African manuscripts and captivating stories about the Virgin Mary created in Ethiopia, Eritrea, and Egypt in the 1200s to the present.",
 };
 
 export default function RootLayout({ children }) {

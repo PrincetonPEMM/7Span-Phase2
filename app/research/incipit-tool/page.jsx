@@ -84,7 +84,7 @@ const page = () => {
       <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
         Incipit Search
       </h1>
-      <div class=" justify-between flex-wrap items-center  sm:flex sm:space-y-0 sm:justify-center sm:space-x-4">
+      <div className=" justify-between flex-wrap items-center  sm:flex sm:space-y-0 sm:justify-center sm:space-x-4">
         <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 sm:max-w-[50%] lg:max-w-[75%]">
           <label
             htmlFor="searchtitles"
@@ -125,7 +125,7 @@ const page = () => {
               fetchData();
             }
           }}
-          class="bg-primary-500 w-full text-center justify-center max-w-[48%] text-white sm:max-w-fit inline-flex mr-1 sm:mr-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+          className="bg-primary-500 w-full text-center justify-center max-w-[48%] text-white sm:max-w-fit inline-flex mr-1 sm:mr-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
         >
           Search
         </button>
@@ -136,7 +136,7 @@ const page = () => {
             setPage(1);
             setIsFirstTime(false);
           }}
-          class="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+          className="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-2.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
         >
           Clear All
         </button>
