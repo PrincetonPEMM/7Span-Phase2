@@ -157,7 +157,7 @@ const ManuScripts = () => {
       setFilterInParams("noOfUniqueMax", noOfUniqueMax, false);
     } else setFilterInParams("noOfUniqueMax", noOfUniqueMax, true);
 
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -218,7 +218,7 @@ const ManuScripts = () => {
         "knownOriginRegion",
         originRegion
       )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
-        searchKey.length > 3 ? searchKey : ""
+        searchKey.length > minSearchChar ? searchKey : ""
       }
     `;
 

@@ -83,7 +83,7 @@ const Paintings = ({
   };
 
   const fetchData = async (searchKey = search) => {
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -110,7 +110,7 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey.length > 3 ? searchKey : ""}`;
+      )}filters[search]=${searchKey.length > minSearchChar ? searchKey : ""}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import CustomPagination from "@/app/components/Pagination";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { minSearchChar } from "@/utils/constant";
 
 const perPage = 10;
 
@@ -28,7 +29,7 @@ const page = () => {
   const fetchData = (searchData = search) => {
     setIsLoading(true);
 
-    if (searchData.length > 3) {
+    if (searchData.length > minSearchChar) {
       setFilterInParams("search", searchData, false);
     }
     if (searchData.length === 0) {
