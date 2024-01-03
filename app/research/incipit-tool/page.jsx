@@ -145,7 +145,7 @@ const page = () => {
         <div>
           <CustomPagination
             className="pagination-tablet"
-            currentPage={page}
+            currentPage={+page}
             totalPages={Math.ceil(totalPage / perPage)}
             onPageChange={(num) => {
               if (totalPage) setPage(num);

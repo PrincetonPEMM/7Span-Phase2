@@ -2,6 +2,7 @@
 import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
+  minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
@@ -124,7 +125,7 @@ const PaintingByStoryIndex = ({ list }) => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                if (query.length > 3) {
+                if (query.length > minSearchChar) {
                   debouncedFetchData(query);
                 }
                 if (query.length === 0) {
@@ -145,7 +146,7 @@ const PaintingByStoryIndex = ({ list }) => {
           <div className=" lg:col-span-2 lg:text-center grid justify-items-center sm:justify-items-start lg:justify-items-center">
             <CustomPagination
               className="pagination-tablet"
-              currentPage={page}
+              currentPage={+page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
                 setPage(num);

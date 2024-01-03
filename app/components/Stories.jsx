@@ -21,6 +21,7 @@ import {
   rangeSliderMaxForPaintingsStoriesPage,
   initialOriginalLangItem,
   initialTranslatedLangItem,
+  minSearchChar,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import CustomPagination from "./Pagination";
@@ -608,7 +609,7 @@ const Stories = () => {
               onChange={(e) => {
                 const query = e.target.value;
                 setSearch(query);
-                if (query.length > 3) {
+                if (query.length > minSearchChar) {
                   debouncedFetchData(query);
                 }
                 if (query.length === 0) {
@@ -645,7 +646,7 @@ const Stories = () => {
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
             <CustomPagination
               className="pagination-tablet"
-              currentPage={page}
+              currentPage={+page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
                 setPage(num);

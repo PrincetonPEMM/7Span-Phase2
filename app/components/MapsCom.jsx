@@ -357,6 +357,14 @@ const MapsCom = ({
         area-label={menuCollapse ? false : true}
         className="block h-7 w-7 flex-none p-1 z-40 text-primary-500 lg:hidden"
       />
+      <div
+        id="announce"
+        aria-live="polite"
+        results={`${totalPage ? totalPage : 0} records`}
+        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 mr-20 lg:text-right"
+      >
+        Results: {`(${totalPage ? totalPage : 0} records)`}
+      </div>
       <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
           <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
@@ -420,14 +428,7 @@ const MapsCom = ({
           </div>
         </div>
       </div>
-      <div
-        id="announce"
-        aria-live="polite"
-        results={`${totalPage ? totalPage : 0} records`}
-        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
-      >
-        Results: {`(${totalPage ? totalPage : 0} records)`}
-      </div>
+
       <div className="map-wrap">
         <div ref={mapContainer} className="map-container" />
       </div>

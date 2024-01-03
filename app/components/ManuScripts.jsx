@@ -22,6 +22,7 @@ import {
   rangeSliderMaxNoOfPaintingsManuscriptsPage,
   rangeSliderMinUniqueStoriesManuscriptsPage,
   rangeSliderMaxUniqueStoriesManuscriptsPage,
+  minSearchChar,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import CustomPagination from "./Pagination";
@@ -616,7 +617,7 @@ const ManuScripts = () => {
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -632,7 +633,7 @@ const ManuScripts = () => {
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -676,7 +677,7 @@ const ManuScripts = () => {
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
             <CustomPagination
               className="pagination-tablet"
-              currentPage={page}
+              currentPage={+page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
                 setPage(num);
