@@ -173,7 +173,7 @@ export default function Manuscript({ Id, data, table }) {
         } else if (data.total_manuscript_paintings < 200) {
           text = `This manuscript has a lot of paintings of Marian miracle stories: <b>${data.total_manuscript_paintings}</b>.`;
         }
-      } else if (data.tm_story_paintings == "RelatedImages") {
+      } else if (data.tm_story_paintings == "Related Images") {
         text = `This manuscript has no paintings of Marian miracle stories, but it does have ${
           data.total_manuscript_paintings > 1
             ? `<b>${data.total_manuscript_paintings}</b> paintings`

@@ -22,6 +22,7 @@ import {
   rangeSliderMaxNoOfPaintingsManuscriptsPage,
   rangeSliderMinUniqueStoriesManuscriptsPage,
   rangeSliderMaxUniqueStoriesManuscriptsPage,
+  minSearchChar,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
 import CustomPagination from "./Pagination";
@@ -156,7 +157,7 @@ const ManuScripts = () => {
       setFilterInParams("noOfUniqueMax", noOfUniqueMax, false);
     } else setFilterInParams("noOfUniqueMax", noOfUniqueMax, true);
 
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -217,7 +218,7 @@ const ManuScripts = () => {
         "knownOriginRegion",
         originRegion
       )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
-        searchKey.length > 3 ? searchKey : ""
+        searchKey.length > minSearchChar ? searchKey : ""
       }
     `;
 
@@ -616,7 +617,7 @@ const ManuScripts = () => {
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -632,7 +633,7 @@ const ManuScripts = () => {
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -676,7 +677,7 @@ const ManuScripts = () => {
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
             <CustomPagination
               className="pagination-tablet"
-              currentPage={page}
+              currentPage={+page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
                 setPage(num);

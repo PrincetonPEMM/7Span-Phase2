@@ -144,7 +144,7 @@ export default function StoryDetail({ data, Id }) {
 
   const cityThisTranslation = () => {
     return !data.is_published
-      ? `${data?.translation_author}. "ID
+      ? `${data?.translation_author}, trans. "ID
     ${data?.canonical_story_id}: ${data?.canonical_story_title}
     ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,

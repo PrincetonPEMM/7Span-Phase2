@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import PaintingStoryCard from "./PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
+  minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import Masonry from "react-masonry-css";
@@ -41,7 +42,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
 
   const fetchData = (searchKey = search) => {
     setIsLoadint(true);
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -57,7 +58,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
       }paintings/by-manuscript/${Id}?page=${page}&perPage=${perPage}&filters[search]=${
-        searchKey.length > 3 ? searchKey : ""
+        searchKey.length > minSearchChar ? searchKey : ""
       }`
     )
       .then((res) => res.json())
@@ -131,7 +132,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -153,7 +154,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
             <div className=" lg:text-center lg:col-span-2 grid justify-items-center sm:justify-items-start lg:justify-items-center">
               <CustomPagination
                 className="pagination-tablet"
-                currentPage={page}
+                currentPage={+page}
                 totalPages={Math.ceil(totalPage / perPage)}
                 onPageChange={(num) => {
                   setPage(num);
