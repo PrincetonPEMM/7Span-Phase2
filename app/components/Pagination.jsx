@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
 import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
+
 export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
   return (
