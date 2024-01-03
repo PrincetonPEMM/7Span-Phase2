@@ -141,7 +141,7 @@ const Stories = () => {
       setFilterInParams("paintingMax", paintingMax, false);
     } else setFilterInParams("paintingMax", paintingMax, true);
 
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -211,7 +211,7 @@ const Stories = () => {
         filterItem,
         "withEnglishTranslation"
       )}sort=${ascDescFil}&filters[search]=${
-        searchKey.length > 3 ? searchKey : ""
+        searchKey.length > minSearchChar ? searchKey : ""
       }
     `;
       const response = await fetch(

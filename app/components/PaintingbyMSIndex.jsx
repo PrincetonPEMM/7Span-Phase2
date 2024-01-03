@@ -112,7 +112,7 @@ const PaintingbyMSIndex = ({
 
   const fetchData = (searchKey = search) => {
     setIsLoadint(true);
-    if (searchKey?.length > 3) {
+    if (searchKey?.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey?.length === 0) {
@@ -136,7 +136,7 @@ const PaintingbyMSIndex = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey?.length > 3 ? searchKey : ""}`
+      )}filters[search]=${searchKey?.length > minSearchChar ? searchKey : ""}`
     )
       .then((res) => res.json())
       .then((data) => {

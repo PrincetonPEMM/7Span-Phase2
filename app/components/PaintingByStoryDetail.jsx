@@ -41,7 +41,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
 
   const fetchData = (searchKey = search) => {
     setIsLoadint(true);
-    if (searchKey.length > 3) {
+    if (searchKey.length > minSearchChar) {
       setFilterInParams("search", searchKey, false);
     }
     if (searchKey.length === 0) {
@@ -57,7 +57,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
       }paintings/by-story/${Id}?page=${page}&perPage=${perPage}&filters[search]=${
-        searchKey.length > 3 ? searchKey : ""
+        searchKey.length > minSearchChar ? searchKey : ""
       }`
     )
       .then((res) => res.json())
