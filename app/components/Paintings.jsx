@@ -6,6 +6,7 @@ import PaintingCard from "./PaintingCard";
 import Dropdown from "./Dropdown";
 import {
   breakpointColumnsForMasonry,
+  minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import CustomPagination from "./Pagination";
@@ -14,11 +15,9 @@ import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
-let mounted = false;
 const paintingBy = [
   {
     value: "Paintings by Story",
@@ -62,6 +61,7 @@ const Paintings = ({
   );
   const [storyType, setStoryType] = useState(newTypeOfStory);
   const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
+  const [mount, setMount] = useState(false);
 
   const makeParamsArray = (key, arr) => {
     if (arr.length)
@@ -130,7 +130,7 @@ const Paintings = ({
   }, [page]);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mount) return;
     setPage(1);
     fetchData(search);
   }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
@@ -154,7 +154,7 @@ const Paintings = ({
       document.body.classList.remove("filter_open");
       document.body.classList.remove("filter_close");
     }
-    mounted = true;
+    setMount(true);
   }, [menuCollapse]);
 
   const setFilterInParams = (key, value, isRemove = false) => {
@@ -348,7 +348,7 @@ const Paintings = ({
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -369,7 +369,7 @@ const Paintings = ({
             <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
               <CustomPagination
                 className="pagination-tablet"
-                currentPage={page}
+                currentPage={+page}
                 totalPages={Math.ceil(totalPage / perPage)}
                 onPageChange={(num) => {
                   setPage(num);

@@ -2,6 +2,7 @@
 import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
+  minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import React, { useCallback, useEffect, useState } from "react";
@@ -26,7 +27,6 @@ const paintingBy = [
     key: "/paintings/by-story",
   },
 ];
-let mounted = false;
 
 const PaintingbyMSIndex = ({
   list,
@@ -58,6 +58,7 @@ const PaintingbyMSIndex = ({
     newPaintingInColor ?? []
   );
   const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
+  const [mount, setMount] = useState(false);
 
   useEffect(() => {
     setData(list?.data);
@@ -158,7 +159,7 @@ const PaintingbyMSIndex = ({
   }, [page]);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mount) return;
     setPage(1);
     fetchData(search);
   }, [dateOfPaintins, paintingsInColorOnly, archiveOfPainting]);
@@ -180,7 +181,7 @@ const PaintingbyMSIndex = ({
       document.body.classList.remove("filter_open");
       document.body.classList.remove("filter_close");
     }
-    mounted = true;
+    setMount(true);
   }, [menuCollapse]);
 
   const setFilterInParams = (key, value, isRemove = false) => {
@@ -310,7 +311,7 @@ const PaintingbyMSIndex = ({
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
-                  if (query.length > 3) {
+                  if (query.length > minSearchChar) {
                     debouncedFetchData(query);
                   }
                   if (query.length === 0) {
@@ -331,7 +332,7 @@ const PaintingbyMSIndex = ({
             <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
               <CustomPagination
                 className="pagination-tablet"
-                currentPage={page}
+                currentPage={+page}
                 totalPages={Math.ceil(totalPage / perPage)}
                 onPageChange={(num) => {
                   setPage(num);
@@ -430,7 +431,7 @@ const PaintingbyMSIndex = ({
           <div className="order-3 sm:-order-none mt-4  sm:mt-0 lg:col-span-2">
             <CustomPagination
               className="pagination-tablet"
-              currentPage={page}
+              currentPage={+page}
               totalPages={Math.ceil(totalPage / perPage)}
               onPageChange={(num) => {
                 setPage(num);

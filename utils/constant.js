@@ -1,4 +1,5 @@
 export const pagePerLimit = 20;
+export const minSearchChar = 1;
 export const pagePerLimitForPainting = pagePerLimit; //21;
 export const macomber_id_number = 642;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 674;
