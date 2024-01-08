@@ -185,6 +185,7 @@ const MapsCom = ({
               manuscript_date_range_end,
               web_page_address,
               location,
+              latitude_longitude_approximate,
             } = feature.properties;
 
             if (!manuscriptIds.includes(id)) {
@@ -198,7 +199,11 @@ const MapsCom = ({
                   <b>Manuscript full name:</b> ${manuscript_full_name} <br/>
                   <b>Language:</b> ${language} <br/>
                   <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
-                  <b>Location:</b> ${location}<br/>
+                  <b>Location${
+                    latitude_longitude_approximate === "True"
+                      ? "(approximate)"
+                      : ""
+                  }:</b> ${location}<br/>
                   <b>ID:</b>  ${id} <br/></div></td></tr>`;
               manuscriptIds.push(id);
             }
@@ -361,7 +366,7 @@ const MapsCom = ({
         id="announce"
         aria-live="polite"
         results={`${totalPage ? totalPage : 0} records`}
-        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 mr-20 lg:text-right"
+        className="text-offBlack-400 text-center mb-3 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 lg:mr-36  xl:mr-48 2xl:mr-72 lg:text-right"
       >
         Results: {`(${totalPage ? totalPage : 0} records)`}
       </div>
