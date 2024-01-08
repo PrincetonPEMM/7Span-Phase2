@@ -21,6 +21,24 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `
+            {
+              "@context": "https://schema.org/",
+              "@type": "WebSite",
+              "name": "PEMM",
+              "url": "https://pemm.princeton.edu/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://pemm.princeton.edu/stories?search={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+              `,
+          }}
+        />
       </head>
       <body>
         {/* Skip navigation link */}
