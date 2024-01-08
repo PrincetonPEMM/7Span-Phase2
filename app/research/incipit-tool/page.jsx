@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import CustomPagination from "@/app/components/Pagination";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { minSearchChar } from "@/utils/constant";
 import Dropdown from "@/app/components/Dropdown";
 
 const perPage = 10;
@@ -38,7 +37,7 @@ const page = () => {
   const [isMount, setIsMount] = useState(false);
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [match, setMatch] = useState(
-    matchCanonicalIncipitsOnlyP ?? "Match canonical incipits only"
+    matchCanonicalIncipitsOnlyP ? paintingBy[0].value : paintingBy[1].value
   );
 
   const fetchData = (searchData = search) => {
@@ -174,7 +173,11 @@ const page = () => {
               setPage(1);
               setMatch("Match canonical incipits only");
               setIsFirstTime(false);
-              setFilterInParams("matchCanonicalIncipitsOnly", match, true);
+              setFilterInParams(
+                "matchCanonicalIncipitsOnly",
+                match.value,
+                true
+              );
             }}
             className="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
