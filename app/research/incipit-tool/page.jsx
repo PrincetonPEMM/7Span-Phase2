@@ -55,7 +55,7 @@ const page = () => {
       setFilterInParams("page", page, true);
     }
 
-    if (isMount)
+    if (isMount && searchData.length !== 0)
       setFilterInParams(
         "matchCanonicalIncipitsOnly",
         match === "Match canonical incipits only" ? true : false,
@@ -173,11 +173,7 @@ const page = () => {
               setPage(1);
               setMatch("Match canonical incipits only");
               setIsFirstTime(false);
-              setFilterInParams(
-                "matchCanonicalIncipitsOnly",
-                match.value,
-                true
-              );
+              setFilterInParams("matchCanonicalIncipitsOnly", false, true);
             }}
             className="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
