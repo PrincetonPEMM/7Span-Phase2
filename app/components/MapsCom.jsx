@@ -201,7 +201,7 @@ const MapsCom = ({
                   <b>Date:</b> ${manuscript_date_range_start} - ${manuscript_date_range_end} <br/>
                   <b>Location${
                     latitude_longitude_approximate === "True"
-                      ? "(approximate)"
+                      ? " (approximate)"
                       : ""
                   }:</b> ${location}<br/>
                   <b>ID:</b>  ${id} <br/></div></td></tr>`;

@@ -85,10 +85,6 @@ const page = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     if (isMount) fetchData();
     else setIsMount(true);
   }, [page]);
@@ -287,15 +283,15 @@ const page = () => {
             ) : (
               <h1 className="w-10/12 md:w-2/3">
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
-                identify the story's incipit (this is first unique sentence in
-                the story; not the uniform blessings that open every story) and
-                type the Ethiopic characters into the search bar. Then, use the
-                results to identify the story in the PEMM database that matches
-                the story in your manuscript. You can search all 20,000+
+                identify the story's incipit (this is the first unique sentence
+                in the story; not the uniform blessings that open every story)
+                and type the Ethiopic characters into the search bar. Then, use
+                the results to identify the story in the PEMM database that
+                matches the story in your manuscript. You can search all 20,000+
                 incipits in the PEMM database (select <i>Search All Incipits</i>
                 ) or you can search only 1,000 incipits, the single most
                 representative incipit for each story (select{" "}
-                <i>Search Canonical Incipits</i>)
+                <i>Search Canonical Incipits</i>).
               </h1>
             )}
           </div>
