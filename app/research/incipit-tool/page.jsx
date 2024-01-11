@@ -85,10 +85,6 @@ const page = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     if (isMount) fetchData();
     else setIsMount(true);
   }, [page]);
