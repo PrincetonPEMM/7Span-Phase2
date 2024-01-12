@@ -34,7 +34,7 @@ const page = () => {
   const [maxRecord, setMaxRecord] = useState(0);
   const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isMount, setIsMount] = useState(false);
+  const [isMount, setIsMount] = useState(searchp ? true : false);
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [match, setMatch] = useState(
     matchCanonicalIncipitsOnlyP ? paintingBy[0].value : paintingBy[1].value
