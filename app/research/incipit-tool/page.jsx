@@ -105,7 +105,7 @@ const page = () => {
         Incipit Search
       </h1> */}
       <div className="justify-between flex-wrap items-center md:flex sm:space-y-0 sm:justify-between lg:space-x-2">
-        <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 lg:w-[66%]">
+        <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 lg:w-[64%]">
           <label
             htmlFor="searchtitles"
             className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -138,8 +138,8 @@ const page = () => {
             />
           )}
         </div>
-        <div className="md:flex md:justify-evenly lg:justify-normal items-center w-full lg:w-1/3 mx-auto md:space-x-1">
-          <div className="lg:w-[235px] w-full mr-1 my-4 xl:my-0">
+        <div className="md:flex md:justify-evenly lg:justify-normal items-center w-full lg:w-[35%] mx-auto md:space-x-1">
+          <div className=" w-full mr-1 my-4 xl:my-0">
             <Dropdown
               title={match}
               selected={match}
@@ -158,7 +158,7 @@ const page = () => {
                 fetchData();
               }
             }}
-            className="bg-primary-500 text-center justify-center w-[48%] md:max-w-fit text-white inline-flex mr-1 px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+            className="bg-primary-500 text-center justify-center w-[47%] md:max-w-fit text-white inline-flex mr-1 px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             Search
           </button>
@@ -282,7 +282,7 @@ const page = () => {
             ) : isFirstTime ? (
               <h1>Records Not Found</h1>
             ) : (
-              <p className="w-full">
+              <p className="w-full text-base font-medium">
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
                 identify the story's incipit (this is the first unique sentence
                 in the story; not the uniform blessings that open every story)

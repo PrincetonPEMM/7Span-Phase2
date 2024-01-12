@@ -902,7 +902,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .page-total {
-  @apply w-11 mx-1 font-medium text-xs xl:text-sm text-center;
+  @apply w-11 whitespace-nowrap font-medium text-xs xl:text-sm text-center mx-2;
 }
 .option-box {
   @apply h-[37px];
