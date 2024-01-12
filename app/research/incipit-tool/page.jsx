@@ -100,12 +100,12 @@ const page = () => {
   };
 
   return (
-    <div className="container space-y-10 py-10">
+    <div className="container space-y-5 py-10">
       {/* <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
         Incipit Search
       </h1> */}
-      <div className="justify-between flex-wrap items-center md:flex sm:space-y-0 sm:justify-center lg:space-x-2">
-        <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 lg:max-w-[60%]">
+      <div className="justify-between flex-wrap items-center md:flex sm:space-y-0 sm:justify-between lg:space-x-2">
+        <div className="relative w-full sm:col-span-4 mb-4 sm:mb-0 lg:w-[66%]">
           <label
             htmlFor="searchtitles"
             className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -138,8 +138,8 @@ const page = () => {
             />
           )}
         </div>
-        <div className="md:flex md:justify-evenly lg:justify-normal items-center w-full lg:w-[30%] mx-auto md:space-x-1">
-          <div className="lg:w-[235px] w-full mr-1 my-4 xl:my-0 ">
+        <div className="md:flex md:justify-evenly lg:justify-normal items-center w-full lg:w-1/3 mx-auto md:space-x-1">
+          <div className="lg:w-[235px] w-full mr-1 my-4 xl:my-0">
             <Dropdown
               title={match}
               selected={match}
@@ -158,7 +158,7 @@ const page = () => {
                 fetchData();
               }
             }}
-            className="bg-primary-500 w-full text-center justify-center max-w-[48%] text-white sm:max-w-fit inline-flex mr-1 sm:mr-0 sm:w-auto px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+            className="bg-primary-500 text-center justify-center w-[48%] md:max-w-fit text-white inline-flex mr-1 px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             Search
           </button>
@@ -171,14 +171,15 @@ const page = () => {
               setIsFirstTime(false);
               setFilterInParams("matchCanonicalIncipitsOnly", false, true);
             }}
-            className="bg-primary-500  w-full text-center justify-center max-w-[48%] sm:flex-none text-white ml-1 sm:max-w-fit inline-flex sm:ml-0 sm:w-auto px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+            className="bg-primary-500 flex-none  text-center justify-center w-1/2 md:max-w-fit
+              sm:flex-none text-white ml-1  inline-flex px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             Clear All
           </button>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="lg:ml-[70px]">
+      <div className="space-y-4 space-x-0 sm:space-x-4 sm:space-y-0  flex flex-col items-center sm:flex-row justify-center sm:items-center md:min-w-[500px]">
+        <div>
           <CustomPagination
             className="pagination-tablet"
             currentPage={+page}
@@ -188,16 +189,16 @@ const page = () => {
             }}
           />
         </div>
-        <div
+        <span
           id="announce"
           aria-live="polite"
           results={`${totalPage ? totalPage : 0} records`}
-          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center lg:mr-36  xl:mr-48 2xl:mr-72"
+          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
         >
           Results: {`(${totalPage ? totalPage : 0} records)`}
-        </div>
+        </span>
       </div>
-      <div className="incipit-tool" id="incipit-table">
+      <div className="incipit-tool w-full" id="incipit-table">
         {tableData?.length !== 0 && (
           <table className="w-full">
             <thead>
@@ -275,13 +276,13 @@ const page = () => {
           </table>
         )}
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
+          <div className="flex items-center pt-5 pb-36 mr-auto ml-0 lg:max-w-[59%] justify-start w-full text-xl text-primary-500 font-bold">
             {isLoading ? (
               <h1>Loading...</h1>
             ) : isFirstTime ? (
               <h1>Records Not Found</h1>
             ) : (
-              <h1 className="w-10/12 md:w-2/3">
+              <p className="w-full">
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
                 identify the story's incipit (this is the first unique sentence
                 in the story; not the uniform blessings that open every story)
@@ -292,7 +293,7 @@ const page = () => {
                 ) or you can search only 1,000 incipits, the single most
                 representative incipit for each story (select{" "}
                 <i>Search Canonical Incipits</i>).
-              </h1>
+              </p>
             )}
           </div>
         )}
