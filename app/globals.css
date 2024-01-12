@@ -1114,6 +1114,9 @@ tbody.table-body.active tr td {
   display: inline-block;
 }
 
+.incipit-tool .pagination-container > .page-total {
+  margin-right: 10px !important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);

@@ -178,7 +178,7 @@ const page = () => {
           </button>
         </div>
       </div>
-      <div className="space-y-4 space-x-0 sm:space-x-4 sm:space-y-0  flex flex-col items-center sm:flex-row justify-center sm:items-center md:min-w-[500px]">
+      <div className="incipit-tool space-y-4 space-x-0 sm:space-x-4 sm:space-y-0  flex flex-col items-center sm:flex-row justify-center sm:items-center md:min-w-[500px]">
         <div>
           <CustomPagination
             className="pagination-tablet"
@@ -276,13 +276,13 @@ const page = () => {
           </table>
         )}
         {Boolean(!tableData?.length) && (
-          <div className="flex items-center pt-5 pb-36 mr-auto ml-0 lg:max-w-[59%] justify-start w-full text-xl text-primary-500 font-bold">
+          <div className="flex items-center pt-5 pb-36 mr-auto ml-0  justify-start w-full text-xl text-primary-500 font-bold">
             {isLoading ? (
-              <h1>Loading...</h1>
+              <h1 className="mx-auto block text-center">Loading...</h1>
             ) : isFirstTime ? (
-              <h1>Records Not Found</h1>
+              <h1 className="mx-auto block text-center">Records Not Found</h1>
             ) : (
-              <p className="w-full text-base font-medium">
+              <p className="w-full text-base font-medium lg:max-w-[59%]">
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
                 identify the story's incipit (this is the first unique sentence
                 in the story; not the uniform blessings that open every story)
