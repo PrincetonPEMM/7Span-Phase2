@@ -172,13 +172,13 @@ const page = () => {
               setFilterInParams("matchCanonicalIncipitsOnly", false, true);
             }}
             className="bg-primary-500 flex-none  text-center justify-center w-1/2 md:max-w-fit
-              sm:flex-none text-white ml-1  inline-flex px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+              sm:flex-none text-white ml-1 inline-flex px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             Clear All
           </button>
         </div>
       </div>
-      <div className="incipit-tool space-y-4 space-x-0 sm:space-x-4 sm:space-y-0  flex flex-col items-center sm:flex-row justify-center sm:items-center md:min-w-[500px]">
+      <div className="incipit-tool space-y-4 space-x-0 sm:space-x-4 flex flex-col items-center justify-center sm:flex-row sm:items-center sm:space-y-0 lg:justify-end md:min-w-[500px] lg:w-[64%]">
         <div>
           <CustomPagination
             className="pagination-tablet"
