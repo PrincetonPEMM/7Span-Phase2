@@ -301,13 +301,11 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     if (data.hamburg_ms_id !== null) {
-      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${
-        data.hamburg_ms_id
-      }</b>. ${
-        data.other_ms_id
-          ? `Other shelfmarks and/or abbreviations for this manuscript include <b>${data.other_ms_id}</b>.`
-          : ""
-      }`;
+      p2 = `The Beta Maṣāḥǝft abbreviation for this manuscript is <b>${data.hamburg_ms_id}</b>.`;
+      array.push({ text: p2 });
+    }
+    if (data.other_ms_id !== null) {
+      p2 = `Other shelfmarks and/or abbreviations for this manuscript include <b>${data.other_ms_id}</b>.`;
       array.push({ text: p2 });
     }
     array.push({ text: p3 });
