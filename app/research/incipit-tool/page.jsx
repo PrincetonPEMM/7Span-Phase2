@@ -37,7 +37,7 @@ const page = () => {
   const [isMount, setIsMount] = useState(searchp ? true : false);
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [match, setMatch] = useState(
-    matchCanonicalIncipitsOnlyP ? paintingBy[0].value : paintingBy[1].value
+    !matchCanonicalIncipitsOnlyP ? paintingBy[0].value : paintingBy[1].value
   );
 
   const fetchData = (searchData = search) => {
@@ -167,7 +167,7 @@ const page = () => {
               setSearch("");
               tableData?.length !== 0 && fetchData("");
               setPage(1);
-              setMatch("Match canonical incipits only");
+              setMatch(paintingBy[0].value);
               setIsFirstTime(false);
               setFilterInParams("matchCanonicalIncipitsOnly", false, true);
             }}

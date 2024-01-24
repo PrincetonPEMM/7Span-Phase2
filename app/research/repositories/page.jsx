@@ -7,10 +7,15 @@ import React from "react";
 const page = async () => {
   let repositories_data = null;
   try {
-    repositories_data = await client.request(readItems("repositories"));
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}list-of-repositories`
+    );
+    repositories_data = await response.json();
   } catch (e) {
     console.log(e);
   }
+
+  console.log(repositories_data, "repositories_data");
 
   return (
     <div className="container">
@@ -21,12 +26,43 @@ const page = async () => {
               {repositories_data?.title ?? ""}
             </h1>
             <p className="pt-4 pb-6">{repositories_data?.intro}</p>
-            <div
+            {repositories_data.description.map((item, index) => (
+              <div key={index} className="space-y-p descriptions-left">
+                <h3>
+                  {item.institution_name} {item.collection_name}
+                </h3>
+                <i>
+                  {item.institution_city_state} {item.institution_country}
+                </i>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: item?.source,
+                  }}
+                ></div>
+                <div className="mt-[3px]">
+                  <span className="font-medium">
+                    Total manuscripts in PEMM:
+                  </span>{" "}
+                  {item.total_manuscripts_in_collection}
+                </div>
+                <div>
+                  <span className="font-medium">PEMM Abbreviation:</span>{" "}
+                  {item.collection}
+                </div>
+                <div>
+                  <span className="font-medium">Macomber Abbreviation:</span>{" "}
+                  {item.macomber_abbreviation
+                    ? item.macomber_abbreviation
+                    : "None"}
+                </div>
+              </div>
+            ))}
+            {/* <div
               dangerouslySetInnerHTML={{
                 __html: repositories_data?.description,
               }}
               className="space-y-p descriptions-left"
-            />
+            /> */}
           </div>
         )}
       </div>
