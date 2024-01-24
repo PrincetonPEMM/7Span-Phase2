@@ -168,6 +168,29 @@ export default function StoryDetail({ data, Id }) {
    https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`;
   };
 
+  const NextPreviesButton = () => {
+    return (
+      <div className="space-x-5 space-y-0 my-4 text-offWhite-500 font-semibold font-body flex items-start text-base ">
+        {data.previous_story && (
+          <Link
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 py-1 font-body tracking-wide"
+            href={`/stories/${data.previous_story}`}
+          >
+            <span>Read previous part of the story</span>
+          </Link>
+        )}
+        {data.next_story && (
+          <Link
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 py-1 font-body tracking-wide"
+            href={`/stories/${data.next_story}`}
+          >
+            <span>Read next part of the stroy</span>
+          </Link>
+        )}
+      </div>
+    );
+  };
+
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -352,6 +375,7 @@ export default function StoryDetail({ data, Id }) {
                     ></p>
                   </li>
                 )}
+                {NextPreviesButton()}
                 {data.canonical_story_research_note && (
                   <li>
                     <h3 className={`text-lg font-bold uppercase mb-3  `}>
@@ -365,6 +389,7 @@ export default function StoryDetail({ data, Id }) {
                     ></p>
                   </li>
                 )}
+
                 {data.canonical_translation_recension === "True" &&
                   data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
@@ -510,6 +535,7 @@ export default function StoryDetail({ data, Id }) {
                         ></p>
                       </>
                     )}
+                    {NextPreviesButton()}
                     {data.canonical_story_research_note && (
                       <li>
                         <h3 className={`text-lg font-bold uppercase mb-3  `}>

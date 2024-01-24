@@ -151,7 +151,7 @@ body {
   font-weight: 500;
 }
 .space-y-p h3 {
-  @apply font-bold text-2xl my-2 text-offBlack-500 font-body;
+  @apply font-bold text-2xl mt-2 text-offBlack-500 font-body;
   font-family: Source sans 3;
 }
 .space-y-p a {
