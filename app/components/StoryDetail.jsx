@@ -170,21 +170,21 @@ export default function StoryDetail({ data, Id }) {
 
   const NextPreviesButton = () => {
     return (
-      <div className="space-x-5 space-y-0 my-4 text-offWhite-500 font-semibold font-body flex items-start text-base ">
+      <div className="sm:space-x-5 space-y-5 sm:space-y-0 pt-3 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_story && (
           <Link
-            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 py-1 font-body tracking-wide"
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
             href={`/stories/${data.previous_story}`}
           >
-            <span>Read previous part of the story</span>
+            <span>View the previous part of the story</span>
           </Link>
         )}
         {data.next_story && (
           <Link
-            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 py-1 font-body tracking-wide"
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
             href={`/stories/${data.next_story}`}
           >
-            <span>Read next part of the stroy</span>
+            <span>View the next part of the story</span>
           </Link>
         )}
       </div>

@@ -32,7 +32,7 @@ const page = async () => {
                   {item.institution_name} {item.collection_name}
                 </h3>
                 <i>
-                  {item.institution_city_state} {item.institution_country}
+                  {item.institution_city_state}, {item.institution_country}
                 </i>
                 <div
                   dangerouslySetInnerHTML={{
