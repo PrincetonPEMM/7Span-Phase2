@@ -37,7 +37,9 @@ const page = () => {
   const [isMount, setIsMount] = useState(searchp ? true : false);
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [match, setMatch] = useState(
-    !matchCanonicalIncipitsOnlyP ? paintingBy[0].value : paintingBy[1].value
+    matchCanonicalIncipitsOnlyP !== "true"
+      ? paintingBy[0].value
+      : paintingBy[1].value
   );
 
   const fetchData = (searchData = search) => {
@@ -253,7 +255,7 @@ const page = () => {
                               "-" +
                               col.manuscript_date_range_end
                           : "-"}
-                        )
+                        ). Total story records: {col.total_records}
                       </div>
                     </td>
                     <td>
@@ -286,13 +288,21 @@ const page = () => {
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
                 identify the story's incipit (this is the first unique sentence
                 in the story; not the uniform blessings that open every story)
-                and type the Ethiopic characters into the search bar. Then, use
-                the results to identify the story in the PEMM database that
-                matches the story in your manuscript. You can search all 20,000+
-                incipits in the PEMM database (select <i>Search All Incipits</i>
-                ) or you can search only 1,000 incipits, the single most
-                representative incipit for each story (select{" "}
-                <i>Search Canonical Incipits</i>).
+                and type the Geʿez (classical Ethiopic) characters into the
+                search bar. Then, use the results to identify the story in the
+                PEMM database that matches the story in your manuscript. You can
+                search all 20,000+ incipits in the PEMM database (select{" "}
+                <i>Search All Incipits</i>) or you can search only 1,000
+                incipits, the single most representative incipit for each story
+                (select <i>Search Canonical Incipits</i>). Interpreting the
+                results takes skill. Go to the end of the{" "}
+                <Link
+                  href={"/about/connect/using-the-site"}
+                  className="text-primary-500 font-bold hover:text-secondary-500"
+                >
+                  Using this Site
+                </Link>{" "}
+                page to find more extensive instructions.
               </p>
             )}
           </div>
