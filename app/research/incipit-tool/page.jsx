@@ -255,7 +255,7 @@ const page = () => {
                               "-" +
                               col.manuscript_date_range_end
                           : "-"}
-                        )
+                        ). Total story records: {col.total_records}
                       </div>
                     </td>
                     <td>
