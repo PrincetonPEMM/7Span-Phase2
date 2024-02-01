@@ -764,9 +764,11 @@ function SecondLine(total_records, total_completed_manuscript) {
     if (percentage >= 50)
       return (
         <p>
-          This story is <b>extremely common</b>: it appears in {total_records}{" "}
-          out of {total_completed_manuscript} PEMM manuscripts ({percentage}%).
-          It is in the top 15 most common stories.
+          This story is <b>extremely common</b> in PEMM manuscripts: it appears
+          in {total_records} out of {total_completed_manuscript} of them (
+          {percentage}%). It is in the top 15 most common stories in PEMM
+          manuscripts. This does not necessarily mean it is among the most
+          commonly read in Ethiopian and Eritrean churches today.
         </p>
       );
     else if (total_records >= 2 && total_records <= 6)
