@@ -453,7 +453,7 @@ export const initialfilterItemManuScript = {
       isChecked: false,
       isFirstBreak: true,
     },
-    arabicAndGaazManuscript: {
+    gaazManuscript: {
       id: "12",
       name: "arabic",
       key: "gaazManuscript",
