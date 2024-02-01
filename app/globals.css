@@ -1061,7 +1061,8 @@ tbody.table-body.active tr td {
   margin: 20px 0;
 }
 
-.space-y-p.description-center h2 {
+.space-y-p.description-center h2,
+.space-y-p.descriptions-left h2 {
   @apply text-offBlack-500 font-bold;
   font-family: "Source Sans 3";
   font-size: 30px;

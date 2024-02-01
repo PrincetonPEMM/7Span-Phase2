@@ -466,8 +466,8 @@ const ManuScripts = () => {
           ...filterItem.checkItem["arabicManuscript"],
           isChecked: arabicManuscript ? true : false,
         },
-        ["arabicAndGaazManuscript"]: {
-          ...filterItem.checkItem["arabicAndGaazManuscript"],
+        ["gaazManuscript"]: {
+          ...filterItem.checkItem["gaazManuscript"],
           isChecked: gaazManuscript ? true : false,
         },
         ["royalManuscript"]: {
