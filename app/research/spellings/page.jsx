@@ -26,7 +26,7 @@ const page = async () => {
               dangerouslySetInnerHTML={{
                 __html: interchangeable_spellings_data?.description,
               }}
-              className="interchangable-table overflow-auto table-wrap"
+              className="interchangable-table overflow-auto"
             />
           </div>
         )}
