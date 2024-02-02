@@ -11,7 +11,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
           <h1 className="text-3xl text-primary-500 font-bold lg:text-4xl font-body">
             {title ?? ""}
           </h1>
-          <div className="font-body pb-7 pt-5 space-y-p ">
+          <div className="font-body pb-7 pt-5 space-y-p">
             <div className="mt-5 lg:mt-0 lg:col-span-2">
               {image && (
                 <img
@@ -31,7 +31,7 @@ const DetailPage = ({ image, title, author, date, intro, description }) => {
                 dangerouslySetInnerHTML={{
                   __html: description,
                 }}
-                className="space-y-p contents descriptions-left
+                className="space-y-p contents
                 "
               />
             </div>
