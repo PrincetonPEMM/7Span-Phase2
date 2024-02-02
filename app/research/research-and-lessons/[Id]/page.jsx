@@ -20,14 +20,16 @@ const Page = async ({ params }) => {
     console.log(e);
   }
   return data ? (
-    <DetailPage
-      image={data?.image_link}
-      title={data?.title}
-      author={data?.author}
-      date={data?.date}
-      intro={data?.intro}
-      description={data?.description}
-    />
+    <div className="reaserch-page">
+      <DetailPage
+        image={data?.image_link}
+        title={data?.title}
+        author={data?.author}
+        date={data?.date}
+        intro={data?.intro}
+        description={data?.description}
+      />
+    </div>
   ) : (
     <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
       <h1>Records Not Found</h1>
