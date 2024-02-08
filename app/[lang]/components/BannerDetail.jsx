@@ -11,7 +11,6 @@ const BannerDetail = ({
   clsBtnCondition,
   setSelectedBanner,
 }) => {
-  console.log(areaLabel, "areaLabel");
   return (
     <div className="relative pt-5 bg-secondary-500 text-center md:text-center md:pt-0 block">
       <div className="w-full col-span-2 flex text-offBlack-500 bg-secondary-500">

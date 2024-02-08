@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Logo from "@assets/images/logo-white.png";
+
 const Loading = () => {
   return (
     <div>

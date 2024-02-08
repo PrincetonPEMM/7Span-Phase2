@@ -5,9 +5,9 @@
 @font-face {
   font-family: "Source Sans 3";
   src:
-    url("../assets/fonts/SourceSans3-Medium.woff2") format("woff2"),
-    url("../assets/fonts/SourceSans3-Medium.woff") format("woff"),
-    url("../assets/fonts/SourceSans3-Medium.ttf") format("truetype");
+    url("../../assets/fonts/SourceSans3-Medium.woff2") format("woff2"),
+    url("../../assets/fonts/SourceSans3-Medium.woff") format("woff"),
+    url("../../assets/fonts/SourceSans3-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -16,8 +16,8 @@
 @font-face {
   font-family: "Maghfirea";
   src:
-    url("../assets/fonts/Maghfirea.ttf") format("ttf"),
-    url("../assets/fonts/Maghfirea.woff") format("woff");
+    url("../../assets/fonts/Maghfirea.ttf") format("ttf"),
+    url("../../assets/fonts/Maghfirea.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -26,8 +26,8 @@
 @font-face {
   font-family: "Source Serif Pro";
   src:
-    url("../assets/fonts/SourceSerifPro-Regular.ttf") format("ttf"),
-    url("../assets/fonts/SourceSerifPro-Regular.woff") format("woff");
+    url("../../assets/fonts/SourceSerifPro-Regular.ttf") format("ttf"),
+    url("../../assets/fonts/SourceSerifPro-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -36,8 +36,8 @@
 @font-face {
   font-family: "Source Serif Pro";
   src:
-    url("../assets/fonts/SourceSerifPro-Bold.ttf") format("ttf"),
-    url("../assets/fonts/SourceSerifPro-Bold.woff") format("woff");
+    url("../../assets/fonts/SourceSerifPro-Bold.ttf") format("ttf"),
+    url("../../assets/fonts/SourceSerifPro-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -45,8 +45,8 @@
 @font-face {
   font-family: "Source Serif Pro";
   src:
-    url("../assets/fonts/SourceSerifPro-Black.woff2") format("woff2"),
-    url("../assets/fonts/SourceSerifPro-Black.woff") format("woff");
+    url("../../assets/fonts/SourceSerifPro-Black.woff2") format("woff2"),
+    url("../../assets/fonts/SourceSerifPro-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -55,8 +55,8 @@
 @font-face {
   font-family: "Noto Serif";
   src:
-    url("../assets/fonts/NotoSerif-Regular.ttf") format("ttf"),
-    url("../assets/fonts/NotoSerif-Regular.woff") format("woff");
+    url("../../assets/fonts/NotoSerif-Regular.ttf") format("ttf"),
+    url("../../assets/fonts/NotoSerif-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -64,8 +64,8 @@
 @font-face {
   font-family: "Noto Serif";
   src:
-    url("../assets/fonts/NotoSerif-Bold.woff2") format("woff2"),
-    url("../assets/fonts/NotoSerif-Bold.woff") format("woff");
+    url("../../assets/fonts/NotoSerif-Bold.woff2") format("woff2"),
+    url("../../assets/fonts/NotoSerif-Bold.woff") format("woff");
 
   font-weight: bold;
   font-style: normal;
@@ -75,8 +75,9 @@
 @font-face {
   font-family: "Noto Serif SemiCondensed";
   src:
-    url("../assets/fonts/NotoSerifSemiCondensed-Regular.woff2") format("woff2"),
-    url("../assets/fonts/NotoSerifSemiCondensed-Regular.woff") format("woff");
+    url("../../assets/fonts/NotoSerifSemiCondensed-Regular.woff2")
+      format("woff2"),
+    url("../../assets/fonts/NotoSerifSemiCondensed-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -84,7 +85,7 @@
 
 @font-face {
   font-family: "Noto Serif";
-  src: url("../assets/fonts/NotoSerif-Bold.woff") format("woff");
+  src: url("../../assets/fonts/NotoSerif-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
@@ -92,8 +93,8 @@
 @font-face {
   font-family: "Source Sans 3";
   src:
-    url("../assets/fonts/SourceSans3-Regular.ttf") format("ttf"),
-    url("../assets/fonts/SourceSans3-Regular.woff") format("woff");
+    url("../../assets/fonts/SourceSans3-Regular.ttf") format("ttf"),
+    url("../../assets/fonts/SourceSans3-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -101,7 +102,7 @@
 
 @font-face {
   font-family: "Source Sans 3";
-  src: url("../assets/fonts/SourceSans3-Bold.woff") format("woff");
+  src: url("../../assets/fonts/SourceSans3-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;

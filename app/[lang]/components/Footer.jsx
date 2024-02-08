@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "../../assets/images/logo-footer.png";
+import Logo from "../../../assets/images/logo-footer.png";
 import React from "react";
 import Link from "next/link";
 import IconoirTiktok from "@/assets/icons/IconoirTiktok";
@@ -9,56 +9,74 @@ import MdiInstagram from "@/assets/icons/MdiInstagram";
 import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
 import { usePathname } from "next/navigation";
 
-const Footer = () => {
+const Footer = ({ footerData }) => {
   const pathname = usePathname();
-  const aboutItems = [
-    { title: "Our Mission", link: "/about/mission" },
-    { title: "Our History", link: "/about/mission#our-history" },
-    { title: "Our Team", link: "/about/people" },
-    { title: "Our Partners", link: "/about/people#our-partners" },
-    { title: "Our Funders", link: "/about/people#our-funders" },
-    { title: "News & Updates", link: "/about/news-and-updates" },
-    { title: "Events & Workshops", link: "/about/events-and-workshops" },
+  const aboutItems = () => [
+    { title: footerData.our_mission, link: "/about/mission" },
+    { title: footerData.our_history, link: "/about/mission#our-history" },
+    { title: footerData.our_team, link: "/about/people" },
+    { title: footerData.our_partners, link: "/about/people#our-partners" },
+    { title: footerData.our_funders, link: "/about/people#our-funders" },
+    { title: footerData.news_and_updates, link: "/about/news-and-updates" },
     {
-      title: "Accessibility",
+      title: footerData.events_and_workshops,
+      link: "/about/events-and-workshops",
+    },
+    {
+      title: footerData?.accessibility,
       link: "https://accessibility.princeton.edu/help",
       LinkTarget: "_blank",
     },
-    { title: "Using the Site", link: "/about/connect/using-the-site" },
-    { title: "Contact Us", link: "/about/connect/contact-us" },
-  ];
-  const exploreItems = [
-    { title: "Find Stories", link: "/stories" },
-    { title: "Find Paintings", link: "/paintings" },
-    { title: "Find Manuscripts", link: "/manuscripts" },
-    { title: "Find Archives", link: "/research/repositories" },
     {
-      title: "Featured Stories",
+      title: footerData?.using_the_site,
+      link: "/about/connect/using-the-site",
+    },
+    { title: footerData?.contact_us, link: "/about/connect/contact-us" },
+  ];
+
+  const exploreItems = () => [
+    { title: footerData?.find_stories, link: "/stories" },
+    { title: footerData?.find_paintings, link: "/paintings" },
+    { title: footerData?.find_manuscripts, link: "/manuscripts" },
+    { title: footerData?.find_archives, link: "/research/repositories" },
+    {
+      title: footerData?.featured_stories,
       link: "/#featured-stories",
       label: "featured-stories",
     },
     {
-      title: "Featured Paintings",
+      title: footerData?.featured_paintings,
       link: "/#featured-paintings",
       label: "featured-paintings",
     },
     {
-      title: "Featured Manuscripts",
+      title: footerData?.featured_manuscripts,
       link: "/#featured-manuscripts",
       label: "featured-manuscripts",
     },
   ];
-  const researchToolItems = [
-    { title: "Maps", link: "/research/maps" },
-    { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
-    { title: "Research & Lessons", link: "/research/research-and-lessons" },
-    { title: "List of Repositories", link: "/research/repositories" },
-    { title: "Macomber Handlist", link: "/research/macomber" },
-    { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
-    { title: "Bibliography", link: "/research/bibliography" },
-    { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
-    { title: "Arabic Stories", link: "/research/arabic-stories" },
+
+  const researchToolItems = () => [
+    { title: footerData?.maps, link: "/research/maps" },
+    { title: footerData?.pemm_incipit_tool, link: "/research/incipit-tool" },
+    {
+      title: footerData?.research_and_lessons,
+      link: "/research/research-and-lessons",
+    },
+    { title: footerData?.list_of_repositories, link: "/research/repositories" },
+    { title: footerData?.macomber_handlist, link: "/research/macomber" },
+    {
+      title: footerData?.ethiopic_terms_and_spellings,
+      link: "/research/spellings",
+    },
+    { title: footerData?.bibliography, link: "/research/bibliography" },
+    {
+      title: footerData?.arabic_manuscripts,
+      link: "/research/arabic-manuscripts",
+    },
+    { title: footerData?.arabic_stories, link: "/research/arabic-stories" },
   ];
+
   return (
     <div className="bg-primary-500 px-5 py-12 md:px-8 lg:px-16">
       <div className="w-auto grid text-white font-body grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
@@ -72,13 +90,7 @@ const Footer = () => {
               />
             </Link>
 
-            <p className="pt-4 block md:pt-4">
-              The Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary
-              (PEMM) project is a comprehensive resource for the 1,000+ miracle
-              stories written about and the 2,500+ images painted of the Virgin
-              Mary in these African countries, and preserved in Geʿez between
-              1300 and the present.
-            </p>
+            <p className="pt-4 block md:pt-4">{footerData?.footer_paragraph}</p>
           </div>
           <div className="pt-5 text-sm space-y-4 md:pr-10">
             <p>
@@ -93,9 +105,11 @@ const Footer = () => {
         </div>
 
         <div className="text-left py-5 md:py-0">
-          <h2 className="text-lg font-bold mb-3 lg:text-xl">Explore</h2>
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">
+            {footerData?.explore}
+          </h2>
           <ul className="font-body text-xl flex flex-col">
-            {exploreItems.map((item, index) => (
+            {exploreItems().map((item, index) => (
               <li key={index}>
                 {pathname !== "/" || !item.label ? (
                   <Link
@@ -122,9 +136,11 @@ const Footer = () => {
         </div>
 
         <div className="text-left md:py-0 py-5">
-          <h2 className="text-lg font-bold mb-3 lg:text-xl">Research Tools</h2>
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">
+            {footerData?.research_tools}
+          </h2>
           <ul className="font-body text-xl flex flex-col">
-            {researchToolItems.map((item, index) => (
+            {researchToolItems().map((item, index) => (
               <li key={index}>
                 <Link
                   href={item.link}
@@ -140,9 +156,11 @@ const Footer = () => {
         </div>
 
         <div className="py-5 md:py-0">
-          <h2 className="text-lg font-bold mb-3 lg:text-xl">About</h2>
+          <h2 className="text-lg font-bold mb-3 lg:text-xl">
+            {footerData?.about}
+          </h2>
           <ul className="font-body text-xl flex flex-col">
-            {aboutItems.map((item, index) => (
+            {aboutItems().map((item, index) => (
               <li key={index}>
                 <Link
                   href={item.link}

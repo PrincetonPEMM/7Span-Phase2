@@ -5,8 +5,9 @@ import BannerDetail from "./BannerDetail";
 import SubBanner from "./SubBanner";
 import { useRouter } from "next/navigation";
 
-const Hero = ({ data }) => {
+const Hero = ({ data, lang }) => {
   const route = useRouter();
+  // const [value, update, remove] = useCookie("lang", "en-us");
   const [selectedBanner, setSelectedBanner] = useState({});
   const [height100, setHeight100] = useState("height100");
   const storyData = {
@@ -113,12 +114,12 @@ const Hero = ({ data }) => {
     }
 
     if (details.hashRoute === "#featured-stories") {
-      route.replace("/#featured-stories");
+      route.replace(`/${lang}/#featured-stories`);
     } else if (details.hashRoute === "#featured-manuscripts") {
-      route.replace("/#featured-manuscripts");
+      route.replace(`/${lang}/#featured-manuscripts`);
     } else if (details.hashRoute === "#featured-paintings") {
-      route.replace("/#featured-paintings");
-    } else route.replace("/");
+      route.replace(`/${lang}/#featured-paintings`);
+    } else route.replace(`/${lang}`);
   }
 
   useEffect(function () {

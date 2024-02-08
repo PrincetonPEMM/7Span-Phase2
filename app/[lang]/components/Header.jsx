@@ -1,19 +1,22 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Logo from "../../assets/images/logo-white.png";
-import LogoBlack from "../../assets/images/logo-black.png";
+import Logo from "../../../assets/images/logo-white.png";
+import LogoBlack from "../../../assets/images/logo-black.png";
 import Link from "next/link";
 import Image from "next/image";
-import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
-import MdiChevronDown from "../../assets/icons/MdiChevronDown";
+import MdiMenuIcon from "../../../assets/icons/MdiMenuIcon";
+import MdiChevronDown from "../../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from "react-outside-click-handler";
+import MingcuteEarth2Line from "@/assets/icons/MingcuteEarth2Line";
 
-const Header = () => {
+const Header = ({ lang, headerData, languages }) => {
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
+  const router = useRouter();
+  const oppositeLanguage = languages.filter((tt) => tt.code !== lang);
 
   useEffect(() => {
     setActiveSubmenu(null);
@@ -33,10 +36,10 @@ const Header = () => {
     }
   }, [menuCollapse]);
 
-  const menuItems = [
-    { title: "Stories", link: "/stories" },
+  const menuItems = () => [
+    { title: headerData?.stories, link: "/stories" },
     {
-      title: "Paintings",
+      title: headerData?.paintings,
       link: "/paintings",
       subItems: [
         { title: "All Paintings", link: "/paintings" },
@@ -44,61 +47,73 @@ const Header = () => {
         { title: "Paintings by Manuscript", link: "/paintings/by-manuscript" },
       ],
     },
-    { title: "Manuscripts", link: "/manuscripts" },
+    { title: headerData?.manuscripts, link: "/manuscripts" },
     {
-      title: "Research Tools",
+      title: headerData?.research_tools,
       link: "/research",
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        { title: "Maps", link: "/research/maps" },
+        { title: headerData?.maps, link: "/research/maps" },
         { title: "Incipit Tool", link: "/research/incipit-tool" },
-        { title: "Research & Lessons", link: "/research/research-and-lessons" },
-        { title: "List of Repositories", link: "/research/repositories" },
-        { title: "Macomber Handlist", link: "/research/macomber" },
-        { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
-        { title: "Bibliography", link: "/research/bibliography" },
-        { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
-        { title: "Arabic Stories", link: "/research/arabic-stories" },
+        {
+          title: headerData?.research_and_lessons,
+          link: "/research/research-and-lessons",
+        },
+        {
+          title: headerData?.list_of_repositories,
+          link: "/research/repositories",
+        },
+        { title: headerData?.macomber_handlist, link: "/research/macomber" },
+        {
+          title: headerData?.ethiopic_terms_and_spellings,
+          link: "/research/spellings",
+        },
+        { title: headerData?.bibliography, link: "/research/bibliography" },
+        {
+          title: headerData?.arabic_manuscripts,
+          link: "/research/arabic-manuscripts",
+        },
+        { title: headerData?.arabic_stories, link: "/research/arabic-stories" },
       ],
     },
     {
-      title: "About",
+      title: headerData?.about,
       link: "/about",
       subItems: [
         {
-          title: "Our Mission",
+          title: headerData?.our_mission,
           link: "/about/mission#our-mission",
         },
         {
-          title: "Our History",
+          title: headerData?.our_history,
           link: "/about/mission#our-history",
         },
         {
-          title: "Our Team",
+          title: headerData?.our_team,
           link: "/about/people#our-team",
         },
         {
-          title: "Our Partners",
+          title: headerData?.our_partners,
           link: "/about/people#our-partners",
         },
         {
-          title: "Our Funders",
+          title: headerData?.our_funders,
           link: "/about/people#our-funders",
         },
         {
-          title: "News & Updates",
+          title: headerData?.news_and_updates,
           link: "/about/news-and-updates",
         },
         {
-          title: "Events & Workshops",
+          title: headerData?.events_and_workshops,
           link: "/about/events-and-workshops",
         },
         {
-          title: "Using the Site",
+          title: headerData?.using_the_site,
           link: "/about/connect/using-the-site",
         },
         {
-          title: "Contact Us",
+          title: headerData?.contact_us,
           link: "/about/connect/contact-us",
         },
       ],
@@ -145,13 +160,16 @@ const Header = () => {
     <>
       <div
         className={`p-4 lg:p-0 ${
-          pathname === "/"
+          pathname === `/${lang}`
             ? " bg-transparent text-black absolute top-0 inset-x-0 z-40"
             : "bg-offWhite-500"
         }`}
       >
-        <Link href="/" className="w-60 block sm:w-full sm:max-w-md lg:hidden">
-          {pathname === "/" ? (
+        <Link
+          href={`/${lang}`}
+          className="w-60 block sm:w-full sm:max-w-md lg:hidden"
+        >
+          {pathname === `/${lang}` ? (
             <Image
               src={Logo}
               alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
@@ -172,11 +190,15 @@ const Header = () => {
         >
           {menuCollapse ? (
             <MdiMenuIcon
-              className={` ${pathname === "/" ? " text-white" : "text-black"}`}
+              className={` ${
+                pathname === `/${lang}` ? " text-white" : "text-black"
+              }`}
             />
           ) : (
             <MdiMenuIcon
-              className={` ${pathname === "/" ? " text-white" : "text-black"}`}
+              className={` ${
+                pathname === `/${lang}` ? " text-white" : "text-black"
+              }`}
             />
           )}
         </button>
@@ -193,7 +215,7 @@ const Header = () => {
               ? "right-0 translate-x-0 transform "
               : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
           } ${
-            pathname === "/"
+            pathname === `/${lang}`
               ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
               : "lg:relative  py-5 header bg-white lg:bg-offWhite-500 "
           }`}
@@ -208,8 +230,11 @@ const Header = () => {
           </button>
 
           {/* LOGO IMAGE HERE  */}
-          <Link href="/" className="w-64 relative z-20 sm:w-[30%] logo-image">
-            {pathname === "/" ? (
+          <Link
+            href={`/${lang}`}
+            className="w-64 relative z-20 sm:w-[30%] logo-image"
+          >
+            {pathname === `/${lang}` ? (
               <Image
                 src={Logo}
                 alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
@@ -229,7 +254,7 @@ const Header = () => {
             }}
           >
             <ul className="font-menu relative mt-5 lg:mt-0 lg:flex">
-              {menuItems.map((item, index) => {
+              {menuItems().map((item, index) => {
                 return (
                   <li key={index} className="lg:ml-3 xl:ml-6">
                     {item.subItems ? (
@@ -242,7 +267,7 @@ const Header = () => {
                           className={`p-1 font-semibold flex items-center lg:px-3 lg:pointer-events-none lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
                             pathname.includes(item.link)
                               ? "text-secondary-500"
-                              : pathname === "/"
+                              : pathname === `/${lang}`
                               ? " text-white hover:text-secondary-500"
                               : " text-primary-500  "
                           }`}
@@ -274,7 +299,7 @@ const Header = () => {
                               <Link
                                 href={subItem.link}
                                 className={`header-link transition-all  flex py-1 text-lg p-1 text-primary-500 lg:hover:bg-secondary-500 lg:px-3 lg:py-0  xl:text-base${
-                                  pathname === "/"
+                                  pathname === `/${lang}`
                                     ? " text-white hover:text-secondary-500 lg:hover:text-primary-500 lg:text-primary-500"
                                     : " text-primary-500  "
                                 }`}
@@ -297,7 +322,7 @@ const Header = () => {
                         className={`header-link transition-all flex py-1 p-1 font-bold text-lg xl:text-2xl lg:px-3 lg:py-0 lg:hover:text-secondary-500 ${
                           pathname.includes(item.link)
                             ? "text-secondary-500"
-                            : pathname === "/"
+                            : pathname === `/${lang}`
                             ? " text-white hover:text-secondary-500"
                             : " text-primary-500  "
                         } `}
@@ -308,6 +333,21 @@ const Header = () => {
                   </li>
                 );
               })}
+              <li className="xl:ml-6">
+                <button
+                  className={` font-semibold cursor-pointer flex items-center justify-between  lg:hover:text-secondary-500 text-lg xl:text-2xl `}
+                  onClick={() => {
+                    let path = pathname.split("/");
+                    path[1] = oppositeLanguage[0]?.code;
+                    console.log(path);
+                    path = path.join("/");
+                    router.push(path);
+                  }}
+                >
+                  <MingcuteEarth2Line />{" "}
+                  <span className="ml-2">{oppositeLanguage[0]?.name}</span>
+                </button>
+              </li>
             </ul>
           </OutsideClickHandler>
         </div>
