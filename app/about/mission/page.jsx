@@ -14,7 +14,7 @@ export default async function page() {
             title={about_mission_data.mission_title}
             id={`our-mission`}
           />
-          <p className="font-body py-5 lg:w-full">
+          <p className="font-body py-5 lg:w-full ">
             {about_mission_data.mission_intro}
           </p>
           <div
