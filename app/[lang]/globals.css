@@ -151,8 +151,19 @@ body {
   font-family: "Source Sans 3", sans-serif;
   font-weight: 500;
 }
-.space-y-p h3 {
+.space-y-p h3,
+.people-page-headings h3 {
   @apply font-bold text-2xl mt-2 text-offBlack-500 font-body;
+  font-family: Source sans 3;
+}
+.space-y-p h2,
+.people-page-headings h3,
+.people-description h2 {
+  @apply font-bold text-3xl mt-2 text-offBlack-500 font-body leading-relaxed;
+  font-family: Source sans 3;
+}
+.reaserch-page .space-y-p h2 {
+  @apply font-bold text-3xl mt-2 text-offBlack-500 font-body;
   font-family: Source sans 3;
 }
 .space-y-p a {
@@ -982,7 +993,7 @@ input::-webkit-inner-spin-button {
 }
 
 .people-description p a {
-  @apply text-primary-700 hover:text-secondary-500;
+  @apply text-primary-500 font-bold hover:text-secondary-500;
 }
 
 /* 
@@ -1062,8 +1073,7 @@ tbody.table-body.active tr td {
   margin: 20px 0;
 }
 
-.space-y-p.description-center h2,
-.space-y-p.descriptions-left h2 {
+.space-y-p.description-center h2 {
   @apply text-offBlack-500 font-bold;
   font-family: "Source Sans 3";
   font-size: 30px;
