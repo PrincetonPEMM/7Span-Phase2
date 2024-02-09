@@ -1,9 +1,9 @@
+import BackBtn from "@/app/[lang]/components/BackBtn";
 import MdiTwitterBox from "@/assets/icons/MdiTwitterBox";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Link from "next/link";
 import React from "react";
-import BackBtn from "@/app/components/BackBtn";
 export const dynamic = "force-dynamic";
 
 const PeopleDetailPage = async ({ params }) => {
