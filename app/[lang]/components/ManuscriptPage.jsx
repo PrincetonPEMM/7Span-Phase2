@@ -347,7 +347,7 @@ export default function Manuscript({ Id, data, table }) {
       <h1 className="text-2xl text-primary-500 font-bold lg:text-3xl xl:text-4xl font-body">
         {data.manuscript_full_name}
       </h1>
-      <div className="space-y-2 font-body a-tag-whithout-underline-and-green">
+      <div className="space-y-2 font-body a-tag-whithout-underline-and-green space-y-p">
         {generateFirstParagraph().map((data, index) => (
           <p key={index} dangerouslySetInnerHTML={{ __html: data.text }}></p>
         ))}
