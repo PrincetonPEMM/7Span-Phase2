@@ -1,6 +1,6 @@
 import React from "react";
-import PaintingbyMSIndex from "@/app/components/PaintingbyMSIndex";
 import { pagePerLimitForPainting } from "@/utils/constant";
+import PaintingbyMSIndex from "../../components/PaintingbyMSIndex";
 
 export const dynamic = "force-dynamic";
 

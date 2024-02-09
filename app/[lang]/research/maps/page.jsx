@@ -1,4 +1,5 @@
-import MapsCom from "@/app/components/MapsCom";
+import MapsCom from "../../components/MapsCom";
+
 export const dynamic = "force-dynamic";
 
 const Maps = async () => {

@@ -1,5 +1,5 @@
-import Manuscript from "@/app/components/ManuscriptPage";
 import { pagePerLimit } from "@/utils/constant";
+import Manuscript from "../../components/ManuscriptPage";
 
 export const dynamic = "force-dynamic";
 

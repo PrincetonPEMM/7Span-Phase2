@@ -1,5 +1,4 @@
 "use client";
-import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
@@ -14,6 +13,7 @@ import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Dropdown from "./Dropdown";
+import PaintingStoryCard from "./PaintingStoryCard";
 
 const paintingBy = [
   {

@@ -1,12 +1,12 @@
 "use client";
-import InputText from "@/app/components/form/InputText";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import { Line } from "rc-progress";
 import React, { useEffect, useState } from "react";
-import CustomPagination from "@/app/components/Pagination";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Dropdown from "@/app/components/Dropdown";
+import Dropdown from "../../components/Dropdown";
+import InputText from "../../components/form/InputText";
+import CustomPagination from "../../components/Pagination";
 
 const perPage = 10;
 const paintingBy = [

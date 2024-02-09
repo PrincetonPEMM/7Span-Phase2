@@ -1,5 +1,4 @@
 "use client";
-import PaintingStoryCard from "@/app/components/PaintingStoryCard";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
@@ -16,6 +15,7 @@ import Dropdown from "./Dropdown";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiClose from "@/assets/icons/MdiClose";
 import FilterButton from "./form/FilterButton";
+import PaintingStoryCard from "./PaintingStoryCard";
 
 const paintingBy = [
   {

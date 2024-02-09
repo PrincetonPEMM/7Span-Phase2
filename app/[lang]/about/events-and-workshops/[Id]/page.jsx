@@ -1,4 +1,4 @@
-import DetailPage from "@/app/components/DetailPage";
+import DetailPage from "@/app/[lang]/components/DetailPage";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";

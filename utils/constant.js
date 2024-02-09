@@ -685,3 +685,35 @@ export const dateFormate = (inputDate) => {
 
   return formattedDate;
 };
+
+export function setCookie(name, value, daysToExpire) {
+  var expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + daysToExpire);
+
+  var cookieString =
+    name +
+    "=" +
+    encodeURIComponent(value) +
+    "; expires=" +
+    expirationDate.toUTCString() +
+    "; path=/";
+
+  document.cookie = cookieString;
+}
+
+export function getCookie(name) {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+
+    // Check if the cookie starts with the desired name
+    if (cookie.indexOf(name + "=") === 0) {
+      // Extract and return the cookie value
+      return decodeURIComponent(cookie.substring(name.length + 1));
+    }
+  }
+
+  // Return null if the cookie with the given name is not found
+  return null;
+}

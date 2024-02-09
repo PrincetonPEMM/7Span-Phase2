@@ -10,13 +10,34 @@ import MdiChevronDown from "../../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
 import OutsideClickHandler from "react-outside-click-handler";
 import MingcuteEarth2Line from "@/assets/icons/MingcuteEarth2Line";
+import useCookie from "@/utils/useCookie";
 
 const Header = ({ lang, headerData, languages }) => {
+  const [value, update, remove] = useCookie("lang", lang);
   const [menuCollapse, setMenuCollapse] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState({});
   const pathname = usePathname();
   const router = useRouter();
-  const oppositeLanguage = languages.filter((tt) => tt.code !== lang);
+  const oppositeLanguage = languages.filter((tt) => tt.code !== lang)[0];
+  const selectedLanguage = languages.filter((tt) => tt.code === lang)[0];
+  const [isWarnClose, setIsWarnClose] = useState(true);
+
+  const checkPathWiseWorningMsg = () => {
+    if (selectedLanguage.code === "en-us") return true;
+    let path = pathname.split("/");
+    path.shift();
+    path.shift();
+    let detailPath = path;
+    path = path.join("/") || "";
+    detailPath[detailPath.length - 1] = "id";
+    detailPath = detailPath.join("/");
+
+    return (
+      selectedLanguage?.translated_pages?.includes(`/${path}`) ||
+      (pathname.split("/").length > 3 &&
+        selectedLanguage?.translated_pages?.includes(`/${detailPath}`))
+    );
+  };
 
   useEffect(() => {
     setActiveSubmenu(null);
@@ -37,84 +58,102 @@ const Header = ({ lang, headerData, languages }) => {
   }, [menuCollapse]);
 
   const menuItems = () => [
-    { title: headerData?.stories, link: "/stories" },
+    { title: headerData?.stories, link: `/${lang}/stories` },
     {
       title: headerData?.paintings,
-      link: "/paintings",
+      link: `/${lang}/paintings`,
       subItems: [
-        { title: "All Paintings", link: "/paintings" },
-        { title: "Paintings by Story", link: "/paintings/by-story" },
-        { title: "Paintings by Manuscript", link: "/paintings/by-manuscript" },
+        { title: headerData?.all_paintings, link: `/${lang}/paintings` },
+        {
+          title: headerData?.paintings_by_story,
+          link: `/${lang}/paintings/by-story`,
+        },
+        {
+          title: headerData?.paintings_by_manuscript,
+          link: `/${lang}/paintings/by-manuscript`,
+        },
       ],
     },
-    { title: headerData?.manuscripts, link: "/manuscripts" },
+    { title: headerData?.manuscripts, link: `/${lang}/manuscripts` },
     {
       title: headerData?.research_tools,
-      link: "/research",
+      link: `/${lang}/research`,
       subItems: [
         // { title: "Manuscripts", link: "/manuscripts" },
-        { title: headerData?.maps, link: "/research/maps" },
-        { title: "Incipit Tool", link: "/research/incipit-tool" },
+        { title: headerData?.maps, link: `/${lang}/research/maps` },
+        {
+          title: headerData?.incipit_tool,
+          link: `/${lang}/research/incipit-tool`,
+        },
         {
           title: headerData?.research_and_lessons,
-          link: "/research/research-and-lessons",
+          link: `/${lang}/research/research-and-lessons`,
         },
         {
           title: headerData?.list_of_repositories,
-          link: "/research/repositories",
+          link: `/${lang}/research/repositories`,
         },
-        { title: headerData?.macomber_handlist, link: "/research/macomber" },
+        {
+          title: headerData?.macomber_handlist,
+          link: `/${lang}/research/macomber`,
+        },
         {
           title: headerData?.ethiopic_terms_and_spellings,
-          link: "/research/spellings",
+          link: `/${lang}/research/spellings`,
         },
-        { title: headerData?.bibliography, link: "/research/bibliography" },
+        {
+          title: headerData?.bibliography,
+          link: `/${lang}/research/bibliography`,
+        },
         {
           title: headerData?.arabic_manuscripts,
-          link: "/research/arabic-manuscripts",
+          link: `/${lang}/research/arabic-manuscripts`,
         },
-        { title: headerData?.arabic_stories, link: "/research/arabic-stories" },
+        {
+          title: headerData?.arabic_stories,
+          link: `/${lang}/research/arabic-stories`,
+        },
       ],
     },
     {
       title: headerData?.about,
-      link: "/about",
+      link: `/${lang}/about`,
       subItems: [
         {
           title: headerData?.our_mission,
-          link: "/about/mission#our-mission",
+          link: `/${lang}/about/mission#our-mission`,
         },
         {
           title: headerData?.our_history,
-          link: "/about/mission#our-history",
+          link: `/${lang}/about/mission#our-history`,
         },
         {
           title: headerData?.our_team,
-          link: "/about/people#our-team",
+          link: `/${lang}/about/people#our-team`,
         },
         {
           title: headerData?.our_partners,
-          link: "/about/people#our-partners",
+          link: `/${lang}/about/people#our-partners`,
         },
         {
           title: headerData?.our_funders,
-          link: "/about/people#our-funders",
+          link: `/${lang}/about/people#our-funders`,
         },
         {
           title: headerData?.news_and_updates,
-          link: "/about/news-and-updates",
+          link: `/${lang}/about/news-and-updates`,
         },
         {
           title: headerData?.events_and_workshops,
-          link: "/about/events-and-workshops",
+          link: `/${lang}/about/events-and-workshops`,
         },
         {
           title: headerData?.using_the_site,
-          link: "/about/connect/using-the-site",
+          link: `/${lang}/about/connect/using-the-site`,
         },
         {
           title: headerData?.contact_us,
-          link: "/about/connect/contact-us",
+          link: `/${lang}/about/connect/contact-us`,
         },
       ],
     },
@@ -203,7 +242,6 @@ const Header = ({ lang, headerData, languages }) => {
           )}
         </button>
       </div>
-
       <OutsideClickHandler
         onOutsideClick={() => {
           setMenuCollapse(false);
@@ -335,23 +373,42 @@ const Header = ({ lang, headerData, languages }) => {
               })}
               <li className="xl:ml-6">
                 <button
-                  className={` font-semibold cursor-pointer flex items-center justify-between  lg:hover:text-secondary-500 text-lg xl:text-2xl `}
+                  className={`p-1 font-semibold flex items-center lg:px-3 lg:py-0 lg:hover:text-secondary-500 text-lg xl:text-2xl ${
+                    pathname === `/${lang}`
+                      ? " text-white hover:text-secondary-500"
+                      : " text-primary-500  "
+                  }`}
                   onClick={() => {
+                    update(oppositeLanguage?.code);
                     let path = pathname.split("/");
-                    path[1] = oppositeLanguage[0]?.code;
-                    console.log(path);
+                    path[1] = oppositeLanguage?.code;
                     path = path.join("/");
                     router.push(path);
                   }}
                 >
                   <MingcuteEarth2Line />{" "}
-                  <span className="ml-2">{oppositeLanguage[0]?.name}</span>
+                  <span className="ml-2">{oppositeLanguage?.name}</span>
                 </button>
               </li>
             </ul>
           </OutsideClickHandler>
         </div>
       </OutsideClickHandler>
+
+      {isWarnClose && !checkPathWiseWorningMsg() && (
+        <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
+          <p className="w-full text-center font-semibold">
+            This page has not yet been converted to Amharic. Below is the
+            English version.
+          </p>
+          <button
+            className="flex items-center flex-none w-8 h-8"
+            onClick={() => setIsWarnClose(!isWarnClose)}
+          >
+            <MdiClose className="w-full inline-flex" />
+          </button>
+        </div>
+      )}
     </>
   );
 };

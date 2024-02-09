@@ -9,18 +9,30 @@ import MdiInstagram from "@/assets/icons/MdiInstagram";
 import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
 import { usePathname } from "next/navigation";
 
-const Footer = ({ footerData }) => {
+const Footer = ({ footerData, lang }) => {
   const pathname = usePathname();
   const aboutItems = () => [
-    { title: footerData.our_mission, link: "/about/mission" },
-    { title: footerData.our_history, link: "/about/mission#our-history" },
-    { title: footerData.our_team, link: "/about/people" },
-    { title: footerData.our_partners, link: "/about/people#our-partners" },
-    { title: footerData.our_funders, link: "/about/people#our-funders" },
-    { title: footerData.news_and_updates, link: "/about/news-and-updates" },
+    { title: footerData.our_mission, link: `/${lang}/about/mission` },
+    {
+      title: footerData.our_history,
+      link: `/${lang}/about/mission#our-history`,
+    },
+    { title: footerData.our_team, link: `/${lang}/about/people` },
+    {
+      title: footerData.our_partners,
+      link: `/${lang}/about/people#our-partners`,
+    },
+    {
+      title: footerData.our_funders,
+      link: `/${lang}/about/people#our-funders`,
+    },
+    {
+      title: footerData.news_and_updates,
+      link: `/${lang}/about/news-and-updates`,
+    },
     {
       title: footerData.events_and_workshops,
-      link: "/about/events-and-workshops",
+      link: `/${lang}/about/events-and-workshops`,
     },
     {
       title: footerData?.accessibility,
@@ -29,16 +41,22 @@ const Footer = ({ footerData }) => {
     },
     {
       title: footerData?.using_the_site,
-      link: "/about/connect/using-the-site",
+      link: `/${lang}/about/connect/using-the-site`,
     },
-    { title: footerData?.contact_us, link: "/about/connect/contact-us" },
+    {
+      title: footerData?.contact_us,
+      link: `/${lang}/about/connect/contact-us`,
+    },
   ];
 
   const exploreItems = () => [
-    { title: footerData?.find_stories, link: "/stories" },
-    { title: footerData?.find_paintings, link: "/paintings" },
-    { title: footerData?.find_manuscripts, link: "/manuscripts" },
-    { title: footerData?.find_archives, link: "/research/repositories" },
+    { title: footerData?.find_stories, link: `/${lang}/stories` },
+    { title: footerData?.find_paintings, link: `/${lang}/paintings` },
+    { title: footerData?.find_manuscripts, link: `/${lang}/manuscripts` },
+    {
+      title: footerData?.find_archives,
+      link: `/${lang}/research/repositories`,
+    },
     {
       title: footerData?.featured_stories,
       link: "/#featured-stories",
@@ -57,24 +75,36 @@ const Footer = ({ footerData }) => {
   ];
 
   const researchToolItems = () => [
-    { title: footerData?.maps, link: "/research/maps" },
-    { title: footerData?.pemm_incipit_tool, link: "/research/incipit-tool" },
+    { title: footerData?.maps, link: `/${lang}/research/maps` },
+    {
+      title: footerData?.pemm_incipit_tool,
+      link: `/${lang}/research/incipit-tool`,
+    },
     {
       title: footerData?.research_and_lessons,
-      link: "/research/research-and-lessons",
+      link: `/${lang}/research/research-and-lessons`,
     },
-    { title: footerData?.list_of_repositories, link: "/research/repositories" },
-    { title: footerData?.macomber_handlist, link: "/research/macomber" },
+    {
+      title: footerData?.list_of_repositories,
+      link: `/${lang}/research/repositories`,
+    },
+    {
+      title: footerData?.macomber_handlist,
+      link: `/${lang}/research/macomber`,
+    },
     {
       title: footerData?.ethiopic_terms_and_spellings,
-      link: "/research/spellings",
+      link: `/${lang}/research/spellings`,
     },
-    { title: footerData?.bibliography, link: "/research/bibliography" },
+    { title: footerData?.bibliography, link: `/${lang}/research/bibliography` },
     {
       title: footerData?.arabic_manuscripts,
-      link: "/research/arabic-manuscripts",
+      link: `/${lang}/research/arabic-manuscripts`,
     },
-    { title: footerData?.arabic_stories, link: "/research/arabic-stories" },
+    {
+      title: footerData?.arabic_stories,
+      link: `/${lang}/research/arabic-stories`,
+    },
   ];
 
   return (
@@ -82,7 +112,10 @@ const Footer = ({ footerData }) => {
       <div className="w-auto grid text-white font-body grid-cols-1 gap-5 sm:grid-cols-3 lg:gap-5 lg:grid-cols-5">
         <div className="text-left md:py-0 py-5 text-sm md:pr-5 sm:col-span-3 lg:col-span-2 lg:text-lg lg:max-w-[400px]">
           <div>
-            <Link href="/" className="w-auto max-w-xs lg:w-full block relative">
+            <Link
+              href={`/${lang}`}
+              className="w-auto max-w-xs lg:w-full block relative"
+            >
               <Image
                 src={Logo}
                 className="mb-3"
@@ -93,14 +126,8 @@ const Footer = ({ footerData }) => {
             <p className="pt-4 block md:pt-4">{footerData?.footer_paragraph}</p>
           </div>
           <div className="pt-5 text-sm space-y-4 md:pr-10">
-            <p>
-              Princeton Department of Comparative Literature 133 East Pyne,
-              Princeton, NJ 08540
-            </p>
-            <p>
-              Princeton Department of African American Studies Morrison Hall,
-              Princeton, NJ 08540
-            </p>
+            <p>{footerData?.footer_paragraph_2}</p>
+            <p>{footerData?.footer_paragraph_3}</p>
           </div>
         </div>
 
@@ -111,7 +138,7 @@ const Footer = ({ footerData }) => {
           <ul className="font-body text-xl flex flex-col">
             {exploreItems().map((item, index) => (
               <li key={index}>
-                {pathname !== "/" || !item.label ? (
+                {pathname !== `/${lang}` || !item.label ? (
                   <Link
                     href={item.link}
                     key={index}
@@ -186,7 +213,7 @@ const Footer = ({ footerData }) => {
             pemm@princeton.edu
           </Link>
           <p className="pt-1 text-sm font-light">
-            © {new Date().getFullYear()} The Trustees of Princeton University
+            © {new Date().getFullYear()} {footerData?.footer_site_owner}
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 import React from "react";
-import PaintingByStoryIndex from "@/app/components/PaintingByStoryIndex";
 import { pagePerLimitForPainting } from "@/utils/constant";
+import PaintingByStoryIndex from "../../components/PaintingByStoryIndex";
 
 export const dynamic = "force-dynamic";
 

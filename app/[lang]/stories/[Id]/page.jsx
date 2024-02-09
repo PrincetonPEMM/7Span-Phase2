@@ -1,5 +1,5 @@
-import StoryDetail from "@/app/components/StoryDetail.jsx";
 import Script from "next/script";
+import StoryDetail from "../../components/StoryDetail";
 
 export const dynamic = "force-dynamic";
 const Page = async ({ params }) => {

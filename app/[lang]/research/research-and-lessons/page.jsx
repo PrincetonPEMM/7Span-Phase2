@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import React from "react";
-import MasonryComp from "@/app/components/MasonryComp";
+import MasonryComp from "../../components/MasonryComp";
 
 const Page = async () => {
   let data = null;

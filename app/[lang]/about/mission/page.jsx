@@ -1,6 +1,6 @@
-import HashTitle from "@/app/components/HashTitle";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import HashTitle from "../../components/HashTitle";
 export const dynamic = "force-dynamic";
 
 export default async function page() {

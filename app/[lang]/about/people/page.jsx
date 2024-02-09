@@ -1,4 +1,3 @@
-import HashTitle from "@/app/components/HashTitle";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Link from "next/link";

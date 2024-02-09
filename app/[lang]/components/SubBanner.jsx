@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { subBannerDefaultImageUrl } from "@/utils/constant";
 
 const SubBanner = ({ stories, divClass }) => {
   const route = useRouter();

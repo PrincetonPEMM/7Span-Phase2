@@ -1,7 +1,7 @@
 import React from "react";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
-import MasonryComp from "@/app/components/MasonryComp";
+import MasonryComp from "../../components/MasonryComp";
 
 export const dynamic = "force-dynamic";
 

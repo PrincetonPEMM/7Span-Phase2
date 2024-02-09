@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
-import Tabs from "@/app/components/Tabs";
-import SliderModal from "@/app/components/SliderModal";
 import {
   ID_LIST,
   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE,
@@ -10,6 +8,8 @@ import {
 } from "@/utils/constant";
 import Link from "next/link";
 import BackBtn from "./BackBtn";
+import SliderModal from "./SliderModal";
+import Tabs from "./Tabs";
 
 export default function StoryDetail({ data, Id }) {
   const numberOfWords = 100;

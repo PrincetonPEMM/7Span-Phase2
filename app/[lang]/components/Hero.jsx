@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 const Hero = ({ data, lang }) => {
   const route = useRouter();
-  // const [value, update, remove] = useCookie("lang", "en-us");
   const [selectedBanner, setSelectedBanner] = useState({});
   const [height100, setHeight100] = useState("height100");
   const storyData = {

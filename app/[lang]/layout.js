@@ -28,7 +28,7 @@ export default async function RootLayout({ children, params }) {
     readItems("languages", { fields: ["*.*.*"] })
   );
 
-  https: return (
+  return (
     <html lang={params.lang}>
       <head>
         <link rel="icon" href="/favicon.png" />
@@ -68,7 +68,7 @@ export default async function RootLayout({ children, params }) {
               {children}
             </div>
           </div>
-          <Footer footerData={footerData} />
+          <Footer footerData={footerData} lang={params.lang} />
         </main>
       </body>
     </html>
