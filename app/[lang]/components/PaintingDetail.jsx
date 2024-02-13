@@ -9,9 +9,8 @@ import {
 } from "@/utils/constant";
 import BackBtn from "./BackBtn";
 
-const PaintingDetail = ({ data }) => {
+const PaintingDetail = ({ data, localData }) => {
   const [image, setImage] = useState([]);
-
   useEffect(() => {
     setImage([
       {
@@ -30,7 +29,7 @@ const PaintingDetail = ({ data }) => {
     ) {
       let text;
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
-        text = `This painting (also called an illumination) appears in a manuscript dated to <b>${
+        text = `${localData?.this_painting_appears_in} <b>${
           data.manuscript_date_range_start === data.manuscript_date_range_end
             ? data.manuscript_date_range_end
             : data.manuscript_date_range_start +
@@ -39,7 +38,7 @@ const PaintingDetail = ({ data }) => {
         }</b>. `;
       }
       if (data.manuscript_name) {
-        text += `You can view this painting in the manuscript ${
+        text += `${localData?.you_can_view_this_painting} ${
           data.link_to_digital_copy
             ? `<a
                class="text-primary-500 font-bold hover:text-secondary-500"
@@ -49,18 +48,20 @@ const PaintingDetail = ({ data }) => {
             : `<b>${data.manuscript_name}</b>`
         }${data.painting_folio ? ", f. " + data.painting_folio : ""}${
           data.painting_scan ? ", s. " + data.painting_scan : ""
-        }, or learn more about this manuscript at its <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
+        }, ${
+          localData?.or_learn_more_about_this_manuscript
+        } <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
           data.web_page_address
-        }" >PEMM Manuscript page</a>. `;
+        }" >${localData?.pemm_manuscript_page}</a>. `;
       }
       if (+data.canonical_story_id < omitCanonical_Story_Id)
-        text += `You can also read the related story at its <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">PEMM Story page<a>.`;
+        text += `${localData?.you_can_also_read_the_related_story} <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${localData?.pemm_story_page}<a>.`;
       arr.push({ text });
     }
     if (data.canonical_story_id && data?.number_of_episodes) {
       if (data.number_of_episodes >= 2)
         arr.push({
-          text: `Many Geʿez manuscript paintings are in "Synoptic Narrative Art” style; that is, a single painting depicts multiple moments in the story, providing a series of vignettes representing different plot points. PEMM calls these "episodes". This painting of PEMM Story ID ${
+          text: `${localData?.many_geez_manuscript_paintings_are} ${
             +data.canonical_story_id < omitCanonical_Story_Id
               ? `<a
                  class="text-primary-500 font-bold hover:text-secondary-500"
@@ -69,19 +70,19 @@ const PaintingDetail = ({ data }) => {
                 ${data.canonical_story_id}
               </a>`
               : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
-          } has <b>${
-            data?.number_of_episodes
-          }</b> episodes. The painting's episode descriptions, locations, and keywords are:`,
+          } ${localData?.has} <b>${data?.number_of_episodes}</b> ${
+            localData?.episodes_the_paintings_episode_descriptions
+          }`,
         });
       if (data.number_of_episodes === 1) {
         arr.push({
-          text: `This painting of PEMM Story ID ${
+          text: `${localData?.this_painting_of_pemm_story_id} ${
             +data.canonical_story_id < omitCanonical_Story_Id
               ? `<a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a>`
               : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
-          } depicts ${
-            data.number_of_episodes
-          } moment (or episode) in the story. The description of the episode in this painting, along with its keyword(s), is:`,
+          } ${localData?.depicts} ${data.number_of_episodes} ${
+            localData?.moment_or_episode_in_the_story
+          }`,
         });
       }
     }
@@ -92,7 +93,7 @@ const PaintingDetail = ({ data }) => {
     }
     if (data?.episode_caption) {
       arr.push({
-        text: `This painting has a caption in Geʿez, which Jeremy Brown has translated as: ${data.episode_caption}.`,
+        text: `${localData?.this_painting_has_a_caption_in_geez} ${data.episode_caption}.`,
       });
     }
     if (data.painting_research_note) {
@@ -106,22 +107,22 @@ const PaintingDetail = ({ data }) => {
     ) {
       let text;
       if (data?.total_manuscripts_with_this_story_id_illustrated) {
-        text = `The number of PEMM manuscripts that have paintings of this story is <b>${data?.total_manuscripts_with_this_story_id_illustrated}</b>.`;
+        text = `${localData?.the_number_of_pemm_manuscripts_that_have_paintings} <b>${data?.total_manuscripts_with_this_story_id_illustrated}</b>.`;
       }
       if (data.total_story_id_paintings)
-        text += ` The total number of paintings of this story in PEMM manuscripts is <b>${data.total_story_id_paintings}</b>.`;
+        text += ` ${localData?.the_total_number_of_paintings_of_this_story_in_pemm_manuscripts} <b>${data.total_story_id_paintings}</b>.`;
       arr.push({
         text,
       });
     }
     if (data.painting_unique_id) {
       arr.push({
-        text: ` PEMM's ID number for this painting is <b>${data.painting_unique_id}</b>.`,
+        text: ` ${localData?.pemms_id_number_for_this_painting_is} <b>${data.painting_unique_id}</b>.`,
       });
     }
 
     arr.push({
-      text: `To reproduce this image online or in print, please contact the ${data.institution_name}. PEMM does not own the rights.`,
+      text: `${localData?.to_reproduce_this_image_online} ${data.institution_name}. ${localData?.pemm_does_not_own_the_rights}`,
     });
 
     return arr;
@@ -148,7 +149,8 @@ const PaintingDetail = ({ data }) => {
             showPlayButton={false}
           />
           <p className="font-body text-center">
-            Image displayed with permission of {data?.institution_name}
+            {localData?.image_displayed_with_permission}{" "}
+            {data?.institution_name}
           </p>
         </div>
 
@@ -262,14 +264,14 @@ const PaintingDetail = ({ data }) => {
               href={`/paintings/by-manuscript/${data.web_page_address}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
-              <span>View more paintings from this manuscript</span>
+              <span>{localData?.view_more_paintings_from_this_manuscript}</span>
             </Link>
             <Link
               className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
               href={`/paintings/by-story/${data.canonical_story_id}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
-              <span>View more paintings for this story</span>
+              <span>{localData?.view_more_paintings_for_this_story}</span>
             </Link>
 
             {/* Next and previous buttons  */}
