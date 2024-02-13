@@ -1,10 +1,9 @@
-import React from "react";
-import BannerDetail from "./BannerDetail";
-import SubBanner from "./SubBanner";
 import MdiChevronDown from "@/assets/icons/MdiChevronDown";
 import Image from "next/image";
+import BannerDetail from "./BannerDetail";
+import SubBanner from "./SubBanner";
 
-const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
+const Banner = ({ id, data, setSelectedBanner, selectedBanner, localData }) => {
   return (
     <div className="relative flex flex-col bg-black">
       <div
@@ -36,7 +35,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner }) => {
               className="text-offWhite-500 text-sm delay-75 flex items-center hover:text-secondary-500"
               aria-expanded={`${setSelectedBanner ? "false" : "true"}`}
             >
-              <span>Learn More</span>
+              <span>{localData.learn_more}</span>
               <span
                 className={`h-6 w-6 transition-all ${
                   setSelectedBanner ? "rotate-0" : "rotate-180"

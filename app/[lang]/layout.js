@@ -1,8 +1,8 @@
 import { client } from "@/utils/directUs";
+import { readItems } from "@directus/sdk";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./globals.css";
-import { readItems } from "@directus/sdk";
 
 export const metadata = {
   title:
@@ -19,14 +19,15 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, params }) {
-  let footerData = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
-  );
-  footerData = await footerData.json();
-
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
+
+  let footerData = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+  );
+
+  footerData = await footerData.json();
 
   return (
     <html lang={params.lang}>
