@@ -382,8 +382,7 @@ const Header = ({ lang, headerData, languages }) => {
       {isWarnClose && !checkPathWiseWorningMsg(selectedLanguage, pathname) && (
         <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
           <p className="w-full text-center font-semibold">
-            This page has not yet been converted to Amharic. Below is the
-            English version.
+            {headerData?.page_not_yet_converted}
           </p>
           <button
             className="flex items-center flex-none w-8 h-8"
