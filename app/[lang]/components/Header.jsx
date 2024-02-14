@@ -1,16 +1,17 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Logo from "../../../assets/images/logo-white.png";
-import LogoBlack from "../../../assets/images/logo-black.png";
-import Link from "next/link";
-import Image from "next/image";
-import MdiMenuIcon from "../../../assets/icons/MdiMenuIcon";
-import MdiChevronDown from "../../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
-import OutsideClickHandler from "react-outside-click-handler";
 import MingcuteEarth2Line from "@/assets/icons/MingcuteEarth2Line";
+import { checkPathWiseWorningMsg } from "@/utils/directUs";
 import useCookie from "@/utils/useCookie";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import MdiChevronDown from "../../../assets/icons/MdiChevronDown";
+import MdiMenuIcon from "../../../assets/icons/MdiMenuIcon";
+import LogoBlack from "../../../assets/images/logo-black.png";
+import Logo from "../../../assets/images/logo-white.png";
 
 const Header = ({ lang, headerData, languages }) => {
   const [value, update, remove] = useCookie("lang", lang);
@@ -21,23 +22,6 @@ const Header = ({ lang, headerData, languages }) => {
   const oppositeLanguage = languages.filter((tt) => tt.code !== lang)[0];
   const selectedLanguage = languages.filter((tt) => tt.code === lang)[0];
   const [isWarnClose, setIsWarnClose] = useState(true);
-
-  const checkPathWiseWorningMsg = () => {
-    if (selectedLanguage.code === "en-us") return true;
-    let path = pathname.split("/");
-    path.shift();
-    path.shift();
-    let detailPath = path;
-    path = path.join("/") || "";
-    detailPath[detailPath.length - 1] = "id";
-    detailPath = detailPath.join("/");
-
-    return (
-      selectedLanguage?.translated_pages?.includes(`/${path}`) ||
-      (pathname.split("/").length > 3 &&
-        selectedLanguage?.translated_pages?.includes(`/${detailPath}`))
-    );
-  };
 
   useEffect(() => {
     setActiveSubmenu(null);
@@ -395,7 +379,7 @@ const Header = ({ lang, headerData, languages }) => {
         </div>
       </OutsideClickHandler>
 
-      {isWarnClose && !checkPathWiseWorningMsg() && (
+      {isWarnClose && !checkPathWiseWorningMsg(selectedLanguage, pathname) && (
         <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
           <p className="w-full text-center font-semibold">
             {headerData?.page_not_yet_converted}

@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Banner from "./Banner";
 import BannerDetail from "./BannerDetail";
 import SubBanner from "./SubBanner";
-import { useRouter } from "next/navigation";
 
-const Hero = ({ data, lang }) => {
+const Hero = ({ data, lang, localData }) => {
   const route = useRouter();
   const [selectedBanner, setSelectedBanner] = useState({});
   const [height100, setHeight100] = useState("height100");
@@ -155,18 +155,21 @@ const Hero = ({ data, lang }) => {
           setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={storyData}
+          localData={localData}
         />
         <Banner
           id="featured-manuscripts"
           setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={manuscriptData}
+          localData={localData}
         />
         <Banner
           id="featured-paintings"
           setSelectedBanner={toggleContent}
           selectedBanner={selectedBanner}
           data={paintingData}
+          localData={localData}
         />
       </div>
 

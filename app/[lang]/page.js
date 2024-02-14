@@ -1,14 +1,34 @@
+import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
-import Hero from "./components/Hero";
 import { readItems } from "@directus/sdk";
-export const dynamic = "force-dynamic";
 import Script from "next/script";
+import Hero from "./components/Hero";
+export const dynamic = "force-dynamic";
 
 export default async function Home(props) {
+  let languages = await client.request(
+    readItems("languages", { fields: ["*.*.*"] })
+  );
+
+  const selectedLanguage = languages.filter(
+    (tt) => tt.code === props.params.lang
+  )[0];
+
+  let localData = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${props.params.lang}`
+  );
+
+  localData = await localData.json();
+
   let result = await client.request(readItems("home", { fields: ["*.*.*"] }));
   let resultTran = result.translations.filter(
-    (itm) => itm.languages_code.code === props.params.lang
+    (itm) =>
+      itm.languages_code.code ===
+      (selectedLanguage.translated_pages.includes("/")
+        ? props.params.lang
+        : i18n.defaultLocale)
   );
+
   result = { ...result, ...resultTran[0] };
 
   return (
@@ -23,7 +43,7 @@ export default async function Home(props) {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Hero data={result} lang={props.params.lang} />
+      <Hero data={result} lang={props.params.lang} localData={localData} />
     </main>
   );
 }
