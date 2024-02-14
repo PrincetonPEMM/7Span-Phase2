@@ -29,60 +29,29 @@ const PaintingDetail = ({ data, localData }) => {
     ) {
       let text;
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
-        text = `${localData?.this_painting_appears_in} <b>${
-          data.manuscript_date_range_start === data.manuscript_date_range_end
-            ? data.manuscript_date_range_end
-            : data.manuscript_date_range_start +
-              "-" +
-              data.manuscript_date_range_end
-        }</b>. `;
+        text = eval(`\`${localData?.painting_detail_para1_line1}\``);
       }
       if (data.manuscript_name) {
-        text += `${localData?.you_can_view_this_painting} ${
-          data.link_to_digital_copy
-            ? `<a
-               class="text-primary-500 font-bold hover:text-secondary-500"
-              target="_blank"
-              href=${data.manuscript_link}
-            >${data.manuscript_name}</a>`
-            : `<b>${data.manuscript_name}</b>`
-        }${data.painting_folio ? ", f. " + data.painting_folio : ""}${
-          data.painting_scan ? ", s. " + data.painting_scan : ""
-        }, ${
-          localData?.or_learn_more_about_this_manuscript
-        } <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/manuscripts/${
-          data.web_page_address
-        }" >${localData?.pemm_manuscript_page}</a>. `;
+        text += eval(`\`${localData?.painting_detail_para1_line2}\``);
       }
       if (+data.canonical_story_id < omitCanonical_Story_Id)
-        text += `${localData?.you_can_also_read_the_related_story} <a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${localData?.pemm_story_page}<a>.`;
+        text += eval(`\`${localData?.painting_detail_para1_line3}\``);
       arr.push({ text });
     }
     if (data.canonical_story_id && data?.number_of_episodes) {
-      if (data.number_of_episodes >= 2)
+      const omitCanonicalLink = `${
+        +data.canonical_story_id < omitCanonical_Story_Id
+          ? `<a class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a>`
+          : `<span class="text-black font-bold">${data.canonical_story_id}</span>`
+      } `;
+      if (data.number_of_episodes >= 2) {
         arr.push({
-          text: `${localData?.many_geez_manuscript_paintings_are} ${
-            +data.canonical_story_id < omitCanonical_Story_Id
-              ? `<a
-                 class="text-primary-500 font-bold hover:text-secondary-500"
-                href="/stories/${data.canonical_story_id}"
-              >
-                ${data.canonical_story_id}
-              </a>`
-              : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
-          } ${localData?.has} <b>${data?.number_of_episodes}</b> ${
-            localData?.episodes_the_paintings_episode_descriptions
-          }`,
+          text: eval(`\`${localData?.painting_detail_para2_line1}\``),
         });
+      }
       if (data.number_of_episodes === 1) {
         arr.push({
-          text: `${localData?.this_painting_of_pemm_story_id} ${
-            +data.canonical_story_id < omitCanonical_Story_Id
-              ? `<a  class="text-primary-500 font-bold hover:text-secondary-500" href="/stories/${data.canonical_story_id}">${data.canonical_story_id}</a>`
-              : `<span  class="text-black font-bold">${data.canonical_story_id}</span>`
-          } ${localData?.depicts} ${data.number_of_episodes} ${
-            localData?.moment_or_episode_in_the_story
-          }`,
+          text: eval(`\`${localData?.painting_detail_para3_line1}\``),
         });
       }
     }
@@ -93,7 +62,7 @@ const PaintingDetail = ({ data, localData }) => {
     }
     if (data?.episode_caption) {
       arr.push({
-        text: `${localData?.this_painting_has_a_caption_in_geez} ${data.episode_caption}.`,
+        text: eval(`\`${localData?.painting_detail_para4_line1}\``),
       });
     }
     if (data.painting_research_note) {
@@ -107,22 +76,22 @@ const PaintingDetail = ({ data, localData }) => {
     ) {
       let text;
       if (data?.total_manuscripts_with_this_story_id_illustrated) {
-        text = `${localData?.the_number_of_pemm_manuscripts_that_have_paintings} <b>${data?.total_manuscripts_with_this_story_id_illustrated}</b>.`;
+        text = eval(`\`${localData?.painting_detail_para5_line1}\``);
       }
       if (data.total_story_id_paintings)
-        text += ` ${localData?.the_total_number_of_paintings_of_this_story_in_pemm_manuscripts} <b>${data.total_story_id_paintings}</b>.`;
+        text += eval(`\`${localData?.painting_detail_para6_line1}\``);
       arr.push({
         text,
       });
     }
     if (data.painting_unique_id) {
       arr.push({
-        text: ` ${localData?.pemms_id_number_for_this_painting_is} <b>${data.painting_unique_id}</b>.`,
+        text: eval(`\`${localData?.painting_detail_para7_line1}\``),
       });
     }
 
     arr.push({
-      text: `${localData?.to_reproduce_this_image_online} ${data.institution_name}. ${localData?.pemm_does_not_own_the_rights}`,
+      text: eval(`\`${localData?.painting_detail_para8_line1}\``),
     });
 
     return arr;
@@ -149,8 +118,7 @@ const PaintingDetail = ({ data, localData }) => {
             showPlayButton={false}
           />
           <p className="font-body text-center">
-            {localData?.image_displayed_with_permission}{" "}
-            {data?.institution_name}
+            {eval(`\`${localData?.image_displayed_with_permission}\``)}
           </p>
         </div>
 

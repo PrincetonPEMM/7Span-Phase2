@@ -4,7 +4,12 @@ import Stories from "../components/Stories";
 
 export const dynamic = "force-dynamic";
 
-const StoryPage = async () => {
+const StoryPage = async ({ params }) => {
+  const localStr = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+  );
+  const localData = await localStr.json();
+
   return (
     <main>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-L1XB3HXBQM" />
@@ -17,7 +22,7 @@ const StoryPage = async () => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Stories />;
+      <Stories localData={localData} />;
     </main>
   );
 };

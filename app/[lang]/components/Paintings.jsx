@@ -53,7 +53,7 @@ const Paintings = ({
   const { debounce } = useDebounce();
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
   const [search, setSearch] = useState(searchParams ?? "");
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
@@ -201,7 +201,6 @@ const Paintings = ({
       newInstitution: newInstitution[0],
     };
   }
-
   return (
     <>
       {" "}
@@ -383,11 +382,13 @@ const Paintings = ({
               <div
                 id="announce"
                 aria-live="polite"
-                results={`${totalPage ? totalPage : 0} ${localData?.records}`}
+                results={eval(`\`${localData?.total_records}\``)}
                 className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
               >
-                {localData?.results}: ({totalPage ? totalPage : 0}{" "}
-                {localData?.records})
+                {(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.results_total_records}\``);
+                })()}
               </div>
             </div>
             <div className="lg:col-span-1">
