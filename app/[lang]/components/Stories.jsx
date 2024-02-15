@@ -28,7 +28,7 @@ import CustomPagination from "./Pagination";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
-const Stories = () => {
+const Stories = ({ localData }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -44,13 +44,13 @@ const Stories = () => {
   const [search, setSearch] = useState(searchParams);
   const [expandedRows, setExpandedRows] = useState([]);
   const [toggleBtn, setToggleBtn] = useState(false);
-  const [filterItem, setFilterItem] = useState(initialfilterItem);
-  const [placeItem, setPlaceItem] = useState(initialPlaceItem);
+  const [filterItem, setFilterItem] = useState(initialfilterItem(localData));
+  const [placeItem, setPlaceItem] = useState(initialPlaceItem(localData));
   const [langOriginalItem, setOriginalLangItem] = useState(
-    initialOriginalLangItem
+    initialOriginalLangItem(localData)
   );
   const [langTranslatedItem, setTranslatedLangItem] = useState(
-    initialTranslatedLangItem
+    initialTranslatedLangItem(localData)
   );
   const [storyMin, setStoryMin] = useState(rangeSliderMinForStoriesStoriesPage);
   const [storyMax, setStoryMax] = useState(rangeSliderMaxForStoriesStoriesPage);
@@ -70,9 +70,11 @@ const Stories = () => {
   const [isMount1, setIsMount1] = useState(false);
   const [isLoading, setIsLoadint] = useState(true);
   const [perPage, setPerPage] = useState(pagePerLimit);
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
-  const [tableHeader, setTableHeader] = useState(storiesTableTitleView);
+  const [tableHeader, setTableHeader] = useState(
+    storiesTableTitleView(localData)
+  );
   const [ascDescFil, setAscDescFil] = useState(sortParams);
   const [sortingRow, setSortingRow] = useState({});
   const [vennArabic, setVennArabic] = useState(false);
@@ -278,10 +280,10 @@ const Stories = () => {
   }, 300);
 
   const resetFilter = () => {
-    setFilterItem(initialfilterItem);
-    setPlaceItem(initialPlaceItem);
-    setOriginalLangItem(initialOriginalLangItem);
-    setTranslatedLangItem(initialTranslatedLangItem);
+    setFilterItem(initialfilterItem(localData));
+    setPlaceItem(initialPlaceItem(localData));
+    setOriginalLangItem(initialOriginalLangItem(localData));
+    setTranslatedLangItem(initialTranslatedLangItem(localData));
     setStoryMin(rangeSliderMinForStoriesStoriesPage);
     setStoryMax(rangeSliderMaxForStoriesStoriesPage);
     setManuscriptsMin(rangeSliderMinForManuscriptsStoriesPage);
@@ -555,16 +557,17 @@ const Stories = () => {
             langItem={langOriginalItem}
             setLangItem={(e) => {
               setOriginalLangItem(e);
-              setTranslatedLangItem(initialTranslatedLangItem);
+              setTranslatedLangItem(initialTranslatedLangItem(localData));
             }}
             translatedItem={langTranslatedItem}
             setTranslatedItem={(e) => {
               setTranslatedLangItem(e);
-              setOriginalLangItem(initialOriginalLangItem);
+              setOriginalLangItem(initialOriginalLangItem(localData));
             }}
             onClick={() => setIsOpen(!isOpen)}
             resetFilter={resetFilter}
             setVennArabic={setVennArabic}
+            localData={localData}
           />
         </div>
       </OutsideClickHandler>
@@ -599,11 +602,13 @@ const Stories = () => {
         />
         <div className="table-search mt-4 pt-2 flex flex-col font-body items-center justify-between pb-2 sm:grid grid-cols-2 gap-2 sm:mt-0 sm:grid-cols-4 lg:grid-cols-6 lg:gap-0">
           <fieldset className="border-2 border-primary-500 w-full bg-transparent focus:bg-transparent active:bg-transparent focus-visible:bg-transparent rounded-md text-primary-500  pl-3 sm:w-auto sm:col-span-4 mb-2 lg:mb-0 lg:col-span-2 lg:max-w-4xl">
-            <legend>Search titles and translations</legend>
+            <legend>{localData?.search_titles_and_translations}</legend>
             <input
               type="text"
               className="bg-transparent border-0 focus:bg-transparent active:bg-transparent focus:ring-0 focus-visible:bg-transparent focus:border-0 rounded-md w-full text-sm md:text-lg ring-0 pt-0 outline-0"
-              area-label="Search here titles and translations of stories"
+              area-label={
+                localData?.search_here_titles_and_translations_of_stories
+              }
               id="searchtitle"
               value={search}
               onChange={(e) => {
@@ -622,10 +627,13 @@ const Stories = () => {
             <div
               id="announce"
               aria-live="polite"
-              results={`${totalPage ? totalPage : 0} records`}
+              results={eval(`\`${localData?.total_records}\``)}
               className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
             >
-              Results: {`(${totalPage ? totalPage : 0} records)`}
+              {(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.results_total_records}\``);
+              })()}
             </div>
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
@@ -640,7 +648,7 @@ const Stories = () => {
                 }
               }}
             >
-              {toggleBtn ? "Detail view" : "Title View"}
+              {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
@@ -657,10 +665,13 @@ const Stories = () => {
           <div
             id="announce"
             aria-live="polite"
-            results={`${totalPage ? totalPage : 0} records`}
+            results={eval(`\`${localData?.total_records}\``)}
             className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
           >
-            Results: {`(${totalPage ? totalPage : 0} records)`}
+            {(() => {
+              totalPage = totalPage ? totalPage : 0;
+              return eval(`\`${localData?.results_total_records}\``);
+            })()}
           </div>
           <div className="hidden w-full mt-2 items-center justify-end gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
             <button
@@ -671,12 +682,12 @@ const Stories = () => {
                 setToggleBtn(!toggleBtn);
                 {
                   !toggleBtn
-                    ? setTableHeader(storiesTableDetailView)
-                    : setTableHeader(storiesTableTitleView);
+                    ? setTableHeader(storiesTableDetailView(localData))
+                    : setTableHeader(storiesTableTitleView(localData));
                 }
               }}
             >
-              {toggleBtn ? "Detail view" : "Title View"}
+              {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
           </div>
         </div>
@@ -712,9 +723,9 @@ const Stories = () => {
         {Boolean(!tableData?.length) && (
           <div className="flex items-center py-20 justify-center w-full text-2xl text-primary-500 font-bold">
             {isLoading ? (
-              <h1>Loading...</h1>
+              <h1>{localData?.loading}...</h1>
             ) : (
-              <h1 className="py-20">Records Not Found</h1>
+              <h1 className="py-20">{localData?.records_not_found}</h1>
             )}
           </div>
         )}

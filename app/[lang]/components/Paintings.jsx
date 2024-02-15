@@ -18,27 +18,28 @@ import MdiClose from "@/assets/icons/MdiClose";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FilterButton from "./form/FilterButton";
 
-const paintingBy = [
-  {
-    value: "Paintings by Story",
-    key: "/paintings/by-story",
-  },
-  {
-    value: "Paintings by Manuscript",
-    key: "/paintings/by-manuscript",
-  },
-];
-
 const Paintings = ({
   dateOfPainting,
   paintingInColor,
   typeOfStory,
   institution,
+  localData,
 }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
   const newParams = new URLSearchParams();
+
+  const paintingBy = () => [
+    {
+      value: localData?.paintings_by_story,
+      key: "/paintings/by-story",
+    },
+    {
+      value: localData?.paintings_by_manuscript,
+      key: "/paintings/by-manuscript",
+    },
+  ];
 
   const {
     search: searchParams,
@@ -52,7 +53,7 @@ const Paintings = ({
   const { debounce } = useDebounce();
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
   const [search, setSearch] = useState(searchParams ?? "");
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
@@ -200,7 +201,6 @@ const Paintings = ({
       newInstitution: newInstitution[0],
     };
   }
-
   return (
     <>
       {" "}
@@ -246,7 +246,7 @@ const Paintings = ({
               <div className="text-lg p-1 font-semibold space-y-4 mt-4">
                 <div>
                   <Dropdown
-                    title="Date of Paintings"
+                    title={localData?.date_of_paintings}
                     selected={dateOfPaintins}
                     setSelected={(e) => {
                       setDateOfPaintins(e);
@@ -260,7 +260,7 @@ const Paintings = ({
                 </div>
                 <div>
                   <Dropdown
-                    title="Digital Quality"
+                    title={localData?.digital_quality}
                     selected={paintingsInColorOnly}
                     setSelected={(e) => {
                       if (e.length > 2) {
@@ -281,7 +281,7 @@ const Paintings = ({
                 </div>
                 <div>
                   <Dropdown
-                    title="Story Type"
+                    title={localData?.story_type}
                     selected={storyType}
                     setSelected={(e) => {
                       setStoryType(e);
@@ -295,7 +295,7 @@ const Paintings = ({
                 </div>
                 <div>
                   <Dropdown
-                    title="Repository of Painting"
+                    title={localData?.repository_of_painting}
                     selected={archiveOfPainting}
                     setSelected={(e) => {
                       setArchiveOfPainting(e);
@@ -309,7 +309,7 @@ const Paintings = ({
                 </div>
                 <div className="text-center w-full md:text-left">
                   <button
-                    area-label="clear all selected values"
+                    area-label={localData?.clear_all_selected_values}
                     className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-md text-xs md:text-sm hover:bg-transparent transition-colors"
                     onClick={() => {
                       setDateOfPaintins([]);
@@ -324,14 +324,14 @@ const Paintings = ({
                       router.push(`${pathname}`);
                     }}
                   >
-                    Clear All
+                    {localData?.clear_all}
                   </button>
                 </div>
               </div>
             </div>
           </OutsideClickHandler>
         )}
-        {/* sidebar filter ENd  */}
+        {/* sidebar filter End  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
           <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
             <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
@@ -339,12 +339,14 @@ const Paintings = ({
                 htmlFor="searchtitle"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
               >
-                Search titles and painting descriptions
+                {localData?.search_titles_and_painting_descriptions}
               </legend>
               <InputText
                 id="searchtitle"
                 value={search}
-                aria-label="Search here titles and painting descriptions"
+                aria-label={
+                  localData?.search_here_titles_and_painting_descriptions
+                }
                 onChange={(e) => {
                   const query = e.target.value;
                   setSearch(query);
@@ -380,16 +382,19 @@ const Paintings = ({
               <div
                 id="announce"
                 aria-live="polite"
-                results={`${totalPage ? totalPage : 0} records`}
+                results={eval(`\`${localData?.total_records}\``)}
                 className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
               >
-                Results: ({totalPage ? totalPage : 0} records)
+                {(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.results_total_records}\``);
+                })()}
               </div>
             </div>
             <div className="lg:col-span-1">
               <Dropdown
                 title="All Paintings"
-                options={paintingBy}
+                options={paintingBy()}
                 isMultiple={false}
                 isRedirection={true}
               />
@@ -399,7 +404,7 @@ const Paintings = ({
             <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
               <div className="lg:col-span-2 hidden lg:block">
                 <Dropdown
-                  title="Date of Paintings"
+                  title={localData?.date_of_paintings}
                   selected={dateOfPaintins}
                   setSelected={useCallback(
                     (e) => {
@@ -413,7 +418,7 @@ const Paintings = ({
               </div>
               <div className="sm:col-span-2 font-body hidden lg:block">
                 <Dropdown
-                  title="Digital Quality"
+                  title={localData?.digital_quality}
                   selected={paintingsInColorOnly}
                   setSelected={(e) => {
                     if (e.length > 2) {
@@ -431,7 +436,7 @@ const Paintings = ({
               </div>
               <div className="sm:col-span-2 font-body hidden lg:block">
                 <Dropdown
-                  title="Story Type"
+                  title={localData?.story_type}
                   selected={storyType}
                   setSelected={setStoryType}
                   options={typeOfStory}
@@ -440,7 +445,7 @@ const Paintings = ({
               </div>
               <div className="sm:col-span-2 font-body hidden lg:block ">
                 <Dropdown
-                  title="Repository of Painting"
+                  title={localData?.repository_of_painting}
                   selected={archiveOfPainting}
                   setSelected={setArchiveOfPainting}
                   options={institution}
@@ -449,7 +454,7 @@ const Paintings = ({
               </div>
               <div className="text-center w-full md:text-left hidden lg:block">
                 <button
-                  area-label="clear all selected values"
+                  area-label={localData?.clear_all_selected_values}
                   className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
@@ -461,7 +466,7 @@ const Paintings = ({
                     router.push(`${pathname}`);
                   }}
                 >
-                  Clear All
+                  {localData?.clear_all}
                 </button>
               </div>
             </div>
@@ -476,13 +481,21 @@ const Paintings = ({
               columnClassName="my-masonry-grid_column"
             >
               {data.map((card, index) => (
-                <PaintingCard key={card.image_link + index} card={card} />
+                <PaintingCard
+                  key={card.image_link + index}
+                  card={card}
+                  localData={localData}
+                />
               ))}
             </Masonry>
           ) : (
             Boolean(!data?.length) && (
               <div className="flex items-center py-36 justify-center font-body w-full text-2xl text-primary-500 font-bold">
-                {loading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+                {loading ? (
+                  <h1>{localData?.loading}...</h1>
+                ) : (
+                  <h1>{localData?.records_not_found}</h1>
+                )}
               </div>
             )
           )}

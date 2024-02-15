@@ -4,11 +4,16 @@ import Script from "next/script";
 
 export const dynamic = "force-dynamic";
 
-const Page = async () => {
+const Page = async ({ params }) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters`
   );
   const filters = await res.json();
+
+  const localStr = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+  );
+  const localData = await localStr.json();
 
   return (
     <main>
@@ -22,7 +27,7 @@ const Page = async () => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Paintings {...filters} />
+      <Paintings {...filters} localData={localData} />
     </main>
   );
 };
