@@ -1,12 +1,23 @@
-import React from "react";
-import Paintings from "../components/Paintings";
+import { i18n } from "@/i18n";
+import { client } from "@/utils/directUs";
+import { readItems } from "@directus/sdk";
 import Script from "next/script";
+import Paintings from "../components/Paintings";
 
 export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
+  let languages = await client.request(
+    readItems("languages", { fields: ["*.*.*"] })
+  );
+  const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
+
+  const lang = selectedLanguage.translated_pages.includes("/paintings")
+    ? params.lang
+    : i18n.defaultLocale;
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters?language=${lang}`
   );
   const filters = await res.json();
 
@@ -27,7 +38,7 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Paintings {...filters} localData={localData} />
+      <Paintings {...filters} localData={localData} lang={lang} />
     </main>
   );
 };

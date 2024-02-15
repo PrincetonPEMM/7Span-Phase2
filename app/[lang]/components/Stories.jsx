@@ -1,34 +1,32 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
 import {
-  initialPlaceItem,
-  storiesTableDetailView,
-  storiesTableTitleView,
-  initialfilterItem,
-  pagePerLimit,
   STORIES,
-  rangeSliderMinForStoriesStoriesPage,
+  initialOriginalLangItem,
+  initialPlaceItem,
+  initialTranslatedLangItem,
+  initialfilterItem,
+  minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
   rangeSliderMaxForStoriesStoriesPage,
   rangeSliderMinForManuscriptsStoriesPage,
-  rangeSliderMaxForManuscriptsStoriesPage,
   rangeSliderMinForPaintingsStoriesPage,
-  rangeSliderMaxForPaintingsStoriesPage,
-  initialOriginalLangItem,
-  initialTranslatedLangItem,
-  minSearchChar,
+  rangeSliderMinForStoriesStoriesPage,
+  storiesTableDetailView,
+  storiesTableTitleView,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
-const Stories = ({ localData }) => {
+const Stories = ({ localData, lang }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -214,7 +212,7 @@ const Stories = ({ localData }) => {
         "withEnglishTranslation"
       )}sort=${ascDescFil}&filters[search]=${
         searchKey.length > minSearchChar ? searchKey : ""
-      }
+      }&language=${lang}
     `;
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories?${params}`
@@ -627,7 +625,10 @@ const Stories = ({ localData }) => {
             <div
               id="announce"
               aria-live="polite"
-              results={eval(`\`${localData?.total_records}\``)}
+              results={(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.total_records}\``);
+              })()}
               className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
             >
               {(() => {
@@ -665,7 +666,10 @@ const Stories = ({ localData }) => {
           <div
             id="announce"
             aria-live="polite"
-            results={eval(`\`${localData?.total_records}\``)}
+            results={(() => {
+              totalPage = totalPage ? totalPage : 0;
+              return eval(`\`${localData?.total_records}\``);
+            })()}
             className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
           >
             {(() => {

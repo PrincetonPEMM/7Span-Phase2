@@ -1,22 +1,21 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
-import { useState } from "react";
-import InputText from "./form/InputText";
-import PaintingCard from "./PaintingCard";
-import Dropdown from "./Dropdown";
+import MdiClose from "@/assets/icons/MdiClose";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import CustomPagination from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
-import MdiWindowClose from "@/assets/icons/MdiWindowClose";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
-import MdiClose from "@/assets/icons/MdiClose";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Dropdown from "./Dropdown";
+import CustomPagination from "./Pagination";
+import PaintingCard from "./PaintingCard";
 import FilterButton from "./form/FilterButton";
+import InputText from "./form/InputText";
 
 const Paintings = ({
   dateOfPainting,
@@ -24,6 +23,7 @@ const Paintings = ({
   typeOfStory,
   institution,
   localData,
+  lang,
 }) => {
   const params = useSearchParams();
   const pathname = usePathname();
@@ -111,7 +111,9 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${searchKey.length > minSearchChar ? searchKey : ""}`;
+      )}filters[search]=${
+        searchKey.length > minSearchChar ? searchKey : ""
+      }&language=${lang}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings?${params}`
@@ -382,7 +384,10 @@ const Paintings = ({
               <div
                 id="announce"
                 aria-live="polite"
-                results={eval(`\`${localData?.total_records}\``)}
+                results={(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.total_records}\``);
+                })()}
                 className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
               >
                 {(() => {

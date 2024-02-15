@@ -1,3 +1,4 @@
+import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Script from "next/script";
@@ -20,9 +21,13 @@ const Page = async ({ params }) => {
 
   localData = await localData.json();
 
+  const lang = selectedLanguage.translated_pages.includes("/stories/id")
+    ? params.lang
+    : i18n.defaultLocale;
+
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}`
     );
 
     data = await response.json();
