@@ -1,3 +1,6 @@
+import { i18n } from "@/i18n";
+import { client } from "@/utils/directUs";
+import { readItems } from "@directus/sdk";
 import Script from "next/script";
 import StoryDetail from "../../components/StoryDetail";
 
@@ -6,9 +9,25 @@ const Page = async ({ params }) => {
   const { Id } = params;
   let data = null;
 
+  let languages = await client.request(
+    readItems("languages", { fields: ["*.*.*"] })
+  );
+
+  const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
+
+  let localData = await fetch(
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+  );
+
+  localData = await localData.json();
+
+  const lang = selectedLanguage.translated_pages.includes("/stories/id")
+    ? params.lang
+    : i18n.defaultLocale;
+
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}`
     );
 
     data = await response.json();
@@ -28,7 +47,7 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <StoryDetail data={data} Id={Id} />
+      <StoryDetail data={data} Id={Id} localData={localData} />
     </main>
   );
 };

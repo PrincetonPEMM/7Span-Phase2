@@ -48,6 +48,7 @@ const Sidebar = ({
   onClick,
   resetFilter,
   setVennArabic = () => {},
+  localData = {},
 }) => {
   const slider1InitMin =
     isPageName === STORIES
@@ -102,10 +103,11 @@ const Sidebar = ({
         />
         <button
           onClick={resetHandler}
-          area-label="Clear all selected values"
+          area-label={localData?.clear_all_selected_values}
           className="sticky top-0 py-2 text-offWhite-500 inline-flex items-center z-20 text-sm"
         >
-          Clear All <MdiReload className="text-white-500 h-5 w-5 ml-2" />
+          {localData?.clear_all}{" "}
+          <MdiReload className="text-white-500 h-5 w-5 ml-2" />
         </button>
       </div>
 
@@ -139,7 +141,7 @@ const Sidebar = ({
       </div>
       <div className="block mt-7">
         <p className="text-white text-lg block mb-3">
-          {isPageName === STORIES && "Story's Earliest Date"}
+          {isPageName === STORIES && localData?.storys_earliest_date}
           {isPageName === MANUSCRIPTS && "Manuscript's Date of Creation"}
         </p>
         <RangeSlider
@@ -148,7 +150,7 @@ const Sidebar = ({
           onChange={onChangeStory}
           ref1={childRef1}
           areaLabel={(() => {
-            if (isPageName === STORIES) return "Story's Earliest Date";
+            if (isPageName === STORIES) return localData?.storys_earliest_date;
             if (isPageName === MANUSCRIPTS)
               return "Manuscript's Date of Creation";
           })()}
@@ -156,7 +158,7 @@ const Sidebar = ({
       </div>
       <div className="block mt-10">
         <p className="text-white text-lg block mb-3">
-          {isPageName === STORIES && " Manuscripts with Story"}
+          {isPageName === STORIES && localData?.manuscripts_with_story}
           {isPageName === MANUSCRIPTS && "Manuscript's No. of Stories"}
         </p>
         <RangeSlider
@@ -165,7 +167,8 @@ const Sidebar = ({
           onChange={onChangeManuscript}
           ref1={childRef2}
           areaLabel={(() => {
-            if (isPageName === STORIES) return "Manuscripts with Story";
+            if (isPageName === STORIES)
+              return localData?.manuscripts_with_story;
             if (isPageName === MANUSCRIPTS)
               return "Manuscript's No. of Stories";
           })()}
@@ -173,7 +176,7 @@ const Sidebar = ({
       </div>
       <div className="block mt-10">
         <p className="text-white text-lg block mb-3">
-          {isPageName === STORIES && " Paintings of Story"}
+          {isPageName === STORIES && localData?.paintings_of_story}
           {isPageName === MANUSCRIPTS && "Manuscript's No. of Paintings"}
         </p>
         <RangeSlider
@@ -182,7 +185,7 @@ const Sidebar = ({
           onChange={onChangePainting}
           ref1={childRef3}
           areaLabel={(() => {
-            if (isPageName === STORIES) return "Paintings of Story";
+            if (isPageName === STORIES) return localData?.paintings_of_story;
             if (isPageName === MANUSCRIPTS)
               return "Manuscript's No. of Paintings";
           })()}

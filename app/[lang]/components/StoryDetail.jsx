@@ -1,17 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import { ID_LIST, macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
-import {
-  ID_LIST,
-  TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE,
-  macomber_id_number,
-} from "@/utils/constant";
 import Link from "next/link";
+import { useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
 
-export default function StoryDetail({ data, Id }) {
+export default function StoryDetail({ data, Id, localData }) {
   const numberOfWords = 100;
   const [expandedRows, setExpandedRows] = useState([]);
 
@@ -35,7 +31,7 @@ export default function StoryDetail({ data, Id }) {
           onClick={() => toggleExpand(index)}
           className={`${"text-primary-500 hover:text-secondary-500 font-bold"}`}
         >
-          &nbsp; See Less
+          &nbsp; {localData?.see_less}
         </button>
       </span>
     ) : (
@@ -48,7 +44,7 @@ export default function StoryDetail({ data, Id }) {
             onClick={() => toggleExpand(index)}
             className={`${"text-primary-500 hover:text-secondary-500 font-bold"}`}
           >
-            See More
+            {localData.exp?.see_more}
           </button>
         )}
       </span>
@@ -102,25 +98,25 @@ export default function StoryDetail({ data, Id }) {
   const discoverPage = () => {
     const tabArr = [
       {
-        label: "About",
+        label: localData?.about,
       },
     ];
     if (data.summary_plot)
       tabArr.push({
-        label: "Summary",
+        label: localData?.summary,
       });
     if (
       data.canonical_translation_recension === "True" ||
       data?.translation_author !== "No Translator"
     )
       tabArr.push({
-        label: "Translation",
+        label: localData?.translation,
       });
     tabArr.push({
-      label: "Information",
+      label: localData?.Information,
     });
     tabArr.push({
-      label: "Manuscripts",
+      label: localData?.manuscripts,
     });
 
     return tabArr;
@@ -143,29 +139,29 @@ export default function StoryDetail({ data, Id }) {
   };
 
   const cityThisTranslation = () => {
-    return !data.is_published
-      ? `${data?.translation_author}, trans. "ID
-    ${data?.canonical_story_id}: ${data?.canonical_story_title}
-    ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
-    edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
-    and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
-    and Egyptian Miracles of Mary project. 
-   https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`
-      : `${data?.translation_author}. ${data.translation_as_of_date}.
-    "ID
-    ${data?.canonical_story_id}: ${data?.original_macomber_title}" <i>${
-      data?.published_translation_book_title
-    }</i>,
-    edited by ${data?.translation_author}${
+    const translation_author = data?.translation_author;
+    const canonical_story_id = data?.canonical_story_id;
+    const canonical_story_title = data?.canonical_story_title;
+    const baseUrl = window?.location?.hostname;
+    const translation_as_of_date = data?.translation_as_of_date;
+    const original_macomber_title = data?.original_macomber_title;
+    const published_translation_book_title =
+      data?.published_translation_book_title;
+    const published_translation_book_page_span =
+      data?.published_translation_book_page_span;
+    const published_translation_book_item =
+      data?.published_translation_book_item;
+
+    const published_translation_book_page_span_condition_wise =
       data.published_translation_book_page_span
         ? `, page ${data.published_translation_book_page_span}`
         : data.published_translation_book_item
         ? `, page ${data.published_translation_book_item}`
-        : ""
-    }. Updated by PEMM Copyeditor Taylor Eggan. From
-    ${data.manuscript_name},
-    ${data.translation_source_manuscript_folio}.
-   https://${window?.location?.hostname}/stories/${data.canonical_story_id}.`;
+        : "";
+
+    return !data.is_published
+      ? eval(`\`${localData?.city_this_translation_condition_true}\``)
+      : eval(`\`${localData?.city_this_translation_condition_false}\``);
   };
 
   const NextPreviesButton = () => {
@@ -176,7 +172,7 @@ export default function StoryDetail({ data, Id }) {
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
             href={`/stories/${data.previous_story}`}
           >
-            <span>View the previous part of the story</span>
+            <span>{localData?.view_the_previous_part_of_the_story}</span>
           </Link>
         )}
         {data.next_story && (
@@ -184,12 +180,174 @@ export default function StoryDetail({ data, Id }) {
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
             href={`/stories/${data.next_story}`}
           >
-            <span>View the next part of the story</span>
+            <span>{localData?.view_the_next_part_of_the_story}</span>
           </Link>
         )}
       </div>
     );
   };
+
+  function FirstLine(localData, earliest_attestation) {
+    const earliestStatus =
+      earliest_attestation >= 1300 && earliest_attestation < 1500
+        ? "very old"
+        : earliest_attestation >= 1500 && earliest_attestation < 1800
+        ? "old"
+        : earliest_attestation >= 1800 && earliest_attestation < 1950
+        ? "recent"
+        : earliest_attestation >= 1950
+        ? "very recent"
+        : "";
+
+    return (
+      <>
+        {earliest_attestation && (
+          <p
+            className="text-base leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: eval(`\`${localData?.firstline_of_story_detail}\``),
+            }}
+          ></p>
+        )}
+      </>
+    );
+  }
+
+  function SecondLine(localData, total_records, total_completed_manuscript) {
+    const percentage = Math.ceil(
+      (total_records / total_completed_manuscript) * 100
+    );
+    const generateLine = () => {
+      if (percentage >= 50)
+        return (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: eval(
+                `\`${localData?.secondline_of_story_detail_condition_1}\``
+              ),
+            }}
+          ></p>
+        );
+      else if (total_records >= 2 && total_records <= 6)
+        return (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: eval(
+                `\`${localData?.secondline_of_story_detail_condition_2}\``
+              ),
+            }}
+          ></p>
+        );
+      else if (total_records === 1)
+        return (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: eval(
+                `\`${localData?.secondline_of_story_detail_condition_3}\``
+              ),
+            }}
+          ></p>
+        );
+      else
+        return (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: eval(
+                `\`${localData?.secondline_of_story_detail_condition_4}\``
+              ),
+            }}
+          ></p>
+        );
+    };
+    return generateLine();
+  }
+
+  function ThirdLine(
+    localData,
+    total_records,
+    total_story_id_paintings,
+    canonical_story_id,
+    total_manuscripts_with_story_id_illustrated
+  ) {
+    const dynamicParagraph = () => {
+      return total_story_id_paintings === 0
+        ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+        : ID_LIST.includes(canonical_story_id)
+        ? total_manuscripts_with_story_id_illustrated == null ||
+          total_manuscripts_with_story_id_illustrated != 0
+          ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+          : eval(`\`${localData?.thirdline_of_story_detail_line_3}\``)
+        : total_manuscripts_with_story_id_illustrated == null ||
+          total_manuscripts_with_story_id_illustrated != 0
+        ? eval(`\`${localData?.thirdline_of_story_detail_line_4}\``)
+        : eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
+    };
+
+    return (
+      <>
+        {total_records && (
+          <p
+            className="text-base leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: dynamicParagraph(),
+            }}
+          ></p>
+        )}
+      </>
+    );
+  }
+
+  function ForthLine(localData, type_of_story) {
+    return (
+      <p
+        className="text-base leading-relaxed"
+        dangerouslySetInnerHTML={{
+          __html:
+            type_of_story == "Life of Mary"
+              ? eval(
+                  `\`${localData?.forthline_of_story_detail_condition_true}\``
+                )
+              : eval(
+                  `\`${localData?.forthline_of_story_detail_condition_false}\``
+                ),
+        }}
+      ></p>
+    );
+  }
+
+  function FifthLine(localData, origin) {
+    return (
+      <p
+        className="text-base leading-relaxed"
+        dangerouslySetInnerHTML={{
+          __html: eval(`\`${localData?.fifthline_of_story_detail}\``),
+        }}
+      ></p>
+    );
+  }
+
+  function SixthLine(localData, languageAvailableIn) {
+    languageAvailableIn = languageAvailableIn.join(", ");
+    return (
+      <p
+        className="text-base leading-relaxed"
+        dangerouslySetInnerHTML={{
+          __html: eval(`\`${localData?.sixthline_of_story_detail}\``),
+        }}
+      ></p>
+    );
+  }
+
+  function SeventhLine(localData) {
+    return (
+      <p
+        className="text-sm leading-relaxed py-2"
+        dangerouslySetInnerHTML={{
+          __html: eval(`\`${localData?.seventhline_of_story_detail}\``),
+        }}
+      ></p>
+    );
+  }
 
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
@@ -211,7 +369,6 @@ export default function StoryDetail({ data, Id }) {
             )}
 
             {/* slider content */}
-
             <div
               className={`space-y-4 mb-10 md:block hidden font-body ${
                 data?.paintingLinks.length <= 1 && "mt-10"
@@ -220,21 +377,24 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside space-y-5">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
-                    CONTENT INFORMATION
+                    {localData?.content_information}
                   </h3>
                   <ul className="ml-3 -indent-3">
                     <p className="text-sm leading-normal">
-                      <b>Story Type: </b>
-                      {data?.type_of_story && data?.type_of_story}
+                      <b>{localData?.story_type}: </b>
+                      {data?.type_of_story
+                        ? data?.type_of_story
+                        : localData?.none}
                     </p>
                     <p className="text-sm leading-normal">
-                      <b>Story Theme(s): </b>
-                      {data?.canonical_story_subject &&
-                        data?.canonical_story_subject}
+                      <b>{localData?.story_theme}: </b>
+                      {data?.canonical_story_subject
+                        ? data?.canonical_story_subject
+                        : localData?.none}
                     </p>
                     {data?.readings_dates && (
                       <p className="text-sm leading-normal">
-                        <b>Date Read in Church: </b>
+                        <b>{localData?.date_read_in_church}: </b>
                         {data?.readings_dates}
                       </p>
                     )}
@@ -242,11 +402,13 @@ export default function StoryDetail({ data, Id }) {
                 </li>
                 <li>
                   <h3 className="text-lg mb-1 font-bold uppercase text-justify">
-                    TECHNICAL INFORMATION
+                    {localData?.technical_information}
                   </h3>
                   <ul className="text-sm ml-3 -indent-3">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story: </b>
+                      <b>
+                        {localData?.earliest_attested_instance_of_the_story}:{" "}
+                      </b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -255,37 +417,45 @@ export default function StoryDetail({ data, Id }) {
                           : data.manuscript_date_range_start +
                             " - " +
                             data.manuscript_date_range_end
-                        : " none "}
+                        : ` ${localData?.none}`}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears: </b>
+                      <b>
+                        {localData?.earliest_manuscripts_in_which_story_appears}
+                        :{" "}
+                      </b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears: </b>
+                      <b>
+                        {localData?.total_manuscripts_in_which_story_appears}:{" "}
+                      </b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool: </b>
+                      <b>{localData?.total_incipits_in_the_itool}: </b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s): </b> {IncipitFun()}
+                      <b>{localData?.incipit}: </b> {IncipitFun()}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers:</b> PEMM Theme ID{" "}
-                      {data?.pemm_theme_id_number}; PEMM ID {Id}
+                      <b>{localData?.id_numbers}:</b> {localData?.pemm_theme_id}{" "}
+                      {data?.pemm_theme_id_number}; {localData?.pemm_id} {Id}
                       {data?.canonical_story_id <= macomber_id_number &&
-                        "; Macomber ID " + data?.canonical_story_id}
+                        `; ${localData?.macomber_id} ` +
+                          data?.canonical_story_id}
                       {data?.hamburg_id
-                        ? "; Beta maṣāḥǝft  ID " + data?.hamburg_id
+                        ? `; ${localData?.beta_masahaft_id} ` + data?.hamburg_id
                         : ""}
-                      {data?.clavis_id ? "; Clavis ID " + data?.clavis_id : ""}
+                      {data?.clavis_id
+                        ? `; ${localData?.clavis_id} ` + data?.clavis_id
+                        : ""}
                       {data?.csm_number
-                        ? "; Cantigas ID " + data.csm_number
+                        ? `; ${localData?.cantigas_id} ` + data.csm_number
                         : ""}
                       {data?.poncelet_number
-                        ? "; Poncelet ID " + data.poncelet_number
+                        ? `; ${localData?.poncelet_id} ` + data.poncelet_number
                         : ""}
                     </p>
                   </ul>
@@ -300,21 +470,23 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-2 font-body space-y-p">
-                    {FirstLine(data?.earliest_attestation)}
+                    {FirstLine(localData, data?.earliest_attestation)}
                     {SecondLine(
+                      localData,
                       data?.total_records,
                       +data?.total_completed_manuscript
                     )}
                     {ThirdLine(
+                      localData,
                       data?.total_records,
                       data?.total_story_id_paintings,
                       data?.canonical_story_id,
                       data?.total_manuscripts_with_story_id_illustrated
                     )}
-                    {ForthLine(data?.type_of_story)}
-                    {FifthLine(data?.origin)}
-                    {SixthLine(data?.languageAvailableIn)}
-                    {SeventhLine()}
+                    {ForthLine(localData, data?.type_of_story)}
+                    {FifthLine(localData, data?.origin)}
+                    {SixthLine(localData, data?.languageAvailableIn)}
+                    {SeventhLine(localData)}
                   </ul>
                 </li>
               </ol>
@@ -330,7 +502,7 @@ export default function StoryDetail({ data, Id }) {
                         !data.summary_plot && "mb-5"
                       }`}
                     >
-                      summary
+                      {localData?.summary}
                     </h3>
                     <p
                       className="text-base leading-loose mb-3"
@@ -353,19 +525,29 @@ export default function StoryDetail({ data, Id }) {
                         "mb-5"
                       } `}
                     >
-                      TRANSLATION
+                      {localData?.translation}
                     </h3>
 
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3  italic">
-                          Translated by {data.translation_author} from&nbsp;
-                          {data.manuscript_name},&nbsp;
-                          {data.translation_source_manuscript_folio}
-                          {", in "}
-                          {data.translation_as_of_date}.
-                        </p>
+                        <p
+                          className="text-base leading-loose mb-3  italic"
+                          dangerouslySetInnerHTML={{
+                            __html: (() => {
+                              let translation_author = data.translation_author;
+                              let manuscript_name = data.manuscript_name;
+                              let translation_source_manuscript_folio =
+                                data.translation_source_manuscript_folio;
+                              let translation_as_of_date =
+                                data.translation_as_of_date;
+
+                              return eval(
+                                `\`${localData?.translated_by_author_name}\``
+                              );
+                            })(),
+                          }}
+                        ></p>
                       )}
                     <p
                       className="text-base leading-loose mb-3 "
@@ -379,7 +561,7 @@ export default function StoryDetail({ data, Id }) {
                 {data.canonical_story_research_note && (
                   <li>
                     <h3 className={`text-lg font-bold uppercase mb-3  `}>
-                      ADDITIONAL INFORMATION
+                      {localData?.additional_information}
                     </h3>
                     <p
                       className="text-base leading-loose mb-3"
@@ -395,7 +577,7 @@ export default function StoryDetail({ data, Id }) {
                   data?.translation_author && (
                     <li>
                       <h3 className="text-lg font-bold uppercase my-3">
-                        TO CITE THIS TRANSLATION
+                        {localData?.to_cite_this_translation}
                       </h3>
 
                       <p
@@ -413,7 +595,7 @@ export default function StoryDetail({ data, Id }) {
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
                     {data.translations.length > 0 &&
-                      "TRANSLATIONS & EDITIONS OF THIS STORY"}
+                      localData?.translations_and_editions_of_this_story}
                   </h3>
                   <ul className="space-y-2 font-body space-y-p">
                     <p
@@ -430,12 +612,11 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
-                    MANUSCRIPTS
+                    {localData?.manuscripts}
                   </h3>
                   <ul className="space-y-2 font-body space-y-p">
                     <p className="text-base leading-relaxed">
-                      PEMM Manuscripts in which the story appears (with page or
-                      folio start):
+                      {localData?.pemm_manuscript_in_which_the_story_appears}
                     </p>
                     <p className="text-base leading-relaxed">
                       {generateManuscript()}
@@ -462,21 +643,23 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-2 font-body space-y-p">
-                    {FirstLine(data?.earliest_attestation)}
+                    {FirstLine(localData, data?.earliest_attestation)}
                     {SecondLine(
+                      localData,
                       data?.total_records,
                       +data?.total_completed_manuscript
                     )}
                     {ThirdLine(
+                      localData,
                       data?.total_records,
                       data?.total_story_id_paintings,
                       data?.canonical_story_id,
                       data?.total_manuscripts_with_story_id_illustrated
                     )}
-                    {ForthLine(data?.type_of_story)}
-                    {FifthLine(data?.origin)}
-                    {SixthLine(data?.languageAvailableIn)}
-                    {SeventhLine()}
+                    {ForthLine(localData, data?.type_of_story)}
+                    {FifthLine(localData, data?.origin)}
+                    {SixthLine(localData, data?.languageAvailableIn)}
+                    {SeventhLine(localData)}
                   </ul>
                 </li>
               </ol>
@@ -490,7 +673,7 @@ export default function StoryDetail({ data, Id }) {
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
-                      summary
+                      {localData?.summary}
                     </h3>
                     <p
                       className="text-base leading-loose mb-3 space-y-p"
@@ -515,17 +698,27 @@ export default function StoryDetail({ data, Id }) {
                     {data.canonical_translation_recension === "True" && (
                       <>
                         <h3 className="text-lg font-bold uppercase mb-3">
-                          TRANSLATION
+                          {localData?.translation}
                         </h3>
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
-                            <p className="text-base leading-loose mb-3 space-y-p italic">
-                              Translated by {data.translation_author} from&nbsp;
-                              {data.manuscript_name},&nbsp;
-                              {data.translation_source_manuscript_folio}
-                              {data.translation_as_of_date}.
-                            </p>
+                            <p
+                              className="text-base leading-loose mb-3 space-y-p italic"
+                              dangerouslySetInnerHTML={{
+                                __html: (() => {
+                                  let translation_author =
+                                    data.translation_author;
+                                  let manuscript_name = data.manuscript_name;
+                                  let translation_source_manuscript_folio =
+                                    data.translation_source_manuscript_folio;
+                                  let translation_as_of_date =
+                                    data.translation_as_of_date;
+
+                                  return localData?.translated_by_author_name;
+                                })(),
+                              }}
+                            ></p>
                           )}
                         <p
                           className="text-base leading-loose mb-3 space-y-p"
@@ -539,7 +732,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.canonical_story_research_note && (
                       <li>
                         <h3 className={`text-lg font-bold uppercase mb-3  `}>
-                          ADDITIONAL INFORMATION
+                          {localData?.additional_information}
                         </h3>
                         <p
                           className="text-base leading-loose mb-3 space-y-p"
@@ -554,7 +747,7 @@ export default function StoryDetail({ data, Id }) {
                       data?.translation_author && (
                         <>
                           <h3 className="text-lg font-bold uppercase my-3">
-                            TO CITE THIS TRANSLATION
+                            {localData?.to_cite_this_translation}
                           </h3>
                           <p
                             className="text-base leading-loose mb-3 space-y-p"
@@ -567,7 +760,7 @@ export default function StoryDetail({ data, Id }) {
 
                     <h3 className="text-lg font-bold uppercase mb-3">
                       {data.translations.length > 0 &&
-                        "TRANSLATIONS & EDITIONS OF THIS STORY"}
+                        localData?.translations_and_editions_of_this_story}
                     </h3>
                     <ul className="space-y-2 font-body space-y-p">
                       <p
@@ -588,22 +781,24 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body p-0">
                 <li>
                   <h3 className="text-lg font-bold uppercase text-justify">
-                    CONTENT INFORMATION
+                    {localData?.content_information}
                   </h3>
                   <ul className="ml-3 -indent-3">
                     <p className="text-base leading-normal">
-                      <b>Story Type: </b>
-                      {data?.type_of_story ? data?.type_of_story : "none"}
+                      <b>{localData?.story_type}: </b>
+                      {data?.type_of_story
+                        ? data?.type_of_story
+                        : localData?.none}
                     </p>
                     <p className="text-base leading-normal">
-                      <b>Story Theme(s): </b>
+                      <b>{localData?.story_theme}: </b>
                       {data?.canonical_story_subject
                         ? data?.canonical_story_subject
-                        : "none"}
+                        : localData?.none}
                     </p>
                     {data?.readings_dates && (
                       <p className="text-sm leading-normal">
-                        <b>Date Read in Church: </b>
+                        <b>{localData?.date_read_in_church}: </b>
                         {data?.readings_dates}
                       </p>
                     )}
@@ -611,11 +806,13 @@ export default function StoryDetail({ data, Id }) {
                 </li>
                 <li>
                   <h3 className="text-lg mb-1 font-bold uppercase text-justify">
-                    TECHNICAL INFORMATION
+                    {localData?.technical_information}
                   </h3>
                   <ul className="text-sm ml-3 -indent-3">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story: </b>
+                      <b>
+                        {localData?.earliest_attested_instance_of_the_story}:{" "}
+                      </b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -624,38 +821,47 @@ export default function StoryDetail({ data, Id }) {
                           : data.manuscript_date_range_start +
                             " - " +
                             data.manuscript_date_range_end
-                        : " none "}
+                        : ` ${localData?.none}`}
                     </p>
                     <p className="leading-normal">
-                      <b>Earliest Manuscripts in which Story Appears: </b>
+                      <b>
+                        {localData?.earliest_manuscripts_in_which_story_appears}
+                        :{" "}
+                      </b>
                       {data?.names_of_mss_with_earliest_attestation}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Manuscripts in which Story Appears: </b>
+                      <b>
+                        {localData?.total_manuscripts_in_which_story_appears}:{" "}
+                      </b>
                       {data?.total_records}
                     </p>
                     <p className="leading-normal">
-                      <b>Total Incipits in the ITool: </b>
+                      <b>{localData?.total_incipits_in_the_itool}: </b>
                       {data?.total_incipits_typed}
                     </p>
                     <p className="leading-normal">
-                      <b>Incipit(s): </b>
+                      <b>{localData?.incipit}: </b>
                       {IncipitFun()}
                     </p>
                     <p className="leading-normal">
-                      <b>ID Numbers: </b> PEMM Theme ID{" "}
-                      {data?.pemm_theme_id_number}; PEMM ID {Id}
+                      <b>{localData?.id_numbers}: </b>{" "}
+                      {localData?.pemm_theme_id} {data?.pemm_theme_id_number};{" "}
+                      {localData?.pemm_id} {Id}
                       {data?.canonical_story_id <= macomber_id_number &&
-                        "; Macomber ID " + data?.canonical_story_id}
+                        `; ${localData?.macomber_id} ` +
+                          data?.canonical_story_id}
                       {data?.hamburg_id
-                        ? "; Beta maṣāḥǝft  ID " + data?.hamburg_id
+                        ? `; ${localData?.beta_masahaft_id} ` + data?.hamburg_id
                         : ""}
-                      {data?.clavis_id ? "; Clavis ID " + data?.clavis_id : ""}
+                      {data?.clavis_id
+                        ? `; ${localData?.clavis_id} ` + data?.clavis_id
+                        : ""}
                       {data?.csm_number
-                        ? "; Cantigas ID " + data.csm_number
+                        ? `; ${localData?.cantigas_id} ` + data.csm_number
                         : ""}
                       {data?.poncelet_number
-                        ? "; Poncelet ID " + data.poncelet_number
+                        ? `; ${localData?.poncelet_id} ` + data.poncelet_number
                         : ""}
                     </p>
                   </ul>
@@ -670,12 +876,11 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <h3 className="text-lg font-bold uppercase mb-3">
-                    MANUSCRIPTS
+                    {localData.manuscript}
                   </h3>
                   <ul className="space-y-2 font-body space-y-p">
                     <p className="text-base leading-relaxed">
-                      PEMM Manuscripts in which the story appears (with page or
-                      folio start):
+                      {localData?.pemm_manuscript_in_which_the_story_appears}
                     </p>
                     <p className="text-base leading-relaxed">
                       {generateManuscript()}
@@ -690,222 +895,7 @@ export default function StoryDetail({ data, Id }) {
     </div>
   ) : (
     <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">
-      <h1>Records Not Found</h1>
+      <h1>{localData?.records_not_found}</h1>
     </div>
-  );
-}
-
-function FirstLine(earliest_attestation) {
-  return (
-    <>
-      {earliest_attestation && (
-        <p className="text-base leading-relaxed">
-          This story is&nbsp;
-          <b>
-            {earliest_attestation >= 1300 && earliest_attestation < 1500
-              ? "very old"
-              : earliest_attestation >= 1500 && earliest_attestation < 1800
-              ? "old"
-              : earliest_attestation >= 1800 && earliest_attestation < 1950
-              ? "recent"
-              : earliest_attestation >= 1950
-              ? "very recent"
-              : ""}
-          </b>
-          : the earliest PEMM manuscript<sup>1</sup> in which this story appears
-          is from around {earliest_attestation}.
-        </p>
-      )}
-    </>
-  );
-}
-
-function SeconsdLine(total_records) {
-  return (
-    <>
-      {total_records && (
-        <p className="text-base leading-relaxed">
-          This story is&nbsp;
-          <b>
-            {total_records < 10
-              ? total_records >= 6
-                ? "somewhat rare"
-                : total_records >= 3
-                ? "quite rare"
-                : total_records == 2
-                ? "extremely rare"
-                : "uniquely rare"
-              : total_records >= 300
-              ? "extremely popular"
-              : total_records >= 200
-              ? "very popular"
-              : total_records >= 50
-              ? "popular"
-              : "somewhat popular"}
-          </b>
-          : appearing in&nbsp;
-          {total_records < 10
-            ? `only ${total_records} of the PEMM manuscripts.`
-            : `${Math.ceil(
-                (total_records /
-                  TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE) *
-                  100
-              )}% of PEMM manuscripts with five stories or more.`}
-        </p>
-      )}
-    </>
-  );
-}
-function SecondLine(total_records, total_completed_manuscript) {
-  const percentage = Math.ceil(
-    (total_records / total_completed_manuscript) * 100
-  );
-  const generateLine = () => {
-    if (percentage >= 50)
-      return (
-        <p>
-          This story is <b>extremely common</b> in PEMM manuscripts: it appears
-          in {total_records} out of {total_completed_manuscript} of them (
-          {percentage}%). It is in the top 15 most common stories in PEMM
-          manuscripts. This does not necessarily mean it is among the most
-          commonly read in Ethiopian and Eritrean churches today.
-        </p>
-      );
-    else if (total_records >= 2 && total_records <= 6)
-      return (
-        <p>
-          This story is <b>rare</b>: it appears in {total_records} of{" "}
-          {total_completed_manuscript} PEMM manuscripts.
-        </p>
-      );
-    else if (total_records === 1)
-      return (
-        <p>
-          This story is <b>unique</b>: it appears in only 1 of the{" "}
-          {total_completed_manuscript} PEMM manuscripts.
-        </p>
-      );
-    else
-      return (
-        <p>
-          This story appears in {total_records} out of{" "}
-          {total_completed_manuscript} PEMM manuscripts ({percentage}%).
-        </p>
-      );
-  };
-  return generateLine();
-}
-
-function ThirdLine(
-  total_records,
-  total_story_id_paintings,
-  canonical_story_id,
-  total_manuscripts_with_story_id_illustrated
-) {
-  return (
-    <>
-      {total_records && (
-        <p className="text-base leading-relaxed">
-          {total_story_id_paintings === 0 ? (
-            <>
-              This story is <b>not illustrated</b> in PEMM manuscripts.
-            </>
-          ) : ID_LIST.includes(canonical_story_id) ? (
-            total_manuscripts_with_story_id_illustrated == null ||
-            total_manuscripts_with_story_id_illustrated != 0 ? (
-              <>
-                This story is among the thirty-two Täˀammərä Maryam stories that
-                are most <b>frequently illustrated</b>, with a total of&nbsp;
-                <b>{total_story_id_paintings}</b> paintings. To see its
-                paintings, go to its PEMM&nbsp;
-                <Link
-                  href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold hover:text-secondary-500"
-                >
-                  Paintings by Story
-                </Link>
-                &nbsp; page.
-              </>
-            ) : (
-              <>
-                This story is among the thirty-two Täˀammərä Maryam stories that
-                are most <b>frequently illustrated</b>: it is illustrated in $
-                {total_manuscripts_with_story_id_illustrated} PEMM manuscripts,
-                with a total of
-                <b>{total_story_id_paintings}</b> paintings. To see its
-                paintings, go to its PEMM&nbsp;
-                <Link
-                  href={`/paintings/by-story/${canonical_story_id}`}
-                  className="text-primary-500 font-bold hover:text-secondary-500"
-                >
-                  Paintings by Story
-                </Link>
-                &nbsp; page.
-              </>
-            )
-          ) : total_manuscripts_with_story_id_illustrated == null ||
-            total_manuscripts_with_story_id_illustrated != 0 ? (
-            <>
-              This story is <b>sometimes illustrated</b>, with a total of&nbsp;
-              <b>{total_story_id_paintings}</b> painting(s).
-            </>
-          ) : (
-            <>
-              This story is <b>sometimes illustrated</b>: it is illustrated in
-              {total_manuscripts_with_story_id_illustrated} PEMM manuscript(s),
-              with a total of
-              <b>{total_story_id_paintings}</b> painting(s).
-            </>
-          )}
-        </p>
-      )}
-    </>
-  );
-}
-function ForthLine(type_of_story) {
-  return (
-    <p className="text-base leading-relaxed">
-      {type_of_story == "Life of Mary" ? (
-        <>
-          This story is a <b>life miracle</b>: it takes place during Our Lady
-          Mary&apos;s lifetime, not after it.
-        </>
-      ) : (
-        <>
-          This story is a <b>post-life miracle</b>: it does not take place
-          during Our Lady Mary&apos;s lifetime, but after it.
-        </>
-      )}
-    </p>
-  );
-}
-function FifthLine(origin) {
-  return (
-    <p className="text-base leading-relaxed">
-      This story was originally <b>composed</b> in {origin}.
-    </p>
-  );
-}
-function SixthLine(languageAvailableIn) {
-  return (
-    <p className="text-base leading-relaxed">
-      This story is available in the following <b>languages</b>:&nbsp;
-      {languageAvailableIn.join(", ")}.
-    </p>
-  );
-}
-function SeventhLine() {
-  return (
-    <p className="text-sm leading-relaxed py-2">
-      1. A "PEMM manuscript" is defined as any Geʿez Marian manuscript or book
-      that PEMM has catalogued. For more information, see&nbsp;
-      <Link
-        href="/about/connect/using-the-site"
-        className="text-primary-600 font-bold hover:text-secondary-500"
-      >
-        Using the Site
-      </Link>
-      .
-    </p>
   );
 }

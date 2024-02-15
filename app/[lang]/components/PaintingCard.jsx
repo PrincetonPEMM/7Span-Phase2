@@ -50,7 +50,7 @@ const PaintingCard = (props) => {
           <h3 className="lg:text-xl font-semibold mt-3 tracking-wide">
             {props.card.pemm_short_title
               ? props.card.pemm_short_title
-              : "PEMM title not found"}
+              : props.localData?.pemm_title_not_found}
           </h3>
           <p className="pt-2 tracking-wider">
             {props.card.episodes ? props.card.episodes + "." : "-"}
