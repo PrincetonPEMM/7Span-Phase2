@@ -16,7 +16,7 @@ const Page = async ({ params }) => {
   );
   const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
 
-  const lang = selectedLanguage.translated_pages.includes("/paintings")
+  const lang = selectedLanguage.translated_pages.includes("/paintings/id")
     ? params.lang
     : i18n.defaultLocale;
 

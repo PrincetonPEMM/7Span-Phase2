@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import "react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from "react-image-gallery";
-import Link from "next/link";
 import {
   defaultImageforPainting,
   omitCanonical_Story_Id,
 } from "@/utils/constant";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 import BackBtn from "./BackBtn";
 
 const PaintingDetail = ({ data, localData }) => {
