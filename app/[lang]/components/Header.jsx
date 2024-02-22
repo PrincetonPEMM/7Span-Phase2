@@ -70,6 +70,10 @@ const Header = ({ lang, headerData, languages }) => {
           link: `/${lang}/research/incipit-tool`,
         },
         {
+          title: headerData?.teaching_with_pemm,
+          link: `/${lang}/research/teaching-with-pemm`,
+        },
+        {
           title: headerData?.research_and_lessons,
           link: `/${lang}/research/research-and-lessons`,
         },
@@ -89,14 +93,14 @@ const Header = ({ lang, headerData, languages }) => {
           title: headerData?.bibliography,
           link: `/${lang}/research/bibliography`,
         },
-        {
-          title: headerData?.arabic_manuscripts,
-          link: `/${lang}/research/arabic-manuscripts`,
-        },
-        {
-          title: headerData?.arabic_stories,
-          link: `/${lang}/research/arabic-stories`,
-        },
+        // {
+        //   title: headerData?.arabic_manuscripts,
+        //   link: `/${lang}/research/arabic-manuscripts`,
+        // },
+        // {
+        //   title: headerData?.arabic_stories,
+        //   link: `/${lang}/research/arabic-stories`,
+        // },
       ],
     },
     {
