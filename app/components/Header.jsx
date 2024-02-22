@@ -1,14 +1,14 @@
 "use client";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Logo from "../../assets/images/logo-white.png";
-import LogoBlack from "../../assets/images/logo-black.png";
-import Link from "next/link";
-import Image from "next/image";
-import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
-import MdiChevronDown from "../../assets/icons/MdiChevronDown";
 import MdiClose from "@/assets/icons/MdiClose";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
+import MdiChevronDown from "../../assets/icons/MdiChevronDown";
+import MdiMenuIcon from "../../assets/icons/MdiMenuIcon";
+import LogoBlack from "../../assets/images/logo-black.png";
+import Logo from "../../assets/images/logo-white.png";
 
 const Header = () => {
   const [menuCollapse, setMenuCollapse] = useState(false);
@@ -53,12 +53,13 @@ const Header = () => {
         { title: "Maps", link: "/research/maps" },
         { title: "Incipit Tool", link: "/research/incipit-tool" },
         { title: "Research & Lessons", link: "/research/research-and-lessons" },
+        { title: "Teaching with PEMM", link: "/research/teaching-with-pemm" },
         { title: "List of Repositories", link: "/research/repositories" },
         { title: "Macomber Handlist", link: "/research/macomber" },
         { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
         { title: "Bibliography", link: "/research/bibliography" },
-        { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
-        { title: "Arabic Stories", link: "/research/arabic-stories" },
+        // { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
+        // { title: "Arabic Stories", link: "/research/arabic-stories" },
       ],
     },
     {

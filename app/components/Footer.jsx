@@ -1,13 +1,12 @@
 "use client";
-import Image from "next/image";
-import Logo from "../../assets/images/logo-footer.png";
-import React from "react";
-import Link from "next/link";
-import IconoirTiktok from "@/assets/icons/IconoirTiktok";
-import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
-import MdiInstagram from "@/assets/icons/MdiInstagram";
 import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
+import IconoirTiktok from "@/assets/icons/IconoirTiktok";
+import MdiInstagram from "@/assets/icons/MdiInstagram";
+import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "../../assets/images/logo-footer.png";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -52,12 +51,13 @@ const Footer = () => {
     { title: "Maps", link: "/research/maps" },
     { title: "PEMM Incipit Tool", link: "/research/incipit-tool" },
     { title: "Research & Lessons", link: "/research/research-and-lessons" },
+    { title: "Teaching with PEMM", link: "/research/teaching-with-pemm" },
     { title: "List of Repositories", link: "/research/repositories" },
     { title: "Macomber Handlist", link: "/research/macomber" },
     { title: "Ethiopic Terms & Spellings", link: "/research/spellings" },
     { title: "Bibliography", link: "/research/bibliography" },
-    { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
-    { title: "Arabic Stories", link: "/research/arabic-stories" },
+    // { title: "Arabic Manuscripts", link: "/research/arabic-manuscripts" },
+    // { title: "Arabic Stories", link: "/research/arabic-stories" },
   ];
   return (
     <div className="bg-primary-500 px-5 py-12 md:px-8 lg:px-16">
@@ -133,7 +133,7 @@ const Footer = () => {
                 >
                   {item.title}
                 </Link>
-                {[1, 4, 6].includes(index) && <span className="mt-5 block" />}
+                {[1, 5].includes(index) && <span className="mt-5 block" />}
               </li>
             ))}
           </ul>
