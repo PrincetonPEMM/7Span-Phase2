@@ -61,14 +61,14 @@ export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 200;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
 export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
 export const omitCanonical_Story_Id = 7000;
-export const storiesTableDetailView = [{ name: "Title of Story" }];
-export const storiesTableTitleView = [
-  { name: "Story's Earliest Date", value: "dateOfOrigin" },
-  { name: "Manuscripts with Story", value: "totalManuscriptStory" },
-  { name: "Paintings of Story", value: "totalPaintingStory" },
-  { name: "Type of Mary Story", value: "" },
-  { name: "Theme ", value: "" },
-  { name: "Story ID", value: "" },
+export const storiesTableDetailView = (localData) => [{ name: localData?.title_of_story }];
+export const storiesTableTitleView = (localData) => [
+  { name: localData?.storys_earliest_date, value: "dateOfOrigin" },
+  { name: localData?.manuscripts_with_story, value: "totalManuscriptStory" },
+  { name: localData?.paintings_of_story, value: "totalPaintingStory" },
+  { name: localData?.type_of_mary_story, value: "" },
+  { name: localData?.theme, value: "" },
+  { name: localData?.story_id, value: "" },
 ];
 export const manuscriptsTableDetailView = [{ name: "Title of Manuscript" }];
 
@@ -92,14 +92,14 @@ export const manuscriptsDetailTableTitle = [
   { name: "Other Aspects" },
   { name: "Story ID" },
 ];
-export const initialfilterItem = {
+export const initialfilterItem = (localData) => ({
   title: "Filtered Search",
   checkItem: {
     withPaintings: {
       id: "1",
       isCheckbox: true,
       key: "withPaintings",
-      label: "With paintings",
+      label: localData?.with_paintings,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -107,7 +107,7 @@ export const initialfilterItem = {
       id: "2",
       isCheckbox: true,
       key: "mostIllustrated",
-      label: "Most illustrated",
+      label: localData?.most_illustrated,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -115,7 +115,7 @@ export const initialfilterItem = {
       id: "3",
       isCheckbox: true,
       key: "withEnglishTranslation",
-      label: "With English translation",
+      label: localData?.with_english_translation,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -123,7 +123,7 @@ export const initialfilterItem = {
       id: "4",
       isCheckbox: true,
       key: "africanStories",
-      label: "African stories",
+      label: localData?.african_stories,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -131,7 +131,7 @@ export const initialfilterItem = {
       id: "5",
       isCheckbox: true,
       key: "withHymn",
-      label: "With hymns",
+      label: localData?.with_hymns,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -139,7 +139,7 @@ export const initialfilterItem = {
       id: "6",
       isCheckbox: true,
       key: "readInChurch",
-      label: "Most read in church",
+      label: localData?.most_read_in_church,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -147,7 +147,7 @@ export const initialfilterItem = {
       id: "7",
       isCheckbox: true,
       key: "arabicOnly",
-      label: "Story in Arabic not Geʿez",
+      label: localData?.story_in_arabic_not_geez,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -156,7 +156,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "miracleOfMaryStories",
-      label: "Miracle of Mary Stories",
+      label: localData?.miracle_of_mary_stories,
       isChecked: false,
       isFirstBreak: true,
     },
@@ -165,7 +165,7 @@ export const initialfilterItem = {
       name: "type of story",
       isCheckbox: false,
       key: "lifeOfMaryStories",
-      label: "Life of Mary Stories ",
+      label: localData?.life_of_mary_stories,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -174,7 +174,7 @@ export const initialfilterItem = {
       name: "timeline",
       isCheckbox: false,
       key: "earliestStories",
-      label: "Earliest stories",
+      label: localData?.earliest_stories,
       isChecked: false,
       isFirstBreak: true,
     },
@@ -183,7 +183,7 @@ export const initialfilterItem = {
       name: "timeline",
       isCheckbox: false,
       key: "recentStories",
-      label: "Recent stories",
+      label: localData?.recent_stories,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -192,7 +192,7 @@ export const initialfilterItem = {
       isCheckbox: false,
       name: "top of story",
       key: "popularStories",
-      label: "Common stories",
+      label: localData?.common_stories,
       isChecked: false,
       isFirstBreak: true,
     },
@@ -201,7 +201,7 @@ export const initialfilterItem = {
       name: "top of story",
       isCheckbox: false,
       key: "uniqueStories",
-      label: "Rare stories",
+      label: localData?.rare_stories,
       isChecked: false,
       isFirstBreak: false,
     },
@@ -211,7 +211,7 @@ export const initialfilterItem = {
       isCheckbox: false,
       name: "printing",
       key: "printOnly",
-      label: "Print only",
+      label: localData?.print_only,
       isChecked: false,
       isFirstBreak: true,
     },
@@ -220,41 +220,41 @@ export const initialfilterItem = {
       name: "printing",
       isCheckbox: false,
       key: "excludePrintOnly",
-      label: "Exclude Print only",
+      label: localData?.exclude_print_only,
       isChecked: false,
       isFirstBreak: false,
     },
   },
-};
-export const initialPlaceItem = {
-  title: "Story's Place of Origin",
+});
+export const initialPlaceItem = (localData) => ({
+  title: localData?.storys_place_of_origin,
   isCheckbox: false,
   checkItem: [
     {
       id: "1",
       icon: true,
-      label: "Africa:",
+      label: `${localData?.africa}:`,
       name: "africa",
       isChecked: false,
     },
     {
       id: "2",
       icon: false,
-      label: "Ethiopia",
+      label: localData?.ethiopia,
       name: "ethiopia",
       isChecked: false,
     },
     {
       id: "3",
       icon: false,
-      label: "Egypt",
+      label: localData?.egypt,
       name: "egypt",
       isChecked: false,
     },
     {
       id: "4",
       icon: true,
-      label: "Europe:",
+      label: `${localData?.europe}:`,
       name: "europe",
       isChecked: false,
     },
@@ -262,35 +262,35 @@ export const initialPlaceItem = {
     {
       id: "5",
       icon: false,
-      label: "France",
+      label: localData?.france,
       name: "france",
       isChecked: false,
     },
     {
       id: "6",
       icon: false,
-      label: "Spain",
+      label: localData?.spain,
       name: "spain",
       isChecked: false,
     },
     {
       id: "7",
       icon: true,
-      label: "Levant:",
+      label: `${localData?.levant}:`,
       name: "levant",
       isChecked: false,
     },
     {
       id: "8",
       icon: false,
-      label: "Byzantium",
+      label: localData?.byzantium,
       name: "byzantium",
       isChecked: false,
     },
     {
       id: "9",
       icon: false,
-      label: "Early Christian World",
+      label: localData?.early_christian_world,
       name: "early christian world",
       isChecked: false,
     },
@@ -302,61 +302,61 @@ export const initialPlaceItem = {
     //   isChecked: false,
     // },
   ],
-};
-export const initialOriginalLangItem = {
-  title: "Original Languages of Story",
+});
+export const initialOriginalLangItem = (localData) => ({
+  title: localData?.original_languages_of_story,
   isCheckbox: true,
   checkItem: [
     {
       id: "1",
-      label: "Geʿez",
+      label: localData?.geez,
       name: "geez",
       isChecked: false,
     },
     {
       id: "2",
-      label: "Arabic",
+      label: localData?.arabic,
       name: "arabic",
       isChecked: false,
     },
   ],
-};
-export const initialTranslatedLangItem = {
-  title: "Translated Languages of Story",
+});
+export const initialTranslatedLangItem = (localData) => ({
+  title: localData?.translated_languages_of_story,
   isCheckbox: true,
   checkItem: [
     {
       id: "3",
-      label: "Amharic",
+      label: localData?.amharic,
       name: "amharic",
       isChecked: false,
     },
     {
       id: "4",
-      label: "Latin",
+      label: localData?.latin,
       name: "latin",
       isChecked: false,
     },
     {
       id: "5",
-      label: "French",
+      label: localData?.french,
       name: "french",
       isChecked: false,
     },
     {
       id: "6",
-      label: "Italian",
+      label: localData?.italian,
       name: "italian",
       isChecked: false,
     },
     {
       id: "7",
-      label: "English",
+      label: localData?.english,
       name: "english",
       isChecked: false,
     },
   ],
-};
+});
 export const initialfilterItemManuScript = {
   title: "Filtered Search",
   checkItem: {
@@ -685,3 +685,35 @@ export const dateFormate = (inputDate) => {
 
   return formattedDate;
 };
+
+export function setCookie(name, value, daysToExpire) {
+  var expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + daysToExpire);
+
+  var cookieString =
+    name +
+    "=" +
+    encodeURIComponent(value) +
+    "; expires=" +
+    expirationDate.toUTCString() +
+    "; path=/";
+
+  document.cookie = cookieString;
+}
+
+export function getCookie(name) {
+  var cookies = document.cookie.split(";");
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+
+    // Check if the cookie starts with the desired name
+    if (cookie.indexOf(name + "=") === 0) {
+      // Extract and return the cookie value
+      return decodeURIComponent(cookie.substring(name.length + 1));
+    }
+  }
+
+  // Return null if the cookie with the given name is not found
+  return null;
+}
