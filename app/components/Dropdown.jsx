@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import MdiChevronDown from "@assets/icons/MdiChevronDown";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import MdiChevronDown from "@assets/icons/MdiChevronDown";
 import { useRouter } from "next/navigation";
+import React, { Fragment, useState } from "react";
 
 const Dropdown = ({
   selected,
@@ -30,10 +30,6 @@ const Dropdown = ({
               "Date of Manuscript",
             ].includes(title)
           ) {
-            // ulist = Object.values(
-            //   e.reduce((acc, obj) => ({ ...acc, [obj.key]: obj }), {})
-            // );
-
             const result = [];
             for (let i = 0; i < e.length; i++) {
               for (let j = i + 1; j < e.length; j++) {
@@ -55,7 +51,17 @@ const Dropdown = ({
     >
       <div className="relative">
         <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
-          <button className="block truncate">
+          <button
+            className={`block truncate ${
+              [
+                "Date of Paintings",
+                "Digital Quality",
+                "Date of Manuscript",
+              ].includes(title) &&
+              (selected?.length || Object.keys(selected || {}).length) &&
+              "text-orange-400"
+            } `}
+          >
             {["Date of Paintings", "Date of Manuscript"].includes(title)
               ? title
               : selected?.value
