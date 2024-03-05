@@ -916,7 +916,7 @@ input::-webkit-inner-spin-button {
   @apply w-11 whitespace-nowrap font-medium text-xs xl:text-sm text-center mx-2;
 }
 .option-box {
-  @apply h-[37px];
+  @apply h-auto lg:h-[37px];
 }
 .option-box .truncate {
   @apply whitespace-nowrap;

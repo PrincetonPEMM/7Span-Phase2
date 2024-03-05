@@ -1,22 +1,21 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
-import { useState } from "react";
-import InputText from "./form/InputText";
-import PaintingCard from "./PaintingCard";
-import Dropdown from "./Dropdown";
+import MdiClose from "@/assets/icons/MdiClose";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import CustomPagination from "./Pagination";
 import useDebounce from "@/utils/useDebounce";
-import MdiWindowClose from "@/assets/icons/MdiWindowClose";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
-import MdiClose from "@/assets/icons/MdiClose";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Dropdown from "./Dropdown";
+import CustomPagination from "./Pagination";
+import PaintingCard from "./PaintingCard";
 import FilterButton from "./form/FilterButton";
+import InputText from "./form/InputText";
 
 const paintingBy = [
   {
@@ -30,6 +29,7 @@ const paintingBy = [
 ];
 
 const Paintings = ({
+  ethiopianRegion,
   dateOfPainting,
   paintingInColor,
   typeOfStory,
@@ -47,6 +47,7 @@ const Paintings = ({
     newPaintingInColor,
     newTypeOfStory,
     newInstitution,
+    newEthiopianRegion,
   } = getFilterFromParams();
   const [page, setPage] = useState(pageParams ?? 1);
   const { debounce } = useDebounce();
@@ -56,6 +57,7 @@ const Paintings = ({
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
+  const [ethiopianRegions, setEthiopianRegions] = useState(newEthiopianRegion);
   const [paintingsInColorOnly, setPaintingsInColorOnly] = useState(
     newPaintingInColor ?? []
   );
@@ -108,6 +110,9 @@ const Paintings = ({
         "typeOfStory",
         Boolean(storyType) ? [storyType] : []
       )}${makeParamsArray(
+        "ethiopianRegion",
+        Boolean(ethiopianRegions) ? [ethiopianRegions] : []
+      )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
       )}filters[search]=${searchKey.length > minSearchChar ? searchKey : ""}`;
@@ -133,7 +138,13 @@ const Paintings = ({
     if (!mount) return;
     setPage(1);
     fetchData(search);
-  }, [dateOfPaintins, paintingsInColorOnly, storyType, archiveOfPainting]);
+  }, [
+    dateOfPaintins,
+    paintingsInColorOnly,
+    storyType,
+    ethiopianRegions,
+    archiveOfPainting,
+  ]);
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
@@ -176,6 +187,10 @@ const Paintings = ({
     const newDatePainting = dateOfPainting.filter((dop) =>
       datePainting.includes(dop.key)
     );
+    const ethiopianRegionP = params.getAll("ethiopianRegion");
+    const newEthiopianRegion = ethiopianRegion.filter((dop) =>
+      ethiopianRegionP.includes(dop.key)
+    );
 
     const paintingColor = params.getAll("paintingInColor");
     const newPaintingInColor = paintingInColor.filter((dop) =>
@@ -196,6 +211,7 @@ const Paintings = ({
       pageP,
       newDatePainting,
       newPaintingInColor,
+      newEthiopianRegion: newEthiopianRegion[0],
       newTypeOfStory: newTypeOfStory[0],
       newInstitution: newInstitution[0],
     };
@@ -203,7 +219,6 @@ const Paintings = ({
 
   return (
     <>
-      {" "}
       <div className="px-4 md:px-5">
         {/* <button
           onClick={() => {
@@ -228,7 +243,7 @@ const Paintings = ({
             }}
           >
             <div
-              className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
+              className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-96 right-auto fixed transition-transform duration-700  ${
                 menuCollapse
                   ? "open -translate-x-5  transform"
                   : "-translate-x-96 close transform"
@@ -260,7 +275,21 @@ const Paintings = ({
                 </div>
                 <div>
                   <Dropdown
-                    title="Digital Quality"
+                    title={"Ethiopian Region"}
+                    selected={ethiopianRegions}
+                    setSelected={(e) => {
+                      setEthiopianRegions(e);
+                      setTimeout(() => {
+                        setMenuCollapse(false);
+                      }, 5000);
+                    }}
+                    options={ethiopianRegion}
+                    isMultiple={false}
+                  />
+                </div>
+                <div>
+                  <Dropdown
+                    title={"Digital Quality"}
                     selected={paintingsInColorOnly}
                     setSelected={(e) => {
                       if (e.length > 2) {
@@ -313,6 +342,7 @@ const Paintings = ({
                     className="bg-primary-500 w-full text-white px-2 py-1.5 hover:text-primary-500 text-center border border-primary-500 rounded-md text-xs md:text-sm hover:bg-transparent transition-colors"
                     onClick={() => {
                       setDateOfPaintins([]);
+                      setEthiopianRegions(null);
                       setPaintingsInColorOnly([]);
                       setStoryType(null);
                       setArchiveOfPainting(null);
@@ -397,7 +427,7 @@ const Paintings = ({
           </div>
           <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
             <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
-              <div className="lg:col-span-2 hidden lg:block">
+              <div className="col-span-3 xl:col-span-1 hidden lg:block">
                 <Dropdown
                   title="Date of Paintings"
                   selected={dateOfPaintins}
@@ -411,7 +441,16 @@ const Paintings = ({
                   isMultiple={true}
                 />
               </div>
-              <div className="sm:col-span-2 font-body hidden lg:block">
+              <div className="col-span-3 xl:col-span-2 hidden lg:block">
+                <Dropdown
+                  title={"Ethiopian Region"}
+                  selected={ethiopianRegions}
+                  setSelected={setEthiopianRegions}
+                  options={ethiopianRegion}
+                  isMultiple={false}
+                />
+              </div>
+              <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
                 <Dropdown
                   title="Digital Quality"
                   selected={paintingsInColorOnly}
@@ -429,7 +468,7 @@ const Paintings = ({
                   isMultiple={true}
                 />
               </div>
-              <div className="sm:col-span-2 font-body hidden lg:block">
+              <div className="col-span-3 xl:col-span-1 font-body hidden lg:block">
                 <Dropdown
                   title="Story Type"
                   selected={storyType}
@@ -438,7 +477,7 @@ const Paintings = ({
                   isMultiple={false}
                 />
               </div>
-              <div className="sm:col-span-2 font-body hidden lg:block ">
+              <div className="col-span-3 xl:col-span-2 font-body hidden lg:block ">
                 <Dropdown
                   title="Repository of Painting"
                   selected={archiveOfPainting}
@@ -447,12 +486,13 @@ const Paintings = ({
                   isMultiple={false}
                 />
               </div>
-              <div className="text-center w-full md:text-left hidden lg:block">
+              <div className="col-span-3 xl:col-span-1 text-center w-full md:text-left hidden lg:block">
                 <button
                   area-label="clear all selected values"
                   className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
+                    setEthiopianRegions(null);
                     setPaintingsInColorOnly([]);
                     setStoryType(null);
                     setArchiveOfPainting(null);
