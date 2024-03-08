@@ -226,6 +226,7 @@ const Header = ({ lang, headerData, languages }) => {
         >
           {pathname === `/${lang}` ? (
             <Image
+              className={`${lang !== "en-us" && "w-96"}`}
               src={lang === "en-us" ? Logo : LogoAmh}
               alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
             />

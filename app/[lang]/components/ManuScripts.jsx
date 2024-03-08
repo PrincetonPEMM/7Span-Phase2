@@ -654,7 +654,7 @@ const ManuScripts = () => {
               id="announce"
               aria-live="polite"
               results={`${totalPage ? totalPage : 0} records`}
-              className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+              className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center font-body"
             >
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>

@@ -118,37 +118,37 @@ const Table = ({
 
     if (window.scrollY > getPos(element)) {
       if (window.innerWidth < 1024) {
-        document.querySelector(".table-search")?.classList.remove("active");
+        document.querySelector(".table-search").classList.remove("active");
       } else {
-        document.querySelector(".table-search")?.classList.add("active");
+        document.querySelector(".table-search").classList.add("active");
       }
-      document.querySelector(".table-head")?.classList.add("active");
-      document.querySelector(".table-body")?.classList.add("active");
+      document.querySelector(".table-head").classList.add("active");
+      document.querySelector(".table-body").classList.add("active");
       if (window.innerWidth < 1280) {
         if (window.scrollY < tablePos - 88) {
-          document.querySelector(".table-search")?.classList.remove("active");
-          document.querySelector(".table-head")?.classList.remove("active");
-          document.querySelector(".table-body")?.classList.remove("active");
+          document.querySelector(".table-search").classList.remove("active");
+          document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
         }
       } else {
         if (window.scrollY < tablePos - 38) {
-          document.querySelector(".table-search")?.classList.remove("active");
-          document.querySelector(".table-head")?.classList.remove("active");
-          document.querySelector(".table-body")?.classList.remove("active");
+          document.querySelector(".table-search").classList.remove("active");
+          document.querySelector(".table-head").classList.remove("active");
+          document.querySelector(".table-body").classList.remove("active");
         }
       }
     } else {
-      document.querySelector(".table-search")?.classList.remove("active");
-      document.querySelector(".table-head")?.classList.remove("active");
-      document.querySelector(".table-body")?.classList.remove("active");
+      document.querySelector(".table-search").classList.remove("active");
+      document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
     }
     if (
       window.scrollY >
       getPos(element) + document.querySelector(".table").offsetHeight + 150
     ) {
-      document.querySelector(".table-search")?.classList.remove("active");
-      document.querySelector(".table-head")?.classList.remove("active");
-      document.querySelector(".table-body")?.classList.remove("active");
+      document.querySelector(".table-search").classList.remove("active");
+      document.querySelector(".table-head").classList.remove("active");
+      document.querySelector(".table-body").classList.remove("active");
     }
   };
 
