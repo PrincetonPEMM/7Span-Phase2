@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --font-header: "Maghfirea";
+    --font-manu: "Source Serif Pro";
+    --font-body: "Source Sans 3";
+    --font-bodyAmh: "Noto Serif";
+    /* ... */
+  }
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src:
+    url("../../assets/fonts/NotoSerif-Regular.woff") format("woff"),
+    url("../../assets/fonts/NotoSerif-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif";
+  src:
+    url("../../assets/fonts/NotoSerif-Bold.woff2") format("woff2"),
+    url("../../assets/fonts/NotoSerif-Bold.woff") format("woff"),
+    url("../../assets/fonts/NotoSerif-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Source Sans 3";
   src:
@@ -129,9 +160,9 @@
 .font-menu {
   font-family: "Source Serif Pro", sans-serif;
 }
-.font-body {
+/* .font-body {
   font-family: "Source Sans 3", sans-serif;
-}
+} */
 .descriptions-left {
   font-family: "Source Sans 3", sans-serif;
 }
@@ -173,6 +204,9 @@ body {
   @apply text-3xl lg:text-4xl font-bold;
 }
 
+.space-y-if-p-has-p > p + p {
+  @apply mt-4;
+}
 @keyframes slideIn {
   from {
     transform: translateX(-100%);
@@ -917,7 +951,7 @@ input::-webkit-inner-spin-button {
   @apply w-11 whitespace-nowrap font-medium text-xs xl:text-sm text-center mx-2;
 }
 .option-box {
-  @apply h-[37px];
+  @apply h-auto lg:h-[37px];
 }
 .option-box .truncate {
   @apply whitespace-nowrap;
@@ -1088,6 +1122,12 @@ tbody.table-body.active tr td {
   @apply text-offBlack-500 font-semibold;
   font-family: "Source Sans 3", sans-serif;
   font-size: 20px;
+}
+.descriptions-left > ul > li + li {
+  margin-top: 10px;
+}
+.descriptions-left > p {
+  margin: 10px 0;
 }
 
 .descriptions-left h4,

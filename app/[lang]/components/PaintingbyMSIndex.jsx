@@ -1,21 +1,21 @@
 "use client";
+import MdiClose from "@/assets/icons/MdiClose";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import React, { useCallback, useEffect, useState } from "react";
-import CustomPagination, { TablePagination } from "./Pagination";
-import Masonry from "react-masonry-css";
-import InputText from "./form/InputText";
-import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Dropdown from "./Dropdown";
+import { useCallback, useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
-import MdiClose from "@/assets/icons/MdiClose";
-import FilterButton from "./form/FilterButton";
+import Dropdown from "./Dropdown";
+import CustomPagination from "./Pagination";
 import PaintingStoryCard from "./PaintingStoryCard";
+import FilterButton from "./form/FilterButton";
+import InputText from "./form/InputText";
 
 const paintingBy = [
   {
@@ -204,7 +204,7 @@ const PaintingbyMSIndex = ({
         }}
       >
         <div
-          className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-80 right-auto fixed transition-transform duration-700  ${
+          className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-96 right-auto fixed transition-transform duration-700  ${
             menuCollapse
               ? "open -translate-x-5  transform"
               : "-translate-x-96 close transform"
