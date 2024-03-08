@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import MdiChevronDown from "../../../assets/icons/MdiChevronDown";
 import MdiMenuIcon from "../../../assets/icons/MdiMenuIcon";
+import LogoBlackAmh from "../../../assets/images/logo-black-amh.png";
 import LogoBlack from "../../../assets/images/logo-black.png";
+import LogoAmh from "../../../assets/images/logo-white-amh.png";
 import Logo from "../../../assets/images/logo-white.png";
 
 const Header = ({ lang, headerData, languages }) => {
@@ -151,6 +153,17 @@ const Header = ({ lang, headerData, languages }) => {
     if (window.innerWidth < 1024) setMenuCollapse(!menuCollapse);
   };
 
+  useEffect(() => {
+    if (lang !== "en-us") {
+      document.documentElement.style.setProperty("--font-header", "Noto Serif");
+      document.documentElement.style.setProperty("--font-manu", "Noto Serif");
+      document.documentElement.style.setProperty(
+        "--font-body",
+        "Noto Serif" //"--font-bodyAmh"
+      );
+    }
+  }, [lang]);
+
   // const isSubmenuOpen = (index) => {
   //   console.log(activeSubmenu === index);
   //   return activeSubmenu === index;
@@ -168,6 +181,7 @@ const Header = ({ lang, headerData, languages }) => {
   // window.addEventListener("resize", toggleSubmenu);
 
   // Transform the alt text to capitalize
+
   useEffect(() => {
     // Select the image element
     const img = document.querySelector(".logo-image img");
@@ -183,8 +197,22 @@ const Header = ({ lang, headerData, languages }) => {
         .join(" ");
     }
   }, []);
+
   return (
     <>
+      {isWarnClose && !checkPathWiseWorningMsg(selectedLanguage, pathname) && (
+        <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
+          <p className="w-full text-center font-semibold">
+            {headerData?.page_not_yet_converted}
+          </p>
+          <button
+            className="flex items-center flex-none w-8 h-8"
+            onClick={() => setIsWarnClose(!isWarnClose)}
+          >
+            <MdiClose className="w-full inline-flex" />
+          </button>
+        </div>
+      )}
       <div
         className={`p-4 lg:p-0 ${
           pathname === `/${lang}`
@@ -198,12 +226,12 @@ const Header = ({ lang, headerData, languages }) => {
         >
           {pathname === `/${lang}` ? (
             <Image
-              src={Logo}
+              src={lang === "en-us" ? Logo : LogoAmh}
               alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
             />
           ) : (
             <Image
-              src={LogoBlack}
+              src={lang === "en-us" ? LogoBlack : LogoBlackAmh}
               alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
             />
           )}
@@ -236,7 +264,9 @@ const Header = ({ lang, headerData, languages }) => {
         }}
       >
         <div
-          className={`z-50 justify-between w-72 pt-10 items-center inset-y-0 px-5 fixed transition-transform duration-700 lg:w-full lg:flex lg:bg-offWhite-500 lg:h-auto ${
+          className={`z-50 justify-between w-72 ${
+            pathname === `/${lang}` ? "pt-5 mt-5" : "pt-10"
+          } items-center inset-y-0 px-5 fixed transition-transform duration-700 lg:w-full lg:flex lg:bg-offWhite-500 lg:h-auto ${
             menuCollapse
               ? "right-0 translate-x-0 transform "
               : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
@@ -262,12 +292,12 @@ const Header = ({ lang, headerData, languages }) => {
           >
             {pathname === `/${lang}` ? (
               <Image
-                src={Logo}
+                src={lang === "en-us" ? Logo : LogoAmh}
                 alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
               />
             ) : (
               <Image
-                src={LogoBlack}
+                src={lang === "en-us" ? LogoBlack : LogoBlackAmh}
                 alt="Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary (PEMM) project"
               />
             )}
@@ -382,20 +412,6 @@ const Header = ({ lang, headerData, languages }) => {
           </OutsideClickHandler>
         </div>
       </OutsideClickHandler>
-
-      {isWarnClose && !checkPathWiseWorningMsg(selectedLanguage, pathname) && (
-        <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
-          <p className="w-full text-center font-semibold">
-            {headerData?.page_not_yet_converted}
-          </p>
-          <button
-            className="flex items-center flex-none w-8 h-8"
-            onClick={() => setIsWarnClose(!isWarnClose)}
-          >
-            <MdiClose className="w-full inline-flex" />
-          </button>
-        </div>
-      )}
     </>
   );
 };
