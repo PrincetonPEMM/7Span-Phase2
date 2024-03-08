@@ -1170,15 +1170,6 @@ tbody.table-body.active tr td {
   margin-right: 10px !important;
 }
 
-/* edited on 8th mar */
-
-.table-stick {
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
 /* / 8th mar */
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
