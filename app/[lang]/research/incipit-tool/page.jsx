@@ -180,7 +180,7 @@ const page = () => {
           </button>
         </div>
       </div>
-      <div className="incipit-tool space-y-4 space-x-0 sm:space-x-4 flex flex-col items-center justify-center sm:flex-row sm:items-center sm:space-y-0 lg:justify-end md:min-w-[500px] lg:w-[64%]">
+      <div className="incipit-tool  space-y-4 space-x-0 sm:space-x-4 flex flex-col items-center justify-center sm:flex-row sm:items-center sm:space-y-0 lg:justify-end md:min-w-[500px] lg:w-[64%]">
         <div>
           <CustomPagination
             className="pagination-tablet"
@@ -195,7 +195,7 @@ const page = () => {
           id="announce"
           aria-live="polite"
           results={`${totalPage ? totalPage : 0} records`}
-          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+          className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center font-body"
         >
           Results: {`(${totalPage ? totalPage : 0} records)`}
         </span>
@@ -284,7 +284,7 @@ const page = () => {
             ) : isFirstTime ? (
               <h1 className="mx-auto block text-center">Records Not Found</h1>
             ) : (
-              <p className="w-full text-base font-medium lg:max-w-[59%]">
+              <p className="w-full text-base font-medium lg:max-w-[59%] font-body">
                 To catalog a story in a <i>Täˀammərä Maryam</i> manuscript,
                 identify the story's incipit (this is the first unique sentence
                 in the story; not the uniform blessings that open every story)
