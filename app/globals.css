@@ -1135,6 +1135,13 @@ ul.list-disc,
   padding: 0 0 0 20px;
   list-style: disc;
 }
+.list-disc,
+ul.list-disc,
+.list-disc > ul,
+.list-disc > div ul {
+  padding: 0 0 0 20px;
+  list-style: decimal;
+}
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
