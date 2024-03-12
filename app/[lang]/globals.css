@@ -1183,6 +1183,10 @@ ol.list-disc,
   padding: 0 0 0 20px;
   list-style: decimal;
 }
+.bg-transparent {
+  background-color: transparent !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);
@@ -1192,9 +1196,6 @@ ol.list-disc,
     transform: scale(1);
     transition: 2s;
   }
-}
-.bg-transparent {
-  background-color: transparent !important;
 }
 
 @media only screen and (max-width: 440px) {
