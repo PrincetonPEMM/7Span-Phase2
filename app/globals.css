@@ -921,6 +921,12 @@ input::-webkit-inner-spin-button {
 .option-box .truncate {
   @apply whitespace-nowrap;
 }
+.descriptions-left > ul > li + li {
+  margin-top: 10px;
+}
+.descriptions-left > p {
+  margin: 10px 0;
+}
 .truncate {
   @apply break-words text-clip whitespace-normal 2xl:whitespace-nowrap;
 }
@@ -1136,9 +1142,9 @@ ul.list-disc,
   list-style: disc;
 }
 .list-disc,
-ul.list-disc,
-.list-disc > ul,
-.list-disc > div ul {
+ol.list-disc,
+.list-disc > ol,
+.list-disc > div ol {
   padding: 0 0 0 20px;
   list-style: decimal;
 }

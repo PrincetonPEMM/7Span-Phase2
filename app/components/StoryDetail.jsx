@@ -299,7 +299,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 font-body">
                 <li>
-                  <ul className="space-y-2 font-body space-y-p">
+                  <ul className="space-y-4 font-body space-y-p">
                     {FirstLine(data?.earliest_attestation)}
                     {SecondLine(
                       data?.total_records,
@@ -415,7 +415,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translations.length > 0 &&
                       "TRANSLATIONS & EDITIONS OF THIS STORY"}
                   </h3>
-                  <ul className="space-y-2 font-body space-y-p">
+                  <ul className="space-y-4 font-body space-y-p">
                     <p
                       className="text-base leading-relaxed"
                       dangerouslySetInnerHTML={{
@@ -432,7 +432,7 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
-                  <ul className="space-y-2 font-body space-y-p">
+                  <ul className="space-y-4 font-body space-y-p">
                     <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which the story appears (with page or
                       folio start):
@@ -461,7 +461,7 @@ export default function StoryDetail({ data, Id }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 font-body">
                 <li>
-                  <ul className="space-y-2 font-body space-y-p">
+                  <ul className="space-y-4 font-body space-y-p">
                     {FirstLine(data?.earliest_attestation)}
                     {SecondLine(
                       data?.total_records,
@@ -569,7 +569,7 @@ export default function StoryDetail({ data, Id }) {
                       {data.translations.length > 0 &&
                         "TRANSLATIONS & EDITIONS OF THIS STORY"}
                     </h3>
-                    <ul className="space-y-2 font-body space-y-p">
+                    <ul className="space-y-4 font-body space-y-p">
                       <p
                         className="text-base leading-relaxed "
                         dangerouslySetInnerHTML={{
@@ -672,7 +672,7 @@ export default function StoryDetail({ data, Id }) {
                   <h3 className="text-lg font-bold uppercase mb-3">
                     MANUSCRIPTS
                   </h3>
-                  <ul className="space-y-2 font-body space-y-p">
+                  <ul className="space-y-4 font-body space-y-p">
                     <p className="text-base leading-relaxed">
                       PEMM Manuscripts in which the story appears (with page or
                       folio start):
