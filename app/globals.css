@@ -1135,10 +1135,11 @@ ul.list-disc,
   padding: 0 0 0 20px;
   list-style: disc;
 }
-.list-disc,
-ul.list-disc,
-.list-disc > ul,
-.list-disc > div ul {
+.list-disc
+ol.list-disc,
+.list-disc > ol,
+.list-disc > div ol {
+
   padding: 0 0 0 20px;
   list-style: decimal;
 }
