@@ -20,7 +20,7 @@ const Page = async ({ params }) => {
     console.log(e);
   }
   return data ? (
-    <div className="reaserch-page">
+    <div className="reaserch-page list-disc">
       <DetailPage
         image={data?.image_link}
         title={data?.title}
