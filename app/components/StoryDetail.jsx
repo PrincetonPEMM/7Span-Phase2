@@ -359,7 +359,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3  italic">
+                        <p className="text-base leading-loose mb-3  space-y-4 italic">
                           Translated by {data.translation_author} from&nbsp;
                           {data.manuscript_name},&nbsp;
                           {data.translation_source_manuscript_folio}
@@ -368,7 +368,7 @@ export default function StoryDetail({ data, Id }) {
                         </p>
                       )}
                     <p
-                      className="text-base leading-loose mb-3 "
+                      className="text-base leading-loose mb-3 space-y-4"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -417,7 +417,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="space-y-4 font-body space-y-p">
                     <p
-                      className="text-base leading-relaxed"
+                      className="text-base leading-relaxed space-y-4"
                       dangerouslySetInnerHTML={{
                         __html: generateTranslations(),
                       }}
@@ -433,11 +433,11 @@ export default function StoryDetail({ data, Id }) {
                     MANUSCRIPTS
                   </h3>
                   <ul className="space-y-4 font-body space-y-p">
-                    <p className="text-base leading-relaxed">
+                    <p className="text-base leading-relaxed ">
                       PEMM Manuscripts in which the story appears (with page or
                       folio start):
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-base leading-relaxed space-y-4">
                       {generateManuscript()}
                     </p>
                   </ul>
