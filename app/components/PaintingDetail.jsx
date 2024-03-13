@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import "react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from "react-image-gallery";
-import Link from "next/link";
 import {
   defaultImageforPainting,
   omitCanonical_Story_Id,
 } from "@/utils/constant";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 import BackBtn from "./BackBtn";
 
 const PaintingDetail = ({ data }) => {
@@ -21,6 +21,30 @@ const PaintingDetail = ({ data }) => {
     ]);
   }, [data]);
 
+  const addPhrase = () => {
+    if (data.ms_location_note.includes("Tigray"))
+      return "likely made in Tigray and";
+    else if (data.ms_location_note.includes("Eritrea"))
+      return "likely made in Eritrea and";
+    else if (data.ms_location_note.includes("Shoa"))
+      return "likely made in Shoa, Southern Ethiopia, and";
+    else if (data.ms_location_note.includes("Wallo"))
+      return "likely made in Wallo, Southern Ethiopia, and";
+    else if (data.ms_location_note.includes("Addis Ababa"))
+      return "likely made in Addis Ababa, Southern Ethiopia, and";
+    else if (data.ms_location_note.includes("Gurage"))
+      return "likely made in Gurage, Southern Ethiopia, and";
+    else if (data.ms_location_note.includes("Magdala"))
+      return "taken from the King Tewodros's royal library at Magdala, Southern Ethiopia";
+    else if (data.ms_location_note.includes("Gondar"))
+      return "likely made in Gondar, Western Ethiopia";
+    else if (data.ms_location_note.includes("Gojjam"))
+      return "likely made in Gojjam, Western Ethiopia, and";
+    else if (data.ms_location_note.includes("Tana"))
+      return "likely made in Lake Tana, Western Ethiopia, and";
+    else return "";
+  };
+
   const generateParagraph = () => {
     const arr = [];
     if (
@@ -30,7 +54,7 @@ const PaintingDetail = ({ data }) => {
     ) {
       let text;
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
-        text = `This painting (also called an illumination) appears in a manuscript dated to <b>${
+        text = `This painting (also called an illumination) appears in a manuscript ${addPhrase()} dated to <b>${
           data.manuscript_date_range_start === data.manuscript_date_range_end
             ? data.manuscript_date_range_end
             : data.manuscript_date_range_start +
@@ -38,6 +62,8 @@ const PaintingDetail = ({ data }) => {
               data.manuscript_date_range_end
         }</b>. `;
       }
+      if (data.painting_same_date_as_manuscript === "False")
+        text += `However, the painting was likely added in a later period. `;
       if (data.manuscript_name) {
         text += `You can view this painting in the manuscript ${
           data.link_to_digital_copy
