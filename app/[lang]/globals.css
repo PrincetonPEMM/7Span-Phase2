@@ -956,6 +956,12 @@ input::-webkit-inner-spin-button {
 .option-box .truncate {
   @apply whitespace-nowrap;
 }
+.descriptions-left > ul > li + li {
+  margin-top: 10px;
+}
+.descriptions-left > p {
+  margin: 10px 0;
+}
 .truncate {
   @apply break-words text-clip whitespace-normal 2xl:whitespace-nowrap;
 }
@@ -1169,8 +1175,19 @@ tbody.table-body.active tr td {
 .incipit-tool .pagination-container > .page-total {
   margin-right: 10px !important;
 }
-
-/* / 8th mar */
+.list-disc,
+ul.list-disc,
+.list-disc > ul,
+.list-disc > div ul {
+  padding: 0 0 0 20px;
+  list-style: disc;
+}
+.list-disc ol.list-disc,
+.list-disc > ol,
+.list-disc > div ol {
+  padding: 0 0 0 20px;
+  list-style: decimal;
+}
 @media (prefers-reduced-motion: no-preference) {
   .banner-image:hover img {
     transform: scale(1.1);

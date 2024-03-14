@@ -20,6 +20,23 @@ const PaintingDetail = ({ data, localData }) => {
     ]);
   }, [data]);
 
+  const addPhrase = () => {
+    if (data.ms_location_note.includes("Tigray")) return localData?.tigray;
+    else if (data.ms_location_note.includes("Eritrea"))
+      return localData?.eritrea;
+    else if (data.ms_location_note.includes("Shoa")) return localData?.shoa;
+    else if (data.ms_location_note.includes("Wallo")) return localData?.wallo;
+    else if (data.ms_location_note.includes("Addis Ababa"))
+      return localData?.addis_ababa;
+    else if (data.ms_location_note.includes("Gurage")) return localData?.gurage;
+    else if (data.ms_location_note.includes("Magdala"))
+      return localData?.magdala;
+    else if (data.ms_location_note.includes("Gondar")) return localData?.gondar;
+    else if (data.ms_location_note.includes("Gojjam")) return localData?.gojjam;
+    else if (data.ms_location_note.includes("Tana")) return localData?.tana;
+    else return "";
+  };
+
   const generateParagraph = () => {
     const arr = [];
     if (
@@ -31,6 +48,8 @@ const PaintingDetail = ({ data, localData }) => {
       if (data.manuscript_date_range_start && data.manuscript_date_range_end) {
         text = eval(`\`${localData?.painting_detail_para1_line1}\``);
       }
+      if (data.painting_same_date_as_manuscript === "False")
+        text += `${localData?.painting_same_date_as_manuscript_text} `;
       if (data.manuscript_name) {
         text += eval(`\`${localData?.painting_detail_para1_line2}\``);
       }
