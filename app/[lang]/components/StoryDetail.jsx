@@ -532,7 +532,7 @@ export default function StoryDetail({ data, Id, localData }) {
                       data.translation_author &&
                       data.manuscript_name && (
                         <p
-                          className="text-base leading-normal mb-3  italic"
+                          className="text-base leading-loose mb-3  space-y-4 italic"
                           dangerouslySetInnerHTML={{
                             __html: (() => {
                               let translation_author = data.translation_author;
@@ -550,7 +550,7 @@ export default function StoryDetail({ data, Id, localData }) {
                         ></p>
                       )}
                     <p
-                      className="text-base leading-loose mb-3 space-y-if-p-has-p"
+                      className="text-base leading-loose mb-3 space-y-4"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -599,7 +599,7 @@ export default function StoryDetail({ data, Id, localData }) {
                   </h3>
                   <ul className="space-y-4 font-body space-y-p">
                     <p
-                      className="text-base leading-relaxed"
+                      className="text-base leading-relaxed space-y-4"
                       dangerouslySetInnerHTML={{
                         __html: generateTranslations(),
                       }}
@@ -618,7 +618,7 @@ export default function StoryDetail({ data, Id, localData }) {
                     <p className="text-base leading-relaxed">
                       {localData?.pemm_manuscript_in_which_the_story_appears}
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-base leading-relaxed space-y-4">
                       {generateManuscript()}
                     </p>
                   </ul>
