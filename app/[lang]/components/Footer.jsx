@@ -6,8 +6,8 @@ import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import LogoBlack from "../../../assets/images/logo-white.png";
 import LogoAmh from "../../../assets/images/logo-white-amh.png";
+import Logo from "../../../assets/images/logo-white.png";
 
 const Footer = ({ footerData, lang }) => {
   const pathname = usePathname();
@@ -123,7 +123,7 @@ const Footer = ({ footerData, lang }) => {
               <Image
                 width={500}
                 height={500}
-                src={lang === "en-us" ? LogoBlack : LogoAmh}
+                src={lang === "en-us" ? Logo : LogoAmh}
                 className="mb-3"
                 alt="pricenton ethiopian eritrean & egyptian miracles of marry project"
               />

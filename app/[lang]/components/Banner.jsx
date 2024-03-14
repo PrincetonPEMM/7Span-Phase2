@@ -29,7 +29,9 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner, localData }) => {
             {data.title.split(" ")[1]}
           </h3>
           <div className="banner-content ">
-            <p className="text-xs mt-1 xl:text-sm">{data.description}</p>
+            <p className="text-xs mt-1 xl:text-sm font-body tracking-wide">
+              {data.description}
+            </p>
             <a
               href={data.id}
               className="text-offWhite-500 text-sm delay-75 flex items-center hover:text-secondary-500"
