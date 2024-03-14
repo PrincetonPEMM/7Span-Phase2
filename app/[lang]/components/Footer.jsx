@@ -6,7 +6,7 @@ import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import LogoBlack from "../../../assets/images/logo-black.png";
+import LogoBlack from "../../../assets/images/logo-white.png";
 import LogoAmh from "../../../assets/images/logo-white-amh.png";
 
 const Footer = ({ footerData, lang }) => {
