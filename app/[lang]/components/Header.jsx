@@ -202,7 +202,7 @@ const Header = ({ lang, headerData, languages }) => {
     <>
       {isWarnClose && !checkPathWiseWorningMsg(selectedLanguage, pathname) && (
         <div className="w-full py-1 bg-[#E5A942] flex justify-between items-center font-body">
-          <p className="w-full text-center font-semibold">
+          <p className="w-full text-center font-semibold text-xs sm:text-sm">
             {headerData?.page_not_yet_converted}
           </p>
           <button
@@ -214,10 +214,16 @@ const Header = ({ lang, headerData, languages }) => {
         </div>
       )}
       <div
-        className={`p-4 lg:p-0 ${
+        className={`p-4 lg:p-0 flex items-center justify-between ${
           pathname === `/${lang}`
-            ? " bg-transparent text-black absolute top-0 inset-x-0 z-40"
+            ? " bg-transparent text-black absolute inset-x-0 z-40"
             : "bg-offWhite-500"
+        } ${
+          lang !== "en-us"
+            ? pathname === `/${lang}` && isWarnClose
+              ? "top-11 md:top-10"
+              : "lg:top-0"
+            : "top-0"
         }`}
       >
         <Link
@@ -242,7 +248,9 @@ const Header = ({ lang, headerData, languages }) => {
           aria-label={
             menuCollapse ? "Menu button expanded " : "Menu button hidden"
           }
-          className="block h-7 w-7 flex-none p-1 z-40 absolute top-5 right-5 lg:hidden"
+          className={`block h-7 w-7 flex-none p-1 z-40  lg:hidden ${
+            isWarnClose ? "top-5 md:top-8" : "top-5"
+          }`}
         >
           {menuCollapse ? (
             <MdiMenuIcon
@@ -266,15 +274,21 @@ const Header = ({ lang, headerData, languages }) => {
       >
         <div
           className={`z-50 justify-between w-72 ${
-            pathname === `/${lang}` ? "pt-5 mt-5" : "pt-10"
+            pathname === `/${lang}` ? "pt-10" : "pt-10"
           } items-center inset-y-0 px-5 fixed transition-transform duration-700 lg:w-full lg:flex lg:bg-offWhite-500 lg:h-auto ${
             menuCollapse
-              ? "right-0 translate-x-0 transform "
+              ? "right-0 translate-x-0 transform"
               : "lg:transform-none translate-x-full -right-80 transform lg:w-auto lg:right-0"
           } ${
             pathname === `/${lang}`
-              ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform lg:top-4 lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
+              ? "z-40 justify-between pt-10 w-72 items-center inset-y-0 px-5 home-header text-white bg-black transition-transform lg:absolute lg:bottom-auto lg:flex lg:bg-transparent lg:h-auto"
               : "lg:relative  py-5 header bg-white lg:bg-offWhite-500 "
+          } ${
+            lang !== "en-us"
+              ? pathname === `/${lang}` && isWarnClose
+                ? "top-11 md:top-10"
+                : "lg:top-0"
+              : "top-0"
           }`}
         >
           {/*Close header */}
