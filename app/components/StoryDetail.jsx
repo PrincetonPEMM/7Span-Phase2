@@ -246,7 +246,7 @@ export default function StoryDetail({ data, Id }) {
                   </h3>
                   <ul className="text-sm ml-3 -indent-3">
                     <p className="leading-normal">
-                      <b>Earliest Attested Instance of the Story: </b>
+                      <b>Earliest Attested Instance of the Story:</b>
                       {data?.manuscript_date_range_start &&
                       data?.manuscript_date_range_end
                         ? data?.manuscript_date_range_start ===
@@ -333,7 +333,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -359,7 +359,7 @@ export default function StoryDetail({ data, Id }) {
                     {data.translation_author !== "No Translator" &&
                       data.translation_author &&
                       data.manuscript_name && (
-                        <p className="text-base leading-loose mb-3  space-y-4 italic">
+                        <p className="text-base leading-relaxed mb-3  space-y-4 italic">
                           Translated by {data.translation_author} from&nbsp;
                           {data.manuscript_name},&nbsp;
                           {data.translation_source_manuscript_folio}
@@ -368,7 +368,7 @@ export default function StoryDetail({ data, Id }) {
                         </p>
                       )}
                     <p
-                      className="text-base leading-loose mb-3 space-y-4"
+                      className="text-base leading-relaxed mb-3 space-y-4"
                       dangerouslySetInnerHTML={{
                         __html: data.english_translation,
                       }}
@@ -382,7 +382,7 @@ export default function StoryDetail({ data, Id }) {
                       ADDITIONAL INFORMATION
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3"
+                      className="text-base leading-relaxed mb-3"
                       dangerouslySetInnerHTML={{
                         __html: data.canonical_story_research_note,
                       }}
@@ -399,7 +399,7 @@ export default function StoryDetail({ data, Id }) {
                       </h3>
 
                       <p
-                        className="text-base leading-loose mb-3 "
+                        className="text-base leading-relaxed mb-3 "
                         dangerouslySetInnerHTML={{
                           __html: cityThisTranslation(),
                         }}
@@ -493,7 +493,7 @@ export default function StoryDetail({ data, Id }) {
                       summary
                     </h3>
                     <p
-                      className="text-base leading-loose mb-3 space-y-p"
+                      className="text-base leading-relaxed mb-3 space-y-p"
                       dangerouslySetInnerHTML={{
                         __html: data.summary_plot,
                       }}
@@ -520,7 +520,7 @@ export default function StoryDetail({ data, Id }) {
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
-                            <p className="text-base leading-loose mb-3 space-y-p italic">
+                            <p className="text-base leading-relaxed mb-3 space-y-p italic">
                               Translated by {data.translation_author} from&nbsp;
                               {data.manuscript_name},&nbsp;
                               {data.translation_source_manuscript_folio}
@@ -528,7 +528,7 @@ export default function StoryDetail({ data, Id }) {
                             </p>
                           )}
                         <p
-                          className="text-base leading-loose mb-3 space-y-p"
+                          className="text-base leading-relaxed mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.english_translation,
                           }}
@@ -542,7 +542,7 @@ export default function StoryDetail({ data, Id }) {
                           ADDITIONAL INFORMATION
                         </h3>
                         <p
-                          className="text-base leading-loose mb-3 space-y-p"
+                          className="text-base leading-relaxed mb-3 space-y-p"
                           dangerouslySetInnerHTML={{
                             __html: data.canonical_story_research_note,
                           }}
@@ -557,7 +557,7 @@ export default function StoryDetail({ data, Id }) {
                             TO CITE THIS TRANSLATION
                           </h3>
                           <p
-                            className="text-base leading-loose mb-3 space-y-p"
+                            className="text-base leading-relaxed mb-3 space-y-p"
                             dangerouslySetInnerHTML={{
                               __html: cityThisTranslation(),
                             }}
