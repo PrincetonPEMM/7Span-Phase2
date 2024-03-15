@@ -23,7 +23,7 @@ const PaintingDetail = ({ data }) => {
 
   const addPhrase = () => {
     if (data.ms_location_note.includes("Tigray"))
-      return "likely made in Tigray and";
+      return "likely made in Tigray, Northern Ethiopia, and";
     else if (data.ms_location_note.includes("Eritrea"))
       return "likely made in Eritrea and";
     else if (data.ms_location_note.includes("Shoa"))
@@ -35,9 +35,9 @@ const PaintingDetail = ({ data }) => {
     else if (data.ms_location_note.includes("Gurage"))
       return "likely made in Gurage, Southern Ethiopia, and";
     else if (data.ms_location_note.includes("Magdala"))
-      return "taken from the King Tewodros's royal library at Magdala, Southern Ethiopia";
+      return "taken from King Tewodros's royal library, and at Magdala, Southern Ethiopia";
     else if (data.ms_location_note.includes("Gondar"))
-      return "likely made in Gondar, Western Ethiopia";
+      return "likely made in Gondar, Western Ethiopia, and";
     else if (data.ms_location_note.includes("Gojjam"))
       return "likely made in Gojjam, Western Ethiopia, and";
     else if (data.ms_location_note.includes("Tana"))
