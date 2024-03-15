@@ -1,6 +1,5 @@
-import React from "react";
-import PaintingDetail from "../../components/PaintingDetail";
 import Script from "next/script";
+import PaintingDetail from "../../components/PaintingDetail";
 
 export const dynamic = "force-dynamic";
 
