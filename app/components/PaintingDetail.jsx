@@ -35,7 +35,7 @@ const PaintingDetail = ({ data }) => {
     else if (data.ms_location_note.includes("Gurage"))
       return "likely made in <b>Gurage, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Magdala"))
-      return "taken from King Tewodros's royal library, and at <b>Magdala, Southern Ethiopia</b>, and";
+      return "taken from the King Tewodros's royal library at <b>Magdala, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Gondar"))
       return "likely made in <b>Gondar, Western Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Gojjam"))
