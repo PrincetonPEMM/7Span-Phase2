@@ -23,25 +23,25 @@ const PaintingDetail = ({ data }) => {
 
   const addPhrase = () => {
     if (data.ms_location_note.includes("Tigray"))
-      return "likely made in Tigray, Northern Ethiopia, and";
+      return "likely made in <b>Tigray, Northern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Eritrea"))
-      return "likely made in Eritrea and";
+      return "likely made in <b>Eritrea</b> and";
     else if (data.ms_location_note.includes("Shoa"))
-      return "likely made in Shoa, Southern Ethiopia, and";
+      return "likely made in <b>Shoa, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Wallo"))
-      return "likely made in Wallo, Southern Ethiopia, and";
+      return "likely made in <b>Wallo, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Addis Ababa"))
-      return "likely made in Addis Ababa, Southern Ethiopia, and";
+      return "likely made in <b>Addis Ababa, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Gurage"))
-      return "likely made in Gurage, Southern Ethiopia, and";
+      return "likely made in <b>Gurage, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Magdala"))
-      return "taken from King Tewodros's royal library, and at Magdala, Southern Ethiopia";
+      return "taken from King Tewodros's royal library, and at <b>Magdala, Southern Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Gondar"))
-      return "likely made in Gondar, Western Ethiopia, and";
+      return "likely made in <b>Gondar, Western Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Gojjam"))
-      return "likely made in Gojjam, Western Ethiopia, and";
+      return "likely made in <b>Gojjam, Western Ethiopia</b>, and";
     else if (data.ms_location_note.includes("Tana"))
-      return "likely made in Lake Tana, Western Ethiopia, and";
+      return "likely made in <b>Lake Tana, Western Ethiopia</b>, and";
     else return "";
   };
 
