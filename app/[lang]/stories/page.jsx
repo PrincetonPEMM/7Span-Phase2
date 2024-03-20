@@ -13,14 +13,15 @@ const StoryPage = async ({ params }) => {
 
   const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
 
+  const needToTranslateInThisLangauge =
+    selectedLanguage.translated_pages.includes("/stories")
+      ? params.lang
+      : i18n.defaultLocale;
+
   const localStr = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${needToTranslateInThisLangauge}`
   );
   const localData = await localStr.json();
-
-  const lang = selectedLanguage.translated_pages.includes("/stories")
-    ? params.lang
-    : i18n.defaultLocale;
 
   return (
     <main>
@@ -34,7 +35,7 @@ const StoryPage = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Stories localData={localData} lang={lang} />;
+      <Stories localData={localData} lang={needToTranslateInThisLangauge} />;
     </main>
   );
 };

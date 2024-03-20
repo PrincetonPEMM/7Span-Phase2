@@ -14,19 +14,20 @@ export default async function Home(props) {
     (tt) => tt.code === props.params.lang
   )[0];
 
+  const needToTranslateInThisLangauge =
+    selectedLanguage.translated_pages.includes("/")
+      ? props.params.lang
+      : i18n.defaultLocale;
+
   let localData = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${props.params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${needToTranslateInThisLangauge}`
   );
 
   localData = await localData.json();
 
   let result = await client.request(readItems("home", { fields: ["*.*.*"] }));
   let resultTran = result.translations.filter(
-    (itm) =>
-      itm.languages_code.code ===
-      (selectedLanguage.translated_pages.includes("/")
-        ? props.params.lang
-        : i18n.defaultLocale)
+    (itm) => itm.languages_code.code === needToTranslateInThisLangauge
   );
 
   result = { ...result, ...resultTran[0] };

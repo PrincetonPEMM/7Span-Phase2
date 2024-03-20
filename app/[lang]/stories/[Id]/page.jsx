@@ -15,19 +15,20 @@ const Page = async ({ params }) => {
 
   const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
 
+  const needToTranslateInThisLangauge =
+    selectedLanguage.translated_pages.includes("/stories/id")
+      ? params.lang
+      : i18n.defaultLocale;
+
   let localData = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${needToTranslateInThisLangauge}`
   );
 
   localData = await localData.json();
 
-  const lang = selectedLanguage.translated_pages.includes("/stories/id")
-    ? params.lang
-    : i18n.defaultLocale;
-
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${needToTranslateInThisLangauge}`
     );
 
     data = await response.json();

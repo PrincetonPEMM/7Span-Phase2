@@ -12,17 +12,18 @@ const Page = async ({ params }) => {
   );
   const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
 
-  const lang = selectedLanguage.translated_pages.includes("/paintings")
-    ? params.lang
-    : i18n.defaultLocale;
+  const needToTranslateInThisLangauge =
+    selectedLanguage.translated_pages.includes("/paintings")
+      ? params.lang
+      : i18n.defaultLocale;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters?language=${lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/filters?language=${needToTranslateInThisLangauge}`
   );
   const filters = await res.json();
 
   const localStr = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${needToTranslateInThisLangauge}`
   );
   const localData = await localStr.json();
 
@@ -38,7 +39,7 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Paintings {...filters} localData={localData} lang={lang} />
+      <Paintings {...filters} localData={localData} lang={needToTranslateInThisLangauge} />
     </main>
   );
 };

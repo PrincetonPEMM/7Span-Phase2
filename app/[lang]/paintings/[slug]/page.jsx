@@ -16,13 +16,14 @@ const Page = async ({ params }) => {
   );
   const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
 
-  const lang = selectedLanguage.translated_pages.includes("/paintings/id")
-    ? params.lang
-    : i18n.defaultLocale;
+  const needToTranslateInThisLangauge =
+    selectedLanguage.translated_pages.includes("/paintings/id")
+      ? params.lang
+      : i18n.defaultLocale;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/${slug}?language=${lang}`
+      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/${slug}?language=${needToTranslateInThisLangauge}`
     );
 
     data = await response.json();
@@ -31,7 +32,7 @@ const Page = async ({ params }) => {
   }
 
   const localStr = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${needToTranslateInThisLangauge}`
   );
   const localData = await localStr.json();
 
@@ -47,7 +48,7 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <PaintingDetail data={data[0]} localData={localData} lang={lang} />
+      <PaintingDetail data={data[0]} localData={localData} lang={needToTranslateInThisLangauge} />
     </main>
   );
 };
