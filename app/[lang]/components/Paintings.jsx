@@ -413,6 +413,7 @@ const Paintings = ({
               onPageChange={(num) => {
                 setPage(num);
               }}
+              localData={localData}
             />
           </div>
           <div className="lg:col-span-1 my-3 sm:my-0">
