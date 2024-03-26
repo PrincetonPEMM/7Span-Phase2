@@ -2,10 +2,9 @@
 import MdiChevronDoubleUp from "@/assets/icons/CilSortAscending";
 import MdiChevronDoubleDown from "@/assets/icons/CilSortDescending";
 import PhArrowsDownUpFill from "@/assets/icons/PhArrowsDownUpFill";
-import { MANUSCRIPT_DETAIL } from "@/utils/constant";
-import { MANUSCRIPTS, STORIES } from "@/utils/constant";
+import { MANUSCRIPTS, MANUSCRIPT_DETAIL, STORIES } from "@/utils/constant";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import { Pagination } from "./Pagination";
 
 const Table = ({

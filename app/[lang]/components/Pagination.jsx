@@ -1,10 +1,9 @@
-import MdiArrowUp from "@/assets/icons/MdiArrowUp";
-import MdiChevronRight from "@/assets/icons/MdiChevronRight";
+import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
+import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
 import MdiChevronLeft from "@/assets/icons/MdiChevronLeft";
+import MdiChevronRight from "@/assets/icons/MdiChevronRight";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
-import MdiChevronDoubleRight from "@/assets/icons/MdiChevronDoubleRight";
-import MdiChevronDoubleLeft from "@/assets/icons/MdiChevronDoubleLeft";
 
 export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
   let pageCount = Math.ceil(meta.total / meta.per_page);
@@ -24,53 +23,13 @@ export const TablePagination = ({ meta, isOpen, onPageChange, ...rest }) => {
     </>
   );
 };
-// export const PaginationLoader = () => {
-//   return (
-//     <>
-//       <div className="relative h-10">
-//         <div className="mb-4 flex h-1.5 overflow-hidden text-xs">
-//           <div
-//             style={{ width: "100%" }}
-//             className="h-full w-0 animate-ping bg-blue-500"
-//           ></div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-// const NextPage = ({ meta }) => {
-//   return (
-//     <>
-//       <span
-//         className={`flex h-10 min-w-[50px] items-center justify-center p-2 text-base ${
-//           meta.current_page === meta.last_page
-//             ? " text-slate-300"
-//             : "text-primary-400"
-//         }`}
-//       >
-//         <MdiArrowUp className="h-6 w-6 rotate-90" />
-//       </span>
-//     </>
-//   );
-// };
-// const PrevPage = ({ meta }) => {
-//   return (
-//     <>
-//       <span
-//         className={`flex h-10 min-w-[50px] items-center justify-center p-2 text-base ${
-//           meta.current_page === 1 ? " text-slate-300" : "text-primary-400"
-//         }`}
-//       >
-//         <MdiArrowUp className="h-6 w-6 -rotate-90" />
-//       </span>
-//     </>
-//   );
-// };
+
 function CustomPagination({
   className,
   currentPage,
   totalPages,
   onPageChange,
+  localData,
 }) {
   const [inputValue, setInputValue] = useState(currentPage);
   const handlePageChange = (newPage) => {
@@ -143,7 +102,7 @@ function CustomPagination({
 
       {/* pagination input value here  */}
       <label
-        area-label={`Showing result of page ${inputValue} of ${totalPages}`}
+        area-label={`${localData?.showing_result_of_page} ${inputValue} ${localData?.of} ${totalPages}`}
       >
         <input
           type="number"
@@ -156,7 +115,7 @@ function CustomPagination({
       </label>
 
       <span className="page-total text-primary-600 flex-none">
-        of {totalPages ? totalPages : 0}
+        {localData?.of} {totalPages ? totalPages : 0}
       </span>
       <button
         className={`pagination-button ${

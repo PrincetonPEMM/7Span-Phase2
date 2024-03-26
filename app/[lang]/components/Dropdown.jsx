@@ -11,6 +11,7 @@ const Dropdown = ({
   title,
   isMultiple = false,
   isRedirection = false,
+  localData,
 }) => {
   const route = useRouter();
   const [flag, setFlag] = useState(true);
@@ -25,9 +26,9 @@ const Dropdown = ({
           let ulist;
           if (
             [
-              "Date of Paintings",
-              "Digital Quality",
-              "Date of Manuscript",
+              localData?.date_of_paintings,
+              localData?.digital_quality,
+              localData?.date_of_manuscript,
             ].includes(title)
           ) {
             const result = [];
@@ -57,7 +58,10 @@ const Dropdown = ({
               "text-orange-400"
             } `}
           >
-            {["Date of Paintings", "Date of Manuscript"].includes(title)
+            {[
+              localData?.date_of_paintings,
+              localData?.date_of_manuscript,
+            ].includes(title)
               ? title
               : selected?.value
               ? selected?.value
@@ -97,9 +101,9 @@ const Dropdown = ({
                   let isSelected = false;
                   if (
                     [
-                      "Date of Paintings",
-                      "Digital Quality",
-                      "Date of Manuscript",
+                      localData?.date_of_paintings,
+                      localData?.digital_quality,
+                      localData?.date_of_manuscript,
                     ].includes(title)
                   )
                     isSelected = Boolean(
