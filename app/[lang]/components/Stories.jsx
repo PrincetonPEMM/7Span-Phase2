@@ -661,6 +661,7 @@ const Stories = ({ localData, lang }) => {
                 setPage(num);
                 setExpandedRows([]);
               }}
+              localData={localData}
             />
           </div>
           <div

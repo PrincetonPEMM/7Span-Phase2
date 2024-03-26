@@ -273,6 +273,7 @@ const Paintings = ({
                   }}
                   options={dateOfPainting}
                   isMultiple={true}
+                  localData={localData}
                 />
               </div>
               <div>
@@ -287,6 +288,7 @@ const Paintings = ({
                   }}
                   options={ethiopianRegion}
                   isMultiple={false}
+                  localData={localData}
                 />
               </div>
               <div>
@@ -308,6 +310,7 @@ const Paintings = ({
                   }}
                   options={paintingInColor}
                   isMultiple={true}
+                  localData={localData}
                 />
               </div>
               <div>
@@ -322,6 +325,7 @@ const Paintings = ({
                   }}
                   options={typeOfStory}
                   isMultiple={false}
+                  localData={localData}
                 />
               </div>
               <div>
@@ -336,6 +340,7 @@ const Paintings = ({
                   }}
                   options={institution}
                   isMultiple={false}
+                  localData={localData}
                 />
               </div>
               <div className="text-center w-full md:text-left">
@@ -428,10 +433,11 @@ const Paintings = ({
           </div>
           <div className="lg:col-span-1">
             <Dropdown
-              title="All Paintings"
+              title={localData?.all_paintings}
               options={paintingBy()}
               isMultiple={false}
               isRedirection={true}
+              localData={localData}
             />
           </div>
         </div>
@@ -449,6 +455,7 @@ const Paintings = ({
                 )}
                 options={dateOfPainting}
                 isMultiple={true}
+                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
@@ -458,6 +465,7 @@ const Paintings = ({
                 setSelected={setEthiopianRegions}
                 options={ethiopianRegion}
                 isMultiple={false}
+                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
@@ -473,6 +481,7 @@ const Paintings = ({
                 }}
                 options={paintingInColor}
                 isMultiple={true}
+                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-1 font-body hidden lg:block">
@@ -482,6 +491,7 @@ const Paintings = ({
                 setSelected={setStoryType}
                 options={typeOfStory}
                 isMultiple={false}
+                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-2 font-body hidden lg:block ">
@@ -491,6 +501,7 @@ const Paintings = ({
                 setSelected={setArchiveOfPainting}
                 options={institution}
                 isMultiple={false}
+                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-1 text-center w-full md:text-left hidden lg:block">
@@ -541,23 +552,6 @@ const Paintings = ({
             </div>
           )
         )}
-        {/* <TablePagination
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-            page: page,
-          }}
-          isOpen={true}
-          onPageChange={(num) => {
-            setPage(num);
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-          }}
-        /> */}
       </div>
     </div>
   );

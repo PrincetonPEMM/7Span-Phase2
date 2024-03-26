@@ -39,7 +39,11 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Paintings {...filters} localData={localData} lang={needToTranslateInThisLangauge} />
+      <Paintings
+        {...filters}
+        localData={localData}
+        lang={needToTranslateInThisLangauge}
+      />
     </main>
   );
 };
