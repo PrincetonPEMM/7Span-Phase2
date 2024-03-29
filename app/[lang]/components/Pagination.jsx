@@ -29,7 +29,7 @@ function CustomPagination({
   currentPage,
   totalPages,
   onPageChange,
-  localData = { of: "of", showing_result_of_page: "Showing result of Ppage" },
+  localData = { of: "of", showing_result_of_page: "Showing result of page" },
 }) {
   const [inputValue, setInputValue] = useState(currentPage);
   const handlePageChange = (newPage) => {
