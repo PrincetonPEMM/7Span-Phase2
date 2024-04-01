@@ -16,6 +16,7 @@ import CustomPagination from "./Pagination";
 import PaintingCard from "./PaintingCard";
 import FilterButton from "./form/FilterButton";
 import InputText from "./form/InputText";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 
 const Paintings = ({
   ethiopianRegion,
@@ -220,6 +221,38 @@ const Paintings = ({
       newInstitution: newInstitution[0],
     };
   }
+
+  const downloadPDF = async () => {
+    try {
+      const params = `${makeParamsArray(
+        "dateOfPainting",
+        dateOfPaintins
+      )}${makeParamsArray(
+        "paintingInColor",
+        paintingsInColorOnly
+      )}${makeParamsArray(
+        "typeOfStory",
+        Boolean(storyType) ? [storyType] : []
+      )}${makeParamsArray(
+        "ethiopianRegion",
+        Boolean(ethiopianRegions) ? [ethiopianRegions] : []
+      )}${makeParamsArray(
+        "institution",
+        Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}`;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/csv?${params}`
+      );
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div className="px-4 md:px-5">
       {/* <button
@@ -363,6 +396,9 @@ const Paintings = ({
                 >
                   {localData?.clear_all}
                 </button>
+                <button onClick={downloadPDF}>
+                    <HeroiconsArrowDownTray20Solid />
+                  </button>
               </div>
             </div>
           </div>
@@ -522,6 +558,9 @@ const Paintings = ({
               >
                 {localData?.clear_all}
               </button>
+              <button onClick={downloadPDF}>
+                  <HeroiconsArrowDownTray20Solid />
+                </button>
             </div>
           </div>
         </div>
