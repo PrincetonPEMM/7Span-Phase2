@@ -761,10 +761,10 @@ const ManuScripts = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-between gap-3 text-sm sm:flex 2xl:text-base">
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ${
+                toggleBtn ? "md:px-3" : "md:px-4"
               } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
                transition-colors lg:hover:transition-colors`}
               onClick={() => {
