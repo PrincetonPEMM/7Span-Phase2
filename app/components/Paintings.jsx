@@ -388,6 +388,7 @@ const Paintings = ({
                   >
                     Clear All
                   </button>
+<<<<<<< HEAD
                   {data.length > 0 && (
                     <button
                       onClick={downloadPDF}
@@ -396,6 +397,15 @@ const Paintings = ({
                       <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                     </button>
                   )}
+=======
+                  <button
+                    onClick={downloadPDF}
+                    disabled={!Boolean(data.length > 0)}
+                    className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                  >
+                    <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+                  </button>
+>>>>>>> 054e06f9e2a08ab4f9b0dd1bece04d9e221a8cc6
                 </div>
               </div>
             </div>
@@ -465,15 +475,14 @@ const Paintings = ({
                   isRedirection={true}
                 />
               </div>
-              {data.length > 0 && (
-                <button
-                  onClick={downloadPDF}
-                  className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-                >
-                  <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-                </button>
-              )}
-            </div>
+              <button
+                onClick={downloadPDF}
+                disabled={!Boolean(data.length > 0)}
+                className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              >
+                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+              </button>
+          
           </div>
           <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
             <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
