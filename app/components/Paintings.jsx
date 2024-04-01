@@ -1,4 +1,5 @@
 "use client";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
@@ -217,6 +218,37 @@ const Paintings = ({
     };
   }
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${makeParamsArray(
+        "dateOfPainting",
+        dateOfPaintins
+      )}${makeParamsArray(
+        "paintingInColor",
+        paintingsInColorOnly
+      )}${makeParamsArray(
+        "typeOfStory",
+        Boolean(storyType) ? [storyType] : []
+      )}${makeParamsArray(
+        "ethiopianRegion",
+        Boolean(ethiopianRegions) ? [ethiopianRegions] : []
+      )}${makeParamsArray(
+        "institution",
+        Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}`;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/csv?${params}`
+      );
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <>
       <div className="px-4 md:px-5">
@@ -356,6 +388,13 @@ const Paintings = ({
                   >
                     Clear All
                   </button>
+                  <button
+                    onClick={downloadPDF}
+                    disabled={!Boolean(data.length > 0)}
+                    className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                  >
+                    <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -363,8 +402,8 @@ const Paintings = ({
         )}
         {/* sidebar filter ENd  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
-          <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
-            <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
+          <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-7 gap-2 items-center justify-start mb-3">
+            <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-3">
               <legend
                 htmlFor="searchtitle"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -416,13 +455,22 @@ const Paintings = ({
                 Results: ({totalPage ? totalPage : 0} records)
               </div>
             </div>
-            <div className="lg:col-span-1">
-              <Dropdown
-                title="All Paintings"
-                options={paintingBy}
-                isMultiple={false}
-                isRedirection={true}
-              />
+            <div className="lg:col-span-1 grid grid-cols-3 gap-2">
+              <div className="col-span-2">
+                <Dropdown
+                  title="All Paintings"
+                  options={paintingBy}
+                  isMultiple={false}
+                  isRedirection={true}
+                />
+              </div>
+              <button
+                onClick={downloadPDF}
+                disabled={!Boolean(data.length > 0)}
+                className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              >
+                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+              </button>
             </div>
           </div>
           <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
