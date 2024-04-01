@@ -1,31 +1,30 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
-  initialPlaceItem,
-  storiesTableDetailView,
-  storiesTableTitleView,
-  initialfilterItem,
-  pagePerLimit,
   STORIES,
-  rangeSliderMinForStoriesStoriesPage,
+  initialOriginalLangItem,
+  initialPlaceItem,
+  initialTranslatedLangItem,
+  initialfilterItem,
+  minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
   rangeSliderMaxForStoriesStoriesPage,
   rangeSliderMinForManuscriptsStoriesPage,
-  rangeSliderMaxForManuscriptsStoriesPage,
   rangeSliderMinForPaintingsStoriesPage,
-  rangeSliderMaxForPaintingsStoriesPage,
-  initialOriginalLangItem,
-  initialTranslatedLangItem,
-  minSearchChar,
+  rangeSliderMinForStoriesStoriesPage,
+  storiesTableDetailView,
+  storiesTableTitleView,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
 const Stories = () => {
@@ -487,6 +486,71 @@ const Stories = () => {
     setFilterItem(newFilterItem);
   };
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "africanStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "miracleOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "lifeOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "mostIllustrated"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "earliestStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "popularStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "uniqueStories"
+      )}${getFilterFalsyValue(filterItem, "withHymn")}${getFilterFalsyValue(
+        filterItem,
+        "printOnly"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
+      )}${getFilterFalsyValue(filterItem, "readInChurch")}${getFilterFalsyValue(
+        filterItem,
+        "arabicOnly"
+      )}filters[vennArabic]=${vennArabic}&filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "origin",
+        placeItem
+      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+        "originalLanguages",
+        langOriginalItem
+      )}&${makeParamsArray(
+        "translatedLanguages",
+        langTranslatedItem
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withEnglishTranslation"
+      )}sort=${ascDescFil}&filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}
+    `;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/csv?${params}`
+      );
+
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div
       className={`story-page flex px-4 xl:px-5 pb-10 ${
@@ -618,7 +682,7 @@ const Stories = () => {
               }}
             />
           </fieldset>
-          <div className="w-full flex items-center justify-between sm:hidden">
+          <div className="w-full flex items-center justify-evenly sm:hidden">
             <div
               id="announce"
               aria-live="polite"
@@ -642,6 +706,11 @@ const Stories = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
+            {tableData.length > 0 && (
+              <button onClick={downloadPDF}>
+                <HeroiconsArrowDownTray20Solid />
+              </button>
+            )}
           </div>
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
             <CustomPagination
@@ -662,7 +731,7 @@ const Stories = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 items-center justify-end gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 items-center justify-evenly gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
@@ -678,6 +747,11 @@ const Stories = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
+            {tableData.length > 0 && (
+              <button onClick={downloadPDF}>
+                <HeroiconsArrowDownTray20Solid />
+              </button>
+            )}
           </div>
         </div>
         {/* <div

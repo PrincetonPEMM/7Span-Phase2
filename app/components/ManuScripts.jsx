@@ -1,32 +1,31 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
-  initialPlaceItemManuScript,
-  manuscriptsTableDetailView,
-  manuscriptsTableTitleView,
-  pagePerLimit,
-  initialfilterItemManuScript,
   MANUSCRIPTS,
   initialOriginRegionManuScript,
-  rangeSliderMinDateOfCreationManuscriptsPage,
-  rangeSliderMaxDateOfCreationManuscriptsPage,
-  rangeSliderMinNoOfStoriesManuscriptsPage,
-  rangeSliderMaxNoOfStoriesManuscriptsPage,
-  rangeSliderMinNoOfPaintingsManuscriptsPage,
-  rangeSliderMaxNoOfPaintingsManuscriptsPage,
-  rangeSliderMinUniqueStoriesManuscriptsPage,
-  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  initialPlaceItemManuScript,
+  initialfilterItemManuScript,
+  manuscriptsTableDetailView,
+  manuscriptsTableTitleView,
   minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
 const ManuScripts = () => {
@@ -491,6 +490,63 @@ const ManuScripts = () => {
     setFilterItem(newFilterItem);
   };
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withOnlineDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withColorDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withUniqueStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "oldestManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "gaazManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
+        filterItem,
+        "manyStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "fewStories"
+      )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
+        "lastKnownLocation",
+        placeItem
+      )}&${makeParamsArray(
+        "knownOriginRegion",
+        originRegion
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}
+    `;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/csv?${params}`
+      );
+
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div
       className={`flex px-4 md:px-5 pb-10 manuscript-page ${
@@ -673,6 +729,11 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
+            {tableData.length > 0 && (
+              <button onClick={downloadPDF}>
+                <HeroiconsArrowDownTray20Solid />
+              </button>
+            )}
           </div>
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
             <CustomPagination
@@ -694,7 +755,7 @@ const ManuScripts = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${
                 toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
@@ -711,6 +772,11 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
+            {tableData.length > 0 && (
+              <button onClick={downloadPDF}>
+                <HeroiconsArrowDownTray20Solid />
+              </button>
+            )}
           </div>
         </div>
         {/* <div
