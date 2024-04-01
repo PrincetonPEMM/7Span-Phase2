@@ -1,4 +1,5 @@
 "use client";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
   STORIES,
   initialOriginalLangItem,
@@ -25,7 +26,6 @@ import Sidebar from "../components/Sidebar";
 import Table from "../components/Table";
 import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
-import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 
 const Stories = ({ localData, lang }) => {
   const params = useSearchParams();
@@ -717,11 +717,16 @@ const Stories = ({ localData, lang }) => {
             >
               {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
-             <button onClick={downloadPDF}
-            disabled={!Boolean(tableData.length > 0)}
-            className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : " text-gray-600 border-gray-600  "
+              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
             >
-              <HeroiconsArrowDownTray20Solid />
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
@@ -766,11 +771,16 @@ const Stories = ({ localData, lang }) => {
             >
               {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
-            <button onClick={downloadPDF}
-                        disabled={!Boolean(tableData.length > 0)}
-                        className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600 "
+              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
             >
-              <HeroiconsArrowDownTray20Solid />
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
         </div>

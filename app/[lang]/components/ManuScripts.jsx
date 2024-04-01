@@ -1,34 +1,32 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
-  initialPlaceItemManuScript,
-  manuscriptsTableDetailView,
-  manuscriptsTableTitleView,
-  pagePerLimit,
-  initialfilterItemManuScript,
   MANUSCRIPTS,
   initialOriginRegionManuScript,
-  rangeSliderMinDateOfCreationManuscriptsPage,
-  rangeSliderMaxDateOfCreationManuscriptsPage,
-  rangeSliderMinNoOfStoriesManuscriptsPage,
-  rangeSliderMaxNoOfStoriesManuscriptsPage,
-  rangeSliderMinNoOfPaintingsManuscriptsPage,
-  rangeSliderMaxNoOfPaintingsManuscriptsPage,
-  rangeSliderMinUniqueStoriesManuscriptsPage,
-  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  initialPlaceItemManuScript,
+  initialfilterItemManuScript,
+  manuscriptsTableDetailView,
+  manuscriptsTableTitleView,
   minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
-import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 
 const ManuScripts = () => {
   const params = useSearchParams();
@@ -549,7 +547,6 @@ const ManuScripts = () => {
     }
   };
 
-
   return (
     <div
       className={`flex px-4 md:px-5 pb-10 manuscript-page ${
@@ -732,11 +729,16 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            <button onClick={downloadPDF}
-           disabled={!Boolean(tableData.length > 0)}
-           className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-           >
-              <HeroiconsArrowDownTray20Solid />
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600  "
+              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
@@ -779,7 +781,11 @@ const ManuScripts = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600 "
+              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>

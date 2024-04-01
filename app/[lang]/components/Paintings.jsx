@@ -1,4 +1,5 @@
 "use client";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import MdiClose from "@/assets/icons/MdiClose";
 import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
@@ -16,7 +17,6 @@ import CustomPagination from "./Pagination";
 import PaintingCard from "./PaintingCard";
 import FilterButton from "./form/FilterButton";
 import InputText from "./form/InputText";
-import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 
 const Paintings = ({
   ethiopianRegion,
@@ -397,12 +397,16 @@ const Paintings = ({
                   {localData?.clear_all}
                 </button>
                 <button
-                    onClick={downloadPDF}
-                    disabled={!Boolean(data.length > 0)}
-                    className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-                  >
-                    <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-                  </button>
+                  onClick={downloadPDF}
+                  disabled={!Boolean(data.length > 0)}
+                  className={` ${
+                    Boolean(data.length > 0)
+                      ? " border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                      : " text-gray-600 border-gray-600 "
+                  } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
+                >
+                  <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+                </button>
               </div>
             </div>
           </div>
@@ -482,12 +486,16 @@ const Paintings = ({
             />
           </div>
           <button
-                onClick={downloadPDF}
-                disabled={!Boolean(data.length > 0)}
-                className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-              >
-                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-              </button>
+            onClick={downloadPDF}
+            disabled={!Boolean(data.length > 0)}
+            className={` ${
+              Boolean(data.length > 0)
+                ? " hover:bg-primary-600 text-primary-600 hover:text-offWhite-500 border-primary-600 "
+                : " text-gray-600 border-gray-600  "
+            }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full  duration-300 hover:duration-300 hover:transition-colors`}
+          >
+            <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+          </button>
         </div>
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
           <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
@@ -569,7 +577,6 @@ const Paintings = ({
               >
                 {localData?.clear_all}
               </button>
-              
             </div>
           </div>
         </div>
