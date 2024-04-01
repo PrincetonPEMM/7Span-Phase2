@@ -732,9 +732,9 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            <button onClick={downloadPDF}>
+           {tableData.length > 0 &&  <button onClick={downloadPDF}>
               <HeroiconsArrowDownTray20Solid />
-            </button>
+            </button>}
           </div>
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
             <CustomPagination
@@ -773,9 +773,9 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            <button onClick={downloadPDF}>
+            {tableData.length>0 && <button onClick={downloadPDF}>
               <HeroiconsArrowDownTray20Solid />
-            </button>
+            </button>}
           </div>
         </div>
         {/* <div

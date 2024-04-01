@@ -717,9 +717,9 @@ const Stories = ({ localData, lang }) => {
             >
               {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
-            <button onClick={downloadPDF}>
+            {tableData.length>0 && <button onClick={downloadPDF}>
               <HeroiconsArrowDownTray20Solid />
-            </button>
+            </button>}
           </div>
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
             <CustomPagination
@@ -763,9 +763,9 @@ const Stories = ({ localData, lang }) => {
             >
               {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
-            <button onClick={downloadPDF}>
+            {tableData.length>0 && <button onClick={downloadPDF}>
               <HeroiconsArrowDownTray20Solid />
-            </button>
+            </button>}
           </div>
         </div>
         {/* <div

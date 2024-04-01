@@ -396,9 +396,9 @@ const Paintings = ({
                 >
                   {localData?.clear_all}
                 </button>
-                <button onClick={downloadPDF}>
+                {data.length>0 && <button onClick={downloadPDF}>
                     <HeroiconsArrowDownTray20Solid />
-                  </button>
+                  </button>}
               </div>
             </div>
           </div>
@@ -558,9 +558,9 @@ const Paintings = ({
               >
                 {localData?.clear_all}
               </button>
-              <button onClick={downloadPDF}>
+              {data.length>0 && <button onClick={downloadPDF}>
                   <HeroiconsArrowDownTray20Solid />
-                </button>
+                </button>}
             </div>
           </div>
         </div>
