@@ -403,7 +403,7 @@ const Paintings = ({
                     Boolean(data.length > 0)
                       ? " border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
                       : " text-gray-600 border-gray-600 "
-                  } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
+                  } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
                 >
                   <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                 </button>
@@ -414,8 +414,8 @@ const Paintings = ({
       )}
       {/* sidebar filter End  */}
       <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
-        <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-6 gap-2 items-center justify-start mb-3">
-          <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-2">
+        <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-7 gap-2 items-center justify-start mb-3">
+          <fieldset className="relative w-full sm:col-span-4 lg:max-w-4xl lg:col-span-3">
             <legend
               htmlFor="searchtitle"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -476,26 +476,29 @@ const Paintings = ({
               })()}
             </div>
           </div>
-          <div className="lg:col-span-1">
-            <Dropdown
-              title={localData?.all_paintings}
-              options={paintingBy()}
-              isMultiple={false}
-              isRedirection={true}
-              localData={localData}
-            />
+          <div className="lg:col-span-1 grid grid-cols-3 gap-2">
+            <div className="col-span-2">
+              <Dropdown
+                title={localData?.all_paintings}
+                options={paintingBy()}
+                isMultiple={false}
+                isRedirection={true}
+                localData={localData}
+              />
+            </div>
+
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(data.length > 0)}
+              className={` ${
+                Boolean(data.length > 0)
+                  ? " hover:bg-primary-600 text-primary-600 hover:text-offWhite-500 border-primary-600 "
+                  : " text-gray-600 border-gray-600  "
+              }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md duration-300 hover:duration-300 hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
           </div>
-          <button
-            onClick={downloadPDF}
-            disabled={!Boolean(data.length > 0)}
-            className={` ${
-              Boolean(data.length > 0)
-                ? " hover:bg-primary-600 text-primary-600 hover:text-offWhite-500 border-primary-600 "
-                : " text-gray-600 border-gray-600  "
-            }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full  duration-300 hover:duration-300 hover:transition-colors`}
-          >
-            <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-          </button>
         </div>
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
           <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">

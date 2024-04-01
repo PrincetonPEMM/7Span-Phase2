@@ -715,9 +715,9 @@ const ManuScripts = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:px-3" : "md:px-4"
+              } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -736,7 +736,7 @@ const ManuScripts = () => {
                 Boolean(tableData.length > 0)
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
                   : "text-gray-600 border-gray-600  "
-              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
@@ -761,11 +761,11 @@ const ManuScripts = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-between gap-3 text-sm sm:flex 2xl:text-base">
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ${
+                toggleBtn ? " md:px-3" : "md:px-4"
+              } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
                transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
@@ -785,7 +785,7 @@ const ManuScripts = () => {
                 Boolean(tableData.length > 0)
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
                   : "text-gray-600 border-gray-600 "
-              } p-1  transition-colors border-2 rounded-full  duration-300 hover:duration-300  hover:transition-colors`}
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
