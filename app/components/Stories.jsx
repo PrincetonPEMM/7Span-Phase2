@@ -706,14 +706,13 @@ const Stories = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            {tableData.length > 0 && (
-              <button
-                onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-              >
-                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-              </button>
-            )}
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 col-span-2 sm:mt-0">
             <CustomPagination
@@ -750,14 +749,14 @@ const Stories = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            {tableData.length > 0 && (
-              <button
-                onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-              >
-                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-              </button>
-            )}
+
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
           </div>
         </div>
         {/* <div
