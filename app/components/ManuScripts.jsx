@@ -732,7 +732,7 @@ const ManuScripts = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
@@ -757,10 +757,10 @@ const ManuScripts = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-between gap-3 text-sm sm:flex 2xl:text-base">
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ${
+                toggleBtn ? "md:px-3" : "md:px-4"
               } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
                transition-colors lg:hover:transition-colors`}
               onClick={() => {
@@ -777,7 +777,7 @@ const ManuScripts = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>

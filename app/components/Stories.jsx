@@ -709,8 +709,7 @@ const Stories = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-            
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
@@ -750,25 +749,14 @@ const Stories = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-<<<<<<< HEAD
-            {tableData.length > 0 && (
-              <button
-                onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-              >
-                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-              </button>
-            )}
-=======
 
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
->>>>>>> 054e06f9e2a08ab4f9b0dd1bece04d9e221a8cc6
           </div>
         </div>
         {/* <div
