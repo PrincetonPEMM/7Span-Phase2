@@ -235,8 +235,9 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
-      )}filters[search]=${search.length > minSearchChar ? search : ""
-        }&language=${"en-us"}`;
+      )}filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/csv?${params}`
@@ -274,10 +275,11 @@ const Paintings = ({
             }}
           >
             <div
-              className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-96 right-auto fixed transition-transform duration-700  ${menuCollapse
+              className={`z-50 justify-between bg-offWhite-500 items-center p-6 inset-y-0 w-96 right-auto fixed transition-transform duration-700  ${
+                menuCollapse
                   ? "open -translate-x-5  transform"
                   : "-translate-x-96 close transform"
-                } `}
+              } `}
             >
               <button
                 className="text-right block "
@@ -389,10 +391,11 @@ const Paintings = ({
                   <button
                     onClick={downloadPDF}
                     disabled={!Boolean(data.length > 0)}
-                    className={` ${Boolean(data.length > 0)
+                    className={` ${
+                      Boolean(data.length > 0)
                         ? " border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
                         : " text-gray-600 border-gray-600 "
-                      } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+                    } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
                   >
                     <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                   </button>
@@ -468,14 +471,14 @@ const Paintings = ({
               <button
                 onClick={downloadPDF}
                 disabled={!Boolean(data.length > 0)}
-                className={` ${Boolean(data.length > 0)
+                className={` ${
+                  Boolean(data.length > 0)
                     ? " hover:bg-primary-600 text-primary-600 hover:text-offWhite-500 border-primary-600 "
                     : " text-gray-600 border-gray-600  "
-                  }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md  duration-300 hover:duration-300 hover:transition-colors`}
+                }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md  duration-300 hover:duration-300 hover:transition-colors`}
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
-
             </div>
           </div>
 

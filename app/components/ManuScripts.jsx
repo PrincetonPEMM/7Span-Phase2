@@ -705,7 +705,7 @@ const ManuScripts = () => {
               Search manuscript names
             </label> */}
           </div>
-          <div className="w-full flex items-center justify-between sm:hidden">
+          <div className="w-full flex items-center justify-evenly sm:hidden">
             <div
               id="announce"
               aria-live="polite"
@@ -737,7 +737,7 @@ const ManuScripts = () => {
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
                   : "text-gray-600 border-gray-600  "
               } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
-           >
+            >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
@@ -761,7 +761,7 @@ const ManuScripts = () => {
           >
             Results: {`(${totalPage ? totalPage : 0} records)`}
           </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-between gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ${
                 toggleBtn ? "md:px-3" : "md:px-4"
