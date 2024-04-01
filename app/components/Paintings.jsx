@@ -391,7 +391,7 @@ const Paintings = ({
                   {data.length > 0 && (
                     <button
                       onClick={downloadPDF}
-                      className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                      className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
                     >
                       <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                     </button>
@@ -468,7 +468,7 @@ const Paintings = ({
               {data.length > 0 && (
                 <button
                   onClick={downloadPDF}
-                  className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                  className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
                 >
                   <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                 </button>

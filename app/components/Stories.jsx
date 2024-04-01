@@ -692,8 +692,8 @@ const Stories = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 " : "md:py-3"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:py-2" : "md:py-2"
               } font-medium text-xs md:px-3 md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
@@ -709,7 +709,7 @@ const Stories = () => {
             {tableData.length > 0 && (
               <button
                 onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
@@ -736,8 +736,8 @@ const Stories = () => {
           </div>
           <div className="hidden w-full mt-2 items-center justify-between gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:py-2 md:px-3" : "md:py-2 md:px-4"
               } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
@@ -753,7 +753,7 @@ const Stories = () => {
             {tableData.length > 0 && (
               <button
                 onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>

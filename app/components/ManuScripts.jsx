@@ -715,8 +715,8 @@ const ManuScripts = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? " md:px-3" : " md:px-4"
               } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
@@ -732,7 +732,7 @@ const ManuScripts = () => {
             {tableData.length > 0 && (
               <button
                 onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
@@ -778,7 +778,7 @@ const ManuScripts = () => {
             {tableData.length > 0 && (
               <button
                 onClick={downloadPDF}
-                className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                className="p-1 border-primary-600 transition-colors border-2 rounded-md text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
