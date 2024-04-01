@@ -732,8 +732,12 @@ const ManuScripts = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
-            >
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600  "
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+           >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
@@ -777,7 +781,11 @@ const ManuScripts = () => {
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
-              className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600 "
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
