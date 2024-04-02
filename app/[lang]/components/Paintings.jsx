@@ -241,7 +241,7 @@ const Paintings = ({
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
       )}filters[search]=${
         search.length > minSearchChar ? search : ""
-      }&language=${"en-us"}`;
+      }&language=${lang}`;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/csv?${params}`

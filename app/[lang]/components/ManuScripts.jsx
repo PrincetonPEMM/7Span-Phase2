@@ -28,7 +28,7 @@ import Table from "../components/Table";
 import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
-const ManuScripts = () => {
+const ManuScripts = ({ lang }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -533,7 +533,7 @@ const ManuScripts = () => {
         originRegion
       )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
         search.length > minSearchChar ? search : ""
-      }&language=${"en-us"}
+      }&language=${lang}
     `;
 
       const response = await fetch(
