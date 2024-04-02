@@ -721,7 +721,7 @@ const ManuScripts = () => {
                 className={` ${
                   Boolean(tableData.length > 0)
                     ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                    : "text-gray-600 border-gray-600  "
+                    : "text-gray-600 border-gray-600  cursor-not-allowed"
                 } p-1  transition-colors border-2 rounded-md flex-none duration-300 hover:duration-300 w-8 hover:transition-colors`}
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
@@ -771,7 +771,7 @@ const ManuScripts = () => {
               className={` ${
                 Boolean(tableData.length > 0)
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                  : "text-gray-600 border-gray-600 "
+                  : "text-gray-400 border-gray-400 cursor-not-allowed"
               } p-1  transition-colors border-2 rounded-md duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
