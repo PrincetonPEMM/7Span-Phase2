@@ -406,8 +406,8 @@ const Paintings = ({
         )}
         {/* sidebar filter ENd  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
-          <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-7 gap-2 items-center justify-start mb-3">
-            <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-3">
+          <div className="mx-auto sm:grid pt-4 sm:grid-cols-6 font-body lg:grid-cols-9 gap-2 items-center justify-start mb-3">
+            <fieldset className="relative w-full sm:col-span-6 lg:max-w-4xl lg:col-span-3">
               <legend
                 htmlFor="searchtitle"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -439,7 +439,7 @@ const Paintings = ({
                 />
               )}
             </fieldset>
-            <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
+            <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 sm:pt-0">
               <CustomPagination
                 className="pagination-tablet"
                 currentPage={+page}
@@ -449,7 +449,7 @@ const Paintings = ({
                 }}
               />
             </div>
-            <div className="lg:col-span-1 my-3 sm:my-0">
+            <div className="col-span-2 my-3 sm:my-0 flex items-center space-x-4 justify-center">
               <div
                 id="announce"
                 aria-live="polite"
@@ -457,16 +457,6 @@ const Paintings = ({
                 className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
               >
                 Results: ({totalPage ? totalPage : 0} records)
-              </div>
-            </div>
-            <div className="lg:col-span-1 grid grid-cols-3 gap-2">
-              <div className="col-span-2">
-                <Dropdown
-                  title="All Paintings"
-                  options={paintingBy}
-                  isMultiple={false}
-                  isRedirection={true}
-                />
               </div>
               <button
                 onClick={downloadPDF}
@@ -479,6 +469,15 @@ const Paintings = ({
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
+            </div>
+
+            <div className="col-span-2">
+              <Dropdown
+                title="All Paintings"
+                options={paintingBy}
+                isMultiple={false}
+                isRedirection={true}
+              />
             </div>
           </div>
 
