@@ -1,12 +1,11 @@
-import React from "react";
 import ManuScripts from "../components/ManuScripts";
 
 export const dynamic = "force-dynamic";
 
-const page = () => {
+const page = ({ params }) => {
   return (
     <div>
-      <ManuScripts />
+      <ManuScripts lang={params.lang} />
     </div>
   );
 };

@@ -1,35 +1,34 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
-  initialPlaceItemManuScript,
-  manuscriptsTableDetailView,
-  manuscriptsTableTitleView,
-  pagePerLimit,
-  initialfilterItemManuScript,
   MANUSCRIPTS,
   initialOriginRegionManuScript,
-  rangeSliderMinDateOfCreationManuscriptsPage,
-  rangeSliderMaxDateOfCreationManuscriptsPage,
-  rangeSliderMinNoOfStoriesManuscriptsPage,
-  rangeSliderMaxNoOfStoriesManuscriptsPage,
-  rangeSliderMinNoOfPaintingsManuscriptsPage,
-  rangeSliderMaxNoOfPaintingsManuscriptsPage,
-  rangeSliderMinUniqueStoriesManuscriptsPage,
-  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  initialPlaceItemManuScript,
+  initialfilterItemManuScript,
+  manuscriptsTableDetailView,
+  manuscriptsTableTitleView,
   minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
+  rangeSliderMinNoOfPaintingsManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
+  rangeSliderMinUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
-const ManuScripts = () => {
+const ManuScripts = ({ lang }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -491,6 +490,63 @@ const ManuScripts = () => {
     setFilterItem(newFilterItem);
   };
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withOnlineDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withColorDigitalCopy"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withUniqueStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "oldestManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "arabicManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "gaazManuscript"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
+        filterItem,
+        "manyStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "fewStories"
+      )}filters[manuscriptCreationDate][gt]=${dateCreationMin}&filters[manuscriptCreationDate][lt]=${dateCreationMax}&${makeParamsArray(
+        "lastKnownLocation",
+        placeItem
+      )}&${makeParamsArray(
+        "knownOriginRegion",
+        originRegion
+      )}filters[manuscriptsWithStoryRange][gt]=${noOfStoriesMin}&filters[manuscriptsWithStoryRange][lt]=${noOfStoriesMax}&filters[manuscriptUniqueStories][gt]=${noOfUniqueMin}&filters[manuscriptUniqueStories][lt]=${noOfUniqueMax}&filters[manuscriptPaintingNumber][gt]=${noOfPaintingMin}&filters[manuscriptPaintingNumber][lt]=${noOfPaintingMax}&sort=${ascDescFil}&filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${lang}
+    `;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/csv?${params}`
+      );
+
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div
       className={`flex px-4 md:px-5 pb-10 manuscript-page ${
@@ -659,9 +715,20 @@ const ManuScripts = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-400 border-gray-400 cursor-not-allowed "
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
+            <button
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:px-3" : "md:px-4"
+              } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -685,33 +752,45 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <div
-            id="announce"
-            aria-live="polite"
-            results={`${totalPage ? totalPage : 0} records`}
-            className="hidden font-body sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs 
+
+          <div className="hidden w-full mt-2 sm:mt-0 items-center space-x-4 gap-3 text-sm sm:flex 2xl:text-base">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="hidden font-body sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs 
           sm:text-center"
-          >
-            Results: {`(${totalPage ? totalPage : 0} records)`}
-          </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-end gap-3 text-sm sm:flex 2xl:text-base">
-            <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
-               transition-colors lg:hover:transition-colors`}
-              onClick={() => {
-                setToggleBtn(!toggleBtn);
-                {
-                  !toggleBtn
-                    ? setTableHeader(manuscriptsTableDetailView)
-                    : setTableHeader(manuscriptsTableTitleView);
-                }
-              }}
             >
-              {toggleBtn ? "Detail view" : "Title View"}
+              Results: {`(${totalPage ? totalPage : 0} records)`}
+            </div>
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-400 border-gray-400  cursor-not-allowed"
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
+          <button
+            className={`hidden bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ml-auto sm:block ${
+              toggleBtn ? " md:px-3" : "md:px-4"
+            } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
+               transition-colors lg:hover:transition-colors`}
+            onClick={() => {
+              setToggleBtn(!toggleBtn);
+              {
+                !toggleBtn
+                  ? setTableHeader(manuscriptsTableDetailView)
+                  : setTableHeader(manuscriptsTableTitleView);
+              }
+            }}
+          >
+            {toggleBtn ? "Detail view" : "Title View"}
+          </button>
         </div>
         {/* <div
           className={`w-full h-screen ${

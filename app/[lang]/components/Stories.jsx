@@ -1,4 +1,5 @@
 "use client";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
   STORIES,
   initialOriginalLangItem,
@@ -487,6 +488,71 @@ const Stories = ({ localData, lang }) => {
     setFilterItem(newFilterItem);
   };
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "africanStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "miracleOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "lifeOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "mostIllustrated"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "earliestStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "popularStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "uniqueStories"
+      )}${getFilterFalsyValue(filterItem, "withHymn")}${getFilterFalsyValue(
+        filterItem,
+        "printOnly"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
+      )}${getFilterFalsyValue(filterItem, "readInChurch")}${getFilterFalsyValue(
+        filterItem,
+        "arabicOnly"
+      )}filters[vennArabic]=${vennArabic}&filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "origin",
+        placeItem
+      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+        "originalLanguages",
+        langOriginalItem
+      )}&${makeParamsArray(
+        "translatedLanguages",
+        langTranslatedItem
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withEnglishTranslation"
+      )}sort=${ascDescFil}&filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${lang}
+    `;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/csv?${params}`
+      );
+
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div
       className={`story-page flex px-4 xl:px-5 pb-10 ${
@@ -621,25 +687,40 @@ const Stories = ({ localData, lang }) => {
               }}
             />
           </fieldset>
-          <div className="w-full flex items-center justify-between sm:hidden">
-            <div
-              id="announce"
-              aria-live="polite"
-              results={(() => {
-                totalPage = totalPage ? totalPage : 0;
-                return eval(`\`${localData?.total_records}\``);
-              })()}
-              className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
-            >
-              {(() => {
-                totalPage = totalPage ? totalPage : 0;
-                return eval(`\`${localData?.results_total_records}\``);
-              })()}
+          <div className="w-full flex items-center justify-between sm:hidden space-x-1">
+            {/* Results and total records */}
+            <div className="flex items-center justify-between space-x-4">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.total_records}\``);
+                })()}
+                className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+              >
+                {(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.results_total_records}\``);
+                })()}
+              </div>
+              <button
+                onClick={downloadPDF}
+                disabled={!Boolean(tableData.length > 0)}
+                className={` ${
+                  Boolean(tableData.length > 0)
+                    ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                    : " text-gray-400 border-gray-400 cursor-not-allowed"
+                } p-1  transition-colors border-2 rounded-md duration-300 hover:duration-300 hover:transition-colors`}
+              >
+                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+              </button>
             </div>
+            {/* Button title view */}
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:px-3" : "md:px-4"
+              } font-medium text-xs sm:hidden block md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -664,37 +745,48 @@ const Stories = ({ localData, lang }) => {
               localData={localData}
             />
           </div>
-          <div
-            id="announce"
-            aria-live="polite"
-            results={(() => {
-              totalPage = totalPage ? totalPage : 0;
-              return eval(`\`${localData?.total_records}\``);
-            })()}
-            className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
-          >
-            {(() => {
-              totalPage = totalPage ? totalPage : 0;
-              return eval(`\`${localData?.results_total_records}\``);
-            })()}
-          </div>
-          <div className="hidden w-full mt-2 items-center justify-end gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
-            <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
-              onClick={() => {
-                setToggleBtn(!toggleBtn);
-                {
-                  !toggleBtn
-                    ? setTableHeader(storiesTableDetailView(localData))
-                    : setTableHeader(storiesTableTitleView(localData));
-                }
-              }}
+          <div className="hidden w-full mt-2 items-center space-x-4 gap-1 text-sm sm:mt-0 sm:flex 2xl:text-base">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.total_records}\``);
+              })()}
+              className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
             >
-              {toggleBtn ? localData?.detail_view : localData?.title_view}
+              {(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.results_total_records}\``);
+              })()}
+            </div>
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-400 border-gray-400  cursor-not-allowed"
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
+          <button
+            className={`bg-primary-500 text-white max-w-fit w-auto ml-auto px-2 py-2 ${
+              toggleBtn ? "md:px-3" : "md:px-4"
+            } font-medium text-xs md:text-sm rounded-md hidden sm:block lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+            onClick={() => {
+              setToggleBtn(!toggleBtn);
+              {
+                !toggleBtn
+                  ? setTableHeader(storiesTableDetailView(localData))
+                  : setTableHeader(storiesTableTitleView(localData));
+              }
+            }}
+          >
+            {toggleBtn ? localData?.detail_view : localData?.title_view}
+          </button>
         </div>
         {/* <div
           className={`w-full table-wrap  ${
