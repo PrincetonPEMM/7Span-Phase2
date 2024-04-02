@@ -391,7 +391,11 @@ const Paintings = ({
                   <button
                     onClick={downloadPDF}
                     disabled={!Boolean(data.length > 0)}
-                    className="p-1 border-primary-600 transition-colors border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                    className={` ${
+                      Boolean(data.length > 0)
+                        ? " border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                        : " text-gray-600 border-gray-600 "
+                    } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
                   >
                     <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
                   </button>
@@ -402,8 +406,8 @@ const Paintings = ({
         )}
         {/* sidebar filter ENd  */}
         <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
-          <div className="mx-auto sm:grid pt-4 sm:grid-cols-4 font-body lg:grid-cols-7 gap-2 items-center justify-start mb-3">
-            <fieldset className="relative w-full sm:col-span-4 md:max-w-4xl lg:col-span-3">
+          <div className="mx-auto sm:grid pt-4 sm:grid-cols-6 font-body lg:grid-cols-9 gap-2 items-center justify-start mb-3">
+            <fieldset className="relative w-full sm:col-span-6 lg:max-w-4xl lg:col-span-3">
               <legend
                 htmlFor="searchtitle"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
@@ -435,7 +439,7 @@ const Paintings = ({
                 />
               )}
             </fieldset>
-            <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 md:pt-0">
+            <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 sm:pt-0">
               <CustomPagination
                 className="pagination-tablet"
                 currentPage={+page}
@@ -445,7 +449,7 @@ const Paintings = ({
                 }}
               />
             </div>
-            <div className="lg:col-span-1 my-3 sm:my-0">
+            <div className="col-span-2 my-3 sm:my-0 flex items-center space-x-4 justify-center">
               <div
                 id="announce"
                 aria-live="polite"
@@ -454,25 +458,29 @@ const Paintings = ({
               >
                 Results: ({totalPage ? totalPage : 0} records)
               </div>
-            </div>
-            <div className="lg:col-span-1 grid grid-cols-3 gap-2">
-              <div className="col-span-2">
-                <Dropdown
-                  title="All Paintings"
-                  options={paintingBy}
-                  isMultiple={false}
-                  isRedirection={true}
-                />
-              </div>
               <button
                 onClick={downloadPDF}
                 disabled={!Boolean(data.length > 0)}
-                className=" border-primary-600 transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-full text-primary-600 hover:text-offWhite-500 duration-300 hover:duration-300 hover:bg-primary-600 hover:transition-colors"
+                className={` ${
+                  Boolean(data.length > 0)
+                    ? " hover:bg-primary-600 text-primary-600 hover:text-offWhite-500 border-primary-600 "
+                    : " text-gray-600 border-gray-600  "
+                }  transition-colors h-9 w-9 flex items-center justify-center ml-auto border-2 rounded-md  duration-300 hover:duration-300 hover:transition-colors`}
               >
                 <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
               </button>
             </div>
+
+            <div className="col-span-2">
+              <Dropdown
+                title="All Paintings"
+                options={paintingBy}
+                isMultiple={false}
+                isRedirection={true}
+              />
+            </div>
           </div>
+
           <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
             <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
               <div className="col-span-3 xl:col-span-1 hidden lg:block">
