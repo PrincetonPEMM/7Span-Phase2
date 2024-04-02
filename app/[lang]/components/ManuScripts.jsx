@@ -715,6 +715,17 @@ const ManuScripts = () => {
               Results: {`(${totalPage ? totalPage : 0} records)`}
             </div>
             <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                  : "text-gray-600 border-gray-600  "
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
+            <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
                 toggleBtn ? "md:px-3" : "md:px-4"
               } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
@@ -729,17 +740,6 @@ const ManuScripts = () => {
             >
               {toggleBtn ? "Detail view" : "Title View"}
             </button>
-            <button
-              onClick={downloadPDF}
-              disabled={!Boolean(tableData.length > 0)}
-              className={` ${
-                Boolean(tableData.length > 0)
-                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                  : "text-gray-600 border-gray-600  "
-              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
-            >
-              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-            </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
             <CustomPagination
@@ -752,32 +752,17 @@ const ManuScripts = () => {
               }}
             />
           </div>
-          <div
-            id="announce"
-            aria-live="polite"
-            results={`${totalPage ? totalPage : 0} records`}
-            className="hidden font-body sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs 
+
+          <div className="hidden w-full mt-2 sm:mt-0 items-center space-x-4 gap-3 text-sm sm:flex 2xl:text-base">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="hidden font-body sm:block xl:text-sm lg:col-span-1 text-offBlack-400 font-medium pl-1 text-xs 
           sm:text-center"
-          >
-            Results: {`(${totalPage ? totalPage : 0} records)`}
-          </div>
-          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-between gap-3 text-sm sm:flex 2xl:text-base">
-            <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ${
-                toggleBtn ? " md:px-3" : "md:px-4"
-              } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
-               transition-colors lg:hover:transition-colors`}
-              onClick={() => {
-                setToggleBtn(!toggleBtn);
-                {
-                  !toggleBtn
-                    ? setTableHeader(manuscriptsTableDetailView)
-                    : setTableHeader(manuscriptsTableTitleView);
-                }
-              }}
             >
-              {toggleBtn ? "Detail view" : "Title View"}
-            </button>
+              Results: {`(${totalPage ? totalPage : 0} records)`}
+            </div>
             <button
               onClick={downloadPDF}
               disabled={!Boolean(tableData.length > 0)}
@@ -790,6 +775,22 @@ const ManuScripts = () => {
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
+          <button
+            className={`hidden bg-primary-500 text-white max-w-fit w-auto px-2 tracking-wide py-2 ml-auto sm:block ${
+              toggleBtn ? " md:px-3" : "md:px-4"
+            } font-medium border-2 border-primary-500 text-xs rounded-md md:text-sm lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 
+               transition-colors lg:hover:transition-colors`}
+            onClick={() => {
+              setToggleBtn(!toggleBtn);
+              {
+                !toggleBtn
+                  ? setTableHeader(manuscriptsTableDetailView)
+                  : setTableHeader(manuscriptsTableTitleView);
+              }
+            }}
+          >
+            {toggleBtn ? "Detail view" : "Title View"}
+          </button>
         </div>
         {/* <div
           className={`w-full h-screen ${
