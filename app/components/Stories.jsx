@@ -1,31 +1,30 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Table from "../components/Table";
-import InputText from "../components/form/InputText";
-import Sidebar from "../components/Sidebar";
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import OutsideClickHandler from "react-outside-click-handler";
-import { replaceState } from "history-throttled";
+import HeroiconsArrowDownTray20Solid from "@/assets/icons/HeroiconsArrowDownTray20Solid";
 import {
-  initialPlaceItem,
-  storiesTableDetailView,
-  storiesTableTitleView,
-  initialfilterItem,
-  pagePerLimit,
   STORIES,
-  rangeSliderMinForStoriesStoriesPage,
+  initialOriginalLangItem,
+  initialPlaceItem,
+  initialTranslatedLangItem,
+  initialfilterItem,
+  minSearchChar,
+  pagePerLimit,
+  rangeSliderMaxForManuscriptsStoriesPage,
+  rangeSliderMaxForPaintingsStoriesPage,
   rangeSliderMaxForStoriesStoriesPage,
   rangeSliderMinForManuscriptsStoriesPage,
-  rangeSliderMaxForManuscriptsStoriesPage,
   rangeSliderMinForPaintingsStoriesPage,
-  rangeSliderMaxForPaintingsStoriesPage,
-  initialOriginalLangItem,
-  initialTranslatedLangItem,
-  minSearchChar,
+  rangeSliderMinForStoriesStoriesPage,
+  storiesTableDetailView,
+  storiesTableTitleView,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
-import CustomPagination from "./Pagination";
+import { replaceState } from "history-throttled";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
+import Sidebar from "../components/Sidebar";
+import Table from "../components/Table";
+import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
 const Stories = () => {
@@ -487,6 +486,71 @@ const Stories = () => {
     setFilterItem(newFilterItem);
   };
 
+  const downloadPDF = async () => {
+    try {
+      const params = `${getFilterFalsyValue(
+        filterItem,
+        "withPaintings"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "africanStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "miracleOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "lifeOfMaryStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "mostIllustrated"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "earliestStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "recentStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "popularStories"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "uniqueStories"
+      )}${getFilterFalsyValue(filterItem, "withHymn")}${getFilterFalsyValue(
+        filterItem,
+        "printOnly"
+      )}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
+      )}${getFilterFalsyValue(filterItem, "readInChurch")}${getFilterFalsyValue(
+        filterItem,
+        "arabicOnly"
+      )}filters[vennArabic]=${vennArabic}&filters[centuryRange][gt]=${storyMin}&filters[centuryRange][lt]=${storyMax}&${makeParamsArray(
+        "origin",
+        placeItem
+      )}filters[manuscriptsWithStoryRange][gt]=${manuscriptsMin}&filters[manuscriptsWithStoryRange][lt]=${manuscriptsMax}&filters[paintingsOfStoryRange][gt]=${paintingMin}&filters[paintingsOfStoryRange][lt]=${paintingMax}&${makeParamsArray(
+        "originalLanguages",
+        langOriginalItem
+      )}&${makeParamsArray(
+        "translatedLanguages",
+        langTranslatedItem
+      )}${getFilterFalsyValue(
+        filterItem,
+        "withEnglishTranslation"
+      )}sort=${ascDescFil}&filters[search]=${
+        search.length > minSearchChar ? search : ""
+      }&language=${"en-us"}
+    `;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/csv?${params}`
+      );
+
+      const data = await response.json();
+      window.open(data.filePath, "_blank");
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div
       className={`story-page flex px-4 xl:px-5 pb-10 ${
@@ -618,19 +682,33 @@ const Stories = () => {
               }}
             />
           </fieldset>
-          <div className="w-full flex items-center justify-between sm:hidden">
-            <div
-              id="announce"
-              aria-live="polite"
-              results={`${totalPage ? totalPage : 0} records`}
-              className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
-            >
-              Results: {`(${totalPage ? totalPage : 0} records)`}
+          <div className="w-full flex items-center justify-between sm:justify-evenly sm:hidden space-x-1">
+            <div className="flex items-center justify-between space-x-4">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={`${totalPage ? totalPage : 0} records`}
+                className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm col-span-2 lg:col-span-1 sm:text-center"
+              >
+                Results: {`(${totalPage ? totalPage : 0} records)`}
+              </div>
+              <button
+                onClick={downloadPDF}
+                disabled={!Boolean(tableData.length > 0)}
+                className={` ${
+                  Boolean(tableData.length > 0)
+                    ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                    : " text-gray-400 border-gray-400 cursor-not-allowed"
+                } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+              >
+                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+              </button>
             </div>
+
             <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+                toggleBtn ? "md:py-2" : "md:py-2"
+              } font-medium text-xs md:px-3 md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -654,31 +732,42 @@ const Stories = () => {
               }}
             />
           </div>
-          <div
-            id="announce"
-            aria-live="polite"
-            results={`${totalPage ? totalPage : 0} records`}
-            className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
-          >
-            Results: {`(${totalPage ? totalPage : 0} records)`}
-          </div>
-          <div className="hidden w-full mt-2 items-center justify-end gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
-            <button
-              className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-3 ${
-                toggleBtn ? "md:py-3 md:px-3" : "md:py-3 md:px-4"
-              } font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
-              onClick={() => {
-                setToggleBtn(!toggleBtn);
-                {
-                  !toggleBtn
-                    ? setTableHeader(storiesTableDetailView)
-                    : setTableHeader(storiesTableTitleView);
-                }
-              }}
+          <div className="hidden w-full mt-2 items-center justify-evenly gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
+            <div
+              id="announce"
+              aria-live="polite"
+              results={`${totalPage ? totalPage : 0} records`}
+              className="hidden text-offBlack-400 font-medium pl-1 text-xs text-center sm:block lg:col-span-1 xl:text-sm"
             >
-              {toggleBtn ? "Detail view" : "Title View"}
+              Results: {`(${totalPage ? totalPage : 0} records)`}
+            </div>
+            <button
+              onClick={downloadPDF}
+              disabled={!Boolean(tableData.length > 0)}
+              className={` ${
+                Boolean(tableData.length > 0)
+                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600"
+                  : "text-gray-400 border-gray-400 cursor-not-allowed"
+              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+            >
+              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>
           </div>
+          <button
+            className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
+              toggleBtn ? "md:py-2 md:px-3" : "md:py-2 md:px-4"
+            } font-medium text-xs md:text-sm rounded-md hidden sm:block lg:hover:text-primary-500 ml-auto tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+            onClick={() => {
+              setToggleBtn(!toggleBtn);
+              {
+                !toggleBtn
+                  ? setTableHeader(storiesTableDetailView)
+                  : setTableHeader(storiesTableTitleView);
+              }
+            }}
+          >
+            {toggleBtn ? "Detail view" : "Title View"}
+          </button>
         </div>
         {/* <div
           className={`w-full table-wrap  ${
