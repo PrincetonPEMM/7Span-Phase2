@@ -1,14 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import { Tab } from "@headlessui/react";
-import Tabs from "@/app/components/Tabs";
 import SliderModal from "@/app/components/SliderModal";
+import Tabs from "@/app/components/Tabs";
 import {
   ID_LIST,
   TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE,
   macomber_id_number,
 } from "@/utils/constant";
+import { Tab } from "@headlessui/react";
 import Link from "next/link";
+import { useState } from "react";
 import BackBtn from "./BackBtn";
 
 export default function StoryDetail({ data, Id }) {
@@ -145,8 +145,7 @@ export default function StoryDetail({ data, Id }) {
   const cityThisTranslation = () => {
     return !data.is_published
       ? `${data?.translation_author}, trans. "ID
-    ${data?.canonical_story_id}: ${data?.canonical_story_title}
-    ." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
+    ${data?.canonical_story_id}: ${data?.canonical_story_title}." <i>Täˀammərä Maryam (Miracle of Mary) Stories</i>,
     edited by Wendy Laura Belcher, Jeremy Brown, Mehari Worku,
     and Dawit Muluneh. Princeton: Princeton Ethiopian, Eritrean,
     and Egyptian Miracles of Mary project. 
