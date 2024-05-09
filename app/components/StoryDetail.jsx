@@ -299,7 +299,10 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-4 font-body space-y-p">
-                    {FirstLine(data?.earliest_attestation)}
+                    {FirstLine(
+                      data?.earliest_attestation,
+                      data?.pemm_short_title
+                    )}
                     {SecondLine(
                       data?.total_records,
                       +data?.total_completed_manuscript
@@ -461,7 +464,10 @@ export default function StoryDetail({ data, Id }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-4 font-body space-y-p">
-                    {FirstLine(data?.earliest_attestation)}
+                    {FirstLine(
+                      data?.earliest_attestation,
+                      data?.pemm_short_title
+                    )}
                     {SecondLine(
                       data?.total_records,
                       +data?.total_completed_manuscript
@@ -694,12 +700,12 @@ export default function StoryDetail({ data, Id }) {
   );
 }
 
-function FirstLine(earliest_attestation) {
+function FirstLine(earliest_attestation, pemm_short_title) {
   return (
     <>
       {earliest_attestation && (
         <p className="text-base leading-relaxed">
-          This story is&nbsp;
+          This story, with the short title "{pemm_short_title}," is&nbsp;
           <b>
             {earliest_attestation >= 1300 && earliest_attestation < 1500
               ? "very old"
