@@ -204,6 +204,9 @@ const ManuScripts = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "printOnly")}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
       )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
         filterItem,
         "manyStories"
@@ -433,6 +436,8 @@ const ManuScripts = () => {
     const withHymns = params.get("withHymns");
     const manyStories = params.get("manyStories");
     const fewStories = params.get("fewStories");
+    const printOnly = params.get("printOnly");
+    const excludePrintOnly = params.get("excludePrintOnly");
     const newFilterItem = {
       ...filterItem,
       checkItem: {
@@ -485,6 +490,14 @@ const ManuScripts = () => {
           ...filterItem.checkItem["fewStories"],
           isChecked: fewStories ? true : false,
         },
+        ["printOnly"]: {
+          ...filterItem.checkItem["printOnly"],
+          isChecked: printOnly ? true : false,
+        },
+        ["excludePrintOnly"]: {
+          ...filterItem.checkItem["excludePrintOnly"],
+          isChecked: excludePrintOnly ? true : false,
+        },
       },
     };
     setFilterItem(newFilterItem);
@@ -519,6 +532,9 @@ const ManuScripts = () => {
       )}${getFilterFalsyValue(
         filterItem,
         "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "printOnly")}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
       )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
         filterItem,
         "manyStories"

@@ -6,9 +6,9 @@ import {
   pagePerLimit,
 } from "@/utils/constant";
 import { useEffect, useRef, useState } from "react";
-import Table from "./Table";
-import { TablePagination } from "./Pagination";
 import BackBtn from "./BackBtn";
+import { TablePagination } from "./Pagination";
+import Table from "./Table";
 
 export default function Manuscript({ Id, data, table }) {
   const [expandedRows, setExpandedRows] = useState([]);
@@ -78,7 +78,7 @@ export default function Manuscript({ Id, data, table }) {
         }
       }
       if (data.royal_manuscript) {
-        text += ` The royal ruler's name is <b>${data.royal_manuscript}</b>.`;
+        text += ` The royal ruler's name mentioned in the story's opening and closing blessings is <b>${data.royal_manuscript}</b>.`;
       }
       array.push({ text });
     }
