@@ -187,7 +187,7 @@ export default function StoryDetail({ data, Id, localData }) {
     );
   };
 
-  function FirstLine(localData, earliest_attestation) {
+  function FirstLine(localData, pemm_short_title, earliest_attestation) {
     const earliestStatus =
       earliest_attestation >= 1300 && earliest_attestation < 1500
         ? "very old"
@@ -470,7 +470,11 @@ export default function StoryDetail({ data, Id, localData }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-4 font-body space-y-p">
-                    {FirstLine(localData, data?.earliest_attestation)}
+                    {FirstLine(
+                      localData,
+                      data?.pemm_short_title,
+                      data?.earliest_attestation
+                    )}
                     {SecondLine(
                       localData,
                       data?.total_records,
@@ -643,7 +647,11 @@ export default function StoryDetail({ data, Id, localData }) {
               <ol className="list-inside md:pl-4 font-body">
                 <li>
                   <ul className="space-y-4 font-body space-y-p">
-                    {FirstLine(localData, data?.earliest_attestation)}
+                    {FirstLine(
+                      localData,
+                      data?.pemm_short_title,
+                      data?.earliest_attestation
+                    )}
                     {SecondLine(
                       localData,
                       data?.total_records,
