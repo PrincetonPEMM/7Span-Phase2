@@ -78,7 +78,7 @@ export default function Manuscript({ Id, data, table }) {
         }
       }
       if (data.royal_manuscript) {
-        text += ` The royal ruler's name mentioned in the story's opening and closing blessings is <b>${data.royal_manuscript}</b>.`;
+        text += ` The royal ruler's name mentioned in the manuscript is <b>${data.royal_manuscript}</b>.`;
       }
       array.push({ text });
     }
