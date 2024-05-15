@@ -17,23 +17,15 @@ import PaintingStoryCard from "./PaintingStoryCard";
 import FilterButton from "./form/FilterButton";
 import InputText from "./form/InputText";
 
-const paintingBy = [
-  {
-    value: "All Paintings",
-    key: "/paintings",
-  },
-  {
-    value: "Paintings by Story",
-    key: "/paintings/by-story",
-  },
-];
-
 const PaintingbyMSIndex = ({
   list,
   dateOfPainting,
   paintingInColor,
   institution,
+  localData,
+  lang,
 }) => {
+  debugger;
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -49,7 +41,7 @@ const PaintingbyMSIndex = ({
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [search, setSearch] = useState(searchParams);
   const [dateOfPaintins, setDateOfPaintins] = useState(newDatePainting ?? []);
@@ -59,6 +51,17 @@ const PaintingbyMSIndex = ({
   );
   const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
   const [mount, setMount] = useState(false);
+
+  const paintingBy = () => [
+    {
+      value: localData?.all_paintings,
+      key: "/paintings",
+    },
+    {
+      value: localData?.paintings_by_story,
+      key: "/paintings/by-story",
+    },
+  ];
 
   useEffect(() => {
     setData(list?.data);
@@ -125,7 +128,9 @@ const PaintingbyMSIndex = ({
       setFilterInParams("page", page, true);
     }
     fetch(
-      `${process.env.NEXT_PUBLIC_DIRECTUS_URL}paintings/by-manuscript?page=${
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-manuscript?language=${lang}&page=${
         page ? page : 1
       }&perPage=${perPage}&${makeParamsArray(
         "dateOfManuscript",
@@ -222,7 +227,7 @@ const PaintingbyMSIndex = ({
           <div className="text-lg p-1 font-semibold space-y-4 mt-4">
             <div>
               <Dropdown
-                title="Date of Manuscript"
+                title={localData?.date_of_manuscript}
                 selected={dateOfPaintins}
                 setSelected={(e) => {
                   setDateOfPaintins(e);
@@ -236,7 +241,7 @@ const PaintingbyMSIndex = ({
             </div>
             <div>
               <Dropdown
-                title="Digital Quality"
+                title={localData?.digital_quality}
                 selected={paintingsInColorOnly}
                 setSelected={(e) => {
                   if (e.length > 2) {
@@ -254,7 +259,7 @@ const PaintingbyMSIndex = ({
             </div>
             <div>
               <Dropdown
-                title="Repository of Manuscript"
+                title={localData?.repository_of_manuscript}
                 selected={archiveOfPainting}
                 setSelected={(e) => {
                   setArchiveOfPainting(e);
@@ -282,7 +287,7 @@ const PaintingbyMSIndex = ({
                   router.push(`${pathname}`);
                 }}
               >
-                Clear All
+                {localData?.clear_all}
               </button>
             </div>
           </div>
@@ -303,7 +308,7 @@ const PaintingbyMSIndex = ({
                 htmlFor="search painting by manuscript"
                 className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500 tagline"
               >
-                Search manuscript name and painting descriptions
+                {localData?.search_manuscript_name_and_painting_descriptions}
               </label>
               <InputText
                 id="search painting by manuscript"
@@ -337,22 +342,29 @@ const PaintingbyMSIndex = ({
                 onPageChange={(num) => {
                   setPage(num);
                 }}
+                localData={localData}
               />
             </div>
             <p className="lg:col-span-1 my-3 sm:my-0">
               <div
                 id="announce"
                 aria-live="polite"
-                results={`${totalPage ? totalPage : 0} records`}
+                results={(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.total_records}\``);
+                })()}
                 className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
               >
-                Results: ({totalPage ? totalPage : 0} records)
+                {(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.results_total_records}\``);
+                })()}
               </div>
             </p>
             <div className="lg:col-span-1">
               <Dropdown
-                title="Paintings by Manuscript"
-                options={paintingBy}
+                title={localData?.paintings_by_manuscript}
+                options={paintingBy()}
                 isMultiple={false}
                 isRedirection={true}
               />
@@ -365,7 +377,7 @@ const PaintingbyMSIndex = ({
             >
               <div className="hidden lg:block">
                 <Dropdown
-                  title="Date of Manuscript"
+                  title={localData?.date_of_manuscript}
                   selected={dateOfPaintins}
                   setSelected={useCallback(
                     (e) => {
@@ -379,7 +391,7 @@ const PaintingbyMSIndex = ({
               </div>
               <div className="font-body hidden lg:block">
                 <Dropdown
-                  title="Digital Quality"
+                  title={localData?.digital_quality}
                   selected={paintingsInColorOnly}
                   setSelected={(e) => {
                     if (e.length > 2) {
@@ -397,7 +409,7 @@ const PaintingbyMSIndex = ({
               </div>
               <div className="font-body hidden lg:block ">
                 <Dropdown
-                  title="Repository of Manuscript"
+                  title={localData?.repository_of_manuscript}
                   selected={archiveOfPainting}
                   setSelected={setArchiveOfPainting}
                   options={institution}
@@ -417,28 +429,11 @@ const PaintingbyMSIndex = ({
                     router.push(`${pathname}`);
                   }}
                 >
-                  Clear All
+                  {localData?.clear_all}
                 </button>
               </div>
             </div>
           </div>
-          {/* <p id="announce"
-              aria-live="polite"
-              results={`${totalPage ? totalPage : 0} records`} className="hidden text-offBlack-400  font-medium pl-2 text-xs sm:text-center sm:block xl:text-sm lg:col-span-1">
-            Results: {`(${totalPage ? totalPage : 0} records)`}
-          </p>
-
-          <div className="order-3 sm:-order-none mt-4  sm:mt-0 lg:col-span-2">
-            <CustomPagination
-              className="pagination-tablet"
-              currentPage={+page}
-              totalPages={Math.ceil(totalPage / perPage)}
-              onPageChange={(num) => {
-                setPage(num);
-              }}
-            />
-          </div>
-        </div> */}
         </div>
         <Masonry
           breakpointCols={breakpointColumnsForMasonry}
@@ -459,32 +454,23 @@ const PaintingbyMSIndex = ({
                   item?.manuscript_date_range_end
                     ? item.manuscript_date_range_start ===
                       item.manuscript_date_range_end
-                      ? item.manuscript_date_range_start + "s"
+                      ? item.manuscript_date_range_start + localData.s
                       : item.manuscript_date_range_start +
                         "-" +
                         item.manuscript_date_range_end
                     : "-"
                 }`}
-                //   desc={`
-                // ${
-                //   item.total_manuscript_paintings > 1
-                //     ? `${item.total_manuscript_paintings} paintings `
-                //     : `${item.total_manuscript_paintings} painting `
-                // }
-                // in ${
-                //   item.scans_of_manuscript_in_color === "Yes"
-                //     ? "color"
-                //     : "black & white"
-                // }`}
-                btnText={`View all ${
-                  item.total_manuscript_paintings > 1
-                    ? `${item.total_manuscript_paintings} paintings `
-                    : `${item.total_manuscript_paintings} painting `
-                } in ${
-                  item.scans_of_manuscript_in_color === "Yes"
-                    ? "color"
-                    : "black & white"
-                } for this manuscript`}
+                btnText={(() => {
+                  const is_total_manuscript_paintings_more_then_one =
+                    item.total_manuscript_paintings > 1;
+                  const total_manuscript_paintings =
+                    item.total_manuscript_paintings;
+                  const scans_of_manuscript_in_color =
+                    item.scans_of_manuscript_in_color === "Yes";
+                  return eval(
+                    `\`${localData?.button_text_for_paiting_by_manuscript_card}\``
+                  );
+                })()}
                 btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
               />
             </div>
@@ -492,26 +478,13 @@ const PaintingbyMSIndex = ({
         </Masonry>
         {Boolean(!data?.length) && (
           <div className="flex items-center py-36 justify-center  w-full text-2xl text-primary-500 font-bold">
-            {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+            {isLoading ? (
+              <h1>{localData?.loading}...</h1>
+            ) : (
+              <h1>{localData?.records_not_found}</h1>
+            )}
           </div>
         )}
-        {/* <TablePagination
-        meta={{
-          total: totalPage,
-          per_page: perPage,
-          current_page: page,
-          last_page: 50,
-          page: page,
-        }}
-        isOpen={true}
-        onPageChange={(num) => {
-          setPage(num);
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }}
-      /> */}
       </div>
     </>
   );

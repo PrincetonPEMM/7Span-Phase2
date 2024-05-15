@@ -1,32 +1,20 @@
 "use client";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import React, { useEffect, useState } from "react";
-import CustomPagination, { TablePagination } from "./Pagination";
-import Masonry from "react-masonry-css";
-import MdiMagnify from "@/assets/icons/MdiMagnify";
-import InputText from "./form/InputText";
-import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import Dropdown from "./Dropdown";
+import CustomPagination from "./Pagination";
 import PaintingStoryCard from "./PaintingStoryCard";
+import InputText from "./form/InputText";
 
-const paintingBy = [
-  {
-    value: "All Paintings",
-    key: "/paintings",
-  },
-  {
-    value: "Paintings by Manuscript",
-    key: "/paintings/by-manuscript",
-  },
-];
-
-const PaintingByStoryIndex = ({ list }) => {
+const PaintingByStoryIndex = ({ list, localData, lang }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -39,9 +27,20 @@ const PaintingByStoryIndex = ({ list }) => {
   const [isLoading, setIsLoadint] = useState(true);
   const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimitForPainting);
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [data, setData] = useState([]);
   const [search, setSearch] = useState(searchParams);
+
+  const paintingBy = () => [
+    {
+      value: localData?.all_paintings,
+      key: "/paintings",
+    },
+    {
+      value: localData?.paintings_by_manuscript,
+      key: "/paintings/by-manuscript",
+    },
+  ];
 
   useEffect(() => {
     setData(list?.data);
@@ -65,7 +64,7 @@ const PaintingByStoryIndex = ({ list }) => {
     fetch(
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
-      }paintings/by-story?page=${page}&perPage=${perPage}&filters[search]=${
+      }paintings/by-story?language=${lang}&page=${page}&perPage=${perPage}&filters[search]=${
         searchKey.length > minSearchChar ? searchKey : ""
       }`
     )
@@ -112,10 +111,10 @@ const PaintingByStoryIndex = ({ list }) => {
               htmlFor="SearchPaintingByStory"
               className="bg-offWhite-500 px-1 absolute -top-2 left-4 text-sm text-primary-500"
             >
-              Search painting descriptions
+              {localData.search_painting_descriptions}
             </legend>
             <label htmlFor="SearchPaintingByStory" className="sr-only">
-              Search painting by story
+              {localData.search_painting_descriptions}
             </label>
             <InputText
               area-label="Search here painting descriptions by story "
@@ -151,22 +150,29 @@ const PaintingByStoryIndex = ({ list }) => {
               onPageChange={(num) => {
                 setPage(num);
               }}
+              localData={localData}
             />
           </div>
           <p className="lg:col-span-1 my-3 sm:my-0">
             <div
               id="announce"
               aria-live="polite"
-              results={`${totalPage ? totalPage : 0} records`}
+              results={(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.total_records}\``);
+              })()}
               className="text-offBlack-400 text-center font-medium font-body pl-2 text-xs sm:text-center xl:text-sm"
             >
-              Results: ({totalPage ? totalPage : 0} records)
+              {(() => {
+                totalPage = totalPage ? totalPage : 0;
+                return eval(`\`${localData?.results_total_records}\``);
+              })()}
             </div>
           </p>
           <div className="col-span-2 lg:col-span-1">
             <Dropdown
-              title="Paintings by Story"
-              options={paintingBy}
+              title={localData?.paintings_by_story}
+              options={paintingBy()}
               isMultiple={false}
               isRedirection={true}
             />
@@ -193,52 +199,46 @@ const PaintingByStoryIndex = ({ list }) => {
                 item?.manuscript_date_range_end
                   ? item.manuscript_date_range_start ===
                     item.manuscript_date_range_end
-                    ? item.manuscript_date_range_start + "s"
+                    ? item.manuscript_date_range_start + localData.s
                     : item.manuscript_date_range_start +
                       "-" +
                       item.manuscript_date_range_end
                   : "-"
               }${item?.manuscript ? ", " + item.manuscript : ""}${
-                item?.painting_folio ? ", f. " + item.painting_folio : ""
-              }${item?.painting_scan ? ", s. " + item.painting_scan : ""}`}
-              btnText={`View 
-            ${
-              item.painting_count > 1
-                ? `all ${item.painting_count} paintings for`
-                : "the one painting for"
-            }
-            this story`}
+                item?.painting_folio
+                  ? `, ${localData.f}. ` + item.painting_folio
+                  : ""
+              }${
+                item?.painting_scan
+                  ? `, ${localData.s}. ` + item.painting_scan
+                  : ""
+              }`}
+              btnText={(() => {
+                const is_painting_count_more_then_one = item.painting_count > 1;
+                const painting_count = item.painting_count;
+                return eval(
+                  `\`${localData?.button_text_for_paiting_by_story_card}\``
+                );
+              })()}
               btnLink={` ${
                 item.painting_count > 1
                   ? "/paintings/by-story/" + item.canonical_story_id
                   : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
               }`}
+              localData={localData}
             />
           </div>
         ))}
       </Masonry>
       {Boolean(!data?.length) && (
         <div className="flex items-center py-36 justify-center  w-full text-2xl text-primary-500 font-bold">
-          {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
+          {isLoading ? (
+            <h1>{localData?.loading}...</h1>
+          ) : (
+            <h1>{localData?.records_not_found}</h1>
+          )}
         </div>
       )}
-      {/* <TablePagination
-        meta={{
-          total: totalPage,
-          per_page: perPage,
-          current_page: page,
-          last_page: 50,
-          page: page,
-        }}
-        isOpen={true}
-        onPageChange={(num) => {
-          setPage(num);
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }}
-      /> */}
     </div>
   );
 };
