@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import PaintingDetail from "@assets/images/painting-detail.jpg";
-import Link from "next/link";
 import { defaultImageforPainting } from "@/utils/constant";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const PaintingStoryCard = ({
   image,
@@ -13,6 +12,7 @@ const PaintingStoryCard = ({
   btnLink,
   lastLine,
   className = "",
+  localData,
 }) => {
   const [isImgload, setIsImgLoad] = useState(false);
 
@@ -42,7 +42,7 @@ const PaintingStoryCard = ({
                 isImgload ? "mt-0" : "mt-3"
               }`}
             >
-              {title ? title : "PEMM title not found"}
+              {title ? title : localData.pemm_title_not_found}
             </h3>
           )}
           <p className={`text-sm break-words ${className}`}>{content}</p>
