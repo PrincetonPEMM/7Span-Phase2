@@ -476,10 +476,10 @@ const PaintingbyMSIndex = ({
                 //     ? "color"
                 //     : "black & white"
                 // }`}
-                btnText={`View all ${
+                btnText={`View ${
                   item.total_manuscript_paintings > 1
-                    ? `${item.total_manuscript_paintings} paintings `
-                    : `${item.total_manuscript_paintings} painting `
+                    ? `all ${item.total_manuscript_paintings} paintings `
+                    : `the one painting `
                 } in ${
                   item.scans_of_manuscript_in_color === "Yes"
                     ? "color"

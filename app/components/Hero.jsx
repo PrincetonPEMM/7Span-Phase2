@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
 import BannerDetail from "./BannerDetail";
 import SubBanner from "./SubBanner";
-import { useRouter } from "next/navigation";
+import { useLocation } from "react-use";
 
 const Hero = ({ data }) => {
-  const route = useRouter();
+  const location1 = useLocation();
   const [selectedBanner, setSelectedBanner] = useState({});
   const [height100, setHeight100] = useState("height100");
   const storyData = {
@@ -111,30 +111,33 @@ const Hero = ({ data }) => {
         }
       }, 300);
     }
-
-    if (details.hashRoute === "#featured-stories") {
-      route.replace("/#featured-stories");
-    } else if (details.hashRoute === "#featured-manuscripts") {
-      route.replace("/#featured-manuscripts");
-    } else if (details.hashRoute === "#featured-paintings") {
-      route.replace("/#featured-paintings");
-    } else route.replace("/");
+    // history.pushState({}, "/#featured-stories");
+    // if (details.hashRoute === "#featured-stories") {
+    //   route.replace("/#featured-stories");
+    // } else if (details.hashRoute === "#featured-manuscripts") {
+    //   route.replace("/#featured-manuscripts");
+    // } else if (details.hashRoute === "#featured-paintings") {
+    //   route.replace("/#featured-paintings");
+    // } else route.replace("/");
   }
 
-  useEffect(function () {
-    let toggle_data = {};
-    if (location.hash === "#featured-stories") {
-      toggle_data = storyData;
-    }
-    if (location.hash === "#featured-manuscripts") {
-      toggle_data = manuscriptData;
-    }
-    if (location.hash === "#featured-paintings") {
-      toggle_data = paintingData;
-    }
+  useEffect(
+    function () {
+      let toggle_data = {};
+      if (location.hash === "#featured-stories") {
+        toggle_data = storyData;
+      }
+      if (location.hash === "#featured-manuscripts") {
+        toggle_data = manuscriptData;
+      }
+      if (location.hash === "#featured-paintings") {
+        toggle_data = paintingData;
+      }
 
-    toggleContent(toggle_data);
-  }, []);
+      toggleContent(toggle_data);
+    },
+    [location1]
+  );
 
   console.log("Env Mode :)", process.env.NEXT_PUBLIC_MODE);
 
