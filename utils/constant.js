@@ -61,7 +61,9 @@ export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 200;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
 export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
 export const omitCanonical_Story_Id = 7000;
-export const storiesTableDetailView = (localData) => [{ name: localData?.title_of_story }];
+export const storiesTableDetailView = (localData) => [
+  { name: localData?.title_of_story },
+];
 export const storiesTableTitleView = (localData) => [
   { name: localData?.storys_earliest_date, value: "dateOfOrigin" },
   { name: localData?.manuscripts_with_story, value: "totalManuscriptStory" },
@@ -93,7 +95,7 @@ export const manuscriptsDetailTableTitle = [
   { name: "Story ID" },
 ];
 export const initialfilterItem = (localData) => ({
-  title: "Filtered Search",
+  title: localData?.filtered_search,
   checkItem: {
     withPaintings: {
       id: "1",

@@ -59,17 +59,17 @@ const Footer = ({ footerData, lang }) => {
     },
     {
       title: footerData?.featured_stories,
-      link: "/#featured-stories",
+      link: `/${lang}/#featured-stories`,
       label: "featured-stories",
     },
     {
       title: footerData?.featured_paintings,
-      link: "/#featured-paintings",
+      link: `/${lang}/#featured-paintings`,
       label: "featured-paintings",
     },
     {
       title: footerData?.featured_manuscripts,
-      link: "/#featured-manuscripts",
+      link: `/${lang}/#featured-manuscripts`,
       label: "featured-manuscripts",
     },
   ];
@@ -144,25 +144,14 @@ const Footer = ({ footerData, lang }) => {
           <ul className="font-body text-xl flex flex-col">
             {exploreItems().map((item, index) => (
               <li key={index}>
-                {pathname !== `/${lang}` || !item.label ? (
-                  <Link
-                    href={item.link}
-                    key={index}
-                    className="text-base hover:text-secondary-500 font-normal transition-colors hover:transition-colors"
-                  >
-                    {item.title}
-                    {[3, 6].includes(index) && <span className="mt-5 block" />}
-                  </Link>
-                ) : (
-                  <label
-                    htmlFor={item.label}
-                    key={index}
-                    className="text-base hover:text-secondary-500 font-normal transition-colors hover:transition-colors"
-                  >
-                    {item.title}
-                    {[3, 6].includes(index) && <span className="mt-5 block" />}
-                  </label>
-                )}
+                <Link
+                  href={item.link}
+                  key={index}
+                  className="text-base hover:text-secondary-500 font-normal transition-colors hover:transition-colors"
+                >
+                  {item.title}
+                  {[3, 6].includes(index) && <span className="mt-5 block" />}
+                </Link>
               </li>
             ))}
           </ul>
@@ -214,11 +203,11 @@ const Footer = ({ footerData, lang }) => {
           <Link
             href="mailto: pemm@princeton.edu"
             target="_blank"
-            className="text-sm hover:text-secondary-500 transition-colors font-light hover:transition-colors"
+            className="text-sm hover:text-secondary-500 transition-colors hover:transition-colors"
           >
             pemm@princeton.edu
           </Link>
-          <p className="pt-1 text-sm font-light">
+          <p className="pt-1 text-sm">
             © {new Date().getFullYear()} {footerData?.footer_site_owner}
           </p>
         </div>
@@ -240,17 +229,6 @@ const Footer = ({ footerData, lang }) => {
           >
             <MdiInstagram className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
           </Link>
-          <Link
-            href="#"
-            className="w-6 h-6 group transition-colors"
-            title="TikTok"
-            target="_blank"
-          >
-            <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
-          </Link>
-          {/* <Link href="@pemmaryam" className="w-6 h-6 group transition-colors">
-            <IconoirTiktok className="text-white group-hover:text-secondary-500 group-hover:transition-colors" />
-          </Link> */}
           <Link
             href="https://twitter.com/pemmaryam"
             className="w-6 h-6 group"
