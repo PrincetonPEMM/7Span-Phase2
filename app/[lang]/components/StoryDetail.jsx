@@ -190,13 +190,13 @@ export default function StoryDetail({ data, Id, localData }) {
   function FirstLine(localData, pemm_short_title, earliest_attestation) {
     const earliestStatus =
       earliest_attestation >= 1300 && earliest_attestation < 1500
-        ? "very old"
+        ? localData?.very_old
         : earliest_attestation >= 1500 && earliest_attestation < 1800
-        ? "old"
+        ? localData?.old
         : earliest_attestation >= 1800 && earliest_attestation < 1950
-        ? "recent"
+        ? localData?.recent
         : earliest_attestation >= 1950
-        ? "very recent"
+        ? localData?.very_recent
         : "";
 
     return (
