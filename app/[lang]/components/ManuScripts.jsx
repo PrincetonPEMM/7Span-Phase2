@@ -28,7 +28,7 @@ import Table from "../components/Table";
 import CustomPagination from "./Pagination";
 import FilterButton from "./form/FilterButton";
 
-const ManuScripts = ({ lang }) => {
+const ManuScripts = ({ lang, localData }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -47,7 +47,9 @@ const ManuScripts = ({ lang }) => {
   const [isMount, setIsMount] = useState(false);
   const [isMount1, setIsMount1] = useState(false);
   const [toggleBtn, setToggleBtn] = useState(false);
-  const [filterItem, setFilterItem] = useState(initialfilterItemManuScript);
+  const [filterItem, setFilterItem] = useState(
+    initialfilterItemManuScript(localData)
+  );
   const [placeItem, setPlaceItem] = useState(initialPlaceItemManuScript);
   const [originRegion, setOriginRegion] = useState(
     initialOriginRegionManuScript
@@ -204,6 +206,9 @@ const ManuScripts = ({ lang }) => {
       )}${getFilterFalsyValue(
         filterItem,
         "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "printOnly")}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
       )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
         filterItem,
         "manyStories"
@@ -293,7 +298,7 @@ const ManuScripts = ({ lang }) => {
     setNoOfUniqueMax(rangeSliderMaxUniqueStoriesManuscriptsPage);
     setExpandedRows([]);
     setPage(1);
-    setFilterItem(initialfilterItemManuScript);
+    setFilterItem(initialfilterItemManuScript(localData));
     setPlaceItem(initialPlaceItemManuScript);
     setOriginRegion(initialOriginRegionManuScript);
     setSearch("");
@@ -433,6 +438,8 @@ const ManuScripts = ({ lang }) => {
     const withHymns = params.get("withHymns");
     const manyStories = params.get("manyStories");
     const fewStories = params.get("fewStories");
+    const printOnly = params.get("printOnly");
+    const excludePrintOnly = params.get("excludePrintOnly");
     const newFilterItem = {
       ...filterItem,
       checkItem: {
@@ -485,6 +492,14 @@ const ManuScripts = ({ lang }) => {
           ...filterItem.checkItem["fewStories"],
           isChecked: fewStories ? true : false,
         },
+        ["printOnly"]: {
+          ...filterItem.checkItem["printOnly"],
+          isChecked: printOnly ? true : false,
+        },
+        ["excludePrintOnly"]: {
+          ...filterItem.checkItem["excludePrintOnly"],
+          isChecked: excludePrintOnly ? true : false,
+        },
       },
     };
     setFilterItem(newFilterItem);
@@ -519,6 +534,9 @@ const ManuScripts = ({ lang }) => {
       )}${getFilterFalsyValue(
         filterItem,
         "royalManuscript"
+      )}${getFilterFalsyValue(filterItem, "printOnly")}${getFilterFalsyValue(
+        filterItem,
+        "excludePrintOnly"
       )}${getFilterFalsyValue(filterItem, "withHymns")}${getFilterFalsyValue(
         filterItem,
         "manyStories"
