@@ -1,30 +1,28 @@
-import MdiMenuOpen from "@/assets/icons/MdiMenuOpen";
-import React, { Fragment, useState } from "react";
-import Checkbox from "./form/Checkbox";
-import RangeSlider from "./form/RangeSlider";
-import InputIcon from "./form/InputIcon";
+import MdiReload from "@/assets/icons/MdiReload";
 import {
   MANUSCRIPTS,
   STORIES,
+  rangeSliderMaxDateOfCreationManuscriptsPage,
   rangeSliderMaxForManuscriptsStoriesPage,
   rangeSliderMaxForPaintingsStoriesPage,
   rangeSliderMaxForStoriesStoriesPage,
+  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMaxNoOfStoriesManuscriptsPage,
+  rangeSliderMaxUniqueStoriesManuscriptsPage,
+  rangeSliderMinDateOfCreationManuscriptsPage,
   rangeSliderMinForManuscriptsStoriesPage,
   rangeSliderMinForPaintingsStoriesPage,
   rangeSliderMinForStoriesStoriesPage,
-  rangeSliderMinDateOfCreationManuscriptsPage,
-  rangeSliderMaxDateOfCreationManuscriptsPage,
-  rangeSliderMinNoOfStoriesManuscriptsPage,
-  rangeSliderMaxNoOfStoriesManuscriptsPage,
   rangeSliderMinNoOfPaintingsManuscriptsPage,
-  rangeSliderMaxNoOfPaintingsManuscriptsPage,
+  rangeSliderMinNoOfStoriesManuscriptsPage,
   rangeSliderMinUniqueStoriesManuscriptsPage,
-  rangeSliderMaxUniqueStoriesManuscriptsPage,
 } from "@/utils/constant";
-import Radio from "./form/Radio";
-import MdiReload from "@/assets/icons/MdiReload";
-import { useAmp } from "next/amp";
+import { Fragment } from "react";
+import Checkbox from "./form/Checkbox";
 import FilterButton from "./form/FilterButton";
+import InputIcon from "./form/InputIcon";
+import Radio from "./form/Radio";
+import RangeSlider from "./form/RangeSlider";
 
 const Sidebar = ({
   childRef1,
@@ -103,10 +101,14 @@ const Sidebar = ({
         />
         <button
           onClick={resetHandler}
-          area-label={localData?.clear_all_selected_values}
+          area-label={
+            isPageName === STORIES
+              ? localData?.clear_all_selected_values
+              : "Clear All Selected Values"
+          }
           className="sticky top-0 py-2 text-offWhite-500 inline-flex items-center z-20 text-sm"
         >
-          {localData?.clear_all}{" "}
+          {isPageName === STORIES ? localData?.clear_all : "Cleat All"}{" "}
           <MdiReload className="text-white-500 h-5 w-5 ml-2" />
         </button>
       </div>
