@@ -2,7 +2,7 @@
 import { ID_LIST, macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
@@ -10,6 +10,10 @@ import Tabs from "./Tabs";
 export default function StoryDetail({ data, Id, localData }) {
   const numberOfWords = 100;
   const [expandedRows, setExpandedRows] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
