@@ -687,7 +687,7 @@ const Stories = ({ localData, lang }) => {
               }}
             />
           </fieldset>
-          <div className="w-full flex items-center justify-between sm:hidden space-x-1">
+          <div className="w-full flex items-center justify-between sm:justify-evenly sm:hidden space-x-1">
             {/* Results and total records */}
             <div className="flex items-center justify-between space-x-4">
               <div
@@ -697,7 +697,7 @@ const Stories = ({ localData, lang }) => {
                   totalPage = totalPage ? totalPage : 0;
                   return eval(`\`${localData?.total_records}\``);
                 })()}
-                className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm lg:col-span-1 sm:text-center"
+                className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm col-span-2 lg:col-span-1 sm:text-center"
               >
                 {(() => {
                   totalPage = totalPage ? totalPage : 0;
@@ -719,8 +719,8 @@ const Stories = ({ localData, lang }) => {
             {/* Button title view */}
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
-                toggleBtn ? "md:px-3" : "md:px-4"
-              } font-medium text-xs sm:hidden block md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+                toggleBtn ? "md:py-2" : "md:py-2"
+              } font-medium text-xs md:px-3 md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -745,7 +745,7 @@ const Stories = ({ localData, lang }) => {
               localData={localData}
             />
           </div>
-          <div className="hidden w-full mt-2 items-center space-x-4 gap-1 text-sm sm:mt-0 sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 items-center justify-evenly gap-3 text-sm sm:mt-0 sm:flex 2xl:text-base">
             <div
               id="announce"
               aria-live="polite"
@@ -766,7 +766,7 @@ const Stories = ({ localData, lang }) => {
               className={` ${
                 Boolean(tableData.length > 0)
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                  : "text-gray-400 border-gray-400  cursor-not-allowed"
+                  : "text-gray-400 border-gray-400 cursor-not-allowed"
               } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
@@ -774,8 +774,8 @@ const Stories = ({ localData, lang }) => {
           </div>
           <button
             className={`bg-primary-500 text-white max-w-fit w-auto ml-auto px-2 py-2 ${
-              toggleBtn ? "md:px-3" : "md:px-4"
-            } font-medium text-xs md:text-sm rounded-md hidden sm:block lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+              toggleBtn ? "md:py-2 md:px-3" : "md:py-2 md:px-4"
+            } font-medium text-xs md:text-sm rounded-md hidden sm:block lg:hover:text-primary-500 ml-auto tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
             onClick={() => {
               setToggleBtn(!toggleBtn);
               {
