@@ -321,7 +321,6 @@ const Paintings = ({
                   }}
                   options={ethiopianRegion}
                   isMultiple={false}
-                  localData={localData}
                 />
               </div>
               <div>
@@ -358,7 +357,6 @@ const Paintings = ({
                   }}
                   options={typeOfStory}
                   isMultiple={false}
-                  localData={localData}
                 />
               </div>
               <div>
@@ -373,7 +371,6 @@ const Paintings = ({
                   }}
                   options={institution}
                   isMultiple={false}
-                  localData={localData}
                 />
               </div>
               <div className="text-center w-full md:text-left">
@@ -485,7 +482,6 @@ const Paintings = ({
               options={paintingBy()}
               isMultiple={false}
               isRedirection={true}
-              localData={localData}
             />
           </div>
         </div>
@@ -513,7 +509,6 @@ const Paintings = ({
                 setSelected={setEthiopianRegions}
                 options={ethiopianRegion}
                 isMultiple={false}
-                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
@@ -549,7 +544,6 @@ const Paintings = ({
                 setSelected={setArchiveOfPainting}
                 options={institution}
                 isMultiple={false}
-                localData={localData}
               />
             </div>
             <div className="col-span-3 xl:col-span-1 text-center w-full md:text-left hidden lg:block">

@@ -1,19 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import PaintingStoryCard from "./PaintingStoryCard";
+import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
   pagePerLimitForPainting,
 } from "@/utils/constant";
-import Masonry from "react-masonry-css";
-import CustomPagination, { TablePagination } from "./Pagination";
-import BackBtn from "./BackBtn";
-import Link from "next/link";
-import InputText from "./form/InputText";
-import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import useDebounce from "@/utils/useDebounce";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
+import BackBtn from "./BackBtn";
+import CustomPagination from "./Pagination";
+import PaintingStoryCard from "./PaintingStoryCard";
+import InputText from "./form/InputText";
 
 const PaintingByStoryDetail = ({ list, Id }) => {
   const params = useSearchParams();
@@ -34,6 +34,7 @@ const PaintingByStoryDetail = ({ list, Id }) => {
   const [header, setHeader] = useState();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setData(list?.data);
     setHeader(list?.canonicalStoryData);
     setTotalPage(list?.total);
