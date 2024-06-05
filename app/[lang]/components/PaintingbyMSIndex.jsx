@@ -13,9 +13,9 @@ import Masonry from "react-masonry-css";
 import OutsideClickHandler from "react-outside-click-handler";
 import Dropdown from "./Dropdown";
 import CustomPagination from "./Pagination";
+import PaintingStoryCard from "./PaintingStoryCard";
 import FilterButton from "./form/FilterButton";
 import InputText from "./form/InputText";
-import PaintingStoryCard from "./PaintingStoryCard";
 
 const PaintingbyMSIndex = ({
   list,
@@ -236,6 +236,7 @@ const PaintingbyMSIndex = ({
                 }}
                 options={dateOfPainting}
                 isMultiple={true}
+                localData={localData}
               />
             </div>
             <div>
@@ -254,6 +255,7 @@ const PaintingbyMSIndex = ({
                 }}
                 options={paintingInColor}
                 isMultiple={true}
+                localData={localData}
               />
             </div>
             <div>
@@ -386,6 +388,7 @@ const PaintingbyMSIndex = ({
                   )}
                   options={dateOfPainting}
                   isMultiple={true}
+                  localData={localData}
                 />
               </div>
               <div className="font-body hidden lg:block">
@@ -404,6 +407,7 @@ const PaintingbyMSIndex = ({
                   }}
                   options={paintingInColor}
                   isMultiple={true}
+                  localData={localData}
                 />
               </div>
               <div className="font-body hidden lg:block ">

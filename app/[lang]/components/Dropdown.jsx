@@ -11,7 +11,7 @@ const Dropdown = ({
   title,
   isMultiple = false,
   isRedirection = false,
-  localData,
+  localData = { date_of_manuscript: "Date of Manuscript" },
 }) => {
   const route = useRouter();
   const [flag, setFlag] = useState(true);

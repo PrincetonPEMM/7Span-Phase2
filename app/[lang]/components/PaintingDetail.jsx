@@ -11,6 +11,11 @@ import BackBtn from "./BackBtn";
 
 const PaintingDetail = ({ data, localData }) => {
   const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     setImage([
       {
