@@ -482,6 +482,24 @@ export const initialfilterItemManuScript = (localData) => ({
       isChecked: false,
       isFirstBreak: false,
     },
+    printOnly: {
+      id: "13",
+      isCheckbox: false,
+      name: "printing",
+      key: "printOnly",
+      label: "Print only",
+      isChecked: false,
+      isFirstBreak: true,
+    },
+    excludePrintOnly: {
+      id: "14",
+      name: "printing",
+      isCheckbox: false,
+      key: "excludePrintOnly",
+      label: "Exclude Print only",
+      isChecked: false,
+      isFirstBreak: false,
+    },
   },
 });
 export const initialPlaceItemManuScript = {

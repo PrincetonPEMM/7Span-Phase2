@@ -81,7 +81,7 @@ const ManuScripts = ({ lang, localData }) => {
 
   const [page, setPage] = useState(pageParams);
   const [perPage, setPerPage] = useState(pagePerLimit);
-  const [totalPage, setTotalPage] = useState();
+  let [totalPage, setTotalPage] = useState();
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState(manuscriptsTableTitleView);
   const [isOpen, setIsOpen] = useState(true);
@@ -723,30 +723,40 @@ const ManuScripts = ({ lang, localData }) => {
               Search manuscript names
             </label> */}
           </div>
-          <div className="w-full flex items-center justify-between sm:hidden">
-            <div
-              id="announce"
-              aria-live="polite"
-              results={`${totalPage ? totalPage : 0} records`}
-              className="text-offBlack-400 font-medium pl-1 text-xs xl:text-sm lg:col-span-1 sm:text-center font-body"
-            >
-              Results: {`(${totalPage ? totalPage : 0} records)`}
+          <div className="w-full flex items-center justify-between sm:justify-evenly sm:hidden space-x-1">
+            {/* Results and total records */}
+            <div className="flex items-center justify-between space-x-4">
+              <div
+                id="announce"
+                aria-live="polite"
+                results={(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.total_records}\``);
+                })()}
+                className="text-offBlack-400 font-medium pl-2 text-xs xl:text-sm col-span-2 lg:col-span-1 sm:text-center"
+              >
+                {(() => {
+                  totalPage = totalPage ? totalPage : 0;
+                  return eval(`\`${localData?.results_total_records}\``);
+                })()}
+              </div>
+              <button
+                onClick={downloadPDF}
+                disabled={!Boolean(tableData.length > 0)}
+                className={` ${
+                  Boolean(tableData.length > 0)
+                    ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
+                    : " text-gray-400 border-gray-400 cursor-not-allowed"
+                } p-1  transition-colors border-2 rounded-md duration-300 hover:duration-300 hover:transition-colors`}
+              >
+                <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+              </button>
             </div>
-            <button
-              onClick={downloadPDF}
-              disabled={!Boolean(tableData.length > 0)}
-              className={` ${
-                Boolean(tableData.length > 0)
-                  ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                  : "text-gray-400 border-gray-400 cursor-not-allowed "
-              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
-            >
-              <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
-            </button>
+            {/* Button title view */}
             <button
               className={`bg-primary-500 text-white max-w-fit w-auto px-2 py-2 ${
-                toggleBtn ? "md:px-3" : "md:px-4"
-              } font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
+                toggleBtn ? "md:py-2" : "md:py-2"
+              } font-medium text-xs md:px-3 md:text-sm rounded-md lg:hover:text-primary-500 lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors`}
               onClick={() => {
                 setToggleBtn(!toggleBtn);
                 {
@@ -756,7 +766,7 @@ const ManuScripts = ({ lang, localData }) => {
                 }
               }}
             >
-              {toggleBtn ? "Detail view" : "Title View"}
+              {toggleBtn ? localData?.detail_view : localData?.title_view}
             </button>
           </div>
           <div className="order-3 sm:-order-none mt-4 sm:mt-0  sm:col-span-2">
@@ -771,7 +781,7 @@ const ManuScripts = ({ lang, localData }) => {
             />
           </div>
 
-          <div className="hidden w-full mt-2 sm:mt-0 items-center space-x-4 gap-3 text-sm sm:flex 2xl:text-base">
+          <div className="hidden w-full mt-2 sm:mt-0 items-center justify-evenly gap-3 text-sm sm:flex 2xl:text-base">
             <div
               id="announce"
               aria-live="polite"
@@ -787,8 +797,8 @@ const ManuScripts = ({ lang, localData }) => {
               className={` ${
                 Boolean(tableData.length > 0)
                   ? "border-primary-600 text-primary-600 hover:text-offWhite-500 hover:bg-primary-600 "
-                  : "text-gray-400 border-gray-400  cursor-not-allowed"
-              } p-1  transition-colors border-2 rounded-md  duration-300 hover:duration-300  hover:transition-colors`}
+                  : "text-gray-400 border-gray-400 cursor-not-allowed"
+              } p-1  transition-colors border-2 rounded-md duration-300 hover:duration-300  hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
             </button>

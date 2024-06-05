@@ -190,7 +190,7 @@ body {
 .space-y-p h2,
 .people-page-headings h3,
 .people-description h2 {
-  @apply font-bold text-3xl mt-2 text-offBlack-500 font-body leading-relaxed;
+  @apply font-bold text-3xl mt-2 text-offBlack-500 font-body leading-loose;
   font-family: Source sans 3;
 }
 .reaserch-page .space-y-p h2 {

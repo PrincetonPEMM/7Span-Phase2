@@ -162,7 +162,7 @@ const IncipitTool = ({ localData, lang }) => {
                 fetchData();
               }
             }}
-            className="bg-primary-500 text-center justify-center w-[47%] md:max-w-fit text-white inline-flex mr-1 px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+            className="bg-primary-500 text-center justify-center w-[47%] md:max-w-fit text-white inline-flex mr-1 px-2 py-1.5 md:px-4 font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             {localData?.search}
           </button>
@@ -176,7 +176,7 @@ const IncipitTool = ({ localData, lang }) => {
               setFilterInParams("matchCanonicalIncipitsOnly", false, true);
             }}
             className="bg-primary-500 flex-none  text-center justify-center w-1/2 md:max-w-fit
-              sm:flex-none text-white ml-1 inline-flex px-2 py-1.5 md:px-4 font-semibold text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
+              sm:flex-none text-white ml-1 inline-flex px-2 py-1.5 md:px-4 font-medium text-xs md:text-sm rounded-md lg:hover:text-primary-500 tracking-wide lg:hover:bg-transparent lg:hover:border-primary-500 border-2 border-primary-500 transition-colors lg:hover:transition-colors"
           >
             {localData?.clear_all}
           </button>

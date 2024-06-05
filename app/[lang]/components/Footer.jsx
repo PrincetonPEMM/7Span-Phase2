@@ -1,6 +1,5 @@
 "use client";
 import Fa6BrandsXTwitter from "@/assets/icons/Fa6BrandsXTwitter";
-import IconoirTiktok from "@/assets/icons/IconoirTiktok";
 import MdiInstagram from "@/assets/icons/MdiInstagram";
 import MingcuteFacebookLine from "@/assets/icons/MingcuteFacebookLine";
 import Image from "next/image";
