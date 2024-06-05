@@ -18,6 +18,10 @@ export default function Manuscript({ Id, data, table }) {
   const [tableData, setTableData] = useState(table);
   const didMount = useRef(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(
     (prevPage) => {
       if (didMount.current) {
