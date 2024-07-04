@@ -1,6 +1,9 @@
-import { defaultImageforPainting } from "@/utils/constant";
+import {
+  defaultImageforPainting,
+  defaultImageforPaintingAhm,
+} from "@/utils/constant";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const PaintingStoryCard = ({
   image,
@@ -13,6 +16,7 @@ const PaintingStoryCard = ({
   lastLine,
   className = "",
   localData,
+  lang = "en-us",
 }) => {
   const [isImgload, setIsImgLoad] = useState(false);
 
@@ -26,7 +30,13 @@ const PaintingStoryCard = ({
     <>
       <div className="aspect-square bg-offWhite-500">
         <img
-          src={Boolean(image) ? image : defaultImageforPainting}
+          src={
+            Boolean(image)
+              ? image
+              : lang === "am-et"
+              ? defaultImageforPaintingAhm
+              : defaultImageforPainting
+          }
           alt="PEMM"
           className="w-full h-full object-cover"
           onLoad={() => {

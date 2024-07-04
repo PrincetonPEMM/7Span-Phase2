@@ -580,6 +580,7 @@ const Paintings = ({
                 key={card.image_link + index}
                 card={card}
                 localData={localData}
+                lang={lang}
               />
             ))}
           </Masonry>

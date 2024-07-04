@@ -10,7 +10,7 @@ import Tabs from "./Tabs";
 export default function StoryDetail({ data, Id, localData }) {
   const numberOfWords = 100;
   const [expandedRows, setExpandedRows] = useState([]);
-
+  debugger;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -48,7 +48,7 @@ export default function StoryDetail({ data, Id, localData }) {
             onClick={() => toggleExpand(index)}
             className={`${"text-primary-500 hover:text-secondary-500 font-bold"}`}
           >
-            {localData.exp?.see_more}
+            {localData?.see_more}
           </button>
         )}
       </span>
@@ -117,7 +117,7 @@ export default function StoryDetail({ data, Id, localData }) {
         label: localData?.translation,
       });
     tabArr.push({
-      label: localData?.Information,
+      label: localData?.information,
     });
     tabArr.push({
       label: localData?.manuscripts,
@@ -155,6 +155,9 @@ export default function StoryDetail({ data, Id, localData }) {
       data?.published_translation_book_page_span;
     const published_translation_book_item =
       data?.published_translation_book_item;
+    let manuscript_name = data.manuscript_name;
+    let translation_source_manuscript_folio =
+      data.translation_source_manuscript_folio;
 
     const published_translation_book_page_span_condition_wise =
       data.published_translation_book_page_span
@@ -345,6 +348,17 @@ export default function StoryDetail({ data, Id, localData }) {
   function SeventhLine(localData) {
     return (
       <p
+        className="text-base leading-relaxed"
+        dangerouslySetInnerHTML={{
+          __html: eval(`\`${localData?.pemm_feedback_form_for_story_detail}\``),
+        }}
+      ></p>
+    );
+  }
+
+  function EightLine(localData) {
+    return (
+      <p
         className="text-sm leading-relaxed py-2"
         dangerouslySetInnerHTML={{
           __html: eval(`\`${localData?.seventhline_of_story_detail}\``),
@@ -352,6 +366,14 @@ export default function StoryDetail({ data, Id, localData }) {
       ></p>
     );
   }
+
+  const EnglishTranslationNote = () =>
+    Boolean(!data?.english_translation) && (
+      <div className="text-sm leading-relaxed">
+        የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
+        ይመልከቱ)። ነገር ግን፣ በፐም ዌብሳይት ላይ ገና አልተዘጋጀም።
+      </div>
+    );
 
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
@@ -464,6 +486,28 @@ export default function StoryDetail({ data, Id, localData }) {
                     </p>
                   </ul>
                 </li>
+                <li>
+                  <h3 className="text-lg mb-1 font-bold text-justify">
+                    {data.translations.length > 0 &&
+                      localData?.translations_and_editions_of_this_story}
+                  </h3>
+                  <ul className="text-sm ml-3 -indent-3">
+                    <p
+                      className="leading-normal"
+                      dangerouslySetInnerHTML={{
+                        __html: generateTranslations(),
+                      }}
+                    ></p>
+                  </ul>
+                </li>
+                <li>
+                  <h3 className="text-lg mb-1 font-bold text-justify">
+                    {localData?.pemm_manuscript_in_which_the_story_appears}
+                  </h3>
+                  <ul className="text-sm ml-3 -indent-3">
+                    <p className="leading-normal">{generateManuscript()}</p>
+                  </ul>
+                </li>
               </ol>
             </div>
           </div>
@@ -495,11 +539,11 @@ export default function StoryDetail({ data, Id, localData }) {
                     {FifthLine(localData, data?.origin)}
                     {SixthLine(localData, data?.languageAvailableIn)}
                     {SeventhLine(localData)}
+                    {EightLine(localData)}
                   </ul>
                 </li>
               </ol>
             </div>
-
             {/* Summary */}
             {data.summary_plot && (
               <div className="space-y-4">
@@ -525,6 +569,7 @@ export default function StoryDetail({ data, Id, localData }) {
             {/* English translation */}
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 font-body p-0">
+                {EnglishTranslationNote()}
                 {data.canonical_translation_recension === "True" && (
                   <li>
                     <h3
@@ -598,41 +643,6 @@ export default function StoryDetail({ data, Id, localData }) {
                   )}
               </ol>
             </div>
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body">
-                <li>
-                  <h3 className="text-lg font-bold uppercase mb-3">
-                    {data.translations.length > 0 &&
-                      localData?.translations_and_editions_of_this_story}
-                  </h3>
-                  <ul className="space-y-4 font-body space-y-p">
-                    <p
-                      className="text-base leading-relaxed space-y-4"
-                      dangerouslySetInnerHTML={{
-                        __html: generateTranslations(),
-                      }}
-                    ></p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
-            <div className="space-y-4 mb-10">
-              <ol className="list-inside md:pl-4 font-body">
-                <li>
-                  <h3 className="text-lg font-bold uppercase mb-3">
-                    {localData?.manuscripts}
-                  </h3>
-                  <ul className="space-y-4 font-body space-y-p">
-                    <p className="text-base leading-relaxed">
-                      {localData?.pemm_manuscript_in_which_the_story_appears}
-                    </p>
-                    <p className="text-base leading-relaxed space-y-4">
-                      {generateManuscript()}
-                    </p>
-                  </ul>
-                </li>
-              </ol>
-            </div>
           </div>
         </div>
       </div>
@@ -672,6 +682,7 @@ export default function StoryDetail({ data, Id, localData }) {
                     {FifthLine(localData, data?.origin)}
                     {SixthLine(localData, data?.languageAvailableIn)}
                     {SeventhLine(localData)}
+                    {EightLine(localData)}
                   </ul>
                 </li>
               </ol>
@@ -704,6 +715,7 @@ export default function StoryDetail({ data, Id, localData }) {
             data?.translation_author !== "No Translator" ||
             data.translations.length > 0) && (
             <Tab.Panel className="p-4 md:p-6">
+              {EnglishTranslationNote()}
               <div className="space-y-4">
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
@@ -727,7 +739,9 @@ export default function StoryDetail({ data, Id, localData }) {
                                   let translation_as_of_date =
                                     data.translation_as_of_date;
 
-                                  return localData?.translated_by_author_name;
+                                  return eval(
+                                    `\`${localData?.translated_by_author_name}\``
+                                  );
                                 })(),
                               }}
                             ></p>
@@ -770,7 +784,7 @@ export default function StoryDetail({ data, Id, localData }) {
                         </>
                       )}
 
-                    <h3 className="text-lg font-bold uppercase mb-3">
+                    <h3 className="text-lg font-bold mb-3">
                       {data.translations.length > 0 &&
                         localData?.translations_and_editions_of_this_story}
                     </h3>
@@ -887,13 +901,10 @@ export default function StoryDetail({ data, Id, localData }) {
             <div className="space-y-4 mb-10">
               <ol className="list-inside md:pl-4 font-body">
                 <li>
-                  <h3 className="text-lg font-bold uppercase mb-3">
-                    {localData.manuscript}
+                  <h3 className="text-lg font-bold mb-3">
+                    {localData.pemm_manuscript_in_which_the_story_appears}
                   </h3>
                   <ul className="space-y-4 font-body space-y-p">
-                    <p className="text-base leading-relaxed">
-                      {localData?.pemm_manuscript_in_which_the_story_appears}
-                    </p>
                     <p className="text-base leading-relaxed">
                       {generateManuscript()}
                     </p>
