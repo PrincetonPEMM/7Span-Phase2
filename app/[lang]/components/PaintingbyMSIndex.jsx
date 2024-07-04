@@ -450,6 +450,7 @@ const PaintingbyMSIndex = ({
             >
               <PaintingStoryCard
                 key={item.image_link + index}
+                lang={lang}
                 image={item.image_link}
                 title={item?.manuscript_full_name}
                 content={`${

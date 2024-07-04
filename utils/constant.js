@@ -4,6 +4,7 @@ export const pagePerLimitForPainting = pagePerLimit; //21;
 export const macomber_id_number = 642;
 export const TOTAL_NUM_MANUSCRIPTS_WITH_MS_STATUS_COMPLETE = 674;
 export const defaultImageforPainting = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/2afd0f28-0147-4624-91ec-ad3afe99ea45`;
+export const defaultImageforPaintingAhm = `${process.env.NEXT_PUBLIC_DIRECTUS_URL}assets/051e083b-d02e-4d6e-85e7-8c7cbd191350`;
 export const TRANSLATION_STATUS_OPTIONS = [
   "Published translation",
   "Complete Translation",
