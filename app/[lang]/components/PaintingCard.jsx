@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { defaultImageforPainting } from "@/utils/constant";
+import {
+  defaultImageforPainting,
+  defaultImageforPaintingAhm,
+} from "@/utils/constant";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const PaintingCard = (props) => {
   const [isImgload, setIsImgLoad] = useState(false);
@@ -21,6 +24,8 @@ const PaintingCard = (props) => {
           src={
             props.card.image_link
               ? props.card.image_link
+              : props.lang === "am-et"
+              ? defaultImageforPaintingAhm
               : defaultImageforPainting
           }
           alt={props.card.pemm_short_title}
