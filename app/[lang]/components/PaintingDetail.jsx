@@ -1,6 +1,7 @@
 "use client";
 import {
   defaultImageforPainting,
+  defaultImageforPaintingAhm,
   omitCanonical_Story_Id,
 } from "@/utils/constant";
 import Link from "next/link";
@@ -9,7 +10,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import BackBtn from "./BackBtn";
 
-const PaintingDetail = ({ data, localData }) => {
+const PaintingDetail = ({ data, localData, lang }) => {
   const [image, setImage] = useState([]);
 
   useEffect(() => {
@@ -17,10 +18,12 @@ const PaintingDetail = ({ data, localData }) => {
   }, []);
 
   useEffect(() => {
+    const defaultImg =
+      lang === "am-et" ? defaultImageforPaintingAhm : defaultImageforPainting;
     setImage([
       {
-        original: data?.image_link ? data.image_link : defaultImageforPainting,
-        thumbnail: data?.image_link ? data.image_link : defaultImageforPainting,
+        original: data?.image_link ? data.image_link : defaultImg,
+        thumbnail: data?.image_link ? data.image_link : defaultImg,
       },
     ]);
   }, [data]);
@@ -159,6 +162,11 @@ const PaintingDetail = ({ data, localData }) => {
                   dangerouslySetInnerHTML={{ __html: item.text }}
                 ></li>
               ))}
+              <li
+                dangerouslySetInnerHTML={{
+                  __html: localData.pemm_feedback_form_for_painting_detail,
+                }}
+              ></li>
             </ul>
           </div>
           <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">

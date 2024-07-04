@@ -339,7 +339,7 @@ export default function Manuscript({ Id, data, table }) {
     }
 
     array.push({
-      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site"  className="text-primary-500 font-bold hover:text-secondary-500">Using This Site</a></b>.`,
+      text: `For more information about understanding this table, see <b><a href="/about/connect/using-the-site"  className="text-primary-500 font-bold hover:text-secondary-500">Using This Site</a></b>. If you think any of the information on this page is incorrect (e.g., the location, date, folios, story IDs), please use our <a href=https://docs.google.com/forms/d/e/1FAIpQLSe-ZLVpV7XDGV_8wApnycQk1ZFa5C9Ij8HaIAZTcdsrYNWkEA/viewform target="_blank" className="text-primary-500 font-bold hover:text-secondary-500">PEMM Feedback Form</a> to let us know. We depend on users like you to improve the site.`,
     });
 
     return array;

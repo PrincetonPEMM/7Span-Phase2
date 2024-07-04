@@ -191,6 +191,7 @@ const PaintingByStoryIndex = ({ list, localData, lang }) => {
           >
             <PaintingStoryCard
               key={item.image_link + index}
+              lang={lang}
               item={item}
               image={item.image_link}
               title={item?.pemm_short_title}
