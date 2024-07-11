@@ -10,7 +10,6 @@ import Tabs from "./Tabs";
 export default function StoryDetail({ data, Id, localData }) {
   const numberOfWords = 100;
   const [expandedRows, setExpandedRows] = useState([]);
-  debugger;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -277,7 +276,7 @@ export default function StoryDetail({ data, Id, localData }) {
     total_manuscripts_with_story_id_illustrated
   ) {
     const dynamicParagraph = () => {
-      return total_story_id_paintings === 0
+      return total_story_id_paintings >= 20
         ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
         : ID_LIST.includes(canonical_story_id)
         ? total_manuscripts_with_story_id_illustrated == null ||
@@ -369,10 +368,19 @@ export default function StoryDetail({ data, Id, localData }) {
 
   const EnglishTranslationNote = () =>
     Boolean(!data?.english_translation) && (
-      <div className="text-sm leading-relaxed">
-        የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
-        ይመልከቱ)። ነገር ግን፣ በፐም ዌብሳይት ላይ ገና አልተዘጋጀም።
-      </div>
+      <>
+        <h3
+          className={`text-lg font-bold uppercase mb-3 ${
+            data.canonical_translation_recension !== "True" && "mb-5"
+          } `}
+        >
+          {localData?.translation}
+        </h3>
+        <div className="text-sm leading-relaxed">
+          የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
+          ይመልከቱ)። ነገር ግን፣ በፐም ዌብሳይት ላይ ገና አልተዘጋጀም።
+        </div>
+      </>
     );
 
   return data ? (
