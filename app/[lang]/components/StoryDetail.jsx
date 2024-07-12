@@ -2,17 +2,43 @@
 import { ID_LIST, macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
 
-export default function StoryDetail({ data, Id, localData }) {
-  const numberOfWords = 100;
+export default function StoryDetail({ results, Id, localData, lang }) {
+  const [translationSeq, setTranslationSeq] = useState(null);
+  const [data, setData] = useState(results);
   const [expandedRows, setExpandedRows] = useState([]);
+  const summaryRef = useRef(null);
+  const numberOfWords = 100;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}&translation_seq=${translationSeq}`
+        );
+
+        const json = await response.json();
+        setData(json);
+        if (summaryRef.current) {
+          summaryRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      } catch (error) {
+        console.log("Error", error);
+      }
+    };
+    if (translationSeq) fetchData();
+  }, [translationSeq]);
 
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
@@ -106,14 +132,14 @@ export default function StoryDetail({ data, Id, localData }) {
     ];
     if (data.summary_plot)
       tabArr.push({
-        label: localData?.summary,
+        label: SummaryTitle(),
       });
     if (
       data.canonical_translation_recension === "True" ||
       data?.translation_author !== "No Translator"
     )
       tabArr.push({
-        label: localData?.translation,
+        label: TranslationTitle(),
       });
     tabArr.push({
       label: localData?.information,
@@ -191,6 +217,98 @@ export default function StoryDetail({ data, Id, localData }) {
         )}
       </div>
     );
+  };
+  // current_translation_seq
+  const NextPreviesTranslationButton = () => {
+    return (
+      <div className="sm:space-x-5 space-y-5 sm:space-y-0 pt-3 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+        {data.previous_translation_seq && (
+          <button
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
+            onClick={() => setTranslationSeq(data.previous_translation_seq)}
+          >
+            <span>{localData?.read_previous_translation_of_this_story}</span>
+          </button>
+        )}
+        {data.next_translation_seq && (
+          <button
+            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
+            onClick={() => setTranslationSeq(data.next_translation_seq)}
+          >
+            <span>{localData?.read_another_translation_of_this_story}</span>
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  const SummaryTitle = () => {
+    switch (translationSeq) {
+      case 2:
+        return localData?.summary_of_second_translation;
+      case 3:
+        return localData?.summary_of_third_translation;
+      case 4:
+        return localData?.summary_of_fourth_translation;
+      case 5:
+        return localData?.summary_of_fifth_translation;
+      case 6:
+        return localData?.summary_of_sixth_translation;
+      case 7:
+        return localData?.summary_of_seventh_translation;
+      case 8:
+        return localData?.summary_of_eighth_translation;
+      case 9:
+        return localData?.summary_of_ninth_translation;
+      default:
+        return localData?.summary;
+    }
+  };
+
+  const TranslationTitle = () => {
+    switch (translationSeq) {
+      case 2:
+        return localData?.second_translation;
+      case 3:
+        return localData?.third_translation;
+      case 4:
+        return localData?.fourth_translation;
+      case 5:
+        return localData?.fifth_translation;
+      case 6:
+        return localData?.sixth_translation;
+      case 7:
+        return localData?.seventh_translation;
+      case 8:
+        return localData?.eighth_translation;
+      case 9:
+        return localData?.ninth_translation;
+      default:
+        return localData?.translation;
+    }
+  };
+
+  const ToCiteTranslationTitle = () => {
+    switch (translationSeq) {
+      case 2:
+        return localData?.to_cite_this_second_translation;
+      case 3:
+        return localData?.to_cite_this_third_translation;
+      case 4:
+        return localData?.to_cite_this_fourth_translation;
+      case 5:
+        return localData?.to_cite_this_fifth_translation;
+      case 6:
+        return localData?.to_cite_this_sixth_translation;
+      case 7:
+        return localData?.to_cite_this_seventh_translation;
+      case 8:
+        return localData?.to_cite_this_eighth_translation;
+      case 9:
+        return localData?.to_cite_this_ninth_translation;
+      default:
+        return localData?.to_cite_this_translation;
+    }
   };
 
   function FirstLine(localData, pemm_short_title, earliest_attestation) {
@@ -374,7 +492,7 @@ export default function StoryDetail({ data, Id, localData }) {
             data.canonical_translation_recension !== "True" && "mb-5"
           } `}
         >
-          {localData?.translation}
+          {TranslationTitle()}
         </h3>
         <div className="text-sm leading-relaxed">
           የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
@@ -554,7 +672,7 @@ export default function StoryDetail({ data, Id, localData }) {
             </div>
             {/* Summary */}
             {data.summary_plot && (
-              <div className="space-y-4">
+              <div className="space-y-4" ref={summaryRef}>
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3
@@ -562,7 +680,7 @@ export default function StoryDetail({ data, Id, localData }) {
                         !data.summary_plot && "mb-5"
                       }`}
                     >
-                      {localData?.summary}
+                      {SummaryTitle()}
                     </h3>
                     <p
                       className="text-base leading-relaxed mb-3"
@@ -586,7 +704,7 @@ export default function StoryDetail({ data, Id, localData }) {
                         "mb-5"
                       } `}
                     >
-                      {localData?.translation}
+                      {TranslationTitle()}
                     </h3>
 
                     {data.translation_author !== "No Translator" &&
@@ -619,6 +737,7 @@ export default function StoryDetail({ data, Id, localData }) {
                   </li>
                 )}
                 {NextPreviesButton()}
+                {NextPreviesTranslationButton()}
                 {data.canonical_story_research_note && (
                   <li>
                     <h3 className={`text-lg font-bold uppercase mb-3  `}>
@@ -638,7 +757,7 @@ export default function StoryDetail({ data, Id, localData }) {
                   data?.translation_author && (
                     <li>
                       <h3 className="text-lg font-bold uppercase my-3">
-                        {localData?.to_cite_this_translation}
+                        {ToCiteTranslationTitle()}
                       </h3>
 
                       <p
@@ -704,7 +823,7 @@ export default function StoryDetail({ data, Id, localData }) {
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
-                      {localData?.summary}
+                      {SummaryTitle()}
                     </h3>
                     <p
                       className="text-base leading-relaxed mb-3 space-y-p"
@@ -730,7 +849,7 @@ export default function StoryDetail({ data, Id, localData }) {
                     {data.canonical_translation_recension === "True" && (
                       <>
                         <h3 className="text-lg font-bold uppercase mb-3">
-                          {localData?.translation}
+                          {TranslationTitle()}
                         </h3>
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
@@ -763,6 +882,7 @@ export default function StoryDetail({ data, Id, localData }) {
                       </>
                     )}
                     {NextPreviesButton()}
+                    {NextPreviesTranslationButton()}
                     {data.canonical_story_research_note && (
                       <li>
                         <h3 className={`text-lg font-bold uppercase mb-3  `}>
@@ -781,7 +901,7 @@ export default function StoryDetail({ data, Id, localData }) {
                       data?.translation_author && (
                         <>
                           <h3 className="text-lg font-bold uppercase my-3">
-                            {localData?.to_cite_this_translation}
+                            {ToCiteTranslationTitle()}
                           </h3>
                           <p
                             className="text-base leading-relaxed mb-3 space-y-p"
