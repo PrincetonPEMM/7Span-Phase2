@@ -6,9 +6,17 @@ import { useEffect, useRef, useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function StoryDetail({ results, Id, localData, lang }) {
-  const [translationSeq, setTranslationSeq] = useState(null);
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const translationSeqP = params.get("translationSeq");
+  const [loading, setLoading] = useState(false);
+  const [translationSeq, setTranslationSeq] = useState(
+    +translationSeqP || null
+  );
   const [data, setData] = useState(results);
   const [expandedRows, setExpandedRows] = useState([]);
   const summaryRef = useRef(null);
@@ -20,6 +28,8 @@ export default function StoryDetail({ results, Id, localData, lang }) {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      router.push(`${pathname}?translationSeq=${translationSeq}`);
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}&translation_seq=${translationSeq}`
@@ -33,7 +43,9 @@ export default function StoryDetail({ results, Id, localData, lang }) {
             block: "start",
           });
         }
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log("Error", error);
       }
     };
@@ -198,7 +210,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
 
   const NextPreviesButton = () => {
     return (
-      <div className="sm:space-x-5 space-y-5 sm:space-y-0 pt-3 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+      <div className="sm:space-x-5 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_story && (
           <Link
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
@@ -221,7 +233,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
   // current_translation_seq
   const NextPreviesTranslationButton = () => {
     return (
-      <div className="sm:space-x-5 space-y-5 sm:space-y-0 pt-3 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+      <div className="sm:space-x-5 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_translation_seq && (
           <button
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
@@ -501,6 +513,12 @@ export default function StoryDetail({ results, Id, localData, lang }) {
       </>
     );
 
+  if (loading)
+    return (
+      <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold py-32">
+        {localData?.fetching_translation_of_the_story}...
+      </div>
+    );
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -696,46 +714,45 @@ export default function StoryDetail({ results, Id, localData, lang }) {
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 font-body p-0">
                 {EnglishTranslationNote()}
-                {data.canonical_translation_recension === "True" && (
-                  <li>
-                    <h3
-                      className={`text-lg font-bold uppercase mb-3 ${
-                        data.canonical_translation_recension !== "True" &&
-                        "mb-5"
-                      } `}
-                    >
-                      {TranslationTitle()}
-                    </h3>
+                {/* {data.canonical_translation_recension === "True" && ( */}
+                <li>
+                  <h3
+                    className={`text-lg font-bold uppercase mb-3 ${
+                      data.canonical_translation_recension !== "True" && "mb-5"
+                    } `}
+                  >
+                    {TranslationTitle()}
+                  </h3>
 
-                    {data.translation_author !== "No Translator" &&
-                      data.translation_author &&
-                      data.manuscript_name && (
-                        <p
-                          className="text-base leading-relaxed mb-3  space-y-4 italic"
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              let translation_author = data.translation_author;
-                              let manuscript_name = data.manuscript_name;
-                              let translation_source_manuscript_folio =
-                                data.translation_source_manuscript_folio;
-                              let translation_as_of_date =
-                                data.translation_as_of_date;
+                  {data.translation_author !== "No Translator" &&
+                    data.translation_author &&
+                    data.manuscript_name && (
+                      <p
+                        className="text-base leading-relaxed mb-3  space-y-4 italic"
+                        dangerouslySetInnerHTML={{
+                          __html: (() => {
+                            let translation_author = data.translation_author;
+                            let manuscript_name = data.manuscript_name;
+                            let translation_source_manuscript_folio =
+                              data.translation_source_manuscript_folio;
+                            let translation_as_of_date =
+                              data.translation_as_of_date;
 
-                              return eval(
-                                `\`${localData?.translated_by_author_name}\``
-                              );
-                            })(),
-                          }}
-                        ></p>
-                      )}
-                    <p
-                      className="text-base leading-relaxed mb-3 space-y-4"
-                      dangerouslySetInnerHTML={{
-                        __html: data.english_translation,
-                      }}
-                    ></p>
-                  </li>
-                )}
+                            return eval(
+                              `\`${localData?.translated_by_author_name}\``
+                            );
+                          })(),
+                        }}
+                      ></p>
+                    )}
+                  <p
+                    className="text-base leading-relaxed mb-3 space-y-4"
+                    dangerouslySetInnerHTML={{
+                      __html: data.english_translation,
+                    }}
+                  ></p>
+                </li>
+                {/* )} */}
                 {NextPreviesButton()}
                 {NextPreviesTranslationButton()}
                 {data.canonical_story_research_note && (
@@ -751,7 +768,6 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                     ></p>
                   </li>
                 )}
-
                 {data.canonical_translation_recension === "True" &&
                   data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
