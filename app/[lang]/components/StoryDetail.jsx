@@ -1,5 +1,5 @@
 "use client";
-import { macomber_id_number } from "@/utils/constant";
+import { ID_LIST, macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
