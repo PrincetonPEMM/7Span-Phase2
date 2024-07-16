@@ -1,12 +1,12 @@
 "use client";
-import { ID_LIST, macomber_id_number } from "@/utils/constant";
+import { macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function StoryDetail({ results, Id, localData, lang }) {
   const params = useSearchParams();
@@ -406,17 +406,35 @@ export default function StoryDetail({ results, Id, localData, lang }) {
     total_manuscripts_with_story_id_illustrated
   ) {
     const dynamicParagraph = () => {
-      return total_story_id_paintings >= 20
-        ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
-        : ID_LIST.includes(canonical_story_id)
-        ? total_manuscripts_with_story_id_illustrated == null ||
-          total_manuscripts_with_story_id_illustrated != 0
-          ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
-          : eval(`\`${localData?.thirdline_of_story_detail_line_3}\``)
-        : total_manuscripts_with_story_id_illustrated == null ||
-          total_manuscripts_with_story_id_illustrated != 0
-        ? eval(`\`${localData?.thirdline_of_story_detail_line_4}\``)
-        : eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
+      if (total_story_id_paintings > 0) {
+        if (total_manuscripts_with_story_id_illustrated === 0) {
+          if (ID_LIST.includes(canonical_story_id)) {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_2}\``);
+          } else {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_4}\``);
+          }
+        } else {
+          if (ID_LIST.includes(canonical_story_id)) {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_3}\``);
+          } else {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
+          }
+        }
+      }
+      return "";
+
+      /* OLD LOGIC */
+      // return total_story_id_paintings > 0
+      //   ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+      //   : ID_LIST.includes(canonical_story_id)
+      //   ? total_manuscripts_with_story_id_illustrated == null ||
+      //     total_manuscripts_with_story_id_illustrated != 0
+      //     ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+      //     : eval(`\`${localData?.thirdline_of_story_detail_line_3}\``)
+      //   : total_manuscripts_with_story_id_illustrated == null ||
+      //     total_manuscripts_with_story_id_illustrated != 0
+      //   ? eval(`\`${localData?.thirdline_of_story_detail_line_4}\``)
+      //   : eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
     };
 
     return (
