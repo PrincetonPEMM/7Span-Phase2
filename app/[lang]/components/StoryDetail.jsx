@@ -524,7 +524,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
         >
           {TranslationTitle()}
         </h3>
-        <div className="text-sm leading-relaxed">
+        <div className="text-sm leading-relaxed mb-2">
           የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
           ይመልከቱ)። ነገር ግን፣ በፐም ዌብሳይት ላይ ገና አልተዘጋጀም።
         </div>
@@ -734,13 +734,16 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                 {EnglishTranslationNote()}
                 {/* {data.canonical_translation_recension === "True" && ( */}
                 <li>
-                  <h3
-                    className={`text-lg font-bold uppercase mb-3 ${
-                      data.canonical_translation_recension !== "True" && "mb-5"
-                    } `}
-                  >
-                    {TranslationTitle()}
-                  </h3>
+                  {data?.english_translation && (
+                    <h3
+                      className={`text-lg font-bold uppercase mb-3 ${
+                        data.canonical_translation_recension !== "True" &&
+                        "mb-5"
+                      } `}
+                    >
+                      {TranslationTitle()}
+                    </h3>
+                  )}
 
                   {data.translation_author !== "No Translator" &&
                     data.translation_author &&
@@ -882,9 +885,11 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                   <li>
                     {data.canonical_translation_recension === "True" && (
                       <>
-                        <h3 className="text-lg font-bold uppercase mb-3">
-                          {TranslationTitle()}
-                        </h3>
+                        {data?.english_translation && (
+                          <h3 className="text-lg font-bold uppercase mb-3">
+                            {TranslationTitle()}
+                          </h3>
+                        )}
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
