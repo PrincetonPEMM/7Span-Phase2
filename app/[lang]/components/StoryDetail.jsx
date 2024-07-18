@@ -421,7 +421,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
           }
         }
       }
-      return "";
+      return eval(`\`${localData?.thirdline_of_story_detail_line_1}\``);
 
       /* OLD LOGIC */
       // return total_story_id_paintings > 0
