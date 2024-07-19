@@ -209,8 +209,8 @@ export default function StoryDetail({ results, Id, localData, lang }) {
   };
 
   const NextPreviesButton = () => {
-    return (
-      <div className="sm:space-x-5 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+    return data.previous_story || data.next_story ? (
+      <div className="sm:space-x-5 mb-3 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_story && (
           <Link
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
@@ -228,12 +228,12 @@ export default function StoryDetail({ results, Id, localData, lang }) {
           </Link>
         )}
       </div>
-    );
+    ) : null;
   };
   // current_translation_seq
   const NextPreviesTranslationButton = () => {
-    return (
-      <div className="sm:space-x-5 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+    return data.previous_translation_seq || data.next_translation_seq ? (
+      <div className="sm:space-x-5 mb-3 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_translation_seq && (
           <button
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
@@ -251,7 +251,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
           </button>
         )}
       </div>
-    );
+    ) : null;
   };
 
   const SummaryTitle = () => {
