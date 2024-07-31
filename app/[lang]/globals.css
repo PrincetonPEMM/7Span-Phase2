@@ -1036,6 +1036,9 @@ input::-webkit-inner-spin-button {
   @apply text-primary-500 font-bold hover:text-secondary-500;
 }
 
+.people-description ul {
+  @apply list-inside list-disc;
+}
 /* 
 web accisibility css start  */
 .sr-only {
