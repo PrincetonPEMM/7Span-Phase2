@@ -1039,6 +1039,7 @@ input::-webkit-inner-spin-button {
 .people-description ul {
   @apply list-inside list-disc;
 }
+
 /* 
 web accisibility css start  */
 .sr-only {
