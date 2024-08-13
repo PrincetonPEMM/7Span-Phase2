@@ -15,7 +15,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
   const translationSeqP = params.get("translationSeq");
   const [loading, setLoading] = useState(false);
   const [translationSeq, setTranslationSeq] = useState(
-    +translationSeqP || null
+    +translationSeqP || results.current_translation_seq
   );
   const [data, setData] = useState(results);
   const [expandedRows, setExpandedRows] = useState([]);
@@ -29,7 +29,9 @@ export default function StoryDetail({ results, Id, localData, lang }) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      router.push(`${pathname}?translationSeq=${translationSeq}`);
+      if (translationSeq > 1)
+        router.push(`${pathname}?translationSeq=${translationSeq}`);
+      else router.push(`${pathname}`);
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}&translation_seq=${translationSeq}`
@@ -230,32 +232,11 @@ export default function StoryDetail({ results, Id, localData, lang }) {
       </div>
     ) : null;
   };
-  // current_translation_seq
-  const NextPreviesTranslationButton = () => {
-    return data.previous_translation_seq || data.next_translation_seq ? (
-      <div className="sm:space-x-5 mb-3 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
-        {data.previous_translation_seq && (
-          <button
-            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-            onClick={() => setTranslationSeq(data.previous_translation_seq)}
-          >
-            <span>{localData?.read_previous_translation_of_this_story}</span>
-          </button>
-        )}
-        {data.next_translation_seq && (
-          <button
-            className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-            onClick={() => setTranslationSeq(data.next_translation_seq)}
-          >
-            <span>{localData?.read_another_translation_of_this_story}</span>
-          </button>
-        )}
-      </div>
-    ) : null;
-  };
 
   const SummaryTitle = () => {
     switch (translationSeq) {
+      case 1:
+        return localData?.summary_of_first_translation;
       case 2:
         return localData?.summary_of_second_translation;
       case 3:
@@ -279,6 +260,8 @@ export default function StoryDetail({ results, Id, localData, lang }) {
 
   const TranslationTitle = () => {
     switch (translationSeq) {
+      case 1:
+        return localData?.first_translation;
       case 2:
         return localData?.second_translation;
       case 3:
@@ -302,6 +285,8 @@ export default function StoryDetail({ results, Id, localData, lang }) {
 
   const ToCiteTranslationTitle = () => {
     switch (translationSeq) {
+      case 1:
+        return localData?.to_cite_this_first_translation;
       case 2:
         return localData?.to_cite_this_second_translation;
       case 3:
@@ -482,13 +467,42 @@ export default function StoryDetail({ results, Id, localData, lang }) {
 
   function SixthLine(localData, languageAvailableIn) {
     languageAvailableIn = languageAvailableIn.join(", ");
+    const total_translation_seq = data?.total_translation_seq;
+    const previous_translation_seq = data?.previous_translation_seq;
+    const next_translation_seq = data?.next_translation_seq;
+
+    const NextPreviesTranslationButton = `<span class=" text-offWhite-500 font-semibold font-body text-sm md:text-base ">
+        ${
+          Boolean(previous_translation_seq)
+            ? `<a area-label="Click here to See the Previous Translation" href=${`${pathname}?translationSeq=${previous_translation_seq}`} class="text-primary-600 font-bold hover:text-secondary-500">
+              <span>${localData?.read_previous_translation_of_this_story}</span>
+            </a>`
+            : ""
+        }
+        ${
+          Boolean(next_translation_seq)
+            ? `<a area-label="Click here to See the Next Translation" href=${`${pathname}?translationSeq=${next_translation_seq}`}  class="text-primary-600 font-bold hover:text-secondary-500">
+              <span>${localData?.read_another_translation_of_this_story}</span>
+            </a>`
+            : ""
+        }
+      </span>`;
+
+    const total_translation_seq_line =
+      total_translation_seq > 0
+        ? eval(`\`${localData?.sixthline_of_story_detail_2}\``)
+        : "";
+
     return (
-      <p
-        className="text-base leading-relaxed"
-        dangerouslySetInnerHTML={{
-          __html: eval(`\`${localData?.sixthline_of_story_detail}\``),
-        }}
-      ></p>
+      <>
+        <p
+          className="text-base leading-relaxed"
+          dangerouslySetInnerHTML={{
+            __html: eval(`\`${localData?.sixthline_of_story_detail}\``),
+          }}
+        ></p>
+        {/* {NextPreviesTranslationButton()} */}
+      </>
     );
   }
 
@@ -776,7 +790,6 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                 </li>
                 {/* )} */}
                 {NextPreviesButton()}
-                {NextPreviesTranslationButton()}
                 {data.canonical_story_research_note && (
                   <li>
                     <h3 className={`text-lg font-bold uppercase mb-3  `}>
@@ -923,7 +936,6 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                       </>
                     )}
                     {NextPreviesButton()}
-                    {NextPreviesTranslationButton()}
                     {data.canonical_story_research_note && (
                       <li>
                         <h3 className={`text-lg font-bold uppercase mb-3  `}>
