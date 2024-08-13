@@ -758,6 +758,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                               data.translation_source_manuscript_folio;
                             let translation_as_of_date =
                               data.translation_as_of_date;
+                            let web_page_address = data?.web_page_address;
 
                             return eval(
                               `\`${localData?.translated_by_author_name}\``
@@ -904,6 +905,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                                     data.translation_source_manuscript_folio;
                                   let translation_as_of_date =
                                     data.translation_as_of_date;
+                                  let web_page_address = data?.web_page_address;
 
                                   return eval(
                                     `\`${localData?.translated_by_author_name}\``
