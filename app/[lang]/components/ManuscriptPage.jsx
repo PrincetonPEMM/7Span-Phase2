@@ -7,7 +7,7 @@ import {
 } from "@/utils/constant";
 import { useEffect, useRef, useState } from "react";
 import BackBtn from "./BackBtn";
-import { TablePagination } from "./Pagination";
+import CustomPagination from "./Pagination";
 import Table from "./Table";
 
 export default function Manuscript({ Id, data, table }) {
@@ -367,29 +367,15 @@ export default function Manuscript({ Id, data, table }) {
             tableData={tableData.data}
             tableHeader={manuscriptsDetailTableTitle}
             toggleBtn={false}
-            // meta={{
-            //   total: tableData.total,
-            //   per_page: perPage,
-            //   current_page: page,
-            //   last_page: 50,
-            // }}
-            // isOpen={true}
-            // onPageChange={(e) => {
-            //   setPage(e.selected + 1);
-            // }}
             expandedRows={expandedRows}
             setExpandedRows={setExpandedRows}
             Id={Id}
           />
-          <TablePagination
-            meta={{
-              total: tableData.total,
-              per_page: perPage,
-              current_page: page,
-              last_page: 50,
-              page: page,
-            }}
-            isOpen={isOpen}
+
+          <CustomPagination
+            className=""
+            currentPage={page}
+            totalPages={Math.ceil(tableData.total / perPage)}
             onPageChange={(num) => {
               setPage(num);
               setExpandedRows([]);
