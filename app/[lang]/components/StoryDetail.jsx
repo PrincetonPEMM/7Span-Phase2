@@ -2,17 +2,57 @@
 import { ID_LIST, macomber_id_number } from "@/utils/constant";
 import { Tab } from "@headlessui/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import BackBtn from "./BackBtn";
 import SliderModal from "./SliderModal";
 import Tabs from "./Tabs";
 
-export default function StoryDetail({ data, Id, localData }) {
-  const numberOfWords = 100;
+export default function StoryDetail({ results, Id, localData, lang }) {
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const translationSeqP = params.get("translationSeq");
+  const [loading, setLoading] = useState(false);
+  const [translationSeq, setTranslationSeq] = useState(
+    +translationSeqP || results.current_translation_seq
+  );
+  const [data, setData] = useState(results);
   const [expandedRows, setExpandedRows] = useState([]);
+  const summaryRef = useRef(null);
+  const numberOfWords = 100;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      if (translationSeq > 1)
+        router.push(`${pathname}?translationSeq=${translationSeq}`);
+      else router.push(`${pathname}`);
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_DIRECTUS_URL}stories/${Id}?language=${lang}&translation_seq=${translationSeq}`
+        );
+
+        const json = await response.json();
+        setData(json);
+        if (summaryRef.current) {
+          summaryRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log("Error", error);
+      }
+    };
+    if (translationSeq) fetchData();
+  }, [translationSeq]);
 
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
@@ -106,14 +146,14 @@ export default function StoryDetail({ data, Id, localData }) {
     ];
     if (data.summary_plot)
       tabArr.push({
-        label: localData?.summary,
+        label: SummaryTitle(),
       });
     if (
       data.canonical_translation_recension === "True" ||
       data?.translation_author !== "No Translator"
     )
       tabArr.push({
-        label: localData?.translation,
+        label: TranslationTitle(),
       });
     tabArr.push({
       label: localData?.information,
@@ -171,8 +211,8 @@ export default function StoryDetail({ data, Id, localData }) {
   };
 
   const NextPreviesButton = () => {
-    return (
-      <div className="sm:space-x-5 space-y-5 sm:space-y-0 pt-3 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
+    return data.previous_story || data.next_story ? (
+      <div className="sm:space-x-5 mb-3 space-y-5 sm:space-y-0 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col sm:flex-row">
         {data.previous_story && (
           <Link
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
@@ -190,7 +230,82 @@ export default function StoryDetail({ data, Id, localData }) {
           </Link>
         )}
       </div>
-    );
+    ) : null;
+  };
+
+  const SummaryTitle = () => {
+    switch (translationSeq) {
+      case 1:
+        return localData?.summary_of_first_translation;
+      case 2:
+        return localData?.summary_of_second_translation;
+      case 3:
+        return localData?.summary_of_third_translation;
+      case 4:
+        return localData?.summary_of_fourth_translation;
+      case 5:
+        return localData?.summary_of_fifth_translation;
+      case 6:
+        return localData?.summary_of_sixth_translation;
+      case 7:
+        return localData?.summary_of_seventh_translation;
+      case 8:
+        return localData?.summary_of_eighth_translation;
+      case 9:
+        return localData?.summary_of_ninth_translation;
+      default:
+        return localData?.summary;
+    }
+  };
+
+  const TranslationTitle = () => {
+    switch (translationSeq) {
+      case 1:
+        return localData?.first_translation;
+      case 2:
+        return localData?.second_translation;
+      case 3:
+        return localData?.third_translation;
+      case 4:
+        return localData?.fourth_translation;
+      case 5:
+        return localData?.fifth_translation;
+      case 6:
+        return localData?.sixth_translation;
+      case 7:
+        return localData?.seventh_translation;
+      case 8:
+        return localData?.eighth_translation;
+      case 9:
+        return localData?.ninth_translation;
+      default:
+        return localData?.translation;
+    }
+  };
+
+  const ToCiteTranslationTitle = () => {
+    switch (translationSeq) {
+      case 1:
+        return localData?.to_cite_this_first_translation;
+      case 2:
+        return localData?.to_cite_this_second_translation;
+      case 3:
+        return localData?.to_cite_this_third_translation;
+      case 4:
+        return localData?.to_cite_this_fourth_translation;
+      case 5:
+        return localData?.to_cite_this_fifth_translation;
+      case 6:
+        return localData?.to_cite_this_sixth_translation;
+      case 7:
+        return localData?.to_cite_this_seventh_translation;
+      case 8:
+        return localData?.to_cite_this_eighth_translation;
+      case 9:
+        return localData?.to_cite_this_ninth_translation;
+      default:
+        return localData?.to_cite_this_translation;
+    }
   };
 
   function FirstLine(localData, pemm_short_title, earliest_attestation) {
@@ -276,17 +391,35 @@ export default function StoryDetail({ data, Id, localData }) {
     total_manuscripts_with_story_id_illustrated
   ) {
     const dynamicParagraph = () => {
-      return total_story_id_paintings >= 20
-        ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
-        : ID_LIST.includes(canonical_story_id)
-        ? total_manuscripts_with_story_id_illustrated == null ||
-          total_manuscripts_with_story_id_illustrated != 0
-          ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
-          : eval(`\`${localData?.thirdline_of_story_detail_line_3}\``)
-        : total_manuscripts_with_story_id_illustrated == null ||
-          total_manuscripts_with_story_id_illustrated != 0
-        ? eval(`\`${localData?.thirdline_of_story_detail_line_4}\``)
-        : eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
+      if (total_story_id_paintings > 0) {
+        if (total_manuscripts_with_story_id_illustrated === 0) {
+          if (ID_LIST.includes(canonical_story_id)) {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_2}\``);
+          } else {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_4}\``);
+          }
+        } else {
+          if (ID_LIST.includes(canonical_story_id)) {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_3}\``);
+          } else {
+            return eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
+          }
+        }
+      }
+      return eval(`\`${localData?.thirdline_of_story_detail_line_1}\``);
+
+      /* OLD LOGIC */
+      // return total_story_id_paintings > 0
+      //   ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+      //   : ID_LIST.includes(canonical_story_id)
+      //   ? total_manuscripts_with_story_id_illustrated == null ||
+      //     total_manuscripts_with_story_id_illustrated != 0
+      //     ? eval(`\`${localData?.thirdline_of_story_detail_line_2}\``)
+      //     : eval(`\`${localData?.thirdline_of_story_detail_line_3}\``)
+      //   : total_manuscripts_with_story_id_illustrated == null ||
+      //     total_manuscripts_with_story_id_illustrated != 0
+      //   ? eval(`\`${localData?.thirdline_of_story_detail_line_4}\``)
+      //   : eval(`\`${localData?.thirdline_of_story_detail_line_5}\``);
     };
 
     return (
@@ -334,13 +467,42 @@ export default function StoryDetail({ data, Id, localData }) {
 
   function SixthLine(localData, languageAvailableIn) {
     languageAvailableIn = languageAvailableIn.join(", ");
+    const total_translation_seq = data?.total_translation_seq;
+    const previous_translation_seq = data?.previous_translation_seq;
+    const next_translation_seq = data?.next_translation_seq;
+
+    const NextPreviesTranslationButton = `<span class=" text-offWhite-500 font-semibold font-body text-sm md:text-base ">
+        ${
+          Boolean(previous_translation_seq)
+            ? `<a area-label="Click here to See the Previous Translation" href=${`${pathname}?translationSeq=${previous_translation_seq}`} class="text-primary-600 font-bold hover:text-secondary-500">
+              <span>${localData?.read_previous_translation_of_this_story}</span>
+            </a>`
+            : ""
+        }
+        ${
+          Boolean(next_translation_seq)
+            ? `<a area-label="Click here to See the Next Translation" href=${`${pathname}?translationSeq=${next_translation_seq}`}  class="text-primary-600 font-bold hover:text-secondary-500">
+              <span>${localData?.read_another_translation_of_this_story}</span>
+            </a>`
+            : ""
+        }
+      </span>`;
+
+    const total_translation_seq_line =
+      total_translation_seq > 0
+        ? eval(`\`${localData?.sixthline_of_story_detail_2}\``)
+        : "";
+
     return (
-      <p
-        className="text-base leading-relaxed"
-        dangerouslySetInnerHTML={{
-          __html: eval(`\`${localData?.sixthline_of_story_detail}\``),
-        }}
-      ></p>
+      <>
+        <p
+          className="text-base leading-relaxed"
+          dangerouslySetInnerHTML={{
+            __html: eval(`\`${localData?.sixthline_of_story_detail}\``),
+          }}
+        ></p>
+        {/* {NextPreviesTranslationButton()} */}
+      </>
     );
   }
 
@@ -374,15 +536,21 @@ export default function StoryDetail({ data, Id, localData }) {
             data.canonical_translation_recension !== "True" && "mb-5"
           } `}
         >
-          {localData?.translation}
+          {TranslationTitle()}
         </h3>
-        <div className="text-sm leading-relaxed">
+        <div className="text-sm leading-relaxed mb-2">
           የዚህ ተአምር የአማርኛ ትርጉም በታተሙ የተአምረ ማርያም መጻሕፍት ውስጥ ይገኛል (ዝቅ ብሎ ያለውን ዝርዝር
           ይመልከቱ)። ነገር ግን፣ በፐም ዌብሳይት ላይ ገና አልተዘጋጀም።
         </div>
       </>
     );
 
+  if (loading)
+    return (
+      <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold py-32">
+        {localData?.fetching_translation_of_the_story}...
+      </div>
+    );
   return data ? (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
@@ -554,7 +722,7 @@ export default function StoryDetail({ data, Id, localData }) {
             </div>
             {/* Summary */}
             {data.summary_plot && (
-              <div className="space-y-4">
+              <div className="space-y-4" ref={summaryRef}>
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3
@@ -562,7 +730,7 @@ export default function StoryDetail({ data, Id, localData }) {
                         !data.summary_plot && "mb-5"
                       }`}
                     >
-                      {localData?.summary}
+                      {SummaryTitle()}
                     </h3>
                     <p
                       className="text-base leading-relaxed mb-3"
@@ -578,46 +746,49 @@ export default function StoryDetail({ data, Id, localData }) {
             <div className="space-y-4">
               <ol className="list-inside md:pl-4 font-body p-0">
                 {EnglishTranslationNote()}
-                {data.canonical_translation_recension === "True" && (
-                  <li>
+                {/* {data.canonical_translation_recension === "True" && ( */}
+                <li>
+                  {data?.english_translation && (
                     <h3
                       className={`text-lg font-bold uppercase mb-3 ${
                         data.canonical_translation_recension !== "True" &&
                         "mb-5"
                       } `}
                     >
-                      {localData?.translation}
+                      {TranslationTitle()}
                     </h3>
+                  )}
 
-                    {data.translation_author !== "No Translator" &&
-                      data.translation_author &&
-                      data.manuscript_name && (
-                        <p
-                          className="text-base leading-relaxed mb-3  space-y-4 italic"
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              let translation_author = data.translation_author;
-                              let manuscript_name = data.manuscript_name;
-                              let translation_source_manuscript_folio =
-                                data.translation_source_manuscript_folio;
-                              let translation_as_of_date =
-                                data.translation_as_of_date;
+                  {data.translation_author !== "No Translator" &&
+                    data.translation_author &&
+                    data.manuscript_name && (
+                      <p
+                        className="text-base leading-relaxed mb-3  space-y-4 italic"
+                        dangerouslySetInnerHTML={{
+                          __html: (() => {
+                            let translation_author = data.translation_author;
+                            let manuscript_name = data.manuscript_name;
+                            let translation_source_manuscript_folio =
+                              data.translation_source_manuscript_folio;
+                            let translation_as_of_date =
+                              data.translation_as_of_date;
+                            let web_page_address = data?.web_page_address;
 
-                              return eval(
-                                `\`${localData?.translated_by_author_name}\``
-                              );
-                            })(),
-                          }}
-                        ></p>
-                      )}
-                    <p
-                      className="text-base leading-relaxed mb-3 space-y-4"
-                      dangerouslySetInnerHTML={{
-                        __html: data.english_translation,
-                      }}
-                    ></p>
-                  </li>
-                )}
+                            return eval(
+                              `\`${localData?.translated_by_author_name}\``
+                            );
+                          })(),
+                        }}
+                      ></p>
+                    )}
+                  <p
+                    className="text-base leading-relaxed mb-3 space-y-4"
+                    dangerouslySetInnerHTML={{
+                      __html: data.english_translation,
+                    }}
+                  ></p>
+                </li>
+                {/* )} */}
                 {NextPreviesButton()}
                 {data.canonical_story_research_note && (
                   <li>
@@ -632,13 +803,12 @@ export default function StoryDetail({ data, Id, localData }) {
                     ></p>
                   </li>
                 )}
-
                 {data.canonical_translation_recension === "True" &&
                   data?.translation_author !== "No Translator" &&
                   data?.translation_author && (
                     <li>
                       <h3 className="text-lg font-bold uppercase my-3">
-                        {localData?.to_cite_this_translation}
+                        {ToCiteTranslationTitle()}
                       </h3>
 
                       <p
@@ -704,7 +874,7 @@ export default function StoryDetail({ data, Id, localData }) {
                 <ol className="list-inside md:pl-4 font-body p-0">
                   <li>
                     <h3 className="text-lg font-bold uppercase my-3">
-                      {localData?.summary}
+                      {SummaryTitle()}
                     </h3>
                     <p
                       className="text-base leading-relaxed mb-3 space-y-p"
@@ -729,9 +899,11 @@ export default function StoryDetail({ data, Id, localData }) {
                   <li>
                     {data.canonical_translation_recension === "True" && (
                       <>
-                        <h3 className="text-lg font-bold uppercase mb-3">
-                          {localData?.translation}
-                        </h3>
+                        {data?.english_translation && (
+                          <h3 className="text-lg font-bold uppercase mb-3">
+                            {TranslationTitle()}
+                          </h3>
+                        )}
                         {data.translation_author !== "No Translator" &&
                           data.translation_author &&
                           data.manuscript_name && (
@@ -746,6 +918,7 @@ export default function StoryDetail({ data, Id, localData }) {
                                     data.translation_source_manuscript_folio;
                                   let translation_as_of_date =
                                     data.translation_as_of_date;
+                                  let web_page_address = data?.web_page_address;
 
                                   return eval(
                                     `\`${localData?.translated_by_author_name}\``
@@ -781,7 +954,7 @@ export default function StoryDetail({ data, Id, localData }) {
                       data?.translation_author && (
                         <>
                           <h3 className="text-lg font-bold uppercase my-3">
-                            {localData?.to_cite_this_translation}
+                            {ToCiteTranslationTitle()}
                           </h3>
                           <p
                             className="text-base leading-relaxed mb-3 space-y-p"

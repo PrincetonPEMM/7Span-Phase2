@@ -48,7 +48,12 @@ const Page = async ({ params }) => {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <StoryDetail data={data} Id={Id} localData={localData} />
+      <StoryDetail
+        results={data}
+        Id={Id}
+        localData={localData}
+        lang={needToTranslateInThisLangauge}
+      />
     </main>
   );
 };
