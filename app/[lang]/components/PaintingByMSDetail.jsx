@@ -203,23 +203,6 @@ const PaintingByMSDetail = ({ list, Id }) => {
           {isLoading ? <h1>Loading...</h1> : <h1>Records Not Found</h1>}
         </div>
       )}
-      {/* <TablePagination
-        meta={{
-          total: totalPage,
-          per_page: perPage,
-          current_page: page,
-          last_page: 50,
-          page: page,
-        }}
-        isOpen={true}
-        onPageChange={(num) => {
-          setPage(num);
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }}
-      /> */}
     </div>
   );
 };

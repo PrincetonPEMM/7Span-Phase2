@@ -826,24 +826,6 @@ const Stories = ({ localData, lang }) => {
             )}
           </div>
         )}
-        {/* <TablePagination
-          meta={{
-            total: totalPage,
-            per_page: perPage,
-            current_page: page,
-            last_page: 50,
-            page: page,
-          }}
-          isOpen={isOpen}
-          onPageChange={(num) => {
-            setPage(num);
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-            setExpandedRows([]);
-          }}
-        /> */}
       </div>
     </div>
   );
