@@ -47,7 +47,7 @@ const Banner = ({ id, data, setSelectedBanner, selectedBanner, localData }) => {
               </span>
             </a>
             <div
-              className="mt-2 text-xs xl:mt-5"
+              className="mt-2 text-xs xl:mt-5 line-clamp-2"
               dangerouslySetInnerHTML={{ __html: data.credit }}
             ></div>
           </div>
