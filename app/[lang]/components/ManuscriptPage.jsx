@@ -238,6 +238,7 @@ export default function Manuscript({ Id, data, table }) {
     let p3 = "";
     let p4 = "";
     let p5 = "";
+    let miracles_sequence_number = "";
 
     if (data.total_folios != null) {
       folios = `<b>${data.total_folios}</b> folios`;
@@ -271,8 +272,11 @@ export default function Manuscript({ Id, data, table }) {
     if (data.folio_start_of_the_tm_part != null) {
       folio_start = `The Marian miracle stories begin on folio <b>${data.folio_start_of_the_tm_part}</b> of the whole manuscript.`;
     }
+    if (data.miracles_sequence_number !== null) {
+      miracles_sequence_number = `The stories in this manuscript appear in ${data.miracles_sequence_number} sequences, and are numbered accordingly below as 1.2, 2.1, etc.`;
+    }
     array.push({
-      text: `${s1} ${s2} ${folio_start} ${
+      text: `${s1} ${s2} ${miracles_sequence_number} ${folio_start} ${
         data.duplicate_missing_scans_rebound_in_disorder === "Yes" &&
         data.mss_rebound_in_disorder_or_breaks_in_sequence
           ? `Some manuscripts get rebound in disorder (folios do not appear in the original sequence) or have breaks in the sequence (folios are missing that appeared in the original manuscript). This manuscript is <b>${data.mss_rebound_in_disorder_or_breaks_in_sequence}</b>.`
