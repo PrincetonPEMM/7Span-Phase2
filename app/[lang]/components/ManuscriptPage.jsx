@@ -378,7 +378,7 @@ export default function Manuscript({ Id, data, table }) {
 
           <CustomPagination
             className=""
-            currentPage={page}
+            currentPage={+page}
             totalPages={Math.ceil(tableData.total / perPage)}
             onPageChange={(num) => {
               setPage(num);
