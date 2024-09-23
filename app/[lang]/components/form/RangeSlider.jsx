@@ -49,7 +49,6 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
   useEffect(() => {
     const minPercent = getPercent(minValRef.current);
     const maxPercent = getPercent(maxVal);
-
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
@@ -76,23 +75,23 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
           type="range"
           min={min}
           max={max}
-          value={minVal}
+          value={+minVal}
           onChange={(event) => {
-            const value = Math.min(Number(event.target.value), maxVal - 1);
+            const value = Math.min(Number(event.target.value), +maxVal - 1);
             setMinVal(value);
             minValRef.current = value;
           }}
           onKeyDown={(event) => {
-            if (event.key === "ArrowLeft" && minVal > min) {
-              setMinVal(minVal - 1);
-              minValRef.current = minVal - 1;
-            } else if (event.key === "ArrowRight" && minVal < maxVal - 1) {
-              setMinVal(minVal + 1);
-              minValRef.current = minVal + 1;
+            if (event.key === "ArrowLeft" && +minVal > min) {
+              setMinVal(+minVal - 1);
+              minValRef.current = +minVal - 1;
+            } else if (event.key === "ArrowRight" && +minVal < +maxVal - 1) {
+              setMinVal(+minVal + 1);
+              minValRef.current = +minVal + 1;
             }
           }}
           className="thumb thumb--left bg-offWhite-500 "
-          style={{ zIndex: minVal > max - 100 && "5" }}
+          style={{ zIndex: +minVal > max - 100 && "5" }}
         />
       </label>
       <label
@@ -103,24 +102,24 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
           type="range"
           min={min}
           max={max}
-          value={maxVal}
+          value={+maxVal}
           // role="slider"
           // aria-valuemin={min}
           // aria-valuemax={max}
           // aria-valuenow={minVal}
           // aria-valuetext={`Selected range: ${minVal}`}
           onChange={(event) => {
-            const value = Math.max(Number(event.target.value), minVal + 1);
+            const value = Math.max(Number(event.target.value), +minVal + 1);
             setMaxVal(value);
             maxValRef.current = value;
           }}
           onKeyDown={(event) => {
-            if (event.key === "ArrowLeft" && maxVal < max) {
-              setMaxVal(maxVal - 1);
-              maxValRef.current = maxVal - 1;
-            } else if (event.key === "ArrowRight" && maxVal < maxVal - 1) {
-              setMaxVal(maxVal + 1);
-              maxValRef.current = maxVal + 1;
+            if (event.key === "ArrowLeft" && +maxVal < max) {
+              setMaxVal(+maxVal - 1);
+              maxValRef.current = +maxVal - 1;
+            } else if (event.key === "ArrowRight" && +maxVal < +maxVal - 1) {
+              setMaxVal(+maxVal + 1);
+              maxValRef.current = +maxVal + 1;
             }
           }}
           className="thumb thumb--right  "
