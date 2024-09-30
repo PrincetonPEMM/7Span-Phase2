@@ -19,7 +19,7 @@ const Page = async ({ params }) => {
   }
 
   try {
-    const tableRes = await fetch(
+    let tableRes = await fetch(
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
       }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
