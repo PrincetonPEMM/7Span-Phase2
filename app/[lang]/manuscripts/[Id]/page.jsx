@@ -25,8 +25,8 @@ const Page = async ({ params }) => {
       }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
     );
     tableRes = await tableRes.json();
-    if (tableRes.status === 404) {
-      return <ErrorPage error={tableRes.error} />;
+    if (tableRes?.status === 404) {
+      return <ErrorPage error={tableRes.error} title={tableRes.title} />;
     }
   } catch (error) {
     console.log("Error", error);

@@ -1,7 +1,7 @@
 "use client"; // Error components must be Client Components
 import { useEffect } from "react";
 
-export default function ErrorPage({ error }) {
+export default function ErrorPage({ error, title }) {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -35,7 +35,7 @@ export default function ErrorPage({ error }) {
               strokeLinejoin="round"
             />
           </svg>
-          <h2 className="text-2xl font-bold text-gray-800">Not found!</h2>
+          <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
         </div>
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
           <div className="flex items-center justify-between">

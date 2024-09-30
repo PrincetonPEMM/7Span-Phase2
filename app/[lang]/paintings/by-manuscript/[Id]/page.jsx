@@ -17,8 +17,8 @@ const Page = async ({ params }) => {
     );
 
     data = await response.json();
-    if (response.status === 404) {
-      return <ErrorPage error={data.error} />;
+    if (response?.status === 404) {
+      return <ErrorPage error={data.error} title={data.title} />;
     }
   } catch (error) {
     console.log("Error", error);
