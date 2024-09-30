@@ -2,6 +2,7 @@ import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Script from "next/script";
+import ErrorPage from "../../components/ErrorPage";
 import PaintingDetail from "../../components/PaintingDetail";
 
 export const dynamic = "force-dynamic";
@@ -27,6 +28,9 @@ const Page = async ({ params }) => {
     );
 
     data = await response.json();
+    if (response.status === 404) {
+      return <ErrorPage error={data.error} />;
+    }
   } catch (error) {
     console.log("Error", error);
   }

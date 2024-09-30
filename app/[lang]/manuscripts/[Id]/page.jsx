@@ -1,4 +1,5 @@
 import { pagePerLimit } from "@/utils/constant";
+import ErrorPage from "../../components/ErrorPage";
 import Manuscript from "../../components/ManuscriptPage";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +24,10 @@ const Page = async ({ params }) => {
         process.env.NEXT_PUBLIC_DIRECTUS_URL
       }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
     );
-    tableData = await tableRes.json();
+    tableRes = await tableRes.json();
+    if (tableRes.status === 404) {
+      return <ErrorPage error={tableRes.error} />;
+    }
   } catch (error) {
     console.log("Error", error);
   }

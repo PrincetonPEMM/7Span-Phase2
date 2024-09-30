@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, {
   useCallback,
   useEffect,
@@ -16,6 +16,12 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
 
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),
+    [min, max]
+  );
+
+  // Calculate the minimum allowed difference (2% of the range)
+  const minDifference = useCallback(
+    () => Math.ceil((max - min) * 0.1),
     [min, max]
   );
 
@@ -56,12 +62,6 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
 
   useEffect(() => {
     let min, max;
-    // For convert into 0 to 100 range.
-    // if (isPageName === MANUSCRIPTS) {
-    //   const total = largest - lowest;
-    //   min = Math.round(((minVal - lowest) / total) * 100);
-    //   max = Math.round(((maxVal - lowest) / total) * 100);
-    // }
     min = Math.round(minVal);
     max = Math.round(maxVal);
 
@@ -77,17 +77,25 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
           max={max}
           value={+minVal}
           onChange={(event) => {
-            const value = Math.min(Number(event.target.value), +maxVal - 1);
+            const value = Math.min(
+              Number(event.target.value),
+              +maxVal - minDifference()
+            );
             setMinVal(value);
             minValRef.current = value;
           }}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft" && +minVal > min) {
-              setMinVal(+minVal - 1);
-              minValRef.current = +minVal - 1;
-            } else if (event.key === "ArrowRight" && +minVal < +maxVal - 1) {
-              setMinVal(+minVal + 1);
-              minValRef.current = +minVal + 1;
+              const newValue = Math.max(+minVal - 1, min);
+              setMinVal(newValue);
+              minValRef.current = newValue;
+            } else if (
+              event.key === "ArrowRight" &&
+              +minVal < +maxVal - minDifference()
+            ) {
+              const newValue = Math.min(+minVal + 1, +maxVal - minDifference());
+              setMinVal(newValue);
+              minValRef.current = newValue;
             }
           }}
           className="thumb thumb--left bg-offWhite-500 "
@@ -103,23 +111,26 @@ const RangeSlider = ({ min, max, onChange, ref1, areaLabel }) => {
           min={min}
           max={max}
           value={+maxVal}
-          // role="slider"
-          // aria-valuemin={min}
-          // aria-valuemax={max}
-          // aria-valuenow={minVal}
-          // aria-valuetext={`Selected range: ${minVal}`}
           onChange={(event) => {
-            const value = Math.max(Number(event.target.value), +minVal + 1);
+            const value = Math.max(
+              Number(event.target.value),
+              +minVal + minDifference()
+            );
             setMaxVal(value);
             maxValRef.current = value;
           }}
           onKeyDown={(event) => {
-            if (event.key === "ArrowLeft" && +maxVal < max) {
-              setMaxVal(+maxVal - 1);
-              maxValRef.current = +maxVal - 1;
-            } else if (event.key === "ArrowRight" && +maxVal < +maxVal - 1) {
-              setMaxVal(+maxVal + 1);
-              maxValRef.current = +maxVal + 1;
+            if (
+              event.key === "ArrowLeft" &&
+              +maxVal > +minVal + minDifference()
+            ) {
+              const newValue = Math.max(+maxVal - 1, +minVal + minDifference());
+              setMaxVal(newValue);
+              maxValRef.current = newValue;
+            } else if (event.key === "ArrowRight" && +maxVal < max) {
+              const newValue = Math.min(+maxVal + 1, max);
+              setMaxVal(newValue);
+              maxValRef.current = newValue;
             }
           }}
           className="thumb thumb--right  "
