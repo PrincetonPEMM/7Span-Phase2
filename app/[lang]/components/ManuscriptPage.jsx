@@ -100,7 +100,13 @@ export default function Manuscript({ Id, data, table }) {
 
       // array.push({ text });
     } else {
-      text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of <b>${data.location_of_ms_imaging} in ${data.location_of_ms_imaging_city}, ${data.location_of_ms_imaging_country}</b>. `;
+      text = `This manuscript&apos;s last known location (i.e., where it was microfilmed or digitized at some point in the past forty years)  is the repository of <b>${
+        data.location_of_ms_imaging
+      }${
+        data?.location_of_ms_imaging_city
+          ? ` in ${data.location_of_ms_imaging_city}`
+          : ""
+      }, ${data.location_of_ms_imaging_country}</b>. `;
       if (
         data.digital_repository &&
         data.digital_repository_city &&

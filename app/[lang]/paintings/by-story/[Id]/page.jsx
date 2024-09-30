@@ -1,6 +1,6 @@
-import React from "react";
-import { pagePerLimitForPainting } from "@/utils/constant";
+import ErrorPage from "@/app/[lang]/components/ErrorPage";
 import PaintingByStoryDetail from "@/app/[lang]/components/PaintingByStoryDetail";
+import { pagePerLimitForPainting } from "@/utils/constant";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +15,9 @@ const Page = async ({ params }) => {
     );
 
     data = await response.json();
+    if (response?.status === 404) {
+      return <ErrorPage error={data.error} title={data.title} />;
+    }
   } catch (error) {
     console.log("Error", error);
   }
