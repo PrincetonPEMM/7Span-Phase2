@@ -14,6 +14,9 @@ const Page = async ({ params }) => {
       `${process.env.NEXT_PUBLIC_DIRECTUS_URL}manuscripts/${Id}`
     );
     data = await response.json();
+    if (response?.status === 404) {
+      return <ErrorPage error={data.error} title={data.title} />;
+    }
   } catch (error) {
     console.log("Error", error);
   }
@@ -25,10 +28,6 @@ const Page = async ({ params }) => {
       }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
     );
     tableData = await tableRes.json();
-
-    if (tableRes?.status === 404) {
-      return <ErrorPage error={tableData.error} title={tableData.title} />;
-    }
   } catch (error) {
     console.log("Error", error);
   }
