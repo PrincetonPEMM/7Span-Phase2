@@ -19,14 +19,15 @@ const Page = async ({ params }) => {
   }
 
   try {
-    let tableRes = await fetch(
+    const tableRes = await fetch(
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
       }manuscripts/stories/${Id}?page=${1}&perPage=${pagePerLimit}`
     );
-    tableRes = await tableRes.json();
+    tableData = await tableRes.json();
+
     if (tableRes?.status === 404) {
-      return <ErrorPage error={tableRes.error} title={tableRes.title} />;
+      return <ErrorPage error={tableData.error} title={tableData.title} />;
     }
   } catch (error) {
     console.log("Error", error);
