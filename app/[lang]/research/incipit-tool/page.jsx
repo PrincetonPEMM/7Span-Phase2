@@ -1,4 +1,3 @@
-"use client";
 import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
