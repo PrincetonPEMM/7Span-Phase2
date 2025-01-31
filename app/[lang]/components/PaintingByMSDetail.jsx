@@ -15,7 +15,7 @@ import CustomPagination from "./Pagination";
 import PaintingStoryCard from "./PaintingStoryCard";
 import InputText from "./form/InputText";
 
-const PaintingByMSDetail = ({ list, Id }) => {
+const PaintingByMSDetail = ({ list, Id, lang }) => {
   const params = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -181,7 +181,7 @@ const PaintingByMSDetail = ({ list, Id }) => {
         {data.map((item, index) => (
           <Link
             key={item.image_link + index}
-            href={`/paintings/${Id}_${item.painting_unique_id}`}
+            href={`/${lang}/paintings/${Id}_${item.painting_unique_id}`}
             className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto inline-block relative overflow-hidden w-full`}
           >
             <PaintingStoryCard

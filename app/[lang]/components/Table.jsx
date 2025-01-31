@@ -23,6 +23,7 @@ const Table = ({
   sortingRow,
   setSortingRow,
   Id = "",
+  lang,
 }) => {
   const toggleExpand = (rowIndex) => {
     if (expandedRows.includes(rowIndex)) {
@@ -269,8 +270,8 @@ const Table = ({
                           <Link
                             href={
                               isPageName === STORIES
-                                ? `stories/${event.canonical_story_id}`
-                                : ` manuscripts/${event.web_page_address}`
+                                ? `/${lang}/stories/${event.canonical_story_id}`
+                                : `/${lang}/manuscripts/${event.web_page_address}`
                             }
                           >
                             {isPageName === STORIES &&
@@ -313,7 +314,7 @@ const Table = ({
                           buildShowingText(event.total_stories)}
                         {isPageName === MANUSCRIPT_DETAIL && (
                           <Link
-                            href={`/stories/${event.id}`}
+                            href={`/${lang}/stories/${event.id}`}
                             className="text-primary-500 hover:text-secondary-500 font-bold"
                           >
                             {buildShowingText(event.canonical_story_title)}
@@ -336,7 +337,7 @@ const Table = ({
                         {isPageName === MANUSCRIPT_DETAIL &&
                         event.no_of_paintings_per_story_instance > 0 ? (
                           <Link
-                            href={`/paintings/${Id}_${event.first_painting_unique_id}`}
+                            href={`/${lang}/paintings/${Id}_${event.first_painting_unique_id}`}
                             className="text-primary-500 hover:text-secondary-500 font-bold"
                           >
                             {event.no_of_paintings_per_story_instance}

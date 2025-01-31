@@ -223,8 +223,8 @@ const PaintingByStoryIndex = ({ list, localData, lang }) => {
               })()}
               btnLink={` ${
                 item.painting_count > 1
-                  ? "/paintings/by-story/" + item.canonical_story_id
-                  : `/paintings/${item.web_page_address}_${item.painting_unique_id}`
+                  ? `/${lang}/paintings/by-story/` + item.canonical_story_id
+                  : `/${lang}/paintings/${item.web_page_address}_${item.painting_unique_id}`
               }`}
               localData={localData}
             />

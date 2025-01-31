@@ -816,6 +816,7 @@ const Stories = ({ localData, lang }) => {
           ascDescFil={ascDescFil}
           sortingRow={sortingRow}
           setSortingRow={setSortingRow}
+          lang={lang}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center py-20 justify-center w-full text-2xl text-primary-500 font-bold">

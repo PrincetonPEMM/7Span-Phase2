@@ -847,6 +847,7 @@ const ManuScripts = ({ lang, localData }) => {
           ascDescFil={ascDescFil}
           sortingRow={sortingRow}
           setSortingRow={setSortingRow}
+          lang={lang}
         />
         {Boolean(!tableData?.length) && (
           <div className="flex items-center justify-center w-full text-2xl text-primary-500 font-bold">

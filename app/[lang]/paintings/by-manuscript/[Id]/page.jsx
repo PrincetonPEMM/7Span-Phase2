@@ -26,7 +26,7 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <PaintingByMSDetail list={data} Id={Id} />
+      <PaintingByMSDetail list={data} Id={Id} lang={params.lang} />
     </div>
   );
 };
