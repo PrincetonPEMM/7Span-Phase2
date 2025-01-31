@@ -24,7 +24,7 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <PaintingByStoryDetail list={data} Id={Id} />
+      <PaintingByStoryDetail list={data} Id={Id} lang={params.lang} />
     </div>
   );
 };

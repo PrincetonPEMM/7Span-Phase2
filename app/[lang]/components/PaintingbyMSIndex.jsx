@@ -475,7 +475,7 @@ const PaintingbyMSIndex = ({
                     `\`${localData?.button_text_for_paiting_by_manuscript_card}\``
                   );
                 })()}
-                btnLink={`/paintings/by-manuscript/${item.web_page_address}`}
+                btnLink={`/${lang}/paintings/by-manuscript/${item.web_page_address}`}
               />
             </div>
           ))}
