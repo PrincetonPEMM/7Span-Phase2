@@ -16,7 +16,7 @@ const PaintingCard = (props) => {
 
   return (
     <Link
-      href={`/paintings/${props.card.web_page_address}_${props.card.painting_unique_id}`}
+      href={`/${props.lang}/paintings/${props.card.web_page_address}_${props.card.painting_unique_id}`}
       className={`text-offWhite-500 font-body relative mx-auto  mb-4 overflow-hidden inline-block card-background w-full`}
     >
       <div className="aspect-square bg-offWhite-500">

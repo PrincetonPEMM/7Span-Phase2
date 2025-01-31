@@ -216,7 +216,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
         {data.previous_story && (
           <Link
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-            href={`/stories/${data.previous_story}`}
+            href={`/${lang}/stories/${data.previous_story}`}
           >
             <span>{localData?.view_the_previous_part_of_the_story}</span>
           </Link>
@@ -224,7 +224,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
         {data.next_story && (
           <Link
             className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-            href={`/stories/${data.next_story}`}
+            href={`/${lang}/stories/${data.next_story}`}
           >
             <span>{localData?.view_the_next_part_of_the_story}</span>
           </Link>

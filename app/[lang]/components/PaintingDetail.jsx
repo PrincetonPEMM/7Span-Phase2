@@ -172,14 +172,14 @@ const PaintingDetail = ({ data, localData, lang }) => {
           <div className="lg:space-x-5 space-y-5 lg:space-y-0 pt-3 md:pt-10 text-offWhite-500 font-semibold font-body flex items-start text-sm md:text-base flex-col lg:flex-row">
             <Link
               className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-              href={`/paintings/by-manuscript/${data.web_page_address}`}
+              href={`/${lang}/paintings/by-manuscript/${data.web_page_address}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
               <span>{localData?.view_more_paintings_from_this_manuscript}</span>
             </Link>
             <Link
               className="bg-primary-500 transition-all font-normal hover:text-white hover:bg-secondary-500 border border-transparent hover:border-secondary-500 rounded-md space-x-2 inline-flex items-center px-2 sm:px-3 py-1 font-body tracking-wide"
-              href={`/paintings/by-story/${data.canonical_story_id}`}
+              href={`/${lang}/paintings/by-story/${data.canonical_story_id}`}
             >
               {/* <MdiOpenInNew className="sm:h-6 sm:w-6" /> */}
               <span>{localData?.view_more_paintings_for_this_story}</span>

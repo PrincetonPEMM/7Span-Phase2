@@ -34,7 +34,7 @@ const Page = async ({ params }) => {
 
   return (
     <>
-      <Manuscript Id={Id} data={data} table={tableData} />
+      <Manuscript Id={Id} data={data} table={tableData} lang={params.lang} />
     </>
   );
 };

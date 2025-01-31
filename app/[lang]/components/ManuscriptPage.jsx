@@ -10,7 +10,7 @@ import BackBtn from "./BackBtn";
 import CustomPagination from "./Pagination";
 import Table from "./Table";
 
-export default function Manuscript({ Id, data, table }) {
+export default function Manuscript({ Id, data, table, lang }) {
   const [expandedRows, setExpandedRows] = useState([]);
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
@@ -380,6 +380,7 @@ export default function Manuscript({ Id, data, table }) {
             expandedRows={expandedRows}
             setExpandedRows={setExpandedRows}
             Id={Id}
+            lang={lang}
           />
 
           <CustomPagination
