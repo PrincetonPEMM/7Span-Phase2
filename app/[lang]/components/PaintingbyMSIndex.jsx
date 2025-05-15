@@ -4,6 +4,7 @@ import MdiWindowClose from "@/assets/icons/MdiWindowClose";
 import {
   breakpointColumnsForMasonry,
   minSearchChar,
+  numberOfPaintaingFilterOption,
   pagePerLimitForPainting,
 } from "@/utils/constant";
 import useDebounce from "@/utils/useDebounce";
@@ -35,6 +36,7 @@ const PaintingbyMSIndex = ({
     newDatePainting,
     newPaintingInColor,
     newInstitution,
+    newPaintingIn,
   } = getFilterFromParams();
   const { debounce } = useDebounce();
   const [isLoading, setIsLoadint] = useState(true);
@@ -49,8 +51,8 @@ const PaintingbyMSIndex = ({
     newPaintingInColor ?? []
   );
   const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
+  const [numberOfPainting, setNumberOfPainting] = useState(newPaintingIn);
   const [mount, setMount] = useState(false);
-
   const paintingBy = () => [
     {
       value: localData?.all_paintings,
@@ -84,12 +86,18 @@ const PaintingbyMSIndex = ({
     const newInstitution = institution.filter((dop) =>
       [inst].includes(dop.key)
     );
+
+    const painting = params.get("noOfPaintings");
+    const newPaintingIn = numberOfPaintaingFilterOption.filter((dop) =>
+      [painting].includes(dop.key)
+    );
     return {
       search,
       pageP,
       newDatePainting,
       newPaintingInColor,
       newInstitution: newInstitution[0],
+      newPaintingIn: newPaintingIn[0],
     };
   }
 
@@ -140,6 +148,9 @@ const PaintingbyMSIndex = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}${makeParamsArray(
+        "noOfPaintings",
+        Boolean(numberOfPainting) ? [numberOfPainting] : []
       )}filters[search]=${searchKey?.length > minSearchChar ? searchKey : ""}`
     )
       .then((res) => res.json())
@@ -166,7 +177,12 @@ const PaintingbyMSIndex = ({
     if (!mount) return;
     setPage(1);
     fetchData(search);
-  }, [dateOfPaintins, paintingsInColorOnly, archiveOfPainting]);
+  }, [
+    dateOfPaintins,
+    paintingsInColorOnly,
+    archiveOfPainting,
+    numberOfPainting,
+  ]);
 
   const debouncedFetchData = debounce((e) => {
     fetchData(e);
@@ -241,6 +257,20 @@ const PaintingbyMSIndex = ({
             </div>
             <div>
               <Dropdown
+                title={localData?.number_of_painting}
+                selected={numberOfPainting}
+                setSelected={(e) => {
+                  setNumberOfPainting(e);
+                  setTimeout(() => {
+                    setMenuCollapse(false);
+                  }, 5000);
+                }}
+                options={numberOfPaintaingFilterOption}
+                isMultiple={false}
+              />
+            </div>
+            <div>
+              <Dropdown
                 title={localData?.digital_quality}
                 selected={paintingsInColorOnly}
                 setSelected={(e) => {
@@ -280,6 +310,7 @@ const PaintingbyMSIndex = ({
                   setDateOfPaintins([]);
                   setPaintingsInColorOnly([]);
                   setArchiveOfPainting(null);
+                  setNumberOfPainting(null);
                   setPage(1);
                   setSearch("");
                   setTimeout(() => {
@@ -373,10 +404,10 @@ const PaintingbyMSIndex = ({
           </div>
           <div className="mb-1 font-body lg:justify-normal">
             <div
-              className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-4
+              className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9
             "
             >
-              <div className="hidden lg:block">
+              <div className="hidden lg:block col-span-3 xl:col-span-2 ">
                 <Dropdown
                   title={localData?.date_of_manuscript}
                   selected={dateOfPaintins}
@@ -391,7 +422,16 @@ const PaintingbyMSIndex = ({
                   localData={localData}
                 />
               </div>
-              <div className="font-body hidden lg:block">
+              <div className="hidden lg:block col-span-3 xl:col-span-2 ">
+                <Dropdown
+                  title={localData?.number_of_painting}
+                  selected={numberOfPainting}
+                  setSelected={setNumberOfPainting}
+                  options={numberOfPaintaingFilterOption}
+                  isMultiple={false}
+                />
+              </div>
+              <div className="font-body hidden lg:block col-span-3 xl:col-span-2 ">
                 <Dropdown
                   title={localData?.digital_quality}
                   selected={paintingsInColorOnly}
@@ -410,7 +450,7 @@ const PaintingbyMSIndex = ({
                   localData={localData}
                 />
               </div>
-              <div className="font-body hidden lg:block ">
+              <div className="font-body hidden lg:block col-span-3 xl:col-span-2 ">
                 <Dropdown
                   title={localData?.repository_of_manuscript}
                   selected={archiveOfPainting}
@@ -419,12 +459,13 @@ const PaintingbyMSIndex = ({
                   isMultiple={false}
                 />
               </div>
-              <div className="text-center w-full md:text-left hidden lg:block">
+              <div className="text-center w-full md:text-left hidden lg:block col-span-3 xl:col-span-1 ">
                 <button
                   area-label="clear all selected values"
                   className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
                   onClick={() => {
                     setDateOfPaintins([]);
+                    setNumberOfPainting(null);
                     setPaintingsInColorOnly([]);
                     setArchiveOfPainting(null);
                     setPage(1);
