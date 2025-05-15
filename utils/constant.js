@@ -58,7 +58,7 @@ export const rangeSliderMaxDateOfCreationManuscriptsPage = 2020;
 export const rangeSliderMinNoOfStoriesManuscriptsPage = 0;
 export const rangeSliderMaxNoOfStoriesManuscriptsPage = 400;
 export const rangeSliderMinNoOfPaintingsManuscriptsPage = 0;
-export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 200;
+export const rangeSliderMaxNoOfPaintingsManuscriptsPage = 100;
 export const rangeSliderMinUniqueStoriesManuscriptsPage = 0;
 export const rangeSliderMaxUniqueStoriesManuscriptsPage = 100;
 export const omitCanonical_Story_Id = 7000;
@@ -95,6 +95,19 @@ export const manuscriptsDetailTableTitle = [
   { name: "Other Aspects" },
   { name: "Story ID" },
 ];
+
+export const numberOfPaintaingFilterOption = [
+  { value: "1 Painting", key: "1" },
+  { value: "2 Paintings", key: "2" },
+  { value: "3 Paintings", key: "3" },
+  { value: "4 to 6 Paintings", key: "4-6" },
+  { value: "7 to 18 Paintings", key: "7-18" },
+  { value: "19 to 39 Paintings", key: "19-39" },
+  { value: "40 to 49 Paintings", key: "40-49" },
+  { value: "50 to 62 Paintings", key: "50-62" },
+  { value: "More then 62 Paintings", key: "63+" },
+];
+
 export const initialfilterItem = (localData) => ({
   title: localData?.filtered_search,
   checkItem: {
