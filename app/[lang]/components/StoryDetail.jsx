@@ -184,7 +184,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
   const cityThisTranslation = () => {
     const translation_author = data?.translation_author;
     const canonical_story_id = data?.canonical_story_id;
-    const canonical_story_title = data?.canonical_story_title;
+    const pemm_short_title = data?.pemm_short_title;
     const baseUrl = window?.location?.hostname;
     const translation_as_of_date = data?.translation_as_of_date;
     const original_macomber_title = data?.original_macomber_title;
