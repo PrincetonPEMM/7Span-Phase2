@@ -17,6 +17,7 @@ const PaintingStoryCard = ({
   className = "",
   localData,
   lang = "en-us",
+  item,
 }) => {
   const [isImgload, setIsImgLoad] = useState(false);
 
@@ -52,7 +53,8 @@ const PaintingStoryCard = ({
                 isImgload ? "mt-0" : "mt-3"
               }`}
             >
-              {title ? title : localData.pemm_title_not_found}
+              {title ? title : localData.pemm_title_not_found} ({localData?.id}{" "}
+              {item?.canonical_story_id})
             </h3>
           )}
           <p className={`text-sm break-words ${className}`}>{content}</p>
