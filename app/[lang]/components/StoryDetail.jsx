@@ -782,7 +782,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                       ></p>
                     )}
                   <p
-                    className="text-base leading-relaxed mb-3 space-y-4"
+                    className="text-base leading-relaxed mb-3 space-y-4 space-y-p"
                     dangerouslySetInnerHTML={{
                       __html: data.english_translation,
                     }}
