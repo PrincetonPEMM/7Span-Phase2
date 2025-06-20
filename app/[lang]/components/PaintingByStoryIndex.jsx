@@ -227,6 +227,7 @@ const PaintingByStoryIndex = ({ list, localData, lang }) => {
                   : `/${lang}/paintings/${item.web_page_address}_${item.painting_unique_id}`
               }`}
               localData={localData}
+              canonicalStoryId={`(${localData?.id} ${item?.canonical_story_id})`}
             />
           </div>
         ))}
