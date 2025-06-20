@@ -193,6 +193,7 @@ const PaintingByMSDetail = ({ list, Id, lang }) => {
                 item.painting_folio ? ", f. " + item.painting_folio : ""
               }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
               className="mt-3"
+              canonicalStoryId={`(ID ${item?.canonical_story_id})`}
             />
           </Link>
         ))}
