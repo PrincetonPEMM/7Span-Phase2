@@ -29,7 +29,8 @@ const PaintingDetail = ({ data, localData, lang }) => {
   }, [data]);
 
   const addPhrase = () => {
-    if (data.ms_location_note.includes("Tigray")) return localData?.tigray;
+    if (!data?.ms_location_note) return "";
+    else if (data.ms_location_note.includes("Tigray")) return localData?.tigray;
     else if (data.ms_location_note.includes("Eritrea"))
       return localData?.eritrea;
     else if (data.ms_location_note.includes("Shoa")) return localData?.shoa;
