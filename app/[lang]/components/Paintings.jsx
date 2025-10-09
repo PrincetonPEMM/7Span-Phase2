@@ -24,6 +24,7 @@ const Paintings = ({
   paintingInColor,
   typeOfStory,
   institution,
+  paintingStyles,
   localData,
   lang,
 }) => {
@@ -51,6 +52,7 @@ const Paintings = ({
     newTypeOfStory,
     newInstitution,
     newEthiopianRegion,
+    newPaintingStyles,
   } = getFilterFromParams();
   const [page, setPage] = useState(pageParams ?? 1);
   const { debounce } = useDebounce();
@@ -66,6 +68,7 @@ const Paintings = ({
   );
   const [storyType, setStoryType] = useState(newTypeOfStory);
   const [archiveOfPainting, setArchiveOfPainting] = useState(newInstitution);
+  const [paintingStyle, setPaintingStyle] = useState(newPaintingStyles);
   const [mount, setMount] = useState(false);
 
   const makeParamsArray = (key, arr) => {
@@ -118,6 +121,9 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}${makeParamsArray(
+        "paintingStyle",
+        Boolean(paintingStyle) ? [paintingStyle] : []
       )}filters[search]=${
         searchKey.length > minSearchChar ? searchKey : ""
       }&language=${lang}`;
@@ -149,6 +155,7 @@ const Paintings = ({
     storyType,
     ethiopianRegions,
     archiveOfPainting,
+    paintingStyle,
   ]);
 
   const debouncedFetchData = debounce((e) => {
@@ -211,6 +218,12 @@ const Paintings = ({
     const newInstitution = institution.filter((dop) =>
       [inst].includes(dop.key)
     );
+
+    const paintingStyleParam = params.get("paintingStyles");
+    const newPaintingStyles = paintingStyles.filter((dop) =>
+      [paintingStyleParam].includes(dop.key)
+    );
+
     return {
       search,
       pageP,
@@ -219,6 +232,7 @@ const Paintings = ({
       newEthiopianRegion: newEthiopianRegion[0],
       newTypeOfStory: newTypeOfStory[0],
       newInstitution: newInstitution[0],
+      newPaintingStyles: newPaintingStyles[0],
     };
   }
 
@@ -239,6 +253,9 @@ const Paintings = ({
       )}${makeParamsArray(
         "institution",
         Boolean(archiveOfPainting) ? [archiveOfPainting] : []
+      )}${makeParamsArray(
+        "paintingStyle",
+        Boolean(paintingStyle) ? [paintingStyle] : []
       )}filters[search]=${
         search.length > minSearchChar ? search : ""
       }&language=${lang}`;
@@ -325,6 +342,20 @@ const Paintings = ({
               </div>
               <div>
                 <Dropdown
+                  title={localData?.style_of_painting}
+                  selected={paintingStyle}
+                  setSelected={(e) => {
+                    setPaintingStyle(e);
+                    setTimeout(() => {
+                      setMenuCollapse(false);
+                    }, 5000);
+                  }}
+                  options={paintingStyles}
+                  isMultiple={false}
+                />
+              </div>
+              <div>
+                <Dropdown
                   title={localData?.digital_quality}
                   selected={paintingsInColorOnly}
                   setSelected={(e) => {
@@ -383,6 +414,7 @@ const Paintings = ({
                     setPaintingsInColorOnly([]);
                     setStoryType(null);
                     setArchiveOfPainting(null);
+                    setPaintingStyle(null);
                     setPage(1);
                     setSearch("");
                     setTimeout(() => {
@@ -486,8 +518,8 @@ const Paintings = ({
           </div>
         </div>
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
-          <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9">
-            <div className="col-span-3 xl:col-span-1 hidden lg:block">
+          <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-12 2xl:grid-cols-9">
+            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 hidden lg:block">
               <Dropdown
                 title={localData?.date_of_paintings}
                 selected={dateOfPaintins}
@@ -511,7 +543,16 @@ const Paintings = ({
                 isMultiple={false}
               />
             </div>
-            <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
+            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 font-body hidden lg:block">
+              <Dropdown
+                title={localData?.style_of_painting}
+                selected={paintingStyle}
+                setSelected={setPaintingStyle}
+                options={paintingStyles}
+                isMultiple={false}
+              />
+            </div>
+            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 font-body hidden lg:block">
               <Dropdown
                 title={localData?.digital_quality}
                 selected={paintingsInColorOnly}
@@ -556,6 +597,7 @@ const Paintings = ({
                   setPaintingsInColorOnly([]);
                   setStoryType(null);
                   setArchiveOfPainting(null);
+                  setPaintingStyle(null);
                   setPage(1);
                   setSearch("");
                   router.push(`${pathname}`);
