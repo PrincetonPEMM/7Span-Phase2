@@ -432,7 +432,7 @@ const Paintings = ({
       )}
       {/* sidebar filter End  */}
       <div className="md:sticky bg-offWhite-500 z-10 py-4 top-0">
-        <div className="mx-auto sm:grid pt-4 sm:grid-cols-6 font-body lg:grid-cols-9 gap-2 items-center justify-start mb-3">
+        <div className="mx-auto sm:grid pt-4 sm:grid-cols-6 font-body lg:grid-cols-12 gap-2 items-center justify-start mb-3">
           <fieldset className="relative w-full sm:col-span-6 lg:max-w-4xl lg:col-span-3">
             <legend
               htmlFor="searchtitle"
@@ -467,7 +467,7 @@ const Paintings = ({
               />
             )}
           </fieldset>
-          <div className="col-span-2 lg:col-span-2 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 sm:pt-0">
+          <div className="col-span-2 lg:col-span-3 grid font-body justify-items-center items-center sm:justify-items-start lg:justify-items-center pt-3 sm:pt-0">
             <CustomPagination
               className="pagination-tablet"
               currentPage={+page}
@@ -478,7 +478,7 @@ const Paintings = ({
               localData={localData}
             />
           </div>
-          <div className="col-span-2 my-3 sm:my-0 flex items-center space-x-4 justify-center ">
+          <div className="col-span-2 my-3 lg:col-span-3 sm:my-0 flex items-center space-x-4 justify-center ">
             <div className="col-span-2">
               <div
                 id="announce"
@@ -505,6 +505,26 @@ const Paintings = ({
               }  transition-colors h-9 w-9 flex items-center justify-center  border-2 rounded-md duration-300 hover:duration-300 hover:transition-colors`}
             >
               <HeroiconsArrowDownTray20Solid className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="col-span-1 text-center w-full md:text-left hidden lg:block">
+            <button
+              area-label={localData?.clear_all_selected_values}
+              className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
+              onClick={() => {
+                setDateOfPaintins([]);
+                setEthiopianRegions(null);
+                setPaintingsInColorOnly([]);
+                setStoryType(null);
+                setArchiveOfPainting(null);
+                setPaintingStyle(null);
+                setPage(1);
+                setSearch("");
+                router.push(`${pathname}`);
+              }}
+            >
+              {localData?.clear_all}
             </button>
           </div>
 
@@ -568,7 +588,7 @@ const Paintings = ({
                 localData={localData}
               />
             </div>
-            <div className="col-span-3 xl:col-span-1 font-body hidden lg:block">
+            <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
               <Dropdown
                 title={localData?.story_type}
                 selected={storyType}
@@ -587,25 +607,7 @@ const Paintings = ({
                 isMultiple={false}
               />
             </div>
-            <div className="col-span-3 xl:col-span-1 text-center w-full md:text-left hidden lg:block">
-              <button
-                area-label={localData?.clear_all_selected_values}
-                className="bg-primary-500 w-full text-white px-2 py-[7px] hover:text-primary-500 text-center border border-primary-500 rounded-lg text-xs md:text-sm hover:bg-transparent transition-colors"
-                onClick={() => {
-                  setDateOfPaintins([]);
-                  setEthiopianRegions(null);
-                  setPaintingsInColorOnly([]);
-                  setStoryType(null);
-                  setArchiveOfPainting(null);
-                  setPaintingStyle(null);
-                  setPage(1);
-                  setSearch("");
-                  router.push(`${pathname}`);
-                }}
-              >
-                {localData?.clear_all}
-              </button>
-            </div>
+
           </div>
         </div>
       </div>
