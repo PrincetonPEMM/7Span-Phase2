@@ -538,8 +538,8 @@ const Paintings = ({
           </div>
         </div>
         <div className="mb-1 font-body lg:mx-auto lg:justify-normal">
-          <div className="grid gap-2 grid-cols-1 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-12 2xl:grid-cols-9">
-            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 hidden lg:block">
+          <div className="grid gap-2 justify-between mb-1 font-body lg:justify-between sm:grid-cols-4 lg:grid-cols-9 xl:grid-cols-12">
+            <div className="col-span-3 xl:col-span-2 hidden lg:block">
               <Dropdown
                 title={localData?.date_of_paintings}
                 selected={dateOfPaintins}
@@ -563,7 +563,7 @@ const Paintings = ({
                 isMultiple={false}
               />
             </div>
-            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 font-body hidden lg:block">
+            <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
               <Dropdown
                 title={localData?.style_of_painting}
                 selected={paintingStyle}
@@ -572,7 +572,7 @@ const Paintings = ({
                 isMultiple={false}
               />
             </div>
-            <div className="col-span-3 xl:col-span-2 2xl:col-span-1 font-body hidden lg:block">
+            <div className="col-span-3 xl:col-span-2 font-body hidden lg:block">
               <Dropdown
                 title={localData?.digital_quality}
                 selected={paintingsInColorOnly}
