@@ -51,12 +51,13 @@ const Dropdown = ({
       multiple={isMultiple}
     >
       <div className="relative">
-        <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
+        <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-6  text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
           <button
-            className={`block truncate ${
+            className={`block w-full ${
               (selected?.length || Object.keys(selected || {}).length) &&
               "text-orange-400"
             } `}
+            style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
           >
             {[
               localData?.date_of_paintings,
