@@ -5,12 +5,13 @@ import HashTitle from "../../components/HashTitle";
 export const dynamic = "force-dynamic";
 
 export default async function page(props) {
+  const { lang } = await props.params;
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
 
   const selectedLanguage = languages.filter(
-    (tt) => tt.code === props.params.lang
+    (tt) => tt.code === lang
   )[0];
 
   let result = await client.request(
@@ -20,7 +21,7 @@ export default async function page(props) {
     (itm) =>
       itm.languages_code.code ===
       (selectedLanguage.translated_pages.includes("/about/mission")
-        ? props.params.lang
+        ? lang
         : i18n.defaultLocale)
   );
 

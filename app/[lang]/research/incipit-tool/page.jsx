@@ -6,15 +6,16 @@ import IncipitTool from "../../components/incipitTool";
 export const dynamic = "force-dynamic";
 
 const page = async ({ params }) => {
+  const { lang } = await params;
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
 
-  const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
+  const selectedLanguage = languages.filter((tt) => tt.code === lang)[0];
 
   const needToTranslateInThisLangauge =
     selectedLanguage.translated_pages.includes("/research/incipit-tool")
-      ? params.lang
+      ? lang
       : i18n.defaultLocale;
 
   const localStr = await fetch(

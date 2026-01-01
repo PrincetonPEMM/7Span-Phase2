@@ -19,18 +19,19 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, params }) {
+  const { lang } = await params;
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
 
   let footerData = await fetch(
-    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${params.lang}`
+    `${process.env.NEXT_PUBLIC_DIRECTUS_URL}string_localization?language=${lang}`
   );
 
   footerData = await footerData.json();
 
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       <head>
         <link rel="icon" href="/favicon.png" />
         <script
@@ -61,7 +62,7 @@ export default async function RootLayout({ children, params }) {
           <div className="relative">
             <Header
               className="absolute inset-x-0"
-              lang={params.lang}
+              lang={lang}
               headerData={footerData}
               languages={languages}
             />
@@ -69,7 +70,7 @@ export default async function RootLayout({ children, params }) {
               {children}
             </div>
           </div>
-          <Footer footerData={footerData} lang={params.lang} />
+          <Footer footerData={footerData} lang={lang} />
         </main>
       </body>
     </html>

@@ -5,6 +5,7 @@ import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 
 const page = async (props) => {
+  const { lang } = await props.params;
   let teaching_with_pemm_data = null;
 
   let languages = await client.request(
@@ -12,7 +13,7 @@ const page = async (props) => {
   );
 
   const selectedLanguage = languages.filter(
-    (tt) => tt.code === props.params.lang
+    (tt) => tt.code === lang
   )[0];
 
   try {
@@ -25,7 +26,7 @@ const page = async (props) => {
         (selectedLanguage.translated_pages.includes(
           "/research/teaching-with-pemm"
         )
-          ? props.params.lang
+          ? lang
           : i18n.defaultLocale)
     )[0];
   } catch (e) {

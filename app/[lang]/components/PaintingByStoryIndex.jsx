@@ -153,7 +153,7 @@ const PaintingByStoryIndex = ({ list, localData, lang }) => {
               localData={localData}
             />
           </div>
-          <p className="lg:col-span-1 my-3 sm:my-0">
+          <div className="lg:col-span-1 my-3 sm:my-0">
             <div
               id="announce"
               aria-live="polite"
@@ -168,7 +168,7 @@ const PaintingByStoryIndex = ({ list, localData, lang }) => {
                 return eval(`\`${localData?.results_total_records}\``);
               })()}
             </div>
-          </p>
+          </div>
           <div className="col-span-2 lg:col-span-1">
             <Dropdown
               title={localData?.paintings_by_story}

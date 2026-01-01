@@ -6,17 +6,18 @@ import Hero from "./components/Hero";
 export const dynamic = "force-dynamic";
 
 export default async function Home(props) {
+  const { lang } = await props.params;
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
 
   const selectedLanguage = languages.filter(
-    (tt) => tt.code === props.params.lang
+    (tt) => tt.code === lang
   )[0];
 
   const needToTranslateInThisLangauge =
     selectedLanguage.translated_pages.includes("/")
-      ? props.params.lang
+      ? lang
       : i18n.defaultLocale;
 
   let localData = await fetch(
@@ -44,7 +45,7 @@ export default async function Home(props) {
           gtag('config', 'G-L1XB3HXBQM');
         `}
       </Script>
-      <Hero data={result} lang={props.params.lang} localData={localData} />
+      <Hero data={result} lang={lang} localData={localData} />
     </main>
   );
 }
