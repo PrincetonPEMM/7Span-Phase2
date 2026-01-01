@@ -3,8 +3,9 @@ import Logo from "@assets/images/logo-white.png";
 import { cookies } from "next/headers";
 import Image from "next/image";
 
-const Loading = () => {
-  const lang = cookies().get("lang");
+const Loading = async () => {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("lang");
   return (
     <div>
       <div className="flex h-screen w-full items-center justify-center bg-black transition-all fixed inset-0 z-50">

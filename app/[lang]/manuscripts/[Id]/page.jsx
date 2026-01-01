@@ -5,7 +5,7 @@ import Manuscript from "../../components/ManuscriptPage";
 export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { Id, lang } = await params;
   let data = null;
   let tableData = null;
 
@@ -34,7 +34,7 @@ const Page = async ({ params }) => {
 
   return (
     <>
-      <Manuscript Id={Id} data={data} table={tableData} lang={params.lang} />
+      <Manuscript Id={Id} data={data} table={tableData} lang={lang} />
     </>
   );
 };

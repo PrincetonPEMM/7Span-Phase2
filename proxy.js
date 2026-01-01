@@ -7,13 +7,23 @@ function getLocale(request) {
   const langCookie = allCookies.filter((item) => item.name === "lang")[0] || {};
 
   const locales = i18n.locales;
+  const requestedLocale = langCookie?.value;
 
-  const locale = matchLocale(langCookie.value, locales, i18n.defaultLocale);
+  // If no cookie or empty value, return default locale
+  if (!requestedLocale || requestedLocale.trim() === "") {
+    return i18n.defaultLocale;
+  }
 
-  return locale;
+  try {
+    const locale = matchLocale([requestedLocale], locales, i18n.defaultLocale);
+    return locale;
+  } catch (error) {
+    // If matchLocale throws an error (e.g., invalid locale format), return default
+    return i18n.defaultLocale;
+  }
 }
 
-export function middleware(request) {
+export function proxy(request) {
   const pathname = request.nextUrl.pathname;
 
   const pathnameIsMissingLocale = i18n.locales.every(
