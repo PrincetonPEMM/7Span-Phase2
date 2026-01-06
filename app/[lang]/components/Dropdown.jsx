@@ -16,9 +16,14 @@ const Dropdown = ({
   const route = useRouter();
   const [flag, setFlag] = useState(true);
 
+  // Ensure selected always has a defined value to prevent uncontrolled/controlled transition
+  const controlledValue = selected !== undefined 
+    ? selected 
+    : (isMultiple ? [] : null);
+
   return (
     <Listbox
-      value={selected}
+      value={controlledValue}
       onChange={(e) => {
         if (isRedirection) {
           route.push(e?.key);
@@ -52,7 +57,7 @@ const Dropdown = ({
     >
       <div className="relative">
         <Listbox.Button className="option-box relative w-full font-body rounded-md cursor-default text-xs bg-primary-500 text-white py-2 pl-3 pr-6 text-left shadow-md focus:outline-none focus-visible:border-offWhite-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ">
-          <button
+          <span
             className={`block w-full text-left ${
               (selected?.length || Object.keys(selected || {}).length) &&
               "text-orange-400"
@@ -67,7 +72,7 @@ const Dropdown = ({
               : selected?.value
               ? selected?.value
               : title}
-          </button>
+          </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <MdiChevronDown
               className="h-5 w-5 text-offWhite-400"
@@ -113,8 +118,8 @@ const Dropdown = ({
                   else isSelected = Boolean(selected?.key === item?.key);
                   return (
                     <>
-                      <button
-                        area-label={`Select ${item.value}`}
+                      <span
+                        aria-label={`Select ${item.value}`}
                         className={`block truncate text-left ${
                           values.selected || isSelected
                             ? "font-medium"
@@ -122,11 +127,11 @@ const Dropdown = ({
                         }`}
                       >
                         {item.value}
-                      </button>
+                      </span>
                       {values.selected || isSelected ? (
-                        <button className="absolute inset-y-0 left-0 flex items-center pl-1 hover:text-black lg:pl-3">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-1 hover:text-black lg:pl-3">
                           <CheckIcon className="h-4 w-4" aria-hidden="true" />
-                        </button>
+                        </span>
                       ) : null}
                     </>
                   );

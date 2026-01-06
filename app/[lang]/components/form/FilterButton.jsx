@@ -6,7 +6,7 @@ const FilterButton = ({ onClick, areaLabel, className, _id = "" }) => {
     <button
       id={_id}
       onClick={onClick}
-      area-label={areaLabel}
+      aria-label={areaLabel ? String(areaLabel) : undefined}
       className={className}
     >
       <MdiMenuOpen className="text-white-500 h-6 w-6 text-inherit" />

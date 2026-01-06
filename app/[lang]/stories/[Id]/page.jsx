@@ -7,18 +7,18 @@ import StoryDetail from "../../components/StoryDetail";
 
 export const dynamic = "force-dynamic";
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { Id, lang } = await params;
   let data = null;
 
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
 
-  const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
+  const selectedLanguage = languages.filter((tt) => tt.code === lang)[0];
 
   const needToTranslateInThisLangauge =
     selectedLanguage.translated_pages.includes("/stories/id")
-      ? params.lang
+      ? lang
       : i18n.defaultLocale;
 
   let localData = await fetch(

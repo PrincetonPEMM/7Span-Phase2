@@ -5,7 +5,7 @@ import { pagePerLimitForPainting } from "@/utils/constant";
 export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { Id, lang } = await params;
 
   let data = null;
 
@@ -26,7 +26,7 @@ const Page = async ({ params }) => {
 
   return (
     <div>
-      <PaintingByMSDetail list={data} Id={Id} lang={params.lang} />
+      <PaintingByMSDetail list={data} Id={Id} lang={lang} />
     </div>
   );
 };

@@ -7,16 +7,17 @@ import PaintingbyMSIndex from "../../components/PaintingbyMSIndex";
 export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
+  const { lang } = await params;
   let data = null;
 
   let languages = await client.request(
     readItems("languages", { fields: ["*.*.*"] })
   );
-  const selectedLanguage = languages.filter((tt) => tt.code === params.lang)[0];
+  const selectedLanguage = languages.filter((tt) => tt.code === lang)[0];
 
   const needToTranslateInThisLangauge =
     selectedLanguage.translated_pages.includes("/paintings/by-manuscript")
-      ? params.lang
+      ? lang
       : i18n.defaultLocale;
 
   try {

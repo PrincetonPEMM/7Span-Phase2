@@ -42,7 +42,6 @@ const Radio = (props) => {
           name={name}
           checked={isChecked}
           onChange={changeHandler}
-          defaultChecked
           className={`radiobox-input ${isChecked ? "checked" : ""}`}
           onKeyDown={(e) => {
             if (e.keyCode === 13) changeHandler(true);
