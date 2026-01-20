@@ -7,7 +7,7 @@ import React from "react";
 export const dynamic = "force-dynamic";
 
 const PeopleDetailPage = async ({ params }) => {
-  const { name } = params;
+  const { name } = await params;
 
   const results = await client.request(
     readItems("about_people_detail", {

@@ -18,6 +18,7 @@ export default async function page() {
       team_with_image.push(
         <Link
           href={`/about/people/${about_people_detail[i].slug}`}
+          key={i}
           className="text-center font-body w-72 p-3  md:mx-auto sm:w-1/2 lg:1/3 xl:w-1/4 people-card"
         >
           <img
