@@ -5,7 +5,7 @@ import React from "react";
 export const dynamic = "force-dynamic";
 
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { Id } = await params;
   let data = null;
   try {
     data = await client.request(
