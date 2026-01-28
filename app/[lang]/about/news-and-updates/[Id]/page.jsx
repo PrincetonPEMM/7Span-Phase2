@@ -5,7 +5,7 @@ import { readItems } from "@directus/sdk";
 import React from "react";
 
 const Page = async ({ params }) => {
-  const { Id } = params;
+  const { Id } = await params;
   let data = null;
 
   try {
