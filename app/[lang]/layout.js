@@ -1,6 +1,7 @@
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Footer from "./components/Footer";
+import HashScrollHandler from "./components/HashScrollHandler";
 import Header from "./components/Header";
 import "./globals.css";
 
@@ -54,6 +55,7 @@ export default async function RootLayout({ children, params }) {
         />
       </head>
       <body>
+        <HashScrollHandler />
         {/* Skip navigation link */}
         <a href="#main-content" className="sr-only sr-only-focusable">
           Skip to main content

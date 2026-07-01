@@ -116,6 +116,8 @@ const ManuScripts = ({ lang, localData }) => {
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (isOpen && window.innerWidth < 768) {
       document.body.classList.add("filter_open");
       document.body.classList.remove("sidebar_close");
@@ -127,7 +129,7 @@ const ManuScripts = ({ lang, localData }) => {
       document.body.classList.remove("sidebar_close");
       document.body.classList.remove("sidebar_open");
     }
-  }, [isOpen, window]);
+  }, [isOpen]);
 
   async function fetchData(searchKey = search) {
     if (dateCreationMin !== rangeSliderMinDateOfCreationManuscriptsPage) {
