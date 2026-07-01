@@ -308,7 +308,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
     }
   };
 
-  function FirstLine(localData, pemm_short_title, earliest_attestation) {
+  function FirstLine(localData, pemmShortTitle, earliest_attestation) {
     const earliestStatus =
       earliest_attestation >= 1300 && earliest_attestation < 1500
         ? localData?.very_old
@@ -320,13 +320,21 @@ export default function StoryDetail({ results, Id, localData, lang }) {
         ? localData?.very_recent
         : "";
 
+    const hasShortTitle = Boolean(
+      pemmShortTitle && String(pemmShortTitle).toLowerCase() !== "null"
+    );
+    const pemm_short_title = hasShortTitle ? pemmShortTitle : "";
+    const templateKey = hasShortTitle
+      ? "firstline_of_story_detail"
+      : "firstline";
+
     return (
       <>
         {earliest_attestation && (
           <p
             className="text-base leading-relaxed"
             dangerouslySetInnerHTML={{
-              __html: eval(`\`${localData?.firstline_of_story_detail}\``),
+              __html: eval(`\`${localData?.[templateKey]}\``),
             }}
           ></p>
         )}
@@ -465,8 +473,11 @@ export default function StoryDetail({ results, Id, localData, lang }) {
     );
   }
 
-  function SixthLine(localData, languageAvailableIn) {
-    languageAvailableIn = languageAvailableIn.join(", ");
+  function SixthLine(localData, languageAvailableIn, currentLang) {
+    const listSeparator = currentLang === "am-et" ? "፣ " : ", ";
+    languageAvailableIn = languageAvailableIn?.length
+      ? languageAvailableIn.join(listSeparator)
+      : "";
     const total_translation_seq = data?.total_translation_seq;
     const previous_translation_seq = data?.previous_translation_seq;
     const next_translation_seq = data?.next_translation_seq;
@@ -713,7 +724,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                     )}
                     {ForthLine(localData, data?.type_of_story)}
                     {FifthLine(localData, data?.origin)}
-                    {SixthLine(localData, data?.languageAvailableIn)}
+                    {SixthLine(localData, data?.languageAvailableIn, lang)}
                     {SeventhLine(localData)}
                     {EightLine(localData)}
                   </ul>
@@ -858,7 +869,7 @@ export default function StoryDetail({ results, Id, localData, lang }) {
                     )}
                     {ForthLine(localData, data?.type_of_story)}
                     {FifthLine(localData, data?.origin)}
-                    {SixthLine(localData, data?.languageAvailableIn)}
+                    {SixthLine(localData, data?.languageAvailableIn, lang)}
                     {SeventhLine(localData)}
                     {EightLine(localData)}
                   </ul>
