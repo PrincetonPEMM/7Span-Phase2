@@ -107,6 +107,8 @@ const Stories = ({ localData, lang }) => {
   };
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (isOpen && window.innerWidth < 768) {
       document.body.classList.add("filter_open");
       document.body.classList.remove("sidebar_close");
@@ -118,7 +120,7 @@ const Stories = ({ localData, lang }) => {
       document.body.classList.remove("sidebar_close");
       document.body.classList.remove("sidebar_open");
     }
-  }, [isOpen, window]);
+  }, [isOpen]);
 
   async function fetchData(searchKey = search) {
     if (storyMin !== rangeSliderMinForStoriesStoriesPage) {

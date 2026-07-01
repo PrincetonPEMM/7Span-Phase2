@@ -99,9 +99,9 @@ const PaintingByMSDetail = ({ list, Id, lang }) => {
   return (
     <div className="container-fluid py-4 lg:py-10">
       <BackBtn />
-      <div className="sticky top-0 bg-offWhite-500 z-10 pt-1">
+      <div className="sticky top-0 z-20 bg-offWhite-500 pt-3 pb-5 lg:pb-6">
         {header && (
-          <h1 className="font-bold text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500  font-body">
+          <h1 className="font-bold text-2xl mb-5 lg:text-3xl xl:text-4xl text-primary-500 font-body">
             {header?.manuscript_full_name}&nbsp;(
             {`${
               header?.manuscript_date_range_start &&
@@ -117,7 +117,7 @@ const PaintingByMSDetail = ({ list, Id, lang }) => {
             )
           </h1>
         )}
-        <div className="mb-10 flex items-start space-x-4 ">
+        <div className="flex items-start space-x-4">
           <div className="sm:grid lg:grid-cols-5 sm:grid-cols-2 w-full items-center font-body">
             <div className="relative w-full col-span-2  max-w-4xl mx-auto mb-3 lg:mb-0">
               <label
@@ -173,31 +173,33 @@ const PaintingByMSDetail = ({ list, Id, lang }) => {
           </div>
         </div>
       </div>
-      <Masonry
-        breakpointCols={breakpointColumnsForMasonry}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
-        {data.map((item, index) => (
-          <Link
-            key={item.image_link + index}
-            href={`/${lang}/paintings/${Id}_${item.painting_unique_id}`}
-            className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto inline-block relative overflow-hidden w-full`}
-          >
-            <PaintingStoryCard
+      <div className="pt-5 lg:pt-10">
+        <Masonry
+          breakpointCols={breakpointColumnsForMasonry}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {data.map((item, index) => (
+            <Link
               key={item.image_link + index}
-              image={item.image_link}
-              title={item.pemm_short_title}
-              content={item.episodes}
-              desc={`Story ID ${item.canonical_story_id}${
-                item.painting_folio ? ", f. " + item.painting_folio : ""
-              }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
-              className="mt-3"
-              canonicalStoryId={`(ID ${item?.canonical_story_id})`}
-            />
-          </Link>
-        ))}
-      </Masonry>
+              href={`/${lang}/paintings/${Id}_${item.painting_unique_id}`}
+              className={`rounded-lg text-offWhite-500 font-body mb-4 mx-auto inline-block relative overflow-hidden w-full`}
+            >
+              <PaintingStoryCard
+                key={item.image_link + index}
+                image={item.image_link}
+                title={item.pemm_short_title}
+                content={item.episodes}
+                desc={`Story ID ${item.canonical_story_id}${
+                  item.painting_folio ? ", f. " + item.painting_folio : ""
+                }${item.painting_scan ? ", s. " + item.painting_scan : ""}`}
+                className="mt-3"
+                canonicalStoryId={`(ID ${item?.canonical_story_id})`}
+              />
+            </Link>
+          ))}
+        </Masonry>
+      </div>
 
       {Boolean(!data?.length) && (
         <div className="flex items-center py-36 justify-center w-full text-2xl text-primary-500 font-bold">

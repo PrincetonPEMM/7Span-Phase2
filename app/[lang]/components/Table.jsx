@@ -103,7 +103,6 @@ const Table = ({
   };
 
   function getPos(el) {
-    // yay readability
     for (
       var lx = 0, ly = 0;
       el != null;
@@ -112,75 +111,203 @@ const Table = ({
     return ly;
   }
 
-  const tableFixed = () => {
-    const tablePos = document.querySelector(".table-wrap").offsetTop;
-    const element = document.querySelector(".table-head");
+  const findFirstDataRow = (tableBody) => {
+    if (!tableBody) return null;
+    for (const row of tableBody.querySelectorAll("tr")) {
+      if (row.querySelectorAll("td").length > 1) return row;
+    }
+    return null;
+  };
 
-    if (window.scrollY > getPos(element)) {
-      if (window.innerWidth < 1024) {
-        document.querySelector(".table-search").classList.remove("active");
-      } else {
-        document.querySelector(".table-search").classList.add("active");
+  const clearStickyLayout = ({
+    tableHead,
+    tableSearch,
+    tableBody,
+    table,
+  }) => {
+    [tableHead, tableSearch].forEach((el) => {
+      if (!el) return;
+      el.classList.remove("active");
+      el.style.left = "";
+      el.style.width = "";
+      el.style.top = "";
+      el.style.right = "";
+    });
+    tableBody?.classList.remove("active");
+    tableHead?.querySelectorAll("th").forEach((th) => {
+      th.style.width = "";
+      th.style.minWidth = "";
+    });
+    const headerRow = tableHead?.querySelector("tr");
+    if (headerRow) {
+      headerRow.style.width = "";
+      headerRow.style.transform = "";
+    }
+    if (table) {
+      table.style.tableLayout = "";
+      table.style.width = "";
+    }
+  };
+
+  const syncColumnWidths = (tableHead, tableBody) => {
+    const dataRow = findFirstDataRow(tableBody);
+    if (!dataRow) return;
+
+    const ths = tableHead.querySelectorAll("th");
+    const tds = dataRow.querySelectorAll("td");
+
+    ths.forEach((th, index) => {
+      if (tds[index]) {
+        const width = tds[index].getBoundingClientRect().width;
+        th.style.width = `${width}px`;
+        th.style.minWidth = `${width}px`;
       }
-      document.querySelector(".table-head").classList.add("active");
-      document.querySelector(".table-body").classList.add("active");
-      if (window.innerWidth < 1280) {
-        if (window.scrollY < tablePos - 88) {
-          document.querySelector(".table-search").classList.remove("active");
-          document.querySelector(".table-head").classList.remove("active");
-          document.querySelector(".table-body").classList.remove("active");
-        }
-      } else {
-        if (window.scrollY < tablePos - 38) {
-          document.querySelector(".table-search").classList.remove("active");
-          document.querySelector(".table-head").classList.remove("active");
-          document.querySelector(".table-body").classList.remove("active");
-        }
-      }
+    });
+  };
+
+  const applyStickyDimensions = (el, wrapRect, top) => {
+    el.style.left = `${wrapRect.left}px`;
+    el.style.width = `${wrapRect.width}px`;
+    el.style.top = `${top}px`;
+    el.style.right = "auto";
+  };
+
+  const syncHeaderHorizontalScroll = (scrollLeft) => {
+    const tableHead = document.querySelector(".table-head");
+    const headerRow = tableHead?.querySelector("tr");
+    if (!tableHead?.classList.contains("active") || !headerRow) return;
+
+    headerRow.style.transform = `translateX(-${scrollLeft}px)`;
+  };
+
+  const setHeaderRowWidth = (tableWrap, tableHead) => {
+    const headerRow = tableHead?.querySelector("tr");
+    if (!headerRow || !tableWrap) return;
+
+    headerRow.style.width = `${tableWrap.scrollWidth}px`;
+  };
+
+  const tableFixed = () => {
+    if (typeof window === "undefined") return;
+
+    const tableWrap = document.querySelector(".table-wrap");
+    const tableHead = document.querySelector(".table-head");
+    const tableSearch = document.querySelector(".table-search");
+    const tableBody = document.querySelector(".table-body");
+    const table = document.querySelector(".table");
+
+    if (!tableWrap || !tableHead || !table) return;
+
+    const tablePos = tableWrap.offsetTop;
+    const elementTop = getPos(tableHead);
+    const scrollUnstickOffset = window.innerWidth < 1280 ? 88 : 38;
+    const stickSearchBar = window.innerWidth >= 1024;
+    const searchTop = window.innerWidth < 640 ? 187 : 0;
+    const headTopWithoutSearch =
+      window.innerWidth < 640 ? 136 : window.innerWidth < 1024 ? 88 : 0;
+
+    const shouldStick = window.scrollY > elementTop;
+    const shouldUnstickNearTop =
+      shouldStick && window.scrollY < tablePos - scrollUnstickOffset;
+
+    if (!shouldStick || shouldUnstickNearTop) {
+      clearStickyLayout({ tableHead, tableSearch, tableBody, table });
+      return;
+    }
+
+    const wrapRect = tableWrap.getBoundingClientRect();
+    const footer = document.querySelector("#site-footer");
+    const footerTop = footer?.getBoundingClientRect().top ?? Infinity;
+    const tableWrapBottom = wrapRect.bottom;
+    const stickyLimit = Math.min(footerTop, tableWrapBottom);
+
+    const searchHeight =
+      stickSearchBar && tableSearch ? tableSearch.offsetHeight : 0;
+    const headHeight = tableHead.offsetHeight;
+    const blockStart = stickSearchBar ? searchTop : headTopWithoutSearch;
+    const blockHeight = searchHeight + headHeight;
+
+    if (stickyLimit <= blockStart) {
+      clearStickyLayout({ tableHead, tableSearch, tableBody, table });
+      return;
+    }
+
+    let blockTop = blockStart;
+    if (blockStart + blockHeight > stickyLimit) {
+      blockTop = stickyLimit - blockHeight;
+    }
+
+    if (blockTop + blockHeight <= 0) {
+      clearStickyLayout({ tableHead, tableSearch, tableBody, table });
+      return;
+    }
+
+    syncColumnWidths(tableHead, tableBody);
+
+    if (stickSearchBar && tableSearch) {
+      tableSearch.classList.add("active");
+      applyStickyDimensions(tableSearch, wrapRect, blockTop);
+      tableHead.classList.add("active");
+      applyStickyDimensions(tableHead, wrapRect, blockTop + searchHeight);
     } else {
-      document.querySelector(".table-search").classList.remove("active");
-      document.querySelector(".table-head").classList.remove("active");
-      document.querySelector(".table-body").classList.remove("active");
+      tableSearch?.classList.remove("active");
+      if (tableSearch) {
+        tableSearch.style.left = "";
+        tableSearch.style.width = "";
+        tableSearch.style.top = "";
+        tableSearch.style.right = "";
+      }
+      tableHead.classList.add("active");
+      applyStickyDimensions(tableHead, wrapRect, blockTop);
     }
-    if (
-      window.scrollY >
-      getPos(element) + document.querySelector(".table").offsetHeight + 150
-    ) {
-      document.querySelector(".table-search").classList.remove("active");
-      document.querySelector(".table-head").classList.remove("active");
-      document.querySelector(".table-body").classList.remove("active");
-    }
+
+    tableBody?.classList.add("active");
+    setHeaderRowWidth(tableWrap, tableHead);
+    syncHeaderHorizontalScroll(tableWrap.scrollLeft);
   };
 
   const scrollTable = () => {
     const tableElement = document.querySelector(".table-wrap");
-    document.querySelector(".table-head").scrollTo({
-      left: tableElement.scrollLeft,
-    });
+    if (!tableElement) return;
+
+    syncHeaderHorizontalScroll(tableElement.scrollLeft);
   };
 
-  const scrollHeaderTable = () => {
-    const tableElement = document.querySelector(".table-head");
-    document.querySelector(".table-wrap").scrollTo({
-      left: tableElement.scrollLeft,
-    });
+  const handleHeaderWheel = (event) => {
+    const tableWrap = document.querySelector(".table-wrap");
+    const tableHead = document.querySelector(".table-head");
+    if (!tableWrap || !tableHead?.classList.contains("active")) return;
+
+    const delta = event.deltaX || event.deltaY;
+    if (!delta) return;
+
+    tableWrap.scrollLeft += delta;
+    syncHeaderHorizontalScroll(tableWrap.scrollLeft);
+    event.preventDefault();
   };
 
   useEffect(() => {
     const tableHeaderElement = document.querySelector(".table-head");
-    tableHeaderElement.addEventListener("scroll", scrollHeaderTable);
-
     const tableElement = document.querySelector(".table-wrap");
-    tableElement.addEventListener("scroll", scrollTable);
 
+    if (!tableHeaderElement || !tableElement) return;
+
+    tableHeaderElement.addEventListener("wheel", handleHeaderWheel, {
+      passive: false,
+    });
+    tableElement.addEventListener("scroll", scrollTable);
     document.addEventListener("scroll", tableFixed);
+    window.addEventListener("resize", tableFixed);
+
+    tableFixed();
 
     return () => {
-      tableHeaderElement.addEventListener("scroll", scrollHeaderTable);
+      tableHeaderElement.removeEventListener("wheel", handleHeaderWheel);
       tableElement.removeEventListener("scroll", scrollTable);
       document.removeEventListener("scroll", tableFixed);
+      window.removeEventListener("resize", tableFixed);
     };
-  }, []);
+  }, [tableData, toggleBtn, tableHeader]);
 
   const sortingFun = (value, isClicked) => {
     const isSelected = value === ascDescFil;

@@ -10,6 +10,15 @@ import BackBtn from "./BackBtn";
 import CustomPagination from "./Pagination";
 import Table from "./Table";
 
+const stripOuterParagraphTags = (html) => {
+  if (!html) return "";
+
+  return html
+    .trim()
+    .replace(/^<p[^>]*>/i, "")
+    .replace(/<\/p>\s*$/i, "");
+};
+
 export default function Manuscript({ Id, data, table, lang }) {
   const [expandedRows, setExpandedRows] = useState([]);
   const [page, setPage] = useState(1);
@@ -337,7 +346,9 @@ export default function Manuscript({ Id, data, table, lang }) {
       });
 
     if (data.source) {
-      p5 = `<p  class="p-beside-p">Regarding this manuscript's repository: ${data.source}</p>`;
+      p5 = `<p class="p-beside-p">Regarding this manuscript's repository: ${stripOuterParagraphTags(
+        data.source
+      )}</p>`;
       array.push({ text: p5 });
     }
     // array.push({ text: `${p1} ${p2} ${p3} ${p4} ${p5}` });
