@@ -1,7 +1,6 @@
 import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
-import Script from "next/script";
 import Stories from "../components/Stories";
 
 export const dynamic = "force-dynamic";
@@ -26,16 +25,6 @@ const StoryPage = async ({ params }) => {
 
   return (
     <main>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-L1XB3HXBQM" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-L1XB3HXBQM');
-        `}
-      </Script>
       <Stories localData={localData} lang={needToTranslateInThisLangauge} />;
     </main>
   );

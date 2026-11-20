@@ -1,7 +1,6 @@
 import { i18n } from "@/i18n";
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
-import Script from "next/script";
 import Hero from "./components/Hero";
 export const dynamic = "force-dynamic";
 
@@ -35,16 +34,6 @@ export default async function Home(props) {
 
   return (
     <main>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-L1XB3HXBQM" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-L1XB3HXBQM');
-        `}
-      </Script>
       <Hero data={result} lang={lang} localData={localData} />
     </main>
   );

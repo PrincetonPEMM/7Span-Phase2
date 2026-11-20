@@ -9,6 +9,9 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [{ source: "/llm.txt", destination: "/llms.txt" }];
+  },
   images: {
     remotePatterns: [
       {
