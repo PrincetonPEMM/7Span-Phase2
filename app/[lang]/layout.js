@@ -1,11 +1,26 @@
 import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
+import Analytics from "./components/Analytics";
 import Footer from "./components/Footer";
 import HashScrollHandler from "./components/HashScrollHandler";
 import Header from "./components/Header";
 import "./globals.css";
+import { IS_PRODUCTION, SITE_URL } from "@/utils/seo";
 
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
+  // Search engines must not index local, dev or staging.
+  robots: IS_PRODUCTION ? undefined : { index: false, follow: false },
+  verification: IS_PRODUCTION
+    ? {
+        google:
+          process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
+          "gcbj5CxAIBEri8_WeM4Vya8YwOeYycEeshDhWqNnj2k",
+        other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+          ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+          : undefined,
+      }
+    : undefined,
   title:
     "Home | Princeton Ethiopian, Eritrean, and Egyptian Miracles of Mary Project",
   description:
@@ -55,6 +70,7 @@ export default async function RootLayout({ children, params }) {
         />
       </head>
       <body>
+        <Analytics />
         <HashScrollHandler />
         {/* Skip navigation link */}
         <a href="#main-content" className="sr-only sr-only-focusable">

@@ -4,7 +4,46 @@ import { client } from "@/utils/directUs";
 import { readItems } from "@directus/sdk";
 import Link from "next/link";
 import React from "react";
+import { buildDetailMetadata, pick } from "@/utils/seo";
+import { getCmsSeo } from "@/utils/seoData";
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }) {
+  const { name, lang } = await params;
+  let person = null;
+  try {
+    const results = await client.request(
+      readItems("about_people_detail", {
+        fields: ["*.*.*"],
+        filter: { slug: name },
+      }),
+    );
+    person = results[0];
+  } catch (e) {
+    console.log(e);
+  }
+  const fullName = `${person?.first_name ?? ""} ${
+    person?.last_name ?? ""
+  }`.trim();
+
+  const seo = name
+    ? await getCmsSeo("about_people_detail", { slug: { _eq: name } }, lang)
+    : {};
+
+  return buildDetailMetadata({
+    title: pick(seo.title, fullName),
+    description: pick(
+      seo.description,
+      person?.designation,
+      person?.description,
+    ),
+    path: `/about/people/${name}`,
+    lang,
+    image: seo.image,
+    noIndex: seo.noIndex,
+    noFollow: seo.noFollow,
+  });
+}
 
 const PeopleDetailPage = async ({ params }) => {
   const { name } = await params;
@@ -13,7 +52,7 @@ const PeopleDetailPage = async ({ params }) => {
     readItems("about_people_detail", {
       fields: ["*.*.*"],
       filter: { slug: name },
-    })
+    }),
   );
   return (
     <div className="container mx-auto">

@@ -1,8 +1,39 @@
 import ErrorPage from "@/app/[lang]/components/ErrorPage";
 import PaintingByMSDetail from "@/app/[lang]/components/PaintingByMSDetail";
 import { pagePerLimitForPainting } from "@/utils/constant";
+import { buildDetailMetadata, pick } from "@/utils/seo";
+import { getCmsSeo } from "@/utils/seoData";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }) {
+  const { Id, lang } = await params;
+  let header = null;
+  try {
+    const response = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_DIRECTUS_URL
+      }paintings/by-manuscript/${Id}?page=1&perPage=${pagePerLimitForPainting}&filters[search]=${""}`,
+    );
+    if (response.ok) header = (await response.json())?.manuscriptData;
+  } catch (error) {
+    console.log("Error", error);
+  }
+
+  const seo = Id
+    ? await getCmsSeo("manuscripts", { web_page_address: { _eq: Id } }, lang)
+    : {};
+
+  return buildDetailMetadata({
+    title: pick(seo.title, header?.manuscript_full_name),
+    description: seo.description,
+    path: `/paintings/by-manuscript/${Id}`,
+    lang,
+    image: seo.image,
+    noIndex: seo.noIndex,
+    noFollow: seo.noFollow,
+  });
+}
 
 const Page = async ({ params }) => {
   const { Id, lang } = await params;
@@ -13,7 +44,7 @@ const Page = async ({ params }) => {
     const response = await fetch(
       `${
         process.env.NEXT_PUBLIC_DIRECTUS_URL
-      }paintings/by-manuscript/${Id}?page=${1}&perPage=${pagePerLimitForPainting}&filters[search]=${""}`
+      }paintings/by-manuscript/${Id}?page=${1}&perPage=${pagePerLimitForPainting}&filters[search]=${""}`,
     );
 
     data = await response.json();

@@ -64,6 +64,9 @@ export function proxy(request) {
 // }
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  // Matcher ignoring `/_next/`, `/api/` and the SEO files that must be served
+  // from the site root without a locale prefix.
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|llms.txt|llm.txt).*)",
+  ],
 };
