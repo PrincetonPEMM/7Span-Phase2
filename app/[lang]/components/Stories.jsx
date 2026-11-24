@@ -384,7 +384,8 @@ const Stories = ({ localData, lang }) => {
     });
     setPlaceItem({ ...placeItem, checkItem: updatedPlace });
 
-    const originalLanguages = params.getAll("originalLanguages");
+    // Single select: if an old URL has more than one, keep only the first
+    const originalLanguages = params.getAll("originalLanguages").slice(0, 1);
     const updatedLanguages = langOriginalItem.checkItem.map((temp) => {
       return {
         ...temp,
