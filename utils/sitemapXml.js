@@ -70,11 +70,13 @@ const indexXml = (locations) => {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`;
 };
 
-// Main sitemap: one entry per language.
+// Main sitemap: lists every language's by-type sitemap directly. Search
+// engines don't allow a sitemap index inside another sitemap index, so this
+// must not point to the per-language indexes (/{lang}/sitemap.xml).
 export const buildMainIndexXml = async () => {
-  const languages = await getLanguageCodes();
+  const params = await getAllSitemapParams();
   return indexXml(
-    languages.map(({ code }) => absoluteUrl(`/${code}/sitemap.xml`)),
+    params.map(({ lang, name }) => absoluteUrl(`/${lang}/sitemaps/${name}`)),
   );
 };
 
