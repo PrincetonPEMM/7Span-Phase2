@@ -321,7 +321,8 @@ export const initialPlaceItem = (localData) => ({
 });
 export const initialOriginalLangItem = (localData) => ({
   title: localData?.original_languages_of_story,
-  isCheckbox: true,
+  // Single select: a story has only one original language
+  isCheckbox: false,
   checkItem: [
     {
       id: "1",
