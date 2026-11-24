@@ -27,8 +27,10 @@ export async function generateMetadata({ params }) {
     : {};
 
   return buildDetailMetadata({
-    title: pick(seo.title, header?.canonical_story_title),
-    description: seo.description,
+    // The CMS SEO is shared with the manuscript / story page, so prefix it to
+    // keep this page's title and description unique.
+    title: seo.title ? `Paintings: ${seo.title}` : header?.canonical_story_title,
+    description: seo.description ? `Paintings. ${seo.description}` : undefined,
     path: `/paintings/by-story/${Id}`,
     lang,
     image: seo.image,
